@@ -1,13 +1,17 @@
 # c9.17_youtube_organizer
 
 ### Producer
-- 
+- Greg
 
 ### Project Manager
-- TBD
+- Collette
 
 ### SR Devs
-- 
+- Anthony
+- Chris
+- Collin
+- Brian
+- Matt
 
 ### Jr Devs
 - 
