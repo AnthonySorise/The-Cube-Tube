@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="content">
+        <header>
+            <h1>YOUR Tube
+                <h3>.video</h3>
+            </h1>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse  navbar-inverse">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">ALL</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><button class="btn btn-danger btn-xs"> X</button> World History</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Cat Memes</a></li>
+                                    <li><a href="#">Computer Science</a></li>
+                                    <li><a href="#">Cooking</a></li>
+                                    <li><a href="#">Film Reviews</a></li>
+                                    <li><a href="#">Gaming Lets Plays</a></li>
+                                    <li><a href="#">Gaming News</a></li>
+                                    <li><a href="#">Music</a></li>
+                                    <li><a href="#">News</a></li>
+                                    <li><a href="#">Politics</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p class="navbar-text" style="color:white">World History</p>
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Channels <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">ALL</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><button class="btn btn-danger btn-xs"> X</button> Geography Now </a></li>
+                                    <li><a href="#"><button class="btn btn-danger btn-xs"> X</button> The Great War</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Alternate History Hub</a></li>
+                                    <li><a href="#">History Buffs</a></li>
+                                    <li><a href="#">Tales of History</a></li>
+                                    <li><a href="#">The Metatron</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                        <p class="navbar-text" style="color:white">Geography Now | The Great War</p>
+
+                        <p class="navbar-text navbar-right"></p>
+                        <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Anonymous1492</a> | <a href="#" class="navbar-link">sign out</a></p>
+                        <button type="button" class="btn btn-default btn-success navbar-right">Manage Subscriptions</button>
+                    </div><!-- /.navbar-collapse -->
+
+
+                </div><!-- /.container-fluid -->
+
+            </nav>
+        </header>
+        <section>
+            <div id="videoStreamContainer">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Jqj_qOM6iEk" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse  navbar-inverse">
+                        <label>
+                            <input type="checkbox" value="" class ="navbar-text" style="margin-top: 20px">
+                            <p class="navbar-text" style="color:white">Favorites</p>
+                            <input type="checkbox" value="" class ="navbar-text" style="margin-top: 20px">
+                            <p class="navbar-text" style="color:white">Unwatched</p>
+                            <input type="checkbox" value="" class ="navbar-text" style="margin-top: 20px">
+                            <p class="navbar-text" style="color:white">Watch Later</p>
+                        </label>
+                        <form class="navbar-form navbar-right">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                        <form class="navbar-form navbar-right">
+                            <div class="form-group">
+                                <p class="navbar-text" style="color:white">From :</p>
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    10/05/2017
+                                    <span class="caret"></span>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <p class="navbar-text" style="color:white">To :</p>
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Today
+                                    <span class="caret"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div><!-- /.navbar-collapse -->
+
+
+                </div><!-- /.container-fluid -->
+            </nav>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Channel</th>
+                            <th>Upload Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>tincidunt vehicula eu convallis</td>
+                            <td>The Great War</td>
+                            <td>10/09/2017</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Favorite
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Watch Later
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Lorem ipsum dolor sit amet</td>
+                            <td>Geography Now</td>
+                            <td>10/09/2017</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Favorite
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Watch Later
+                                </button>
+                            </td>
+                        </tr>
+                        <tr style="background-color: lightgreen">
+                            <td><i class="fa fa-play" aria-hidden="true"></i> Inside a British WWI Airbase</td>
+                            <td>The Great War</td>
+                            <td>10/08/2017</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Favorite
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Watch Later
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Maecenas auctor eros et suscipit</td>
+                            <td>Geography Now</td>
+                            <td>10/08/2017</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Favorite
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Watch Later
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Lorem ipsum dolor sit amet</td>
+                            <td>Geography Now</td>
+                            <td>10/07/2017</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Favorite
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Watch Later
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>sed luctus erat, vitae ullamcorper</td>
+                            <td>The Great War</td>
+                            <td>10/06/2017</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Favorite
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Watch Later
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>nec arcu molestie aliquet</td>
+                            <td>The Great War</td>
+                            <td>10/05/2017</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Favorite
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Watch Later
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
+
