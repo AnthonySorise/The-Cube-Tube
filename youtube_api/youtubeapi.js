@@ -19,7 +19,7 @@ function searchYoutube(string) {
         data: {
             key: 'AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s',
             q: string,
-            type: 'channelSection',
+            type: 'video',
             part: 'snippet',
             maxResults: 10
         },
