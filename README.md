@@ -12,7 +12,7 @@
 - Collin
 - Brian
 - Matt
--Ian
+- Ian
 
 ### Jr Devs
 - 
