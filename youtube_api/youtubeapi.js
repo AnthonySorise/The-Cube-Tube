@@ -30,7 +30,7 @@ function searchChannels() {
                 $('<iframe>',{
                     src: 'https://www.youtube.com/embed/'+data.items[i].id.videoId,
                 }).appendTo(responseDiv);
-                $(".response").append(responseDiv);
+                $(".channelResponse").append(responseDiv);
             }
 
         },
@@ -49,7 +49,7 @@ function searchVideosWithinChannel() {        //string = channel ID
         method: 'get',
         data: {
             key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-            channelId:string,
+            channelId: string,
             type: 'video',
             order:'date',
             part: 'snippet',
@@ -62,7 +62,7 @@ function searchVideosWithinChannel() {        //string = channel ID
                 $('<iframe>',{
                     src: 'https://www.youtube.com/embed/'+data.items[i].id.videoId,
                 }).appendTo(responseDiv);
-                $(".response").append(responseDiv);
+                $(".videoResponse").append(responseDiv);
             }
 
         },
