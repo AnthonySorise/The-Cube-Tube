@@ -1,14 +1,13 @@
 //user database object
 var user = {
     userId:"f93jdkd",      //string of text and numbers that is appended to address for unique link
-    channelIds: [            //channel Ids the user is subscribed to
-        "UCjrL1ugI6xGqQ7VEyV6aRAg",
-        "UCUcyEsEjhPEDf69RRVhRh4A",
-        "UC67f2Qf7FYhtoUIF4Sf29cA"
-    ]
-
-
-
+    categories:{
+        uncategorized:[            //channel Ids the user is subscribed to separated into categories
+            "UCjrL1ugI6xGqQ7VEyV6aRAg",
+            "UCUcyEsEjhPEDf69RRVhRh4A",
+            "UC67f2Qf7FYhtoUIF4Sf29cA"
+        ]
+    }
 };
 
 //content database object                 TODO channel subscriber count
