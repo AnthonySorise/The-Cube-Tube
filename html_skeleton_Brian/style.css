@@ -26,10 +26,17 @@ html,body{
 }
 .navbar-brand{
 	margin-right: 20px;
+	color: rgb(255,0,0);
 	/*padding: 10px 10px;*/
 }
-#addChannelButton{
-	margin-right: 40px;
+.navbar-collapse form{
+	margin-right: 20px;
+}
+.navbar-collapse .form-group{
+	display: inline-block;
+	margin: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 /**end of navbar styling**/
 
@@ -61,7 +68,7 @@ body>.container-fluid{
 	.navbar-collapse{
 		background-color: white;
 	}
-	#addChannelButton{
+	.navbar-collapse form{
 		margin-right: 0;
 	}
 	/*end of hamburger/navbar css*/

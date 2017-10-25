@@ -32,7 +32,12 @@
 					<li>Category</li>
 					<li><span>CurrentCategory</span></li>
 				</ul>
-				<button class="navbar-right btn btn-danger" id="addChannelButton">Add Channel</button>
+				<form class="navbar-right">
+					<div class="form-group">
+						<input type="text" placeholder="search channels" name="channelSearch" id="channelSearchInput">
+					</div>
+					<button type="submit" class="btn btn-danger">search</button>
+				</form>
 			</div>		<!--end of nav options div-->
 		</div>		<!--end of navbar content main div-->
 	</nav>
@@ -45,7 +50,10 @@
 					<iframe class="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/jfWMB-blQS8" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>	<!--end of videoRow div-->
-			<div class="row listRow"></div>
+			<div class="row listRow">
+				<div class="col-xs-12 col-sm-6" style="height: 100%; border: 1px solid"></div>
+				<div class="hidden-xs col-sm-6" style="height: 50%; border:1px solid"></div>
+			</div>
 
 
 		</div><!--end of main content div-->
