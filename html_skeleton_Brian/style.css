@@ -29,10 +29,10 @@ html,body{
 	color: rgb(255,0,0);
 	/*padding: 10px 10px;*/
 }
-.navbar-collapse form{
+#mainNav-option form, #midNav-option form{
 	margin-right: 20px;
 }
-.navbar-collapse .form-group{
+#mainNav-option .form-group, #midNav-option .form-group{
 	display: inline-block;
 	margin: 0;
 	padding-top: 10px;
@@ -47,7 +47,7 @@ body>.container-fluid{
 	height: 94vh;
 }
 .videoRow{
-	height: 50%;
+	height: 47%;
 	background-color: rgba(54,69,79,1);
 }
 .videoWrapper{
@@ -57,8 +57,12 @@ body>.container-fluid{
 	height: 98%;
 	margin: 0.25% 0;
 }
+#midNav{
+	height: 3.5%;
+	margin: 0;
+}
 .listRow{
-	height: 48%;
+	height: 43%;
 	border: 2px solid red;
 }
 @media screen and (max-width: 767px){
@@ -66,9 +70,10 @@ body>.container-fluid{
 		display: inline-block !important;
 	}
 	.navbar-collapse{
+		border-top: 1px solid black;
 		background-color: white;
 	}
-	.navbar-collapse form{
+	#mainNav-option form, #midNav-option form{
 		margin-right: 0;
 	}
 	/*end of hamburger/navbar css*/

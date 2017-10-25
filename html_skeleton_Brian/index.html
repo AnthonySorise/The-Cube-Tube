@@ -11,11 +11,10 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-fixed-top">
+	<nav class="navbar navbar-fixed-top" id="mainNav">
 		<div class="container-fluid" id="navigation">	<!--navbar content main div-->
-
 			<div class="navbar-header">		<!--nav header div; includes hamburger menu and navbrand-->
-				<button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target=".navbar-collapse" data-parent="#accordion" aria-expanded="true">
+				<button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#mainNav-option" data-parent="#accordion" aria-expanded="true">
 					<span class="hamburger-box">
 						<span class="glyphicon glyphicon-menu-hamburger"></span>
 					</span>
@@ -25,19 +24,36 @@
 
 			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
 
-			<div class="collapse navbar-collapse text-center" id="nav-option">	<!--div for nav options-->
+			<div class="collapse navbar-collapse text-center" id="mainNav-option">	<!--div for nav options-->
 				<ul class="nav navbar-nav" >
-					<li>Channel</li>
-					<li><span>CurrentChannel</span></li>
-					<li>Category</li>
-					<li><span>CurrentCategory</span></li>
+					<li class="dropdown channelDropDown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							Category <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">ALL</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><button class="btn btn-danger btn-xs"> X</button> World History</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Cat Memes</a></li>
+                            <li><a href="#">Computer Science</a></li>
+                            <li><a href="#">Cooking</a></li>
+                            <li><a href="#">Film Reviews</a></li>
+                            <li><a href="#">Gaming Lets Plays</a></li>
+                            <li><a href="#">Gaming News</a></li>
+                            <li><a href="#">Music</a></li>
+                            <li><a href="#">News</a></li>
+                            <li><a href="#">Politics</a></li>
+						</ul>
+					</li>
 				</ul>
-				<form class="navbar-right">
+
+				<form class="navbar-right"><!--form for searching channels-->
 					<div class="form-group">
 						<input type="text" placeholder="search channels" name="channelSearch" id="channelSearchInput">
 					</div>
 					<button type="submit" class="btn btn-danger">search</button>
-				</form>
+				</form><!--end of form for channel search-->
 			</div>		<!--end of nav options div-->
 		</div>		<!--end of navbar content main div-->
 	</nav>
@@ -50,11 +66,44 @@
 					<iframe class="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/jfWMB-blQS8" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>	<!--end of videoRow div-->
-			<div class="row listRow">
+			<nav class="navbar" id="midNav">
+				<div class="container-fluid" id="navigation">	<!--navbar content main div-->
+					<div class="navbar-header">		<!--nav header div; includes hamburger menu and navbrand-->
+						<button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#midNav-option" data-parent="#accordion" aria-expanded="true">
+							<span class="hamburger-box">
+								<span class="glyphicon glyphicon-menu-hamburger"></span>
+							</span>
+						</button>
+						<span class="navbar-brand text-center">CubeTube</span>
+					</div>		<!--end of nav header div-->
+
+			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
+
+					<div class="collapse navbar-collapse text-center" id="midNav-option">	<!--div for nav options-->
+						<ul class="nav navbar-nav" >
+							<li class="dropdown channelDropDown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+									Category <span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>test</li>
+								</ul>
+							</li>
+						</ul>
+
+						<form class="navbar-right"><!--form for searching channels-->
+							<div class="form-group">
+								<input type="text" placeholder="search channels" name="channelSearch" id="channelSearchInput">
+							</div>
+							<button type="submit" class="btn btn-danger">search</button>
+						</form><!--end of form for channel search-->
+					</div>		<!--end of nav options div-->
+				</div>		<!--end of navbar content main div-->
+			</nav>
+			<div class="row listRow"> <!--listRow for listing channel videos-->
 				<div class="col-xs-12 col-sm-6" style="height: 100%; border: 1px solid"></div>
 				<div class="hidden-xs col-sm-6" style="height: 50%; border:1px solid"></div>
-			</div>
-
+			</div>	<!--end of listRow div-->
 
 		</div><!--end of main content div-->
 	</div>
