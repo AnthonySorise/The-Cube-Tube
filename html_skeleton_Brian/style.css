@@ -1,0 +1,80 @@
+/******
+youtube red : 255,0,0
+almost black: 40,40,40
+charcoal: 54,69,79
+******/
+html,body{
+	overflow-x: hidden;
+}
+@keyframes typing{		
+	from {width: 0}
+	to {width: 100%}
+}
+@keyframes blinkCaret{
+	from, to{border-color: transparent}
+	50%{ border-color: #2BBBAD;}
+}
+
+/**styling for navbar area**/
+.hamburger{
+	display: none !important;
+}
+
+.navbar{
+	/*background-color: rgb(255,0,0);*/
+	/*may change color to white*/
+}
+.navbar-brand{
+	margin-right: 20px;
+	/*padding: 10px 10px;*/
+}
+#addChannelButton{
+	margin-right: 40px;
+}
+/**end of navbar styling**/
+
+body>.container-fluid{
+	padding-top:51px;	/*removes navbar overlap*/
+}
+.main-content{
+	height: 94vh;
+}
+.videoRow{
+	height: 50%;
+	background-color: rgba(54,69,79,1);
+}
+.videoWrapper{
+	height: 100%;
+}
+.mainVideo{
+	height: 98%;
+	margin: 0.25% 0;
+}
+.listRow{
+	height: 48%;
+	border: 2px solid red;
+}
+@media screen and (max-width: 767px){
+	.hamburger{
+		display: inline-block !important;
+	}
+	.navbar-collapse{
+		background-color: white;
+	}
+	#addChannelButton{
+		margin-right: 0;
+	}
+	/*end of hamburger/navbar css*/
+
+	body>.container-fluid{
+		padding-top:56px;
+	}
+	.main-content{
+		height: 90vh;
+	}
+	.mainVideo{
+		margin-top: 2%;
+		height: 43vh;
+		width: 100%;
+	}
+}	
