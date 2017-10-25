@@ -1,7 +1,12 @@
+<!--
+consider carousel for the video list area:
+	issue - accessibility issue
+-->
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -12,14 +17,16 @@
 
 <body>
 	<nav class="navbar navbar-fixed-top" id="mainNav">
-		<div class="container-fluid" id="navigation">	<!--navbar content main div-->
+		<div class="container-fluid" id="">	<!--navbar content main div-->
 			<div class="navbar-header">		<!--nav header div; includes hamburger menu and navbrand-->
 				<button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#mainNav-option" data-parent="#accordion" aria-expanded="true">
 					<span class="hamburger-box">
 						<span class="glyphicon glyphicon-menu-hamburger"></span>
 					</span>
 				</button>
-				<span class="navbar-brand text-center">CubeTube</span>
+				<span class="navbar-brand text-center">
+					<i class="fa fa-cubes fa-lg" aria-hidden="true"></i>CubeTube
+				</span>
 			</div>		<!--end of nav header div-->
 
 			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
@@ -50,7 +57,7 @@
 
 				<form class="navbar-right"><!--form for searching channels-->
 					<div class="form-group">
-						<input type="text" placeholder="search channels" name="channelSearch" id="channelSearchInput">
+						<input type="text" class="form-control" placeholder="search channels" name="channelSearch" id="channelSearchInput">
 					</div>
 					<button type="submit" class="btn btn-danger">search</button>
 				</form><!--end of form for channel search-->
@@ -62,22 +69,29 @@
 		<div class="main-content">
 			<div class="row videoRow text-center">
 				<!-- <div class="col-sm-3"></div> -->
-				<div class="col-xs-12 col-sm-6 col-sm-offset-3 videoWrapper">
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 videoWrapper">
 					<iframe class="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/jfWMB-blQS8" frameborder="0" allowfullscreen></iframe>
+					
+				</div>
+				<div class="hidden-xs col-sm-1 col-md-2">
+					<button class="lightBoxMode btn btn-danger">
+						<i class="fa fa-film fa-lg" aria-hidden="true"></i>
+					</button>
 				</div>
 			</div>	<!--end of videoRow div-->
+
 			<nav class="navbar" id="midNav">
-				<div class="container-fluid" id="navigation">	<!--navbar content main div-->
+				<div class="container-fluid" id="">	<!--navbar content main div-->
 					<div class="navbar-header">		<!--nav header div; includes hamburger menu and navbrand-->
 						<button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#midNav-option" data-parent="#accordion" aria-expanded="true">
 							<span class="hamburger-box">
 								<span class="glyphicon glyphicon-menu-hamburger"></span>
 							</span>
 						</button>
-						<span class="navbar-brand text-center">CubeTube</span>
+						
 					</div>		<!--end of nav header div-->
 
-			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
+
 
 					<div class="collapse navbar-collapse text-center" id="midNav-option">	<!--div for nav options-->
 						<ul class="nav navbar-nav" >
@@ -93,7 +107,7 @@
 
 						<form class="navbar-right"><!--form for searching channels-->
 							<div class="form-group">
-								<input type="text" placeholder="search channels" name="channelSearch" id="channelSearchInput">
+								<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">
 							</div>
 							<button type="submit" class="btn btn-danger">search</button>
 						</form><!--end of form for channel search-->
@@ -106,6 +120,30 @@
 			</div>	<!--end of listRow div-->
 
 		</div><!--end of main content div-->
+		<!--modal for lightbox-->
+		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="static">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content" >
+      				<!-- <div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
+        				</button>
+        				<div class="modal-title-wrap">
+        					<h5 class="modal-title" id="gameInfoModalTitle">
+        						Modal title
+        					</h5>
+        				</div>
+      				</div> -->
+      				<div class="modal-body">
+        				<iframe class="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/jfWMB-blQS8" frameborder="0" allowfullscreen></iframe>
+      				</div>
+      				<div class="modal-footer">
+      					<span id="lightBoxModalFooter"></span>
+        				<button type="button" class="btn btn-danger modalClose" data-dismiss="modal">close</button>
+      				</div>
+    			</div>
+  			</div>
+		</div> <!--modal end for lightbox-->
 	</div>
 </body>
 </html>

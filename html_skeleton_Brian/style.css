@@ -32,11 +32,17 @@ html,body{
 #mainNav-option form, #midNav-option form{
 	margin-right: 20px;
 }
-#mainNav-option .form-group, #midNav-option .form-group{
+#mainNav-option .form-group{
 	display: inline-block;
 	margin: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+#midNav-option .form-group{
+	display: inline-block;
+	margin: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 /**end of navbar styling**/
 
@@ -57,6 +63,13 @@ body>.container-fluid{
 	height: 98%;
 	margin: 0.25% 0;
 }
+.lightBoxMode{
+	float: left;
+	color: rgba(0,0,0,0.5);
+}
+.lightBoxMode:hover{
+	color: rgba(0,0,0, 1);
+}
 #midNav{
 	height: 3.5%;
 	margin: 0;
@@ -69,9 +82,13 @@ body>.container-fluid{
 	.hamburger{
 		display: inline-block !important;
 	}
-	.navbar-collapse{
+	#mainNav-option{
 		border-top: 1px solid black;
 		background-color: white;
+	}
+	#midNav-option{
+		background-color: rgba(54,69,79,1);
+		border-top: 0.5px solid blue;
 	}
 	#mainNav-option form, #midNav-option form{
 		margin-right: 0;
@@ -86,7 +103,28 @@ body>.container-fluid{
 	}
 	.mainVideo{
 		margin-top: 2%;
-		height: 43vh;
+		height: 40vh;
 		width: 100%;
 	}
 }	
+
+/**modal css**/
+#lightBoxModal .modal-dialog{
+	/*height: 80vh;*/
+	width: 80vw;
+	/*padding: 0;*/
+}
+#lightBoxModal .modal-content{
+	background: transparent;
+}
+#lightBoxModal .modal-body{
+	height: 80vh;
+	padding: 0;
+}
+#lightBoxModal iframe{
+	height: 100%;
+	width: 100%;
+}
+.modal-open{
+	background-color: rgba(0,0,0,0.5);
+}
