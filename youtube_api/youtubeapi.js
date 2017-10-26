@@ -3,6 +3,7 @@ $(document).ready(clickHandlers);
 function clickHandlers(){
     $('.channelButton').click(searchChannelsByName)
     $('.channelVideosButton').click(searchVideosWithinChannel)
+
 }
 
 
@@ -68,7 +69,7 @@ function searchVideosWithinChannel() {        //string = channel ID
         success: function (data) {
             console.log('Youtube success',data);
             for(var i=0; i<data.items.length; i++){
-                let responseDiv = $("<div>");
+                let responseDiv = $("<div>").addClass("video");
                 $('<iframe>',{
                     src: 'https://www.youtube.com/embed/'+data.items[i].id.videoId,
                 }).appendTo(responseDiv);
