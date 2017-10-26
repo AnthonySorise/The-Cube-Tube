@@ -54,19 +54,33 @@ body>.container-fluid{
 }
 .videoRow{
 	height: 47%;
-	background-color: rgba(54,69,79,1);
+	background-color: rgba(54,54,54,1);
 }
-.videoWrapper{
+.vidRowVideoCol{
 	height: 100%;
+	border: 1px solid red;
 }
 .mainVideo{
 	height: 98%;
 	margin: 0.25% 0;
+	width: 85%;
+}
+.videoRowButtonCol{
+	padding: 0;
+}
+#videoStats{
+	position: absolute;
+	right: 0;
+	bottom: 52px;
 }
 .lightBoxMode{
-	float: left;
+	/*float: left;*/
+	/*float: right;*/
+	position: absolute;
+	right: 0;
+	bottom: 15px;
 	color: rgba(0,0,0,0.5);
-	padding: 3px 6px;
+	/*padding: 3px 6px;*/
 }
 .lightBoxMode:hover{
 	color: rgba(0,0,0, 1);

@@ -17,5 +17,5 @@ $(document).ready(function(){
 	// $('.videoStats').click(function(){
 	// 	$('.videoStats').popover('toggle');
 	// });
-	$('#videoStats').popover('hover focus');
+	// $('#videoStats').popover('hover focus');
 });
