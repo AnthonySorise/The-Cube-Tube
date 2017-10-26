@@ -5,6 +5,7 @@ consider carousel for the video list area:
 <!DOCTYPE html>
 <html>
 <head>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -71,27 +72,22 @@ consider carousel for the video list area:
 				<!-- <div class="col-sm-3"></div> -->
 				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center vidRowVideoCol">
 					<iframe class="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/X2WH8mHJnhM" frameborder="0" allowfullscreen></iframe>
-
-					<a id="videoStats" class="btn btn-info hidden-xs" type="button" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="right" title="stats" data-content="stats">
-						<i class="fa fa-area-chart fa-lg" aria-hidden="true"></i>
+					<a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
+						<i class="fa fa-comments-o fa-lg" aria-hidden="true"></i>
 					</a>
-					<button class="lightBoxMode btn btn-danger hidden-xs" type="button" data-toggle="tooltip" data-placement="right" title="Theater Mode">
+					<a tabindex="0" id="videoInfo" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" title="video info" data-content="a section for video info maybe">
+						<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+					</a>
+					<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">
+						<i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i>
+					</a> <!--can take function as content; meaning data only uploads when clicked-->
+					<button class="lightBoxMode btn btn-danger hidden-xs" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover" title="Theater Mode">
 							<i class="fa fa-film fa-lg" aria-hidden="true"></i>
 					</button>
 				</div>
-				<div class="hidden-xs col-sm-1 videoRowButtonCol">
-					
-					<!-- <div class="col-xs-12">
-						<a id="videoStats" tableindex="0" class="videoStats btn btn-info" type="button" container="body" data-trigger="click" data-toggle="popover" data-placement="right" title="stats" data-content="video statistics here">
-							<i class="fa fa-area-chart fa-lg" aria-hidden="true"></i>
-						</a>
-						<a id="videoStats" class="btn btn-info" type="button" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="right" title="stats" data-content="stats">
-							<i class="fa fa-area-chart fa-lg" aria-hidden="true"></i>
-						</a>
-					</div>	 -->
+				<div class="hidden-xs col-sm-1 videoRowButtonCol">					
 				</div>
 			</div>	<!--end of videoRow div-->
-
 			<nav class="navbar" id="midNav">
 				<div class="container-fluid" id="">	<!--navbar content main div-->
 					<div class="navbar-header">		<!--nav header div; includes hamburger menu and navbrand-->
@@ -102,9 +98,6 @@ consider carousel for the video list area:
 						</button>
 						
 					</div>		<!--end of nav header div-->
-
-
-
 					<div class="collapse navbar-collapse text-center" id="midNav-option">	<!--div for nav options-->
 						<ul class="nav navbar-nav" >
 							<li class="dropdown channelDropDown">
@@ -116,12 +109,11 @@ consider carousel for the video list area:
 								</ul>
 							</li>
 						</ul>
-
 						<form class="navbar-right"><!--form for searching channels-->
 							<div class="form-group">
 								<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">
 							</div>
-							<button type="submit" class="btn btn-danger">search</button>
+							<button type="submit" class="btn btn-primary videoSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="videos in your channels">search</button>
 						</form><!--end of form for channel search-->
 					</div>		<!--end of nav options div-->
 				</div>		<!--end of navbar content main div-->

@@ -2,9 +2,12 @@
 youtube red : 255,0,0
 almost black: 40,40,40
 charcoal: 54,69,79
+font-family: 'Roboto', sans-serif;
+font-family: 'Montserrat', sans-serif;
 ******/
 html,body{
 	overflow-x: hidden;
+	font-family: 'Montserrat', sans-serif;
 }
 @keyframes typing{		
 	from {width: 0}
@@ -19,18 +22,32 @@ html,body{
 .hamburger{
 	display: none !important;
 }
-
-.navbar{
-	/*background-color: rgb(255,0,0);*/
-	/*may change color to white*/
+.navbar-toggle{
+	margin-bottom:0;
+}
+#midNav{
+	border-radius: 0;
+	background-color: rgb(28,35,49);
+	/*background-color: rgb(63,114,155);*/
 }
 .navbar-brand{
 	margin-right: 20px;
 	color: rgb(255,0,0);
+	font-family: 'Roboto', sans-serif;
+	letter-spacing: -1.5px;
 	/*padding: 10px 10px;*/
 }
 #mainNav-option form, #midNav-option form{
 	margin-right: 20px;
+}
+#midNav-option .dropdown-toggle{
+	color: rgb(255,205,210);
+}
+#midNav-option .dropdown-toggle:hover{
+	background-color: rgba(35,42,57,0.8);
+}
+#midNav-option .dropdown-toggle:focus{
+	background: none;
 }
 #mainNav-option .form-group{
 	display: inline-block;
@@ -48,57 +65,74 @@ html,body{
 
 body>.container-fluid{
 	padding-top:51px;	/*removes navbar overlap*/
+	padding-right: 0;
+	padding-left: 0;
 }
 .main-content{
 	height: 94vh;
 }
 .videoRow{
 	height: 47%;
-	background-color: rgba(54,54,54,1);
+	background-color: rgba(34,34,34,1);
 }
 .vidRowVideoCol{
 	height: 100%;
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 }
 .mainVideo{
 	height: 98%;
 	margin: 0.25% 0;
 	width: 85%;
 }
-.videoRowButtonCol{
-	padding: 0;
+#videoComments{
+	color: rgba(43,187,173, 0.5);
+	position: absolute;
+	right: 0;
+	bottom: 126px;
+	background: none;
+	border: none;
+}
+#videoComments:hover{
+	color: rgba(43,187,173,1);
+}
+#videoInfo{
+	position: absolute;
+	right: 0;
+	bottom: 89px;
+	/*color: rgba(255,255,255,0.5);*/
+	color: rgba(49,176,213,0.5);
+	background: none;
+}
+#videoInfo:hover{
+	color: rgba(49,176,213,1);
 }
 #videoStats{
 	position: absolute;
 	right: 0;
 	bottom: 52px;
+	color: rgba(255,255,255,0.5);
+	background: none;
+	border: none;
+}
+#videoStats:hover{
+	/*color: rgba(255,255,255,1);*/
+	color: rgba(0,200,81,1);
 }
 .lightBoxMode{
-	/*float: left;*/
-	/*float: right;*/
 	position: absolute;
 	right: 0;
 	bottom: 15px;
 	color: rgba(0,0,0,0.5);
-	/*padding: 3px 6px;*/
 }
 .lightBoxMode:hover{
 	color: rgba(0,0,0, 1);
-}
-.videoStats{
-	float: left;
-	color: rgba(255,255,255,0.5);
-	padding: 3px 6px;
-}
-.videoStats:hover{
-	color: rgba(255,255,255,1);
 }
 #midNav{
 	height: 3.5%;
 	margin: 0;
 }
 .listRow{
-	height: 43%;
+	height: 46%;
 	border: 2px solid red;
 }
 @media screen and (max-width: 767px){
@@ -111,7 +145,7 @@ body>.container-fluid{
 	}
 	#midNav-option{
 		background-color: rgba(54,69,79,1);
-		border-top: 0.5px solid blue;
+		/*border-top: 0.5px solid blue;*/
 	}
 	#mainNav-option form, #midNav-option form{
 		margin-right: 0;

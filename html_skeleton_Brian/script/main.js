@@ -13,7 +13,8 @@ $(document).ready(function(){
 		$('#lightBoxModal').modal('show');
 	});
 	/*** ***/
-	$('.lightBoxMode').tooltip('hover focus');
+	$('[data-toggle="tooltip"]').tooltip();	//needed for tooltip
+	$('[data-toggle="popover"]').popover();
 	// $('.videoStats').click(function(){
 	// 	$('.videoStats').popover('toggle');
 	// });
