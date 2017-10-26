@@ -1,16 +1,12 @@
 $(document).ready(clickHandlers);
 
 function clickHandlers(){
-    $('.channelButton').click(searchChannels)
+    $('.channelButton').click(searchChannelsByName)
     $('.channelVideosButton').click(searchVideosWithinChannel)
 }
 
-// function getTextString(){
-//     return $('input').text();
-// }
-
-//Channel Search
-function searchChannels() {
+//Channel Search by Name
+function searchChannelsByName() {
     string = $('.inputSearchChannel').val();
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
@@ -22,6 +18,27 @@ function searchChannels() {
             type: 'channel',
             part: 'snippet',
             maxResults: 10
+        },
+        success: function (data) {
+            console.log('Youtube success',data);
+        },
+        error: function (data) {
+            console.log('something went wrong with YT', data);
+        }
+    })
+}
+
+//Get channel information from channel ID
+function getChannelInfoFromChannelId(string) {
+    // string = $('.inputSearchChannel').val();
+    $.ajax({
+        url: 'https://www.googleapis.com/youtube/v3/channels',
+        dataType: 'json',
+        method: 'get',
+        data: {
+            key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+            id: string,
+            part: 'snippet, statistics'
         },
         success: function (data) {
             console.log('Youtube success',data);
@@ -64,5 +81,24 @@ function searchVideosWithinChannel() {        //string = channel ID
     })
 }
 
-// 'https://www.youtube.com/channel/'+data.items[0].id.channelId
 
+//Get video information from video ID
+function getVideoInfoFromVideoId(string) {
+    // string = $('.inputSearchChannel').val();
+    $.ajax({
+        url: 'https://www.googleapis.com/youtube/v3/videos',
+        dataType: 'json',
+        method: 'get',
+        data: {
+            key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+            id: string,
+            part: 'snippet, statistics'
+        },
+        success: function (data) {
+            console.log('Youtube success',data);
+        },
+        error: function (data) {
+            console.log('something went wrong with YT', data);
+        }
+    })
+}
