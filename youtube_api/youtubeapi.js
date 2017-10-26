@@ -6,7 +6,6 @@ function clickHandlers(){
 
 }
 
-
 //Channel Search by Name
 function searchChannelsByName() {
     string = $('.inputSearchChannel').val();
@@ -84,7 +83,7 @@ function searchVideosWithinChannel() {        //string = channel ID
 }
 
 
-//Get video statistics
+//Get video information from video ID
 function getVideoInfoFromVideoId(string) {
     // string = $('.inputSearchChannel').val();
     $.ajax({
