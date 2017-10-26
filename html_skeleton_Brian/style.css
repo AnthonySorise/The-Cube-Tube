@@ -29,6 +29,7 @@ html,body{
 	border-radius: 0;
 	background-color: rgb(28,35,49);
 	/*background-color: rgb(63,114,155);*/
+	border: none;
 }
 .navbar-brand{
 	margin-right: 20px;
@@ -71,7 +72,7 @@ body>.container-fluid{
 .main-content{
 	height: 94vh;
 }
-.videoRow{
+.videoRowWrapper{
 	height: 47%;
 	background-color: rgba(34,34,34,1);
 }
@@ -131,9 +132,28 @@ body>.container-fluid{
 	height: 3.5%;
 	margin: 0;
 }
-.listRow{
-	height: 46%;
+.videoListRowWrapper{
+	height: 46.5%;
 	border: 2px solid red;
+	overflow: auto;
+}
+.thRow{
+	background-color: rgba(34,34,34,0.8);
+	color: white;
+	text-shadow: 
+		-0.5px -0.5px 0 #000,
+		0.5px 0.5px 0 #000;
+}
+.tdListLeft, .tdListRight{
+		padding: 0;
+	}
+.tdList{
+	font-size: 18px;
+	margin-top: 1.75px;
+	margin-bottom: 1.75px;
+}
+.tdList:hover, .tdList:focus{
+	background-color: rgba(43,187,173,0.6);
 }
 @media screen and (max-width: 767px){
 	.hamburger{
@@ -162,6 +182,11 @@ body>.container-fluid{
 		margin-top: 2%;
 		height: 40vh;
 		width: 100%;
+	}
+	.tdList{
+		font-size: 10px;
+		margin-top: 1px;
+		margin-bottom: 1px;
 	}
 }	
 
