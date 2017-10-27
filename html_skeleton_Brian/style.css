@@ -62,6 +62,12 @@ html,body{
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+.channelSearchForm{
+	position:relative;
+}
+#ui-id-1{
+	top:43px;
+}
 /**end of navbar styling**/
 
 body>.container-fluid{

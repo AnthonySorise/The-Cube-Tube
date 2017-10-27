@@ -1,5 +1,6 @@
 jQuery(function() {
     jQuery("#channelSearchInput").autocomplete({
+        appendTo: ".channelSearchForm",
         source: function (request, response) {
             var sqValue = [];
             jQuery.ajax({
