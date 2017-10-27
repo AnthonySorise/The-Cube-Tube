@@ -69,5 +69,205 @@ var content = {
     },
 };
 
+var iansSampleSubscriptions = {
+     "22w5vMUykkw": {
+                    // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
+                    snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+                        description: "Get your own Guava Juice Box ➽ https://goo.gl/0dTjI7 Subscribe and become a Guava Juicer!! ➽ http://bit.ly/GUAVAJUICE Guava Juice Merchandise ...",
+                        publishedAt: "2017-10-26T19:06:09.000Z",
+                        thumbnails: {
+                            default: {
+                                url: "https://i.ytimg.com/vi/22w5vMUykkw/default.jpg"
+                            },
+                            high: {
+                                url: "https://i.ytimg.com/vi/22w5vMUykkw/hqdefault.jpg"
+                            },
+                            medium: {
+                                url: "https://i.ytimg.com/vi/22w5vMUykkw/mqdefault.jpg"
+                            },
+                            standard: {
+                                url: ""
+                            }
+                        },
+                        title: "GUAVA JUICE BOX 5 HOLIDAY EDITION UNBOXING!"
 
+                    },
+                    statistics: {
+                        dislikeCount:"261",
+                        favoriteCount:"0",
+                        likeCount:"6045",
+                        viewCount:"149395"
+                    }
+                },
+     "Qp3YWu2wGuU": {
+                    // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
+                    snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+                        description: "Today I attempt to eat the spiciest chip in the world! Subscribe and become a GUAV! ➽ http://bit.ly/GUAVAJUICE Get your own Guava Juice Box ...",
+                        publishedAt: "2017-10-25T21:27:05.000Z",
+                        thumbnails: {
+                            default: {
+                                url: "https://i.ytimg.com/vi/Qp3YWu2wGuU/default.jpg"
+                            },
+                            high: {
+                                url: "https://i.ytimg.com/vi/Qp3YWu2wGuU/hqdefault.jpg"
+                            },
+                            medium: {
+                                url: "https://i.ytimg.com/vi/Qp3YWu2wGuU/mqdefault.jpg"
+                            },
+                            standard: {
+                                url: ""
+                            }
+                        },
+                        title: "Eating The Spiciest Chip In The World!"
+                    },
+                    statistics: {
+                        dislikeCount:"16",
+                        favoriteCount:"0",
+                        likeCount:"10936",
+                        viewCount:"275938"
+                    }
+                },
+     "pddqXWGpcQ8": {
+                    // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
+                    snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+                        description: "Today I bathe in Nachos and Cheese! Donation Receipt! ➽ https://ibb.co/gu7evm Subscribe and become a GUAV! ➽ http://bit.ly/GUAVAJUICE Get your own ...",
+                        publishedAt: "2017-10-24T19:46:39.000Z",
+                        thumbnails: {
+                            default: {
+                                url: "https://i.ytimg.com/vi/pddqXWGpcQ8/default.jpg"
+                            },
+                            high: {
+                                url: "https://i.ytimg.com/vi/pddqXWGpcQ8/hqdefault.jpg"
+                            },
+                            medium: {
+                                url: "https://i.ytimg.com/vi/pddqXWGpcQ8/mqdefault.jpg"
+                            },
+                            standard: {
+                                url: ""
+                            }
+                        },
+                        title: "NACHO CHEESE BATH CHALLENGE!"
+                    },
+                    statistics: {
+                        dislikeCount:"31",
+                        favoriteCount:"0",
+                        likeCount:"92758",
+                        viewCount:"452956"
+                    }
+                },
+     "OA8tasCFJ24": {
+                    // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
+                    snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+                        description: "Hey Guavs! This is the third and final #NoiseChallenge vid! #AD Can me and my lil bro Reymound stay quiet long enough to win? Can YOU beat our record?",
+                        publishedAt: "2017-10-23T17:56:53.000Z",
+                        thumbnails: {
+                            default: {
+                                url: "https://i.ytimg.com/vi/OA8tasCFJ24/default.jpg"
+                            },
+                            high: {
+                                url: "https://i.ytimg.com/vi/OA8tasCFJ24/hqdefault.jpg"
+                            },
+                            medium: {
+                                url: "https://i.ytimg.com/vi/OA8tasCFJ24/mqdefault.jpg"
+                            },
+                            standard: {
+                                url: ""
+                            }
+                        },
+                        title: "THE FINAL QUIETEST CHALLENGE! (ft. Baby Brother)"
+                    },
+                    statistics: {
+                        dislikeCount:"27",
+                        favoriteCount:"0",
+                        likeCount:"11748",
+                        viewCount:"836209"
+                    }
+                },
+     "SqLI4l59dQM": {
+                    // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
+                    snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+                        description: "My little brother buys my outfits! Subscribe and become a GUAV! ➽ http://bit.ly/GUAVAJUICE Guava Juice iPhone 8 Giveaway ...",
+                        publishedAt: "2017-10-22T18:39:50.000Z",
+                        thumbnails: {
+                            default: {
+                                url: "https://i.ytimg.com/vi/SqLI4l59dQM/default.jpg"
+                            },
+                            high: {
+                                url: "https://i.ytimg.com/vi/SqLI4l59dQM/hqdefault.jpg"
+                            },
+                            medium: {
+                                url: "https://i.ytimg.com/vi/SqLI4l59dQM/mqdefault.jpg"
+                            },
+                            standard: {
+                                url: ""
+                            }
+                        },
+                        title: "My Brother Buys My Outfits Challenge!"
+                    },
+                    statistics: {
+                        dislikeCount:"65",
+                        favoriteCount:"0",
+                        likeCount:"9347",
+                        viewCount:"742384"
+                    }
+                },
+     "dGoCL_E9DNE": {
+                    // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
+                    snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+                        description: "Weird things happened when I was trying to film this video.. Subscribe and become a GUAV! ➽ http://bit.ly/GUAVAJUICE Guava Juice iPhone 8 Giveaway ...",
+                        publishedAt: "2017-10-21T19:23:30.000Z",
+                        thumbnails: {
+                            default: {
+                                url: "https://i.ytimg.com/vi/dGoCL_E9DNE/default.jpg"
+                            },
+                            high: {
+                                url: "https://i.ytimg.com/vi/dGoCL_E9DNE/hqdefault.jpg"
+                            },
+                            medium: {
+                                url: "https://i.ytimg.com/vi/dGoCL_E9DNE/mqdefault.jpg"
+                            },
+                            standard: {
+                                url: ""
+                            }
+                        },
+                        title: "Something Scary Happened While Filming A Video (Ghost)"
+                    },
+                    statistics: {
+                        dislikeCount:"54",
+                        favoriteCount:"0",
+                        likeCount:"11948",
+                        viewCount:"839567"
+                    }
+                },
+     "J-HiPfcwIJM": {
+                    // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
+                    snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+                        description: "Today we're going to explore a haunted parking garage at 3AM Subscribe and become a GUAV! ➽ http://bit.ly/GUAVAJUICE Guava Juice iPhone 8 Giveaway ...",
+                        publishedAt: "2017-10-20T19:19:49.000Z",
+                        thumbnails: {
+                            default: {
+                                url: "https://i.ytimg.com/vi/J-HiPfcwIJM/default.jpg"
+                            },
+                            high: {
+                                url: "https://i.ytimg.com/vi/J-HiPfcwIJM/hqdefault.jpg"
+                            },
+                            medium: {
+                                url: "https://i.ytimg.com/vi/J-HiPfcwIJM/mqdefault.jpg"
+                            },
+                            standard: {
+                                url: ""
+                            }
+                        },
+                        title: "Do Not Explore Haunted Parking Garage at 3AM (Ghost)"
+                    },
+                    statistics: {
+                        dislikeCount:"43",
+                        favoriteCount:"0",
+                        likeCount:"30678",
+                        viewCount:"853278"
+                    }
+                },
+
+                
+}
 
