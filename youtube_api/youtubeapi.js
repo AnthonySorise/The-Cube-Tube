@@ -41,7 +41,7 @@ function searchChannels() {
 }
 
 //Video Search Within Channel
-function searchVideosWithinChannel() {        //string = channel ID
+function searchVideosWithinChannel(){        //string = channel ID
     string = $('.inputSearchChannelVideos').val();
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
