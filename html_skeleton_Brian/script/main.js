@@ -16,6 +16,10 @@ $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();	//needed for tooltip
 	$('[data-toggle="popover"]').popover();
 
+	// $('.videoStats').click(function(){
+	// 	$('.videoStats').popover('toggle');
+	// });
+	// $('#videoStats').popover('hover focus');
 	clickHandler();
     // $('.channelSearchForm').click(function(){
     //     $('#channelSearchModal').modal('show'); //this would need to be called at success function of ajax call
@@ -104,6 +108,19 @@ function renderSearchStats(i){
     })
 }
 
-
-
-
+function renderVideoList(subsciptionsObject){
+	var title = $(".tdTitle")
+	var channel = $(".tdChannel")
+	var date = $(".tdDate")
+	var i = 0
+	for(var key in subsciptionsObject){
+		console.log(subsciptionsObject[key].snippet.title);
+		console.log(subsciptionsObject[key].snippet.channelTitle);
+		console.log(subsciptionsObject[key].snippet.publishedAt);
+		$(title[i]).text(subsciptionsObject[key].snippet.title);
+		$(channel[i]).text(subsciptionsObject[key].snippet.channelTitle);
+		$(date[i]).text(subsciptionsObject[key].snippet.publishedAt)
+		i++
+	
+	}
+}
