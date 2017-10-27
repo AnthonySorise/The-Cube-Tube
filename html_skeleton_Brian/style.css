@@ -62,6 +62,12 @@ html,body{
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+.channelSearchForm{
+	position:relative;
+}
+#ui-id-1{
+	top:43px;
+}
 /**end of navbar styling**/
 
 body>.container-fluid{
@@ -86,7 +92,8 @@ body>.container-fluid{
 	width: 85%;
 }
 #videoComments{
-	color: rgba(43,187,173, 0.5);
+	/*color: rgba(43,187,173, 0.5);*/
+	color: rgba(255,255,255,0.5);
 	position: absolute;
 	right: 0;
 	bottom: 126px;
@@ -100,9 +107,10 @@ body>.container-fluid{
 	position: absolute;
 	right: 0;
 	bottom: 89px;
-	/*color: rgba(255,255,255,0.5);*/
-	color: rgba(49,176,213,0.5);
+	color: rgba(255,255,255,0.5);
+	/*color: rgba(49,176,213,0.5);*/
 	background: none;
+	border:none;
 }
 #videoInfo:hover{
 	color: rgba(49,176,213,1);
@@ -123,10 +131,12 @@ body>.container-fluid{
 	position: absolute;
 	right: 0;
 	bottom: 15px;
-	color: rgba(0,0,0,0.5);
+	color: rgba(255,255,255,0.5);
+	background: none;
+	border: none;
 }
 .lightBoxMode:hover{
-	color: rgba(0,0,0, 1);
+	color: rgba(255,0,0, 1);
 }
 #midNav{
 	height: 3.5%;
@@ -134,7 +144,7 @@ body>.container-fluid{
 }
 .videoListRowWrapper{
 	height: 46.5%;
-	border: 2px solid red;
+	/*border: 2px solid red;*/
 	overflow: auto;
 }
 .thRow{
@@ -209,4 +219,52 @@ body>.container-fluid{
 }
 .modal-open{
 	background-color: rgba(0,0,0,0.5);
+}
+#channelSearchModalHeader .modal-title-wrap{
+	display: inline-block;
+}
+#channelSearchModalTitle{
+	font-family: 'Roboto', sans-serif;
+	overflow: hidden;
+	border-right: .15em solid rgb(255,0,0);
+	white-space: nowrap;
+	margin: 0 auto;
+	letter-spacing: -1px;
+	animation: 
+		typing 2s steps(40, end),
+		blinkCaret .85s step-end infinite;
+}
+#channelSearchModalBody{
+	list-style-type: none;
+}
+#channelSearchModalBody li{
+	margin: 7px 0;
+}
+#channelSearchModalBody li:hover{
+	background-color: lightblue;
+}
+#channelSearchModalBody li img{
+	width: 44px;
+	height: 44px;
+}
+#channelSearchModalBody li h4{
+	margin: 0;
+	display: inline-block;
+}
+#channelSearchModalBody .chInfoButton{
+	color: rgba(49,176,213,0.5);
+}
+#channelSearchModalBody .chInfoButton:hover{
+	color: rgba(49,176, 213, 1);
+}
+#channelSearchModalBody li button{
+	/*height: 100%;*/
+	margin: 5px 0;
+	float: right;
+}
+.carousel-control{
+	width: 30px;
+}
+.glyphicon{
+	color: red;
 }
