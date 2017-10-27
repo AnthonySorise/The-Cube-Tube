@@ -33,10 +33,13 @@ html,body{
 }
 .navbar-brand{
 	margin-right: 20px;
-	color: rgb(255,0,0);
+	color: rgb(40,40,40);
 	font-family: 'Roboto', sans-serif;
 	letter-spacing: -1.5px;
 	/*padding: 10px 10px;*/
+}
+.navbar-brand .fa{
+	color: rgb(255,0,0);
 }
 #mainNav-option form, #midNav-option form{
 	margin-right: 20px;
@@ -156,7 +159,13 @@ body>.container-fluid{
 }
 .tdListLeft, .tdListRight{
 		padding: 0;
-	}
+}
+.tdListLeft{
+	border-right: 0.5px solid;
+}
+.tdListRight{
+	border-left: 0.5px solid;
+}
 .tdList{
 	font-size: 18px;
 	margin-top: 1.75px;
