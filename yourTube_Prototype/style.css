@@ -7,6 +7,10 @@ body{
     font-family: TradeGothicLT, Arial;
 }
 
+nav{
+    color:grey;
+}
+
 #content{
     width: 80vw;
     margin:auto;
