@@ -25,14 +25,6 @@ function searchChannels() {
         },
         success: function (data) {
             console.log('Youtube success',data);
-            for(var i=0; i<data.items.length; i++){
-                let responseDiv = $("<div>");
-                $('<iframe>',{
-                    src: 'https://www.youtube.com/embed/'+data.items[i].id.videoId,
-                }).appendTo(responseDiv);
-                $(".channelResponse").append(responseDiv);
-            }
-
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
