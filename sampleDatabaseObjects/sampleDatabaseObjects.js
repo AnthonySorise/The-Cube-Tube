@@ -39,6 +39,8 @@ var content = {
                 "0Jykp0GFDAY": {
                     // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
                     snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+                        channelID:"UCjrL1ugI6xGqQ7VEyV6aRAg",
+                        channelTitle:"BBQ Pit Boys",
                         description: "Don't fear the Reaper. Light it up with this classic hot chili pepper cheese burger by the BBQ Pit Boys. It comes with the South Carolina Reaper, known as the hottest pepper on the planet and the Ghost. These burgers are packed with flavor and topped with a Jack Cheese Sauce. Your family and friends will luv 'em.-...Please Subscribe, Fav and Share us. Thanks..!  Are you looking for barbecue and grilling recipes to serve up at your Pit, family picnic, or tailgating party? Then put your Barbecue Shoes on because we're serving up some delicious, moist and tender, and real easy to do cooking on the ol' BBQ grill.↵↵To print out this recipe, or to get your BBQ Pit Boys Pitmasters Certificate, our custom BBQ Pit Boys Old Hickory knife, gifts and more CLICK HERE http://www.bbqpitboys.com/barbecue-store-gifts.↵↵For more information about our Santa Corona Grill used in this video, check out our website here: http://bbqpitboys.com/grill-shop/↵ ↵To purchase our official T-Shirts, Mugs, Aprons, Scarfs, Hoodies, and more shipped to you anywhere in the world CLICK HERE http://www.bbqpitboys.com/barbecue-store-gifts↵↵Cheese Sauce recipe: 8 tablespoons butter, 1/2 cup all-purpose flour, 2 cups whole milk, or more as needed, 1 teaspoon onion powder, 1 teaspoon garlic powder, 24oz. shredded Monterey Jack cheese↵  ↵Become a member of the Pit. Or join a BBQ Pit Boys Chapter, or start your own, now over 15,000 BBQ Pit Boys Chapters formed worldwide. Visit our Website to register http://www.BBQPitBoys.com↵↵Thanks for stopping by the Pit and for your continued support..! --BBQ Pit Boys",
                         publishedAt: "2017-10-21T12:58:06.000Z",
                         thumbnails: {
@@ -74,6 +76,8 @@ sampleSubscirptions = {
     "0Jykp0GFDAY": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelID:"UCjrL1ugI6xGqQ7VEyV6aRAg",
+            channelTitle:"BBQ Pit Boys",
             description: "Don't fear the Reaper. Light it up with this classic hot chili pepper cheese burger by the BBQ Pit Boys. It comes with the South Carolina Reaper, known as the hottest pepper on the planet and the Ghost. These burgers are packed with flavor and topped with a Jack Cheese Sauce. Your family and friends will luv 'em.-...Please Subscribe, Fav and Share us. Thanks..!  Are you looking for barbecue and grilling recipes to serve up at your Pit, family picnic, or tailgating party? Then put your Barbecue Shoes on because we're serving up some delicious, moist and tender, and real easy to do cooking on the ol' BBQ grill.↵↵To print out this recipe, or to get your BBQ Pit Boys Pitmasters Certificate, our custom BBQ Pit Boys Old Hickory knife, gifts and more CLICK HERE http://www.bbqpitboys.com/barbecue-store-gifts.↵↵For more information about our Santa Corona Grill used in this video, check out our website here: http://bbqpitboys.com/grill-shop/↵ ↵To purchase our official T-Shirts, Mugs, Aprons, Scarfs, Hoodies, and more shipped to you anywhere in the world CLICK HERE http://www.bbqpitboys.com/barbecue-store-gifts↵↵Cheese Sauce recipe: 8 tablespoons butter, 1/2 cup all-purpose flour, 2 cups whole milk, or more as needed, 1 teaspoon onion powder, 1 teaspoon garlic powder, 24oz. shredded Monterey Jack cheese↵  ↵Become a member of the Pit. Or join a BBQ Pit Boys Chapter, or start your own, now over 15,000 BBQ Pit Boys Chapters formed worldwide. Visit our Website to register http://www.BBQPitBoys.com↵↵Thanks for stopping by the Pit and for your continued support..! --BBQ Pit Boys",
             publishedAt: "2017-10-21T12:58:06.000Z",
             thumbnails: {
@@ -101,6 +105,8 @@ sampleSubscirptions = {
     },
     "vD6qBrdrRYY": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelID:"UCjrL1ugI6xGqQ7VEyV6aRAg",
+            channelTitle:"BBQ Pit Boys",
             description: "No frozen fake food fish fry here. Watch the BBQ Pit Boys cook up some local caught Harbor Blues and Weakfish. They come out crispy tender guuud..! Choose ...",
             publishedAt: "2017-10-14T13:00:04.000Z",
             thumbnails: {
@@ -128,6 +134,8 @@ sampleSubscirptions = {
     },
     "a2KQQocGmwM": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelID:"UCjrL1ugI6xGqQ7VEyV6aRAg",
+            channelTitle:"BBQ Pit Boys",
             description: "Howto to make some garden fresh pickled peppers and cucumbers,. And its ready to eat in a few days....",
             publishedAt: "2017-09-24T13:00:00.000Z",
             thumbnails: {
@@ -155,6 +163,8 @@ sampleSubscirptions = {
     },
     "v0-QZmJ_WaY": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelID:"UCjrL1ugI6xGqQ7VEyV6aRAg",
+            channelTitle:"BBQ Pit Boys",
             description: "Nothing better than taking some time to go crabbing, and cooking up some fresh Blues. If you have that Blue Crab Blues then check this out. . -...Please ...",
             publishedAt: "2017-09-23T13:00:03.000Z",
             thumbnails: {
@@ -182,6 +192,8 @@ sampleSubscirptions = {
     },
     "1MDJEfp04C0": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelID:"UCjrL1ugI6xGqQ7VEyV6aRAg",
+            channelTitle:"BBQ Pit Boys",
             description: "munching on them bones...",
             publishedAt: "2017-09-22T20:20:57.000Z",
             thumbnails: {
@@ -209,6 +221,8 @@ sampleSubscirptions = {
     },
     "l4KVcE6OBVo": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelID:"UCjrL1ugI6xGqQ7VEyV6aRAg",
+            channelTitle:"BBQ Pit Boys",
             description: "Fresh caught Blue Crab and Sea Bass are on the menu at the Pit. -...Please Subscribe, Fav and Share us. Thanks..! Are you looking for barbecue and grilling ...",
             publishedAt: "2017-09-16T13:00:04.000Z",
             thumbnails: {
@@ -236,6 +250,8 @@ sampleSubscirptions = {
     },
     "hl9wh2y0Ca0": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelID:"UCjrL1ugI6xGqQ7VEyV6aRAg",
+            channelTitle:"BBQ Pit Boys",
             description: "Plain and simple crispy roll hotdogs kicked up a notch. And they're real easy to do And all you need is a good sausage and some bread and butter. -...Please ...\"",
             publishedAt: "2017-09-09T13:00:05.000Z",
             thumbnails: {
