@@ -14,11 +14,21 @@ $(document).ready(function(){
 	});
 	/*** ***/
 	$('[data-toggle="tooltip"]').tooltip();	//needed for tooltip
-	// $('[data-toggle="popover"]').popover();
-	// $('.videoStats').click(function(){
-	// 	$('.videoStats').popover('toggle');
-	// });
-	// $('#videoStats').popover('hover focus');
+	$('[data-toggle="popover"]').popover();
+
+    $('.channelSearchForm').click(function(){
+        $('#channelSearchModal').modal('show'); //this would need to be called at success function of ajax call
+    });
+});
+
+function renderVideoInfo(videoObject){		//argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
+    $('#videoInfo').popover({
+        content: function() {
+            var message = videoObject.snippet.description;
+            return message;
+        }
+    });
+}
 
 	//Click handler to console log search results
 	function clickHandler() {
@@ -49,3 +59,6 @@ $(document).ready(function(){
         })
     }
 });
+
+
+
