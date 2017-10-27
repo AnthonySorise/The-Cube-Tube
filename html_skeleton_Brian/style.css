@@ -262,3 +262,9 @@ body>.container-fluid{
 	margin: 5px 0;
 	float: right;
 }
+.carousel-control{
+	width: 30px;
+}
+.glyphicon{
+	color: red;
+}

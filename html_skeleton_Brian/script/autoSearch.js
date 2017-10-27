@@ -11,7 +11,7 @@ jQuery(function() {
                     q: request.term
                 }, {}),
                 success: function (data) {
-                    obj = data[1];
+                    var obj = data[1];
                     jQuery.each(obj, function (key, value) {
                         sqValue.push(value[0]);
                     });
