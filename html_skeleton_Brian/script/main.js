@@ -57,11 +57,49 @@ function searchChannelsByName() {
 		success: function (data) {
 			console.log('Youtube success',data);
             $('#channelSearchModal').modal('show');
+            for(var i = 0; i < 10; i++){
+                var channelListData = "#chSearch-"+(i+1);
+            	var chName = "#chSearch-"+(i+1) + " .chName";
+            	var img = "#chSearch-"+(i+1) + " img";
+            	$(channelListData).attr("channelId", data.items[i].snippet.channelId);
+            	$(chName).text(data.items[i].snippet.channelTitle);
+                $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
+			}
 		},
 		error: function (data) {
 			console.log('something went wrong with YT', data);
 		}
 	})
+	setTimeout(function(){	//SHOULD USE PROMISE HERE INSTEAD
+		for(var i = 0; i < 10; i++){
+			renderSearchStats(i)
+		}
+	}, 500)
+}
+
+function renderSearchStats(i){
+    var channelListData = "#chSearch-"+(i+1);
+	var chSub = "#chSearch-"+(i+1) + " .chSub";
+	var chDesc ="#chSearch-"+(i+1) + " a";
+	$.ajax({
+		url: 'https://www.googleapis.com/youtube/v3/channels',
+		dataType: 'json',
+		method: 'get',
+		data: {
+			key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+			id: $(channelListData).attr("channelId"),
+			part: 'snippet, statistics'
+		},
+		success: function (data) {
+			console.log('Youtube success',data);
+			console.log(chSub);
+			$(chSub).text(data.items[0].statistics.subscriberCount);
+            $(chDesc).attr("data-content", data.items[0].snippet.description)
+		},
+		error: function (data) {
+			console.log('something went wrong with YT', data);
+		}
+    })
 }
 
 
