@@ -19,4 +19,15 @@ $(document).ready(function(){
 	// 	$('.videoStats').popover('toggle');
 	// });
 	// $('#videoStats').popover('hover focus');
+
+
 });
+
+function renderVideoList(subsciptionsObject){
+	for(var key in subsciptionsObject){
+		console.log(subsciptionsObject[key].snippet.title);
+		console.log(subsciptionsObject[key].snippet.channelTitle);
+		console.log(subsciptionsObject[key].snippet.publishedAt);
+	
+	}
+}
