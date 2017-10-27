@@ -93,7 +93,9 @@ function renderSearchStats(i){
 		success: function (data) {
 			console.log('Youtube success',data);
 			console.log(chSub);
-			$(chSub).text(data.items[0].statistics.subscriberCount);
+			var subNumber = parseInt(data.items[0].statistics.subscriberCount);
+            var numWithCommas = subNumber.toLocaleString("en-us");
+			$(chSub).text(numWithCommas);
             $(chDesc).attr("data-content", data.items[0].snippet.description)
 		},
 		error: function (data) {
