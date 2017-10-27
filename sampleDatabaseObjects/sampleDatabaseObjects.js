@@ -490,6 +490,8 @@ sampleSubscirptions = {
     },
     "bRuLGVagk84": {
         snippet: {
+            channelId: "UCHEf6T_gVq4tlW5i91ESiWg",
+            channelTitle: "REACT",
             description: "College Kids try Halloween Candy! Watch all People Vs Food Eps! http://goo.gl/KjLw5C SUBSCRIBE THEN HIT THE ! New Videos 12pm PT on REACT!",
             publishedAt: "2017-10-26T19:00:02.000Z",
             thumbnails: {
@@ -517,6 +519,8 @@ sampleSubscirptions = {
     },
     "imfhW8sk2mg": {
         snippet: {
+            channelId: "UCRH49DSFyl8oPwsiHyZ9O0g",
+            channelTitle: "DSNY Newscast - The World of Disney News",
             description: "We discuss the breaking news that Disney have decided to SCRAP the Eastern Gateway Project in favour of a new Western Gateway into Downtown Disney",
             publishedAt: "2017-10-26T01:26:47.000Z",
             thumbnails: {
@@ -544,6 +548,8 @@ sampleSubscirptions = {
     },
     "DKVJ52qwWWQ": {
         snippet: {
+            channelId: "UC0M0rxSz3IF0CsSour1iWmw",
+            channelTitle: "Cinemassacre",
             description: "Full playthrough of Castlevania: Chorus of Mysteries (NES Hack) by Mike Matei↵Twitter Mike ✜ https://twitter.com/Mike_Matei↵↵This is edited down from two live streams that were done on the Cinemassacre Plays Channel. If you'd like to see the fully unedited playthroughs use these links↵Part 1 https://www.youtube.com/watch?v=ub8zPpui0p0↵Part 2 https://www.youtube.com/watch?v=NGg1fyJJgmQ",
             publishedAt: "2017-10-24T05:42:14.000Z",
             thumbnails: {
