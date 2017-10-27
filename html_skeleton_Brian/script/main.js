@@ -15,8 +15,8 @@ $(document).ready(function(){
 	/*** ***/
 	$('[data-toggle="tooltip"]').tooltip();	//needed for tooltip
 	$('[data-toggle="popover"]').popover();
-	// $('.videoStats').click(function(){
-	// 	$('.videoStats').popover('toggle');
-	// });
-	// $('#videoStats').popover('hover focus');
+
+	$('.channelSearchForm').click(function(){
+		$('#channelSearchModal').modal('show'); //this would need to be called at success function of ajax call
+	});
 });

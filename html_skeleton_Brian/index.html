@@ -60,11 +60,12 @@ consider carousel for the video list area:
 					</li>
 				</ul>
 
-				<form class="navbar-right"><!--form for searching channels-->
+				<form class="navbar-right channelSearchForm"><!--form for searching channels-->
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="search channels" name="channelSearch" id="channelSearchInput">
+
 					</div>
-					<button type="submit" class="btn btn-danger">search</button>
+					<button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for channels to add">search</button>
 				</form><!--end of form for channel search-->
 			</div>		<!--end of nav options div-->
 		</div>		<!--end of navbar content main div-->
@@ -86,7 +87,7 @@ consider carousel for the video list area:
 					<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">
 						<i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i>
 					</a> <!--can take function as content; meaning data only uploads when clicked-->
-					<button class="lightBoxMode btn btn-danger hidden-xs" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover" title="Theater Mode">
+					<button class="btn hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover" title="Theater Mode">
 							<i class="fa fa-film fa-lg" aria-hidden="true"></i>
 					</button>
 				</div>
@@ -555,6 +556,164 @@ consider carousel for the video list area:
     			</div>
   			</div>
 		</div> <!--modal end for lightbox-->
+		<!--modal for channel search result-->
+		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="static">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+      				<div class="modal-header" id="channelSearchModalHeader">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
+        				</button>
+        				<div class="modal-title-wrap">
+        					<h4 class="modal-title" id="channelSearchModalTitle">
+        						Search Results...
+        					</h4>
+        				</div>
+      				</div>
+      				<div class="modal-body" id="channelSearchModalBody">
+      					<!-- sample target: for changing image source
+      						1-indexed
+							$('#chSearch-'+[i]+' img').src(img source);
+      					 -->
+        				<li id="chSearch-1">
+    						<img src="https://yt3.ggpht.com/--Vv8uIMBDRA/AAAAAAAAAAI/AAAAAAAAAAA/eNmOwh3h_ao/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+    						<h4>
+    							<span class="chName">
+    								TeamFourStar
+    							</span>
+    							<small>sub: <span class="chSub">2,794,426</span></small>
+    							<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="channel description" data-content="Visit our website at: http://www.teamfourstar.com/ Our Gaming Channel http://www.youtube.com/TFSTwoSaiyans Our Behind the Scenes Channel ...">
+									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+								</a>
+    						</h4>
+    						<button class="btn btn-success"> Add Channel </button>
+        				</li>
+        				<li id="chSearch-2">
+        					<img src="https://yt3.ggpht.com/-bD_mh9YK7Ws/AAAAAAAAAAI/AAAAAAAAAAA/Ncg8tJYlLZ0/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+        					<h4>
+        						<span class="chName">
+        							Bad Lip Reading
+        						</span>
+        						<small>sub: <span class="chSub">6,350,709</span></small>
+        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="channel description" data-content="I put words into other people's mouths. Management: 3 Arts Entertainment (310) 888-3200 My contact email is also in the channel header.">
+									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+								</a>
+        					</h4>
+        					<button class="btn btn-success"> Add Channel </button>
+        				</li>
+        				<li id="chSearch-3">
+        					<img src="https://yt3.ggpht.com/-lU0F42A13Uc/AAAAAAAAAAI/AAAAAAAAAAA/HXEcQIAtLOI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+        					<h4>
+        						<span class="chName">
+        							Primitive Technology
+        						</span>
+        						<small>sub: <span class="chSub">6,424,539</span></small>
+        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="channel description" data-content="Making primitive huts and tools from scratch using only natural materials in the wild.I also have this blog: https://primitivetechnology.wordpress.com/ (I have no ...">
+									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+								</a>
+        					</h4>
+        					<button class="btn btn-success"> Add Channel </button>
+        				</li>
+        				<li id="chSearch-4">
+        					<img src="https://yt3.ggpht.com/-lU0F42A13Uc/AAAAAAAAAAI/AAAAAAAAAAA/HXEcQIAtLOI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+        					<h4>
+        						<span class="chName">
+        							Primitive Technology
+        						</span>
+        						<small>sub: <span class="chSub">6,424,539</span></small>
+        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="channel description" data-content="">
+									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+								</a>
+        					</h4>
+        					<button class="btn btn-success"> Add Channel </button>
+        				</li>
+        				<li id="chSearch-5">
+        					<img src="https://yt3.ggpht.com/-lU0F42A13Uc/AAAAAAAAAAI/AAAAAAAAAAA/HXEcQIAtLOI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+        					<h4>
+        						<span class="chName">
+        							Primitive Technology
+        						</span>
+        						<small>sub: <span class="chSub">6,424,539</span></small>
+        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="channel description" data-content="">
+									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+								</a>
+        					</h4>
+        					<button class="btn btn-success"> Add Channel </button>
+        				</li>
+        				<li id="chSearch-6">
+        					<img src="https://yt3.ggpht.com/-lU0F42A13Uc/AAAAAAAAAAI/AAAAAAAAAAA/HXEcQIAtLOI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+        					<h4>
+        						<span class="chName">
+        							Primitive Technology
+        						</span>
+        						<small>sub: <span class="chSub">6,424,539</span></small>
+        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="channel description" data-content="">
+									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+								</a>
+        					</h4>
+        					<button class="btn btn-success"> Add Channel </button>
+        				</li>
+        				<li id="chSearch-7">
+        					<img src="https://yt3.ggpht.com/-lU0F42A13Uc/AAAAAAAAAAI/AAAAAAAAAAA/HXEcQIAtLOI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+        					<h4>
+        						<span class="chName">
+        							Primitive Technology
+        						</span>
+        						<small>sub: <span class="chSub">6,424,539</span></small>
+        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="channel description" data-content="">
+									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+								</a>
+        					</h4>
+        					<button class="btn btn-success"> Add Channel </button>
+        				</li>
+        				<li id="chSearch-8">
+        					<img src="https://yt3.ggpht.com/-lU0F42A13Uc/AAAAAAAAAAI/AAAAAAAAAAA/HXEcQIAtLOI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+        					<h4>
+        						<span class="chName">
+        							Primitive Technology
+        						</span>
+        						<small>sub: <span class="chSub">6,424,539</span></small>
+        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="channel description" data-content="">
+									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+								</a>
+        					</h4>
+        					<button class="btn btn-success"> Add Channel </button>
+        				</li>
+        				<li id="chSearch-9">
+        					<img src="https://yt3.ggpht.com/-lU0F42A13Uc/AAAAAAAAAAI/AAAAAAAAAAA/HXEcQIAtLOI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+        					<h4>
+        						<span class="chName">
+        							Primitive Technology
+        						</span>
+        						<small>sub: <span class="chSub">6,424,539</span></small>
+        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="channel description" data-content="">
+									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+								</a>
+        					</h4>
+        					<button class="btn btn-success"> Add Channel </button>
+        				</li>
+        				<li id="chSearch-10">
+        					<img src="https://yt3.ggpht.com/-lU0F42A13Uc/AAAAAAAAAAI/AAAAAAAAAAA/HXEcQIAtLOI/s88-c-k-no-mo-rj-c0xffffff/photo.jpg" />
+        					<h4>
+        						<span class="chName">
+        							Primitive Technology
+        						</span>
+        						<small>sub: <span class="chSub">6,424,539</span></small>
+        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="channel description" data-content="">
+									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+								</a>
+        					</h4>
+        					<button class="btn btn-success"> Add Channel </button>
+        				</li>
+      				</div>
+      				<div class="modal-footer">
+      					<span id="channelSearchModalFooter"></span>
+        				<button type="button" class="btn btn-danger modalClose" data-dismiss="modal">close</button>
+      				</div>
+    			</div>
+  			</div>
+		</div> <!--modal end for channel search result-->
+
 	</div>
 </body>
 </html>
