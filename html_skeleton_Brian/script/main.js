@@ -20,3 +20,13 @@ $(document).ready(function(){
 	// });
 	// $('#videoStats').popover('hover focus');
 });
+
+
+function renderVideoInfo(videoObject){		//argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
+    $('#videoInfo').popover({
+        content: function() {
+            var message = videoObject.snippet.description;
+            return message;
+        }
+    });
+}
