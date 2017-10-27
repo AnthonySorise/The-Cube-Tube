@@ -280,6 +280,8 @@ sampleSubscirptions = {
     "22w5vMUykkw": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelId: "CMNmwqCtCSpftrbvR3KkHDA",
+            channelTitle: "Guava Juice",
             description: "Get your own Guava Juice Box ➽ https://goo.gl/0dTjI7 Subscribe and become a Guava Juicer!! ➽ http://bit.ly/GUAVAJUICE Guava Juice Merchandise ...",
             publishedAt: "2017-10-26T19:06:09.000Z",
             thumbnails: {
@@ -309,6 +311,8 @@ sampleSubscirptions = {
     "Qp3YWu2wGuU": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelId: "CMNmwqCtCSpftrbvR3KkHDA",
+            channelTitle: "Guava Juice",
             description: "Today I attempt to eat the spiciest chip in the world! Subscribe and become a GUAV! ➽ http://bit.ly/GUAVAJUICE Get your own Guava Juice Box ...",
             publishedAt: "2017-10-25T21:27:05.000Z",
             thumbnails: {
@@ -337,6 +341,8 @@ sampleSubscirptions = {
     "pddqXWGpcQ8": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelId: "CMNmwqCtCSpftrbvR3KkHDA",
+            channelTitle: "Guava Juice",
             description: "Today I bathe in Nachos and Cheese! Donation Receipt! ➽ https://ibb.co/gu7evm Subscribe and become a GUAV! ➽ http://bit.ly/GUAVAJUICE Get your own ...",
             publishedAt: "2017-10-24T19:46:39.000Z",
             thumbnails: {
@@ -365,6 +371,8 @@ sampleSubscirptions = {
     "OA8tasCFJ24": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelId: "CMNmwqCtCSpftrbvR3KkHDA",
+            channelTitle: "Guava Juice",
             description: "Hey Guavs! This is the third and final #NoiseChallenge vid! #AD Can me and my lil bro Reymound stay quiet long enough to win? Can YOU beat our record?",
             publishedAt: "2017-10-23T17:56:53.000Z",
             thumbnails: {
@@ -393,6 +401,8 @@ sampleSubscirptions = {
     "SqLI4l59dQM": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelId: "CMNmwqCtCSpftrbvR3KkHDA",
+            channelTitle: "Guava Juice",
             description: "My little brother buys my outfits! Subscribe and become a GUAV! ➽ http://bit.ly/GUAVAJUICE Guava Juice iPhone 8 Giveaway ...",
             publishedAt: "2017-10-22T18:39:50.000Z",
             thumbnails: {
@@ -421,6 +431,8 @@ sampleSubscirptions = {
     "dGoCL_E9DNE": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelId: "CMNmwqCtCSpftrbvR3KkHDA",
+            channelTitle: "Guava Juice",
             description: "Weird things happened when I was trying to film this video.. Subscribe and become a GUAV! ➽ http://bit.ly/GUAVAJUICE Guava Juice iPhone 8 Giveaway ...",
             publishedAt: "2017-10-21T19:23:30.000Z",
             thumbnails: {
@@ -449,6 +461,8 @@ sampleSubscirptions = {
     "J-HiPfcwIJM": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
+            channelId: "CMNmwqCtCSpftrbvR3KkHDA",
+            channelTitle: "Guava Juice",
             description: "Today we're going to explore a haunted parking garage at 3AM Subscribe and become a GUAV! ➽ http://bit.ly/GUAVAJUICE Guava Juice iPhone 8 Giveaway ...",
             publishedAt: "2017-10-20T19:19:49.000Z",
             thumbnails: {
