@@ -1,23 +1,25 @@
-jQuery(function() {
-    jQuery("#channelSearchInput").autocomplete({
-        appendTo: ".channelSearchForm",
+var suggestCallBack;
+$(document).ready(function() {
+
+    $("#channelSearchInput").autocomplete({
         source: function (request, response) {
-            var sqValue = [];
-            jQuery.ajax({
-                type: "POST",
-                url: "http://suggestqueries.google.com/complete/search?hl=en&ds=yt&client=youtube&hjson=t&cp=1",
-                dataType: 'jsonp',
-                data: jQuery.extend({
-                    q: request.term
-                }, {}),
-                success: function (data) {
-                    var obj = data[1];
-                    jQuery.each(obj, function (key, value) {
-                        sqValue.push(value[0]);
-                    });
-                    response(sqValue);
+            $.getJSON("http://suggestqueries.google.com/complete/search?callback=?",
+                {
+                    "hl": "en", // Language
+                    "ds": "yt", // Restrict lookup to youtube
+                    "jsonp": "suggestCallBack", // jsonp callback function name
+                    "q": request.term, // query term
+                    "client": "youtube" // force youtube style response, i.e. jsonp
                 }
-            });
-        }
+            );
+            suggestCallBack = function (data) {
+                var suggestions = [];
+                $.each(data[1], function (key, val) {
+                    suggestions.push({"value": val[0]});
+                });
+                suggestions.length = 5; // prune suggestions list to only 5 items
+                response(suggestions);
+            };
+        },
     });
 });
