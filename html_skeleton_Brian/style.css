@@ -162,11 +162,12 @@ body>.container-fluid{
 	/*overflow: auto;*/
 }
 .thRow{
+	font-family: 'Roboto', sans-serif;
 	background-color: rgba(34,34,34,0.8);
 	color: white;
-	text-shadow: 
+	/*text-shadow: 
 		-0.5px -0.5px 0 #000,
-		0.5px 0.5px 0 #000;
+		0.5px 0.5px 0 #000;*/
 }
 
 
@@ -296,6 +297,9 @@ body>.container-fluid{
 .modal-open{
 	background-color: rgba(0,0,0,0.5);
 }
+#channelSearchModal .modal-dialog{
+	width: 55vw;
+}
 #channelSearchModalHeader .modal-title-wrap{
 	display: inline-block;
 }
@@ -322,10 +326,17 @@ body>.container-fluid{
 #channelSearchModalBody li img{
 	width: 44px;
 	height: 44px;
+	padding: 0;
 }
 #channelSearchModalBody li h4{
 	margin: 0;
 	display: inline-block;
+	line-height: 2.1;
+}
+.chName{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 #channelSearchModalBody .chInfoButton{
 	color: rgba(49,176,213,0.5);
