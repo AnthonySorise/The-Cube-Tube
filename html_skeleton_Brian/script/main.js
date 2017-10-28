@@ -42,6 +42,10 @@ function clickHandler() {
 		event.preventDefault();
         searchChannelsByName();
 	});
+	$(".addChannelButton").on('click', function() {
+		console.log('btn was clicked', $(this))
+		//Need to create function to call ajax to give us back the channel we selected videos
+    });
 }
 
 //Channel Search by Name
