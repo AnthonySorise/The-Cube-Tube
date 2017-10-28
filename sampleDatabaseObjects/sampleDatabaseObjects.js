@@ -72,7 +72,7 @@ var content = {
 };
 
 
-var sampleSubscirptions = [
+var sampleSubscriptions = [
     {"0Jykp0GFDAY": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
@@ -268,7 +268,7 @@ var sampleSubscirptions = [
                     url: ""
                 }
             },
-            title: ""
+            title: "HotDogs!"
         },
         statistics: {
             dislikeCount:"135",
@@ -606,8 +606,8 @@ var sampleSubscirptions = [
     }},
     {"xNddRhpx5tA": {
         snippet: {
-            channelId:"CinemaSins",
-            channelTitle:"UCYUQQgogVeQY8cMQamhHJcg",
+            channelId:"UCYUQQgogVeQY8cMQamhHJcg",
+            channelTitle:"CinemaSins",
             description: "For October, we like going back and hitting some older horror films we've never covered. And Friday the 13th Part 2 has oodles of sins. ↵↵Next week: A couple more creepy sins.↵↵Remember, no movie is without sin! Which movie's sins should we expose next?!↵↵Podcast: http://soundcloud.com/cinemasins↵Sins Video Playlist: http://www.youtube.com/watch?v=wy-v4c4is-w&list=PLMWfZxj1nTkQBy4AeRGG4xH5d2IIApNPj↵Tweet us: http://twitter.com/cinemasins↵Reddit with us: http://reddit.com/r/cinemasins↵Tumble us: http://cinema-sins.tumblr.com↵Call us: 405-459-7466↵Jeremy's book: http://theablesbook.com",
             publishedAt: "2017-10-12T16:06:03.000Z",
             thumbnails: {

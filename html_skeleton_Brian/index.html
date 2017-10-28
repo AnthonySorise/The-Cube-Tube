@@ -36,7 +36,7 @@ consider carousel for the video list area:
 					</span>
 				</button>
 				<span class="navbar-brand text-center">
-					<i class="fa fa-cube fa-lg" aria-hidden="true"></i>CubeTube
+					<i class="fa fa-cube fa-lg" aria-hidden="true"></i>The CubeTube
 				</span>
 			</div>		<!--end of nav header div-->
 
@@ -100,19 +100,22 @@ consider carousel for the video list area:
 				<!-- <div class="col-sm-3"></div> -->
 				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center vidRowVideoCol">
 					<!--This is where the iframe element will go-->
-					<iframe class="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/wKilws_KiSo" frameborder="0" allowfullscreen></iframe>
-					<a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
-						<i class="fa fa-comments-o fa-lg" aria-hidden="true"></i>
-					</a>
-					<a tabindex="0" id="videoInfo" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" title="video info" data-content="a section for video info maybe">
-						<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
-					</a>
-					<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">
-						<i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i>
-					</a> <!--can take function as content; meaning data only uploads when clicked-->
-					<button class="btn hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover" title="Theater Mode">
-							<i class="fa fa-film fa-lg" aria-hidden="true"></i>
-					</button>
+					<iframe class="iframeVideo" id="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/wKilws_KiSo" frameborder="0" allowfullscreen></iframe>
+					<div id=infoButtonContainer>
+                        <a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
+                            <i class="fa fa-comments-o fa-2x" aria-hidden="true"></i>
+                        </a>
+                        <a tabindex="0" id="videoInfo" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" title="video info" data-content="a section for video info maybe">
+                            <i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
+                        </a>
+                        <a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">
+                            <i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
+                        </a> <!--can take function as content; meaning data only uploads when clicked-->
+                        <button class="btn hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover" title="Theater Mode">
+                            <i class="fa fa-film fa-2x" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
 				</div>
 				<div class="hidden-xs col-sm-1 videoRowButtonCol">					
 				</div>
@@ -143,11 +146,11 @@ consider carousel for the video list area:
 			<div class="col-xs-12 videoListRowWrapper"> <!--videoListRow for listing channel videos-->
 				<div class="row thRow">
 					<div class= "col-sm-12 col-md-6 thLabel text-center">
-						<div class="col-xs-4 thTitle">
+						<div class="col-xs-5 thTitle">
 							<strong>Title</strong>
 						</div>
 						<div class="col-xs-1"></div>
-						<div class="col-xs-4 thChannel">
+						<div class="col-xs-3 thChannel">
 							<strong>Channel</strong>
 						</div>
 						<div class="col-xs-2 thUpDate">
@@ -156,11 +159,11 @@ consider carousel for the video list area:
 						<div class="col-xs-1 thButton"><del>b</del></div>
 					</div>
 					<div class="hidden-xs hidden-sm col-md-6 thLabel text-center">
-						<div class="col-sm-4 thTitle">
+						<div class="col-sm-5 thTitle">
 							<strong>Title</strong>
 						</div>
 						<div class="col-xs-1"></div>
-						<div class="col-sm-4 thChannel">
+						<div class="col-sm-3 thChannel">
 							<strong>Channel</strong>
 						</div>
 						<div class="col-sm-2 thUpDate">
@@ -170,6 +173,14 @@ consider carousel for the video list area:
 					</div>
 				</div>	<!--end of table header div row-->
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
+
+
+					<!-- Indicators -->
+					<ol class="carousel-indicators hidden-xs hidden-sm hidden-md">
+						<li data-target="#text-carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#text-carousel" data-slide-to="1"></li>
+					</ol>
+
 					<!-- Wrapper for slides -->
 					<div class="row">
 						<div class="col-xs-12 carouselCol">
@@ -183,16 +194,15 @@ consider carousel for the video list area:
                                             -->
 											<div class="col-xs-12 col-md-6 tdListLeft text-left">
 												<div class="col-xs-12 tdList" id="tdList-1">
-													<div class="col-xs-4 tdTitle">
-														<!-- <span>atsetasetasetasetasetafasezxcv</span> -->
-														as;oiejf;oaisj;foaijs;oefaasdfasefadsfa
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -205,15 +215,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-2">
-													<div class="col-xs-4 tdTitle">
-														title 2 asdfase asefaasdf sdf  asefaf
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -226,15 +236,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-3">
-													<div class="col-xs-4 tdTitle">
-														title 3
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -247,15 +257,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-4">
-													<div class="col-xs-4 tdTitle">
-														title 4
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -268,15 +278,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-5">
-													<div class="col-xs-4 tdTitle">
-														title 5
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -289,15 +299,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-6">
-													<div class="col-xs-4 tdTitle">
-														title 6
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -310,15 +320,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-7">
-													<div class="col-xs-4 tdTitle">
-														title 7
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -331,15 +341,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-8">
-													<div class="col-xs-4 tdTitle">
-														title 8
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -352,15 +362,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-9">
-													<div class="col-xs-4 tdTitle">
-														title 9
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -373,15 +383,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-10">
-													<div class="col-xs-4 tdTitle">
-														title 10
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -396,15 +406,15 @@ consider carousel for the video list area:
 											</div>
 											<div class="col-xs-12 col-md-6 tdListRight text-left">
 												<div class="col-xs-12 tdList" id="tdList-11">
-													<div class="col-xs-4 tdTitle">
-														title 11
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -417,15 +427,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-12">
-													<div class="col-xs-4 tdTitle">
-														title 12
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -438,15 +448,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-13">
-													<div class="col-xs-4 tdTitle">
-														title 13
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -459,15 +469,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-14">
-													<div class="col-xs-4 tdTitle">
-														title 14
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -480,15 +490,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-15">
-													<div class="col-xs-4 tdTitle">
-														title 15
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -501,15 +511,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-16">
-													<div class="col-xs-4 tdTitle">
-														title 16
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -522,15 +532,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-17">
-													<div class="col-xs-4 tdTitle">
-														title 17
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -543,15 +553,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-18">
-													<div class="col-xs-4 tdTitle">
-														title 18
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -564,15 +574,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-19">
-													<div class="col-xs-4 tdTitle">
-														title 19
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -585,15 +595,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-20">
-													<div class="col-xs-4 tdTitle">
-														title 20
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -618,15 +628,15 @@ consider carousel for the video list area:
                                             -->
 											<div class="col-xs-12 col-md-6 tdListLeft text-left">
 												<div class="col-xs-12 tdList" id="tdList-21">
-													<div class="col-xs-4 tdTitle">
-														title 21
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -639,15 +649,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-22">
-													<div class="col-xs-4 tdTitle">
-														title 22
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -660,15 +670,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-23">
-													<div class="col-xs-4 tdTitle">
-														title 23
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -681,15 +691,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-24">
-													<div class="col-xs-4 tdTitle">
-														title 24
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -702,15 +712,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-25">
-													<div class="col-xs-4 tdTitle">
-														title 25
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -723,15 +733,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-26">
-													<div class="col-xs-4 tdTitle">
-														title 26
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -744,15 +754,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-27">
-													<div class="col-xs-4 tdTitle">
-														title 27
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -765,15 +775,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-28">
-													<div class="col-xs-4 tdTitle">
-														title 28
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -786,15 +796,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-29">
-													<div class="col-xs-4 tdTitle">
-														title 29
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -807,15 +817,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-30">
-													<div class="col-xs-4 tdTitle">
-														title 30
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -830,15 +840,15 @@ consider carousel for the video list area:
 											</div>
 											<div class="col-xs-12 col-md-6 tdListRight text-left">
 												<div class="col-xs-12 tdList" id="tdList-31">
-													<div class="col-xs-4 tdTitle">
-														title 31
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -851,15 +861,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-32">
-													<div class="col-xs-4 tdTitle">
-														title 32
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -872,15 +882,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-33">
-													<div class="col-xs-4 tdTitle">
-														title 33
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -893,15 +903,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-34">
-													<div class="col-xs-4 tdTitle">
-														title 34
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -914,15 +924,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-35">
-													<div class="col-xs-4 tdTitle">
-														title 35
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -935,15 +945,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-36">
-													<div class="col-xs-4 tdTitle">
-														title 36
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -956,15 +966,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-37">
-													<div class="col-xs-4 tdTitle">
-														title 37
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -977,15 +987,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-38">
-													<div class="col-xs-4 tdTitle">
-														title 38
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -998,15 +1008,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-39">
-													<div class="col-xs-4 tdTitle">
-														title 39
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -1019,15 +1029,15 @@ consider carousel for the video list area:
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-40">
-													<div class="col-xs-4 tdTitle">
-														title 40
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
 													<div class="col-xs-1 tdInfo">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-4 tdChannel">
+													<div class="col-xs-3 tdChannel">
 														channel
 													</div>
 													<div class="col-xs-2 tdUpDate">
@@ -1072,7 +1082,7 @@ consider carousel for the video list area:
         				</div>
       				</div> -->
       				<div class="modal-body">
-        				<iframe class="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/wKilws_KiSo" frameborder="0" allowfullscreen></iframe>
+        				<iframe class="iframeVideo" id="theaterVideo" width="560" height="315" src="https://www.youtube.com/embed/wKilws_KiSo" frameborder="0" allowfullscreen></iframe>
       				</div>
       				<div class="modal-footer">
       					<span id="lightBoxModalFooter"></span>
