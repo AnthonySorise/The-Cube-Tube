@@ -51,6 +51,14 @@ function clickHandler() {
     //Table List Rows
     $(".tdTitle, .tdChannel, tdUpDate").on("click", function(){
         console.log('https://www.youtube.com/embed/'+$(this).attr('videoId'));
+        $('.fa-play').remove();
+        var playSymbol = $('<i>')
+            .addClass("fa fa-play")
+            .css("margin-right", '5px')
+            .css("color", "green");
+        $(this).parent().find(".tdTitle>span").prepend(playSymbol);
+        $('.tdList').removeClass('selectedTd')
+        $(this).parent().addClass("selectedTd")
         $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1')
         $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'))
     })
@@ -138,7 +146,7 @@ function renderVideoList(subsciptionsArray){
 	for(var i = 0; i<subsciptionsArray.length; i++){
 
 		var row = "#tdList-" + (i+1);
-		var title = row + " .tdTitle";
+		var title = row + " .tdTitle>span";
 		var channel = row + " .tdChannel";
         var upDate = row + " .tdUpDate";
 
