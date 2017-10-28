@@ -17,6 +17,15 @@ html,body{
 	from, to{border-color: transparent}
 	50%{ border-color: #2BBBAD;}
 }
+::-webkit-scrollbar{
+	width: 4px;
+	background-color: rgb(40,40,40);
+}
+::-webkit-scrollbar-thumb{
+	width: 3.5px;
+	border-radius: 25px;
+	background-color: #3F729B;
+}
 
 /**styling for navbar area**/
 .hamburger{
@@ -90,7 +99,7 @@ body>.container-fluid{
 	height: 100%;
 	/*border: 1px solid red;*/
 }
-.mainVideo{
+.iframeVideo{
 	height: 98%;
 	margin: 0.25% 0;
 	width: 85%;
@@ -189,9 +198,9 @@ body>.container-fluid{
 	font-size: 18px;
 	margin-top: 1.75px;
 	margin-bottom: 1.75px;
-	height:3.5vh;
+	height:3.25vh;
 }
-.tdList:hover, .tdList:focus{
+.tdList:hover, .tdList:focus, .tdList:active{
 	background-color: rgba(43,187,173,0.6);
 }
 .row{
@@ -203,10 +212,22 @@ body>.container-fluid{
 .tdTitle,.tdInfo, .tdChannel, .tdUpdate, .tdButton{
 	height: 100%;
 }
-.tdInfo a, .tdButton a{
+.tdInfo a, .tdInfo a:hover, .tdButton a, .tdButton a:hover{
 	height: 100%;
-	/*background: none;*/
+	background: none;
 	border: none;
+}
+.tdInfo i{
+	color: rgba(63,114,155,0.5);
+}
+.tdInfo i:hover, .tdInfo i:focus{
+	color: rgba(63,114,155,1);
+}
+.tdButton i{
+	color: rgba(38,50,56,0.5);
+}
+.tdButton i:hover, .tdButton i:focus{
+	color: rgba(38,50,56,1);
 }
 .tdTitle, .tdChannel, .tdUpDate{
 	overflow: hidden;
