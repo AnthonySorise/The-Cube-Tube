@@ -109,17 +109,11 @@ function renderSearchStats(i){
 }
 
 function renderVideoList(subsciptionsObject){
-	var title = $(".tdTitle")
-	var channel = $(".tdChannel")
-	var date = $(".tdDate")
-	var i = 0
+	var i = 1
 	for(var key in subsciptionsObject){
-		console.log(subsciptionsObject[key].snippet.title);
-		console.log(subsciptionsObject[key].snippet.channelTitle);
-		console.log(subsciptionsObject[key].snippet.publishedAt);
-		$(title[i]).text(subsciptionsObject[key].snippet.title);
-		$(channel[i]).text(subsciptionsObject[key].snippet.channelTitle);
-		$(date[i]).text(subsciptionsObject[key].snippet.publishedAt)
+		$("#tdList-" + i + " .tdTitle").text(subsciptionsObject[key].snippet.title);
+		$("#tdList-" + i + " .tdChannel").text(subsciptionsObject[key].snippet.channelTitle);
+		$("#tdList-" + i + " .tdDate").text(subsciptionsObject[key].snippet.publishedAt)
 		i++
 	
 	}
