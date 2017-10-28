@@ -32,6 +32,7 @@ html,body{
 	border: none;
 }
 .navbar-brand{
+	font-size: 22px;
 	margin-right: 20px;
 	color: rgb(40,40,40);
 	font-family: 'Roboto', sans-serif;
@@ -163,18 +164,19 @@ body>.container-fluid{
 	height: 90%;
 }
 .tdListLeft, .tdListRight{
-		padding: 0;
+	padding: 0;
 }
 .tdListLeft{
-	/*border-right: 0.5px solid;*/
+	border-right: 0.5px solid;
 }
 .tdListRight{
-	/*border-left: 0.5px solid;*/
+	border-left: 0.5px solid;
 }
 .tdList{
 	font-size: 18px;
 	margin-top: 1.75px;
 	margin-bottom: 1.75px;
+	height:3.5vh;
 }
 .tdList:hover, .tdList:focus{
 	background-color: rgba(43,187,173,0.6);
@@ -185,8 +187,17 @@ body>.container-fluid{
 .carouselCol{
 	padding:0;
 }
-.tdButton{
-	/*padding: 0;*/
+.tdTitle,.tdInfo, .tdChannel, .tdUpdate, .tdButton{
+	height: 100%;
+}
+.tdInfo a, .tdButton a{
+	height: 100%;
+	/*background: none;*/
+	border: none;
+}
+.tdTitle, .tdChannel{
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 @media screen and (max-width: 767px){
 	.hamburger{
@@ -307,3 +318,9 @@ body>.container-fluid{
 .ui-menu-item a.ui-state-focus:focus {
 	background-color: red;
 }
+
+#infoButtonContainer{
+	position:relative;
+	bottom:13vh;
+}
+
