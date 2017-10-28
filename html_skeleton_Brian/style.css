@@ -200,7 +200,7 @@ body>.container-fluid{
 	margin-bottom: 1.75px;
 	height:3.25vh;
 }
-.tdList:hover, .tdList:focus, .tdList:active{
+.tdList:hover, .selectedTd{
 	background-color: rgba(43,187,173,0.6);
 }
 .row{
