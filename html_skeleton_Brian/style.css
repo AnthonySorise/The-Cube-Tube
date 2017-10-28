@@ -159,6 +159,19 @@ body>.container-fluid{
 		-0.5px -0.5px 0 #000,
 		0.5px 0.5px 0 #000;
 }
+
+
+/* carousel styles */
+.carousel-indicators li{
+	background-color: red;
+	border-color: red;
+}
+
+
+.carousel-indicators{
+	bottom: -13px;
+}
+
 #text-carousel{
 	overflow: auto;
 	height: 90%;
@@ -309,6 +322,7 @@ body>.container-fluid{
 	color: red;
 }
 
+/* autocomplete styles */
 #ui-id-1{
 	top:43px;
 	background-color: white;
@@ -323,4 +337,16 @@ body>.container-fluid{
 	position:relative;
 	bottom:13vh;
 }
+
+
+@media only screen and (max-width : 480px){
+	.carousel-control{
+		height: 75vh;
+	}
+	.right .carousel-control{
+		width:45px;
+	}
+}
+
+
 

@@ -46,13 +46,13 @@ function clickHandler() {
 
 //Channel Search by Name
 function searchChannelsByName() {
-    var promise = {
-        then: function(resolve,reject){
-            this.resolve = resolve;
-            this.reject = reject;
-
-        }
-    }
+    // var promise = {
+    //     then: function(resolve,reject){
+    //         this.resolve = resolve;
+    //         this.reject = reject;
+    //
+    //     }
+    // }
     string = $('#channelSearchInput').val();
     var promise = {
         then: function(resolve,reject){
