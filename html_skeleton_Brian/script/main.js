@@ -127,19 +127,28 @@ function renderSearchStats(i){
     })
 }
 
-function renderVideoList(subsciptionsObject){
-    var title = $(".tdTitle")
-    var channel = $(".tdChannel")
-    var date = $(".tdDate")
-    var i = 0
-    for(var key in subsciptionsObject){
-        console.log(subsciptionsObject[key].snippet.title);
-        console.log(subsciptionsObject[key].snippet.channelTitle);
-        console.log(subsciptionsObject[key].snippet.publishedAt);
-        $(title[i]).text(subsciptionsObject[key].snippet.title);
-        $(channel[i]).text(subsciptionsObject[key].snippet.channelTitle);
-        $(date[i]).text(subsciptionsObject[key].snippet.publishedAt)
-        i++
 
-    }
+function renderVideoList(subsciptionsArray){
+	for(var i = 0; i<=subsciptionsArray.length; i++){
+
+		var row = "tdList-" + (i+1);
+		var title = row + " tdTitle";
+		var channel = row + " tdChannel";
+        var upDate = row + " tdUpDate";
+
+        console.log(row);
+        console.log(row);
+        console.log(row);
+        console.log(row);
+
+		console.log(subsciptionsArray[i].snippet.title);
+		console.log(subsciptionsArray[i].snippet.channelTitle);
+		console.log(subsciptionsArray[i].snippet.publishedAt);
+
+        $(row).attr("videoID", Object.keys(subsciptionsArray[i]));
+		$(title).text(subsciptionsArray[i].snippet.title);
+		$(channel).text(subsciptionsArray[i].snippet.channelTitle);
+		$(upDate).text(subsciptionsArray[i].snippet.publishedAt)
+	}
+
 }
