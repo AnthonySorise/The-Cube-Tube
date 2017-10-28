@@ -313,3 +313,7 @@ body>.container-fluid{
 	background-color: white;
 	list-style-type: none;
 }
+
+.ui-menu-item a.ui-state-focus:focus {
+	background-color: red;
+}
