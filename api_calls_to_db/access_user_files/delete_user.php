@@ -4,7 +4,7 @@ if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
 $user_id = $_POST['user_id'];
-$query = "DELETE FROM `user` WHERE `id`='{$user_id}'";
+$query = "DELETE FROM `users` WHERE `id`={$user_id}";
 $result = mysqli_query($conn,$query);
 
 if(!empty($result)){
@@ -13,7 +13,7 @@ if(!empty($result)){
         $output['id'] = mysqli_insert_id($conn);
     }
     else{
-        $output['error'] = 'Unable to insert data';
+        $output['error'] = 'Unable to delete data';
     }
 }else{
     $output['errors'][]= 'invalid query';
