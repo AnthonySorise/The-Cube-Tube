@@ -109,25 +109,27 @@ function renderSearchStats(i){
 }
 
 function renderVideoList(subsciptionsArray){
-	for(var i = 0; i<=subsciptionsArray.length; i++){
+	for(var i = 0; i<subsciptionsArray.length; i++){
 
-		var row = "tdList-" + (i+1);
-		var title = row + " tdTitle";
-		var channel = row + " tdChannel";
-        var upDate = row + " tdUpDate";
+		var row = "#tdList-" + (i+1);
+		var title = row + " .tdTitle";
+		var channel = row + " .tdChannel";
+        var upDate = row + " .tdUpDate";
 
-        console.log(row);
-        console.log(row);
-        console.log(row);
-        console.log(row);
+		var key = Object.keys(subsciptionsArray[i])[0];
 
-		console.log(subsciptionsArray[i].snippet.title);
-		console.log(subsciptionsArray[i].snippet.channelTitle);
-		console.log(subsciptionsArray[i].snippet.publishedAt);
+		var dateString = subsciptionsArray[i][key].snippet.publishedAt;
+
+        var d = new Date(dateString);
+        console.log(d)
+
+        // dateString = d.toString()
+
+        dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear();
 
         $(row).attr("videoID", Object.keys(subsciptionsArray[i]));
-		$(title).text(subsciptionsArray[i].snippet.title);
-		$(channel).text(subsciptionsArray[i].snippet.channelTitle);
-		$(upDate).text(subsciptionsArray[i].snippet.publishedAt)
+        $(title).text(subsciptionsArray[i][key].snippet.title);
+		$(channel).text(subsciptionsArray[i][key].snippet.channelTitle);
+		$(upDate).text(dateString)
 	}
 }
