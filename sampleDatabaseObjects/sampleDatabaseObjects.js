@@ -72,8 +72,8 @@ var content = {
 };
 
 
-sampleSubscirptions = {
-    "0Jykp0GFDAY": {
+var sampleSubscirptions = [
+    {"0Jykp0GFDAY": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId:"UCjrL1ugI6xGqQ7VEyV6aRAg",
@@ -102,8 +102,8 @@ sampleSubscirptions = {
             likeCount:"3288",
             viewCount:"91867"
         }
-    },
-    "vD6qBrdrRYY": {
+    }},
+    {"vD6qBrdrRYY": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId:"UCjrL1ugI6xGqQ7VEyV6aRAg",
             channelTitle:"BBQ Pit Boys",
@@ -131,8 +131,8 @@ sampleSubscirptions = {
             likeCount:"1203",
             viewCount:"13546"
         }
-    },
-    "a2KQQocGmwM": {
+    }},
+    {"a2KQQocGmwM": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId:"UCjrL1ugI6xGqQ7VEyV6aRAg",
             channelTitle:"BBQ Pit Boys",
@@ -160,8 +160,8 @@ sampleSubscirptions = {
             likeCount:"2456",
             viewCount:"53435"
         }
-    },
-    "v0-QZmJ_WaY": {
+    }},
+    {"v0-QZmJ_WaY": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId:"UCjrL1ugI6xGqQ7VEyV6aRAg",
             channelTitle:"BBQ Pit Boys",
@@ -189,8 +189,8 @@ sampleSubscirptions = {
             likeCount:"1200",
             viewCount:"56879"
         }
-    },
-    "1MDJEfp04C0": {
+    }},
+    {"1MDJEfp04C0": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId:"UCjrL1ugI6xGqQ7VEyV6aRAg",
             channelTitle:"BBQ Pit Boys",
@@ -218,8 +218,8 @@ sampleSubscirptions = {
             likeCount:"4568",
             viewCount:"85246"
         }
-    },
-    "l4KVcE6OBVo": {
+    }},
+    {"l4KVcE6OBVo": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId:"UCjrL1ugI6xGqQ7VEyV6aRAg",
             channelTitle:"BBQ Pit Boys",
@@ -247,8 +247,8 @@ sampleSubscirptions = {
             likeCount:"1536",
             viewCount:"54035"
         }
-    },
-    "hl9wh2y0Ca0": {
+    }},
+    {"hl9wh2y0Ca0": {
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId:"UCjrL1ugI6xGqQ7VEyV6aRAg",
             channelTitle:"BBQ Pit Boys",
@@ -268,7 +268,7 @@ sampleSubscirptions = {
                     url: ""
                 }
             },
-            title: ""
+            title: "HotDogs!"
         },
         statistics: {
             dislikeCount:"135",
@@ -276,8 +276,8 @@ sampleSubscirptions = {
             likeCount:"2456",
             viewCount:"65243"
         }
-    },
-    "22w5vMUykkw": {
+    }},
+    {"22w5vMUykkw": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId: "CMNmwqCtCSpftrbvR3KkHDA",
@@ -307,8 +307,8 @@ sampleSubscirptions = {
             likeCount:"6045",
             viewCount:"149395"
         }
-    },
-    "Qp3YWu2wGuU": {
+    }},
+    {"Qp3YWu2wGuU": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId: "CMNmwqCtCSpftrbvR3KkHDA",
@@ -337,8 +337,8 @@ sampleSubscirptions = {
             likeCount:"10936",
             viewCount:"275938"
         }
-    },
-    "pddqXWGpcQ8": {
+    }},
+    {"pddqXWGpcQ8": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId: "CMNmwqCtCSpftrbvR3KkHDA",
@@ -367,8 +367,8 @@ sampleSubscirptions = {
             likeCount:"92758",
             viewCount:"452956"
         }
-    },
-    "OA8tasCFJ24": {
+    }},
+    {"OA8tasCFJ24": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId: "CMNmwqCtCSpftrbvR3KkHDA",
@@ -397,8 +397,8 @@ sampleSubscirptions = {
             likeCount:"11748",
             viewCount:"836209"
         }
-    },
-    "SqLI4l59dQM": {
+    }},
+    {"SqLI4l59dQM": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId: "CMNmwqCtCSpftrbvR3KkHDA",
@@ -427,8 +427,8 @@ sampleSubscirptions = {
             likeCount:"9347",
             viewCount:"742384"
         }
-    },
-    "dGoCL_E9DNE": {
+    }},
+    {"dGoCL_E9DNE": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId: "CMNmwqCtCSpftrbvR3KkHDA",
@@ -457,8 +457,8 @@ sampleSubscirptions = {
             likeCount:"11948",
             viewCount:"839567"
         }
-    },
-    "J-HiPfcwIJM": {
+    }},
+    {"J-HiPfcwIJM": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
             channelId: "CMNmwqCtCSpftrbvR3KkHDA",
@@ -487,8 +487,8 @@ sampleSubscirptions = {
             likeCount:"30678",
             viewCount:"853278"
         }
-    },
-    "bRuLGVagk84": {
+    }},
+    {"bRuLGVagk84": {
         snippet: {
             channelId: "UCHEf6T_gVq4tlW5i91ESiWg",
             channelTitle: "REACT",
@@ -516,8 +516,8 @@ sampleSubscirptions = {
             likeCount:"6141",
             viewCount:"70136"
         }
-    },
-    "imfhW8sk2mg": {
+    }},
+    {"imfhW8sk2mg": {
         snippet: {
             channelId: "UCRH49DSFyl8oPwsiHyZ9O0g",
             channelTitle: "DSNY Newscast - The World of Disney News",
@@ -545,8 +545,8 @@ sampleSubscirptions = {
             likeCount:"1009",
             viewCount:"20242"
         }
-    },
-    "DKVJ52qwWWQ": {
+    }},
+    {"DKVJ52qwWWQ": {
         snippet: {
             channelId: "UC0M0rxSz3IF0CsSour1iWmw",
             channelTitle: "Cinemassacre",
@@ -574,8 +574,8 @@ sampleSubscirptions = {
             likeCount:"1758",
             viewCount:"101358"
         }
-    },
-    "wg6PfxpPQeM": {
+    }},
+    {"wg6PfxpPQeM": {
         snippet: {
             channelId:"UCZvoUuniFzmOjfBt67lNsEQ",
             channelTitle:"BuzzFeedFood",
@@ -603,11 +603,11 @@ sampleSubscirptions = {
             likeCount:"9090",
             viewCount:"555143"
         }
-    },
-    "xNddRhpx5tA": {
+    }},
+    {"xNddRhpx5tA": {
         snippet: {
-            channelId:"CinemaSins",
-            channelTitle:"UCYUQQgogVeQY8cMQamhHJcg",
+            channelId:"UCYUQQgogVeQY8cMQamhHJcg",
+            channelTitle:"CinemaSins",
             description: "For October, we like going back and hitting some older horror films we've never covered. And Friday the 13th Part 2 has oodles of sins. ↵↵Next week: A couple more creepy sins.↵↵Remember, no movie is without sin! Which movie's sins should we expose next?!↵↵Podcast: http://soundcloud.com/cinemasins↵Sins Video Playlist: http://www.youtube.com/watch?v=wy-v4c4is-w&list=PLMWfZxj1nTkQBy4AeRGG4xH5d2IIApNPj↵Tweet us: http://twitter.com/cinemasins↵Reddit with us: http://reddit.com/r/cinemasins↵Tumble us: http://cinema-sins.tumblr.com↵Call us: 405-459-7466↵Jeremy's book: http://theablesbook.com",
             publishedAt: "2017-10-12T16:06:03.000Z",
             thumbnails: {
@@ -632,34 +632,35 @@ sampleSubscirptions = {
             likeCount:"24876",
             viewCount:"1094813"
         }
-    },
-    "gHgBk2fLLHY": {
-        snippet: {
-            channelId:"UCZGYJFUizSax-yElQaFDp5Q",
-            channelTitle:"Star Wars",
-            description: "See how director Rian Johnson is taking the characters of a galaxy far, far away into new directions in this behind-the-scenes look at Star Wars: The Last Jedi.↵↵Visit Star Wars at http://www.starwars.com↵Subscribe to Star Wars on YouTube at http://www.youtube.com/starwars↵Like Star Wars on Facebook at http://www.facebook.com/starwars↵Follow Star Wars on Twitter at http://www.twitter.com/starwars↵Follow Star Wars on Instagram at http://www.instagram.com/starwars↵Follow Star Wars on Tumblr at http://starwars.tumblr.com/",
-            publishedAt: "2017-10-26T04:00:01.000Z",
-            thumbnails: {
-                default: {
-                    url: "https://i.ytimg.com/vi/gHgBk2fLLHY/default.jpg"
+    }},
+    {
+        "gHgBk2fLLHY": {
+            snippet: {
+                channelId: "UCZGYJFUizSax-yElQaFDp5Q",
+                channelTitle: "Star Wars",
+                description: "See how director Rian Johnson is taking the characters of a galaxy far, far away into new directions in this behind-the-scenes look at Star Wars: The Last Jedi.↵↵Visit Star Wars at http://www.starwars.com↵Subscribe to Star Wars on YouTube at http://www.youtube.com/starwars↵Like Star Wars on Facebook at http://www.facebook.com/starwars↵Follow Star Wars on Twitter at http://www.twitter.com/starwars↵Follow Star Wars on Instagram at http://www.instagram.com/starwars↵Follow Star Wars on Tumblr at http://starwars.tumblr.com/",
+                publishedAt: "2017-10-26T04:00:01.000Z",
+                thumbnails: {
+                    default: {
+                        url: "https://i.ytimg.com/vi/gHgBk2fLLHY/default.jpg"
+                    },
+                    high: {
+                        url: "https://i.ytimg.com/vi/gHgBk2fLLHY/hqdefault.jpg"
+                    },
+                    medium: {
+                        url: "https://i.ytimg.com/vi/gHgBk2fLLHY/mqdefault.jpg"
+                    },
+                    standard: {
+                        url: "https://i.ytimg.com/vi/gHgBk2fLLHY/sddefault.jpg"
+                    }
                 },
-                high: {
-                    url: "https://i.ytimg.com/vi/gHgBk2fLLHY/hqdefault.jpg"
-                },
-                medium: {
-                    url: "https://i.ytimg.com/vi/gHgBk2fLLHY/mqdefault.jpg"
-                },
-                standard: {
-                    url: "https://i.ytimg.com/vi/gHgBk2fLLHY/sddefault.jpg"
-                }
+                title: "Directing The Last Jedi"
             },
-            title: "Directing The Last Jedi"
-        },
-        statistics: {
-            dislikeCount:"156",
-            favoriteCount:"0",
-            likeCount:"15868",
-            viewCount:"218422"
+            statistics: {
+                dislikeCount: "156",
+                favoriteCount: "0",
+                likeCount: "15868",
+                viewCount: "218422"
+            }
         }
-    }
-};
+    }];
