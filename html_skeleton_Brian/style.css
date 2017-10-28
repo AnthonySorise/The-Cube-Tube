@@ -264,6 +264,9 @@ body>.container-fluid{
 	height: 80vh;
 	padding: 0;
 }
+#lightBoxModal .modal-footer{
+	background-color: black;
+}
 #lightBoxModal iframe{
 	height: 100%;
 	width: 100%;
