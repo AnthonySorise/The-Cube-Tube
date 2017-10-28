@@ -43,13 +43,41 @@ function clickHandler() {
         event.preventDefault();
         searchChannelsByName();
     });
-    //Need to create function to call ajax to give us back the channel we selected videos
 
     $(".channelSearchForm .channelSearchButton").on('click', function (event) {
         event.preventDefault();
         searchChannelsByName().then(worked, failed);
 
     });
+
+    //Created click handler for add channel modal button to get the result of videos for that channel that was clicked
+	$(".modal-body").on('click', 'li', function () {
+		var channelId = $(this).attr('channelid');
+		searchVideoByChannelId(channelId);
+
+    })
+}
+
+//Function being called when user clicks on add channel button in modal with all the youtube channel results
+function searchVideoByChannelId(channelId) {
+	var channelId = channelId;
+	console.log('chanel is', channelId);
+	$.ajax({
+		url: 'https://www.googleapis.com/youtube/v3/search',
+		dataType: 'json',
+		method: 'get',
+		data: {
+			key: 'AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s',
+			channelId: channelId,
+			type: 'video',
+			part: 'snippet',
+			order: 'date',
+			maxResults: 10
+		},
+		success: function (data) {
+			console.log('Found video of channel you clicked on', data);
+        }
+	})
 }
 
 //Channel Search by Name
