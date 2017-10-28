@@ -212,7 +212,7 @@ body>.container-fluid{
 .tdTitle,.tdInfo, .tdChannel, .tdUpdate, .tdButton{
 	height: 100%;
 }
-.tdInfo a, .tdInfo a:hover, .tdButton a, .tdButton a:hover{
+.tdInfo a, .tdInfo a:hover, .tdInfo a:focus, .tdButton a, .tdButton a:hover, .tdButton a:focus{
 	height: 100%;
 	background: none;
 	border: none;
