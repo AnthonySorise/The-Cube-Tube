@@ -1,4 +1,4 @@
-function API_CALLS(){
+function Users_api(){
     this.create_user = function(link){
         var promise = {
             then:function(resolve,reject){
@@ -71,3 +71,4 @@ function API_CALLS(){
         })
     }
 }
+var user_api = new Users_api();
