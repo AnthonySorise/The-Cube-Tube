@@ -265,6 +265,9 @@ body>.container-fluid{
 	height: 80vh;
 	padding: 0;
 }
+#lightBoxModal .modal-footer{
+	background-color: black;
+}
 #lightBoxModal iframe{
 	height: 100%;
 	width: 100%;
@@ -340,12 +343,12 @@ body>.container-fluid{
 }
 
 
-@media only screen and (max-width : 480px){
+@media only screen and (max-width : 991px){
 	.carousel-control{
 		height: 75vh;
 	}
-	.right .carousel-control{
-		width:45px;
+	.right > .carousel-control{
+		width: 45px;
 	}
 }
 
