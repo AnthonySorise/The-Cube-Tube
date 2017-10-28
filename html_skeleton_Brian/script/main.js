@@ -76,6 +76,9 @@ function searchVideoByChannelId(channelId) {
 		},
 		success: function (data) {
 			console.log('Found video of channel you clicked on', data);
+        },
+		error: function (data) {
+			console.log('Channel video search got an error', data);
         }
 	})
 }
