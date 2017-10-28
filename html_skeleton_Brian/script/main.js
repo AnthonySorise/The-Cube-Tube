@@ -46,13 +46,7 @@ function clickHandler() {
 
 //Channel Search by Name
 function searchChannelsByName() {
-    // var promise = {
-    //     then: function(resolve,reject){
-    //         this.resolve = resolve;
-    //         this.reject = reject;
-    //
-    //     }
-    // }
+
     string = $('#channelSearchInput').val();
     var promise = {
         then: function(resolve,reject){
@@ -81,8 +75,9 @@ function searchChannelsByName() {
                 $(channelListData).attr("channelId", data.items[i].snippet.channelId);
                 $(chName).text(data.items[i].snippet.channelTitle);
                 $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
-                promise.resolve(data)
             }
+            promise.resolve(data)
+
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
