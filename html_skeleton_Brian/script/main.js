@@ -24,6 +24,11 @@ $(document).ready(function(){
     // $('.channelSearchForm').click(function(){
     //     $('#channelSearchModal').modal('show'); //this would need to be called at success function of ajax call
     // });
+
+    //TEMP DUMMY DATA
+    renderVideoList(sampleSubscriptions)
+    //TEMP DUMMY DATA
+
 });
 
 function renderVideoInfo(videoObject){		//argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
@@ -37,11 +42,18 @@ function renderVideoInfo(videoObject){		//argument is video object - just one sp
 
 //Click handler to console log search results
 function clickHandler() {
-    console.log('Search button was clicked');
+    //Search Button
     $(".channelSearchForm .channelSearchButton").on('click',function(event){
         event.preventDefault();
         searchChannelsByName().then(worked,failed);
     });
+
+    //Table List Rows
+    $(".tdTitle, .tdChannel, tdUpDate").on("click", function(){
+        console.log('https://www.youtube.com/embed/'+$(this).attr('videoId'));
+        $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1')
+        $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'))
+    })
 }
 
 //Channel Search by Name
