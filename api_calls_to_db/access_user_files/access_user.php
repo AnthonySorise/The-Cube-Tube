@@ -20,6 +20,9 @@ switch($_POST['action']){
     case 'delete':
         include('delete_user.php');
         break;
+    case 'update':
+        include('update_user.php');
+        break;
     default:
         $output['errors'][] = 'invalid action';
     }

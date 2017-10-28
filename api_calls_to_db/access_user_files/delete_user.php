@@ -1,7 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: collin
- * Date: 10/27/17
- * Time: 6:00 PM
- */
+require_once('mysql_connect.php');
+if(empty($LOCAL_ACCESS)){
+    die('direction access not allowed');
+}
+$user_id = $_POST['user_id'];
+$query = "DELETE FROM `user` WHERE `id`='{$user_id}'";
+$result = mysqli_query($conn,$query);
+
+if(!empty($result)){
+    if(mysqli_affected_rows($conn)>0){
+        $output['success'] = true;
+        $output['id'] = mysqli_insert_id($conn);
+    }
+    else{
+        $output['error'] = 'Unable to insert data';
+    }
+}else{
+    $output['errors'][]= 'invalid query';
+}
+?>
