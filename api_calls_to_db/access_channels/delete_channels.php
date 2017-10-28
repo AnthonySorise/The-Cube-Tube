@@ -1,7 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: collin
- * Date: 10/28/17
- * Time: 12:51 AM
- */
+include_once('mysql_connect.php');
+if(empty($LOCAL_ACCESS)){
+    die('direction access not allowed');
+}
