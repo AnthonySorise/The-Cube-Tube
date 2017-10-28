@@ -46,7 +46,6 @@ function clickHandler() {
 
 //Channel Search by Name
 function searchChannelsByName() {
-
     string = $('#channelSearchInput').val();
     var promise = {
         then: function(resolve,reject){
@@ -77,13 +76,12 @@ function searchChannelsByName() {
                 $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
             }
             promise.resolve(data)
-
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
             promise.reject('oops');
         }
-    })
+    });
     return promise;
 }
 function worked(){	//SHOULD USE PROMISE HERE INSTEAD
@@ -134,13 +132,8 @@ function renderVideoList(subsciptionsArray){
 		var key = Object.keys(subsciptionsArray[i])[0];
 
 		var dateString = subsciptionsArray[i][key].snippet.publishedAt;
-
-        var d = new Date(dateString);
-        console.log(d)
-
-        // dateString = d.toString()
-
-        dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear();
+        var d = new Date(dateString)
+        dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear().toString().substring(2);
 
         $(row).attr("videoID", Object.keys(subsciptionsArray[i]));
         $(title).text(subsciptionsArray[i][key].snippet.title);
