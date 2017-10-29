@@ -49,7 +49,7 @@ function clickHandler() {
     });
 
     //Table List Rows
-    $(".tdTitle, .tdChannel, tdUpDate").on("click", function(){
+    $(".tdTitle, .tdChannel, .tdUpDate").on("click", function(){
         console.log('https://www.youtube.com/embed/'+$(this).attr('videoId'));
         $('.fa-play').remove();
         var playSymbol = $('<i>')
