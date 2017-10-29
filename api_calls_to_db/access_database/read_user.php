@@ -2,7 +2,9 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$query = "SELECT * FROM users";
+$table = $_POST['table'];
+$search - $_POST['search'];
+$query = "SELECT '{$search}' FROM '{$table}'";
 $result = mysqli_query($conn,$query);
 $output['data'] = [];
 if(!empty($result)){

@@ -12,16 +12,22 @@ if(empty($_POST['action'])){
 }
 switch($_POST['action']){
     case 'read':
-        include('read_user.php');
+        include('read.php');
         break;
-    case 'insert':
+    case 'insert_user':
         include('insert_user.php');
         break;
     case 'delete':
-        include('delete_user.php');
+        include('delete.php');
         break;
-    case 'update':
+    case 'update_user':
         include('update_user.php');
+        break;
+    case 'insert_channel':
+        include('insert_channels.php');
+        break;
+    case 'update_channel':
+        include('update_channels.php');
         break;
     default:
         $output['errors'][] = 'invalid action';

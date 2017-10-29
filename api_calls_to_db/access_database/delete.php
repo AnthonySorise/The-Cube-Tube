@@ -1,10 +1,13 @@
 <?php
-require_once('mysql_connect.php');
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$user_id = $_POST['user_id'];
-$query = "DELETE FROM `users` WHERE `id`={$user_id}";
+if(empty($_POST['table'])){
+
+}
+$table = $_POST['table'];
+$user_id = $_POST['id'];
+$query = "DELETE FROM '{$table}' WHERE `id`={$user_id}";
 $result = mysqli_query($conn,$query);
 
 if(!empty($result)){

@@ -2,14 +2,33 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
+$channel_id = $_POST['channelId'];
 $channel_title = $_POST['channelTitle'];
 $description = $_POST['description'];
 $thumbnails = $_POST['thumbnails'];
 $sub_count = $_POST['subscriberCount'];
 $video_count = $_POST['videoCount'];
-$viewCount = $_POST['viewCount'];
-
+$view_count = $_POST['viewCount'];
+if(empty($channel_title)){
+    $output['errors'][]='MISSING CHANNEL TITLE';
+}
+if(empty($description)){
+    $output['errors'][] = "MISSING CHANNEL DESCRIPTION";
+}
+if(empty($thumbnails)){
+    $output['errors'][] = "MISSING THUMBNAILS";
+}
+if(empty($sub_count)){
+    $output['errors'][] = "MISSING SUBSCRIPTION COUNT";
+}
+if(empty($video_count)){
+    $output['errors'][] = "MISSING VIDEO COUNT";
+}
+if(empty($view_count)){
+    $output['errors'][] = "MISSING VIEW COUNT";
+}
 $query = "INSERT INTO channels SET channelTitle = '{$channel_title}', 
+channel_id = '{$channel_id}',
 description = '{$description}', 
 thumbnails = '{$thumbnails}', 
 sub_count = {$sub_count}, ,
