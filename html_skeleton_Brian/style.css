@@ -313,10 +313,8 @@ body>.container-fluid{
 	background-color: white;
 	list-style-type: none;
 }
-<<<<<<< HEAD
-=======
 
-.ui-menu-item a.ui-state-focus:focus {
+.ui-menu-item-wrapper:focus {
 	background-color: red;
 }
 
@@ -325,4 +323,3 @@ body>.container-fluid{
 	bottom:13vh;
 }
 
->>>>>>> 7c66447ca537df2ceb94c10da28a9356aee26103
