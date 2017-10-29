@@ -17,6 +17,15 @@ html,body{
 	from, to{border-color: transparent}
 	50%{ border-color: #2BBBAD;}
 }
+::-webkit-scrollbar{
+	width: 4px;
+	background-color: rgb(40,40,40);
+}
+::-webkit-scrollbar-thumb{
+	width: 3.5px;
+	border-radius: 25px;
+	background-color: #3F729B;
+}
 
 /**styling for navbar area**/
 .hamburger{
@@ -32,6 +41,7 @@ html,body{
 	border: none;
 }
 .navbar-brand{
+	font-size: 22px;
 	margin-right: 20px;
 	color: rgb(40,40,40);
 	font-family: 'Roboto', sans-serif;
@@ -89,7 +99,7 @@ body>.container-fluid{
 	height: 100%;
 	/*border: 1px solid red;*/
 }
-.mainVideo{
+.iframeVideo{
 	height: 98%;
 	margin: 0.25% 0;
 	width: 85%;
@@ -152,12 +162,26 @@ body>.container-fluid{
 	/*overflow: auto;*/
 }
 .thRow{
+	font-family: 'Roboto', sans-serif;
 	background-color: rgba(34,34,34,0.8);
 	color: white;
-	text-shadow: 
+	/*text-shadow: 
 		-0.5px -0.5px 0 #000,
-		0.5px 0.5px 0 #000;
+		0.5px 0.5px 0 #000;*/
 }
+
+
+/* carousel styles */
+.carousel-indicators li{
+	background-color: red;
+	border-color: red;
+}
+
+
+.carousel-indicators{
+	bottom: -13px;
+}
+
 #text-carousel{
 	overflow: auto;
 	height: 90%;
@@ -175,9 +199,9 @@ body>.container-fluid{
 	font-size: 18px;
 	margin-top: 1.75px;
 	margin-bottom: 1.75px;
-	height:3.5vh;
+	height:3.25vh;
 }
-.tdList:hover, .tdList:focus{
+.tdList:hover, .selectedTd{
 	background-color: rgba(43,187,173,0.6);
 }
 .row{
@@ -189,14 +213,27 @@ body>.container-fluid{
 .tdTitle,.tdInfo, .tdChannel, .tdUpdate, .tdButton{
 	height: 100%;
 }
-.tdInfo a, .tdButton a{
+.tdInfo a, .tdInfo a:hover, .tdInfo a:focus, .tdButton a, .tdButton a:hover, .tdButton a:focus{
 	height: 100%;
-	/*background: none;*/
+	background: none;
 	border: none;
 }
-.tdTitle, .tdChannel{
+.tdInfo i{
+	color: rgba(63,114,155,0.5);
+}
+.tdInfo i:hover, .tdInfo i:focus{
+	color: rgba(63,114,155,1);
+}
+.tdButton i{
+	color: rgba(38,50,56,0.5);
+}
+.tdButton i:hover, .tdButton i:focus{
+	color: rgba(38,50,56,1);
+}
+.tdTitle, .tdChannel, .tdUpDate{
 	overflow: hidden;
 	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 @media screen and (max-width: 767px){
 	.hamburger{
@@ -250,12 +287,18 @@ body>.container-fluid{
 	height: 80vh;
 	padding: 0;
 }
+#lightBoxModal .modal-footer{
+	background-color: black;
+}
 #lightBoxModal iframe{
 	height: 100%;
 	width: 100%;
 }
 .modal-open{
 	background-color: rgba(0,0,0,0.5);
+}
+#channelSearchModal .modal-dialog{
+	width: 55vw;
 }
 #channelSearchModalHeader .modal-title-wrap{
 	display: inline-block;
@@ -283,10 +326,17 @@ body>.container-fluid{
 #channelSearchModalBody li img{
 	width: 44px;
 	height: 44px;
+	padding: 0;
 }
 #channelSearchModalBody li h4{
 	margin: 0;
 	display: inline-block;
+	line-height: 2.1;
+}
+.chName{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 #channelSearchModalBody .chInfoButton{
 	color: rgba(49,176,213,0.5);
@@ -308,6 +358,7 @@ body>.container-fluid{
 	color: red;
 }
 
+/* autocomplete styles */
 #ui-id-1{
 	top:43px;
 	background-color: white;
@@ -317,3 +368,21 @@ body>.container-fluid{
 .ui-menu-item a.ui-state-focus:focus {
 	background-color: red;
 }
+
+#infoButtonContainer{
+	position:relative;
+	bottom:13vh;
+}
+
+
+@media only screen and (max-width : 991px){
+	.carousel-control{
+		height: 75vh;
+	}
+	.right > .carousel-control{
+		width: 45px;
+	}
+}
+
+
+

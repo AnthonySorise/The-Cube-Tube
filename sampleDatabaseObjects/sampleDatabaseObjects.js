@@ -72,7 +72,7 @@ var content = {
 };
 
 
-var sampleSubscirptions = [
+var sampleSubscriptions = [
     {"0Jykp0GFDAY": {
         // id:"0Jykp0GFDAY",  Default place from API call, not stored here on db put pulled as key one lines above
         snippet: {  //**From here to bottom, exact same as return from  'https://www.googleapis.com/youtube/v3/videos'
