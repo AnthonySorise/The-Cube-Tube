@@ -31,14 +31,14 @@ $(document).ready(function(){
 
 });
 
-function renderVideoInfo(videoObject){		//argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
-    $('#videoInfo').popover({
-        content: function() {
-            var message = videoObject.snippet.description;
-            return message;
-        }
-    });
-}
+// function renderVideoInfo(videoObject){		//argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
+//     $('#videoInfo').popover({
+//         content: function() {
+//             var message = videoObject.snippet.description;
+//             return message;
+//         }
+//     });
+// }
 
 //Click handler to console log search results
 function clickHandler() {
@@ -57,9 +57,9 @@ function clickHandler() {
             .css("margin-right", '5px')
             .css("color", "green");
         $(this).parent().find(".tdTitle>span").prepend(playSymbol);
-        $('.tdList').removeClass('selectedTd')
-        $(this).parent().addClass("selectedTd")
-        $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1')
+        $('.tdList').removeClass('selectedTd');
+        $(this).parent().addClass("selectedTd");
+        $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
         $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'))
     })
 }
@@ -149,6 +149,8 @@ function renderVideoList(subsciptionsArray){
 		var channel = row + " .tdChannel";
         var upDate = row + " .tdUpDate";
 
+
+
 		var key = Object.keys(subsciptionsArray[i])[0];
 
 		var dateString = subsciptionsArray[i][key].snippet.publishedAt;
@@ -158,7 +160,13 @@ function renderVideoList(subsciptionsArray){
         $(row).attr("videoID", Object.keys(subsciptionsArray[i]));
         $(title).text(subsciptionsArray[i][key].snippet.title);
 		$(channel).text(subsciptionsArray[i][key].snippet.channelTitle);
-		$(upDate).text(dateString)
+		$(upDate).text(dateString);
+
+        var videoData = row + " .tdInfo a";
+        var videoDataImg = $('<img>').attr('src',subsciptionsArray[i][key].snippet.thumbnails.medium.url);  //NEEDS IMPLEMENTATION
+
+        $(videoData).attr("data-original-title", subsciptionsArray[i][key].snippet.title);
+
 	}
 
 }
