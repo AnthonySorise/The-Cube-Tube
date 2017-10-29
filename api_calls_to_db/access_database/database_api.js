@@ -28,7 +28,7 @@ function Database(){
         })
         // return promise
     }
-    this.delete_entry= function(table,id){//delete by specifying table and id of entry i.e table = 'channels', id = 2
+    this.delete_entry = function(table,id){//delete by specifying table and id of entry i.e table = 'channels', id = 2
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -56,7 +56,7 @@ function Database(){
             }
         })
     }
-    this.read_tables= function(table,search){//read data from any table i.e channels, user, categories, search = * for all or more specifically channelTitles, userlinks
+    this.read_tables = function(table,search){//read data from any table i.e channels, user, categories, search = * for all or more specifically channelTitles, userlinks
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -112,7 +112,7 @@ function Database(){
                 // promise.reject(data);
             }
         })
-        return promise;
+        // return promise;
     }
     this.insert_channel = function(channel_object){//pass in channelobject and deconstruct it , not sure if were gonna include videos here
         // var promise = {
@@ -129,7 +129,12 @@ function Database(){
             data:{
                 action:'insert_channel',
                 channelId:channelId,
-                channelTitle:channelTitle
+                channelTitle:channelTitle,
+                description:description,
+                thumbnails:thumbnails,
+                subCount:subCount,
+                videoCount:videoCount,
+                viewCount:viewCount
             },
             success:function(data){
                 if(data.success){
@@ -142,7 +147,42 @@ function Database(){
                 // promise.reject(data);
             }
         })
-        return promise;
+        // return promise;
+    }
+    this.update_channel = function(channel_object){//pass in channelobject and deconstruct it , not sure if were gonna include videos here
+        // var promise = {
+        //     then:function(resolve,reject){
+        //         this.resolve = resolve;
+        //         this.reject = reject;
+        //     }
+        // }
+        const {channelId, channelTitle, description, thumbnails, subCount,videoCount,viewCount} = channel_object;
+        $.ajax({
+            url:'access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                action:'update_channel',
+                channelId:channelId,
+                channelTitle:channelTitle,
+                description:description,
+                thumbnails:thumbnails,
+                subCount:subCount,
+                videoCount:videoCount,
+                viewCount:viewCount
+            },
+            success:function(data){
+                if(data.success){
+                    // promise.resolve(data);
+                    console.log('update success');
+                }
+            },
+            errors:function(data){
+                console.log('update error');
+                // promise.reject(data);
+            }
+        })
+        // return promise;
     }
 }
 var access_database = new Database();

@@ -29,6 +29,12 @@ switch($_POST['action']){
     case 'update_channel':
         include('update_channels.php');
         break;
+    case 'insert_category':
+        include('insert_category.php');
+        break;
+    case 'insert_video':
+        include('insert_video.php');
+        break;
     default:
         $output['errors'][] = 'invalid action';
 }
