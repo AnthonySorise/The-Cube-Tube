@@ -386,9 +386,10 @@ body>.container-fluid{
 
 /* autocomplete styles */
 
-.ui-menu {
-	top: 43px !important;
-	width: 187px !important;
+#ui-id-1:focus {
+	top: 43px;
+	background-color: white;
+	list-style-type: none;
 }
 
 @media only screen and (max-width : 991px){
@@ -413,9 +414,11 @@ body>.container-fluid{
 .popover-content{
 	z-index: 10000 ;
 }
-@media screen and (max-width:1082px) {
-	.channelSearchButton { display:none; }
-	#channelSearchInput { display:none; }
+
+/*Trying to get input and button to hide after 1082px*/
+/*@media screen and (max-width:1082px) {*/
+	/*.channelSearchButton { display:none; }*/
+	/*#channelSearchInput { display:none; }*/
 
 
-}
+/*}*/
