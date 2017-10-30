@@ -88,6 +88,7 @@ function clickHandler() {
         player.loadVideoById($(this).parent().attr('videoId'));
         // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.loadVideoById($(this).parent().attr('videoId'));
+        player2.pauseVideo();
     });
 
     //Created click handler for add channel modal button to get the result of videos for that channel that was clicked
