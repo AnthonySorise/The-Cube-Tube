@@ -302,7 +302,7 @@ body>.container-fluid{
 	background-color: rgba(0,0,0,0.5);
 }
 #channelSearchModal .modal-dialog{
-	width: 55vw;
+	width: 60vw;
 }
 #channelSearchModalHeader .modal-title-wrap{
 	display: inline-block;
@@ -320,6 +320,8 @@ body>.container-fluid{
 }
 #channelSearchModalBody{
 	list-style-type: none;
+	height: 65vh;
+	overflow: auto;
 }
 #channelSearchModalBody li{
 	margin: 5.5px 0;
@@ -338,7 +340,7 @@ body>.container-fluid{
 	display: inline-block;
 	line-height: 2.4;
 }
-.chName{
+.chName, #channelSearchModalBody li h4 small{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -348,6 +350,7 @@ body>.container-fluid{
 }
 #channelSearchModalBody .chInfoButton{
 	color: rgba(49,176,213,0.5);
+	padding: 0;
 }
 #channelSearchModalBody .chInfoButton:hover{
 	color: rgba(49,176, 213, 1);
@@ -386,5 +389,13 @@ body>.container-fluid{
 	}
 }
 
-
+@media screen and (max-width: 1024px){
+	#channelSearchModal .modal-dialog{
+		width: 75vw;
+	}
+	
+	#channelSearchModalBody{
+		height: 75vh;
+	}
+}
 
