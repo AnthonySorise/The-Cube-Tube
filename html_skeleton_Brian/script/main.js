@@ -50,11 +50,15 @@ function clickHandler() {
 
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function(){
-        $('.fa-play').remove();
+        $('.fa-play-circle-o').remove();
         var playSymbol = $('<i>')
-            .addClass("fa fa-play")
-            .css("margin-right", '5px')
-            .css("color", "green");
+            .addClass("fa fa-play-circle-o")
+            .css({
+                "margin-right": '5px',
+                'color': 'green'
+            });
+            // .css("margin-right", '5px')
+            // .css("color", "green");
         $(this).parent().find(".tdTitle>span").prepend(playSymbol);
         $('.tdList').removeClass('selectedTd');
         $(this).parent().addClass("selectedTd");
@@ -145,9 +149,9 @@ function failed(message){
 }
 
 function renderChannelSearchStats(i){
-    var channelListData = "#chSearch-"+(i+1);
-    var chSub = "#chSearch-"+(i+1) + " .chSub";
-    var chDesc ="#chSearch-"+(i+1) + " .chInfoButton";
+    const channelListData = "#chSearch-"+(i+1);
+    const chSub = "#chSearch-"+(i+1) + " .chSub";
+    const chDesc ="#chSearch-"+(i+1) + " .chInfoButton";
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/channels',
         dataType: 'json',
@@ -159,11 +163,13 @@ function renderChannelSearchStats(i){
         },
         success: function (data) {
             console.log('Youtube success',data);
-            var subNumber = parseInt(data.items[0].statistics.subscriberCount);
-            var numWithCommas = subNumber.toLocaleString("en-us");
+            const subNumber = parseInt(data.items[0].statistics.subscriberCount);
+            const numWithCommas = subNumber.toLocaleString("en-us");
             $(chSub).text(numWithCommas);
-            $(chDesc).attr("data-original-title", data.items[0].snippet.title)
-            $(chDesc).attr("data-content", data.items[0].snippet.description)
+            $(chDesc).attr({
+                "data-original-title": data.items[0].snippet.title,
+                "data-content": data.items[0].snippet.description
+            });
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -173,19 +179,17 @@ function renderChannelSearchStats(i){
 
 
 function renderVideoList(subsciptionsArray){
-    for(var i = 0; i<subsciptionsArray.length; i++){
+    for(let i = 0; i<subsciptionsArray.length; i++){
 
-        var row = "#tdList-" + (i+1);
-        var title = row + " .tdTitle>span";
-        var channel = row + " .tdChannel";
-        var upDate = row + " .tdUpDate";
+        let row = "#tdList-" + (i+1);
+        let title = row + " .tdTitle>span";
+        let channel = row + " .tdChannel";
+        let upDate = row + " .tdUpDate";
 
+        const key = Object.keys(subsciptionsArray[i])[0];
 
-
-        var key = Object.keys(subsciptionsArray[i])[0];
-
-        var dateString = subsciptionsArray[i][key].snippet.publishedAt;
-        var d = new Date(dateString)
+        let dateString = subsciptionsArray[i][key].snippet.publishedAt;
+        const d = new Date(dateString);
         dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear().toString().substring(2);
 
         $(row).attr("videoID", Object.keys(subsciptionsArray[i]));
@@ -193,16 +197,17 @@ function renderVideoList(subsciptionsArray){
         $(channel).text(subsciptionsArray[i][key].snippet.channelTitle);
         $(upDate).text(dateString);
 
-        var videoData = row + " .tdInfo a";
-        var videoDataImg = $('<img>').attr('src',subsciptionsArray[i][key].snippet.thumbnails.medium.url).css({
+        let videoData = row + " .tdInfo a";
+        const videoDataImg = $('<img>').attr('src',subsciptionsArray[i][key].snippet.thumbnails.medium.url).css({
             width: '160px',
             height: '90px',
-        })
-        console.log(subsciptionsArray[i][key].snippet.thumbnails.medium.url)
+        });
+        //console.log(subsciptionsArray[i][key].snippet.thumbnails.medium.url)
 
-        $(videoData).attr("data-original-title", subsciptionsArray[i][key].snippet.title);
-
-        $(videoData).attr("data-content", subsciptionsArray[i][key].snippet.description);
+        $(videoData).attr({
+            'data-content': subsciptionsArray[i][key].snippet.description,
+            'data-original-title': subsciptionsArray[i][key].snippet.title
+        });
 
         $(row + " .tdInfo, "+ row + " .tdTitle").popover({
             trigger: "hover",
