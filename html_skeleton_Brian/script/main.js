@@ -208,7 +208,8 @@ function renderVideoList(subsciptionsArray){
             trigger: "hover",
             html: true,
             content: videoDataImg,
-            placement:'auto'
+            placement:'auto',
+            container: 'body'
         });
     }
 
