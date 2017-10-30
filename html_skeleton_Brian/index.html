@@ -8,9 +8,9 @@ consider carousel for the video list area:
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css" />
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script/main.js"></script>
@@ -20,7 +20,7 @@ consider carousel for the video list area:
 	<script src="../sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>CubeTube Mk1</title>
+	<title>CubeTube 0.1</title>
 </head>
 
 <body>
@@ -33,7 +33,9 @@ consider carousel for the video list area:
 					</span>
 				</button>
 				<span class="navbar-brand text-center">
-					<i class="fa fa-cube fa-lg" aria-hidden="true"></i>CubeTube
+
+					<i class="fa fa-cube fa-lg" aria-hidden="true"></i>TheCubeTube
+
 				</span>
 			</div>		<!--end of nav header div-->
 
@@ -97,19 +99,21 @@ consider carousel for the video list area:
 				<!-- <div class="col-sm-3"></div> -->
 				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center vidRowVideoCol">
 					<!--This is where the iframe element will go-->
-					<iframe class="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/X2WH8mHJnhM" frameborder="0" allowfullscreen></iframe>
-					<a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
-						<i class="fa fa-comments-o fa-lg" aria-hidden="true"></i>
-					</a>
-					<a tabindex="0" id="videoInfo" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" title="video info" data-content="a section for video info maybe">
-						<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
-					</a>
-					<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">
-						<i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i>
-					</a> <!--can take function as content; meaning data only uploads when clicked-->
-					<button class="btn hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover" title="Theater Mode">
-							<i class="fa fa-film fa-lg" aria-hidden="true"></i>
-					</button>
+					<div id="mainVideo"></div>
+					<div id=infoButtonContainer>
+                        <a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
+                            <i class="fa fa-comments-o fa-2x" aria-hidden="true"></i>
+                        </a>
+                        <a tabindex="0" id="videoInfo" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="bottom" title="video info" data-content="a section for video info maybe">
+                            <i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
+                        </a>
+                        <a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">
+                            <i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
+                        </a> <!--can take function as content; meaning data only uploads when clicked-->
+                        <button class="btn hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover" title="Theater Mode">
+                            <i class="fa fa-film fa-2x" aria-hidden="true"></i>
+                        </button>
+                    </div>
 				</div>
 				<div class="hidden-xs col-sm-1 videoRowButtonCol">					
 				</div>
@@ -134,15 +138,14 @@ consider carousel for the video list area:
 					</div>		<!--end of nav options div-->
 				</div>		<!--end of navbar content main div-->
 			</nav>
-
-
-
 			<div class="col-xs-12 videoListRowWrapper"> <!--videoListRow for listing channel videos-->
 				<div class="row thRow">
 					<div class= "col-sm-12 col-md-6 thLabel text-center">
-						<div class="col-xs-3 thTitle">
+						<div class="col-xs-5 thTitle">
 							<strong>Title</strong>
 						</div>
+						<div class="col-xs-1"></div>
+
 						<div class="col-xs-3 thChannel">
 							<strong>Channel</strong>
 						</div>
@@ -152,9 +155,10 @@ consider carousel for the video list area:
 						<div class="col-xs-3 thButton"><del>empty</del></div>
 					</div>
 					<div class="hidden-xs hidden-sm col-md-6 thLabel text-center">
-						<div class="col-sm-3 thTitle">
+						<div class="col-sm-5 thTitle">
 							<strong>Title</strong>
 						</div>
+						<div class="col-xs-1"></div>
 						<div class="col-sm-3 thChannel">
 							<strong>Channel</strong>
 						</div>
@@ -164,775 +168,881 @@ consider carousel for the video list area:
 						<div class="col-sm-3 thButton"><del>empty</del></div>
 					</div>
 				</div>	<!--end of table header div row-->
-				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="25000">
+				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
+
+
+					<!-- Indicators -->
+					<ol class="carousel-indicators hidden-xs hidden-sm hidden-md">
+						<li data-target="#text-carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#text-carousel" data-slide-to="1"></li>
+					</ol>
+
 					<!-- Wrapper for slides -->
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="carousel-inner">
 								<div class="item active">
-									<div class="carousel-content">
-										<div class="item">
-											<div class="carousel-content">
-												<div class="row tdRow text-center">
-
-													<!--target each list:
-                                                        e.g. changing video title
-                                                        $('#tdList-' + [i] +' .tdTitle')
-                                                    -->
-													<div class="col-xs-12 col-md-6 tdListLeft text-center">
-														<div class="col-xs-12 tdList" id="tdList-1">
-															<div class="col-xs-3 tdTitle">
-																title 1
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-2">
-															<div class="col-xs-3 tdTitle">
-																title 2
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-3">
-															<div class="col-xs-3 tdTitle">
-																title 3
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-4">
-															<div class="col-xs-3 tdTitle">
-																title 4
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-5">
-															<div class="col-xs-3 tdTitle">
-																title 5
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-6">
-															<div class="col-xs-3 tdTitle">
-																title 6
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-7">
-															<div class="col-xs-3 tdTitle">
-																title 7
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-8">
-															<div class="col-xs-3 tdTitle">
-																title 8
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-9">
-															<div class="col-xs-3 tdTitle">
-																title 9
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-10">
-															<div class="col-xs-3 tdTitle">
-																title 10
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-11">
-															<div class="col-xs-3 tdTitle">
-																title 11
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-12">
-															<div class="col-xs-3 tdTitle">
-																title 12
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-13">
-															<div class="col-xs-3 tdTitle">
-																title 13
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
+									<div class="carousel-content">	
+										<div class="row tdRow text-center">
+											<!--target each list:
+                                                e.g. changing video title
+                                                $('#tdList-' + [i] +' .tdTitle')
+                                            -->
+											<div class="col-xs-12 col-md-6 tdListLeft text-left">
+												<div class="col-xs-12 tdList" id="tdList-1">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
-
-
-													<div class="col-xs-12 col-md-6 tdListRight">
-														<div class="col-xs-12 tdList" id="tdList-14">
-															<div class="col-xs-3 tdTitle">
-																title 14
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-15">
-															<div class="col-xs-3 tdTitle">
-																title 15
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-16">
-															<div class="col-xs-3 tdTitle">
-																title 16
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-17">
-															<div class="col-xs-3 tdTitle">
-																title 17
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-18">
-															<div class="col-xs-3 tdTitle">
-																title 18
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-19">
-															<div class="col-xs-3 tdTitle">
-																title 19
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-20">
-															<div class="col-xs-3 tdTitle">
-																title 20
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-21">
-															<div class="col-xs-3 tdTitle">
-																title 21
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-22">
-															<div class="col-xs-3 tdTitle">
-																title 22
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-23">
-															<div class="col-xs-3 tdTitle">
-																title 23
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-24">
-															<div class="col-xs-3 tdTitle">
-																title 24
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-25">
-															<div class="col-xs-3 tdTitle">
-																title 25
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-26">
-															<div class="col-xs-3 tdTitle">
-																title 26
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-70
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
 													</div>
 												</div>
+												<div class="col-xs-12 tdList" id="tdList-2">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-3">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-4">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-5">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-6">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-7">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-8">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-9">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-10">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>	
 											</div>
-										</div>
+											<div class="col-xs-12 col-md-6 tdListRight text-left">
+												<div class="col-xs-12 tdList" id="tdList-11">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-12">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-13">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-14">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-15">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-16">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-17">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-18">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-19">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-20">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>	
+											</div>
+										</div>	
 									</div>
 								</div>
 								<div class="item">
-									<div class="carousel-content">
-										<div class="item">
-											<div class="carousel-content">
-												<div class="row tdRow text-center">
-
-													<!--target each list:
-                                                        e.g. changing video title
-                                                        $('#tdList-' + [i] +' .tdTitle')
-                                                    -->
-													<div class="col-xs-12 col-md-6 tdListLeft text-center">
-														<div class="col-xs-12 tdList" id="tdList-27">
-															<div class="col-xs-3 tdTitle">
-																title 1
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-28">
-															<div class="col-xs-3 tdTitle">
-																title 2
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-29">
-															<div class="col-xs-3 tdTitle">
-																title 3
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-30">
-															<div class="col-xs-3 tdTitle">
-																title 4
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-31">
-															<div class="col-xs-3 tdTitle">
-																title 5
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-32">
-															<div class="col-xs-3 tdTitle">
-																title 6
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-33">
-															<div class="col-xs-3 tdTitle">
-																title 7
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-34">
-															<div class="col-xs-3 tdTitle">
-																title 8
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-35">
-															<div class="col-xs-3 tdTitle">
-																title 9
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-36">
-															<div class="col-xs-3 tdTitle">
-																title 10
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-37">
-															<div class="col-xs-3 tdTitle">
-																title 11
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-38">
-															<div class="col-xs-3 tdTitle">
-																title 12
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-39">
-															<div class="col-xs-3 tdTitle">
-																title 13
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
+									<div class="carousel-content">		
+										<div class="row tdRow text-center">
+											<!--target each list:
+                                                e.g. changing video title
+                                                $('#tdList-' + [i] +' .tdTitle')
+                                            -->
+											<div class="col-xs-12 col-md-6 tdListLeft text-left">
+												<div class="col-xs-12 tdList" id="tdList-21">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
 													</div>
-
-
-													<div class="col-xs-12 col-md-6 tdListRight">
-														<div class="col-xs-12 tdList" id="tdList-40">
-															<div class="col-xs-3 tdTitle">
-																title 14
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-41">
-															<div class="col-xs-3 tdTitle">
-																title 15
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-42">
-															<div class="col-xs-3 tdTitle">
-																title 16
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-43">
-															<div class="col-xs-3 tdTitle">
-																title 17
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-44">
-															<div class="col-xs-3 tdTitle">
-																title 18
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-45">
-															<div class="col-xs-3 tdTitle">
-																title 19
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-46">
-															<div class="col-xs-3 tdTitle">
-																title 20
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-47">
-															<div class="col-xs-3 tdTitle">
-																title 21
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-48">
-															<div class="col-xs-3 tdTitle">
-																title 22
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-49">
-															<div class="col-xs-3 tdTitle">
-																title 23
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-50">
-															<div class="col-xs-3 tdTitle">
-																title 24
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-51">
-															<div class="col-xs-3 tdTitle">
-																title 25
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
-														<div class="col-xs-12 tdList" id="tdList-52">
-															<div class="col-xs-3 tdTitle">
-																title 26
-															</div>
-															<div class="col-xs-3 tdChannel">
-																channel
-															</div>
-															<div class="col-xs-3 tdUpDate">
-																12-31-1970
-															</div>
-															<div class="col-xs-3 tdButton">
-																<del>empty</del>
-															</div>
-														</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-22">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-23">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-24">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-25">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-26">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-27">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-28">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-29">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-30">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-12 col-md-6 tdListRight text-left">
+												<div class="col-xs-12 tdList" id="tdList-31">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-32">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-33">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-34">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-35">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-36">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-37">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-38">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-39">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+												</div>
+												<div class="col-xs-12 tdList" id="tdList-40">
+													<div class="col-xs-5 tdTitle">
+														<span>title text</span>
+													</div>
+													<div class="col-xs-1 tdInfo text-center">
+														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+														</a>
+													</div>
+													<div class="col-xs-3 tdChannel">
+														channel
+													</div>
+													<div class="col-xs-2 tdUpDate text-center">
+														12-31-79
+													</div>
+													<div class="col-xs-1 tdButton text-center">
+														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="video info" data-content="a section for video info and picture">
+															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+														</a>
 													</div>
 												</div>
 											</div>
@@ -968,7 +1078,7 @@ consider carousel for the video list area:
         				</div>
       				</div> -->
       				<div class="modal-body">
-        				<iframe class="mainVideo" width="560" height="315" src="https://www.youtube.com/embed/X2WH8mHJnhM" frameborder="0" allowfullscreen></iframe>
+        				<div id="player2"></div>
       				</div>
       				<div class="modal-footer">
       					<span id="lightBoxModalFooter"></span>
@@ -996,126 +1106,136 @@ consider carousel for the video list area:
       						1-indexed
 							$('#chSearch-'+[i]+' img').src(img source);
       					 -->
-        				<li id="chSearch-1">
-    						<img/>
-    						<h4>
-    							<span class="chName">
+        				<li id="chSearch-1" class="col-xs-12">
+    						<img class="col-xs-4"/>
+    						<h4 class="col-xs-7">
+    							<span class="chName col-xs-6">
     							</span>
-    							<small>subs: <span class="chSub"></span></small>
-    							<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="Visit our website at: http://www.teamfourstar.com/ Our Gaming Channel http://www.youtube.com/TFSTwoSaiyans Our Behind the Scenes Channel ...">
+    							<small class="col-xs-5">subs: <span class="chSub"></span></small>
+    							<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="Visit our website at: http://www.teamfourstar.com/ Our Gaming Channel http://www.youtube.com/TFSTwoSaiyans Our Behind the Scenes Channel ...">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 								</a>
     						</h4>
-    						<button class="btn btn-success"> Add Channel </button>
+    						<button class="btn btn-primary">Browse</button>
+    						<button class="btn btn-success"> Add </button>
         				</li>
-        				<li id="chSearch-2">
-        					<img/>
-        					<h4>
-        						<span class="chName">
+        				<li id="chSearch-2" class="col-xs-12">
+        					<img class="col-xs-4"/>
+        					<h4 class="col-xs-7">
+        						<span class="chName col-xs-6">
         						</span>
-        						<small>subs: <span class="chSub"></span></small>
-        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="I put words into other people's mouths. Management: 3 Arts Entertainment (310) 888-3200 My contact email is also in the channel header.">
+        						<small class="col-xs-5">subs: <span class="chSub"></span></small>
+        						<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="I put words into other people's mouths. Management: 3 Arts Entertainment (310) 888-3200 My contact email is also in the channel header.">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 								</a>
         					</h4>
-        					<button class="btn btn-success"> Add Channel </button>
+        					<button class="btn btn-primary">Browse</button>
+        					<button class="btn btn-success"> Add </button>
         				</li>
-        				<li id="chSearch-3">
-        					<img/>
-        					<h4>
-        						<span class="chName">
+        				<li id="chSearch-3" class="col-xs-12">
+        					<img class="col-xs-4"/>
+        					<h4 class="col-xs-7">
+        						<span class="chName col-xs-6">
         						</span>
-        						<small>subs: <span class="chSub"></span></small>
-        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="Making primitive huts and tools from scratch using only natural materials in the wild.I also have this blog: https://primitivetechnology.wordpress.com/ (I have no ...">
+        						<small class="col-xs-5">subs: <span class="chSub"></span></small>
+        						<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="Making primitive huts and tools from scratch using only natural materials in the wild.I also have this blog: https://primitivetechnology.wordpress.com/ (I have no ...">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 								</a>
         					</h4>
-        					<button class="btn btn-success"> Add Channel </button>
+        					<button class="btn btn-primary">Browse</button>
+        					<button class="btn btn-success"> Add </button>
         				</li>
-        				<li id="chSearch-4">
-        					<img/>
-        					<h4>
-        						<span class="chName">
+        				<li id="chSearch-4" class="col-xs-12">
+        					<img class="col-xs-4"/>
+        					<h4 class="col-xs-7">
+        						<span class="chName col-xs-6">
         						</span>
-        						<small>subs: <span class="chSub"></span></small>
-        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
+        						<small class="col-xs-5">subs: <span class="chSub"></span></small>
+        						<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 								</a>
         					</h4>
-        					<button class="btn btn-success"> Add Channel </button>
+        					<button class="btn btn-primary">Browse</button>
+        					<button class="btn btn-success"> Add </button>
         				</li>
-        				<li id="chSearch-5">
-        					<img/>
-        					<h4>
-        						<span class="chName">
+        				<li id="chSearch-5" class="col-xs-12">
+        					<img class="col-xs-4"/>
+        					<h4 class="col-xs-7">
+        						<span class="chName col-xs-6">
 
         						</span>
-        						<small>subs: <span class="chSub"></span></small>
-        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
+        						<small class="col-xs-5">subs: <span class="chSub"></span></small>
+        						<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 								</a>
         					</h4>
-        					<button class="btn btn-success"> Add Channel </button>
+        					<button class="btn btn-primary">Browse</button>
+        					<button class="btn btn-success"> Add </button>
         				</li>
-        				<li id="chSearch-6">
-        					<img/>
-        					<h4>
-        						<span class="chName">
+        				<li id="chSearch-6" class="col-xs-12">
+        					<img class="col-xs-4"/>
+        					<h4 class="col-xs-7">
+        						<span class="chName col-xs-6">
         						</span>
-        						<small>subs: <span class="chSub"></span></small>
-        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
+        						<small class="col-xs-5">subs: <span class="chSub"></span></small>
+        						<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 								</a>
         					</h4>
-        					<button class="btn btn-success"> Add Channel </button>
+        					<button class="btn btn-primary">Browse</button>
+        					<button class="btn btn-success"> Add </button>
         				</li>
-        				<li id="chSearch-7">
-        					<img/>
-        					<h4>
-        						<span class="chName">
+        				<li id="chSearch-7" class="col-xs-12">
+        					<img class="col-xs-4" />
+        					<h4 class="col-xs-7">
+        						<span class="chName col-xs-6">
         						</span>
-        						<small>subs: <span class="chSub"></span></small>
-        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
+        						<small class="col-xs-5">subs: <span class="chSub"></span></small>
+        						<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 								</a>
         					</h4>
-        					<button class="btn btn-success"> Add Channel </button>
+        					<button class="btn btn-primary">Browse</button>
+        					<button class="btn btn-success"> Add </button>
         				</li>
-        				<li id="chSearch-8">
-        					<img/>
-        					<h4>
-        						<span class="chName">
+        				<li id="chSearch-8" class="col-xs-12">
+        					<img class="col-xs-4" />
+        					<h4 class="col-xs-7">
+        						<span class="chName col-xs-6">
         						</span>
-        						<small>subs: <span class="chSub"></span></small>
-        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Dhannel Cescription" data-content="">
+        						<small class="col-xs-5">subs: <span class="chSub"></span></small>
+        						<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Dhannel Cescription" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 								</a>
         					</h4>
-        					<button class="btn btn-success"> Add Channel </button>
+        					<button class="btn btn-primary">Browse</button>
+        					<button class="btn btn-success"> Add </button>
         				</li>
-        				<li id="chSearch-9">
-        					<img/>
-        					<h4>
-        						<span class="chName">
+        				<li id="chSearch-9" class="col-xs-12">
+        					<img class="col-xs-4"/>
+        					<h4 class="col-xs-7">
+        						<span class="chName col-xs-6">
         						</span>
-        						<small>subs: <span class="chSub"></span></small>
-        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
+        						<small class="col-xs-5">subs: <span class="chSub"></span></small>
+        						<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 								</a>
         					</h4>
-        					<button class="btn btn-success"> Add Channel </button>
+        					<button class="btn btn-primary">Browse</button>
+        					<button class="btn btn-success"> Add </button>
         				</li>
-        				<li id="chSearch-10">
-        					<img/>
-        					<h4>
-        						<span class="chName">
+        				<li id="chSearch-10" class="col-xs-12">
+        					<img class="col-xs-4" />
+        					<h4 class="col-xs-7">
+        						<span class="chName col-xs-6">
         						</span>
-        						<small>subs: <span class="chSub"></span></small>
-        						<a tabindex="0" class="chInfoButton" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
+        						<small class="col-xs-5">subs: <span class="chSub"></span></small>
+        						<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 								</a>
         					</h4>
-        					<button class="btn btn-success"> Add Channel </button>
+        					<button class="btn btn-primary">Browse</button>
+        					<button class="btn btn-success"> Add </button>
         				</li>
       				</div>
       				<div class="modal-footer">
