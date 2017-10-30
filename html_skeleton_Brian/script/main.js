@@ -107,14 +107,14 @@ function searchChannelsByName() {
 }
 function worked(){	//SHOULD USE PROMISE HERE INSTEAD
     for(var i = 0; i < 10; i++){
-        renderSearchStats(i)
+        renderChannelSearchStats(i)
     }
 }
 function failed(message){
     console.log('nope',message);
 }
 
-function renderSearchStats(i){
+function renderChannelSearchStats(i){
     var channelListData = "#chSearch-"+(i+1);
     var chSub = "#chSearch-"+(i+1) + " .chSub";
     var chDesc ="#chSearch-"+(i+1) + " a";
@@ -133,6 +133,7 @@ function renderSearchStats(i){
             var subNumber = parseInt(data.items[0].statistics.subscriberCount);
             var numWithCommas = subNumber.toLocaleString("en-us");
             $(chSub).text(numWithCommas);
+            // $(chDesc).attr("title", data.items[0].snippet.description)
             $(chDesc).attr("data-content", data.items[0].snippet.description)
         },
         error: function (data) {
