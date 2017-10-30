@@ -385,13 +385,14 @@ body>.container-fluid{
 }
 
 /* autocomplete styles */
+
 #ui-id-1{
 	top:43px;
 	background-color: white;
 	list-style-type: none;
 }
 
-.ui-menu-item a.ui-state-focus:focus {
+.ui-menu-item-wrapper:focus {
 	background-color: red;
 }
 

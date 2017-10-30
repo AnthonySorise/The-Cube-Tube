@@ -62,6 +62,38 @@ function clickHandler() {
         $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
         $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'))
     })
+
+    //Created click handler for add channel modal button to get the result of videos for that channel that was clicked
+    $(".modal-body").on('click', 'li', function () {
+        var channelId = $(this).attr('channelid');
+        searchVideoByChannelId(channelId);
+
+    })
+}
+
+//Function being called when user clicks on add channel button in modal with all the youtube channel results
+function searchVideoByChannelId(channelId) {
+    var channelId = channelId;
+    console.log('chanel is', channelId);
+    $.ajax({
+        url: 'https://www.googleapis.com/youtube/v3/search',
+        dataType: 'json',
+        method: 'get',
+        data: {
+            key: 'AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s',
+            channelId: channelId,
+            type: 'video',
+            part: 'snippet',
+            order: 'date',
+            maxResults: 10
+        },
+        success: function (data) {
+            console.log('Found video of channel you clicked on', data);
+        },
+        error: function (data) {
+            console.log('Channel video search got an error', data);
+        }
+    })
 }
 
 //Channel Search by Name
@@ -144,31 +176,31 @@ function renderChannelSearchStats(i){
 
 
 function renderVideoList(subsciptionsArray){
-	for(var i = 0; i<subsciptionsArray.length; i++){
+    for(var i = 0; i<subsciptionsArray.length; i++){
 
-		var row = "#tdList-" + (i+1);
-		var title = row + " .tdTitle>span";
-		var channel = row + " .tdChannel";
+        var row = "#tdList-" + (i+1);
+        var title = row + " .tdTitle>span";
+        var channel = row + " .tdChannel";
         var upDate = row + " .tdUpDate";
 
 
 
-		var key = Object.keys(subsciptionsArray[i])[0];
+        var key = Object.keys(subsciptionsArray[i])[0];
 
-		var dateString = subsciptionsArray[i][key].snippet.publishedAt;
+        var dateString = subsciptionsArray[i][key].snippet.publishedAt;
         var d = new Date(dateString)
         dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear().toString().substring(2);
 
         $(row).attr("videoID", Object.keys(subsciptionsArray[i]));
         $(title).text(subsciptionsArray[i][key].snippet.title);
-		$(channel).text(subsciptionsArray[i][key].snippet.channelTitle);
-		$(upDate).text(dateString);
+        $(channel).text(subsciptionsArray[i][key].snippet.channelTitle);
+        $(upDate).text(dateString);
 
         var videoData = row + " .tdInfo a";
         var videoDataImg = $('<img>').attr('src',subsciptionsArray[i][key].snippet.thumbnails.medium.url);  //NEEDS IMPLEMENTATION
 
         $(videoData).attr("data-original-title", subsciptionsArray[i][key].snippet.title);
 
-	}
+    }
 
 }
