@@ -32,11 +32,15 @@ html,body{
 	border: none;
 }
 .navbar-brand{
+	font-size: 22px;
 	margin-right: 20px;
-	color: rgb(255,0,0);
+	color: rgb(40,40,40);
 	font-family: 'Roboto', sans-serif;
 	letter-spacing: -1.5px;
 	/*padding: 10px 10px;*/
+}
+.navbar-brand .fa{
+	color: rgb(255,0,0);
 }
 #mainNav-option form, #midNav-option form{
 	margin-right: 20px;
@@ -144,8 +148,9 @@ body>.container-fluid{
 }
 .videoListRowWrapper{
 	height: 46.5%;
+	padding: 0;
 	/*border: 2px solid red;*/
-	overflow: auto;
+	/*overflow: auto;*/
 }
 .thRow{
 	background-color: rgba(34,34,34,0.8);
@@ -154,16 +159,45 @@ body>.container-fluid{
 		-0.5px -0.5px 0 #000,
 		0.5px 0.5px 0 #000;
 }
+#text-carousel{
+	overflow: auto;
+	height: 90%;
+}
 .tdListLeft, .tdListRight{
-		padding: 0;
-	}
+	padding: 0;
+}
+.tdListLeft{
+	border-right: 0.5px solid;
+}
+.tdListRight{
+	border-left: 0.5px solid;
+}
 .tdList{
 	font-size: 18px;
 	margin-top: 1.75px;
 	margin-bottom: 1.75px;
+	height:3.5vh;
 }
 .tdList:hover, .tdList:focus{
 	background-color: rgba(43,187,173,0.6);
+}
+.row{
+	margin: 0;
+}	/* need the row margin 0 above and padding 0 below for carousel width adjustment*/
+.carouselCol{
+	padding:0;
+}
+.tdTitle,.tdInfo, .tdChannel, .tdUpdate, .tdButton{
+	height: 100%;
+}
+.tdInfo a, .tdButton a{
+	height: 100%;
+	/*background: none;*/
+	border: none;
+}
+.tdTitle, .tdChannel{
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 @media screen and (max-width: 767px){
 	.hamburger{
@@ -192,6 +226,10 @@ body>.container-fluid{
 		margin-top: 2%;
 		height: 40vh;
 		width: 100%;
+	}
+	.thUpDate, .tdUpDate{
+		font-size: 9px;
+		padding: 0;
 	}
 	.tdList{
 		font-size: 10px;
@@ -262,9 +300,27 @@ body>.container-fluid{
 	margin: 5px 0;
 	float: right;
 }
+
+/*end of modal css*/
 .carousel-control{
 	width: 30px;
 }
 .glyphicon{
 	color: red;
 }
+
+#ui-id-1{
+	top:43px;
+	background-color: white;
+	list-style-type: none;
+}
+
+.ui-menu-item a.ui-state-focus:focus {
+	background-color: red;
+}
+
+#infoButtonContainer{
+	position:relative;
+	bottom:13vh;
+}
+
