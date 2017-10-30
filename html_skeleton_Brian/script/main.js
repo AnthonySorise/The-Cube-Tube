@@ -201,19 +201,7 @@ function renderVideoList(subsciptionsArray){
         console.log(subsciptionsArray[i][key].snippet.thumbnails.medium.url)
 
         $(videoData).attr("data-original-title", subsciptionsArray[i][key].snippet.title);
-<<<<<<< HEAD
-        const img = $('<img>',{
-                src: subsciptionsArray[i][key].snippet.thumbnails.medium.url
-            });
-        // $(videoData).attr('data-img', subsciptionsArray[i][key].snippet.thumbnails.medium.url);
-        // return '<img src="'+subsciptionsArray[i][key].snippet.thumbnails.medium.url+'"/>'
-        const divImg = '<div> <img style="width:50px; height: 50px; z-index: 2" src="'+ subsciptionsArray[i][key].snippet.thumbnails.medium.url+'"/> </div>'
-        $(videoData+ ' i').popover({
-            content: divImg,
-            html: true,
-            trigger: 'hover click'
-        });
-=======
+
         $(videoData).attr("data-content", subsciptionsArray[i][key].snippet.description);
 
         $(row + " .tdInfo, "+ row + " .tdTitle").popover({
@@ -222,8 +210,6 @@ function renderVideoList(subsciptionsArray){
             content: videoDataImg,
             placement:'auto'
         });
-
->>>>>>> 50e8c4be2d80168c37226b8fbe2ba5199031520e
     }
 
 }
