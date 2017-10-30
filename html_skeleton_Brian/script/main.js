@@ -64,6 +64,30 @@ function clickHandler() {
     })
 }
 
+//Function being called when user clicks on add channel button in modal with all the youtube channel results
+function searchVideoByChannelId(channelId) {
+    var channelId = channelId;
+    console.log('chanel is', channelId);
+    $.ajax({
+        url: 'https://www.googleapis.com/youtube/v3/search',
+        dataType: 'json',
+        method: 'get',
+        data: {
+            key: 'AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s',
+            channelId: channelId,
+            type: 'video',
+            part: 'snippet',
+            order: 'date',
+            maxResults: 10
+        },
+        success: function (data) {
+            console.log('Found video of channel you clicked on', data);
+        },
+        error: function (data) {
+            console.log('Channel video search got an error', data);
+        }
+    })
+
 //Channel Search by Name
 function searchChannelsByName() {
     string = $('#channelSearchInput').val();
