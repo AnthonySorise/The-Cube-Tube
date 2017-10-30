@@ -304,10 +304,20 @@ body>.container-fluid{
 #channelSearchModal .modal-dialog{
 	width: 60vw;
 }
+#channelSearchModalHeader .close{
+	color: rgba(255,255,255,0.6);
+}
+#channelSearchModalHeader .close:hover{
+	color: rgba(255,255,255,1);
+}
+#channelSearchModalHeader, #channelSearchModal .modal-footer{
+	background-color: rgb(28, 35, 49);
+}
 #channelSearchModalHeader .modal-title-wrap{
 	display: inline-block;
 }
 #channelSearchModalTitle{
+	color: rgb(207, 216, 220);
 	font-family: 'Roboto', sans-serif;
 	overflow: hidden;
 	border-right: .15em solid rgb(255,0,0);
@@ -321,6 +331,7 @@ body>.container-fluid{
 #channelSearchModalBody{
 	list-style-type: none;
 	height: 65vh;
+	background-color: rgb(89,105,141);
 	overflow: auto;
 }
 #channelSearchModalBody li{
@@ -328,7 +339,7 @@ body>.container-fluid{
 	padding: 0 7px;
 }
 #channelSearchModalBody li:hover{
-	background-color: lightblue;
+	background-color: #1c2a48;
 }
 #channelSearchModalBody li img{
 	width: 44px;
@@ -339,21 +350,26 @@ body>.container-fluid{
 	margin: 0;
 	display: inline-block;
 	line-height: 2.4;
+	color: rgb(207, 216, 220);
 }
 .chName, #channelSearchModalBody li h4 small{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	color: white;
 }
 #channelSearchModalBody li h4 small{
 	line-height: 3.4;
 }
 #channelSearchModalBody .chInfoButton{
-	color: rgba(49,176,213,0.5);
+	color: rgba(49,176,213,0.3);
 	padding: 0;
 }
 #channelSearchModalBody .chInfoButton:hover{
 	color: rgba(49,176, 213, 1);
+}
+#channelSearchModalBody .chInfoButton:focus{
+	outline: none;
 }
 #channelSearchModalBody li button{
 	margin: 5px 2px;
