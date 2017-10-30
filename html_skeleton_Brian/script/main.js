@@ -42,19 +42,13 @@ $(document).ready(function(){
 
 //Click handler to console log search results
 function clickHandler() {
-<<<<<<< HEAD
 
-    console.log('Search button was clicked');
-    $(".channelSearchForm .channelSearchButton").on('click', function (event) {
-=======
     //Search Button
     $(".channelSearchForm .channelSearchButton").on('click',function(event){
->>>>>>> 68db73031627947fb8205a80adf2b23206222ef1
         event.preventDefault();
         searchChannelsByName();
     });
 
-<<<<<<< HEAD
     $(".channelSearchForm .channelSearchButton").on('click', function (event) {
         event.preventDefault();
         searchChannelsByName().then(worked, failed);
@@ -92,7 +86,7 @@ function searchVideoByChannelId(channelId) {
 			console.log('Channel video search got an error', data);
         }
 	})
-=======
+
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function(){
         console.log('https://www.youtube.com/embed/'+$(this).attr('videoId'));
@@ -107,7 +101,7 @@ function searchVideoByChannelId(channelId) {
         $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
         $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'))
     })
->>>>>>> 68db73031627947fb8205a80adf2b23206222ef1
+
 }
 
 //Channel Search by Name
