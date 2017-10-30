@@ -416,3 +416,7 @@ body>.container-fluid{
 	}
 }
 
+.popover-content{
+	z-index: 10000 ;
+}
+

@@ -194,9 +194,14 @@ function renderVideoList(subsciptionsArray){
         $(upDate).text(dateString);
 
         var videoData = row + " .tdInfo a";
-        var videoDataImg = $('<img>').attr('src',subsciptionsArray[i][key].snippet.thumbnails.medium.url);  //NEEDS IMPLEMENTATION
+        var videoDataImg = $('<img>').attr('src',subsciptionsArray[i][key].snippet.thumbnails.medium.url).css({
+            width: '160px',
+            height: '90px',
+        })
+        console.log(subsciptionsArray[i][key].snippet.thumbnails.medium.url)
 
         $(videoData).attr("data-original-title", subsciptionsArray[i][key].snippet.title);
+<<<<<<< HEAD
         const img = $('<img>',{
                 src: subsciptionsArray[i][key].snippet.thumbnails.medium.url
             });
@@ -208,6 +213,17 @@ function renderVideoList(subsciptionsArray){
             html: true,
             trigger: 'hover click'
         });
+=======
+        $(videoData).attr("data-content", subsciptionsArray[i][key].snippet.description);
+
+        $(row + " .tdInfo, "+ row + " .tdTitle").popover({
+            trigger: "hover",
+            html: true,
+            content: videoDataImg,
+            placement:'auto'
+        });
+
+>>>>>>> 50e8c4be2d80168c37226b8fbe2ba5199031520e
     }
 
 }
