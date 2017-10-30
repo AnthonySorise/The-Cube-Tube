@@ -249,7 +249,7 @@ function renderVideoList(subsciptionsArray){
             'data-original-title': subsciptionsArray[i][key].snippet.title
         });
 
-        $(row + " .tdInfo, "+ row + " .tdTitle").popover({
+        $(row + " .tdTitle").popover({
             trigger: "hover",
             html: true,
             content: videoDataImg,
