@@ -9,10 +9,9 @@ $(document).ready(function(){
     });
 
     /*** button target for opening theater mode ***/
-    // $('.lightBoxMode').click(function(){
-    //     onYouTubeIframeAPIReady2();
-    //     $('#lightBoxModal').modal('show');
-    // });
+    $('.lightBoxMode').click(function(){
+        $('#lightBoxModal').modal('show');
+    });
     /*** ***/
     $('[data-toggle="tooltip"]').tooltip();	//needed for tooltip
     $('[data-toggle="popover"]').popover();
@@ -31,8 +30,7 @@ $(document).ready(function(){
     //TEMP DUMMY DATA
 
 });
-var player;
-var player2;
+
 // function renderVideoInfo(videoObject){		//argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
 //     $('#videoInfo').popover({
 //         content: function() {
@@ -65,12 +63,10 @@ function clickHandler() {
         $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
         $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'))
     })
-    // Ian's click handlers
+
     $('.lightBoxMode').on('click',function(){
-        onYouTubeIframeAPIReady2()
         player.pauseVideo();
         player2.seekTo(player.getCurrentTime());
-        $('#lightBoxModal').modal('show');
         player2.playVideo();
 
     });
@@ -199,7 +195,7 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// var player;
+var player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('mainVideo', {
         height: '390',
@@ -209,7 +205,7 @@ function onYouTubeIframeAPIReady() {
     player.attr("id", "mainVideo")
 }
 
-// var player2;
+var player2;
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('player2', {
         height: '390',
