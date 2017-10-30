@@ -151,6 +151,10 @@ body>.container-fluid{
 .lightBoxMode:hover{
 	color: rgba(255,0,0, 1);
 }
+#infoButtonContainer{
+	position:relative;
+	bottom:13vh;
+}
 #midNav{
 	height: 3.5%;
 	margin: 0;
@@ -318,7 +322,8 @@ body>.container-fluid{
 	list-style-type: none;
 }
 #channelSearchModalBody li{
-	margin: 7px 0;
+	margin: 5.5px 0;
+	padding: 0 7px;
 }
 #channelSearchModalBody li:hover{
 	background-color: lightblue;
@@ -331,12 +336,15 @@ body>.container-fluid{
 #channelSearchModalBody li h4{
 	margin: 0;
 	display: inline-block;
-	line-height: 2.1;
+	line-height: 2.4;
 }
 .chName{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+#channelSearchModalBody li h4 small{
+	line-height: 3.4;
 }
 #channelSearchModalBody .chInfoButton{
 	color: rgba(49,176,213,0.5);
@@ -345,8 +353,7 @@ body>.container-fluid{
 	color: rgba(49,176, 213, 1);
 }
 #channelSearchModalBody li button{
-	/*height: 100%;*/
-	margin: 5px 0;
+	margin: 5px 2px;
 	float: right;
 }
 
@@ -367,11 +374,6 @@ body>.container-fluid{
 
 .ui-menu-item a.ui-state-focus:focus {
 	background-color: red;
-}
-
-#infoButtonContainer{
-	position:relative;
-	bottom:13vh;
 }
 
 
