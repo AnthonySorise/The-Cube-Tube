@@ -197,7 +197,17 @@ function renderVideoList(subsciptionsArray){
         var videoDataImg = $('<img>').attr('src',subsciptionsArray[i][key].snippet.thumbnails.medium.url);  //NEEDS IMPLEMENTATION
 
         $(videoData).attr("data-original-title", subsciptionsArray[i][key].snippet.title);
-
+        const img = $('<img>',{
+                src: subsciptionsArray[i][key].snippet.thumbnails.medium.url
+            });
+        // $(videoData).attr('data-img', subsciptionsArray[i][key].snippet.thumbnails.medium.url);
+        // return '<img src="'+subsciptionsArray[i][key].snippet.thumbnails.medium.url+'"/>'
+        const divImg = '<div> <img style="width:50px; height: 50px; z-index: 2" src="'+ subsciptionsArray[i][key].snippet.thumbnails.medium.url+'"/> </div>'
+        $(videoData+ ' i').popover({
+            content: divImg,
+            html: true,
+            trigger: 'hover click'
+        });
     }
 
 }
