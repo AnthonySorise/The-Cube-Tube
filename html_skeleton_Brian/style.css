@@ -239,7 +239,7 @@ body>.container-fluid{
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-@media screen and (max-width: 767px){
+@media screen and (max-width: 1082px){
 	.hamburger{
 		display: inline-block !important;
 	}
@@ -386,16 +386,10 @@ body>.container-fluid{
 
 /* autocomplete styles */
 
-#ui-id-1{
-	top:43px;
-	background-color: white;
-	list-style-type: none;
+.ui-menu {
+	top: 43px !important;
+	width: 187px !important;
 }
-
-.ui-menu-item-wrapper:focus {
-	background-color: red;
-}
-
 
 @media only screen and (max-width : 991px){
 	.carousel-control{
@@ -419,4 +413,9 @@ body>.container-fluid{
 .popover-content{
 	z-index: 10000 ;
 }
+@media screen and (max-width:1082px) {
+	.channelSearchButton { display:none; }
+	#channelSearchInput { display:none; }
 
+
+}
