@@ -36,11 +36,11 @@ $(document).ready(function(){
     //     $('#lightBoxModal').modal('show');
     // });
     /*** ***/
-    $('[data-toggle="tooltip"]').tooltip();	//needed for tooltip
+    $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
 
     // $('.videoStats').click(function(){
-    // 	$('.videoStats').popover('toggle');
+    //  $('.videoStats').popover('toggle');
     // });
     // $('#videoStats').popover('hover focus');
     clickHandler();
@@ -54,7 +54,7 @@ $(document).ready(function(){
 
 });
 
-// function renderVideoInfo(videoObject){		//argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
+// function renderVideoInfo(videoObject){       //argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
 //     $('#videoInfo').popover({
 //         content: function() {
 //             var message = videoObject.snippet.description;
@@ -249,7 +249,7 @@ function renderVideoList(subsciptionsArray){
             'data-original-title': subsciptionsArray[i][key].snippet.title
         });
 
-        $(row + " .tdInfo, "+ row + " .tdTitle").popover({
+        $(row + " .tdTitle").popover({
             trigger: "hover",
             html: true,
             content: videoDataImg,
@@ -258,6 +258,30 @@ function renderVideoList(subsciptionsArray){
         });
     }
 
+
+    function converteYouTubeApiDatatoDbData(channelId){
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/channels',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: channelId,
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('Youtube success',data);
+
+
+
+
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
+        })
+
+    }
 
 }
 
