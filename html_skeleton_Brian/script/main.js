@@ -63,11 +63,11 @@ function clickHandler() {
     });
 
     //Created click handler for add channel modal button to get the result of videos for that channel that was clicked
-    $(".modal-body").on('click', 'li', function () {
-        var channelId = $(this).attr('channelid');
-        searchVideoByChannelId(channelId);
-
-    })
+    // $(".modal-body").on('click', 'li', function () {
+    //     var channelId = $(this).attr('channelid');
+    //     searchVideoByChannelId(channelId);
+    //
+    // })
 }
 
 //Function being called when user clicks on add channel button in modal with all the youtube channel results
@@ -125,7 +125,6 @@ function searchChannelsByName() {
                 $(channelListData).attr("channelId", data.items[i].snippet.channelId);
                 $(chName).text(data.items[i].snippet.channelTitle);
                 $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
-
             }
             promise.resolve(data);
         },
@@ -163,7 +162,7 @@ function renderChannelSearchStats(i){
             var subNumber = parseInt(data.items[0].statistics.subscriberCount);
             var numWithCommas = subNumber.toLocaleString("en-us");
             $(chSub).text(numWithCommas);
-            $(chDesc).attr("title", data.items[0].snippet.title)
+            $(chDesc).attr("data-original-title", data.items[0].snippet.title)
             $(chDesc).attr("data-content", data.items[0].snippet.description)
         },
         error: function (data) {
