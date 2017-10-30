@@ -198,6 +198,14 @@ function renderVideoList(subsciptionsArray){
 
         $(videoData).attr("data-original-title", subsciptionsArray[i][key].snippet.title);
 
+
+        $(videoData + " i").popover({
+            trigger: "hover",
+            html: true,
+            content: videoDataImg,
+            placement:'top'
+        });
+
     }
 
 }
