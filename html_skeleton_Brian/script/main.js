@@ -50,7 +50,6 @@ function clickHandler() {
 
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function(){
-        console.log('https://www.youtube.com/embed/'+$(this).attr('videoId'));
         $('.fa-play').remove();
         var playSymbol = $('<i>')
             .addClass("fa fa-play")
@@ -61,14 +60,14 @@ function clickHandler() {
         $(this).parent().addClass("selectedTd");
         $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
         $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'))
-    })
+    });
 
     //Created click handler for add channel modal button to get the result of videos for that channel that was clicked
-    $(".modal-body").on('click', 'li', function () {
-        var channelId = $(this).attr('channelid');
-        searchVideoByChannelId(channelId);
-
-    })
+    // $(".modal-body").on('click', 'li', function () {
+    //     var channelId = $(this).attr('channelid');
+    //     searchVideoByChannelId(channelId);
+    //
+    // })
 }
 
 //Function being called when user clicks on add channel button in modal with all the youtube channel results
@@ -126,7 +125,6 @@ function searchChannelsByName() {
                 $(channelListData).attr("channelId", data.items[i].snippet.channelId);
                 $(chName).text(data.items[i].snippet.channelTitle);
                 $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
-
             }
             promise.resolve(data);
         },
@@ -161,15 +159,11 @@ function renderChannelSearchStats(i){
         },
         success: function (data) {
             console.log('Youtube success',data);
-            console.log(chSub);
             var subNumber = parseInt(data.items[0].statistics.subscriberCount);
             var numWithCommas = subNumber.toLocaleString("en-us");
             $(chSub).text(numWithCommas);
-            // $(chDesc).attr("title", data.items[0].snippet.description)
-            $(chDesc).attr('title', function(){
-                return data.items[0].snippet.title;
-            });
-            $(chDesc).attr("data-content", data.items[0].snippet.description);
+            $(chDesc).attr("data-original-title", data.items[0].snippet.title)
+            $(chDesc).attr("data-content", data.items[0].snippet.description)
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
