@@ -395,6 +395,12 @@ body>.container-fluid{
 .ui-menu-item-wrapper:focus {
 	background-color: red;
 }
+.ui-menu {
+	/*top:43px !important;*/
+	width: 187px !important;
+	/*left: 790px !important;*/
+	right: 0 !important;
+}
 
 
 @media only screen and (max-width : 991px){
