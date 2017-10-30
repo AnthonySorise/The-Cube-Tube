@@ -1,3 +1,25 @@
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+// var player;
+function onYouTubeIframeAPIReady(vidId) {
+    player = new YT.Player('mainVideo', {
+       
+        videoId: vidId || 'X2WH8mHJnhM'
+    });
+    // player.attr("id", "mainVideo")
+    onYouTubeIframeAPIReady2();
+}
+function onYouTubeIframeAPIReady2() {
+    player2 = new YT.Player('theaterVideo', {      
+        videoId:'X2WH8mHJnhM'
+    });
+}
+var player;
+var player2;
+/*******needed for iframe player*******/
+
 $(document).ready(function(){
 
     /**
@@ -9,15 +31,16 @@ $(document).ready(function(){
     });
 
     /*** button target for opening theater mode ***/
-    $('.lightBoxMode').click(function(){
-        $('#lightBoxModal').modal('show');
-    });
+    // $('.lightBoxMode').click(function(){
+    //     onYouTubeIframeAPIReady2();
+    //     $('#lightBoxModal').modal('show');
+    // });
     /*** ***/
-    $('[data-toggle="tooltip"]').tooltip();	//needed for tooltip
+    $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
 
     // $('.videoStats').click(function(){
-    // 	$('.videoStats').popover('toggle');
+    //  $('.videoStats').popover('toggle');
     // });
     // $('#videoStats').popover('hover focus');
     clickHandler();
@@ -31,7 +54,7 @@ $(document).ready(function(){
 
 });
 
-// function renderVideoInfo(videoObject){		//argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
+// function renderVideoInfo(videoObject){       //argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
 //     $('#videoInfo').popover({
 //         content: function() {
 //             var message = videoObject.snippet.description;
@@ -57,13 +80,14 @@ function clickHandler() {
                 "margin-right": '5px',
                 'color': 'green'
             });
-            // .css("margin-right", '5px')
-            // .css("color", "green");
         $(this).parent().find(".tdTitle>span").prepend(playSymbol);
         $('.tdList').removeClass('selectedTd');
         $(this).parent().addClass("selectedTd");
-        $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'))
+        console.log($(this).parent().attr('videoId'));
+        // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
+        player.loadVideoById($(this).parent().attr('videoId'));
+        // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
+        player2.loadVideoById($(this).parent().attr('videoId'));
     });
 
     //Created click handler for add channel modal button to get the result of videos for that channel that was clicked
@@ -72,6 +96,20 @@ function clickHandler() {
     //     searchVideoByChannelId(channelId);
     //
     // })
+    // Ian's click handlers
+    $('.lightBoxMode').on('click',function(){       
+        player.pauseVideo();
+        // player2.loadVideoById(player.getVideoData().video_id);
+        player2.seekTo(player.getCurrentTime());
+        $('#lightBoxModal').modal('show');
+        player2.playVideo();
+    });
+    $('.modalClose').on('click',function(){
+        player2.pauseVideo();
+        player.seekTo(player2.getCurrentTime());
+        player.playVideo();
+
+    });
 }
 
 //Function being called when user clicks on add channel button in modal with all the youtube channel results
