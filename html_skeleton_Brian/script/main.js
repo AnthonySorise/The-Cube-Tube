@@ -194,16 +194,20 @@ function renderVideoList(subsciptionsArray){
         $(upDate).text(dateString);
 
         var videoData = row + " .tdInfo a";
-        var videoDataImg = $('<img>').attr('src',subsciptionsArray[i][key].snippet.thumbnails.medium.url);  //NEEDS IMPLEMENTATION
+        var videoDataImg = $('<img>').attr('src',subsciptionsArray[i][key].snippet.thumbnails.medium.url).css({
+            width: '160px',
+            height: '90px',
+        })
+        console.log(subsciptionsArray[i][key].snippet.thumbnails.medium.url)
 
         $(videoData).attr("data-original-title", subsciptionsArray[i][key].snippet.title);
+        $(videoData).attr("data-content", subsciptionsArray[i][key].snippet.description);
 
-
-        $(videoData + " i").popover({
+        $(row + " .tdInfo, "+ row + " .tdTitle").popover({
             trigger: "hover",
             html: true,
             content: videoDataImg,
-            placement:'top'
+            placement:'auto'
         });
 
     }
