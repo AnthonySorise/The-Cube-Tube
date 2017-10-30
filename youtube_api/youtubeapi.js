@@ -158,7 +158,3 @@ function deepCopy(toCopy){
         return toCopy;
     }
 }
-
-function constructDataPackageFromAPIReturn(data){
-    var dataCopy = deepCopy(data);
-}
