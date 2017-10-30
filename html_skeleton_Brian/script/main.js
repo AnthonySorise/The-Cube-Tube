@@ -259,6 +259,30 @@ function renderVideoList(subsciptionsArray){
     }
 
 
+    function converteYouTubeApiDatatoDbData(channelId){
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/channels',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: channelId,
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('Youtube success',data);
+
+
+
+
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
+        })
+
+    }
+
 }
 
 
