@@ -36,11 +36,11 @@ $(document).ready(function(){
     //     $('#lightBoxModal').modal('show');
     // });
     /*** ***/
-    $('[data-toggle="tooltip"]').tooltip();	//needed for tooltip
+    $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
 
     // $('.videoStats').click(function(){
-    // 	$('.videoStats').popover('toggle');
+    //  $('.videoStats').popover('toggle');
     // });
     // $('#videoStats').popover('hover focus');
     clickHandler();
@@ -54,7 +54,7 @@ $(document).ready(function(){
 
 });
 
-// function renderVideoInfo(videoObject){		//argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
+// function renderVideoInfo(videoObject){       //argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
 //     $('#videoInfo').popover({
 //         content: function() {
 //             var message = videoObject.snippet.description;
