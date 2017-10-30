@@ -149,7 +149,7 @@ function failed(message){
 function renderChannelSearchStats(i){
     var channelListData = "#chSearch-"+(i+1);
     var chSub = "#chSearch-"+(i+1) + " .chSub";
-    var chDesc ="#chSearch-"+(i+1) + " a";
+    var chDesc ="#chSearch-"+(i+1) + " .chInfoButton";
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/channels',
         dataType: 'json',
@@ -166,7 +166,10 @@ function renderChannelSearchStats(i){
             var numWithCommas = subNumber.toLocaleString("en-us");
             $(chSub).text(numWithCommas);
             // $(chDesc).attr("title", data.items[0].snippet.description)
-            $(chDesc).attr("data-content", data.items[0].snippet.description)
+            $(chDesc).attr('title', function(){
+                return data.items[0].snippet.title;
+            });
+            $(chDesc).attr("data-content", data.items[0].snippet.description);
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
