@@ -62,6 +62,13 @@ function clickHandler() {
         $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
         $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'))
     })
+
+    //Created click handler for add channel modal button to get the result of videos for that channel that was clicked
+    $(".modal-body").on('click', 'li', function () {
+        var channelId = $(this).attr('channelid');
+        searchVideoByChannelId(channelId);
+
+    })
 }
 
 //Function being called when user clicks on add channel button in modal with all the youtube channel results
@@ -87,6 +94,7 @@ function searchVideoByChannelId(channelId) {
             console.log('Channel video search got an error', data);
         }
     })
+}
 
 //Channel Search by Name
 function searchChannelsByName() {
