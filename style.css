@@ -99,7 +99,7 @@ body>.container-fluid{
 	height: 100%;
 	/*border: 1px solid red;*/
 }
-.iframeVideo{
+#mainVideo{
 	height: 98%;
 	margin: 0.25% 0;
 	width: 85%;
@@ -150,6 +150,10 @@ body>.container-fluid{
 }
 .lightBoxMode:hover{
 	color: rgba(255,0,0, 1);
+}
+#infoButtonContainer{
+	position:relative;
+	bottom:13vh;
 }
 #midNav{
 	height: 3.5%;
@@ -298,12 +302,22 @@ body>.container-fluid{
 	background-color: rgba(0,0,0,0.5);
 }
 #channelSearchModal .modal-dialog{
-	width: 55vw;
+	width: 60vw;
+}
+#channelSearchModalHeader .close{
+	color: rgba(255,255,255,0.6);
+}
+#channelSearchModalHeader .close:hover{
+	color: rgba(255,255,255,1);
+}
+#channelSearchModalHeader, #channelSearchModal .modal-footer{
+	background-color: rgb(28, 35, 49);
 }
 #channelSearchModalHeader .modal-title-wrap{
 	display: inline-block;
 }
 #channelSearchModalTitle{
+	color: rgb(207, 216, 220);
 	font-family: 'Roboto', sans-serif;
 	overflow: hidden;
 	border-right: .15em solid rgb(255,0,0);
@@ -316,12 +330,16 @@ body>.container-fluid{
 }
 #channelSearchModalBody{
 	list-style-type: none;
+	height: 65vh;
+	background-color: rgb(89,105,141);
+	overflow: auto;
 }
 #channelSearchModalBody li{
-	margin: 7px 0;
+	margin: 5.5px 0;
+	padding: 0 7px;
 }
 #channelSearchModalBody li:hover{
-	background-color: lightblue;
+	background-color: #1c2a48;
 }
 #channelSearchModalBody li img{
 	width: 44px;
@@ -331,22 +349,30 @@ body>.container-fluid{
 #channelSearchModalBody li h4{
 	margin: 0;
 	display: inline-block;
-	line-height: 2.1;
+	line-height: 2.4;
+	color: rgb(207, 216, 220);
 }
-.chName{
+.chName, #channelSearchModalBody li h4 small{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	color: white;
+}
+#channelSearchModalBody li h4 small{
+	line-height: 3.4;
 }
 #channelSearchModalBody .chInfoButton{
-	color: rgba(49,176,213,0.5);
+	color: rgba(49,176,213,0.3);
+	padding: 0;
 }
 #channelSearchModalBody .chInfoButton:hover{
 	color: rgba(49,176, 213, 1);
 }
+#channelSearchModalBody .chInfoButton:focus{
+	outline: none;
+}
 #channelSearchModalBody li button{
-	/*height: 100%;*/
-	margin: 5px 0;
+	margin: 5px 2px;
 	float: right;
 }
 
@@ -359,19 +385,21 @@ body>.container-fluid{
 }
 
 /* autocomplete styles */
+
 #ui-id-1{
 	top:43px;
 	background-color: white;
 	list-style-type: none;
 }
 
-.ui-menu-item a.ui-state-focus:focus {
+.ui-menu-item-wrapper:focus {
 	background-color: red;
 }
-
-#infoButtonContainer{
-	position:relative;
-	bottom:13vh;
+.ui-menu {
+	/*top:43px !important;*/
+	width: 187px !important;
+	/*left: 790px !important;*/
+	right: 0 !important;
 }
 
 
@@ -384,5 +412,17 @@ body>.container-fluid{
 	}
 }
 
+@media screen and (max-width: 1024px){
+	#channelSearchModal .modal-dialog{
+		width: 75vw;
+	}
+	
+	#channelSearchModalBody{
+		height: 75vh;
+	}
+}
 
+.popover-content{
+	z-index: 10000 ;
+}
 
