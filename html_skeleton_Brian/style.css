@@ -384,14 +384,6 @@ body>.container-fluid{
 	color: red;
 }
 
-/* autocomplete styles */
-
-#ui-id-1:focus {
-	top: 43px;
-	background-color: white;
-	list-style-type: none;
-}
-
 @media only screen and (max-width : 991px){
 	.carousel-control{
 		height: 75vh;
