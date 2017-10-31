@@ -99,7 +99,7 @@ body>.container-fluid{
 	height: 100%;
 	/*border: 1px solid red;*/
 }
-.iframeVideo{
+#mainVideo{
 	height: 98%;
 	margin: 0.25% 0;
 	width: 85%;
@@ -385,14 +385,21 @@ body>.container-fluid{
 }
 
 /* autocomplete styles */
+
 #ui-id-1{
 	top:43px;
 	background-color: white;
 	list-style-type: none;
 }
 
-.ui-menu-item a.ui-state-focus:focus {
+.ui-menu-item-wrapper:focus {
 	background-color: red;
+}
+.ui-menu {
+	/*top:43px !important;*/
+	width: 187px !important;
+	/*left: 790px !important;*/
+	right: 0 !important;
 }
 
 
@@ -415,5 +422,7 @@ body>.container-fluid{
 	}
 }
 
-
+.popover-content{
+	z-index: 10000 ;
+}
 
