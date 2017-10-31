@@ -4,7 +4,7 @@ if(empty($LOCAL_ACCESS)){
 }
 $channel_title = $_POST['channelTitle'];
 $description = $_POST['description'];
-$thumbnails = $_POST['thumbnails'];
+$thumbnail = $_POST['thumbnails'];
 $sub_count = $_POST['subscriberCount'];
 $video_count = $_POST['videoCount'];
 $viewCount = $_POST['viewCount'];
@@ -15,7 +15,7 @@ if(empty($channel_title)){
 if(empty($description)){
     $output['errors'][] = "MISSING CHANNEL DESCRIPTION";
 }
-if(empty($thumbnails)){
+if(empty($thumbnail)){
     $output['errors'][] = "MISSING THUMBNAILS";
 }
 if(empty($sub_count)){
@@ -32,7 +32,7 @@ if(empty($id)){
 }
 $query = "UPDATE channels SET channelTitle = '{$channel_title}',  
 description = '{$description}', 
-thumbnails = '{$thumbnails}', 
+thumbnails = '{$thumbnail}', 
 sub_count = {$sub_count}, ,
 videoCount = {$video_count},
 viewCount = {$viewCount} 

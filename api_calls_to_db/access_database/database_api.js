@@ -121,7 +121,7 @@ function Database(){
         //         this.reject = reject;
         //     }
         // }
-        const {channelId, channelTitle, description, thumbnails, subCount,videoCount,viewCount} = channel_object;
+        const {channelId, channelTitle, description, thumbnail, subCount,videoCount,viewCount} = channel_object;
         $.ajax({
             url:'access.php',
             method:'post',
@@ -131,7 +131,7 @@ function Database(){
                 channelId:channelId,
                 channelTitle:channelTitle,
                 description:description,
-                thumbnails:thumbnails,
+                thumbnail:thumbnail,
                 subCount:subCount,
                 videoCount:videoCount,
                 viewCount:viewCount
@@ -183,6 +183,64 @@ function Database(){
             }
         })
         // return promise;
+    }
+    this.insert_user = function(link){
+        // var promise = {
+        //     then:function(resolve,reject){
+        //         this.resolve = resolve;
+        //         this.reject = reject;
+        //     }//end then
+        // }//end promise
+        $.ajax({
+            url:'access.php',
+            method:'POST',
+            dataType:'JSON',
+            data:{
+                action:'insert_user',
+                user_link: link
+            },
+            success:function(data){
+                console.log(data);
+                if(data["success"]){
+                    // promise.resolve(data);
+                    console.log('success');
+                }
+            },
+            errors:function(data){
+                // promise.reject(data);
+                console.log(data['errors'])
+            }
+        })
+        // return promise
+    }
+    this.insert_categories = function(name){
+        // var promise = {
+        //     then:function(resolve,reject){
+        //         this.resolve = resolve;
+        //         this.reject = reject;
+        //     }//end then
+        // }//end promise
+        $.ajax({
+            url:'access.php',
+            method:'POST',
+            dataType:'JSON',
+            data:{
+                action:'insert_category',
+                name:name
+            },
+            success:function(data){
+                console.log(data);
+                if(data["success"]){
+                    // promise.resolve(data);
+                    console.log('success');
+                }
+            },
+            errors:function(data){
+                // promise.reject(data);
+                console.log(data['errors'])
+            }
+        })
+        // return promise
     }
 }
 var access_database = new Database();

@@ -5,7 +5,7 @@ if(empty($LOCAL_ACCESS)){
 $channel_id = $_POST['channelId'];
 $channel_title = $_POST['channelTitle'];
 $description = $_POST['description'];
-$thumbnails = $_POST['thumbnails'];
+$thumbnail = $_POST['thumbnails'];
 $sub_count = $_POST['subscriberCount'];
 $video_count = $_POST['videoCount'];
 $view_count = $_POST['viewCount'];
@@ -15,7 +15,7 @@ if(empty($channel_title)){
 if(empty($description)){
     $output['errors'][] = "MISSING CHANNEL DESCRIPTION";
 }
-if(empty($thumbnails)){
+if(empty($thumbnail)){
     $output['errors'][] = "MISSING THUMBNAILS";
 }
 if(empty($sub_count)){
@@ -30,7 +30,7 @@ if(empty($view_count)){
 $query = "INSERT INTO channels SET channelTitle = '{$channel_title}', 
 channel_id = '{$channel_id}',
 description = '{$description}', 
-thumbnails = '{$thumbnails}', 
+thumbnails = '{$thumbnail}', 
 sub_count = {$sub_count}, ,
 videoCount = {$video_count},
 viewCount = {$viewCount}";
