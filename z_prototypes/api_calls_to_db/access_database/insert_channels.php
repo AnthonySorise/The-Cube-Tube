@@ -2,20 +2,20 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$channel_id = $_POST['channelId'];
-$channel_title = $_POST['channelTitle'];
+$channel_id = $_POST['channel_id'];
+$channel_title = $_POST['channel_title'];
 $description = $_POST['description'];
-$thumbnails = $_POST['thumbnails'];
-$sub_count = $_POST['subscriberCount'];
-$video_count = $_POST['videoCount'];
-$view_count = $_POST['viewCount'];
+$thumbnail = $_POST['thumbnail'];
+$sub_count = $_POST['sub_count'];
+$video_count = $_POST['video_count'];
+$view_count = $_POST['view_count'];
 if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }
 if(empty($description)){
     $output['errors'][] = "MISSING CHANNEL DESCRIPTION";
 }
-if(empty($thumbnails)){
+if(empty($thumbnail)){
     $output['errors'][] = "MISSING THUMBNAILS";
 }
 if(empty($sub_count)){
@@ -27,14 +27,16 @@ if(empty($video_count)){
 if(empty($view_count)){
     $output['errors'][] = "MISSING VIEW COUNT";
 }
-$query = "INSERT INTO channels SET channelTitle = '{$channel_title}', 
-channel_id = '{$channel_id}',
-description = '{$description}', 
-thumbnails = '{$thumbnails}', 
-sub_count = {$sub_count}, ,
-videoCount = {$video_count},
-viewCount = {$viewCount}";
-$results = mysqli_query($conn,$query);
+$statement = mysqli_prepare($conn,"INSERT INTO channels SET 
+channel_title = ?, 
+youtube_channel_id = ?,
+description = ?, 
+thumbnail_file_name = ?, 
+sub_count = ?, 
+video_count = ?,
+view_count = ?");
+$results = mysqli_bind_param($statement,"ssssiii",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count);
+mysqli_execute($results);
 if(empty($results)){
     $output['errors'][]='invalid query';
 }else{
