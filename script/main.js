@@ -91,10 +91,10 @@ function clickHandler() {
         console.log($(this).parent().attr('videoId'));
         // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
         player.cueVideoById($(this).parent().attr('videoId'));
-        player.pauseVideo();
+        player.playVideo();
         // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.cueVideoById($(this).parent().attr('videoId'));
-        player2.pauseVideo();
+        player2.playVideo();
     });
 
     // // Created click handler for add channel modal button to get the result of videos for that channel that was clicked
@@ -247,7 +247,7 @@ function renderChannelSearchStats(i){
 
 
 function renderVideoList(videoArray){
-    $(".tdTitle").popover('destroy')
+    $(".tdTitle").popover('destroy');
 
     setTimeout(function(){
         for(let i = 0; i<videoArray.length; i++){
@@ -288,7 +288,7 @@ function renderVideoList(videoArray){
                 container: 'body'
             });
         }
-    }, 500);
+    }, 250);
 
 
 }
