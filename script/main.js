@@ -91,11 +91,9 @@ function clickHandler() {
         $(this).parent().addClass("selectedTd");
         console.log($(this).parent().attr('videoId'));
         // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        player.cueVideoById($(this).parent().attr('videoId'));
-        player.playVideo();
-        // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
+        player.loadVideoById($(this).parent().attr('videoId'));
+        // // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.cueVideoById($(this).parent().attr('videoId'));
-        player2.playVideo();
     });
 
     // // Created click handler for add channel modal button to get the result of videos for that channel that was clicked
@@ -190,8 +188,8 @@ function searchChannelsByName() {
         success: function (data) {
             console.log('Youtube success', data);
             $('#channelSearchModal').modal('show');
-            for(var i = 0; i < 10; i++){
-                var channelListData = "#chSearch-"+(i+1);
+            for (var i = 0; i < 10; i++) {
+                var channelListData = "#chSearch-" + (i + 1);
                 var chName = channelListData + " .chName";
                 var img = channelListData + " img";
                 var browseButton = channelListData + ".browseChannelButton"
@@ -249,20 +247,20 @@ function renderChannelSearchStats(i) {
 }
 
 
-function renderVideoList(videoArray){
+function renderVideoList(videoArray) {
     $(".tdTitle").popover('destroy');
 
-    setTimeout(function(){
-        for(let i = 0; i<videoArray.length; i++){
+    setTimeout(function () {
+        for (let i = 0; i < videoArray.length; i++) {
 
-            let row = "#tdList-" + (i+1);
+            let row = "#tdList-" + (i + 1);
             let title = row + " .tdTitle>span";
             let channel = row + " .tdChannel";
             let upDate = row + " .tdUpDate";
 
             let dateString = videoArray[i].published_at;
             const d = new Date(dateString);
-            dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear().toString().substring(2);
+            dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
 
             $(row).attr("videoID", videoArray[i].video_id);
             $(title).text(videoArray[i].video_title);
@@ -271,7 +269,7 @@ function renderVideoList(videoArray){
 
             let videoData = row + " .tdInfo a";
             let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].video_id + '/mqdefault.jpg';
-            const videoDataImg = $('<img>').attr('src',videoURL).css({
+            const videoDataImg = $('<img>').attr('src', videoURL).css({
                 width: '240px',
                 height: '135px',
             });
@@ -286,8 +284,8 @@ function renderVideoList(videoArray){
             $(row + " .tdTitle").popover({
                 trigger: "hover",
                 html: true,
-                content:videoDataImg,
-                placement:'auto',
+                content: videoDataImg,
+                placement: 'auto',
                 container: 'body'
             });
         }
@@ -381,10 +379,11 @@ function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 4
     return returnArray
 }
 
-function browseChannel(channelId, pageNumber){
+function browseChannel(channelId, pageNumber) {
     var page = pageNumber;
-    function handleData(pageNumber){
-        if(globalVideoObjectArray === null){
+
+    function handleData(pageNumber) {
+        if (globalVideoObjectArray === null) {
             setTimeout(handleData, 50);
             return
         }
@@ -397,7 +396,7 @@ function browseChannel(channelId, pageNumber){
     handleData(channelId, pageNumber)
 }
 
-function handleBrowseButton(){
+function handleBrowseButton() {
     var channelID = $(this).parent().attr("channelId")
     browseChannel(channelID)
     $('#channelSearchModal').modal('hide')
