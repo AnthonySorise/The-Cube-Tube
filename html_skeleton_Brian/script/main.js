@@ -88,11 +88,12 @@ function clickHandler() {
     });
 
     //Created click handler for add channel modal button to get the result of videos for that channel that was clicked
-    // $(".modal-body").on('click', 'li', function () {
-    //     var channelId = $(this).attr('channelid');
-    //     searchVideoByChannelId(channelId);
-    //
-    // })
+    $(".modal-body").on('click', 'li', function () {
+        var channelId = $(this).attr('channelid');
+        searchVideoByChannelId(channelId);
+
+    })
+
     // Ian's click handlers
     //Chris cleaned up code to save state of video and check if playing or paused that transfer state to theatre mode
     $('.lightBoxMode').on('click', function () {
