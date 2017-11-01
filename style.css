@@ -177,8 +177,12 @@ body>.container-fluid{
 
 /* carousel styles */
 .carousel-indicators li{
-	background-color: red;
-	border-color: red;
+	/* background-color: red;
+	border-color: red; */
+	text-indent: 0px;
+	color: red;
+	font-size: 1.2em;
+	font-weight: 700px;
 }
 
 
@@ -383,6 +387,7 @@ body>.container-fluid{
 .glyphicon{
 	color: red;
 }
+
 
 @media only screen and (max-width : 991px){
 	.carousel-control{

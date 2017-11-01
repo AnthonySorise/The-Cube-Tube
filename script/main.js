@@ -4,6 +4,8 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 
 var globalVideoObjectArray = null;
 
+var currentSlideNumber = 1;
+
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // var player;
 function onYouTubeIframeAPIReady(vidId) {
@@ -24,7 +26,7 @@ var player2;
 /*******needed for iframe player*******/
 
 $(document).ready(function(){
-
+    displayCurrentPageNumber();
     /**
      function for preventing page refresh with search button;
      only did it because page refresh was annoying
@@ -399,4 +401,23 @@ function handleBrowseButton(){
     var channelID = $(this).parent().attr("channelId")
     browseChannel(channelID)
     $('#channelSearchModal').modal('hide')
+}
+
+function displayCurrentPageNumber(){
+    $("#currentSlideNumberArea").text(currentSlideNumber)
+    if(currentSlideNumber == 1){
+        $(".leftControl").hide()
+    }else{
+        $(".leftControl").show()
+    }
+}
+
+function handleRightCarouselClick(){
+    currentSlideNumber ++;
+    displayCurrentPageNumber()
+}
+
+function handleLeftCarouselClick(){
+    currentSlideNumber --;
+    displayCurrentPageNumber()
 }
