@@ -269,17 +269,17 @@ function renderVideoList(videoArray){
             width: '320px',
             height: '180px',
         });
-        //console.log(subsciptionsArray[i][key].snippet.thumbnails.medium.url)
-
+        // var videoDataImg = "<img src="+videoURL+" />";
         $(videoData).attr({
             'data-content': videoArray[i].description,
             'data-original-title': videoArray[i].video_title
         });
 
+        $(row + " .tdTitle").popover('destroy');
         $(row + " .tdTitle").popover({
             trigger: "hover",
             html: true,
-            content: videoDataImg,
+            content:videoDataImg,
             placement:'auto',
             container: 'body'
         });
@@ -392,5 +392,5 @@ function browseChannel(channelId, pageNumber){
 function handleBrowseButton(){
     var channelID = $(this).parent().attr("channelId")
     browseChannel(channelID)
-
+    $('#channelSearchModal').modal('hide')
 }
