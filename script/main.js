@@ -90,11 +90,11 @@ function clickHandler() {
         $(this).parent().addClass("selectedTd");
         console.log($(this).parent().attr('videoId'));
         // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        player.cueVideoById($(this).parent().attr('videoId'));
-        player.playVideo();
+        player.loadVideoById($(this).parent().attr('videoId'));
+        // player.loadVideo();
         // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
-        player2.cueVideoById($(this).parent().attr('videoId'));
-        player2.playVideo();
+        player2.loadVideoById($(this).parent().attr('videoId'));
+        player2.pauseVideo();
     });
 
     // // Created click handler for add channel modal button to get the result of videos for that channel that was clicked
@@ -393,6 +393,8 @@ function browseChannel(channelId, pageNumber){
     }
     convertYTApiVideoDatatoDbData(channelId);
     handleData(channelId, pageNumber)
+    $('.fa-play-circle-o').remove();
+    $('.tdList').removeClass('selectedTd');
 }
 
 function handleBrowseButton(){
