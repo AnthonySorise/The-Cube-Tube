@@ -2,13 +2,13 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$channel_title = $_POST['channelTitle'];
+$channel_title = $_POST['channel_title'];
 $description = $_POST['description'];
-$thumbnail = $_POST['thumbnails'];
-$sub_count = $_POST['subscriberCount'];
-$video_count = $_POST['videoCount'];
-$viewCount = $_POST['viewCount'];
-$id = $_POST['channel_id'];
+$thumbnail = $_POST['thumbnail'];
+$sub_count = $_POST['sub_count'];
+$video_count = $_POST['video_count'];
+$view_count = $_POST['view_count'];
+$channel_id = $_POST['channel_id'];
 if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }
@@ -24,25 +24,28 @@ if(empty($sub_count)){
 if(empty($video_count)){
     $output['errors'][] = "MISSING VIDEO COUNT";
 }
-if(empty($viewCount)){
+if(empty($view_count)){
     $output['errors'][] = "MISSING VIEW COUNT";
 }
-if(empty($id)){
+if(empty($channel_id)){
     $output['errors'][] = "MISSING ID";
 }
-$query = "UPDATE channels SET channelTitle = '{$channel_title}',  
-description = '{$description}', 
-thumbnails = '{$thumbnail}', 
-sub_count = {$sub_count}, ,
-videoCount = {$video_count},
-viewCount = {$viewCount} 
-WHERE channel_id = {$id}";
-$results = mysqli_query($conn,$query);
+$statement =mysqli_prepare($conn,"UPDATE channels SET 
+channel_title = ?,  
+description = ?, 
+thumbnail_file_name = ?, 
+sub_count = ?, ,
+video_count = ?,
+view_count = ? 
+WHERE channel_id = ?");
+$results = mysqli_bind_param($statement,"sssiiis",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count,$channel_id);
+mysqli_execute($result);
 if(empty($results)){
     $output['errors'][]='invalid query';
 }else{
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
+        $output['id'] = mysqli_insert_id($conn);
     }else{
         $output['errors'][]='UNABLE TO UPDATE';
     }

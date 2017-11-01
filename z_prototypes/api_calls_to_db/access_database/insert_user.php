@@ -4,8 +4,12 @@ if(empty($LOCAL_ACCESS)){
 }
 require_once('mysql_connect.php');
 $user_link = $_POST['user_link'];
-$query = "INSERT INTO users SET user_link = '{$user_link}'";
-$result = mysqli_query($conn,$query);
+if(empty($user_link)){
+    $output['errors'] = "MISSING USERLINK";
+}
+$statement = mysqli_prepare($conn,"INSERT INTO users SET user_link = ?");
+$result = mysqli_bind_param($statement,"s",$user_link);
+mysqli_execute($result);
 if(!empty($result)){
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
@@ -17,5 +21,4 @@ if(!empty($result)){
 }else{
     $output['errors'][]= 'invalid query';
 }
-
 ?>
