@@ -247,43 +247,49 @@ function renderChannelSearchStats(i){
 
 
 function renderVideoList(videoArray){
-    for(let i = 0; i<videoArray.length; i++){
+    $(".tdTitle").popover('destroy')
 
-        let row = "#tdList-" + (i+1);
-        let title = row + " .tdTitle>span";
-        let channel = row + " .tdChannel";
-        let upDate = row + " .tdUpDate";
+    setTimeout(function(){
+        for(let i = 0; i<videoArray.length; i++){
 
-        let dateString = videoArray[i].published_at;
-        const d = new Date(dateString);
-        dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear().toString().substring(2);
+            let row = "#tdList-" + (i+1);
+            let title = row + " .tdTitle>span";
+            let channel = row + " .tdChannel";
+            let upDate = row + " .tdUpDate";
 
-        $(row).attr("videoID", videoArray[i].video_id);
-        $(title).text(videoArray[i].video_title);
-        $(channel).text(videoArray[i].channel_title);
-        $(upDate).text(dateString);
+            let dateString = videoArray[i].published_at;
+            const d = new Date(dateString);
+            dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear().toString().substring(2);
 
-        let videoData = row + " .tdInfo a";
-        let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].video_id + '/mqdefault.jpg';
-        const videoDataImg = $('<img>').attr('src',videoURL).css({
-            width: '240px',
-            height: '135px',
-        });
-        // var videoDataImg = "<img src="+videoURL+" />";
-        $(videoData).attr({
-            'data-content': videoArray[i].description,
-            'data-original-title': videoArray[i].video_title
-        });
+            $(row).attr("videoID", videoArray[i].video_id);
+            $(title).text(videoArray[i].video_title);
+            $(channel).text(videoArray[i].channel_title);
+            $(upDate).text(dateString);
+
+            let videoData = row + " .tdInfo a";
+            let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].video_id + '/mqdefault.jpg';
+            const videoDataImg = $('<img>').attr('src',videoURL).css({
+                width: '240px',
+                height: '135px',
+            });
+            // var videoDataImg = "<img src="+videoURL+" />";
+            $(videoData).attr({
+                'data-content': videoArray[i].description,
+                'data-original-title': videoArray[i].video_title
+            });
 
 
-        $(row + " .tdTitle").popover({
-            trigger: "hover",
-            html: true,
-            content:videoDataImg,
-            placement:'auto',
-            container: 'body'
-        });
-    }
+
+            $(row + " .tdTitle").popover({
+                trigger: "hover",
+                html: true,
+                content:videoDataImg,
+                placement:'auto',
+                container: 'body'
+            });
+        }
+    }, 500);
+
 
 }
 
