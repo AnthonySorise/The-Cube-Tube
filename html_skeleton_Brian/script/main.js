@@ -2,11 +2,10 @@ var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 // Changed variable names for player and player2 to homePageVideo and theatreVideo to make variables clearer
 function onYouTubeIframeAPIReady(vidId) {
-     homePageVideo = new YT.Player('mainVideo', {
-       
+    homePageVideo = new YT.Player('mainVideo', {
+
         videoId: vidId || 'X2WH8mHJnhM'
     });
     // player.attr("id", "mainVideo")
@@ -20,7 +19,6 @@ function onYouTubeIframeAPIReady2() {
 /*******needed for iframe player*******/
 
 $(document).ready(function(){
-
     /**
      function for preventing page refresh with search button;
      only did it because page refresh was annoying
@@ -50,7 +48,6 @@ $(document).ready(function(){
     //TEMP DUMMY DATA
     renderVideoList(sampleSubscriptions)
     //TEMP DUMMY DATA
-
 });
 
 // function renderVideoInfo(videoObject){       //argument is video object - just one specific piece of the subscription object.  Object that is the value of the video id
@@ -100,7 +97,7 @@ function clickHandler() {
     //Chris cleaned up code to save state of video and check if playing or paused that transfer state to theatre mode
     $('.lightBoxMode').on('click', function () {
         homePageVideo.pauseVideo();
-            if (homePageVideo.getPlayerState() === 2|| homePageVideo.getPlayerState() === 5) {
+            if (homePageVideo.getPlayerState() === 2) {
                 homePageVideo.pauseVideo();
                 theatreVideo.seekTo(homePageVideo.getCurrentTime());
                 theatreVideo.pauseVideo();
@@ -110,10 +107,12 @@ function clickHandler() {
                 theatreVideo.seekTo(homePageVideo.getCurrentTime());
                 $('#lightBoxModal').modal('show');
                 theatreVideo.playVideo();
+            } else if(homePageVideo.getPlayerState() === 5){
+                $('#lightBoxModal').modal('show');
             }
     });
     $('.modalClose').on('click', function () {
-            if (theatreVideo.getPlayerState() === 2 || theatreVideo.getPlayerState() === 5) {
+            if (theatreVideo.getPlayerState() === 2) {
                 theatreVideo.pauseVideo();
                 homePageVideo.seekTo(theatreVideo.getCurrentTime());
                 homePageVideo.pauseVideo();
@@ -123,6 +122,8 @@ function clickHandler() {
                 homePageVideo.seekTo(theatreVideo.getCurrentTime());
                 $('#lightBoxModal').modal('show');
                 homePageVideo.playVideo();
+            } else if(theatreVideo.getPlayerState() === 5){
+                $('#lightBoxModal').modal('show');
             }
     });
 
