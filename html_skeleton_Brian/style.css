@@ -78,7 +78,7 @@ html,body{
 .channelSearchForm{
 	position:relative;
 }
-#ui-id-1{
+#ui-id-1:focus{
 	top:43px;
 }
 /**end of navbar styling**/
@@ -406,11 +406,6 @@ body>.container-fluid{
 .popover-content{
 	z-index: 10000 ;
 }
+ul ui-menu-item:focus {
 
-/*Trying to get input and button to hide after 1082px*/
-/*@media screen and (max-width:1082px) {*/
-	/*.channelSearchButton { display:none; }*/
-	/*#channelSearchInput { display:none; }*/
-
-
-/*}*/
+}

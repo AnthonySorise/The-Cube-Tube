@@ -2,9 +2,10 @@ var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-// var player;
+
+// Changed variable names for player and player2 to homePageVideo and theatreVideo to make variables clearer
 function onYouTubeIframeAPIReady(vidId) {
-    player = new YT.Player('mainVideo', {
+     homePageVideo = new YT.Player('mainVideo', {
        
         videoId: vidId || 'X2WH8mHJnhM'
     });
@@ -12,12 +13,10 @@ function onYouTubeIframeAPIReady(vidId) {
     onYouTubeIframeAPIReady2();
 }
 function onYouTubeIframeAPIReady2() {
-    player2 = new YT.Player('theaterVideo', {      
+    theatreVideo = new YT.Player('theaterVideo', {
         videoId:'X2WH8mHJnhM'
     });
 }
-var player;
-var player2;
 /*******needed for iframe player*******/
 
 $(document).ready(function(){
@@ -66,13 +65,13 @@ $(document).ready(function(){
 //Click handler to console log search results
 function clickHandler() {
     //Search Button
-    $(".channelSearchForm .channelSearchButton").on('click',function(event){
+    $(".channelSearchForm .channelSearchButton").on('click', function (event) {
         event.preventDefault();
-        searchChannelsByName().then(worked,failed);
+        searchChannelsByName().then(worked, failed);
     });
 
     //Table List Rows
-    $(".tdTitle, .tdChannel, .tdUpDate").on("click", function(){
+    $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
         $('.fa-play-circle-o').remove();
         var playSymbol = $('<i>')
             .addClass("fa fa-play-circle-o")
@@ -98,191 +97,206 @@ function clickHandler() {
     //
     // })
     // Ian's click handlers
-    $('.lightBoxMode').on('click',function(){       
-        player.pauseVideo();
-        // player2.loadVideoById(player.getVideoData().video_id);
-        player2.seekTo(player.getCurrentTime());
-        $('#lightBoxModal').modal('show');
-        player2.playVideo();
+    //Chris cleaned up code to save state of video and check if playing or paused that transfer state to theatre mode
+    $('.lightBoxMode').on('click', function () {
+        homePageVideo.pauseVideo();
+            if (homePageVideo.getPlayerState() === 2|| homePageVideo.getPlayerState() === 5) {
+                homePageVideo.pauseVideo();
+                theatreVideo.seekTo(homePageVideo.getCurrentTime());
+                theatreVideo.pauseVideo();
+                $('#lightBoxModal').modal('show');
+            } else if (homePageVideo.getPlayerState() === 1) {
+                homePageVideo.pauseVideo();
+                theatreVideo.seekTo(homePageVideo.getCurrentTime());
+                $('#lightBoxModal').modal('show');
+                theatreVideo.playVideo();
+            }
     });
-    $('.modalClose').on('click',function(){
-        player2.pauseVideo();
-        player.seekTo(player2.getCurrentTime());
-        player.playVideo();
-
+    $('.modalClose').on('click', function () {
+            if (theatreVideo.getPlayerState() === 2 || theatreVideo.getPlayerState() === 5) {
+                theatreVideo.pauseVideo();
+                homePageVideo.seekTo(theatreVideo.getCurrentTime());
+                homePageVideo.pauseVideo();
+                $('#lightBoxModal').modal('show');
+            } else if (theatreVideo.getPlayerState() === 1) {
+                theatreVideo.pauseVideo();
+                homePageVideo.seekTo(theatreVideo.getCurrentTime());
+                $('#lightBoxModal').modal('show');
+                homePageVideo.playVideo();
+            }
     });
-}
 
 //Function being called when user clicks on add channel button in modal with all the youtube channel results
-function searchVideoByChannelId(channelId) {
-    var channelId = channelId;
-    console.log('chanel is', channelId);
-    $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/search',
-        dataType: 'json',
-        method: 'get',
-        data: {
-            key: 'AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s',
-            channelId: channelId,
-            type: 'video',
-            part: 'snippet',
-            order: 'date',
-            maxResults: 10
-        },
-        success: function (data) {
-            console.log('Found video of channel you clicked on', data);
-        },
-        error: function (data) {
-            console.log('Channel video search got an error', data);
-        }
-    })
-    
-}
+    function searchVideoByChannelId(channelId) {
+        var channelId = channelId;
+        console.log('chanel is', channelId);
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/search',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: 'AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s',
+                channelId: channelId,
+                type: 'video',
+                part: 'snippet',
+                order: 'date',
+                maxResults: 10
+            },
+            success: function (data) {
+                console.log('Found video of channel you clicked on', data);
+            },
+            error: function (data) {
+                console.log('Channel video search got an error', data);
+            }
+        })
+
+    }
 
 //Channel Search by Name
-function searchChannelsByName() {
-    string = $('#channelSearchInput').val();
-    var promise = {
-        then: function(resolve,reject){
-            this.resolve = resolve;
-            this.reject = reject;
-        }
-    };
-    $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/search',
-        dataType: 'json',
-        method: 'get',
-        data: {
-            key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-            q: string,
-            type: 'channel',
-            part: 'snippet',
-            maxResults: 10
-        },
-        success: function (data) {
-            console.log('Youtube success',data);
-            $('#channelSearchModal').modal('show');
-            for(var i = 0; i < 10; i++){
-                var channelListData = "#chSearch-"+(i+1);
-                var chName = "#chSearch-"+(i+1) + " .chName";
-                var img = "#chSearch-"+(i+1) + " img";
-                $(channelListData).attr("channelId", data.items[i].snippet.channelId);
-                $(chName).text(data.items[i].snippet.channelTitle);
-                $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
+    function searchChannelsByName() {
+        string = $('#channelSearchInput').val();
+        var promise = {
+            then: function (resolve, reject) {
+                this.resolve = resolve;
+                this.reject = reject;
             }
-            promise.resolve(data);
-        },
-        error: function (data) {
-            console.log('something went wrong with YT', data);
-            promise.reject('oops');
-        }
-    });
-    return promise;
-}
-function worked(){	//SHOULD USE PROMISE HERE INSTEAD
-    for(var i = 0; i < 10; i++){
-        renderChannelSearchStats(i)
-    }
-}
-function failed(message){
-    console.log('nope',message);
-}
-
-function renderChannelSearchStats(i){
-    const channelListData = "#chSearch-"+(i+1);
-    const chSub = "#chSearch-"+(i+1) + " .chSub";
-    const chDesc ="#chSearch-"+(i+1) + " .chInfoButton";
-    $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/channels',
-        dataType: 'json',
-        method: 'get',
-        data: {
-            key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-            id: $(channelListData).attr("channelId"),
-            part: 'snippet, statistics'
-        },
-        success: function (data) {
-            console.log('Youtube success',data);
-            const subNumber = parseInt(data.items[0].statistics.subscriberCount);
-            const numWithCommas = subNumber.toLocaleString("en-us");
-            $(chSub).text(numWithCommas);
-            $(chDesc).attr({
-                "data-original-title": data.items[0].snippet.title,
-                "data-content": data.items[0].snippet.description
-            });
-        },
-        error: function (data) {
-            console.log('something went wrong with YT', data);
-        }
-    })
-}
-
-
-function renderVideoList(subsciptionsArray){
-    for(let i = 0; i<subsciptionsArray.length; i++){
-
-        let row = "#tdList-" + (i+1);
-        let title = row + " .tdTitle>span";
-        let channel = row + " .tdChannel";
-        let upDate = row + " .tdUpDate";
-
-        const key = Object.keys(subsciptionsArray[i])[0];
-
-        let dateString = subsciptionsArray[i][key].snippet.publishedAt;
-        const d = new Date(dateString);
-        dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear().toString().substring(2);
-
-        $(row).attr("videoID", Object.keys(subsciptionsArray[i]));
-        $(title).text(subsciptionsArray[i][key].snippet.title);
-        $(channel).text(subsciptionsArray[i][key].snippet.channelTitle);
-        $(upDate).text(dateString);
-
-        let videoData = row + " .tdInfo a";
-        const videoDataImg = $('<img>').attr('src',subsciptionsArray[i][key].snippet.thumbnails.medium.url).css({
-            width: '160px',
-            height: '90px',
+        };
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/search',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                q: string,
+                type: 'channel',
+                part: 'snippet',
+                maxResults: 10
+            },
+            success: function (data) {
+                console.log('Youtube success', data);
+                $('#channelSearchModal').modal('show');
+                for (var i = 0; i < 10; i++) {
+                    var channelListData = "#chSearch-" + (i + 1);
+                    var chName = "#chSearch-" + (i + 1) + " .chName";
+                    var img = "#chSearch-" + (i + 1) + " img";
+                    $(channelListData).attr("channelId", data.items[i].snippet.channelId);
+                    $(chName).text(data.items[i].snippet.channelTitle);
+                    $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
+                }
+                promise.resolve(data);
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+                promise.reject('oops');
+            }
         });
-        //console.log(subsciptionsArray[i][key].snippet.thumbnails.medium.url)
-
-        $(videoData).attr({
-            'data-content': subsciptionsArray[i][key].snippet.description,
-            'data-original-title': subsciptionsArray[i][key].snippet.title
-        });
-
-        $(row + " .tdTitle").popover({
-            trigger: "hover",
-            html: true,
-            content: videoDataImg,
-            placement:'auto',
-            container: 'body'
-        });
+        return promise;
     }
 
+    function worked() {	//SHOULD USE PROMISE HERE INSTEAD
+        for (var i = 0; i < 10; i++) {
+            renderChannelSearchStats(i)
+        }
+    }
 
-    function converteYouTubeApiDatatoDbData(channelId){
+    function failed(message) {
+        console.log('nope', message);
+    }
+
+    function renderChannelSearchStats(i) {
+        const channelListData = "#chSearch-" + (i + 1);
+        const chSub = "#chSearch-" + (i + 1) + " .chSub";
+        const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
         $.ajax({
             url: 'https://www.googleapis.com/youtube/v3/channels',
             dataType: 'json',
             method: 'get',
             data: {
                 key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-                id: channelId,
+                id: $(channelListData).attr("channelId"),
                 part: 'snippet, statistics'
             },
             success: function (data) {
-                console.log('Youtube success',data);
-
-
-
-
+                console.log('Youtube success', data);
+                const subNumber = parseInt(data.items[0].statistics.subscriberCount);
+                const numWithCommas = subNumber.toLocaleString("en-us");
+                $(chSub).text(numWithCommas);
+                $(chDesc).attr({
+                    "data-original-title": data.items[0].snippet.title,
+                    "data-content": data.items[0].snippet.description
+                });
             },
             error: function (data) {
                 console.log('something went wrong with YT', data);
             }
         })
-
     }
 
+
+    function renderVideoList(subsciptionsArray) {
+        for (let i = 0; i < subsciptionsArray.length; i++) {
+
+            let row = "#tdList-" + (i + 1);
+            let title = row + " .tdTitle>span";
+            let channel = row + " .tdChannel";
+            let upDate = row + " .tdUpDate";
+
+            const key = Object.keys(subsciptionsArray[i])[0];
+
+            let dateString = subsciptionsArray[i][key].snippet.publishedAt;
+            const d = new Date(dateString);
+            dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
+
+            $(row).attr("videoID", Object.keys(subsciptionsArray[i]));
+            $(title).text(subsciptionsArray[i][key].snippet.title);
+            $(channel).text(subsciptionsArray[i][key].snippet.channelTitle);
+            $(upDate).text(dateString);
+
+            let videoData = row + " .tdInfo a";
+            const videoDataImg = $('<img>').attr('src', subsciptionsArray[i][key].snippet.thumbnails.medium.url).css({
+                width: '160px',
+                height: '90px',
+            });
+            //console.log(subsciptionsArray[i][key].snippet.thumbnails.medium.url)
+
+            $(videoData).attr({
+                'data-content': subsciptionsArray[i][key].snippet.description,
+                'data-original-title': subsciptionsArray[i][key].snippet.title
+            });
+
+            $(row + " .tdTitle").popover({
+                trigger: "hover",
+                html: true,
+                content: videoDataImg,
+                placement: 'auto',
+                container: 'body'
+            });
+        }
+
+
+        function converteYouTubeApiDatatoDbData(channelId) {
+            $.ajax({
+                url: 'https://www.googleapis.com/youtube/v3/channels',
+                dataType: 'json',
+                method: 'get',
+                data: {
+                    key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                    id: channelId,
+                    part: 'snippet, statistics'
+                },
+                success: function (data) {
+                    console.log('Youtube success', data);
+
+
+                },
+                error: function (data) {
+                    console.log('something went wrong with YT', data);
+                }
+            })
+
+        }
+
+    }
 }
 
 
