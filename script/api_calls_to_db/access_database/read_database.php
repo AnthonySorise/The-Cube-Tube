@@ -1,11 +1,12 @@
- <?php
+<?php
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$table = $_POST['table'];
-$search - $_POST['search'];
-$query = "SELECT '{$search}' FROM '{$table}'";
-$result = mysqli_query($conn,$query);
+$table = $_GET['table'];
+$search - $_GET['search'];
+$statement = mysqli_prepare($conn,"SELECT ? FROM ?");
+$result = mysqli_bind_param($statement,"ss",$table,$search);
+mysqli_execute($result);
 $output['data'] = [];
 if(!empty($result)){
     //if($result->num_rows!==0)
