@@ -73,6 +73,8 @@ function clickHandler() {
         event.preventDefault();
         searchChannelsByName().then(worked,failed);
     });
+    //Browse Button
+    $('.browseChannelButton').on("click", handleBrowseButton)
 
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function(){
@@ -95,12 +97,12 @@ function clickHandler() {
         player2.pauseVideo();
     });
 
-    // Created click handler for add channel modal button to get the result of videos for that channel that was clicked
-    $(".modal-body").on('click', 'li', function () {
-        var channelId = $(this).attr('channelid');
-        searchVideoByChannelId(channelId);
-
-    })
+    // // Created click handler for add channel modal button to get the result of videos for that channel that was clicked
+    // $(".modal-body").on('click', 'li', function () {
+    //     var channelId = $(this).attr('channelid');
+    //     searchVideoByChannelId(channelId);
+    //
+    // })
 
     // Ian's click handlers
     //Chris cleaned up code to save state of video and check if playing or paused that transfer state to theatre mode
@@ -189,8 +191,9 @@ function searchChannelsByName() {
             $('#channelSearchModal').modal('show');
             for(var i = 0; i < 10; i++){
                 var channelListData = "#chSearch-"+(i+1);
-                var chName = "#chSearch-"+(i+1) + " .chName";
-                var img = "#chSearch-"+(i+1) + " img";
+                var chName = channelListData + " .chName";
+                var img = channelListData + " img";
+                var browseButton = channelListData + ".browseChannelButton"
                 $(channelListData).attr("channelId", data.items[i].snippet.channelId);
                 $(chName).text(data.items[i].snippet.channelTitle);
                 $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
@@ -384,4 +387,10 @@ function browseChannel(channelId, pageNumber){
     }
     convertYTApiVideoDatatoDbData(channelId);
     handleData(channelId, pageNumber)
+}
+
+function handleBrowseButton(){
+    var channelID = $(this).parent().attr("channelId")
+    browseChannel(channelID)
+
 }
