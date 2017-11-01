@@ -39,9 +39,7 @@ $(document).ready(function(){
     //     $('#lightBoxModal').modal('show');
     // });
     /*** ***/
-    $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
-    $('[data-toggle="popover"]').popover();
-
+    tooltipFunctions();
     // $('.videoStats').click(function(){
     //  $('.videoStats').popover('toggle');
     // });
@@ -65,6 +63,31 @@ $(document).ready(function(){
 //         }
 //     });
 // }
+
+function tooltipFunctions(){
+    $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
+    $('[data-toggle="popover"]').popover();
+    $('.browseChannelButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.browseChannelButton').tooltip('hide');
+        },1000);
+    });
+    $('.lightBoxMode').mouseenter(function(){
+        setTimeout(function(){
+            $('.lightBoxMode').tooltip('hide');
+        },1000);
+    });
+    $('.channelSearchButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.channelSearchButton').tooltip('hide');
+        },1000);
+    });
+    $('.videoSearchButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.videoSearchButton').tooltip('hide');
+        },1000);
+    });
+}
 
 //Click handler to console log search results
 function clickHandler() {
