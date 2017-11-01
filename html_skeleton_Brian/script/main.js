@@ -2,6 +2,7 @@ var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
 // Changed variable names for player and player2 to homePageVideo and theatreVideo to make variables clearer
 function onYouTubeIframeAPIReady(vidId) {
     homePageVideo = new YT.Player('mainVideo', {
@@ -81,10 +82,10 @@ function clickHandler() {
         $(this).parent().addClass("selectedTd");
         console.log($(this).parent().attr('videoId'));
         // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        player.loadVideoById($(this).parent().attr('videoId'));
+        homePageVideo.loadVideoById($(this).parent().attr('videoId'));
         // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
-        player2.loadVideoById($(this).parent().attr('videoId'));
-        player2.pauseVideo();
+        theatreVideo.loadVideoById($(this).parent().attr('videoId'));
+        theatreVideo.pauseVideo();
     });
 
     //Created click handler for add channel modal button to get the result of videos for that channel that was clicked
@@ -92,7 +93,7 @@ function clickHandler() {
         var channelId = $(this).attr('channelid');
         searchVideoByChannelId(channelId);
 
-    })
+    });
 
     // Ian's click handlers
     //Chris cleaned up code to save state of video and check if playing or paused that transfer state to theatre mode
