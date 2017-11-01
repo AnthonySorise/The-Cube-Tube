@@ -122,7 +122,7 @@ function clickHandler() {
             $('#lightBoxModal').modal('show');
         }
     });
-    $('.modalClose').on('click', function () {
+    $('.theatreModalClose').on('click', function () {
         if (player2.getPlayerState() === 2) {
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
