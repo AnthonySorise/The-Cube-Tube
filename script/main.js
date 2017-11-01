@@ -88,32 +88,54 @@ function clickHandler() {
         $(this).parent().addClass("selectedTd");
         console.log($(this).parent().attr('videoId'));
         // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        player.loadVideoById($(this).parent().attr('videoId'));
-        // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
-        player2.loadVideoById($(this).parent().attr('videoId'));
-        player2.pauseVideo();
-    });
-
-    //Created click handler for add channel modal button to get the result of videos for that channel that was clicked
-    // $(".modal-body").on('click', 'li', function () {
-    //     var channelId = $(this).attr('channelid');
-    //     searchVideoByChannelId(channelId);
-    //
-    // })
-    // Ian's click handlers
-    $('.lightBoxMode').on('click',function(){       
+        player.cueVideoById($(this).parent().attr('videoId'));
         player.pauseVideo();
-        // player2.loadVideoById(player.getVideoData().video_id);
-        player2.seekTo(player.getCurrentTime());
-        $('#lightBoxModal').modal('show');
-        player2.playVideo();
-    });
-    $('.modalClose').on('click',function(){
+        // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
+        player2.cueVideoById($(this).parent().attr('videoId'));
         player2.pauseVideo();
-        player.seekTo(player2.getCurrentTime());
-        player.playVideo();
-
     });
+
+    // Created click handler for add channel modal button to get the result of videos for that channel that was clicked
+    $(".modal-body").on('click', 'li', function () {
+        var channelId = $(this).attr('channelid');
+        searchVideoByChannelId(channelId);
+
+    })
+
+    // Ian's click handlers
+    //Chris cleaned up code to save state of video and check if playing or paused that transfer state to theatre mode
+    $('.lightBoxMode').on('click', function () {
+        player.pauseVideo();
+        if (player.getPlayerState() === 2) {
+            player.pauseVideo();
+            player2.seekTo(player.getCurrentTime());
+            player2.pauseVideo();
+            $('#lightBoxModal').modal('show');
+        } else if (player.getPlayerState() === 1) {
+            player.pauseVideo();
+            player2.seekTo(player.getCurrentTime());
+            $('#lightBoxModal').modal('show');
+            player2.playVideo();
+        } else if(player.getPlayerState() === 5){
+            $('#lightBoxModal').modal('show');
+        }
+    });
+    $('.modalClose').on('click', function () {
+        if (player2.getPlayerState() === 2) {
+            player2.pauseVideo();
+            player.seekTo(player2.getCurrentTime());
+            player.pauseVideo();
+            $('#lightBoxModal').modal('show');
+        } else if (player2.getPlayerState() === 1) {
+            player2.pauseVideo();
+            player.seekTo(player2.getCurrentTime());
+            $('#lightBoxModal').modal('show');
+            player.playVideo();
+        } else if(player2.getPlayerState() === 5){
+            $('#lightBoxModal').modal('show');
+        }
+    });
+
 }
 
 // //Function being called when user clicks on add channel button in modal with all the youtube channel results

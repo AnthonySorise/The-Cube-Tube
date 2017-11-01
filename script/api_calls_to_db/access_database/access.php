@@ -12,12 +12,12 @@ if(empty($_POST['action'])){
 }
 switch($_POST['action']){
     case 'read':
-        include('read.php');
+        include('read_database.php');
         break;
     case 'insert_user':
         include('insert_user.php');
         break;
-    case 'delete':
+    case 'delete_ctu':
         include('delete.php');
         break;
     case 'update_user':
@@ -29,11 +29,23 @@ switch($_POST['action']){
     case 'update_channel':
         include('update_channels.php');
         break;
-    case 'insert_category':
-        include('insert_category.php');
-        break;
     case 'insert_video':
         include('insert_video.php');
+        break;
+    case 'update_video':
+        include('update_video.php');
+        break;
+    case 'insert_link'://make
+        include('insert_link.php');
+        break;
+    case 'update_link'://make
+        include('update_link.php');
+        break;
+    case 'delete_link'://make
+        include('delete_link.php');
+        break;
+    case 'read_videos_limit'://in progreess
+        include('read_videos_limit.php');
         break;
     default:
         $output['errors'][] = 'invalid action';
