@@ -10,28 +10,34 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // var player;
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-       
+
         videoId: vidId || 'X2WH8mHJnhM'
     });
     // player.attr("id", "mainVideo")
     onYouTubeIframeAPIReady2();
 }
+
 function onYouTubeIframeAPIReady2() {
-    player2 = new YT.Player('theaterVideo', {      
-        videoId:'X2WH8mHJnhM'
+    player2 = new YT.Player('theaterVideo', {
+        videoId: 'X2WH8mHJnhM'
     });
 }
 var player;
 var player2;
 /*******needed for iframe player*******/
 
+<<<<<<< HEAD
 $(document).ready(function(){
     displayCurrentPageNumber();
+=======
+$(document).ready(function () {
+
+>>>>>>> cd71d9cba7e294538f8d608ad560a9e20200276c
     /**
      function for preventing page refresh with search button;
      only did it because page refresh was annoying
      **/
-    $('#midNav-option form button').click(function(event){
+    $('#midNav-option form button').click(function (event) {
         event.preventDefault();
     });
 
@@ -71,15 +77,15 @@ $(document).ready(function(){
 //Click handler to console log search results
 function clickHandler() {
     //Search Button
-    $(".channelSearchForm .channelSearchButton").on('click',function(event){
+    $(".channelSearchForm .channelSearchButton").on('click', function (event) {
         event.preventDefault();
-        searchChannelsByName().then(worked,failed);
+        searchChannelsByName().then(worked, failed);
     });
     //Browse Button
     $('.browseChannelButton').on("click", handleBrowseButton)
 
     //Table List Rows
-    $(".tdTitle, .tdChannel, .tdUpDate").on("click", function(){
+    $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
         $('.fa-play-circle-o').remove();
         var playSymbol = $('<i>')
             .addClass("fa fa-play-circle-o")
@@ -92,11 +98,11 @@ function clickHandler() {
         $(this).parent().addClass("selectedTd");
         console.log($(this).parent().attr('videoId'));
         // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        player.cueVideoById($(this).parent().attr('videoId'));
-        player.pauseVideo();
-        // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
+        player.loadVideoById($(this).parent().attr('videoId'));
+
+        // // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.cueVideoById($(this).parent().attr('videoId'));
-        player2.pauseVideo();
+
     });
 
     // // Created click handler for add channel modal button to get the result of videos for that channel that was clicked
@@ -120,7 +126,7 @@ function clickHandler() {
             player2.seekTo(player.getCurrentTime());
             $('#lightBoxModal').modal('show');
             player2.playVideo();
-        } else if(player.getPlayerState() === 5){
+        } else if (player.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
         }
     });
@@ -135,7 +141,7 @@ function clickHandler() {
             player.seekTo(player2.getCurrentTime());
             $('#lightBoxModal').modal('show');
             player.playVideo();
-        } else if(player2.getPlayerState() === 5){
+        } else if (player2.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
         }
     });
@@ -172,7 +178,7 @@ function clickHandler() {
 function searchChannelsByName() {
     string = $('#channelSearchInput').val();
     var promise = {
-        then: function(resolve,reject){
+        then: function (resolve, reject) {
             this.resolve = resolve;
             this.reject = reject;
         }
@@ -189,10 +195,10 @@ function searchChannelsByName() {
             maxResults: 10
         },
         success: function (data) {
-            console.log('Youtube success',data);
+            console.log('Youtube success', data);
             $('#channelSearchModal').modal('show');
-            for(var i = 0; i < 10; i++){
-                var channelListData = "#chSearch-"+(i+1);
+            for (var i = 0; i < 10; i++) {
+                var channelListData = "#chSearch-" + (i + 1);
                 var chName = channelListData + " .chName";
                 var img = channelListData + " img";
                 var browseButton = channelListData + ".browseChannelButton"
@@ -209,19 +215,21 @@ function searchChannelsByName() {
     });
     return promise;
 }
-function worked(){
-    for(var i = 0; i < 10; i++){
+
+function worked() {
+    for (var i = 0; i < 10; i++) {
         renderChannelSearchStats(i)
     }
 }
-function failed(message){
-    console.log('nope',message);
+
+function failed(message) {
+    console.log('nope', message);
 }
 
-function renderChannelSearchStats(i){
-    const channelListData = "#chSearch-"+(i+1);
-    const chSub = "#chSearch-"+(i+1) + " .chSub";
-    const chDesc ="#chSearch-"+(i+1) + " .chInfoButton";
+function renderChannelSearchStats(i) {
+    const channelListData = "#chSearch-" + (i + 1);
+    const chSub = "#chSearch-" + (i + 1) + " .chSub";
+    const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/channels',
         dataType: 'json',
@@ -232,7 +240,7 @@ function renderChannelSearchStats(i){
             part: 'snippet, statistics'
         },
         success: function (data) {
-            console.log('Youtube success',data);
+            console.log('Youtube success', data);
             const subNumber = parseInt(data.items[0].statistics.subscriberCount);
             const numWithCommas = subNumber.toLocaleString("en-us");
             $(chSub).text(numWithCommas);
@@ -248,20 +256,20 @@ function renderChannelSearchStats(i){
 }
 
 
-function renderVideoList(videoArray){
-    $(".tdTitle").popover('destroy')
+function renderVideoList(videoArray) {
+    $(".tdTitle").popover('destroy');
 
-    setTimeout(function(){
-        for(let i = 0; i<videoArray.length; i++){
+    setTimeout(function () {
+        for (let i = 0; i < videoArray.length; i++) {
 
-            let row = "#tdList-" + (i+1);
+            let row = "#tdList-" + (i + 1);
             let title = row + " .tdTitle>span";
             let channel = row + " .tdChannel";
             let upDate = row + " .tdUpDate";
 
             let dateString = videoArray[i].published_at;
             const d = new Date(dateString);
-            dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear().toString().substring(2);
+            dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
 
             $(row).attr("videoID", videoArray[i].video_id);
             $(title).text(videoArray[i].video_title);
@@ -270,7 +278,7 @@ function renderVideoList(videoArray){
 
             let videoData = row + " .tdInfo a";
             let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].video_id + '/mqdefault.jpg';
-            const videoDataImg = $('<img>').attr('src',videoURL).css({
+            const videoDataImg = $('<img>').attr('src', videoURL).css({
                 width: '240px',
                 height: '135px',
             });
@@ -285,17 +293,17 @@ function renderVideoList(videoArray){
             $(row + " .tdTitle").popover({
                 trigger: "hover",
                 html: true,
-                content:videoDataImg,
-                placement:'auto',
+                content: videoDataImg,
+                placement: 'auto',
                 container: 'body'
             });
         }
-    }, 500);
+    }, 250);
 
 
 }
 
-function convertYTApiChannelDatatoDbData(channelId){
+function convertYTApiChannelDatatoDbData(channelId) {
     var channelDbObject = {};
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/channels',
@@ -307,7 +315,7 @@ function convertYTApiChannelDatatoDbData(channelId){
             part: 'snippet, statistics'
         },
         success: function (data) {
-            console.log('Youtube success',data);
+            console.log('Youtube success', data);
             channelDbObject.channel_id = channelId;
             channelDbObject.channel_title = data.items[0].snippet.title;
             channelDbObject.description = data.items[0].snippet.description;
@@ -329,7 +337,7 @@ function convertYTApiChannelDatatoDbData(channelId){
     return channelDbObject;
 }
 
-function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects=[], pageToken = ""){
+function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken = "") {
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
         dataType: 'json',
@@ -360,11 +368,10 @@ function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects=[], pageToken =
 
                 dbVideoObjects.push(videoObject);
             }
-            if (data.hasOwnProperty('nextPageToken') && data.items.length!==0) {
+            if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
                 convertYTApiVideoDatatoDbData(channelId, dbVideoObjects, data.nextPageToken)
-            }
-            else {
-                globalVideoObjectArray = dbVideoObjects;   //set to global variable  Can't return the array for some reason
+            } else {
+                globalVideoObjectArray = dbVideoObjects; //set to global variable  Can't return the array for some reason
             }
         },
         error: function (data) {
@@ -373,18 +380,19 @@ function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects=[], pageToken =
     });
 }
 
-function convertVideoArrayToOnePage(videoArray, page=0){      //Temp - will pull 40 at a time from database
+function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 40 at a time from database
     var returnArray = [];
-    for(let i = (page*40); i < ((page*40)+40); i++){
+    for (let i = (page * 40); i < ((page * 40) + 40); i++) {
         returnArray.push(videoArray[i])
     }
     return returnArray
 }
 
-function browseChannel(channelId, pageNumber){
+function browseChannel(channelId, pageNumber) {
     var page = pageNumber;
-    function handleData(pageNumber){
-        if(globalVideoObjectArray === null){
+
+    function handleData(pageNumber) {
+        if (globalVideoObjectArray === null) {
             setTimeout(handleData, 50);
             return
         }
@@ -395,9 +403,11 @@ function browseChannel(channelId, pageNumber){
     }
     convertYTApiVideoDatatoDbData(channelId);
     handleData(channelId, pageNumber)
+    $('.fa-play-circle-o').remove();
+    $('.tdList').removeClass('selectedTd');
 }
 
-function handleBrowseButton(){
+function handleBrowseButton() {
     var channelID = $(this).parent().attr("channelId")
     browseChannel(channelID)
     $('#channelSearchModal').modal('hide')
