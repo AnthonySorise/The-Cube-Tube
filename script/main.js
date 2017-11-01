@@ -73,6 +73,8 @@ function clickHandler() {
         event.preventDefault();
         searchChannelsByName().then(worked,failed);
     });
+    //Browse Button
+    $('.browseChannelButton').on("click", handleBrowseButton)
 
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function(){
@@ -95,12 +97,12 @@ function clickHandler() {
         player2.pauseVideo();
     });
 
-    // Created click handler for add channel modal button to get the result of videos for that channel that was clicked
-    $(".modal-body").on('click', 'li', function () {
-        var channelId = $(this).attr('channelid');
-        searchVideoByChannelId(channelId);
-
-    })
+    // // Created click handler for add channel modal button to get the result of videos for that channel that was clicked
+    // $(".modal-body").on('click', 'li', function () {
+    //     var channelId = $(this).attr('channelid');
+    //     searchVideoByChannelId(channelId);
+    //
+    // })
 
     // Ian's click handlers
     //Chris cleaned up code to save state of video and check if playing or paused that transfer state to theatre mode
@@ -120,7 +122,7 @@ function clickHandler() {
             $('#lightBoxModal').modal('show');
         }
     });
-    $('.modalClose').on('click', function () {
+    $('.theatreModalClose').on('click', function () {
         if (player2.getPlayerState() === 2) {
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
@@ -189,8 +191,9 @@ function searchChannelsByName() {
             $('#channelSearchModal').modal('show');
             for(var i = 0; i < 10; i++){
                 var channelListData = "#chSearch-"+(i+1);
-                var chName = "#chSearch-"+(i+1) + " .chName";
-                var img = "#chSearch-"+(i+1) + " img";
+                var chName = channelListData + " .chName";
+                var img = channelListData + " img";
+                var browseButton = channelListData + ".browseChannelButton"
                 $(channelListData).attr("channelId", data.items[i].snippet.channelId);
                 $(chName).text(data.items[i].snippet.channelTitle);
                 $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
@@ -244,43 +247,49 @@ function renderChannelSearchStats(i){
 
 
 function renderVideoList(videoArray){
-    for(let i = 0; i<videoArray.length; i++){
+    $(".tdTitle").popover('destroy')
 
-        let row = "#tdList-" + (i+1);
-        let title = row + " .tdTitle>span";
-        let channel = row + " .tdChannel";
-        let upDate = row + " .tdUpDate";
+    setTimeout(function(){
+        for(let i = 0; i<videoArray.length; i++){
 
-        let dateString = videoArray[i].published_at;
-        const d = new Date(dateString);
-        dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear().toString().substring(2);
+            let row = "#tdList-" + (i+1);
+            let title = row + " .tdTitle>span";
+            let channel = row + " .tdChannel";
+            let upDate = row + " .tdUpDate";
 
-        $(row).attr("videoID", videoArray[i].video_id);
-        $(title).text(videoArray[i].video_title);
-        $(channel).text(videoArray[i].channel_title);
-        $(upDate).text(dateString);
+            let dateString = videoArray[i].published_at;
+            const d = new Date(dateString);
+            dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' +  d.getFullYear().toString().substring(2);
 
-        let videoData = row + " .tdInfo a";
-        let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].video_id + '/mqdefault.jpg';
-        const videoDataImg = $('<img>').attr('src',videoURL).css({
-            width: '320px',
-            height: '180px',
-        });
-        //console.log(subsciptionsArray[i][key].snippet.thumbnails.medium.url)
+            $(row).attr("videoID", videoArray[i].video_id);
+            $(title).text(videoArray[i].video_title);
+            $(channel).text(videoArray[i].channel_title);
+            $(upDate).text(dateString);
 
-        $(videoData).attr({
-            'data-content': videoArray[i].description,
-            'data-original-title': videoArray[i].video_title
-        });
+            let videoData = row + " .tdInfo a";
+            let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].video_id + '/mqdefault.jpg';
+            const videoDataImg = $('<img>').attr('src',videoURL).css({
+                width: '240px',
+                height: '135px',
+            });
+            // var videoDataImg = "<img src="+videoURL+" />";
+            $(videoData).attr({
+                'data-content': videoArray[i].description,
+                'data-original-title': videoArray[i].video_title
+            });
 
-        $(row + " .tdTitle").popover({
-            trigger: "hover",
-            html: true,
-            content: videoDataImg,
-            placement:'auto',
-            container: 'body'
-        });
-    }
+
+
+            $(row + " .tdTitle").popover({
+                trigger: "hover",
+                html: true,
+                content:videoDataImg,
+                placement:'auto',
+                container: 'body'
+            });
+        }
+    }, 500);
+
 
 }
 
@@ -384,4 +393,10 @@ function browseChannel(channelId, pageNumber){
     }
     convertYTApiVideoDatatoDbData(channelId);
     handleData(channelId, pageNumber)
+}
+
+function handleBrowseButton(){
+    var channelID = $(this).parent().attr("channelId")
+    browseChannel(channelID)
+    $('#channelSearchModal').modal('hide')
 }

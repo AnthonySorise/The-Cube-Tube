@@ -78,7 +78,7 @@ html,body{
 .channelSearchForm{
 	position:relative;
 }
-#ui-id-1{
+#ui-id-1:focus{
 	top:43px;
 }
 /**end of navbar styling**/
@@ -239,7 +239,7 @@ body>.container-fluid{
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-@media screen and (max-width: 767px){
+@media screen and (max-width: 1082px){
 	.hamburger{
 		display: inline-block !important;
 	}
@@ -384,25 +384,6 @@ body>.container-fluid{
 	color: red;
 }
 
-/* autocomplete styles */
-
-#ui-id-1{
-	top:43px;
-	background-color: white;
-	list-style-type: none;
-}
-
-.ui-menu-item-wrapper:focus {
-	background-color: red;
-}
-.ui-menu {
-	/*top:43px !important;*/
-	width: 187px !important;
-	/*left: 790px !important;*/
-	right: 0 !important;
-}
-
-
 @media only screen and (max-width : 991px){
 	.carousel-control{
 		height: 75vh;
@@ -425,4 +406,6 @@ body>.container-fluid{
 .popover-content{
 	z-index: 10000 ;
 }
+ul ui-menu-item:focus {
 
+}
