@@ -6,8 +6,8 @@ if(empty($_POST['table'])){
 
 }
 $table = $_POST['table'];
-$user_id = $_POST['id'];
-$query = "DELETE FROM '{$table}' WHERE `id`={$user_id}";
+$id = $_POST['id'];
+$query = "DELETE FROM '{$table}' WHERE `id`={$id}";
 $result = mysqli_query($conn,$query);
 
 if(!empty($result)){
