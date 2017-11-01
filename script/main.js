@@ -26,13 +26,8 @@ var player;
 var player2;
 /*******needed for iframe player*******/
 
-<<<<<<< HEAD
 $(document).ready(function(){
     displayCurrentPageNumber();
-=======
-$(document).ready(function () {
-
->>>>>>> cd71d9cba7e294538f8d608ad560a9e20200276c
     /**
      function for preventing page refresh with search button;
      only did it because page refresh was annoying
