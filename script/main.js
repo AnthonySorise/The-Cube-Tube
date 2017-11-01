@@ -281,6 +281,7 @@ function renderVideoList(videoArray){
             container: 'body'
         });
     }
+
 }
 
 function convertYTApiChannelDatatoDbData(channelId){
@@ -367,4 +368,20 @@ function convertVideoArrayToOnePage(videoArray, page=0){      //Temp - will pull
         returnArray.push(videoArray[i])
     }
     return returnArray
+}
+
+function browseChannel(channelId, pageNumber){
+    var page = pageNumber;
+    function handleData(pageNumber){
+        if(globalVideoObjectArray === null){
+            setTimeout(handleData, 50);
+            return
+        }
+        var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray, page);
+        console.log('PAGE NUMBER', page);
+        renderVideoList(videoArrayPage);
+        globalVideoObjectArray = null;
+    }
+    convertYTApiVideoDatatoDbData(channelId);
+    handleData(channelId, pageNumber)
 }
