@@ -266,8 +266,8 @@ function renderVideoList(videoArray){
         let videoData = row + " .tdInfo a";
         let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].video_id + '/mqdefault.jpg';
         const videoDataImg = $('<img>').attr('src',videoURL).css({
-            width: '320px',
-            height: '180px',
+            width: '240px',
+            height: '135px',
         });
         // var videoDataImg = "<img src="+videoURL+" />";
         $(videoData).attr({
@@ -275,7 +275,7 @@ function renderVideoList(videoArray){
             'data-original-title': videoArray[i].video_title
         });
 
-        $(row + " .tdTitle").popover('destroy');
+
         $(row + " .tdTitle").popover({
             trigger: "hover",
             html: true,
