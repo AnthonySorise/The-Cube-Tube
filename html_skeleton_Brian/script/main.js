@@ -99,7 +99,6 @@ function clickHandler() {
 
     })
 
-    // Ian's click handlers
     //Chris cleaned up code to save state of video and check if playing or paused that transfer state to theatre mode
     $('.lightBoxMode').on('click', function () {
         player.pauseVideo();
