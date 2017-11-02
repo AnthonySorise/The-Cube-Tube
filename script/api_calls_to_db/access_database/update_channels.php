@@ -2,13 +2,13 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$channel_title = $_POST['channelTitle'];
+$channel_title = $_POST['channel_title'];
 $description = $_POST['description'];
 $thumbnail = $_POST['thumbnail'];
-$sub_count = $_POST['subCount'];
-$video_count = $_POST['videoCount'];
-$view_count = $_POST['viewCount'];
-$channel_id = $_POST['channelId'];
+$sub_count = $_POST['sub_count'];
+$video_count = $_POST['video_count'];
+$view_count = $_POST['view_count'];
+$channel_id = $_POST['channel_id'];
 if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }

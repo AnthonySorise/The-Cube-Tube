@@ -12,7 +12,7 @@
             dataType:'JSON',
             data:{
                 id: ctu_id,
-                action:'delete'
+                action:'delete_ctu'
             },
             success:function(data){
                 if(data.success){
@@ -33,14 +33,14 @@
          //         this.reject = reject;
          //     }
          // }
-         const {channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
+         const {youtube_channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
          $.ajax({
              url:'access.php',
              method:'post',
              dataType:'JSON',
              data:{
                  action:'insert_channel',
-                 channel_id:channel_id,
+                 youtube_channel_id:youtube_channel_id,
                  channel_title:channel_title,
                  description:description,
                  thumbnail:thumbnail,
@@ -126,14 +126,14 @@
          //         this.reject = reject;
          //     }
          // }
-         const {channel_id, video_id, channel_title, description,published_at} = video_object;
+         const {channel_id, youtube_video_id, channel_title, description,published_at} = video_object;
          $.ajax({
              url:'/script/api_calls_to_db/access_database/access.php',
              method:'POST',
              dataType:'JSON',
              data:{
                  action:'insert_video',
-                 video_id:video_id,
+                 youtube_video_id:youtube_video_id,
                  channel_id:channel_id,
                  channel_title:channel_title,
                  description:description,
@@ -151,6 +151,34 @@
              }
          })
          // return promise;
+     }
+     this.read_channels = function(user_id){
+         // var promise = {
+         //     then:function(resolve,reject){
+         //         this.resolve = resolve;
+         //         this.reject = reject;
+         //     }
+         // }
+         $.ajax({
+             url: 'script/api_calls_to_db/access_database/access.php',
+             method: 'POST',
+             dataType: 'JSON',
+             data: {
+                 action: 'read_channels',
+                 user_id:user_id
+             },
+             success: function (data) {
+                 if (data.success) {
+                     // promise.resolve(data);
+                     console.log('read success');
+                 }
+             },
+             errors: function (data) {
+                 console.log('read error');
+                 // promise.reject(data);
+             }
+         })
+         // return promise
      }
      this.read_ctu = function(user_id){
          // var promise = {
@@ -209,42 +237,7 @@
         })
         // return promise;
     }
-    this.update_channel = function(channel_object){//pass in channelobject and deconstruct it , not sure if were gonna include videos here
-        // var promise = {
-        //     then:function(resolve,reject){
-        //         this.resolve = resolve;
-        //         this.reject = reject;
-        //     }
-        // }
-        const {channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
-        $.ajax({
-            url:'access.php',
-            method:'post',
-            dataType:'JSON',
-            data:{
-                action:'update_channel',
-                channel_id:channel_id,
-                channel_title:channel_title,
-                description:description,
-                thumbnail:thumbnail,
-                sub_count:sub_count,
-                video_count:video_count,
-                view_count:view_count
-            },
-            success:function(data){
-                if(data.success){
-                    // promise.resolve(data);
-                    console.log('update success');
-                }
-            },
-            errors:function(data){
-                console.log('update error');
-                // promise.reject(data);
-            }
-        })
-        // return promise;
-    }
-    this.read_channels = function(user_id){
+    this.read_videos = function(offset,user_id){
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -256,35 +249,7 @@
             method: 'POST',
             dataType: 'JSON',
             data: {
-                action: 'read_channels',
-                user_id:user_id
-            },
-            success: function (data) {
-                if (data.success) {
-                    // promise.resolve(data);
-                    console.log('read success');
-                }
-            },
-            errors: function (data) {
-                console.log('read error');
-                // promise.reject(data);
-            }
-        })
-        // return promise
-    }
-    this.read_vids_with_limit = function(offset,user_id){
-        // var promise = {
-        //     then:function(resolve,reject){
-        //         this.resolve = resolve;
-        //         this.reject = reject;
-        //     }
-        // }
-        $.ajax({
-            url: 'script/api_calls_to_db/access_database/access.php',
-            method: 'POST',
-            dataType: 'JSON',
-            data: {
-                action: 'read_videos_limit',
+                action: 'read_videos',
                 offset: offset,
                 user_id:user_id
             },
@@ -301,6 +266,70 @@
         })
         // return promise
     }
+     this.read_videos_by_channel = function(channel_id,offset){
+         // var promise = {
+         //     then:function(resolve,reject){
+         //         this.resolve = resolve;
+         //         this.reject = reject;
+         //     }
+         // }
+         $.ajax({
+             url: 'script/api_calls_to_db/access_database/access.php',
+             method: 'POST',
+             dataType: 'JSON',
+             data: {
+                 action:'read_videos_by_channel',
+                 channel_id:channel_id,
+                 offset:offset
+             },
+             success: function (data) {
+                 if (data.success) {
+                     // promise.resolve(data);
+                     console.log('read success');
+                 }
+             },
+             errors: function (data) {
+                 console.log('read error');
+                 // promise.reject(data);
+             }
+         })
+         // return promise
+     }
+     this.update_channel = function(channel_object){//pass in channelobject and deconstruct it , not sure if were gonna include videos here
+         // var promise = {
+         //     then:function(resolve,reject){
+         //         this.resolve = resolve;
+         //         this.reject = reject;
+         //     }
+         // }
+         const {channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
+         $.ajax({
+             url:'access.php',
+             method:'post',
+             dataType:'JSON',
+             data:{
+                 action:'update_channel',
+                 channel_id:channel_id,
+                 channel_title:channel_title,
+                 description:description,
+                 thumbnail:thumbnail,
+                 sub_count:sub_count,
+                 video_count:video_count,
+                 view_count:view_count
+             },
+             success:function(data){
+                 if(data.success){
+                     // promise.resolve(data);
+                     console.log('update success');
+                 }
+             },
+             errors:function(data){
+                 console.log('update error');
+                 // promise.reject(data);
+             }
+         })
+         // return promise;
+     }
     this.update_video = function(video_object){
         // var promise = {
         //     then:function(resolve,reject){
@@ -314,7 +343,7 @@
             method:'post',
             dataType:'JSON',
             data:{
-                action:'update_channel',
+                action:'update_video',
                 channel_title:channel_title,
                 description:description,
                 video_id:video_id

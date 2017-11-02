@@ -16,15 +16,16 @@ ORDER BY published_at DESC LIMIT 40 OFFSET ?");
 $stmt->bind_param("ii",$user_id,$offset);
 $stmt->execute();
 if(!empty($stmt)){
-    //if($result->num_rows!==0)
-    if(mysqli_num_rows($result)>0){
+    if(mysqli_num_rows($stmt)>0){
         $output['success']=true;
-        while($row = mysqli_fetch_assoc($result)){
+        while($row = mysqli_fetch_assoc($stmt)){
             $output['data'][] = $row;
         }
     }else{
         $output['errors'][] = mysqli_error($conn);
     }
+}else{
+    $output['errors'][] = 'INVALID QUERY';
 }
 ?>
 

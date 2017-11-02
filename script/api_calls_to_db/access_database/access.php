@@ -26,20 +26,20 @@ switch($_POST['action']){
     case 'insert_video':
         include('insert_video.php');
         break;
+    case 'read_channels':
+        include('read_channels.php');
+        break;
     case 'read_ctu':
         include('read_ctu.php');
         break;
     case 'read_database.php':
         include('read_database.php');
         break;
-    case 'read_channels':
-        include('read_channels.php');
+    case 'read_videos_by_channel':
+        include('read_videos_by_channel.php');
         break;
-    case 'read_videos_limit'://in progreess
-        include('read_videos_limit.php');
-        break;
-    case 'insert_link'://in progress
-        include('insert_link.php');
+    case 'read_videos':
+        include('read_videos.php');
         break;
     case 'update_link'://in progress
         include('update_link.php');
