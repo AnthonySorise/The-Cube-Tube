@@ -32,7 +32,7 @@ switch($_POST['action']){
     case 'read_ctu':
         include('read_ctu.php');
         break;
-    case 'read_database.php':
+    case 'read_database':
         include('read_database.php');
         break;
     case 'read_videos_by_channel':
