@@ -39,6 +39,7 @@ if(!empty($stmt)){
     else{
         $output['errors'][] = 'Unable to insert data';
         $output['errors'][] = $stmt;
+        $output['errors'][] = $conn;
     }
 }else{
     $output['errors'][]= 'invalid query';
