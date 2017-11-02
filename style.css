@@ -189,6 +189,12 @@ body>.container-fluid{
 .carousel-indicators{
 	bottom: -13px;
 }
+.carousel-control.right{
+	background: none !important;
+}
+.carousel-control.left{
+	background: none !important;
+}
 
 #text-carousel{
 	overflow: auto;
