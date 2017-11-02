@@ -223,7 +223,7 @@ function Database(){
         const {channel_id, video_id, channel_title, description, thumbnail,published_at} = video_object;
         $.ajax({
             url:'access.php',
-            method:'post',
+            method:'POST',
             dataType:'JSON',
             data:{
                 action:'insert_video',
@@ -256,7 +256,7 @@ function Database(){
         // }
         $.ajax({
             url: 'access.php',
-            method: 'GET',
+            method: 'POST',
             dataType: 'JSON',
             data: {
                 action: 'read_videos_limit',

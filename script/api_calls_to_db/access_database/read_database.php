@@ -2,8 +2,8 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$table = $_GET['table'];
-$search - $_GET['search'];
+$table = $_POST['table'];
+$search - $_POST['search'];
 $statement = mysqli_prepare($conn,"SELECT ? FROM ?");
 $result = mysqli_bind_param($statement,"ss",$table,$search);
 mysqli_execute($result);

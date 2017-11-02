@@ -5,11 +5,10 @@ if(empty($LOCAL_ACCESS)){
 if(empty($_POST['table'])){
 
 }
-$table = $_POST['table'];
-$id = $_POST['id'];
-$query = "DELETE FROM '{$table}' WHERE `id`={$id}";
-$result = mysqli_query($conn,$query);
-
+$ctu_id = $_POST['ctu_id'];
+$stmt = $conn->prepare("DELETE FROM `channels_to_user` WHERE `id`=?");
+$stmt->bind_param("sss",$ctu_id);
+$stmt ->execute();
 if(!empty($result)){
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
