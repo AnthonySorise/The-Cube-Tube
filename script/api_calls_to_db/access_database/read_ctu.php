@@ -8,7 +8,7 @@ if(empty($user_id)){
     $output['errors'][] ="MISSING USER_ID";
 }
 $stmt = $conn->prepare("SELECT * FROM `channels_to_users` WHERE `user_id`=?");
-$stmt->bind_param("s",$user_id);
+$stmt->bind_param("i",$user_id);
 $stmt->execute();
 if(!empty($stmt)){
     if(mysqli_num_rows($stmt)>0){

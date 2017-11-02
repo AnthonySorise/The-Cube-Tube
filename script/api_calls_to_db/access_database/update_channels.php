@@ -38,7 +38,7 @@ sub_count = ?, ,
 video_count = ?,
 view_count = ? 
 WHERE channel_id = ?");
-$stmt->bind_param("sssiii",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count,$channel_id);
+$stmt->bind_param("sssiiii",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count,$channel_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';
