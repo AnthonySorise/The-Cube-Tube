@@ -15,17 +15,17 @@ if(empty($description)){
 if(empty($thumbnail)){
     $output['errors'][] = "MISSING THUMBNAILS";
 }
-if(empty($videoId)){
+if(empty($video_id)){
     $output['errors'][] = "MISSING ID";
 }
-$statement = mysqli_prepare($conn,"UPDATE video SET 
+$stmt = $conn->prepare("UPDATE video SET 
 channel_title = ?,  
 description = ?, 
 thumbnail_file_name = ?, 
 WHERE video_id = ?");
-$results = mysqli_bind_param($statement,"sssi",$channel_title,$description,$thumbnail,$video_id);
-mysqli_execute($results);
-if(empty($results)){
+$stmt ->bind_param("sssi",$channel_title,$description,$thumbnail,$video_id);
+$stmt->execute();
+if(empty($stmt)){
     $output['errors'][]='invalid query';
 }else{
     if(mysqli_affected_rows($conn)>0){
