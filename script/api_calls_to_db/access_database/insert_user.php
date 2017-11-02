@@ -6,6 +6,7 @@ $user_link = $_POST['user_link'];
 $date_created = date("Y-m-d H:i:s");
 $ip_address_at_sign_up = get_client_ip();
 function get_client_ip() {
+    $ipaddress ="";
     if (isset($_SERVER['HTTP_CLIENT_IP']))
         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
     else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
