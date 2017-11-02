@@ -27,17 +27,17 @@ if(empty($video_count)){
 if(empty($view_count)){
     $output['errors'][] = "MISSING VIEW COUNT";
 }
-$statement = mysqli_prepare($conn,"INSERT INTO channels SET 
-channel_title = ?, 
-youtube_channel_id = ?,
-description = ?, 
-thumbnail_file_name = ?, 
-sub_count = ?, 
-video_count = ?,
-view_count = ?");
-$results = mysqli_bind_param($statement,"ssssiii",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count);
-mysqli_execute($results);
-if(empty($results)){
+$stmt = $conn->prepare("INSERT INTO `channels` SET 
+`channel_title` = ?, 
+`youtube_channel_id` = ?,
+`description` = ?, 
+`thumbnail_file_name` = ?, 
+`sub_count` = ?, 
+`video_count` = ?,
+`view_count` = ?");
+$stmt -> bind_param("ssssiii",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count);
+$stmt->execute();
+if(empty($stmt)){
     $output['errors'][]='invalid query';
 }else{
     if(mysqli_affected_rows($conn)>0){

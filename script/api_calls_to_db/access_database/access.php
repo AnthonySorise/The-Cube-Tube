@@ -11,23 +11,14 @@ if(empty($_POST['action'])){
     exit();
 }
 switch($_POST['action']){
-    case 'read':
-        include('read_database.php');
+    case 'read_ctu':
+        include('read_ctu.php');
         break;
     case 'insert_user':
         include('insert_user.php');
         break;
     case 'delete_ctu':
         include('delete.php');
-        break;
-    case 'update_user':
-        include('update_user.php');
-        break;
-    case 'insert_channel':
-        include('insert_channels.php');
-        break;
-    case 'update_channel':
-        include('update_channels.php');
         break;
     case 'insert_video':
         include('insert_video.php');
@@ -44,6 +35,21 @@ switch($_POST['action']){
     case 'read_videos_limit'://in progreess
         include('read_videos_limit.php');
         break;
+    case 'read_database.php':
+        include('read_database.php');
+        break;
+    case 'read_videos_by_channel':
+        include('read_videos_by_channel.php');
+        break;
+    //    case 'update_user':
+//        include('update_user.php');
+//        break;
+//    case 'insert_channel':
+//        include('insert_channels.php');
+//      break;
+//    case 'update_channel':
+//        include('update_channels.php');
+//        break;
     default:
         $output['errors'][] = 'invalid action';
 }
