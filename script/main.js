@@ -116,7 +116,10 @@ function clickHandler() {
         $(this).parent().addClass("selectedTd");
         console.log($(this).parent().attr('videoId'));
         // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        player.loadVideoById($(this).parent().attr('videoId'));
+        if(getAutoPlayValue()==true){
+            player.loadVideoById($(this).parent().attr('videoId'));
+        }else
+        player.cueVideoById($(this).parent().attr('videoId'));
 
         // // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.cueVideoById($(this).parent().attr('videoId'));
@@ -449,3 +452,6 @@ function handleLeftCarouselClick(){
     currentSlideNumber --;
     displayCurrentPageNumber()
 }
+function getAutoPlayValue() {
+    return $("#autoplayCheckBox").is(":checked")
+  }
