@@ -26,7 +26,7 @@ var player;
 var player2;
 /*******needed for iframe player*******/
 
-$(document).ready(function(){
+$(document).ready(function () {
     displayCurrentPageNumber();
     /**
      function for preventing page refresh with search button;
@@ -67,28 +67,28 @@ $(document).ready(function(){
 //     });
 // }
 
-function tooltipFunctions(){
+function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
-    $('.browseChannelButton').mouseenter(function(){
-        setTimeout(function(){
+    $('.browseChannelButton').mouseenter(function () {
+        setTimeout(function () {
             $('.browseChannelButton').tooltip('hide');
-        },1000);
+        }, 1000);
     });
-    $('.lightBoxMode').mouseenter(function(){
-        setTimeout(function(){
+    $('.lightBoxMode').mouseenter(function () {
+        setTimeout(function () {
             $('.lightBoxMode').tooltip('hide');
-        },1000);
+        }, 1000);
     });
-    $('.channelSearchButton').mouseenter(function(){
-        setTimeout(function(){
+    $('.channelSearchButton').mouseenter(function () {
+        setTimeout(function () {
             $('.channelSearchButton').tooltip('hide');
-        },1000);
+        }, 1000);
     });
-    $('.videoSearchButton').mouseenter(function(){
-        setTimeout(function(){
+    $('.videoSearchButton').mouseenter(function () {
+        setTimeout(function () {
             $('.videoSearchButton').tooltip('hide');
-        },1000);
+        }, 1000);
     });
 }
 
@@ -116,10 +116,10 @@ function clickHandler() {
         $(this).parent().addClass("selectedTd");
         console.log($(this).parent().attr('videoId'));
         // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        if(getAutoPlayValue()==true){
+        if (getAutoPlayValue() == true) {
             player.loadVideoById($(this).parent().attr('videoId'));
-        }else
-        player.cueVideoById($(this).parent().attr('videoId'));
+        } else
+            player.cueVideoById($(this).parent().attr('videoId'));
 
         // // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.cueVideoById($(this).parent().attr('videoId'));
@@ -218,7 +218,7 @@ function searchChannelsByName() {
         success: function (data) {
             console.log('Youtube success', data);
             $('#channelSearchModal').modal('show');
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < data.items.length; i++) {
                 var channelListData = "#chSearch-" + (i + 1);
                 var chName = channelListData + " .chName";
                 var img = channelListData + " img";
@@ -434,24 +434,25 @@ function handleBrowseButton() {
     $('#channelSearchModal').modal('hide')
 }
 
-function displayCurrentPageNumber(){
+function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber)
-    if(currentSlideNumber == 1){
+    if (currentSlideNumber == 1) {
         $(".leftControl").hide()
-    }else{
+    } else {
         $(".leftControl").show()
     }
 }
 
-function handleRightCarouselClick(){
-    currentSlideNumber ++;
+function handleRightCarouselClick() {
+    currentSlideNumber++;
     displayCurrentPageNumber()
 }
 
-function handleLeftCarouselClick(){
-    currentSlideNumber --;
+function handleLeftCarouselClick() {
+    currentSlideNumber--;
     displayCurrentPageNumber()
 }
+
 function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
-  }
+}
