@@ -30,7 +30,7 @@ if(empty($view_count)){
 if(empty($channel_id)){
     $output['errors'][] = "MISSING ID";
 }
-$statement =mysqli_prepare($conn,"UPDATE channels SET 
+$stmt=$conn->prepare("UPDATE channels SET 
 channel_title = ?,  
 description = ?, 
 thumbnail_file_name = ?, 
@@ -38,9 +38,9 @@ sub_count = ?, ,
 video_count = ?,
 view_count = ? 
 WHERE channel_id = ?");
-$results = mysqli_bind_param($statement,"sssiiis",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count,$channel_id);
-mysqli_execute($result);
-if(empty($results)){
+$stmt->bind_param("sssiiii",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count,$channel_id);
+$stmt->execute();
+if(empty($stmt)){
     $output['errors'][]='invalid query';
 }else{
     if(mysqli_affected_rows($conn)>0){
