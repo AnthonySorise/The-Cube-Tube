@@ -246,7 +246,7 @@ function Database(){
         })
         // return promise;
     }
-    this.read_vids_with_limit = function(offset){
+    this.read_vids_with_limit = function(offset,user_id){
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -259,7 +259,8 @@ function Database(){
             dataType: 'JSON',
             data: {
                 action: 'read_videos_limit',
-                offset: offset
+                offset: offset,
+                user_id:user_id
             },
             success: function (data) {
                 if (data.success) {
