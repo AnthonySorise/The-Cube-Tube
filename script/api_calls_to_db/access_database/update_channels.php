@@ -9,6 +9,7 @@ $sub_count = $_POST['sub_count'];
 $video_count = $_POST['video_count'];
 $view_count = $_POST['view_count'];
 $channel_id = $_POST['channel_id'];
+$last_channel_pulled = date("Y-m-d H:i:s");
 if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }
@@ -34,11 +35,12 @@ $stmt=$conn->prepare("UPDATE channels SET
 channel_title = ?,  
 description = ?, 
 thumbnail_file_name = ?, 
-sub_count = ?, ,
+sub_count = ?, 
 video_count = ?,
-view_count = ? 
+view_count = ?,
+last_channel_pulled = ?
 WHERE channel_id = ?");
-$stmt->bind_param("sssiiii",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count,$channel_id);
+$stmt->bind_param("sssiiisi",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count,$last_channel_pulled,$channel_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';

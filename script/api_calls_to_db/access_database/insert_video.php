@@ -8,6 +8,7 @@ for($i = 0; $i<count($video_array);$i++) {
     $youtube_video_id = $video_array[$i]['youtube_video_id'];
     $description = $video_array[$i]['description'];
     $published_at = $video_array[$i]['published_at'];
+    $last_updated = date("Y-m-d H-i-s");
     if (empty($channel_id)) {
         $output['errors'][] = 'MISSING VIDEO TITLE';
     }
@@ -25,7 +26,7 @@ for($i = 0; $i<count($video_array);$i++) {
     `youtube_video_id` = ?, 
     `description` = ?,
     `published_at` = ?");
-    $stmt -> bind_param("ssss",$channel_id,$youtube_video_id,$description,$published_at);
+    $stmt -> bind_param("sssss",$channel_id,$youtube_video_id,$description,$published_at,$last_updated);
     $stmt->execute();
     if(empty($stmt)){
         $output['errors'][] = "INVALID QUERY";

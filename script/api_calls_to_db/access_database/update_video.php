@@ -5,6 +5,7 @@ if(empty($LOCAL_ACCESS)){
 $channel_title = $POST['channel_title'];
 $description = $_POST['description'];
 $video_id = $_POST['video_id'];
+$last_updated = date("Y-m-d H:i:s");
 if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }
@@ -17,8 +18,9 @@ if(empty($video_id)){
 $stmt = $conn->prepare("UPDATE video SET 
 channel_title = ?,  
 description = ?, 
+last_updated = ?
 WHERE video_id = ?");
-$stmt ->bind_param("ssi",$channel_title,$description,$video_id);
+$stmt ->bind_param("sssi",$channel_title,$description,$last_updated,$video_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';
