@@ -9,6 +9,7 @@ $thumbnail = $_POST['thumbnail'];
 $sub_count = $_POST['sub_count'];
 $video_count = $_POST['video_count'];
 $view_count = $_POST['view_count'];
+$date_created = date("Y-m-d H:i:s");
 if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }
@@ -34,8 +35,9 @@ $stmt = $conn->prepare("INSERT INTO `channels` SET
 `thumbnail_file_name` = ?, 
 `sub_count` = ?, 
 `video_count` = ?,
-`view_count` = ?");
-$stmt -> bind_param("ssssiii",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count);
+`view_count` = ?,
+date_created=?");
+$stmt -> bind_param("ssssiiis",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count,$date_created);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';
