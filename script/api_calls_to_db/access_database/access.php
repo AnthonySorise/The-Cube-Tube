@@ -35,14 +35,11 @@ switch($_POST['action']){
     case 'update_video':
         include('update_video.php');
         break;
-    case 'insert_link'://make
+    case 'insert_link'://in progress
         include('insert_link.php');
         break;
-    case 'update_link'://make
+    case 'update_link'://in progress
         include('update_link.php');
-        break;
-    case 'delete_link'://make
-        include('delete_link.php');
         break;
     case 'read_videos_limit'://in progreess
         include('read_videos_limit.php');
