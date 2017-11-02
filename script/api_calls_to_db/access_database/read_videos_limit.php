@@ -1,16 +1,12 @@
-<?php//will remove this file later, for testing only
+<?php
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$output['data'] = [];
-$table = $_POST['table'];
-$search = $_POST['search'];
-if(empty($table)){
-    $output['errors'][] ="MISSING TABLE";
+if(empty($offset)){
+    $output['errors'][] = "MISSING OFFSET";
 }
-if(empty($search)){
-    $output['errors'][] = "MISSING SEARCH";
-}
+$offset = $_POST['offset'];
+
 $stmt = $conn->prepare("SELECT ? FROM ?");
 $stmt->bind_param("ss",$search,$table);
 $stmt->execute();
@@ -26,3 +22,9 @@ if(!empty($stmt)){
     }
 }
 ?>
+
+SELECT v.youtube_video_id, v.description, v.published_at FROM videos AS v
+JOIN channels_to_users AS c on v.channel_id = c.channel_id
+JOIN users AS u ON u.user_id=c.user_id
+WHERE u.user_id = ${$user_id}
+ORDER BY DESC LIMIT 40 OFFSET ${$offset}

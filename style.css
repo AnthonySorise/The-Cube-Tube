@@ -189,6 +189,12 @@ body>.container-fluid{
 .carousel-indicators{
 	bottom: -13px;
 }
+.carousel-control.right{
+	background: none !important;
+}
+.carousel-control.left{
+	background: none !important;
+}
 
 #text-carousel{
 	overflow: auto;
@@ -388,6 +394,67 @@ body>.container-fluid{
 	color: red;
 }
 
+/* toggle button */
+#autoplayText{
+	color: white;
+	/* margin: 5px; */
+}
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 44px;
+	height: 19px;
+	margin: 10px;
+  }
+  
+  .switch input {
+	  /* display:none; */
+	  opacity: 0;
+	}
+  
+  .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	transition: .4s;
+  }
+  
+  .slider:before {
+	position: absolute;
+	content: "";
+	height: 14px;
+	width: 15px;
+	left: 1px;
+	bottom: 3px;
+	background-color: white;
+	transition: .4s;
+  }
+  
+  input:checked + .slider {
+	background-color: #d8364e;
+	/* opacity: 0.6; */
+  }
+  
+  /* input:focus + .slider {
+	box-shadow: 0 0 1px red;
+  } */
+  
+  input:checked + .slider:before {
+	transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+	border-radius: 34px;
+  }
+  
+  .slider.round:before {
+	border-radius: 50%;
+  }
 
 @media only screen and (max-width : 991px){
 	.carousel-control{
