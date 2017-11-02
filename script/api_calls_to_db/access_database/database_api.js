@@ -7,7 +7,7 @@ function Database(){
         //     }//end then
         // }//end promise
         $.ajax({
-            url:'/script/api_calls_to_db/access_database/access.php',
+            url:'access.php',
             method:'POST',
             dataType:'JSON',
             data:{
@@ -183,35 +183,6 @@ function Database(){
     //     })
     //     // return promise;
     // }
-    this.insert_user = function(link){
-        // var promise = {
-        //     then:function(resolve,reject){
-        //         this.resolve = resolve;
-        //         this.reject = reject;
-        //     }//end then
-        // }//end promise
-        $.ajax({
-            url:'access.php',
-            method:'POST',
-            dataType:'JSON',
-            data:{
-                action:'insert_user',
-                user_link: link
-            },
-            success:function(data){
-                console.log(data);
-                if(data["success"]){
-                    // promise.resolve(data);
-                    console.log('success');
-                }
-            },
-            errors:function(data){
-                // promise.reject(data);
-                console.log(data['errors'])
-            }
-        })
-        // return promise
-    }
     this.insert_video = function(video_object){//pass in channelobject and deconstruct it , not sure if were gonna include videos here
         // var promise = {
         //     then:function(resolve,reject){
