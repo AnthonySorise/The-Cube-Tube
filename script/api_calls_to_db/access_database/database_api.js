@@ -7,7 +7,7 @@ function Database(){
         //     }//end then
         // }//end promise
         $.ajax({
-            url:'access.php',
+            url:'/script/api_calls_to_db/access_database/access.php',
             method:'POST',
             dataType:'JSON',
             data:{
@@ -36,7 +36,7 @@ function Database(){
         //         }
         // }
         $.ajax({
-            url:'access.php',
+            url:'/script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
@@ -63,7 +63,7 @@ function Database(){
         //     }
         // }
         $.ajax({
-            url:'access.php',
+            url:'/script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
