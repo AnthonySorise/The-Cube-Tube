@@ -260,7 +260,7 @@
         })
         // return promise
     }
-     this.read_videos_by_channel = function(channel_id,offset){
+     this.read_videos_by_channel = function(youtube_channel_id,offset){
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -273,7 +273,7 @@
              dataType: 'JSON',
              data: {
                  action:'read_videos_by_channel',
-                 channel_id:channel_id,
+                 youtube_channel_id:youtube_channel_id,
                  offset:offset
              },
              success: function (data) {
