@@ -361,8 +361,7 @@ function renderVideoList(videoArray) {
             });
         }
     }, 250);
-
-
+        
 }
 
 function convertYTApiChannelDatatoDbData(channelId) {
