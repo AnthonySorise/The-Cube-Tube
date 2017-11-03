@@ -101,6 +101,46 @@ function clickHandler() {
 
         // // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.cueVideoById($(this).parent().attr('videoId'));
+
+
+        //update stats popover
+        var videoID = $(this).parent().attr('videoId');
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/videos',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: videoID,
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('Youtube success',data);
+                var videoStatsDiv = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width: 35%"></div></div>');
+                $("#videoStats").popover('destroy');
+
+                setTimeout(function () {
+                    $("#videoStats").popover({
+                        html: true,
+                        content: videoStatsDiv,
+                        placement: 'auto',
+                        container: 'body'
+                    });
+                }, 250);
+
+                $("#videoStats").attr({
+                    'data-original-title': data.items[0].snippet.title + " - " + data.items[0].snippet.channelTitle
+                });
+
+
+
+
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
+        })
+
     });
 
     //Theater mode
@@ -135,32 +175,6 @@ function clickHandler() {
             $('#lightBoxModal').modal('show');
         }
     });
-
-    //stats popover
-    $("#videoStats").on('show.bs.popover', function () {
-        var videoLink = ($('#mainVideo').attr("src"));
-        var videoID = videoLink.replace("https://www.youtube.com/embed/", "");
-        videoID = videoID.substring(0, videoID.indexOf('?'));
-        $.ajax({
-            url: 'https://www.googleapis.com/youtube/v3/videos',
-            dataType: 'json',
-            method: 'get',
-            data: {
-                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-                id: videoID,
-                part: 'snippet, statistics'
-            },
-            success: function (data) {
-                console.log('Youtube success',data);
-            },
-            error: function (data) {
-                console.log('something went wrong with YT', data);
-            }
-        })
-
-
-    });
-
 }
 
 
