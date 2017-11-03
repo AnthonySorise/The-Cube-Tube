@@ -2,13 +2,13 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$_POST['videoArray'];
-foreach($_POST['videoArray'] as $video_array) {
-    $video_title = $video_array['video_title'];
-    $channel_id = $video_array['channel_id'];
-    $youtube_video_id = $video_array['youtube_video_id'];
-    $description = $video_array['description'];
-    $published_at = $video_array['published_at'];
+$video_array = $_POST['videoArray'];
+for($i = 0; $i< 2; $i++ ){
+    $video_title = $video_array[$i]['video_title'];
+    $channel_id = $video_array[$i]['channel_id'];
+    $youtube_video_id = $video_array[$i]['youtube_video_id'];
+    $description = $video_array[$i]['description'];
+    $published_at = $video_array[$i]['published_at'];
     $last_updated = date("Y-m-d H-i-s");
     if (empty($channel_id)) {
         $output['errors'][] = 'MISSING VIDEO TITLE';
