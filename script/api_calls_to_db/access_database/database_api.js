@@ -16,7 +16,7 @@
             },
             success:function(data){
                 if(data.success){
-                    console.log('deleted');
+                    console.log('deleted success');
                     // promise.resolve(data);
                 }
             },
@@ -51,17 +51,17 @@
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('update success');
+                     console.log('insert channel success');
                  }
              },
              errors:function(data){
-                 console.log('update error');
+                 console.log('insert error');
                  // promise.reject(data);
              }
          })
          // return promise;
      }
-     this.insert_ctu = function(user_id,channel_id){
+     this.insert_ctu = function(user_id,channel_id){//numbers
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -80,12 +80,12 @@
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('read data success');
+                     console.log('insert ctu success');
                  }
              },
              errors:function(){
                  // promise.reject(data);
-                 console.log(data['read errors']);
+                 console.log(data['insert errors']);
              }
          })
          // return promise;
@@ -109,7 +109,7 @@
                  console.log(data);
                  if(data["success"]){
                      // promise.resolve(data);
-                     console.log('success');
+                     console.log('insert user success');
                  }
              },
              errors:function(data){
@@ -137,11 +137,11 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('update success');
+                     console.log('insert video success');
                  }
              },
              errors: function (data) {
-                 console.log('update error');
+                 console.log('insert error');
                  // promise.reject(data);
              }
          })
@@ -203,7 +203,7 @@
          })
          // return promise
      }
-    this.read_database = function(table,search){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
+    this.read_database = function(search){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -215,7 +215,6 @@
             method:'post',
             dataType:'JSON',
             data:{
-                table:table,
                 search:search,
                 action:'read_database'
             },
@@ -251,7 +250,7 @@
             success: function (data) {
                 if (data.success) {
                     // promise.resolve(data);
-                    console.log('read success');
+                    console.log('read video success');
                 }
             },
             errors: function (data) {
