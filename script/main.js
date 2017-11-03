@@ -345,7 +345,10 @@ function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken
                 videoObject.channel_id = data.items[i].snippet.channelId;
                 videoObject.channel_title = data.items[i].snippet.channelTitle;
                 videoObject.description = data.items[i].snippet.description;
-                videoObject.published_at = data.items[i].snippet.publishedAt;
+                var publishedAt = data.items[i].snippet.publishedAt;
+                publishedAt = publishedAt.replace("T", " ");
+                publishedAt = publishedAt.replace(".000Z", "");
+                videoObject.published_at = publishedAt;
                 // var thumbnail = data.items[i].snippet.thumbnails.medium.url;
                 // thumbnail = thumbnail.replace('https://i.ytimg.com/vi/', '');
                 // thumbnail = thumbnail.replace('/mqdefault.jpg', '');
@@ -382,7 +385,6 @@ function browseChannel(channelId, pageNumber) {
             return
         }
         var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray, page);
-        console.log('PAGE NUMBER', page);
         renderVideoList(videoArrayPage);
         globalVideoObjectArray = null;
     }
