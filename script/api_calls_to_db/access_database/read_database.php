@@ -1,4 +1,4 @@
-<?php//will remove this file later, for testing only
+<?php
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
