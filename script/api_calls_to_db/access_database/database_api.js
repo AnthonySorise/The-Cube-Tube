@@ -216,7 +216,7 @@
             dataType:'JSON',
             data:{
                 youtube_channel_id:youtube_channel_id,
-                action:'read_database_by_youtube_id'
+                action:'read_channels_by_youtube_id'
             },
             success:function(data){
                 if(data.success){
