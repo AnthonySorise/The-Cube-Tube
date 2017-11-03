@@ -2,20 +2,31 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$table = $_POST['table'];
-$search - $_POST['search'];
-$statement = mysqli_prepare($conn,"SELECT ? FROM ?");
-$result = mysqli_bind_param($statement,"ss",$table,$search);
-mysqli_execute($result);
 $output['data'] = [];
-if(!empty($result)){
-    //if($result->num_rows!==0)
-    if(mysqli_num_rows($result)>0){
-        $output['success']=true;
-        while($row = mysqli_fetch_assoc($result)){
+$search = $_POST['search'];
+if(empty($search)){
+    $output['errors'][] = "MISSING SEARCH";
+}
+
+//print $search;
+//print '<br>'.$table;
+//
+//exit;
+$sqli =  "SELECT ? FROM users ";
+$stmt = mysqli_stmt_init($conn);
+if(!mysqli_stmt_prepare($stmt,$sqli)){
+    echo "SQL statement failed";
+}else {
+    mysqli_stmt_bind_param($stmt, "s", $search);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    if (mysqli_num_rows($result)>0) {
+        $output['success'] = true;
+        while ($row = mysqli_fetch_assoc($result)) {
             $output['data'][] = $row;
         }
-    }else{
+    } else {
+        $output['no_results'] = true;
         $output['errors'][] = mysqli_error($conn);
     }
 }
