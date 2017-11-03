@@ -7,7 +7,7 @@
         //         }
         // }
         $.ajax({
-            url:'/script/api_calls_to_db/access_database/access.php',
+            url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
@@ -16,7 +16,7 @@
             },
             success:function(data){
                 if(data.success){
-                    console.log('deleted');
+                    console.log('deleted success');
                     // promise.resolve(data);
                 }
             },
@@ -35,7 +35,7 @@
          // }
          const {youtube_channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
          $.ajax({
-             url:'access.php',
+             url:'./script/api_calls_to_db/access_database/access.php',
              method:'post',
              dataType:'JSON',
              data:{
@@ -51,17 +51,17 @@
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('update success');
+                     console.log('insert channel success');
                  }
              },
              errors:function(data){
-                 console.log('update error');
+                 console.log('insert error');
                  // promise.reject(data);
              }
          })
          // return promise;
      }
-     this.insert_ctu = function(user_id,channel_id){
+     this.insert_ctu = function(user_id,channel_id){//numbers
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -69,7 +69,7 @@
          //     }
          // }
          $.ajax({
-             url:'/script/api_calls_to_db/access_database/access.php',
+             url:'./script/api_calls_to_db/access_database/access.php',
              method:'post',
              dataType:'JSON',
              data:{
@@ -80,12 +80,12 @@
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('read data success');
+                     console.log('insert ctu success');
                  }
              },
              errors:function(){
                  // promise.reject(data);
-                 console.log(data['read errors']);
+                 console.log(data['insert errors']);
              }
          })
          // return promise;
@@ -98,7 +98,7 @@
          //     }//end then
          // }//end promise
          $.ajax({
-             url:'/script/api_calls_to_db/access_database/access.php',
+             url:'./script/api_calls_to_db/access_database/access.php',
              method:'POST',
              dataType:'JSON',
              data:{
@@ -109,7 +109,7 @@
                  console.log(data);
                  if(data["success"]){
                      // promise.resolve(data);
-                     console.log('success');
+                     console.log('insert user success');
                  }
              },
              errors:function(data){
@@ -119,38 +119,33 @@
          })
          // return promise
      }
-     this.insert_video = function(video_object){//pass in channelobject and deconstruct it , not sure if were gonna include videos here
+     this.insert_video = function (videoArray) {//pass in channelobject and deconstruct it , not sure if were gonna include videos here
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
          //         this.reject = reject;
          //     }
          // }
-         const {channel_id, youtube_video_id, channel_title, description,published_at} = video_object;
          $.ajax({
-             url:'/script/api_calls_to_db/access_database/access.php',
-             method:'POST',
-             dataType:'JSON',
-             data:{
-                 action:'insert_video',
-                 youtube_video_id:youtube_video_id,
-                 channel_id:channel_id,
-                 channel_title:channel_title,
-                 description:description,
-                 published_at:published_at
+             url: './script/api_calls_to_db/access_database/access.php',
+             method: 'POST',
+             dataType: 'JSON',
+             data: {
+                 action: 'insert_video',
+                 videoArray: videoArray
              },
-             success:function(data){
-                 if(data.success){
+             success: function (data) {
+                 if (data.success) {
                      // promise.resolve(data);
-                     console.log('insert success');
+                     console.log('insert video success');
                  }
              },
-             errors:function(data){
+             errors: function (data) {
                  console.log('insert error');
                  // promise.reject(data);
              }
          })
-         // return promise;
+         // return promise
      }
      this.read_channels = function(user_id){
          // var promise = {
@@ -160,7 +155,7 @@
          //     }
          // }
          $.ajax({
-             url: 'script/api_calls_to_db/access_database/access.php',
+             url: './script/api_calls_to_db/access_database/access.php\'',
              method: 'POST',
              dataType: 'JSON',
              data: {
@@ -188,7 +183,7 @@
          //     }
          // }
          $.ajax({
-             url: '/script/api_calls_to_db/access_database/access.php',
+             url: './script/api_calls_to_db/access_database/access.php',
              method: 'POST',
              dataType: 'JSON',
              data: {
@@ -208,7 +203,7 @@
          })
          // return promise
      }
-    this.read_database = function(table,search){//read data from any table i.e channels, users, videos,channels_to_users search = * for all or more specifically channelTitles, userlinks
+    this.read_database = function(search){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -216,11 +211,10 @@
         //     }
         // }
         $.ajax({
-            url:'/script/api_calls_to_db/access_database/access.php',
+            url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
-                table:table,
                 search:search,
                 action:'read_database'
             },
@@ -245,7 +239,7 @@
         //     }
         // }
         $.ajax({
-            url: 'script/api_calls_to_db/access_database/access.php',
+            url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
@@ -256,7 +250,7 @@
             success: function (data) {
                 if (data.success) {
                     // promise.resolve(data);
-                    console.log('read success');
+                    console.log('read video success');
                 }
             },
             errors: function (data) {
@@ -274,7 +268,7 @@
          //     }
          // }
          $.ajax({
-             url: 'script/api_calls_to_db/access_database/access.php',
+             url: './script/api_calls_to_db/access_database/access.php',
              method: 'POST',
              dataType: 'JSON',
              data: {
@@ -304,7 +298,7 @@
          // }
          const {channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
          $.ajax({
-             url:'access.php',
+             url:'./script/api_calls_to_db/access_database/access.php',
              method:'post',
              dataType:'JSON',
              data:{
@@ -339,7 +333,7 @@
         // }
         const {channel_title,description,video_id} = video_object;
         $.ajax({
-            url:'access.php',
+            url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
