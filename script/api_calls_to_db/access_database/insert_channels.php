@@ -10,7 +10,7 @@ $sub_count = $_POST['sub_count'];
 $video_count = $_POST['video_count'];
 $view_count = $_POST['view_count'];
 $date_created = date("Y-m-d H:i:s");
-$last_channel_pull = $date_created;
+$last_channel_pull = date("Y-m-d H:i:s");
 if(empty($youtube_channel_id)){
     $output['errors'][]='MISSING YOUTUBE CHANNEL ID';
 }
@@ -41,8 +41,8 @@ $stmt = $conn->prepare("INSERT INTO `channels` SET
 `video_count` = ?,
 `view_count` = ?,
 `date_created`=?,
-`last_channel_pull=?`");
-$stmt -> bind_param("ssssiiiss",$channel_title,$youtube_channel_id,$description,$thumbnail
+`last_channel_pull`=?");
+$stmt->bind_param("ssssiiiss",$channel_title,$youtube_channel_id,$description,$thumbnail
     ,$sub_count,$video_count,$view_count,$date_created,$last_channel_pull);
 $stmt->execute();
 if(empty($stmt)){
