@@ -43,7 +43,28 @@ $(document).ready(function () {
 
 });
 
-
+function toastMsg(msgString, time){
+    const msg = $('<div>',{
+        text: msgString,
+        class:'toast'       
+    }).css({
+        position: 'fixed',
+        right: '-150px',
+        top: '125px',
+        'width': '150px',
+        'padding': '7px',
+        'background-color': 'rgba(0,0,0,0.7)',
+        'color' : 'white',
+        'z-index': 1000,
+        'border-radius': '15px'
+    }).animate({
+        right: '+=155px'
+    }, 900);
+    $('body').append(msg);
+    setTimeout(function(){
+        $('.toast').remove();
+    }, time);
+}
 
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
