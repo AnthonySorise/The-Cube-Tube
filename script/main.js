@@ -26,7 +26,7 @@ var player;
 var player2;
 /*******needed for iframe player*******/
 
-$(document).ready(function(){
+$(document).ready(function () {
     displayCurrentPageNumber();
     /**
      function for preventing page refresh with search button;
@@ -45,28 +45,28 @@ $(document).ready(function(){
 
 
 
-function tooltipFunctions(){
+function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
-    $('.browseChannelButton').mouseenter(function(){
-        setTimeout(function(){
+    $('.browseChannelButton').mouseenter(function () {
+        setTimeout(function () {
             $('.browseChannelButton').tooltip('hide');
-        },1000);
+        }, 1000);
     });
-    $('.lightBoxMode').mouseenter(function(){
-        setTimeout(function(){
+    $('.lightBoxMode').mouseenter(function () {
+        setTimeout(function () {
             $('.lightBoxMode').tooltip('hide');
-        },1000);
+        }, 1000);
     });
-    $('.channelSearchButton').mouseenter(function(){
-        setTimeout(function(){
+    $('.channelSearchButton').mouseenter(function () {
+        setTimeout(function () {
             $('.channelSearchButton').tooltip('hide');
-        },1000);
+        }, 1000);
     });
-    $('.videoSearchButton').mouseenter(function(){
-        setTimeout(function(){
+    $('.videoSearchButton').mouseenter(function () {
+        setTimeout(function () {
             $('.videoSearchButton').tooltip('hide');
-        },1000);
+        }, 1000);
     });
 }
 
@@ -94,10 +94,10 @@ function clickHandler() {
         $(this).parent().addClass("selectedTd");
         console.log($(this).parent().attr('videoId'));
         // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        if(getAutoPlayValue()==true){
+        if (getAutoPlayValue() == true) {
             player.loadVideoById($(this).parent().attr('videoId'));
-        }else
-        player.cueVideoById($(this).parent().attr('videoId'));
+        } else
+            player.cueVideoById($(this).parent().attr('videoId'));
 
         // // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.cueVideoById($(this).parent().attr('videoId'));
@@ -222,7 +222,7 @@ function renderChannelSearchStats(i) {
     })
 }
 
-function clearChannelResults(){
+function clearChannelResults() {
     for (var i = 0; i < 10; i++) {
         var chName = channelListData + " .chName";
         var img = channelListData + " img";
@@ -338,6 +338,7 @@ function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken
         },
         success: function (data) {
             console.log('Youtube success', data);
+            createPlaceholderAnimation();
             for (var i = 0; i < data.items.length; i++) {
                 var videoObject = {};
                 videoObject.video_title = data.items[i].snippet.title;
@@ -400,11 +401,11 @@ function handleBrowseButton() {
     $('#channelSearchModal').modal('hide')
 }
 
-function displayCurrentPageNumber(){
+function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber)
-    if(currentSlideNumber == 1){
+    if (currentSlideNumber == 1) {
         $(".leftControl").hide()
-    }else{
+    } else {
         $(".leftControl").show()
     }
 }
@@ -419,14 +420,15 @@ function handleRightCarouselClick(obj){
   
 }
 
-function handleLeftCarouselClick(){
-    currentSlideNumber --;
+function handleLeftCarouselClick() {
+    currentSlideNumber--;
     displayCurrentPageNumber()
 
 }
+
 function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
-  }
+}
 
   function disableCarousel(obj){
     obj.disabled = false;
@@ -435,3 +437,33 @@ function getAutoPlayValue() {
     }, 1000);
     setTimout(handleRightCarouselClick,1000)
   }
+
+//Testing placeholder animation
+var classes = [
+    "background-masker header-top",
+    "background-masker header-left",
+    "background-masker header-right",
+    "background-masker header-bottom",
+    "background-masker subheader-left",
+    "background-masker subheader-right",
+    "background-masker subheader-bottom",
+    "background-masker content-top",
+    "background-masker content-first-end",
+    "background-masker content-second-line",
+    "background-masker content-second-end",
+    "background-masker content-third-line",
+    "background-masker content-third-end"
+]
+
+function createPlaceholderAnimation() {
+    var outerDiv = $('<div>').addClass("timeline-wrapper");
+    var nestedDiv1 = $('<div>').addClass("timeline-item");
+    var nestedDiv2 = $('<div>').addClass("animated-background");
+    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2);
+    for (var i = 0; i < 12; i++) {
+        var childElements = $('<div>').addClass(classes[i]);
+        $(childElements).appendTo(nestedDiv2);
+
+    }
+    $('.tdTitle, .tdChannel').append(completedWrapper);
+}
