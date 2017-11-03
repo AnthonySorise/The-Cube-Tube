@@ -2,8 +2,9 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$video_array = $POST['videoArray'];
+$video_array = $_POST['videoArray'];
 for($i = 0; $i<count($video_array);$i++) {
+    $video_title = $video_array[$i]['video_title'];
     $channel_id = $video_array[$i]['channel_id'];
     $youtube_video_id = $video_array[$i]['youtube_video_id'];
     $description = $video_array[$i]['description'];
@@ -21,12 +22,14 @@ for($i = 0; $i<count($video_array);$i++) {
     if (empty($published_at)) {
         $output['errors'][] = "PUBLISHED DATE MISSING";
     }
-    $stmt = $conn -> prepare("INSERT INTO `videos` SET 
+    $stmt = $conn->prepare("INSERT INTO `videos` SET 
+    `video_title` = ?
     `channel_id` = ?,
     `youtube_video_id` = ?, 
     `description` = ?,
-    `published_at` = ?");
-    $stmt -> bind_param("sssss",$channel_id,$youtube_video_id,$description,$published_at,$last_updated);
+    `published_at` = ?
+    `last_updated`=?");
+    $stmt->bind_param("ssssss",$video_title,$channel_id,$youtube_video_id,$description,$published_at,$last_updated);
     $stmt->execute();
     if(empty($stmt)){
         $output['errors'][] = "INVALID QUERY";

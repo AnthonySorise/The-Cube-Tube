@@ -11,9 +11,22 @@ if(empty($table)){
 if(empty($search)){
     $output['errors'][] = "MISSING SEARCH";
 }
-$stmt = $conn->prepare("SELECT ? FROM ?");
-$stmt->bind_param("ss",$search,$table);
-$stmt->execute();
+
+//print $search;
+//print '<br>'.$table;
+//
+//exit;
+
+
+// $stmt = $conn->prepare('SELECT * FROM `users`');
+// $stmt->bind_param('s', $search);
+// $stmt->execute();
+
+echo '<pre>';
+print_r($stmt->num_rows());
+echo '</pre>';
+
+
 if(!empty($stmt)){
     if(mysqli_num_rows($stmt)>0){
         $output['success']=true;

@@ -257,13 +257,13 @@ function renderVideoList(videoArray) {
             const d = new Date(dateString);
             dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
 
-            $(row).attr("videoID", videoArray[i].video_id);
+            $(row).attr("videoID", videoArray[i].youtube_video_id);
             $(title).text(videoArray[i].video_title);
             $(channel).text(videoArray[i].channel_title);
             $(upDate).text(dateString);
 
             let videoData = row + " .tdInfo a";
-            let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].video_id + '/mqdefault.jpg';
+            let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].youtube_video_id + '/mqdefault.jpg';
             const videoDataImg = $('<img>').attr('src', videoURL).css({
                 width: '240px',
                 height: '135px',
@@ -302,7 +302,7 @@ function convertYTApiChannelDatatoDbData(channelId) {
         },
         success: function (data) {
             console.log('Youtube success', data);
-            channelDbObject.channel_id = channelId;
+            channelDbObject.youtube_channel_id = channelId;
             channelDbObject.channel_title = data.items[0].snippet.title;
             channelDbObject.description = data.items[0].snippet.description;
 
@@ -310,11 +310,11 @@ function convertYTApiChannelDatatoDbData(channelId) {
             thumbnail = thumbnail.replace('https://yt3.ggpht.com/', '');
             thumbnail = thumbnail.replace('/photo.jpg', '');
             channelDbObject.thumbnail = thumbnail;
-
-            //Doing API calls for these?
-            // channelDbObject.sub_count = data.items[0].statistics.subscriberCount;
-            // channelDbObject.video_count = data.items[0].statistics.videoCount;
-            // channelDbObject.view_count = data.items[0].statistics.viewCount;
+            //
+            // Doing API calls for these?
+            channelDbObject.sub_count = data.items[0].statistics.subscriberCount;
+            channelDbObject.video_count = data.items[0].statistics.videoCount;
+            channelDbObject.view_count = data.items[0].statistics.viewCount;
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -342,7 +342,7 @@ function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken
             for (var i = 0; i < data.items.length; i++) {
                 var videoObject = {};
                 videoObject.video_title = data.items[i].snippet.title;
-                videoObject.video_id = data.items[i].id.videoId;
+                videoObject.youtube_video_id = data.items[i].id.videoId;
                 videoObject.channel_id = data.items[i].snippet.channelId;
                 videoObject.channel_title = data.items[i].snippet.channelTitle;
                 videoObject.description = data.items[i].snippet.description;
