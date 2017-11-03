@@ -103,9 +103,11 @@ function clickHandler() {
 
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
-        $('.fa-play-circle-o').remove();
+        // $('.fa-play-circle-o').remove();
+        $('.fa-circle-o-notch').remove();
         var playSymbol = $('<i>')
-            .addClass("fa fa-play-circle-o")
+            // .addClass("fa fa-play-circle-o")
+            .addClass('fa fa-circle-o-notch fa-spin fa-fw')
             .css({
                 "margin-right": '5px',
                 'color': 'green'
