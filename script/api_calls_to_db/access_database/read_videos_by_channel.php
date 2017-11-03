@@ -4,8 +4,8 @@ if(empty($LOCAL_ACCESS)){
 }
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $offset = $_POST['offset'];
-if(empty($channel_id)){
-    $output['errors'][] = "MISSING USER ID";
+if(empty($youtube_channel_id)){
+    $output['errors'][] = "MISSING YOUTUBE CHANNEL ID";
 }
 $stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at 
 FROM videos AS v JOIN channels AS c ON v.youtube_channel_id = c.youtube_channel_id
