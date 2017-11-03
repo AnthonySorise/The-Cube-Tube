@@ -402,9 +402,10 @@ body>.container-fluid{
 .switch {
 	position: relative;
 	display: inline-block;
-	width: 44px;
-	height: 19px;
+	width: 30px;
+	height: 20px;
 	margin: 10px;
+	top: 2px;
   }
   
   .switch input {
@@ -444,7 +445,7 @@ body>.container-fluid{
   } */
   
   input:checked + .slider:before {
-	transform: translateX(26px);
+	transform: translateX(13px);
   }
   
   /* Rounded sliders */
