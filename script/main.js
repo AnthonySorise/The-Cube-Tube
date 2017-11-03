@@ -401,7 +401,8 @@ function convertYTApiChannelDatatoDbData(channelId) {
     return channelDbObject;
 }
 
-function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken = "") {
+function convertYTApiVideoDatatoDbData(channelId, allVideos = [], pageToken = "") {
+    var packageToSendToDb = [];
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
         dataType: 'json',
@@ -434,12 +435,15 @@ function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken
                 // thumbnail = thumbnail.replace('/mqdefault.jpg', '');
                 // videoObject.thumbnail = thumbnail;
 
-                dbVideoObjects.push(videoObject);
+                allVideos.push(videoObject);
+                packageToSendToDb.push(videoObject);
             }
+            access_database.insert_video(packageToSendToDb);
+
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
-                convertYTApiVideoDatatoDbData(channelId, dbVideoObjects, data.nextPageToken)
+                convertYTApiVideoDatatoDbData(channelId, allVideos, data.nextPageToken)
             } else {
-                globalVideoObjectArray = dbVideoObjects; //set to global variable  Can't return the array for some reason
+                globalVideoObjectArray = allVideos; //set to global variable  Can't return the array for some reason
             }
         },
         error: function (data) {
