@@ -116,9 +116,22 @@ function clickHandler() {
             },
             success: function (data) {
                 console.log('Youtube success',data);
-                var videoStatsDiv = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width: 35%"></div></div>');
-                $("#videoStats").popover('destroy');
+                var likes = parseInt(data.items[0].statistics.likeCount);
+                var dislikes = parseInt(data.items[0].statistics.dislikeCount);
 
+                var perecentLikes = likes / (likes + dislikes) * 100;
+                var percentDislikes = 100 - perecentLikes;
+
+                var videoStatsDiv = $('<div></div>');
+                var views = $('<p><strong>Views: </strong>'+parseInt(data.items[0].statistics.viewCount).toLocaleString("en-us")+'</p>');
+                var likesTitle = $('<p><strong>Likes and Dislikes:</strong></p>');
+                var likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:'+perecentLikes+'%">'+likes.toLocaleString("en-us")+' Likes</div><div class="progress-bar progress-bar-danger" style="width:'+percentDislikes+'%"></div>');
+                var descriptionTitle = $('<p><strong>Description: </strong></p>');
+                var description = $('<p>'+data.items[0].snippet.description+'</p>');
+
+                videoStatsDiv.append(views, likesTitle, likesBar, descriptionTitle, description);
+
+                $("#videoStats").popover('destroy');
                 setTimeout(function () {
                     $("#videoStats").popover({
                         html: true,
