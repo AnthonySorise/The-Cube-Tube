@@ -4,8 +4,8 @@ if(empty($LOCAL_ACCESS)){
 }
 $output['data'] = [];
 $youtube_channel_id = $_POST['youtube_channel_id'];
-if(empty($search)){
-    $output['errors'][] = "MISSING SEARCH";
+if(empty($youtube_channel_id)){
+    $output['errors'][] = "MISSING ID";
 }
 $sqli =  "SELECT  `c.channel_title`, 
 `description`,`sub_count`,

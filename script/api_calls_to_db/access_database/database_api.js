@@ -203,7 +203,7 @@
          })
          // return promise
      }
-    this.read_channels_by_youtube_id = function(search){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
+    this.read_channels_by_youtube_id = function(youtube_channel_id){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -215,7 +215,7 @@
             method:'post',
             dataType:'JSON',
             data:{
-                search:search,
+                youtube_channel_id:youtube_channel_id,
                 action:'read_database_by_youtube_id'
             },
             success:function(data){
