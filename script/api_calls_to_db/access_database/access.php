@@ -26,8 +26,11 @@ switch($_POST['action']){
     case 'insert_video':
         include('insert_video.php');
         break;
-    case 'read_channels':
-        include('read_channels.php');
+    case 'read_channels_by_user_id':
+        include('read_channels_by_user_id.php');
+        break;
+    case 'read_channels_by_youtube_id':
+        include('read_channels_by_youtube_id.php');
         break;
     case 'read_ctu':
         include('read_ctu.php');
