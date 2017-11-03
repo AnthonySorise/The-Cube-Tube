@@ -43,7 +43,7 @@ $(document).ready(function () {
 
 });
 
-function toastMsg(msgString, time){
+function toastMsg(msgString, time){ 
     const msg = $('<div>',{
         text: msgString,
         class:'toast'       
@@ -447,7 +447,8 @@ function browseChannel(channelId, pageNumber) {
         globalVideoObjectArray = null;
     }
     convertYTApiVideoDatatoDbData(channelId);
-    handleData(channelId, pageNumber)
+    handleData(channelId, pageNumber);
+    // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
 }
