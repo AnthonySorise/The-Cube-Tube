@@ -11,7 +11,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
 
-        videoId: vidId || 'X2WH8mHJnhM'
+        videoId: vidId || 'ZZ5LpwO-An4'
     });
     // player.attr("id", "mainVideo")
     onYouTubeIframeAPIReady2();
@@ -19,7 +19,7 @@ function onYouTubeIframeAPIReady(vidId) {
 
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
-        videoId: 'X2WH8mHJnhM'
+        videoId: 'ZZ5LpwO-An4'
     });
 }
 var player;
@@ -65,7 +65,28 @@ $(document).ready(function () {
 
 });
 
-
+function toastMsg(msgString, time){ 
+    const msg = $('<div>',{
+        text: msgString,
+        class:'toast'       
+    }).css({
+        position: 'fixed',
+        right: '-150px',
+        top: '125px',
+        'width': '150px',
+        'padding': '7px',
+        'background-color': 'rgba(0,0,0,0.7)',
+        'color' : 'white',
+        'z-index': 1000,
+        'border-radius': '15px'
+    }).animate({
+        right: '+=155px'
+    }, 900);
+    $('body').append(msg);
+    setTimeout(function(){
+        $('.toast').remove();
+    }, time);
+}
 
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
@@ -104,9 +125,11 @@ function clickHandler() {
 
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
-        $('.fa-play-circle-o').remove();
+        // $('.fa-play-circle-o').remove();
+        $('.fa-circle-o-notch').remove();
         var playSymbol = $('<i>')
-            .addClass("fa fa-play-circle-o")
+            // .addClass("fa fa-play-circle-o")
+            .addClass('fa fa-circle-o-notch fa-spin fa-fw')
             .css({
                 "margin-right": '5px',
                 'color': 'green'
@@ -123,6 +146,66 @@ function clickHandler() {
 
         // // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.cueVideoById($(this).parent().attr('videoId'));
+
+
+        //update stats popover
+        var videoID = $(this).parent().attr('videoId');
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/videos',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: videoID,
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('Youtube success',data);
+                var likes = parseInt(data.items[0].statistics.likeCount);
+                var dislikes = parseInt(data.items[0].statistics.dislikeCount);
+
+                var perecentLikes = likes / (likes + dislikes) * 100;
+                var percentDislikes = 100 - perecentLikes;
+
+                var videoStatsDiv = $('<div></div>');
+                var views = $('<p><strong>Views: </strong>'+parseInt(data.items[0].statistics.viewCount).toLocaleString("en-us")+'</p>');
+                var likesTitle = $('<p><strong>Likes and Dislikes:</strong></p>');
+                var likesBar = null;
+                if(likes > dislikes){
+                    likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:'+perecentLikes+'%">'+likes.toLocaleString("en-us")+' Likes</div><div class="progress-bar progress-bar-danger" style="width:'+percentDislikes+'%"></div>');
+                }
+                else{
+                    likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:'+perecentLikes+'%">'+dislikes.toLocaleString("en-us")+' Dislikes</div><div class="progress-bar progress-bar-danger" style="width:'+percentDislikes+'%"></div>');
+                }
+
+                var descriptionTitle = $('<p><strong>Description: </strong></p>');
+                var description = $('<p>'+data.items[0].snippet.description+'</p>');
+
+                videoStatsDiv.append(views, likesTitle, likesBar, descriptionTitle, description);
+
+                $("#videoStats").popover('destroy');
+                setTimeout(function () {
+                    $("#videoStats").popover({
+                        html: true,
+                        content: videoStatsDiv,
+                        placement: 'auto',
+                        container: 'body'
+                    });
+                }, 250);
+
+                $("#videoStats").attr({
+                    'data-original-title': data.items[0].snippet.title + " - " + data.items[0].snippet.channelTitle
+                });
+
+
+
+
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
+        })
+
     });
 
     //Theater mode
@@ -366,7 +449,8 @@ function convertYTApiChannelDatatoDbData(channelId) {
     return channelDbObject;
 }
 
-function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken = "") {
+function convertYTApiVideoDatatoDbData(channelId, allVideos = [], pageToken = "") {
+    var packageToSendToDb = [];
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
         dataType: 'json',
@@ -399,12 +483,15 @@ function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken
                 // thumbnail = thumbnail.replace('/mqdefault.jpg', '');
                 // videoObject.thumbnail = thumbnail;
 
-                dbVideoObjects.push(videoObject);
+                allVideos.push(videoObject);
+                packageToSendToDb.push(videoObject);
             }
+            access_database.insert_video(packageToSendToDb);
+
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
-                convertYTApiVideoDatatoDbData(channelId, dbVideoObjects, data.nextPageToken)
+                convertYTApiVideoDatatoDbData(channelId, allVideos, data.nextPageToken)
             } else {
-                globalVideoObjectArray = dbVideoObjects; //set to global variable  Can't return the array for some reason
+                globalVideoObjectArray = allVideos; //set to global variable  Can't return the array for some reason
             }
         },
         error: function (data) {
@@ -434,7 +521,8 @@ function browseChannel(channelId, pageNumber) {
         globalVideoObjectArray = null;
     }
     convertYTApiVideoDatatoDbData(channelId);
-    handleData(channelId, pageNumber)
+    handleData(channelId, pageNumber);
+    // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
 }

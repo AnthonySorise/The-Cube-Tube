@@ -147,7 +147,7 @@
          })
          // return promise
      }
-     this.read_channels = function(user_id){
+     this.read_channels_by_user_id = function(user_id){
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -155,11 +155,11 @@
          //     }
          // }
          $.ajax({
-             url: './script/api_calls_to_db/access_database/access.php\'',
+             url: './script/api_calls_to_db/access_database/access.php ',
              method: 'POST',
              dataType: 'JSON',
              data: {
-                 action: 'read_channels',
+                 action: 'read_channels_by_user_id',
                  user_id:user_id
              },
              success: function (data) {
@@ -203,7 +203,7 @@
          })
          // return promise
      }
-    this.read_database = function(search){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
+    this.read_channels_by_youtube_id = function(youtube_channel_id){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -215,8 +215,8 @@
             method:'post',
             dataType:'JSON',
             data:{
-                search:search,
-                action:'read_database'
+                youtube_channel_id:youtube_channel_id,
+                action:'read_channels_by_youtube_id'
             },
             success:function(data){
                 if(data.success){
@@ -260,7 +260,7 @@
         })
         // return promise
     }
-     this.read_videos_by_channel = function(channel_id,offset){
+     this.read_videos_by_channel = function(youtube_channel_id,offset){
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -273,7 +273,7 @@
              dataType: 'JSON',
              data: {
                  action:'read_videos_by_channel',
-                 channel_id:channel_id,
+                 youtube_channel_id:youtube_channel_id,
                  offset:offset
              },
              success: function (data) {
