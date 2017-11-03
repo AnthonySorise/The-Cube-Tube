@@ -208,7 +208,7 @@
          })
          // return promise
      }
-    this.read_database = function(table,search){//read data from any table i.e channels, users, videos,channels_to_users search = * for all or more specifically channelTitles, userlinks
+    this.read_database = function(table,search){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;

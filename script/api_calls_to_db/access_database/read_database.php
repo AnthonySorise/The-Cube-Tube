@@ -15,14 +15,14 @@ $stmt = $conn->prepare("SELECT ? FROM ?");
 $stmt->bind_param("ss",$search,$table);
 $stmt->execute();
 if(!empty($stmt)){
-    //if($result->num_rows!==0)
     if(mysqli_num_rows($stmt)>0){
         $output['success']=true;
         while($row = mysqli_fetch_assoc($stmt)){
             $output['data'][] = $row;
         }
     }else{
-        $output['errors'][] = mysqli_error($conn);
+        $output['no_results']=true;
+        $output['errors'][]=mysqli_error($conn);
     }
 }else{
     $output['errors'][] = 'INVALID QUERY';
