@@ -7,7 +7,7 @@
         //         }
         // }
         $.ajax({
-            url:'/script/api_calls_to_db/access_database/access.php',
+            url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
@@ -69,7 +69,7 @@
          //     }
          // }
          $.ajax({
-             url:'/script/api_calls_to_db/access_database/access.php',
+             url:'./script/api_calls_to_db/access_database/access.php',
              method:'post',
              dataType:'JSON',
              data:{
@@ -155,7 +155,7 @@
          //     }
          // }
          $.ajax({
-             url: './access.php',
+             url: './script/api_calls_to_db/access_database/access.php\'',
              method: 'POST',
              dataType: 'JSON',
              data: {
@@ -183,7 +183,7 @@
          //     }
          // }
          $.ajax({
-             url: '/script/api_calls_to_db/access_database/access.php',
+             url: './script/api_calls_to_db/access_database/access.php',
              method: 'POST',
              dataType: 'JSON',
              data: {
@@ -240,7 +240,7 @@
         //     }
         // }
         $.ajax({
-            url: 'script/api_calls_to_db/access_database/access.php',
+            url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
@@ -269,7 +269,7 @@
          //     }
          // }
          $.ajax({
-             url: 'script/api_calls_to_db/access_database/access.php',
+             url: './script/api_calls_to_db/access_database/access.php',
              method: 'POST',
              dataType: 'JSON',
              data: {
@@ -299,7 +299,7 @@
          // }
          const {channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
          $.ajax({
-             url:'access.php',
+             url:'./script/api_calls_to_db/access_database/access.php',
              method:'post',
              dataType:'JSON',
              data:{
@@ -334,7 +334,7 @@
         // }
         const {channel_title,description,video_id} = video_object;
         $.ajax({
-            url:'access.php',
+            url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
