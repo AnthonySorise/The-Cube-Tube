@@ -146,7 +146,14 @@ function clickHandler() {
                 var videoStatsDiv = $('<div></div>');
                 var views = $('<p><strong>Views: </strong>'+parseInt(data.items[0].statistics.viewCount).toLocaleString("en-us")+'</p>');
                 var likesTitle = $('<p><strong>Likes and Dislikes:</strong></p>');
-                var likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:'+perecentLikes+'%">'+likes.toLocaleString("en-us")+' Likes</div><div class="progress-bar progress-bar-danger" style="width:'+percentDislikes+'%"></div>');
+                var likesBar = null;
+                if(likes > dislikes){
+                    likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:'+perecentLikes+'%">'+likes.toLocaleString("en-us")+' Likes</div><div class="progress-bar progress-bar-danger" style="width:'+percentDislikes+'%"></div>');
+                }
+                else{
+                    likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:'+perecentLikes+'%">'+dislikes.toLocaleString("en-us")+' Dislikes</div><div class="progress-bar progress-bar-danger" style="width:'+percentDislikes+'%"></div>');
+                }
+
                 var descriptionTitle = $('<p><strong>Description: </strong></p>');
                 var description = $('<p>'+data.items[0].snippet.description+'</p>');
 
