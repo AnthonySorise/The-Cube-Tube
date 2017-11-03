@@ -168,7 +168,6 @@ function searchChannelsByName() {
                 var channelListData = "#chSearch-" + (i + 1);
                 var chName = channelListData + " .chName";
                 var img = channelListData + " img";
-                var browseButton = channelListData + ".browseChannelButton"
                 $(channelListData).show();
                 $(channelListData).attr("channelId", data.items[i].snippet.channelId);
                 $(chName).text(data.items[i].snippet.channelTitle);
