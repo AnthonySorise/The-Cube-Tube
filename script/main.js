@@ -101,7 +101,6 @@ function clickHandler() {
 
         // // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.cueVideoById($(this).parent().attr('videoId'));
-
     });
 
     //Theater mode
@@ -135,6 +134,31 @@ function clickHandler() {
         } else if (player2.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
         }
+    });
+
+    //stats popover
+    $("#videoStats").on('show.bs.popover', function () {
+        var videoLink = ($('#mainVideo').attr("src"));
+        var videoID = videoLink.replace("https://www.youtube.com/embed/", "");
+        videoID = videoID.substring(0, videoID.indexOf('?'));
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/videos',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: videoID,
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('Youtube success',data);
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
+        })
+
+
     });
 
 }
@@ -272,8 +296,6 @@ function renderVideoList(videoArray) {
                 'data-content': videoArray[i].description,
                 'data-original-title': videoArray[i].video_title
             });
-
-
 
             $(row + " .tdTitle").popover({
                 trigger: "hover",
