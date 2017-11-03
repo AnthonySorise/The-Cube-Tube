@@ -233,10 +233,14 @@ body>.container-fluid {
 	color: red;
 	font-size: 1.2em;
 	font-weight: 700px;
+	background-color: white;
+	position: relative;
+	top: 16px;
 }
 
+
 .carousel-indicators {
-	bottom: -13px;
+	/* background-color: white; */
 }
 
 .carousel-control.right {
