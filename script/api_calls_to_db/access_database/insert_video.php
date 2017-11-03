@@ -5,21 +5,18 @@ if(empty($LOCAL_ACCESS)){
 $video_array = $POST['videoArray'];
 for($i = 0; $i<count($video_array);$i++) {
     $channel_id = $video_array[$i]['channel_id'];
-    $video_id = $video_array[$i]['video_id'];
+    $youtube_video_id = $video_array[$i]['youtube_video_id'];
     $description = $video_array[$i]['description'];
-    $thumbnail = $video_array[$i]['thumbnail'];
     $published_at = $video_array[$i]['published_at'];
+    $last_updated = date("Y-m-d H-i-s");
     if (empty($channel_id)) {
         $output['errors'][] = 'MISSING VIDEO TITLE';
     }
-    if (empty($video_id)) {
+    if (empty($youtube_video_id)) {
         $output['errors'][] = 'MISSING VIDEO ID';
     }
     if (empty($description)) {
         $output['errors'][] = "MISSING VIDEO DESCRIPTION";
-    }
-    if (empty($thumbnail)) {
-        $output['errors'][] = "MISSING THUMBNAILS";
     }
     if (empty($published_at)) {
         $output['errors'][] = "PUBLISHED DATE MISSING";
@@ -28,9 +25,8 @@ for($i = 0; $i<count($video_array);$i++) {
     `channel_id` = ?,
     `youtube_video_id` = ?, 
     `description` = ?,
-    `thumbnail_file_name` = ?,
     `published_at` = ?");
-    $stmt -> bind_param("sssss",$channel_id,$video_id,$description,$thumbnail,$published_at);
+    $stmt -> bind_param("sssss",$channel_id,$youtube_video_id,$description,$published_at,$last_updated);
     $stmt->execute();
     if(empty($stmt)){
         $output['errors'][] = "INVALID QUERY";
