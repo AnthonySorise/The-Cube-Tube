@@ -11,7 +11,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
 
-        videoId: vidId || 'X2WH8mHJnhM'
+        videoId: vidId || 'ZZ5LpwO-An4'
     });
     // player.attr("id", "mainVideo")
     onYouTubeIframeAPIReady2();
@@ -19,7 +19,7 @@ function onYouTubeIframeAPIReady(vidId) {
 
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
-        videoId: 'X2WH8mHJnhM'
+        videoId: 'ZZ5LpwO-An4'
     });
 }
 var player;
