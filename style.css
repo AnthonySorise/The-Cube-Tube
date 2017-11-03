@@ -517,17 +517,18 @@ body>.container-fluid {
 .switch {
 	position: relative;
 	display: inline-block;
-	width: 44px;
-	height: 19px;
+	width: 30px;
+	height: 20px;
 	margin: 10px;
-}
-
-.switch input {
-	/* display:none; */
-	opacity: 0;
-}
-
-.slider {
+	top: 2px;
+  }
+  
+  .switch input {
+	  /* display:none; */
+	  opacity: 0;
+	}
+  
+  .slider {
 	position: absolute;
 	cursor: pointer;
 	top: 0;
@@ -553,20 +554,15 @@ input:checked+.slider {
 	background-color: #d8364e;
 	/* opacity: 0.6; */
 }
-
-
 /* input:focus + .slider {
 	box-shadow: 0 0 1px red;
   } */
-
-input:checked+.slider:before {
-	transform: translateX(26px);
-}
-
-
-/* Rounded sliders */
-
-.slider.round {
+  input:checked + .slider:before {
+	transform: translateX(13px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
 	border-radius: 34px;
 }
 

@@ -410,19 +410,33 @@ function displayCurrentPageNumber() {
     }
 }
 
-function handleRightCarouselClick() {
-    currentSlideNumber++;
-    displayCurrentPageNumber()
+function handleRightCarouselClick(obj){
+    obj.disabled = false;
+    setTimeout(function() {
+        obj.disabled = true;
+        currentSlideNumber ++;
+        displayCurrentPageNumber()
+    }, 3000);
+  
 }
 
 function handleLeftCarouselClick() {
     currentSlideNumber--;
     displayCurrentPageNumber()
+
 }
 
 function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
 }
+
+  function disableCarousel(obj){
+    obj.disabled = false;
+    setTimeout(function() {
+        obj.disabled = true;
+    }, 1000);
+    setTimout(handleRightCarouselClick,1000)
+  }
 
 //Testing placeholder animation
 var classes = [
