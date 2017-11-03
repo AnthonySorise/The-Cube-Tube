@@ -11,7 +11,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
 
-        videoId: vidId || 'X2WH8mHJnhM'
+        videoId: vidId || 'ZZ5LpwO-An4'
     });
     // player.attr("id", "mainVideo")
     onYouTubeIframeAPIReady2();
@@ -19,14 +19,14 @@ function onYouTubeIframeAPIReady(vidId) {
 
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
-        videoId: 'X2WH8mHJnhM'
+        videoId: 'ZZ5LpwO-An4'
     });
 }
 var player;
 var player2;
 /*******needed for iframe player*******/
 
-$(document).ready(function(){
+$(document).ready(function () {
     displayCurrentPageNumber();
     /**
      function for preventing page refresh with search button;
@@ -43,30 +43,51 @@ $(document).ready(function(){
 
 });
 
+function toastMsg(msgString, time){ 
+    const msg = $('<div>',{
+        text: msgString,
+        class:'toast'       
+    }).css({
+        position: 'fixed',
+        right: '-150px',
+        top: '125px',
+        'width': '150px',
+        'padding': '7px',
+        'background-color': 'rgba(0,0,0,0.7)',
+        'color' : 'white',
+        'z-index': 1000,
+        'border-radius': '15px'
+    }).animate({
+        right: '+=155px'
+    }, 900);
+    $('body').append(msg);
+    setTimeout(function(){
+        $('.toast').remove();
+    }, time);
+}
 
-
-function tooltipFunctions(){
+function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
-    $('.browseChannelButton').mouseenter(function(){
-        setTimeout(function(){
+    $('.browseChannelButton').mouseenter(function () {
+        setTimeout(function () {
             $('.browseChannelButton').tooltip('hide');
-        },1000);
+        }, 1000);
     });
-    $('.lightBoxMode').mouseenter(function(){
-        setTimeout(function(){
+    $('.lightBoxMode').mouseenter(function () {
+        setTimeout(function () {
             $('.lightBoxMode').tooltip('hide');
-        },1000);
+        }, 1000);
     });
-    $('.channelSearchButton').mouseenter(function(){
-        setTimeout(function(){
+    $('.channelSearchButton').mouseenter(function () {
+        setTimeout(function () {
             $('.channelSearchButton').tooltip('hide');
-        },1000);
+        }, 1000);
     });
-    $('.videoSearchButton').mouseenter(function(){
-        setTimeout(function(){
+    $('.videoSearchButton').mouseenter(function () {
+        setTimeout(function () {
             $('.videoSearchButton').tooltip('hide');
-        },1000);
+        }, 1000);
     });
 }
 
@@ -82,9 +103,11 @@ function clickHandler() {
 
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
-        $('.fa-play-circle-o').remove();
+        // $('.fa-play-circle-o').remove();
+        $('.fa-circle-o-notch').remove();
         var playSymbol = $('<i>')
-            .addClass("fa fa-play-circle-o")
+            // .addClass("fa fa-play-circle-o")
+            .addClass('fa fa-circle-o-notch fa-spin fa-fw')
             .css({
                 "margin-right": '5px',
                 'color': 'green'
@@ -94,13 +117,72 @@ function clickHandler() {
         $(this).parent().addClass("selectedTd");
         console.log($(this).parent().attr('videoId'));
         // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        if(getAutoPlayValue()==true){
+        if (getAutoPlayValue() == true) {
             player.loadVideoById($(this).parent().attr('videoId'));
-        }else
-        player.cueVideoById($(this).parent().attr('videoId'));
+        } else
+            player.cueVideoById($(this).parent().attr('videoId'));
 
         // // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
         player2.cueVideoById($(this).parent().attr('videoId'));
+
+
+        //update stats popover
+        var videoID = $(this).parent().attr('videoId');
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/videos',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: videoID,
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('Youtube success',data);
+                var likes = parseInt(data.items[0].statistics.likeCount);
+                var dislikes = parseInt(data.items[0].statistics.dislikeCount);
+
+                var perecentLikes = likes / (likes + dislikes) * 100;
+                var percentDislikes = 100 - perecentLikes;
+
+                var videoStatsDiv = $('<div></div>');
+                var views = $('<p><strong>Views: </strong>'+parseInt(data.items[0].statistics.viewCount).toLocaleString("en-us")+'</p>');
+                var likesTitle = $('<p><strong>Likes and Dislikes:</strong></p>');
+                var likesBar = null;
+                if(likes > dislikes){
+                    likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:'+perecentLikes+'%">'+likes.toLocaleString("en-us")+' Likes</div><div class="progress-bar progress-bar-danger" style="width:'+percentDislikes+'%"></div>');
+                }
+                else{
+                    likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:'+perecentLikes+'%">'+dislikes.toLocaleString("en-us")+' Dislikes</div><div class="progress-bar progress-bar-danger" style="width:'+percentDislikes+'%"></div>');
+                }
+
+                var descriptionTitle = $('<p><strong>Description: </strong></p>');
+                var description = $('<p>'+data.items[0].snippet.description+'</p>');
+
+                videoStatsDiv.append(views, likesTitle, likesBar, descriptionTitle, description);
+
+                $("#videoStats").popover('destroy');
+                setTimeout(function () {
+                    $("#videoStats").popover({
+                        html: true,
+                        content: videoStatsDiv,
+                        placement: 'auto',
+                        container: 'body'
+                    });
+                }, 250);
+
+                $("#videoStats").attr({
+                    'data-original-title': data.items[0].snippet.title + " - " + data.items[0].snippet.channelTitle
+                });
+
+
+
+
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
+        })
 
     });
 
@@ -136,7 +218,6 @@ function clickHandler() {
             $('#lightBoxModal').modal('show');
         }
     });
-
 }
 
 
@@ -168,7 +249,6 @@ function searchChannelsByName() {
                 var channelListData = "#chSearch-" + (i + 1);
                 var chName = channelListData + " .chName";
                 var img = channelListData + " img";
-                var browseButton = channelListData + ".browseChannelButton"
                 $(channelListData).show();
                 $(channelListData).attr("channelId", data.items[i].snippet.channelId);
                 $(chName).text(data.items[i].snippet.channelTitle);
@@ -223,7 +303,7 @@ function renderChannelSearchStats(i) {
     })
 }
 
-function clearChannelResults(){
+function clearChannelResults() {
     for (var i = 0; i < 10; i++) {
         var chName = channelListData + " .chName";
         var img = channelListData + " img";
@@ -274,8 +354,6 @@ function renderVideoList(videoArray) {
                 'data-original-title': videoArray[i].video_title
             });
 
-
-
             $(row + " .tdTitle").popover({
                 trigger: "hover",
                 html: true,
@@ -323,7 +401,8 @@ function convertYTApiChannelDatatoDbData(channelId) {
     return channelDbObject;
 }
 
-function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken = "") {
+function convertYTApiVideoDatatoDbData(channelId, allVideos = [], pageToken = "") {
+    var packageToSendToDb = [];
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
         dataType: 'json',
@@ -339,6 +418,7 @@ function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken
         },
         success: function (data) {
             console.log('Youtube success', data);
+            createPlaceholderAnimation();
             for (var i = 0; i < data.items.length; i++) {
                 var videoObject = {};
                 videoObject.video_title = data.items[i].snippet.title;
@@ -346,18 +426,24 @@ function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken
                 videoObject.channel_id = data.items[i].snippet.channelId;
                 videoObject.channel_title = data.items[i].snippet.channelTitle;
                 videoObject.description = data.items[i].snippet.description;
-                videoObject.published_at = data.items[i].snippet.publishedAt;
+                var publishedAt = data.items[i].snippet.publishedAt;
+                publishedAt = publishedAt.replace("T", " ");
+                publishedAt = publishedAt.replace(".000Z", "");
+                videoObject.published_at = publishedAt;
                 // var thumbnail = data.items[i].snippet.thumbnails.medium.url;
                 // thumbnail = thumbnail.replace('https://i.ytimg.com/vi/', '');
                 // thumbnail = thumbnail.replace('/mqdefault.jpg', '');
                 // videoObject.thumbnail = thumbnail;
 
-                dbVideoObjects.push(videoObject);
+                allVideos.push(videoObject);
+                packageToSendToDb.push(videoObject);
             }
+            access_database.insert_video(packageToSendToDb);
+
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
-                convertYTApiVideoDatatoDbData(channelId, dbVideoObjects, data.nextPageToken)
+                convertYTApiVideoDatatoDbData(channelId, allVideos, data.nextPageToken)
             } else {
-                globalVideoObjectArray = dbVideoObjects; //set to global variable  Can't return the array for some reason
+                globalVideoObjectArray = allVideos; //set to global variable  Can't return the array for some reason
             }
         },
         error: function (data) {
@@ -383,12 +469,12 @@ function browseChannel(channelId, pageNumber) {
             return
         }
         var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray, page);
-        console.log('PAGE NUMBER', page);
         renderVideoList(videoArrayPage);
         globalVideoObjectArray = null;
     }
     convertYTApiVideoDatatoDbData(channelId);
-    handleData(channelId, pageNumber)
+    handleData(channelId, pageNumber);
+    // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
 }
@@ -399,24 +485,69 @@ function handleBrowseButton() {
     $('#channelSearchModal').modal('hide')
 }
 
-function displayCurrentPageNumber(){
+function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber)
-    if(currentSlideNumber == 1){
+    if (currentSlideNumber == 1) {
         $(".leftControl").hide()
-    }else{
+    } else {
         $(".leftControl").show()
     }
 }
 
-function handleRightCarouselClick(){
-    currentSlideNumber ++;
-    displayCurrentPageNumber()
+function handleRightCarouselClick(obj){
+    obj.disabled = false;
+    setTimeout(function() {
+        obj.disabled = true;
+        currentSlideNumber ++;
+        displayCurrentPageNumber()
+    }, 3000);
+  
 }
 
-function handleLeftCarouselClick(){
-    currentSlideNumber --;
+function handleLeftCarouselClick() {
+    currentSlideNumber--;
     displayCurrentPageNumber()
+
 }
+
 function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
+}
+
+  function disableCarousel(obj){
+    obj.disabled = false;
+    setTimeout(function() {
+        obj.disabled = true;
+    }, 1000);
+    setTimout(handleRightCarouselClick,1000)
   }
+
+//Testing placeholder animation
+var classes = [
+    "background-masker header-top",
+    "background-masker header-left",
+    "background-masker header-right",
+    "background-masker header-bottom",
+    "background-masker subheader-left",
+    "background-masker subheader-right",
+    "background-masker subheader-bottom",
+    "background-masker content-top",
+    "background-masker content-first-end",
+    "background-masker content-second-line",
+    "background-masker content-second-end",
+    "background-masker content-third-line",
+    "background-masker content-third-end"
+]
+
+function createPlaceholderAnimation() {
+    var outerDiv = $('<div>').addClass("timeline-wrapper");
+    var nestedDiv1 = $('<div>').addClass("timeline-item");
+    var nestedDiv2 = $('<div>').addClass("animated-background");
+    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2);
+    for (var i = 0; i < 12; i++) {
+        var childElements = $('<div>').addClass(classes[i]);
+        $(childElements).appendTo(nestedDiv2);
+
+    }
+    $('.tdTitle, .tdChannel').append(completedWrapper);
+}

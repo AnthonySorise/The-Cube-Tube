@@ -153,16 +153,20 @@ consider carousel for the video list area:
 					<!--This is where the iframe element will go-->
 					<div id="mainVideo" class="iframeVideo"></div>
 					<div id=infoButtonContainer>
-						<a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body"
+						<!-- <a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body"
 						 data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
 							<i class="fa fa-comments-o fa-2x" aria-hidden="true"></i>
 						</a>
 						<a tabindex="0" id="videoInfo" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 						 data-placement="bottom" title="video info" data-content="a section for video info maybe">
 							<i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
-						</a>
-						<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body"
-						 data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">
+						</a> -->
+						<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+						 data-placement="bottom" title="channel info" data-content="section for channel info">
+							<i class="fa fa-list-alt fa-2x" aria-hidden="true"></i>
+						</a> 
+						<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body">
+						 <!--data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">-->
 							<i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
 						</a>
 						<!--can take function as content; meaning data only uploads when clicked-->
@@ -1217,7 +1221,7 @@ consider carousel for the video list area:
 					<a class="left carousel-control leftControl" href="#text-carousel" data-slide="prev" onClick=handleLeftCarouselClick()>
 						<span class="glyphicon glyphicon-chevron-left"></span>
 					</a>
-					<a class="right carousel-control" href="#text-carousel" data-slide="next" onClick=handleRightCarouselClick()>
+					<a class="right carousel-control" href="#text-carousel" data-slide='next' onClick=handleRightCarouselClick(this)>
 						<span class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 				</div>
