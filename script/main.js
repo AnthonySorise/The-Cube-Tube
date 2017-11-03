@@ -223,7 +223,7 @@ function renderChannelSearchStats(i) {
     })
 }
 
-function clearChannelResults(){
+function clearChannelResults() {
     for (var i = 0; i < 10; i++) {
         var chName = channelListData + " .chName";
         var img = channelListData + " img";
@@ -339,6 +339,7 @@ function convertYTApiVideoDatatoDbData(channelId, dbVideoObjects = [], pageToken
         },
         success: function (data) {
             console.log('Youtube success', data);
+            createPlaceholderAnimation();
             for (var i = 0; i < data.items.length; i++) {
                 var videoObject = {};
                 videoObject.video_title = data.items[i].snippet.title;
@@ -420,4 +421,34 @@ function handleLeftCarouselClick() {
 
 function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
+}
+
+//Testing placeholder animation
+var classes = [
+    "background-masker header-top",
+    "background-masker header-left",
+    "background-masker header-right",
+    "background-masker header-bottom",
+    "background-masker subheader-left",
+    "background-masker subheader-right",
+    "background-masker subheader-bottom",
+    "background-masker content-top",
+    "background-masker content-first-end",
+    "background-masker content-second-line",
+    "background-masker content-second-end",
+    "background-masker content-third-line",
+    "background-masker content-third-end"
+]
+
+function createPlaceholderAnimation() {
+    var outerDiv = $('<div>').addClass("timeline-wrapper");
+    var nestedDiv1 = $('<div>').addClass("timeline-item");
+    var nestedDiv2 = $('<div>').addClass("animated-background");
+    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2);
+    for (var i = 0; i < 12; i++) {
+        var childElements = $('<div>').addClass(classes[i]);
+        $(childElements).appendTo(nestedDiv2);
+
+    }
+    $('.tdTitle, .tdChannel').append(completedWrapper);
 }
