@@ -7,7 +7,7 @@ $youtube_channel_id = $_POST['youtube_channel_id'];
 if(empty($youtube_channel_id)){
     $output['errors'][] = "MISSING ID";
 }
-$sqli =  "SELECT  `c.channel_title`, 
+$sqli =  "SELECT  `channel_title`, 
 `description`,`sub_count`,
 `video_count`,`view_count`,`thumbnail_file_name` FROM `channels` WHERE youtube_channel_id = ? ";
 $stmt = mysqli_stmt_init($conn);
