@@ -364,6 +364,8 @@ function clearChannelResults() {
 }
 
 function renderVideoList(videoArray) {
+    console.log("RENDER VIDEO LIST", globalVideoObjectArray)
+
     $(".tdTitle").popover('destroy');
 
     setTimeout(function () {
@@ -485,6 +487,7 @@ function convertYTApiVideoDatatoDbData(channelId, allVideos = [], pageToken = ""
                 convertYTApiVideoDatatoDbData(channelId, allVideos, data.nextPageToken)
             } else {
                 globalVideoObjectArray = allVideos; //set to global variable  Can't return the array for some reason
+                console.log("GLOBAL VIDEO OBJECT ARRAY", globalChannelObjectArray)
             }
         },
         error: function (data) {
