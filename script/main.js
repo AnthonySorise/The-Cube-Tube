@@ -355,6 +355,8 @@ function clearVideoList(){
         placement: 'auto',
         container: 'body'
     });
+
+    createPlaceholderAnimation();
 }
 
 function renderVideoList(videoArray) {
