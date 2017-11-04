@@ -649,3 +649,23 @@ function displayTableDataOnMobile(){
     $(".tdListLeft").removeClass('col-md-6');
     $(".carousel-inner").append(newElement)
 }
+
+function screenSizeListener() {
+    var h = parseInt(window.innerHeight);
+    var w = parseInt(window.innerWidth);
+
+    if(w <= 500) {
+        //max-width 500px
+        // actions here...
+        red();
+    } else if(w > 500 && w <=850) {
+        //max-width 850px
+        // actions here...
+        orange();
+    } else {
+        // 850px and beyond
+        // actions here...
+        green();
+    }
+
+}
