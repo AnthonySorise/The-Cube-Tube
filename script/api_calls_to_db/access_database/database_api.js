@@ -49,6 +49,7 @@
                  if(data.success){
                      // promise.resolve(data);
                      console.log('insert channel success');
+                     return data.id;
                  }
              },
              errors:function(data){
