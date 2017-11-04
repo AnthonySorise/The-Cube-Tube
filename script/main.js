@@ -660,6 +660,8 @@ var classes = [
 ]
 
 function createPlaceholderAnimation() {
+    $(".tdList").show();
+
     var outerDiv = $('<div>').addClass("timeline-wrapper");
     var nestedDiv1 = $('<div>').addClass("timeline-item");
     var nestedDiv2 = $('<div>').addClass("animated-background");
