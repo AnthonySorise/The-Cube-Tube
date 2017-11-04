@@ -532,8 +532,8 @@ function manageDatabaseWithChannelId (channelID){
                         if(data.success){
                             // promise.resolve(data);
                             console.log('read data success', data);
-                            globalVideoObjectArray = [];
-                            globalVideoObjectArray = data.data[0];
+                            globalChannelObjectArray = [];
+                            globalChannelObjectArray.push(data.data[0]);
                             handleGlobalVideoObjectArray();
                         }
                     },
