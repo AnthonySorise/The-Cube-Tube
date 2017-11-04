@@ -605,3 +605,14 @@ function createPlaceholderAnimation() {
     }
     $('.tdTitle, .tdChannel').append(completedWrapper);
 }
+
+function displayTableDataOnMobile(){
+    var newSlideData = $(".firstPage>*").children().clone()
+    var itemDiv = $("<div>").addClass('item');
+    var contentDiv = $("<div>").addClass('carousel-content');
+    var rowDiv = $("<div>").addClass('row,tdRow,text-center');
+    var newElement = itemDiv.append(contentDiv).append(rowDiv).append(newSlideData);
+    $(".tdListRight").remove();
+    $(".tdListLeft").removeClass('col-md-6');
+    $(".carousel-inner").append(newElement)
+}
