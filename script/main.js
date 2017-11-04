@@ -429,7 +429,7 @@ function ytChannelApiToDb(channelId) {
     });
 }
 
-function ytVideoApiToDb(channelId, pageToken = "") {
+function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
     var packageToSendToDb = [];
     var clientVideos = [];
     $.ajax({
@@ -470,17 +470,19 @@ function ytVideoApiToDb(channelId, pageToken = "") {
                 // }
 
             }
-            console.log("LINE 473 - clientVideoObjectArray IS ", clientVideoObjectArray)
-            if(clientVideoObjectArray === null){
 
+            if(firstRun){
+                for(var i = 0; i < 40; i++){
+                    clientVideoObjectArray.push(packageToSendToDb)
+                }
             }
+            console.log("LINE 473 - clientVideoObjectArray IS ", clientVideoObjectArray)
 
             access_database.insert_video(packageToSendToDb);
 
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
-                ytVideoApiToDb(channelId, data.nextPageToken)
+                ytVideoApiToDb(channelId, data.nextPageToken, false)
             }
-
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
