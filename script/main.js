@@ -64,7 +64,7 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
 
-    // clearVideoList();   //hides list rows until they are needed
+    clearVideoList();   //hides list rows until they are needed
 
 });
 
@@ -348,13 +348,13 @@ function clearVideoList(){
         'data-content': "",
         'data-original-title': ""
     });
-    $(".tdTitle").popover({
-        trigger: "hover",
-        html: true,
-        content: "",
-        placement: 'auto',
-        container: 'body'
-    });
+    // $(".tdTitle").popover({
+    //     trigger: "hover",
+    //     html: true,
+    //     content: "",
+    //     placement: 'auto',
+    //     container: 'body'
+    // });
 
     // $('.tdList').hide();
 }
@@ -593,7 +593,7 @@ function loadAndResetClientVideoObjectArray() {
 }
 
 function handleBrowseButton() {
-    // clearVideoList();
+    clearVideoList();
     createPlaceholderAnimation();
 
     let channelID = $(this).parent().attr("channelId");
