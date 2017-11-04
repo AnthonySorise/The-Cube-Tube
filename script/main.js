@@ -551,8 +551,9 @@ function manageDatabaseWithChannelId (channelID){
                                     if (data.success) {
                                         // promise.resolve(data);
                                         console.log('read success')
-                                        console.log("SUUUUUUCCCCCEEEEEESSSSSSS,", data)
-                                        globalVideoObjectArray.push(data.data[0])
+                                        console.log("SUUUUUUCCCCCEEEEEESSSSSSS,", data);
+                                        globalVideoObjectArray = data.data
+                                        handleGlobalVideoObjectArray();
                                     }
                                 },
                                 errors: function (data) {
@@ -562,7 +563,7 @@ function manageDatabaseWithChannelId (channelID){
                             })
 
 
-                            handleGlobalVideoObjectArray();
+
                         }
                     },
                     errors:function(data){
