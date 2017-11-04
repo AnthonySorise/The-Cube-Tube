@@ -544,9 +544,9 @@ function manageDatabaseWithChannelId (channelID){
                 console.log('data.nothing_to_read', data.nothing_to_read)
                 if(data.nothing_to_read){
                     console.log("NOT ON DATABASE")
-                    convertYTApiVideoDatatoDbData(channelID);       //READ AND CHECK if exists on db FIRST!
-                    var ytChannelData = convertYTApiChannelDatatoDbData(channelID);
-                    access_database.insert_channel(channelID)
+                    convertYTApiVideoDatatoDbData(channelId);       //READ AND CHECK if exists on db FIRST!
+                    var ytChannelData = convertYTApiChannelDatatoDbData(channelId);
+                    access_database.insert_channel(channelId)
 
                     function handleGlobalVideoObjectArray() {
                         if (globalVideoObjectArray === null) {
