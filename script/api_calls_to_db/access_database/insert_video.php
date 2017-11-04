@@ -3,8 +3,8 @@ if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
 $video_array = $_POST['videoArray'];
-$channel_id = $video_array['channel_id'];
 for($i = 0; $i<count($video_array); $i++ ){
+    $channel_id = $video_array[$i]['channel_id'];
     $video_title = $video_array[$i]['video_title'];
     $youtube_channel_id = $video_array[$i]['youtube_channel_id'];
     $youtube_video_id = $video_array[$i]['youtube_video_id'];
