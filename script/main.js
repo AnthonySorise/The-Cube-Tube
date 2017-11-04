@@ -547,14 +547,14 @@ function manageDatabaseWithChannelId (channelID){
                     console.log("NOT ON DATABASE")
                     convertYTApiVideoDatatoDbData(channelID);       //READ AND CHECK if exists on db FIRST!
                     var ytChannelData = convertYTApiChannelDatatoDbData(channelID);
-                    access_database.insert_channel(channelID)
+                    access_database.insert_channel(ytChannelData)
 
                     function handleGlobalVideoObjectArray() {
                         if (globalVideoObjectArray === null) {
                             setTimeout(handleGlobalVideoObjectArray, 50);
                             return
                         }
-                        var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray, page);
+                        var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray);
                         renderVideoList(videoArrayPage);
                         globalVideoObjectArray = null;
                     }
