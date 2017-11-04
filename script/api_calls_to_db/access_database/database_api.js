@@ -51,7 +51,7 @@
                      // promise.resolve(data);
                      console.log('insert channel success');
                      console.log(data);
-                     this.channel_id_hold = data.id
+                     this.channel_id_hold = data['id']
                  }
              },
              errors:function(data){
