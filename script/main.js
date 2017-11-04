@@ -472,9 +472,12 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
             }
 
             if(firstRun){
+                clientVideoObjectArray = [];
+                var clientPackage = [];
                 for(var i = 0; i < 40; i++){
-                    clientVideoObjectArray.push(packageToSendToDb)
+                    clientPackage.push(packageToSendToDb)
                 }
+                clientVideoObjectArray = clientPackage
             }
             console.log("LINE 473 - clientVideoObjectArray IS ", clientVideoObjectArray)
 
