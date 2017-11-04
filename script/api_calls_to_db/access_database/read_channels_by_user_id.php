@@ -22,7 +22,7 @@ if(!empty($stmt)){
             $output['data'][] = $row;
         }
     }else{
-        $output['errors'][] = mysqli_error($conn);
+        $output['nothing_to_read'] = true;
     }
 }else{
     $output['errors'][] = 'INVALID QUERY';

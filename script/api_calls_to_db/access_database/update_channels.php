@@ -5,9 +5,6 @@ if(empty($LOCAL_ACCESS)){
 $channel_title = $_POST['channel_title'];
 $description = $_POST['description'];
 $thumbnail = $_POST['thumbnail'];
-$sub_count = $_POST['sub_count'];
-$video_count = $_POST['video_count'];
-$view_count = $_POST['view_count'];
 $channel_id = $_POST['channel_id'];
 $last_channel_pulled = date("Y-m-d H:i:s");
 if(empty($channel_title)){
@@ -18,15 +15,6 @@ if(empty($description)){
 }
 if(empty($thumbnail)){
     $output['errors'][] = "MISSING THUMBNAILS";
-}
-if(empty($sub_count)){
-    $output['errors'][] = "MISSING SUBSCRIPTION COUNT";
-}
-if(empty($video_count)){
-    $output['errors'][] = "MISSING VIDEO COUNT";
-}
-if(empty($view_count)){
-    $output['errors'][] = "MISSING VIEW COUNT";
 }
 if(empty($channel_id)){
     $output['errors'][] = "MISSING ID";

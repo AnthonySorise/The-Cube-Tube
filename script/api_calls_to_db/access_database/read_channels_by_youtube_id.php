@@ -23,6 +23,7 @@ if(!mysqli_stmt_prepare($stmt,$sqli)){
         }
     } else {
         $output['errors'][] = mysqli_error($conn);
+        $output['nothing_to_read'] = true;
     }
 }
 ?>
