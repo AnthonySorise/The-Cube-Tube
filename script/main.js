@@ -537,7 +537,30 @@ function manageDatabaseWithChannelId (channelID){
                             console.log('read data success', data);
                             globalChannelObjectArray = [];
                             globalChannelObjectArray.push(data.data[0]);
-                            console.log('GLOBAL VIDEO OBJECT ARRAY', globalVideoObjectArray)
+
+                            $.ajax({
+                                url: './script/api_calls_to_db/access_database/access.php',
+                                method: 'POST',
+                                dataType: 'JSON',
+                                data: {
+                                    action:'read_videos_by_channel',
+                                    youtube_channel_id:channelID,
+                                    offset:0
+                                },
+                                success: function (data) {
+                                    if (data.success) {
+                                        // promise.resolve(data);
+                                        console.log('read success')
+                                        console.log("SUUUUUUCCCCCEEEEEESSSSSSS,", data)
+                                        globalVideoObjectArray.push(data.data[0])
+                                    }
+                                },
+                                errors: function (data) {
+                                    console.log('read error');
+                                    // promise.reject(data);
+                                }
+                            })
+
 
                             handleGlobalVideoObjectArray();
                         }
