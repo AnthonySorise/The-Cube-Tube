@@ -1,4 +1,5 @@
  function Database(){
+    var self = this;
     this.channel_id_hold = null;
     this.delete_ctu = function(ctu_id){//delete by specifying table and id of entry i.e table = 'channels', id = 2
         // var promise = {
@@ -51,7 +52,7 @@
                      // promise.resolve(data);
                      console.log('insert channel success');
                      console.log(data);
-                     this.channel_id_hold = data.id;
+                     self.channel_id_hold = data.id;
                  }
              },
              errors:function(data){
