@@ -526,38 +526,40 @@ function manageDatabaseWithChannelId (channelID){
                         action:'read_channels_by_youtube_id'
                     },
                     success:function(data){
+
                         if(data.success){
                             // promise.resolve(data);
                             console.log('read data success', data);
                             currentVideos.push(data)
                         }
-                        else{
-                            console.log('data', data)
-                            console.log('data.nothing_to_read', data.nothing_to_read)
-                            if(data.nothing_to_read){
-                                console.log("NOT ON DATABASE")
-                                convertYTApiVideoDatatoDbData(channelId);       //READ AND CHECK if exists on db FIRST!
-                                var ytChannelData = convertYTApiChannelDatatoDbData(channelId);
-                                access_database.insert_channel(channelId)
 
-                                function handleGlobalVideoObjectArray() {
-                                    if (globalVideoObjectArray === null) {
-                                        setTimeout(handleData, 50);
-                                        return
-                                    }
-                                    var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray, page);
-                                    renderVideoList(videoArrayPage);
-                                    globalVideoObjectArray = null;
-                                }
-                                handleGlobalVideoObjectArray(channelID);
-                            }
-                        }
                     },
                     errors:function(data){
                         // promise.reject(data);
                         console.log(data['read errors'], data);
                     }
                 })
+            }
+            else{
+                console.log('data', data)
+                console.log('data.nothing_to_read', data.nothing_to_read)
+                if(data.nothing_to_read){
+                    console.log("NOT ON DATABASE")
+                    convertYTApiVideoDatatoDbData(channelId);       //READ AND CHECK if exists on db FIRST!
+                    var ytChannelData = convertYTApiChannelDatatoDbData(channelId);
+                    access_database.insert_channel(channelId)
+
+                    function handleGlobalVideoObjectArray() {
+                        if (globalVideoObjectArray === null) {
+                            setTimeout(handleData, 50);
+                            return
+                        }
+                        var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray, page);
+                        renderVideoList(videoArrayPage);
+                        globalVideoObjectArray = null;
+                    }
+                    handleGlobalVideoObjectArray(channelID);
+                }
             }
         },
         errors:function(data){
