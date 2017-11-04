@@ -164,7 +164,7 @@ function clickHandler() {
                     $("#videoStats").popover({
                         html: true,
                         content: videoStatsDiv,
-                        placement: 'auto',
+                        placement: 'top',
                         container: 'body'
                     });
                 }, 250);
