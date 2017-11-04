@@ -15,10 +15,11 @@ WHERE `ctu.user_id` = ?
 ORDER BY `c.channel_title`");
 $stmt->bind_param("i",$user_id);
 $stmt->execute();
-if(!empty($stmt)){
-    if(mysqli_num_rows($stmt)>0){
+$result = mysqli_stmt_get_result($stmt);
+if(!empty($result)){
+    if(mysqli_num_rows($result)>0){
         $output['success']=true;
-        while($row = mysqli_fetch_assoc($stmt)){
+        while($row = mysqli_fetch_assoc($result)){
             $output['data'][] = $row;
         }
     }else{
