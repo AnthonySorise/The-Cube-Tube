@@ -595,6 +595,7 @@ function loadClientVideoObjectArray() {
         return
     }
     let videoArrayPage = convertVideoArrayToOnePage(clientVideoObjectArray);    //TODO - Temporary - until grab 40 vids at a time
+    console.log("VIDEO ARRAY PAGE", videoArrayPage)
     renderVideoList(videoArrayPage);
     // clientVideoObjectArray = null;
 }
