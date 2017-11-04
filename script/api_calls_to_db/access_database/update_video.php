@@ -10,17 +10,17 @@ if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }
 if(empty($description)){
-    $output['errors'][] = "MISSING VIDEO DESCRIPTION";
+    $output['errors'][] = 'MISSING VIDEO DESCRIPTION';
 }
 if(empty($video_id)){
-    $output['errors'][] = "MISSING ID";
+    $output['errors'][] = 'MISSING ID';
 }
 $stmt = $conn->prepare("UPDATE video SET 
 channel_title = ?,  
 description = ?, 
 last_updated = ?
 WHERE video_id = ?");
-$stmt ->bind_param("sssi",$channel_title,$description,$last_updated,$video_id);
+$stmt ->bind_param('sssi',$channel_title,$description,$last_updated,$video_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';
