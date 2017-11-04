@@ -64,7 +64,7 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
 
-    clearVideoList();   //hides list rows until they are needed
+    // clearVideoList();   //hides list rows until they are needed
 
 });
 
@@ -593,7 +593,7 @@ function loadAndResetClientVideoObjectArray() {
 }
 
 function handleBrowseButton() {
-    clearVideoList();
+    // clearVideoList();
     createPlaceholderAnimation();
 
     let channelID = $(this).parent().attr("channelId");
