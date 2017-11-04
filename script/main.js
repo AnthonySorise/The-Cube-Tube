@@ -314,7 +314,8 @@ function renderChannelSearchStats(i) {
         error: function (data) {
             console.log('something went wrong with YT', data);
         }
-    })
+    });
+    removePlaceholderAnimation();
 }
 
 function clearChannelResults() {
@@ -348,14 +349,6 @@ function clearVideoList(){
         'data-content': "",
         'data-original-title': ""
     });
-    // $(".tdTitle").popover({
-    //     trigger: "hover",
-    //     html: true,
-    //     content: "",
-    //     placement: 'auto',
-    //     container: 'body'
-    // });
-
     $('.tdList').hide();
 }
 
@@ -671,7 +664,18 @@ function createPlaceholderAnimation() {
         $(childElements).appendTo(nestedDiv2);
 
     }
-    $('.tdTitle, .tdChannel').append(completedWrapper);
+    $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
+}
+
+function removePlaceholderAnimation(){
+    for(var i = 0; i<40; i++){
+        let row = "#tdList-" + (i + 1);
+        let title = row + " .tdTitle>span";
+
+        if($(title).text() === ""){
+            $(row).hide();
+        }
+    }
 }
 
 function displayTableDataOnMobile(){
