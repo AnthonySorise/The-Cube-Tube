@@ -50,7 +50,8 @@
                      // promise.resolve(data);
                      console.log('insert channel success');
                      console.log(data);
-                     return data.id;
+                     var hold_id = data.id
+                     return hold_id;
                  }
              },
              errors:function(data){
