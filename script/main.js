@@ -593,7 +593,7 @@ function loadClientVideoObjectArray() {
         return
     }
     // let videoArrayPage = convertVideoArrayToOnePage(clientVideoObjectArray);    //TODO - Temporary - until grab 40 vids at a time
-    renderVideoList(videoArrayPage);
+    renderVideoList(clientVideoObjectArray);
     // clientVideoObjectArray = null;
 }
 
