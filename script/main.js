@@ -11,16 +11,13 @@ var currentSlideNumber = 1;
 // var currentVideos = [];
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-// var player;
+
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-
         videoId: vidId || 'ZZ5LpwO-An4'
     });
-    // player.attr("id", "mainVideo")
     onYouTubeIframeAPIReady2();
 }
-
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
         videoId: 'ZZ5LpwO-An4'
@@ -58,28 +55,6 @@ $(document).ready(function () {
 
 });
 
-function toastMsg(msgString, time){ 
-    const msg = $('<div>',{
-        text: msgString,
-        class:'toast'       
-    }).css({
-        position: 'fixed',
-        right: '-150px',
-        top: '125px',
-        'width': '150px',
-        'padding': '7px',
-        'background-color': 'rgba(0,0,0,0.7)',
-        'color' : 'white',
-        'z-index': 1000,
-        'border-radius': '15px'
-    }).animate({
-        right: '+=155px'
-    }, 900);
-    $('body').append(msg);
-    setTimeout(function(){
-        $('.toast').remove();
-    }, time);
-}
 
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
@@ -130,15 +105,12 @@ function clickHandler() {
         $(this).parent().find(".tdTitle>span").prepend(playSymbol);
         $('.tdList').removeClass('selectedTd');
         $(this).parent().addClass("selectedTd");
-        // $('#mainVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId')+ '?&autoplay=1');
-        if (getAutoPlayValue() == true) {
+        if (getAutoPlayValue() == true){
             player.loadVideoById($(this).parent().attr('videoId'));
-        } else
+        }else{
             player.cueVideoById($(this).parent().attr('videoId'));
-
-        // // $('#theaterVideo').attr("src", 'https://www.youtube.com/embed/'+$(this).parent().attr('videoId'));
+        }
         player2.cueVideoById($(this).parent().attr('videoId'));
-
 
         //update stats popover
         var videoID = $(this).parent().attr('videoId');
@@ -152,18 +124,17 @@ function clickHandler() {
                 part: 'snippet, statistics'
             },
             success: function (data) {
-                console.log('Youtube success',data);
-                var likes = parseInt(data.items[0].statistics.likeCount);
-                var dislikes = parseInt(data.items[0].statistics.dislikeCount);
+                // console.log('Youtube success',data);
+                const likes = parseInt(data.items[0].statistics.likeCount);
+                const dislikes = parseInt(data.items[0].statistics.dislikeCount);
 
-                var perecentLikes = likes / (likes + dislikes) * 100;
-                var percentDislikes = 100 - perecentLikes;
+                const perecentLikes = likes / (likes + dislikes) * 100;
+                const percentDislikes = 100 - perecentLikes;
 
-                var videoStatsDiv = $('<div></div>');
-                var views = $('<p><strong>Views: </strong>'+parseInt(data.items[0].statistics.viewCount).toLocaleString("en-us")+'</p>');
-                var likesTitle = $('<p><strong>Likes and Dislikes:</strong></p>');
-                var likesBar = null;
-
+                let videoStatsDiv = $('<div></div>');
+                const views = $('<p><strong>Views: </strong>'+parseInt(data.items[0].statistics.viewCount).toLocaleString("en-us")+'</p>');
+                const likesTitle = $('<p><strong>Likes and Dislikes:</strong></p>');
+                let likesBar = null;
 
                 if(likes > dislikes){
                     likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:'+perecentLikes+'%">'+likes.toLocaleString("en-us")+' Likes</div><div class="progress-bar progress-bar-danger" style="width:'+percentDislikes+'%"></div>');
@@ -172,8 +143,8 @@ function clickHandler() {
                     likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:'+perecentLikes+'%"></div><div class="progress-bar progress-bar-danger" style="width:'+percentDislikes+'%">'+dislikes.toLocaleString("en-us")+' Dislikes</div>');
                 }
 
-                var descriptionTitle = $('<p><strong>Description: </strong></p>');
-                var description = $('<p>'+data.items[0].snippet.description+'</p>');
+                const descriptionTitle = $('<p><strong>Description: </strong></p>');
+                const description = $('<p>'+data.items[0].snippet.description+'</p>');
                 videoStatsDiv.append(views, likesTitle, likesBar, descriptionTitle, description);
                 $("#videoStats").popover('destroy');
                 setTimeout(function () {
@@ -229,8 +200,8 @@ function clickHandler() {
 
     //stats popover
     $("#videoStats").on('show.bs.popover', function () {
-        var videoLink = ($('#mainVideo').attr("src"));
-        var videoID = videoLink.replace("https://www.youtube.com/embed/", "");
+        const videoLink = ($('#mainVideo').attr("src"));
+        let videoID = videoLink.replace("https://www.youtube.com/embed/", "");
         videoID = videoID.substring(0, videoID.indexOf('?'));
         $.ajax({
             url: 'https://www.googleapis.com/youtube/v3/videos',
@@ -272,13 +243,13 @@ function searchChannelsByName() {
             maxResults: 10
         },
         success: function (data) {
-            console.log('Youtube success', data);
+            console.log('searchChannelsByName success', data);
             $('#channelSearchModal').modal('show');
             clearChannelResults();
             for (var i = 0; i < data.items.length; i++) {
-                var channelListData = "#chSearch-" + (i + 1);
-                var chName = channelListData + " .chName";
-                var img = channelListData + " img";
+                let channelListData = "#chSearch-" + (i + 1);
+                let chName = channelListData + " .chName";
+                let img = channelListData + " img";
                 $(channelListData).show();
                 $(channelListData).attr("channelId", data.items[i].snippet.channelId);
                 $(chName).text(data.items[i].snippet.channelTitle);
@@ -318,7 +289,7 @@ function renderChannelSearchStats(i) {
             part: 'snippet, statistics'
         },
         success: function (data) {
-            console.log('Youtube success', data);
+            console.log('renderChannelSearchStats success', data);
             const subNumber = parseInt(data.items[0].statistics.subscriberCount);
             const numWithCommas = subNumber.toLocaleString("en-us");
             $(chSub).text(numWithCommas);
@@ -335,11 +306,11 @@ function renderChannelSearchStats(i) {
 
 function clearChannelResults() {
     for (var i = 0; i < 10; i++) {
-        var channelListData = "#chSearch-" + (i + 1);
-        var chName = channelListData + " .chName";
-        var img = channelListData + " img";
-        var chSub = "#chSearch-" + (i + 1) + " .chSub";
-        var chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
+        let channelListData = "#chSearch-" + (i + 1);
+        let chName = channelListData + " .chName";
+        let img = channelListData + " img";
+        let chSub = "#chSearch-" + (i + 1) + " .chSub";
+        let chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
         $(channelListData).attr("channelId", "");
         $(chName).text("");
         $(img).attr("src", "");
@@ -446,7 +417,7 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
             pageToken: pageToken
         },
         success: function (data) {
-            console.log('Youtube success', data);
+            console.log('ytVideoApiToDb success', data);
             createPlaceholderAnimation();
             for (var i = 0; i < data.items.length; i++) {
                 var videoObject = {};
@@ -482,7 +453,7 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
 }
 
 function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 40 at a time from database
-    var returnArray = [];
+    let returnArray = [];
     for (let i = (page * 40); i < ((page * 40) + 40); i++) {
         returnArray.push(videoArray[i])
     }
@@ -577,16 +548,14 @@ function loadAndResetClientVideoObjectArray() {
         setTimeout(loadAndResetClientVideoObjectArray, 50);
         return
     }
-    var videoArrayPage = convertVideoArrayToOnePage(clientVideoObjectArray);    //TODO - Temporary - until grab 40 vids at a time
+    let videoArrayPage = convertVideoArrayToOnePage(clientVideoObjectArray);    //TODO - Temporary - until grab 40 vids at a time
     renderVideoList(videoArrayPage);
     clientVideoObjectArray = null;
 }
 
 function handleBrowseButton() {
-    var channelID = $(this).parent().attr("channelId");
-
+    let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
-
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
@@ -608,6 +577,28 @@ function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
 }
 
+function toastMsg(msgString, time){ 
+    const msg = $('<div>',{
+        text: msgString,
+        class:'toast'       
+    }).css({
+        position: 'fixed',
+        right: '-150px',
+        top: '125px',
+        'width': '150px',
+        'padding': '7px',
+        'background-color': 'rgba(0,0,0,0.7)',
+        'color' : 'white',
+        'z-index': 1000,
+        'border-radius': '15px'
+    }).animate({
+        right: '+=155px'
+    }, 900);
+    $('body').append(msg);
+    setTimeout(function(){
+        $('.toast').remove();
+    }, time);
+}
 
 //Testing placeholder animation
 var classes = [
