@@ -516,6 +516,7 @@ function manageDatabaseWithChannelId (channelID){
                 console.log("CHANNEL IS DATABASE", data);
                 //READ VIDEOS FROM DB
                 data.youtube_channel_id = channelID;
+                globalChannelObjectArray = [];
                 globalChannelObjectArray.push(data);
                 //get videos
                 $.ajax({
