@@ -353,7 +353,7 @@ function clearVideoList(){
         'data-content': "",
         'data-original-title': ""
     });
-    $(row + " .tdTitle").popover({
+    $(".tdTitle").popover({
         trigger: "hover",
         html: true,
         content: "",
