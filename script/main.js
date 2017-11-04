@@ -355,13 +355,9 @@ function clearVideoList(){
         placement: 'auto',
         container: 'body'
     });
-
-    createPlaceholderAnimation();
 }
 
 function renderVideoList(videoArray) {
-    clearVideoList();
-
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
 
@@ -453,7 +449,6 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
         },
         success: function (data) {
             console.log('ytVideoApiToDb success', data);
-            createPlaceholderAnimation();
             for (var i = 0; i < data.items.length; i++) {
                 var videoObject = {};
                 videoObject.channel_id = access_database.channel_id_hold;
@@ -582,6 +577,8 @@ function manageDatabaseWithChannelId (channelID){
 }
 
 function loadAndResetClientVideoObjectArray() {
+
+
     if (clientVideoObjectArray === null) {
         setTimeout(loadAndResetClientVideoObjectArray, 50);
         return
@@ -592,6 +589,9 @@ function loadAndResetClientVideoObjectArray() {
 }
 
 function handleBrowseButton() {
+    clearVideoList();
+    createPlaceholderAnimation();
+
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
     // toastMsg('loading channel videos',1000);
