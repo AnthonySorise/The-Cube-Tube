@@ -15,7 +15,7 @@ $stmt = mysqli_stmt_init($conn);
 if(!mysqli_stmt_prepare($stmt,$sqli)){
     $output['errors'][] = "SQL statement failed";
 }else{
-    mysqli_stmt_bind_param($stmt,'ii',$user_id,$channel_id);
+    mysqli_stmt_bind_param($stmt,"ii",$user_id,$channel_id);
     mysqli_stmt_execute($stmt);
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
