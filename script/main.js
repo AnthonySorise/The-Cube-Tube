@@ -41,17 +41,6 @@ $(document).ready(function () {
 
     clickHandler();
 
-    // $("div.active").on("bsTransitionEnd", function () {
-    //     console.log("Did I do the thing?");
-    //     debugger
-    //     if (rightIndicatorClicked == true) {
-    //         currentSlideNumber++
-    //     } else {
-    //         currentSlideNumber--
-    //     }
-    //     displayCurrentPageNumber();
-    // })
-
     $('#text-carousel').on('slide.bs.carousel', function (ev) {
         console.log(ev)
         if(ev.direction=='left'){
