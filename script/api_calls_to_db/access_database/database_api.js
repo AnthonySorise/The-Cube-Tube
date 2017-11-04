@@ -203,7 +203,7 @@
          })
          // return promise
      }
-    this.read_channels_by_youtube_id = function(search){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
+    this.read_channels_by_youtube_id = function(youtube_channel_id){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -215,18 +215,20 @@
             method:'post',
             dataType:'JSON',
             data:{
-                search:search,
-                action:'read_database_by_youtube_id'
+                youtube_channel_id:youtube_channel_id,
+                action:'read_channels_by_youtube_id'
             },
             success:function(data){
                 if(data.success){
                     // promise.resolve(data);
-                    console.log('read data success');
+                    console.log('read data success', data);
+                }else{
+                    console.log(data);
                 }
             },
-            errors:function(){
+            errors:function(data){
                 // promise.reject(data);
-                console.log(data['read errors']);
+                console.log(data['read errors'], data);
             }
         })
         // return promise;
@@ -260,7 +262,7 @@
         })
         // return promise
     }
-     this.read_videos_by_channel = function(channel_id,offset){
+     this.read_videos_by_channel = function(youtube_channel_id,offset){
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -273,7 +275,7 @@
              dataType: 'JSON',
              data: {
                  action:'read_videos_by_channel',
-                 channel_id:channel_id,
+                 youtube_channel_id:youtube_channel_id,
                  offset:offset
              },
              success: function (data) {
