@@ -315,7 +315,6 @@ function renderChannelSearchStats(i) {
             console.log('something went wrong with YT', data);
         }
     });
-    removePlaceholderAnimation();
 }
 
 function clearChannelResults() {
@@ -392,6 +391,7 @@ function renderVideoList(videoArray) {
             });
         }
     }, 250);
+    removePlaceholderAnimation();
 }
 
 function ytChannelApiToDb(channelId) {
