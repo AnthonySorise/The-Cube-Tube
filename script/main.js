@@ -24,6 +24,7 @@ function onYouTubeIframeAPIReady2() {
 }
 var player;
 var player2;
+
 /*******needed for iframe player*******/
 
 $(document).ready(function () {
@@ -39,6 +40,27 @@ $(document).ready(function () {
     tooltipFunctions();
 
     clickHandler();
+
+    // $("div.active").on("bsTransitionEnd", function () {
+    //     console.log("Did I do the thing?");
+    //     debugger
+    //     if (rightIndicatorClicked == true) {
+    //         currentSlideNumber++
+    //     } else {
+    //         currentSlideNumber--
+    //     }
+    //     displayCurrentPageNumber();
+    // })
+
+    $('#text-carousel').on('slide.bs.carousel', function (ev) {
+        console.log(ev)
+        if(ev.direction=='left'){
+            currentSlideNumber++
+        }else{
+            currentSlideNumber--
+        }
+        displayCurrentPageNumber()
+    });
 
 
 });
@@ -218,6 +240,32 @@ function clickHandler() {
             $('#lightBoxModal').modal('show');
         }
     });
+
+    //stats popover
+    $("#videoStats").on('show.bs.popover', function () {
+        var videoLink = ($('#mainVideo').attr("src"));
+        var videoID = videoLink.replace("https://www.youtube.com/embed/", "");
+        videoID = videoID.substring(0, videoID.indexOf('?'));
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/videos',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: videoID,
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('Youtube success', data);
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
+        })
+
+
+    });
+
 }
 
 
@@ -513,33 +561,12 @@ function displayCurrentPageNumber() {
     }
 }
 
-function handleRightCarouselClick(obj){
-    obj.disabled = false;
-    setTimeout(function() {
-        obj.disabled = true;
-        currentSlideNumber ++;
-        displayCurrentPageNumber()
-    }, 3000);
-  
-}
 
-function handleLeftCarouselClick() {
-    currentSlideNumber--;
-    displayCurrentPageNumber()
-
-}
 
 function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
 }
 
-  function disableCarousel(obj){
-    obj.disabled = false;
-    setTimeout(function() {
-        obj.disabled = true;
-    }, 1000);
-    setTimout(handleRightCarouselClick,1000)
-  }
 
 //Testing placeholder animation
 var classes = [
