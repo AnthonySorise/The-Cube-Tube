@@ -469,11 +469,11 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
 function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 40 at a time from database
     let returnArray = [];
     for (let i = (page * 40); i < ((page * 40) + 40); i++) {
-        console.log("TEST", videoArray[i]);
-        if(typeof videoArray[i] === "undefined"){
+        console.log("TEST", typeof videoArray[i]);
+        if(typeof videoArray[i] !== "undefined"){
             returnArray.push(videoArray[i])
         }
-
+        console.log("SIZE OF ARRAY", videoArray.length)
     }
     return returnArray
 }
