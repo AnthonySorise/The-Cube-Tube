@@ -551,7 +551,7 @@ function manageDatabaseWithChannelId (channelID){
 
                     function handleGlobalVideoObjectArray() {
                         if (globalVideoObjectArray === null) {
-                            setTimeout(handleData, 50);
+                            setTimeout(handleGlobalVideoObjectArray, 50);
                             return
                         }
                         var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray, page);
