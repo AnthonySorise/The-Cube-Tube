@@ -31,6 +31,14 @@ var player2;
 
 /*******needed for iframe player*******/
 
+$(window).resize(function(){
+    let windowWidth = ($(window).width())
+    if(windowWidth <= 768){
+        displayTableDataOnMobile()
+    }
+}) 
+
+
 $(document).ready(function () {
     displayCurrentPageNumber();
     /**
@@ -43,6 +51,8 @@ $(document).ready(function () {
 
     tooltipFunctions();
 
+    
+    
     clickHandler();
 
     $('#text-carousel').on('slide.bs.carousel', function (ev) {
@@ -54,6 +64,8 @@ $(document).ready(function () {
         }
         displayCurrentPageNumber()
     });
+
+    // screenSizeListener() 
 
 
 });
@@ -650,22 +662,3 @@ function displayTableDataOnMobile(){
     $(".carousel-inner").append(newElement)
 }
 
-function screenSizeListener() {
-    var h = parseInt(window.innerHeight);
-    var w = parseInt(window.innerWidth);
-
-    if(w <= 500) {
-        //max-width 500px
-        // actions here...
-        red();
-    } else if(w > 500 && w <=850) {
-        //max-width 850px
-        // actions here...
-        orange();
-    } else {
-        // 850px and beyond
-        // actions here...
-        green();
-    }
-
-}
