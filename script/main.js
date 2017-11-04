@@ -491,15 +491,15 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
     });
 }
 
-function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 40 at a time from database
-    let returnArray = [];
-    for (let i = (page * 40); i < ((page * 40) + 40); i++) {
-        if(typeof videoArray[i] !== "undefined"){
-            returnArray.push(videoArray[i])
-        }
-    }
-    return returnArray
-}
+// function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 40 at a time from database
+//     let returnArray = [];
+//     for (let i = (page * 40); i < ((page * 40) + 40); i++) {
+//         if(typeof videoArray[i] !== "undefined"){
+//             returnArray.push(videoArray[i])
+//         }
+//     }
+//     return returnArray
+// }
 
 function manageDatabaseWithChannelId (channelID){
     clientVideoObjectArray = null;
@@ -592,7 +592,7 @@ function loadClientVideoObjectArray() {
         setTimeout(loadClientVideoObjectArray, 50);
         return
     }
-    let videoArrayPage = convertVideoArrayToOnePage(clientVideoObjectArray);    //TODO - Temporary - until grab 40 vids at a time
+    // let videoArrayPage = convertVideoArrayToOnePage(clientVideoObjectArray);    //TODO - Temporary - until grab 40 vids at a time
     renderVideoList(videoArrayPage);
     // clientVideoObjectArray = null;
 }
