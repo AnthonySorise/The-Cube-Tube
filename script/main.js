@@ -561,9 +561,6 @@ function manageDatabaseWithChannelId (channelID){
                                     // promise.reject(data);
                                 }
                             })
-
-
-
                         }
                     },
                     errors:function(data){
