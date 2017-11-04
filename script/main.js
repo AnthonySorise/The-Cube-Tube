@@ -533,7 +533,7 @@ function manageDatabaseWithChannelId (channelID){
                             // promise.resolve(data);
                             console.log('read data success', data);
                             globalVideoObjectArray = [];
-                            globalVideoObjectArray.push(data);
+                            globalVideoObjectArray = data.data[0];
                             handleGlobalVideoObjectArray();
                         }
                     },
@@ -548,7 +548,7 @@ function manageDatabaseWithChannelId (channelID){
                 console.log('data.nothing_to_read', data.nothing_to_read)
                 if(data.nothing_to_read){
                     console.log("NOT ON DATABASE")
-                    convertYTApiVideoDatatoDbData(channelID);
+                    convertYTApiVideoDatatoDbData(channelID);   //ALSO INSERT TO DB
                     var ytChannelData = convertYTApiChannelDatatoDbData(channelID);
                     access_database.insert_channel(ytChannelData);
 
