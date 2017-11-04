@@ -340,11 +340,6 @@ function clearChannelResults() {
 function clearVideoList(){
     $(".tdTitle").popover('destroy');
 
-    let title = row + " .tdTitle>span";
-    let channel = row + " .tdChannel";
-    let upDate = row + " .tdUpDate";
-    let videoData = row + " .tdInfo a";
-
     $('.tdList').attr("videoID", "");
     $('.tdTitle>span').text("");
     $('.tdChannel').text("");
