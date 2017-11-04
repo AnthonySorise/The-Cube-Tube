@@ -137,7 +137,7 @@ function clickHandler() {
                 part: 'snippet, statistics'
             },
             success: function (data) {
-                // console.log('Youtube success',data);
+                console.log('Youtube success',data);
                 const likes = parseInt(data.items[0].statistics.likeCount);
                 const dislikes = parseInt(data.items[0].statistics.dislikeCount);
 
@@ -479,8 +479,6 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
                 }
                 clientVideoObjectArray = clientPackage
             }
-            console.log("LINE 473 - clientVideoObjectArray IS ", clientVideoObjectArray)
-
             access_database.insert_video(packageToSendToDb);
 
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
