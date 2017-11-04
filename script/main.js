@@ -465,9 +465,9 @@ function ytVideoApiToDb(channelId, pageToken = "") {
                 // videoObject.thumbnail = thumbnail;
 
                 packageToSendToDb.push(videoObject);
-                if(clientVideoObjectArray.length < 40){
-                    clientVideos.push(videoObject);
-                }
+                // if(clientVideoObjectArray.length < 40){
+                //     clientVideos.push(videoObject);
+                // }
 
             }
             console.log("LINE 473 - clientVideoObjectArray IS ", clientVideoObjectArray)
