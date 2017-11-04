@@ -221,12 +221,12 @@
             success:function(data){
                 if(data.success){
                     // promise.resolve(data);
-                    console.log('read data success');
+                    console.log('read data success', data);
                 }
             },
-            errors:function(){
+            errors:function(data){
                 // promise.reject(data);
-                console.log(data['read errors']);
+                console.log(data['read errors'], data);
             }
         })
         // return promise;
