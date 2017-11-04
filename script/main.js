@@ -64,7 +64,7 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
 
-
+    clearVideoList();   //hides list rows until they are needed
 
 });
 
@@ -355,6 +355,8 @@ function clearVideoList(){
         placement: 'auto',
         container: 'body'
     });
+
+    $('.tdList').hide();
 }
 
 function renderVideoList(videoArray) {
@@ -369,6 +371,8 @@ function renderVideoList(videoArray) {
             let dateString = videoArray[i].published_at;
             const d = new Date(dateString);
             dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
+
+            $(row).show();
 
             $(row).attr("videoID", videoArray[i].youtube_video_id);
             $(title).text(videoArray[i].video_title);
