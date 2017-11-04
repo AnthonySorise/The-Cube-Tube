@@ -7,7 +7,7 @@ $offset = $_POST['offset'];
 if(empty($youtube_channel_id)){
     $output['errors'][] = "MISSING YOUTUBE CHANNEL ID";
 }
-$stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at 
+$stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at, v.video_title, c.channel_title
 FROM videos AS v JOIN channels AS c ON v.youtube_channel_id = c.youtube_channel_id
 WHERE v.youtube_channel_id = ? 
 ORDER BY v.published_at DESC LIMIT 40 OFFSET ?");
