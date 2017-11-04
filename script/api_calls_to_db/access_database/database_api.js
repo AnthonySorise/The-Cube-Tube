@@ -33,7 +33,7 @@
          //         this.reject = reject;
          //     }
          // }
-         const {youtube_channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
+         const {youtube_channel_id, channel_title, description, thumbnail} = channel_object;
          $.ajax({
              url:'./script/api_calls_to_db/access_database/access.php',
              method:'post',
@@ -43,10 +43,7 @@
                  youtube_channel_id:youtube_channel_id,
                  channel_title:channel_title,
                  description:description,
-                 thumbnail:thumbnail,
-                 sub_count:sub_count,
-                 video_count:video_count,
-                 view_count:view_count
+                 thumbnail:thumbnail
              },
              success:function(data){
                  if(data.success){
@@ -203,13 +200,20 @@
          })
          // return promise
      }
+     this.read
+     this.got_channels_from_database = function(){
+
+     }
+     this.channel_not_in_database = function(){
+
+     }
     this.read_channels_by_youtube_id = function(youtube_channel_id){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
-        // var promise = {
-        //     then:function(resolve,reject){
-        //         this.resolve = resolve;
-        //         this.reject = reject;
-        //     }
-        // }
+        var promise = {
+            then:function(resolve,reject){
+                this.resolve = resolve;
+                this.reject = reject;
+            }
+        }
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
