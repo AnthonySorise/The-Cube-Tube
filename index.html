@@ -200,7 +200,7 @@ consider carousel for the video list area:
 							<!--form for searching channels-->
 							<label id="autoplayText">Autoplay</label>
 							<label class="switch">
-								<input type="checkbox" id='autoplayCheckBox'checked>
+								<input type="checkbox" id='autoplayCheckBox' checked>
 								<span class="slider round"></span>
 							</label>
 
@@ -256,7 +256,7 @@ consider carousel for the video list area:
 
 
 					<!-- Indicators -->
-					<ol class="carousel-indicators hidden-xs hidden-sm hidden-md">
+					<ol class="carousel-indicators hidden-xs hidden-sm">
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
 						<li id="currentSlideNumberArea"></li>
@@ -266,9 +266,9 @@ consider carousel for the video list area:
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="carousel-inner">
-								<div class="item active">
+								<div class="item active ">
 									<div class="carousel-content">
-										<div class="row tdRow text-center">
+										<div class="row tdRow text-center firstPage">
 											<!--target each list:
                                                 e.g. changing video title
                                                 $('#tdList-' + [i] +' .tdTitle')
@@ -1218,10 +1218,10 @@ consider carousel for the video list area:
 						</div>
 					</div>
 					<!-- Controls -->
-					<a class="left carousel-control leftControl" href="#text-carousel" data-slide="prev" onClick=handleLeftCarouselClick()>
+					<a class="left carousel-control leftControl" href="#text-carousel" data-slide="prev">
 						<span class="glyphicon glyphicon-chevron-left"></span>
 					</a>
-					<a class="right carousel-control" href="#text-carousel" data-slide='next' onClick=handleRightCarouselClick(this)>
+					<a class="right carousel-control" href="#text-carousel" data-slide='next'>
 						<span class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 				</div>

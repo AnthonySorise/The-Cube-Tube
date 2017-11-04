@@ -1,4 +1,6 @@
  function Database(){
+    var self = this;
+    this.channel_id_hold = null;
     this.delete_ctu = function(ctu_id){//delete by specifying table and id of entry i.e table = 'channels', id = 2
         // var promise = {
         //     then:function(resolve,reject){
@@ -33,7 +35,7 @@
          //         this.reject = reject;
          //     }
          // }
-         const {youtube_channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
+         const {youtube_channel_id, channel_title, description, thumbnail} = channel_object;
          $.ajax({
              url:'./script/api_calls_to_db/access_database/access.php',
              method:'post',
@@ -43,15 +45,14 @@
                  youtube_channel_id:youtube_channel_id,
                  channel_title:channel_title,
                  description:description,
-                 thumbnail:thumbnail,
-                 sub_count:sub_count,
-                 video_count:video_count,
-                 view_count:view_count
+                 thumbnail:thumbnail
              },
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
                      console.log('insert channel success');
+                     console.log(data);
+                     self.channel_id_hold = data.id;
                  }
              },
              errors:function(data){
@@ -203,30 +204,39 @@
          })
          // return promise
      }
-    this.read_channels_by_youtube_id = function(search){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
-        // var promise = {
-        //     then:function(resolve,reject){
-        //         this.resolve = resolve;
-        //         this.reject = reject;
-        //     }
-        // }
+     this.read
+     this.got_channels_from_database = function(){
+
+     }
+     this.channel_not_in_database = function(){
+
+     }
+    this.read_channels_by_youtube_id = function(youtube_channel_id){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
+        var promise = {
+            then:function(resolve,reject){
+                this.resolve = resolve;
+                this.reject = reject;
+            }
+        }
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
-                search:search,
-                action:'read_database_by_youtube_id'
+                youtube_channel_id:youtube_channel_id,
+                action:'read_channels_by_youtube_id'
             },
             success:function(data){
                 if(data.success){
                     // promise.resolve(data);
-                    console.log('read data success');
+                    console.log('read data success', data);
+                }else{
+                    console.log(data);
                 }
             },
-            errors:function(){
+            errors:function(data){
                 // promise.reject(data);
-                console.log(data['read errors']);
+                console.log(data['read errors'], data);
             }
         })
         // return promise;
@@ -260,7 +270,7 @@
         })
         // return promise
     }
-     this.read_videos_by_channel = function(channel_id,offset){
+     this.read_videos_by_channel = function(youtube_channel_id,offset){
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -273,7 +283,7 @@
              dataType: 'JSON',
              data: {
                  action:'read_videos_by_channel',
-                 channel_id:channel_id,
+                 youtube_channel_id:youtube_channel_id,
                  offset:offset
              },
              success: function (data) {
@@ -386,3 +396,4 @@
      // }
 }
 var access_database = new Database();
+ var channel_id_hold = null;

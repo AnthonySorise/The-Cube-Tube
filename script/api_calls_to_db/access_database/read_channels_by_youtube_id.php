@@ -4,12 +4,11 @@ if(empty($LOCAL_ACCESS)){
 }
 $output['data'] = [];
 $youtube_channel_id = $_POST['youtube_channel_id'];
-if(empty($search)){
-    $output['errors'][] = "MISSING SEARCH";
+if(empty($youtube_channel_id)){
+    $output['errors'][] = "MISSING ID";
 }
-$sqli =  "SELECT  `c.channel_title`, 
-`description`,`sub_count`,
-`video_count`,`view_count`,`thumbnail_file_name` FROM `channels` WHERE youtube_channel_id = ? ";
+$sqli =  "SELECT  `channel_title`, 
+`description`,`thumbnail_file_name` FROM `channels` WHERE youtube_channel_id = ? ";
 $stmt = mysqli_stmt_init($conn);
 if(!mysqli_stmt_prepare($stmt,$sqli)){
     echo "SQL statement failed";
@@ -24,6 +23,7 @@ if(!mysqli_stmt_prepare($stmt,$sqli)){
         }
     } else {
         $output['errors'][] = mysqli_error($conn);
+        $output['nothing_to_read'] = true;
     }
 }
 ?>
