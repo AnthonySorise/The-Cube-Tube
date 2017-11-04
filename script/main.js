@@ -376,7 +376,7 @@ function renderVideoList(videoArray) {
                 container: 'body'
             });
         }
-    }, 250);
+    }, 500);
 }
 
 function ytChannelApiToDb(channelId) {
