@@ -532,7 +532,7 @@ function manageDatabaseWithChannelId (channelID){
                             currentVideos.push(data)
                         }
                         else{
-                            if(data.nothing_to_read){
+                            if(data['nothing_to_read']){
                                 console.log("NOT ON DATABASE")
                                 convertYTApiVideoDatatoDbData(channelId);       //READ AND CHECK if exists on db FIRST!
                                 var ytChannelData = convertYTApiChannelDatatoDbData(channelId);
