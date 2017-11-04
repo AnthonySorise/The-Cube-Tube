@@ -29,7 +29,7 @@ var player2;
 /*******needed for iframe player*******/
 
 $(window).resize(function(){
-    let windowWidth = ($(window).width())
+    let windowWidth = ($(window).width());
     if(windowWidth <= 768){
         displayTableDataOnMobile()
     }else{
@@ -102,7 +102,7 @@ function clickHandler() {
         searchChannelsByName().then(worked, failed);
     });
     //Browse Button
-    $('.browseChannelButton').on("click", handleBrowseButton)
+    $('.browseChannelButton').on("click", handleBrowseButton);
 
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
@@ -429,7 +429,7 @@ function ytChannelApiToDb(channelId) {
     });
 }
 
-function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
+function ytVideoApiToDb(channelId, clientVideos = [], pageToken = "") {
     var packageToSendToDb = [];
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
@@ -462,17 +462,17 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
                 // thumbnail = thumbnail.replace('https://i.ytimg.com/vi/', '');
                 // thumbnail = thumbnail.replace('/mqdefault.jpg', '');
                 // videoObject.thumbnail = thumbnail;
-
-                allVideos.push(videoObject);
+                if(clientVideoObjectArray.length < 40){
+                    clientVideos.push(videoObject);
+                }
                 packageToSendToDb.push(videoObject);
             }
             access_database.insert_video(packageToSendToDb);
 
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
-                ytVideoApiToDb(channelId, allVideos, data.nextPageToken)
-            } else {
-                clientVideoObjectArray = allVideos; //set to global variable  Can't return the array for some reason
+                ytVideoApiToDb(channelId, clientVideos, data.nextPageToken)
             }
+            clientVideoObjectArray = clientVideos; //set to global variable  Can't return the array for some reason
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -503,12 +503,11 @@ function manageDatabaseWithChannelId (channelID){
         success:function(data){
             if(data.success){
                 console.log("Channel will be pulled from database", data);
-                //READ VIDEOS FROM DB
                 data.youtube_channel_id = channelID;
                 globalChannelObjectArray = [];
                 globalChannelObjectArray.push(data);
                 //get videos
-                $.ajax({
+                $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
                     url:'./script/api_calls_to_db/access_database/access.php',
                     method:'post',
                     dataType:'JSON',
@@ -524,7 +523,7 @@ function manageDatabaseWithChannelId (channelID){
                             globalChannelObjectArray = [];
                             globalChannelObjectArray.push(data.data[0]);
 
-                            $.ajax({
+                            $.ajax({    //RETRIEVE VIDEOS FROM DB
                                 url: './script/api_calls_to_db/access_database/access.php',
                                 method: 'POST',
                                 dataType: 'JSON',
@@ -557,7 +556,7 @@ function manageDatabaseWithChannelId (channelID){
                     }
                 })
             }
-            else{
+            else{   //RETRIEVE VIDEOS FROM YOUTUBE
                 if(data.nothing_to_read){
                     console.log("Retrieve Videos From You Tube", data);
                     ytVideoApiToDb(channelID);
