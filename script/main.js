@@ -356,7 +356,7 @@ function clearVideoList(){
         container: 'body'
     });
 
-    $('.tdList').hide();
+    // $('.tdList').hide();
 }
 
 function renderVideoList(videoArray) {
