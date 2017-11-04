@@ -429,7 +429,7 @@ function ytChannelApiToDb(channelId) {
     });
 }
 
-function ytVideoApiToDb(channelId, clientVideos = [], pageToken = "") {
+function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
     var packageToSendToDb = [];
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
@@ -462,17 +462,17 @@ function ytVideoApiToDb(channelId, clientVideos = [], pageToken = "") {
                 // thumbnail = thumbnail.replace('https://i.ytimg.com/vi/', '');
                 // thumbnail = thumbnail.replace('/mqdefault.jpg', '');
                 // videoObject.thumbnail = thumbnail;
-                if(clientVideoObjectArray.length < 40){
-                    clientVideos.push(videoObject);
-                }
+
+                allVideos.push(videoObject);
                 packageToSendToDb.push(videoObject);
             }
             access_database.insert_video(packageToSendToDb);
 
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
-                ytVideoApiToDb(channelId, clientVideos, data.nextPageToken)
+                ytVideoApiToDb(channelId, allVideos, data.nextPageToken)
+            } else {
+                clientVideoObjectArray = allVideos; //set to global variable  Can't return the array for some reason
             }
-            clientVideoObjectArray = clientVideos; //set to global variable  Can't return the array for some reason
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
