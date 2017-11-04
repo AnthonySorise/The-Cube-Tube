@@ -475,7 +475,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
                 clientVideoObjectArray = [];
                 var clientPackage = [];
                 for(var i = 0; i < 40; i++){
-                    clientPackage.push(packageToSendToDb)
+                    clientPackage.push(packageToSendToDb[i])
                 }
                 clientVideoObjectArray = clientPackage
             }
@@ -595,7 +595,6 @@ function loadClientVideoObjectArray() {
         return
     }
     let videoArrayPage = convertVideoArrayToOnePage(clientVideoObjectArray);    //TODO - Temporary - until grab 40 vids at a time
-    console.log("VIDEO ARRAY PAGE", videoArrayPage)
     renderVideoList(videoArrayPage);
     // clientVideoObjectArray = null;
 }
