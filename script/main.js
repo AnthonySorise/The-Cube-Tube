@@ -6,6 +6,9 @@ var globalVideoObjectArray = null;
 
 var currentSlideNumber = 1;
 
+var currentChannels = [];
+var currentVideos = [];
+
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // var player;
 function onYouTubeIframeAPIReady(vidId) {
@@ -509,42 +512,58 @@ function manageDatabaseWithChannelId (channelID){
         },
         success:function(data){
             if(data.success){
-                // promise.resolve(data);
                 console.log('read data success', data);
-
+                //READ VIDEOS FROM DB
+                data.youtube_channel_id = channelID;
+                currentChannels.push(data);
+                //get videos
+                $.ajax({
+                    url:'./script/api_calls_to_db/access_database/access.php',
+                    method:'post',
+                    dataType:'JSON',
+                    data:{
+                        youtube_channel_id:channelID,
+                        action:'read_channels_by_youtube_id'
+                    },
+                    success:function(data){
+                        if(data.success){
+                            // promise.resolve(data);
+                            console.log('read data success', data);
+                        }
+                    },
+                    errors:function(data){
+                        // promise.reject(data);
+                        console.log(data['read errors'], data);
+                    }
+                })
             }
         },
         errors:function(data){
             // promise.reject(data);
-            console.log(data['read errors'], data);
-        }
-    })
+            if(data.nothing_to_read){
+                convertYTApiVideoDatatoDbData(channelId);       //READ AND CHECK if exists on db FIRST!
+                var ytChannelData = convertYTApiChannelDatatoDbData(channelId);
+                access_database.insert_channel(channelId)
 
-    // if(1 === 0){   //channel is on db already
-    //
-    // }
-    // else{   //channel is not on db
-    //     convertYTApiVideoDatatoDbData(channelId);       //READ AND CHECK if exists on db FIRST!
-    //     var ytChannelData = convertYTApiChannelDatatoDbData(channelId);
-    //     access_database.insert_channel(channelId)
-    //
-    //     handleData(channelId, pageNumber);
-    // }
+                function handleGlobalVideoObjectArray() {
+                    if (globalVideoObjectArray === null) {
+                        setTimeout(handleData, 50);
+                        return
+                    }
+                    var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray, page);
+                    renderVideoList(videoArrayPage);
+                    globalVideoObjectArray = null;
+                }
+                handleGlobalVideoObjectArray(channelID);
+            }
+        }
+    });
 }
 
 
 function browseChannel(channelId, pageNumber) {
     var page = pageNumber;
 
-    function handleData(pageNumber) {
-        if (globalVideoObjectArray === null) {
-            setTimeout(handleData, 50);
-            return
-        }
-        var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray, page);
-        renderVideoList(videoArrayPage);
-        globalVideoObjectArray = null;
-    }
 
     manageDatabaseWithChannelId();
 
