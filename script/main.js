@@ -417,11 +417,7 @@ function ytChannelApiToDb(channelId) {
             channelDbObject.thumbnail = thumbnail;
 
             access_database.insert_channel(channelDbObject);
-            
-            // Doing API calls for these?
-            // channelDbObject.sub_count = data.items[0].statistics.subscriberCount;
-            // channelDbObject.video_count = data.items[0].statistics.videoCount;
-            // channelDbObject.view_count = data.items[0].statistics.viewCount;
+
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -459,15 +455,8 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
                 publishedAt = publishedAt.replace("T", " ");
                 publishedAt = publishedAt.replace(".000Z", "");
                 videoObject.published_at = publishedAt;
-                // var thumbnail = data.items[i].snippet.thumbnails.medium.url;
-                // thumbnail = thumbnail.replace('https://i.ytimg.com/vi/', '');
-                // thumbnail = thumbnail.replace('/mqdefault.jpg', '');
-                // videoObject.thumbnail = thumbnail;
 
                 packageToSendToDb.push(videoObject);
-                // if(clientVideoObjectArray.length < 40){
-                //     clientVideos.push(videoObject);
-                // }
 
             }
 
@@ -490,16 +479,6 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
         }
     });
 }
-
-// function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 40 at a time from database
-//     let returnArray = [];
-//     for (let i = (page * 40); i < ((page * 40) + 40); i++) {
-//         if(typeof videoArray[i] !== "undefined"){
-//             returnArray.push(videoArray[i])
-//         }
-//     }
-//     return returnArray
-// }
 
 function manageDatabaseWithChannelId (channelID){
     clientVideoObjectArray = null;
@@ -592,9 +571,7 @@ function loadClientVideoObjectArray() {
         setTimeout(loadClientVideoObjectArray, 50);
         return
     }
-    // let videoArrayPage = convertVideoArrayToOnePage(clientVideoObjectArray);    //TODO - Temporary - until grab 40 vids at a time
     renderVideoList(clientVideoObjectArray);
-    // clientVideoObjectArray = null;
 }
 
 function handleBrowseButton() {
