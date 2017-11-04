@@ -18,7 +18,7 @@
             },
             success:function(data){
                 if(data.success){
-                    console.log('deleted success');
+                    console.log('deleted success', data);
                     // promise.resolve(data);
                 }
             },
@@ -50,8 +50,8 @@
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('insert channel success');
-                     console.log(data);
+                     console.log('insert channel success', data);
+                     // console.log(data);
                      self.channel_id_hold = data.id;
                  }
              },
@@ -81,7 +81,7 @@
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('insert ctu success');
+                     console.log('insert ctu success', data);
                  }
              },
              errors:function(){
@@ -110,7 +110,7 @@
                  console.log(data);
                  if(data["success"]){
                      // promise.resolve(data);
-                     console.log('insert user success');
+                     console.log('insert user success', data);
                  }
              },
              errors:function(data){
@@ -138,11 +138,11 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('insert video success');
+                     console.log('insert video success', data);
                  }
              },
              errors: function (data) {
-                 console.log('insert error');
+                 console.log('insert error', data);
                  // promise.reject(data);
              }
          })
@@ -166,11 +166,11 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('read success');
+                     console.log('read success', data);
                  }
              },
              errors: function (data) {
-                 console.log('read error');
+                 console.log('read error', data);
                  // promise.reject(data);
              }
          })
@@ -194,11 +194,11 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('read success');
+                     console.log('read success', data);
                  }
              },
              errors: function (data) {
-                 console.log('read error');
+                 console.log('read error', data);
                  // promise.reject(data);
              }
          })
@@ -260,11 +260,11 @@
             success: function (data) {
                 if (data.success) {
                     // promise.resolve(data);
-                    console.log('read video success');
+                    console.log('read video success', data);
                 }
             },
             errors: function (data) {
-                console.log('read error');
+                console.log('read error', data);
                 // promise.reject(data);
             }
         })
@@ -289,11 +289,11 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('read success');
+                     console.log('read success', data);
                  }
              },
              errors: function (data) {
-                 console.log('read error');
+                 console.log('read error', data);
                  // promise.reject(data);
              }
          })
@@ -324,11 +324,11 @@
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('update success');
+                     console.log('update success', data);
                  }
              },
              errors:function(data){
-                 console.log('update error');
+                 console.log('update error', data);
                  // promise.reject(data);
              }
          })
@@ -355,11 +355,11 @@
             success:function(data){
                 if(data.success){
                     // promise.resolve(data);
-                    console.log('update success');
+                    console.log('update success', data);
                 }
             },
             errors:function(data){
-                console.log('update error');
+                console.log('update error', data);
                 // promise.reject(data);
             }
         })
