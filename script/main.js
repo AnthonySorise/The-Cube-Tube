@@ -64,7 +64,7 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
 
-
+    clearVideoList();   //hides list rows until they are needed
 
 });
 
@@ -314,7 +314,7 @@ function renderChannelSearchStats(i) {
         error: function (data) {
             console.log('something went wrong with YT', data);
         }
-    })
+    });
 }
 
 function clearChannelResults() {
@@ -348,13 +348,7 @@ function clearVideoList(){
         'data-content': "",
         'data-original-title': ""
     });
-    $(".tdTitle").popover({
-        trigger: "hover",
-        html: true,
-        content: "",
-        placement: 'auto',
-        container: 'body'
-    });
+    $('.tdList').hide();
 }
 
 function renderVideoList(videoArray) {
@@ -369,6 +363,8 @@ function renderVideoList(videoArray) {
             let dateString = videoArray[i].published_at;
             const d = new Date(dateString);
             dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
+
+            $(row).show();
 
             $(row).attr("videoID", videoArray[i].youtube_video_id);
             $(title).text(videoArray[i].video_title);
@@ -395,6 +391,7 @@ function renderVideoList(videoArray) {
             });
         }
     }, 250);
+    removePlaceholderAnimation();
 }
 
 function ytChannelApiToDb(channelId) {
@@ -656,6 +653,8 @@ var classes = [
 ]
 
 function createPlaceholderAnimation() {
+    $(".tdList").show();
+
     var outerDiv = $('<div>').addClass("timeline-wrapper");
     var nestedDiv1 = $('<div>').addClass("timeline-item");
     var nestedDiv2 = $('<div>').addClass("animated-background");
@@ -665,7 +664,18 @@ function createPlaceholderAnimation() {
         $(childElements).appendTo(nestedDiv2);
 
     }
-    $('.tdTitle, .tdChannel').append(completedWrapper);
+    $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
+}
+
+function removePlaceholderAnimation(){
+    for(var i = 0; i<40; i++){
+        let row = "#tdList-" + (i + 1);
+        let title = row + " .tdTitle>span";
+
+        if($(title).text() === ""){
+            $(row).hide();
+        }
+    }
 }
 
 function displayTableDataOnMobile(){
