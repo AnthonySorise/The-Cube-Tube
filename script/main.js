@@ -346,13 +346,13 @@ function clearVideoList(){
     let upDate = row + " .tdUpDate";
     let videoData = row + " .tdInfo a";
 
-    $(row).attr("videoID", "");
-    $(title).text("");
-    $(channel).text("");
-    $(upDate).text("");
-    $(videoData).attr({
-        'data-content': videoArray[i].description,
-        'data-original-title': videoArray[i].video_title
+    $('.tdList').attr("videoID", "");
+    $('.tdTitle>span').text("");
+    $('.tdChannel').text("");
+    $('.tdUpDate').text("");
+    $('.tdInfo a').attr({
+        'data-content': "",
+        'data-original-title': ""
     });
     $(row + " .tdTitle").popover({
         trigger: "hover",
