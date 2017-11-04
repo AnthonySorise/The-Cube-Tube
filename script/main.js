@@ -470,7 +470,7 @@ function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 4
     let returnArray = [];
     for (let i = (page * 40); i < ((page * 40) + 40); i++) {
         console.log("TEST", videoArray[i]);
-        if(videoArray[i] !== null){
+        if(typeof videoArray[i] === "undefined"){
             returnArray.push(videoArray[i])
         }
 
