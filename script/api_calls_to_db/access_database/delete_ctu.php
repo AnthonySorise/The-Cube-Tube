@@ -2,20 +2,22 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-require_once('mysql_connect.php');
-$user_link = $_POST['user_link'];
-$query = "INSERT INTO users SET user_link = '{$user_link}'";
-$result = mysqli_query($conn,$query);
-if(!empty($result)){
+if(empty($_POST['table'])){
+
+}
+$ctu_id = $_POST['ctu_id'];
+$stmt = $conn->prepare("DELETE FROM `channels_to_user` WHERE `ctu_id`=?");
+$stmt->bind_param("i",$ctu_id);
+$stmt ->execute();
+if(!empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
         $output['id'] = mysqli_insert_id($conn);
     }
     else{
-        $output['error'][] = 'Unable to insert data';
+        $output['error'] = 'Unable to delete data';
     }
 }else{
     $output['errors'][]= 'invalid query';
 }
-
 ?>
