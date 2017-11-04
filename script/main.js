@@ -337,8 +337,34 @@ function clearChannelResults() {
     }
 }
 
-function renderVideoList(videoArray) {
+function clearVideoList(){
     $(".tdTitle").popover('destroy');
+
+    let row = "#tdList-" + (i + 1);
+    let title = row + " .tdTitle>span";
+    let channel = row + " .tdChannel";
+    let upDate = row + " .tdUpDate";
+    let videoData = row + " .tdInfo a";
+
+    $(row).attr("videoID", "");
+    $(title).text("");
+    $(channel).text("");
+    $(upDate).text("");
+    $(videoData).attr({
+        'data-content': videoArray[i].description,
+        'data-original-title': videoArray[i].video_title
+    });
+    $(row + " .tdTitle").popover({
+        trigger: "hover",
+        html: true,
+        content: "",
+        placement: 'auto',
+        container: 'body'
+    });
+}
+
+function renderVideoList(videoArray) {
+    clearVideoList();
 
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
