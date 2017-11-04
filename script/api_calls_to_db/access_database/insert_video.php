@@ -1,9 +1,10 @@
-<?php
+    <?php
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
 $video_array = $_POST['videoArray'];
 for($i = 0; $i<count($video_array); $i++ ){
+    $channel_id = $video_array[$i]['channel_id'];
     $video_title = $video_array[$i]['video_title'];
     $youtube_channel_id = $video_array[$i]['channel_id'];
     $youtube_video_id = $video_array[$i]['youtube_video_id'];
@@ -31,8 +32,9 @@ for($i = 0; $i<count($video_array); $i++ ){
     `youtube_video_id` = ?, 
     `description` = ?,
     `published_at` = ?,
-    `last_updated`=?");
-    $stmt->bind_param("ssssss",$video_title,$youtube_channel_id,$youtube_video_id,$description,$published_at,$last_updated);
+    `last_updated`=?
+    `channel_id` = ?");
+    $stmt->bind_param("ssssss",$video_title,$youtube_channel_id,$youtube_video_id,$description,$published_at,$last_updated,$channel_id);
     $stmt->execute();
     if(empty($stmt)){
         $output['errors'][] = 'INVALID QUERY';
