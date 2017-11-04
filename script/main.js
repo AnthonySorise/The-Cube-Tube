@@ -35,6 +35,8 @@ $(window).resize(function(){
     let windowWidth = ($(window).width())
     if(windowWidth <= 768){
         displayTableDataOnMobile()
+    }else{
+        displayTableDataOnDesktop()
     }
 }) 
 
@@ -65,7 +67,6 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
 
-    // screenSizeListener() 
 
 
 });
@@ -657,8 +658,15 @@ function displayTableDataOnMobile(){
     var contentDiv = $("<div>").addClass('carousel-content');
     var rowDiv = $("<div>").addClass('row,tdRow,text-center');
     var newElement = itemDiv.append(contentDiv).append(rowDiv).append(newSlideData);
-    $(".tdListRight").remove();
+    $(".tdListRight").hide();
     $(".tdListLeft").removeClass('col-md-6');
-    $(".carousel-inner").append(newElement)
+    $(".carousel-inner").append(newElement).hasClass('mobileSlide')
 }
+
+function displayTableDataOnDesktop(){
+    $(".tdListRight").show();
+    $(".tdListLeft").addClass('col-md-6');
+    $(".mobileSlide").hide();
+}
+
 
