@@ -465,9 +465,9 @@ function ytVideoApiToDb(channelId, pageToken = "") {
                 // videoObject.thumbnail = thumbnail;
 
                 packageToSendToDb.push(videoObject);
-                if(clientVideoObjectArray.length < 40){
-                    clientVideos.push(videoObject);
-                }
+                // if(clientVideoObjectArray.length < 40){
+                //     clientVideos.push(videoObject);
+                // }
 
             }
             console.log("LINE 473 - clientVideoObjectArray IS ", clientVideoObjectArray)
@@ -478,7 +478,7 @@ function ytVideoApiToDb(channelId, pageToken = "") {
             access_database.insert_video(packageToSendToDb);
 
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
-                ytVideoApiToDb(channelId, allVideos, data.nextPageToken)
+                ytVideoApiToDb(channelId, data.nextPageToken)
             }
 
         },
