@@ -3,8 +3,12 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 
 var globalVideoObjectArray = null;
+var globalChannelObjectArray = null;
 
 var currentSlideNumber = 1;
+
+// var currentChannels = [];
+// var currentVideos = [];
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // var player;
@@ -509,44 +513,70 @@ function manageDatabaseWithChannelId (channelID){
         },
         success:function(data){
             if(data.success){
-                // promise.resolve(data);
-                console.log('read data success', data);
+                console.log("CHANNEL IS DATABASE", data);
+                //READ VIDEOS FROM DB
+                data.youtube_channel_id = channelID;
+                globalChannelObjectArray = [];
+                globalChannelObjectArray.push(data);
+                //get videos
+                $.ajax({
+                    url:'./script/api_calls_to_db/access_database/access.php',
+                    method:'post',
+                    dataType:'JSON',
+                    data:{
+                        youtube_channel_id:channelID,
+                        action:'read_channels_by_youtube_id'
+                    },
+                    success:function(data){
 
+                        if(data.success){
+                            // promise.resolve(data);
+                            console.log('read data success', data);
+                            globalVideoObjectArray = [];
+                            globalVideoObjectArray = data.data[0];
+                            handleGlobalVideoObjectArray();
+                        }
+                    },
+                    errors:function(data){
+                        // promise.reject(data);
+                        console.log(data['read errors'], data);
+                    }
+                })
+            }
+            else{
+                console.log('data', data)
+                console.log('data.nothing_to_read', data.nothing_to_read)
+                if(data.nothing_to_read){
+                    console.log("NOT ON DATABASE")
+                    convertYTApiVideoDatatoDbData(channelID);   //ALSO INSERT TO DB
+                    var ytChannelData = convertYTApiChannelDatatoDbData(channelID);
+                    access_database.insert_channel(ytChannelData);
+
+                    handleGlobalVideoObjectArray();
+                }
             }
         },
         errors:function(data){
             // promise.reject(data);
-            console.log(data['read errors'], data);
         }
-    })
-
-    // if(1 === 0){   //channel is on db already
-    //
-    // }
-    // else{   //channel is not on db
-    //     convertYTApiVideoDatatoDbData(channelId);       //READ AND CHECK if exists on db FIRST!
-    //     var ytChannelData = convertYTApiChannelDatatoDbData(channelId);
-    //     access_database.insert_channel(channelId)
-    //
-    //     handleData(channelId, pageNumber);
-    // }
+    });
 }
 
 
-function browseChannel(channelId, pageNumber) {
-    var page = pageNumber;
-
-    function handleData(pageNumber) {
-        if (globalVideoObjectArray === null) {
-            setTimeout(handleData, 50);
-            return
-        }
-        var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray, page);
-        renderVideoList(videoArrayPage);
-        globalVideoObjectArray = null;
+function handleGlobalVideoObjectArray() {
+    if (globalVideoObjectArray === null) {
+        setTimeout(handleGlobalVideoObjectArray, 50);
+        return
     }
+    var videoArrayPage = convertVideoArrayToOnePage(globalVideoObjectArray);
+    renderVideoList(videoArrayPage);
+    globalVideoObjectArray = null;
+}
 
-    manageDatabaseWithChannelId();
+
+function browseChannel(channelId) {
+
+    manageDatabaseWithChannelId(channelId);
 
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
