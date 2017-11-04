@@ -3,8 +3,8 @@ if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
 $video_array = $_POST['videoArray'];
+$channel_id = $video_array[$i]['channel_id'];
 for($i = 0; $i<count($video_array); $i++ ){
-    $channel_id = $video_array[$i]['channel_id'];
     $video_title = $video_array[$i]['video_title'];
     $youtube_channel_id = $video_array[$i]['youtube_channel_id'];
     $youtube_video_id = $video_array[$i]['youtube_video_id'];
@@ -35,7 +35,7 @@ for($i = 0; $i<count($video_array); $i++ ){
     `youtube_video_id` = ?, 
     `description` = ?,
     `published_at` = ?,
-    `last_updated`=?
+    `last_updated`=?,
     `channel_id`=?");
     $stmt->bind_param("ssssssi",$video_title,$youtube_channel_id,$youtube_video_id,$description,$published_at,$last_updated,$channel_id);
     $stmt->execute();
