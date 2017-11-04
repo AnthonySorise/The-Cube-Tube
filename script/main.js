@@ -437,7 +437,7 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
                 videoObject.channel_id = access_database.channel_id_hold;
                 videoObject.video_title = data.items[i].snippet.title;
                 videoObject.youtube_video_id = data.items[i].id.videoId;
-                videoObject.channel_id = data.items[i].snippet.channelId;
+                videoObject.youtube_channel_id = data.items[i].snippet.channelId;
                 videoObject.channel_title = data.items[i].snippet.channelTitle;
                 videoObject.description = data.items[i].snippet.description;
                 var publishedAt = data.items[i].snippet.publishedAt;
@@ -469,7 +469,11 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
 function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 40 at a time from database
     let returnArray = [];
     for (let i = (page * 40); i < ((page * 40) + 40); i++) {
-        returnArray.push(videoArray[i])
+        console.log("TEST", videoArray[i]);
+        if(videoArray[i] !== null){
+            returnArray.push(videoArray[i])
+        }
+
     }
     return returnArray
 }
