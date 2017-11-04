@@ -437,7 +437,7 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
                 videoObject.channel_id = access_database.channel_id_hold;
                 videoObject.video_title = data.items[i].snippet.title;
                 videoObject.youtube_video_id = data.items[i].id.videoId;
-                videoObject.channel_id = data.items[i].snippet.channelId;
+                videoObject.youtube_channel_id = data.items[i].snippet.channelId;
                 videoObject.channel_title = data.items[i].snippet.channelTitle;
                 videoObject.description = data.items[i].snippet.description;
                 var publishedAt = data.items[i].snippet.publishedAt;
