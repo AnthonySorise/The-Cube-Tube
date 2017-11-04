@@ -487,7 +487,7 @@ function convertYTApiVideoDatatoDbData(channelId, allVideos = [], pageToken = ""
                 convertYTApiVideoDatatoDbData(channelId, allVideos, data.nextPageToken)
             } else {
                 globalVideoObjectArray = allVideos; //set to global variable  Can't return the array for some reason
-                console.log("GLOBAL VIDEO OBJECT ARRAY", globalChannelObjectArray)
+                console.log("GLOBAL VIDEO OBJECT ARRAY", globalVideoObjectArray)
             }
         },
         error: function (data) {
@@ -537,6 +537,8 @@ function manageDatabaseWithChannelId (channelID){
                             console.log('read data success', data);
                             globalChannelObjectArray = [];
                             globalChannelObjectArray.push(data.data[0]);
+                            console.log('GLOBAL VIDEO OBJECT ARRAY', globalVideoObjectArray)
+
                             handleGlobalVideoObjectArray();
                         }
                     },
