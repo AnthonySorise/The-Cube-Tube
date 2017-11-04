@@ -7,8 +7,7 @@ if(empty($offset)){
 }
 $user_id = $_POST['user_id'];
 $stmt = $conn->prepare("SELECT `c.channel_title`, 
-`c.youtube_channel_id`,`c.description`,`c.sub_count`,
-`c.video_count`,`c.view_count`,`c.thumbnail_file_name` 
+`c.youtube_channel_id`,`c.description`,`c.thumbnail_file_name` 
 FROM `channels` AS `c` 
 JOIN `channels_to_users` AS `ctu`
 ON `c.channel_id` = `ctu.channel_id` 

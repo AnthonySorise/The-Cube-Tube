@@ -35,12 +35,9 @@ $stmt=$conn->prepare("UPDATE channels SET
 channel_title = ?,  
 description = ?, 
 thumbnail_file_name = ?, 
-sub_count = ?, 
-video_count = ?,
-view_count = ?,
 last_channel_pulled = ?
 WHERE channel_id = ?");
-$stmt->bind_param("sssiiisi",$channel_title,$description,$thumbnail,$sub_count,$video_count,$view_count,$last_channel_pulled,$channel_id);
+$stmt->bind_param("ssssi",$channel_title,$description,$thumbnail,$last_channel_pulled,$channel_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';

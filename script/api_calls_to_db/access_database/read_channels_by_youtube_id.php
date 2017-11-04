@@ -8,8 +8,7 @@ if(empty($youtube_channel_id)){
     $output['errors'][] = "MISSING ID";
 }
 $sqli =  "SELECT  `channel_title`, 
-`description`,`sub_count`,
-`video_count`,`view_count`,`thumbnail_file_name` FROM `channels` WHERE youtube_channel_id = ? ";
+`description`,`thumbnail_file_name` FROM `channels` WHERE youtube_channel_id = ? ";
 $stmt = mysqli_stmt_init($conn);
 if(!mysqli_stmt_prepare($stmt,$sqli)){
     echo "SQL statement failed";
