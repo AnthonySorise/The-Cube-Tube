@@ -390,9 +390,9 @@ function convertYTApiChannelDatatoDbData(channelId) {
             channelDbObject.thumbnail = thumbnail;
             //
             // Doing API calls for these?
-            channelDbObject.sub_count = data.items[0].statistics.subscriberCount;
-            channelDbObject.video_count = data.items[0].statistics.videoCount;
-            channelDbObject.view_count = data.items[0].statistics.viewCount;
+            // channelDbObject.sub_count = data.items[0].statistics.subscriberCount;
+            // channelDbObject.video_count = data.items[0].statistics.videoCount;
+            // channelDbObject.view_count = data.items[0].statistics.viewCount;
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -460,6 +460,23 @@ function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 4
     return returnArray
 }
 
+function manageDatabaseWithChannelId (channelID){
+    //Check channel database to see if channelID exists in db
+
+
+    if(1 === 0){   //channel is on db already
+
+    }
+    else{   //channel is not on db
+        convertYTApiVideoDatatoDbData(channelId);       //READ AND CHECK if exists on db FIRST!
+        var ytChannelData = convertYTApiChannelDatatoDbData(channelId);
+        access_database.insert_channel(channelId)
+
+        handleData(channelId, pageNumber);
+    }
+}
+
+
 function browseChannel(channelId, pageNumber) {
     var page = pageNumber;
 
@@ -472,8 +489,9 @@ function browseChannel(channelId, pageNumber) {
         renderVideoList(videoArrayPage);
         globalVideoObjectArray = null;
     }
-    convertYTApiVideoDatatoDbData(channelId);
-    handleData(channelId, pageNumber);
+
+    manageDatabaseWithChannelId();
+
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
@@ -481,6 +499,7 @@ function browseChannel(channelId, pageNumber) {
 
 function handleBrowseButton() {
     var channelID = $(this).parent().attr("channelId")
+
     browseChannel(channelID)
     $('#channelSearchModal').modal('hide')
 }
