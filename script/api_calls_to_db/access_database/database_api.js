@@ -222,6 +222,8 @@
                 if(data.success){
                     // promise.resolve(data);
                     console.log('read data success', data);
+                }else{
+                    console.log(data);
                 }
             },
             errors:function(data){

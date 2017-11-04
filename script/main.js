@@ -499,18 +499,37 @@ function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 4
 
 function manageDatabaseWithChannelId (channelID){
     //Check channel database to see if channelID exists in db
+    $.ajax({
+        url:'./script/api_calls_to_db/access_database/access.php',
+        method:'post',
+        dataType:'JSON',
+        data:{
+            youtube_channel_id:channelID,
+            action:'read_channels_by_youtube_id'
+        },
+        success:function(data){
+            if(data.success){
+                // promise.resolve(data);
+                console.log('read data success', data);
 
+            }
+        },
+        errors:function(data){
+            // promise.reject(data);
+            console.log(data['read errors'], data);
+        }
+    })
 
-    if(1 === 0){   //channel is on db already
-
-    }
-    else{   //channel is not on db
-        convertYTApiVideoDatatoDbData(channelId);       //READ AND CHECK if exists on db FIRST!
-        var ytChannelData = convertYTApiChannelDatatoDbData(channelId);
-        access_database.insert_channel(channelId)
-
-        handleData(channelId, pageNumber);
-    }
+    // if(1 === 0){   //channel is on db already
+    //
+    // }
+    // else{   //channel is not on db
+    //     convertYTApiVideoDatatoDbData(channelId);       //READ AND CHECK if exists on db FIRST!
+    //     var ytChannelData = convertYTApiChannelDatatoDbData(channelId);
+    //     access_database.insert_channel(channelId)
+    //
+    //     handleData(channelId, pageNumber);
+    // }
 }
 
 
