@@ -13,7 +13,7 @@ $(document).ready(function() {
                 }
             );
             suggestCallBack = function (data) {
-                console.log(data);
+                // console.log(data);
                 var suggestions = [];
                 $.each(data[1], function (key, val) {
                     suggestions.push({"value": val[0]});

@@ -1,4 +1,6 @@
  function Database(){
+    var self = this;
+    this.channel_id_hold = null;
     this.delete_ctu = function(ctu_id){//delete by specifying table and id of entry i.e table = 'channels', id = 2
         // var promise = {
         //     then:function(resolve,reject){
@@ -16,7 +18,7 @@
             },
             success:function(data){
                 if(data.success){
-                    console.log('deleted success');
+                    console.log('deleted success', data);
                     // promise.resolve(data);
                 }
             },
@@ -33,7 +35,7 @@
          //         this.reject = reject;
          //     }
          // }
-         const {youtube_channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
+         const {youtube_channel_id, channel_title, description, thumbnail} = channel_object;
          $.ajax({
              url:'./script/api_calls_to_db/access_database/access.php',
              method:'post',
@@ -43,15 +45,14 @@
                  youtube_channel_id:youtube_channel_id,
                  channel_title:channel_title,
                  description:description,
-                 thumbnail:thumbnail,
-                 sub_count:sub_count,
-                 video_count:video_count,
-                 view_count:view_count
+                 thumbnail:thumbnail
              },
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('insert channel success');
+                     console.log('insert channel success', data);
+                     // console.log(data);
+                     self.channel_id_hold = data.id;
                  }
              },
              errors:function(data){
@@ -80,7 +81,7 @@
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('insert ctu success');
+                     console.log('insert ctu success', data);
                  }
              },
              errors:function(){
@@ -109,7 +110,7 @@
                  console.log(data);
                  if(data["success"]){
                      // promise.resolve(data);
-                     console.log('insert user success');
+                     console.log('insert user success', data);
                  }
              },
              errors:function(data){
@@ -137,11 +138,11 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('insert video success');
+                     console.log('insert video success', data);
                  }
              },
              errors: function (data) {
-                 console.log('insert error');
+                 console.log('insert error', data);
                  // promise.reject(data);
              }
          })
@@ -165,11 +166,11 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('read success');
+                     console.log('read success', data);
                  }
              },
              errors: function (data) {
-                 console.log('read error');
+                 console.log('read error', data);
                  // promise.reject(data);
              }
          })
@@ -193,23 +194,23 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('read success');
+                     console.log('read success', data);
                  }
              },
              errors: function (data) {
-                 console.log('read error');
+                 console.log('read error', data);
                  // promise.reject(data);
              }
          })
          // return promise
      }
     this.read_channels_by_youtube_id = function(youtube_channel_id){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
-        // var promise = {
-        //     then:function(resolve,reject){
-        //         this.resolve = resolve;
-        //         this.reject = reject;
-        //     }
-        // }
+        var promise = {
+            then:function(resolve,reject){
+                this.resolve = resolve;
+                this.reject = reject;
+            }
+        }
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
@@ -252,11 +253,11 @@
             success: function (data) {
                 if (data.success) {
                     // promise.resolve(data);
-                    console.log('read video success');
+                    console.log('read video success', data);
                 }
             },
             errors: function (data) {
-                console.log('read error');
+                console.log('read error', data);
                 // promise.reject(data);
             }
         })
@@ -281,11 +282,11 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('read success');
+                     console.log('read success', data);
                  }
              },
              errors: function (data) {
-                 console.log('read error');
+                 console.log('read error', data);
                  // promise.reject(data);
              }
          })
@@ -298,7 +299,7 @@
          //         this.reject = reject;
          //     }
          // }
-         const {channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
+         const {channel_id, channel_title, description, thumbnail} = channel_object;
          $.ajax({
              url:'./script/api_calls_to_db/access_database/access.php',
              method:'post',
@@ -309,18 +310,15 @@
                  channel_title:channel_title,
                  description:description,
                  thumbnail:thumbnail,
-                 sub_count:sub_count,
-                 video_count:video_count,
-                 view_count:view_count
              },
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('update success');
+                     console.log('update success', data);
                  }
              },
              errors:function(data){
-                 console.log('update error');
+                 console.log('update error', data);
                  // promise.reject(data);
              }
          })
@@ -347,11 +345,11 @@
             success:function(data){
                 if(data.success){
                     // promise.resolve(data);
-                    console.log('update success');
+                    console.log('update success', data);
                 }
             },
             errors:function(data){
-                console.log('update error');
+                console.log('update error', data);
                 // promise.reject(data);
             }
         })
@@ -388,3 +386,4 @@
      // }
 }
 var access_database = new Database();
+ var channel_id_hold = null;

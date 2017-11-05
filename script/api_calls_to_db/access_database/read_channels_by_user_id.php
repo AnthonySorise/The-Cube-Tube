@@ -3,7 +3,7 @@ if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
 if(empty($offset)){
-    $output['errors'][] = "MISSING OFFSET";
+    $output['errors'][] = 'MISSING OFFSET';
 }
 $user_id = $_POST['user_id'];
 $stmt = $conn->prepare("SELECT `c.channel_title`, 

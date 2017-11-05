@@ -71,42 +71,38 @@ body {
 .navbar-brand .fa {
 	color: rgb(255, 0, 0);
 }
-
-#mainNav-option form,
+#midNav-option{
+	z-index:1;
+}
 #midNav-option form {
 	margin-right: 20px;
 }
-
-#midNav-option .dropdown-toggle {
-	color: rgb(255, 205, 210);
-}
-
-#midNav-option .dropdown-toggle:hover {
-	background-color: rgba(35, 42, 57, 0.8);
-}
-
-#midNav-option .dropdown-toggle:focus {
-	background: none;
-}
-
 #mainNav-option .form-group {
 	display: inline-block;
 	margin: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-
 #midNav-option .form-group {
 	display: inline-block;
 	margin: 0;
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
-
 .channelSearchForm {
 	position: relative;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 0;
 }
-
+.infoButtons{
+	line-height: 3.5;
+}
+.autoPlayArea{
+	/*float: none;*/
+	/*display: inline-block;*/
+	margin-left: 35px;
+}
 #ui-id-1:focus {
 	top: 43px;
 }
@@ -156,9 +152,9 @@ body>.container-fluid {
 }
 
 #channelInfo {
-	position: absolute;
+/*	position: absolute;
 	right: 0;
-	bottom: 89px;
+	bottom: 89px;*/
 	color: rgba(255, 255, 255, 0.5);
 	/*color: rgba(49,176,213,0.5);*/
 	background: none;
@@ -170,9 +166,9 @@ body>.container-fluid {
 }
 
 #videoStats {
-	position: absolute;
+/*	position: absolute;
 	right: 0;
-	bottom: 52px;
+	bottom: 52px;*/
 	color: rgba(255, 255, 255, 0.5);
 	background: none;
 	border: none;
@@ -198,7 +194,7 @@ body>.container-fluid {
 
 #infoButtonContainer {
 	position: relative;
-	bottom: 13vh;
+	/*bottom: 13vh;*/
 }
 
 #midNav {
@@ -243,10 +239,12 @@ body>.container-fluid {
 }
 
 .carousel-control.right {
+	height: 100%;
 	background: none !important;
 }
 
 .carousel-control.left {
+	height: 100%;
 	background: none !important;
 }
 
@@ -373,6 +371,9 @@ body>.container-fluid {
 	#mainNav-option form,
 	#midNav-option form {
 		margin-right: 0;
+	}
+	.autoPlayArea{
+		margin-left: -15px;
 	}
 	/*end of hamburger/navbar css*/
 	body>.container-fluid {
