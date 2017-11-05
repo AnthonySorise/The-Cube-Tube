@@ -668,21 +668,53 @@ var classes = [
 //     }
 // }
 
+// function displayTableDataOnMobile(){
+//     var newSlideData = $(".firstPage>*").children().clone()
+//     var itemDiv = $("<div>").addClass('item mobileSlide');
+//     var contentDiv = $("<div>").addClass('carousel-content');
+//     var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
+//     rowDiv.append(newSlideData);
+//     contentDiv.append(rowDiv);
+//     itemDiv.append(contentDiv);
+//     // itemDiv.append(contentDiv).append(rowDiv).append(newSlideData);
+//     $(".tdListRight").hide();
+//     $(".tdListLeft").removeClass('col-md-6');
+//     $(".carousel-inner").append(itemDiv);
+    
+// }
+
 function displayTableDataOnMobile(){
-    var newSlideData = $(".firstPage>*").children().clone()
-    var itemDiv = $("<div>").addClass('item');
-    var contentDiv = $("<div>").addClass('carousel-content');
-    var rowDiv = $("<div>").addClass('row,tdRow,text-center');
-    var newElement = itemDiv.append(contentDiv).append(rowDiv).append(newSlideData);
-    $(".tdListRight").hide();
-    $(".tdListLeft").removeClass('col-md-6');
-    $(".carousel-inner").append(newElement).hasClass('mobileSlide')
+    var rightTableData = $(".item").find(".tdListRight").children().clone();
+    var newElementArray = []
+    for(var j = 0; j<rightTableData.length; j+=10){
+        var newImage = rightTableData.slice(j,j+10)
+        newElementArray.push(newImage);
+    }
+    for(var i = 0; i<newElementArray.length; i++){
+        var itemDiv = $("<div>").addClass('item mobileSlide');
+        var contentDiv = $("<div>").addClass('carousel-content');
+        var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
+        rowDiv.append(newElementArray[i]);
+        contentDiv.append(rowDiv);
+        itemDiv.append(contentDiv);
+        $(".carousel-inner").append(itemDiv);
+    }   
+        $(".tdListRight").hide();
+        $(".tdListLeft").removeClass('col-md-6');
+        // $(".carousel-inner").append(itemDiv);
+    
+
 }
 
 function displayTableDataOnDesktop(){
     $(".tdListRight").show();
+    $(".mobileSlide").remove();
     $(".tdListLeft").addClass('col-md-6');
-    $(".mobileSlide").hide();
+    var mobileSlideItem = $(".carousel-content>.mobileRow");
+    // for(var i = 0; i<mobileSlideItem.length; i++){
+    //     mobileSlideItem[i].children[i].addClass('tdListLeft')
+    // }
 }
+
 
 
