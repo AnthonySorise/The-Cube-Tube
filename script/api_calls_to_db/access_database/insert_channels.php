@@ -6,7 +6,7 @@ $youtube_channel_id = $_POST['youtube_channel_id'];
 $channel_title = $_POST['channel_title'];
 $description = $_POST['description'];
 $thumbnail = $_POST['thumbnail'];
-$date_created = date("Y-m-d H:i:s");
+$date_created = date('Y-m-d H:i:s');
 $last_channel_pull = date("Y-m-d H:i:s");
 if(empty($youtube_channel_id)){
     $output['errors'][]='MISSING YOUTUBE CHANNEL ID';
