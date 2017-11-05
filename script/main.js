@@ -14,13 +14,13 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-        videoId: vidId || 'ZZ5LpwO-An4'
+        videoId: vidId || 'NiENb9PJmrw'
     });
     onYouTubeIframeAPIReady2();
 }
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
-        videoId: 'ZZ5LpwO-An4'
+        videoId: 'NiENb9PJmrw'
     });
 }
 var player;
