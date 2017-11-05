@@ -106,6 +106,7 @@ function clickHandler() {
 
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
+        var selectedVideoId = $(this).parent().attr('videoId');
         // $('.fa-play-circle-o').remove();
         $('.fa-circle-o-notch').remove();
         var playSymbol = $('<i>')
@@ -118,14 +119,14 @@ function clickHandler() {
         $(this).parent().find(".tdTitle>span").prepend(playSymbol);
         $('.tdList').removeClass('selectedTd');
         $(this).parent().addClass("selectedTd");
-        if (getAutoPlayValue() == true){
-            player.loadVideoById($(this).parent().attr('videoId'));
+        if (getAutoPlayValue()){
+            player.loadVideoById(selectedVideoId);
         }else{
-            player.cueVideoById($(this).parent().attr('videoId'));
+            player.cueVideoById(selectedVideoId);
         }
-        player2.cueVideoById($(this).parent().attr('videoId'));
+        player2.cueVideoById(selectedVideoId);
 
-        //update stats popover
+        //update video stats popover
         var videoID = $(this).parent().attr('videoId');
         $.ajax({
             url: 'https://www.googleapis.com/youtube/v3/videos',
@@ -157,8 +158,23 @@ function clickHandler() {
                 }
 
                 const descriptionTitle = $('<p><strong>Description: </strong></p>');
+
+                let videoURL = 'https://i.ytimg.com/vi/' + selectedVideoId + '/mqdefault.jpg';
+                const videoThumbnail = $('<img>').attr('src', videoURL).css({
+                    width: '120px',
+                    height: '70px',
+                });
+                videoThumbnail.css("position", "relative")
+                    .css("left", "50%")
+                    .css("transform", "translateX(-50%)")
+                    .css("margin-bottom", '15px');
+
+                const descriptionContainer = $('<div></div>');
+                descriptionContainer.css("height", "13vh");
+                descriptionContainer.css("overflow-y", "auto")
                 const description = $('<p>'+data.items[0].snippet.description+'</p>');
-                videoStatsDiv.append(views, likesTitle, likesBar, descriptionTitle, description);
+                descriptionContainer.append(description);
+                videoStatsDiv.append(videoThumbnail, views, likesTitle, likesBar, descriptionTitle, descriptionContainer);
                 $("#videoStats").popover('destroy');
                 setTimeout(function () {
                     $("#videoStats").popover({
@@ -169,13 +185,18 @@ function clickHandler() {
                     });
                 }, 250);
                 $("#videoStats").attr({
-                    'data-original-title': data.items[0].snippet.title + " - " + data.items[0].snippet.channelTitle
+                    'data-original-title': data.items[0].snippet.title
                 });
             },
             error: function (data) {
                 console.log('something went wrong with YT', data);
             }
         })
+        //update channel stats popover
+
+
+
+
     });
 
     //Theater mode
@@ -211,28 +232,30 @@ function clickHandler() {
         }
     });
 
-    //stats popover
-    $("#videoStats").on('show.bs.popover', function () {
-        const videoLink = ($('#mainVideo').attr("src"));
-        let videoID = videoLink.replace("https://www.youtube.com/embed/", "");
-        videoID = videoID.substring(0, videoID.indexOf('?'));
-        $.ajax({
-            url: 'https://www.googleapis.com/youtube/v3/videos',
-            dataType: 'json',
-            method: 'get',
-            data: {
-                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-                id: videoID,
-                part: 'snippet, statistics'
-            },
-            success: function (data) {
-                console.log('Youtube success', data);
-            },
-            error: function (data) {
-                console.log('something went wrong with YT', data);
-            }
-        })
-    });
+    // //video stats popover    //NOT USED PROBABLY
+    // $("#videoStats").on('show.bs.popover', function () {
+    //     const videoLink = ($('#mainVideo').attr("src"));
+    //     let videoID = videoLink.replace("https://www.youtube.com/embed/", "");
+    //     videoID = videoID.substring(0, videoID.indexOf('?'));
+    //     $.ajax({
+    //         url: 'https://www.googleapis.com/youtube/v3/videos',
+    //         dataType: 'json',
+    //         method: 'get',
+    //         data: {
+    //             key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+    //             id: videoID,
+    //             part: 'snippet, statistics'
+    //         },
+    //         success: function (data) {
+    //             console.log('Youtube success', data);
+    //         },
+    //         error: function (data) {
+    //             console.log('something went wrong with YT', data);
+    //         }
+    //     })
+    // });
+    // //channel stats popover
+
 }
 
 //Channel Search by Name
