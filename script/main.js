@@ -14,13 +14,13 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-        videoId: vidId || 'NiENb9PJmrw'
+        videoId: vidId || '7O24mrBRit0'
     });
     onYouTubeIframeAPIReady2();
 }
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
-        videoId: 'NiENb9PJmrw'
+        videoId: '7O24mrBRit0'
     });
 }
 var player;
@@ -241,7 +241,6 @@ function clickHandler() {
                         container: 'body'
                     });
                 }, 250);
-                console.log(data);
                 $("#channelInfo").attr({
                     'data-original-title': data.items[0].snippet.title
                 });
@@ -471,7 +470,13 @@ function renderVideoList(videoArray) {
                 content: videoDataImg,
                 placement: 'auto',
                 container: 'body'
+            })
+            .attr({
+                'data-original-title': videoArray[i].video_title
+
             });
+
+
         }
         // removePlaceholderAnimation();
     }, 250);
