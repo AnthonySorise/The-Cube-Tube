@@ -14,13 +14,13 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-        videoId: vidId || 'NiENb9PJmrw'
+        videoId: vidId || 'm8DuHrH3g3c'
     });
     onYouTubeIframeAPIReady2();
 }
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
-        videoId: 'NiENb9PJmrw'
+        videoId: 'm8DuHrH3g3c'
     });
 }
 var player;
@@ -180,16 +180,21 @@ function clickHandler() {
 
     //Theater mode
     $('.lightBoxMode').on('click', function () {
+        let currentVolumeLevel = null;
         player.pauseVideo();
         if (player.getPlayerState() === 2) {
+            currentVolumeLevel = player.getVolume();
             player.pauseVideo();
             player2.seekTo(player.getCurrentTime());
             player2.pauseVideo();
+            player2.setVolume(currentVolumeLevel);
             $('#lightBoxModal').modal('show');
         } else if (player.getPlayerState() === 1) {
             player.pauseVideo();
+            currentVolumeLevel = player.getVolume();
             player2.seekTo(player.getCurrentTime());
             $('#lightBoxModal').modal('show');
+            player2.setVolume(currentVolumeLevel);
             player2.playVideo();
         } else if (player.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
@@ -197,14 +202,18 @@ function clickHandler() {
     });
     $('.theatreModalClose').on('click', function () {
         if (player2.getPlayerState() === 2) {
+            currentVolumeLevel = player2.getVolume();
             player2.pauseVideo();
+            player.setVolume(currentVolumeLevel);
             player.seekTo(player2.getCurrentTime());
             player.pauseVideo();
             $('#lightBoxModal').modal('show');
         } else if (player2.getPlayerState() === 1) {
+            currentVolumeLevel = player2.getVolume();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
             $('#lightBoxModal').modal('show');
+            player.setVolume(currentVolumeLevel);
             player.playVideo();
         } else if (player2.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
@@ -482,7 +491,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
 
 function manageDatabaseWithChannelId (channelID){
     clientVideoObjectArray = null;
-    
+    $("body").css("cursor", "progress");
     //Check channel database to see if channelID exists in db
     $.ajax({
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -714,6 +723,7 @@ function displayTableDataOnDesktop(){
     //     mobileSlideItem[i].children[i].addClass('tdListLeft')
     // }
 }
+
 
 
 
