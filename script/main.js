@@ -585,7 +585,6 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
 
 function manageDatabaseWithChannelId (channelID){
     clientVideoObjectArray = null;
-    $("body").css("cursor", "progress");
     //Check channel database to see if channelID exists in db
     $.ajax({
         url:'./script/api_calls_to_db/access_database/access.php',
