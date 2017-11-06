@@ -692,8 +692,10 @@ function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber);
     if (currentSlideNumber == 1) {
         $(".leftControl").hide()
+        $("#returnCarouselStart").hide();
     } else {
-        $(".leftControl").show()
+        $(".leftControl").show();
+        $("#returnCarouselStart").show();
     }
 }
 
@@ -834,5 +836,13 @@ function checkIfPlayer2IsMuted() {
         player.setVolume(currentVolumeLevel);
     }
 }
+
+function returnToPageOne(){
+    $(".carousel").carousel(0);
+    currentSlideNumber = 1;
+    displayCurrentPageNumber();
+}
+
+
 
 

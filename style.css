@@ -240,6 +240,12 @@ body>.container-fluid {
 	/* background-color: white; */
 }
 
+li#returnCarouselStart{
+	position: relative;
+	right: 6px;
+	font-size: small;
+}
+
 .carousel-control.right {
 	height: 100%;
 	background: none !important;
