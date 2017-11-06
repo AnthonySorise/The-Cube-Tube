@@ -56,7 +56,7 @@ switch($_POST['action']){
         //    case 'update_user':
 //        include('update_user.php');
 //        break;
-    case 'read_video_by_channel_array':
+    case 'read_videos_by_channel_array':
         include('read_videos_by_channel_array.php');
         break;
     default:
