@@ -544,6 +544,14 @@ li#returnCarouselStart{
 	color: red;
 }
 
+.contentPlaceholder{
+	margin-top: 30px;
+}
+
+.contentPlaceholder>image{
+	margin: 0 auto; 
+}
+
 
 /* toggle button */
 
