@@ -1,4 +1,5 @@
 <?php
+
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
@@ -11,7 +12,7 @@ $stmt = $conn->prepare("SELECT `c.channel_title`,
 FROM `channels` AS `c` 
 JOIN `channels_to_users` AS `ctu`
 ON `c.channel_id` = `ctu.channel_id` 
-WHERE `ctu.user_id` = ? 
+WHERE `ctu.user_id` = ?,
 ORDER BY `c.channel_title`");
 $stmt->bind_param('i',$user_id);
 $stmt->execute();
