@@ -278,19 +278,11 @@ consider carousel for the video list area:
 				<!--end of table header div row-->
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
 					
-					<!-- used to determine breakpoint and call carousel options based on size -->
-					<div id="determineScreenSize">
-						<div id="xs" class="visible-xs"></div>
-						<div id="sm" class="visible-sm"></div>
-						<div id="md" class="visible-md"></div>
-						<div id="lg" class="visible-lg"></div>
-					</div>
-
-
 					<!-- Indicators -->
 					<ol class="carousel-indicators hidden-xs hidden-sm">
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
+						<li id="returnCarouselStart" class="glyphicon glyphicon-chevron-left" onclick=returnToPageOne()></li>
 						<li id="currentSlideNumberArea"></li>
 					</ol>
 
@@ -1303,10 +1295,6 @@ consider carousel for the video list area:
 						</div>
 					</div>
 					<div class="modal-body" id="channelSearchModalBody">
-						<!-- sample target: for changing image source
-      						1-indexed
-							$('#chSearch-'+[i]+' img').src(img source);
-      					 -->
 						<li id="chSearch-1" class="col-xs-12">
 							<img class="col-xs-4" />
 							<h4 class="col-xs-7">

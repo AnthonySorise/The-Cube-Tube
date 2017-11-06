@@ -288,13 +288,16 @@ function clickHandler() {
 
     //Theater mode
     $('.lightBoxMode').on('click', function () {
+        let currentVolumeLevel = null;
         player.pauseVideo();
         if (player.getPlayerState() === 2) {
+            checkIfPlayerIsMuted();
             player.pauseVideo();
             player2.seekTo(player.getCurrentTime());
             player2.pauseVideo();
             $('#lightBoxModal').modal('show');
         } else if (player.getPlayerState() === 1) {
+            checkIfPlayerIsMuted();
             player.pauseVideo();
             player2.seekTo(player.getCurrentTime());
             $('#lightBoxModal').modal('show');
@@ -305,11 +308,13 @@ function clickHandler() {
     });
     $('.theatreModalClose').on('click', function () {
         if (player2.getPlayerState() === 2) {
+            checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
             player.pauseVideo();
             $('#lightBoxModal').modal('show');
         } else if (player2.getPlayerState() === 1) {
+            checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
             $('#lightBoxModal').modal('show');
@@ -509,7 +514,6 @@ function renderVideoList(videoArray) {
         }
         // removePlaceholderAnimation();
     }, 250);
-
 }
 
 function ytChannelApiToDb(channelId) {
@@ -600,7 +604,6 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
 
 function manageDatabaseWithChannelId (channelID){
     clientVideoObjectArray = null;
-    
     //Check channel database to see if channelID exists in db
     $.ajax({
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -708,8 +711,10 @@ function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber);
     if (currentSlideNumber == 1) {
         $(".leftControl").hide()
+        $("#returnCarouselStart").hide();
     } else {
-        $(".leftControl").show()
+        $(".leftControl").show();
+        $("#returnCarouselStart").show();
     }
 }
 
@@ -830,6 +835,33 @@ function displayTableDataOnDesktop(){
     //     mobileSlideItem[i].children[i].addClass('tdListLeft')
     // }
 }
+
+function checkIfPlayerIsMuted() {
+    if(player.isMuted()) {
+        player2.mute();
+    } else {
+        player2.unMute();
+        currentVolumeLevel = player.getVolume();
+        player2.setVolume(currentVolumeLevel);
+    }
+}
+
+function checkIfPlayer2IsMuted() {
+    if(player2.isMuted()) {
+        player.mute();
+    } else {
+        player.unMute();
+        currentVolumeLevel = player2.getVolume();
+        player.setVolume(currentVolumeLevel);
+    }
+}
+
+function returnToPageOne(){
+    $(".carousel").carousel(0);
+    currentSlideNumber = 1;
+    displayCurrentPageNumber();
+}
+
 
 
 
