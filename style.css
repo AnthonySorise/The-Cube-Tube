@@ -287,6 +287,10 @@ li#returnCarouselStart{
 	background-color: rgba(43, 187, 173, 0.6);
 }
 
+.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
+	font-weight: bold;
+}
+
 .row {
 	margin: 0;
 }
