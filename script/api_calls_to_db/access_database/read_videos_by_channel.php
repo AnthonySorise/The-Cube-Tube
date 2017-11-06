@@ -18,7 +18,6 @@ $stmt->bind_param('ii',$youtube_channel_id,$offset);
 $stmt->execute();
 $result = mysqli_stmt_get_result($stmt);
 if(!empty($result)) {
-    $output['data']['channel'] = $youtube_channel_id;
     if (mysqli_num_rows($result) > 0) {
         $output['success'] = true;
         while ($row = mysqli_fetch_assoc($result)) {
