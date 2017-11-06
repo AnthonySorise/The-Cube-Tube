@@ -240,6 +240,12 @@ body>.container-fluid {
 	/* background-color: white; */
 }
 
+li#returnCarouselStart{
+	position: relative;
+	right: 6px;
+	font-size: small;
+}
+
 .carousel-control.right {
 	height: 100%;
 	background: none !important;
@@ -279,6 +285,10 @@ body>.container-fluid {
 .tdList:hover,
 .selectedTd {
 	background-color: rgba(43, 187, 173, 0.6);
+}
+
+.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
+	font-weight: bold;
 }
 
 .row {
@@ -536,6 +546,14 @@ body>.container-fluid {
 
 .glyphicon {
 	color: red;
+}
+
+.contentPlaceholder{
+	margin-top: 30px;
+}
+
+.contentPlaceholder>image{
+	margin: 0 auto; 
 }
 
 

@@ -2,19 +2,27 @@
 if(empty($LOCAL_ACCESS)){
     die("direction access not allowed");
 }
-$youtube_channel_id = $_POST['youtube_channel_id'];
+$youtube_array = $_POST['channel_id_array'];
+$channels = "'{$youtube_array[0]}'";
+if(count($youtube_array)>1){
+    for($i=1; $i<count($youtube_array); $i++){
+        $channels = $channels.','."'{$youtube_array[$i]}'";
+    }
+    $channels = '('.$channels.')';
+};
+print($channels);
 $offset = $_POST['offset'];
-if(empty($youtube_channel_id)){
-    $output['errors'][] = 'MISSING YOUTUBE CHANNEL ID';
+if(empty($youtube_array)){
+    $output['errors'][] = 'MISSING YOUTUBE ARRAY';
 }
-if(empty($offset)){
+if(!isset($offset)){
     $output['errors'][] = 'MISSING OFFSET';
 }
 $stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at, v.video_title, c.channel_title, c.youtube_channel_id
 FROM videos AS v JOIN channels AS c ON v.youtube_channel_id = c.youtube_channel_id
-WHERE v.youtube_channel_id = ? 
+WHERE c.youtube_channel_id IN ?
 ORDER BY v.published_at DESC LIMIT 40 OFFSET ?");
-$stmt->bind_param('si',$youtube_channel_id,$offset);
+$stmt->bind_param('si',$channels,$offset);
 $stmt->execute();
 $result = mysqli_stmt_get_result($stmt);
 if(!empty($result)) {

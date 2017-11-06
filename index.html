@@ -206,13 +206,17 @@ consider carousel for the video list area:
 					<div class="collapse navbar-collapse text-center" id="midNav-option">
 						<!--div for nav options-->
 						<div class="navbar-nav nav-pills infoButtons">
-							<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
-								<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="channel info"></i>
-							</a>
-							<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
-							 <!--data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">-->
-								<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="video stats"></i>
-							</a>
+
+								<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
+									<!--data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">-->
+									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
+								</a>
+
+
+								<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
+									<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
+								</a>
+
 						</div>
 						<div class="navbar-nav nav-pills autoPlayArea">
 							<label id="autoplayText">Autoplay</label>
@@ -238,7 +242,7 @@ consider carousel for the video list area:
 			</nav>
 			<div class="col-xs-12 videoListRowWrapper">
 				<!--videoListRow for listing channel videos-->
-				<div class="row thRow">
+				<div class="row thRow videoHeader">
 					<div class="col-sm-12 col-md-6 thLabel text-center">
 						<div class="col-xs-5 thTitle">
 							<strong>Title</strong>
@@ -271,22 +275,26 @@ consider carousel for the video list area:
 						</div>
 					</div>
 				</div>
+
+								<!-- placeholder for first time user content: possible instruction area -->
+				
+								<div class='row'>
+									<div class="col-sm-12 text-center contentPlaceholder">
+										<h1 class="text-center">Welcome to CubeTube!</h1>
+										<h3>Start by searching for your favorite YouTube channel</h3>
+										<h3>Add channels by clicking the 'add' button, or simply browse content with 'browse'</h3>
+										<img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png">
+									</div>
+								</div>
+
 				<!--end of table header div row-->
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
 					
-					<!-- used to determine breakpoint and call carousel options based on size -->
-					<div id="determineScreenSize">
-						<div id="xs" class="visible-xs"></div>
-						<div id="sm" class="visible-sm"></div>
-						<div id="md" class="visible-md"></div>
-						<div id="lg" class="visible-lg"></div>
-					</div>
-
-
 					<!-- Indicators -->
 					<ol class="carousel-indicators hidden-xs hidden-sm">
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
+						<li id="returnCarouselStart" class="glyphicon glyphicon-fast-backward" onclick=returnToPageOne()></li>
 						<li id="currentSlideNumberArea"></li>
 					</ol>
 
