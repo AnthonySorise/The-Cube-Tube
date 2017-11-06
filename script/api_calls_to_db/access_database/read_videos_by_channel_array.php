@@ -3,10 +3,10 @@ if(empty($LOCAL_ACCESS)){
     die("direction access not allowed");
 }
 $youtube_array = $_POST['channel_id_array'];
-$channels = "v.youtube_channel_id = "."$youtube_array[0]";
+$channels = "v.youtube_channel_id = "."{$youtube_array[0]}";
 if(count($youtube_array)>1){
     for($i=1; $i<count($youtube_array); $i++){
-        $channels = $channels.' OR v.youtube_channel_id = '."$youtube_array[$i]";
+        $channels = $channels.' OR v.youtube_channel_id = '."{$youtube_array[$i]}";
     }
 };
 print($channels);
