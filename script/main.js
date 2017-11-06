@@ -812,4 +812,3 @@ function displayTableDataOnDesktop(){
 
 
 
-
