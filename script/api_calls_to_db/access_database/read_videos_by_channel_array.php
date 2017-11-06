@@ -11,6 +11,7 @@ if(count($youtube_array)>1){
     $channels = '('.$channels.')';
 };
 print($channels);
+exit();
 $offset = $_POST['offset'];
 if(empty($youtube_array)){
     $output['errors'][] = 'MISSING YOUTUBE ARRAY';
