@@ -13,7 +13,7 @@ JOIN `channels_to_users` AS `ctu`
 ON `c.channel_id` = `ctu.channel_id` 
 WHERE `ctu.user_id` = ? 
 ORDER BY `c.channel_title`");
-$stmt->bind_param("i",$user_id);
+$stmt->bind_param('i',$user_id);
 $stmt->execute();
 $result = mysqli_stmt_get_result($stmt);
 if(!empty($result)){
