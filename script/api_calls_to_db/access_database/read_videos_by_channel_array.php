@@ -8,8 +8,8 @@ for($i=1; $i<count($youtube_array); $i++){
     $channels += " OR v.youtube_channel_id = ".$youtube_array[i];
 }
 $offset = $_POST['offset'];
-if(empty($youtube_channel_id)){
-    $output['errors'][] = 'MISSING YOUTUBE CHANNEL ID';
+if(empty($youtube_array)){
+    $output['errors'][] = 'MISSING YOUTUBE ARRAY';
 }
 if(empty($offset)){
     $output['errors'][] = 'MISSING OFFSET';
