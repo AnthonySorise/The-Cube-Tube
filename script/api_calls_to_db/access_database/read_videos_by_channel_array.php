@@ -3,14 +3,12 @@ if(empty($LOCAL_ACCESS)){
     die("direction access not allowed");
 }
 $youtube_array = $_POST['channel_id_array'];
-print_r($youtube_array);
-exit();
 $channels = "v.youtube_channel_id = ".$youtube_array[0];
 for($i=1; $i<count($youtube_array); $i++){
     $channels += " OR v.youtube_channel_id = ".$youtube_array[i];
 }
 $offset = $_POST['offset'];
-print_r($channels);
+print($channels);
 exit();
 if(empty($youtube_array)){
     $output['errors'][] = 'MISSING YOUTUBE ARRAY';
