@@ -92,6 +92,16 @@ function tooltipFunctions() {
             $('.videoSearchButton').tooltip('hide');
         }, 1000);
     });
+    $('#videoStats .fa-bar-chart').mouseenter(function(){
+        setTimeout(function(){
+            $('#videoStats .fa-bar-chart').tooltip('hide');
+        }, 1000);
+    });
+    $('#channelInfo .fa-list-alt').mouseenter(function(){
+        setTimeout(function(){
+            $('#channelInfo .fa-list-alt').tooltip('hide');
+        }, 1000);
+    });
 }
 
 //Click handler to console log search results

@@ -33,11 +33,13 @@ body {
 
 ::-webkit-scrollbar {
 	width: 4px;
+	height: 4px;
 	background-color: rgb(40, 40, 40);
 }
 
 ::-webkit-scrollbar-thumb {
 	width: 3.5px;
+	height: 4px;
 	border-radius: 25px;
 	background-color: #3F729B;
 }
