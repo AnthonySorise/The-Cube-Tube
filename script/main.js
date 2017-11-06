@@ -262,18 +262,16 @@ function clickHandler() {
         let currentVolumeLevel = null;
         player.pauseVideo();
         if (player.getPlayerState() === 2) {
-            currentVolumeLevel = player.getVolume();
+            checkIfPlayerIsMuted();
             player.pauseVideo();
             player2.seekTo(player.getCurrentTime());
             player2.pauseVideo();
-            player2.setVolume(currentVolumeLevel);
             $('#lightBoxModal').modal('show');
         } else if (player.getPlayerState() === 1) {
+            checkIfPlayerIsMuted();
             player.pauseVideo();
-            currentVolumeLevel = player.getVolume();
             player2.seekTo(player.getCurrentTime());
             $('#lightBoxModal').modal('show');
-            player2.setVolume(currentVolumeLevel);
             player2.playVideo();
         } else if (player.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
@@ -281,18 +279,16 @@ function clickHandler() {
     });
     $('.theatreModalClose').on('click', function () {
         if (player2.getPlayerState() === 2) {
-            currentVolumeLevel = player2.getVolume();
+            checkIfPlayer2IsMuted();
             player2.pauseVideo();
-            player.setVolume(currentVolumeLevel);
             player.seekTo(player2.getCurrentTime());
             player.pauseVideo();
             $('#lightBoxModal').modal('show');
         } else if (player2.getPlayerState() === 1) {
-            currentVolumeLevel = player2.getVolume();
+            checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
             $('#lightBoxModal').modal('show');
-            player.setVolume(currentVolumeLevel);
             player.playVideo();
         } else if (player2.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
@@ -810,5 +806,24 @@ function displayTableDataOnDesktop(){
     // }
 }
 
+function checkIfPlayerIsMuted() {
+    if(player.isMuted()) {
+        player2.mute();
+    } else {
+        player2.unMute();
+        currentVolumeLevel = player.getVolume();
+        player2.setVolume(currentVolumeLevel);
+    }
+}
+
+function checkIfPlayer2IsMuted() {
+    if(player2.isMuted()) {
+        player.mute();
+    } else {
+        player.unMute();
+        currentVolumeLevel = player2.getVolume();
+        player.setVolume(currentVolumeLevel);
+    }
+}
 
 
