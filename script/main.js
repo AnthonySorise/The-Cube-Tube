@@ -14,13 +14,13 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-        videoId: vidId || 'ZZ5LpwO-An4'
+        videoId: vidId || '7O24mrBRit0'
     });
     onYouTubeIframeAPIReady2();
 }
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
-        videoId: 'ZZ5LpwO-An4'
+        videoId: '7O24mrBRit0'
     });
 }
 var player;
@@ -29,7 +29,7 @@ var player2;
 /*******needed for iframe player*******/
 
 $(window).resize(function(){
-    let windowWidth = ($(window).width())
+    let windowWidth = ($(window).width());
     if(windowWidth <= 768){
         displayTableDataOnMobile()
     }else{
@@ -64,7 +64,7 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
 
-
+    clearVideoList();   //hides list rows until they are needed
 
 });
 
@@ -102,10 +102,14 @@ function clickHandler() {
         searchChannelsByName().then(worked, failed);
     });
     //Browse Button
-    $('.browseChannelButton').on("click", handleBrowseButton)
+    $('.browseChannelButton').on("click", handleBrowseButton);
 
     //Table List Rows
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
+        var videoID = $(this).parent().attr('videoId');
+        var channelID = $(this).parent().attr('channelID');
+
+        var selectedVideoId = $(this).parent().attr('videoId');
         // $('.fa-play-circle-o').remove();
         $('.fa-circle-o-notch').remove();
         var playSymbol = $('<i>')
@@ -118,15 +122,14 @@ function clickHandler() {
         $(this).parent().find(".tdTitle>span").prepend(playSymbol);
         $('.tdList').removeClass('selectedTd');
         $(this).parent().addClass("selectedTd");
-        if (getAutoPlayValue() == true){
-            player.loadVideoById($(this).parent().attr('videoId'));
+        if (getAutoPlayValue()){
+            player.loadVideoById(selectedVideoId);
         }else{
-            player.cueVideoById($(this).parent().attr('videoId'));
+            player.cueVideoById(selectedVideoId);
         }
-        player2.cueVideoById($(this).parent().attr('videoId'));
+        player2.cueVideoById(selectedVideoId);
 
-        //update stats popover
-        var videoID = $(this).parent().attr('videoId');
+        //update video stats popover
         $.ajax({
             url: 'https://www.googleapis.com/youtube/v3/videos',
             dataType: 'json',
@@ -137,15 +140,27 @@ function clickHandler() {
                 part: 'snippet, statistics'
             },
             success: function (data) {
-                // console.log('Youtube success',data);
+                console.log('Youtube success',data);
+                let videoStatsDiv = $('<div></div>');
+
+                let videoURL = 'https://i.ytimg.com/vi/' + selectedVideoId + '/mqdefault.jpg';
+                const videoThumbnail = $('<img>').attr('src', videoURL).css({
+                    width: '120px',
+                    height: '70px',
+                });
+                videoThumbnail.css("position", "relative")
+                    .css("left", "50%")
+                    .css("transform", "translateX(-50%)")
+                    .css("margin-bottom", '15px');
+
+                const views = $('<p><strong>Views: </strong>'+parseInt(data.items[0].statistics.viewCount).toLocaleString("en-us")+'</p>');
+
                 const likes = parseInt(data.items[0].statistics.likeCount);
                 const dislikes = parseInt(data.items[0].statistics.dislikeCount);
 
                 const perecentLikes = likes / (likes + dislikes) * 100;
                 const percentDislikes = 100 - perecentLikes;
 
-                let videoStatsDiv = $('<div></div>');
-                const views = $('<p><strong>Views: </strong>'+parseInt(data.items[0].statistics.viewCount).toLocaleString("en-us")+'</p>');
                 const likesTitle = $('<p><strong>Likes and Dislikes:</strong></p>');
                 let likesBar = null;
 
@@ -157,25 +172,89 @@ function clickHandler() {
                 }
 
                 const descriptionTitle = $('<p><strong>Description: </strong></p>');
+
+                const descriptionContainer = $('<div></div>');
+                descriptionContainer.css("height", "13vh");
+                descriptionContainer.css("overflow-y", "auto")
                 const description = $('<p>'+data.items[0].snippet.description+'</p>');
-                videoStatsDiv.append(views, likesTitle, likesBar, descriptionTitle, description);
+                descriptionContainer.append(description);
+                videoStatsDiv.append(videoThumbnail, views, likesTitle, likesBar, descriptionTitle, descriptionContainer);
                 $("#videoStats").popover('destroy');
                 setTimeout(function () {
                     $("#videoStats").popover({
                         html: true,
                         content: videoStatsDiv,
-                        placement: 'auto',
+                        placement: 'top',
                         container: 'body'
                     });
                 }, 250);
                 $("#videoStats").attr({
-                    'data-original-title': data.items[0].snippet.title + " - " + data.items[0].snippet.channelTitle
+                    'data-original-title': data.items[0].snippet.title
                 });
             },
             error: function (data) {
                 console.log('something went wrong with YT', data);
             }
+        });
+        //update channel stats popover
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/channels',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: channelID,
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('Youtube success',data);
+                let channelInfoDiv = $("<div></div>");
+
+                const channelThumbnail = $('<img>').attr('src', data.items[0].snippet.thumbnails.medium.url).css({
+                    width: '70px',
+                    height: '70px',
+                });
+                channelThumbnail.css("position", "relative")
+                    .css("left", "50%")
+                    .css("transform", "translateX(-50%)")
+                    .css("margin-bottom", '15px');
+
+                var subscriberCount = $('<p><strong>Subscribers: </strong>'+parseInt(data.items[0].statistics.subscriberCount).toLocaleString("en-us")+'</p>');
+
+                const descriptionTitle = $('<p><strong>Description: </strong></p>');
+
+                const descriptionContainer = $('<div></div>');
+                descriptionContainer.css("height", "21.75vh");
+                descriptionContainer.css("overflow-y", "auto")
+                const description = $('<p>'+data.items[0].snippet.description+'</p>');
+                descriptionContainer.append(description);
+
+
+                channelInfoDiv.append(channelThumbnail, subscriberCount, descriptionTitle, descriptionContainer);
+
+                $("#channelInfo").popover('destroy');
+                setTimeout(function () {
+                    $("#channelInfo").popover({
+                        html: true,
+                        content: channelInfoDiv,
+                        placement: 'top',
+                        container: 'body'
+                    });
+                }, 250);
+                $("#channelInfo").attr({
+                    'data-original-title': data.items[0].snippet.title
+                });
+
+
+
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
         })
+
+
+
     });
 
     //Theater mode
@@ -211,28 +290,30 @@ function clickHandler() {
         }
     });
 
-    //stats popover
-    $("#videoStats").on('show.bs.popover', function () {
-        const videoLink = ($('#mainVideo').attr("src"));
-        let videoID = videoLink.replace("https://www.youtube.com/embed/", "");
-        videoID = videoID.substring(0, videoID.indexOf('?'));
-        $.ajax({
-            url: 'https://www.googleapis.com/youtube/v3/videos',
-            dataType: 'json',
-            method: 'get',
-            data: {
-                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-                id: videoID,
-                part: 'snippet, statistics'
-            },
-            success: function (data) {
-                console.log('Youtube success', data);
-            },
-            error: function (data) {
-                console.log('something went wrong with YT', data);
-            }
-        })
-    });
+    // //video stats popover    //NOT USED PROBABLY
+    // $("#videoStats").on('show.bs.popover', function () {
+    //     const videoLink = ($('#mainVideo').attr("src"));
+    //     let videoID = videoLink.replace("https://www.youtube.com/embed/", "");
+    //     videoID = videoID.substring(0, videoID.indexOf('?'));
+    //     $.ajax({
+    //         url: 'https://www.googleapis.com/youtube/v3/videos',
+    //         dataType: 'json',
+    //         method: 'get',
+    //         data: {
+    //             key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+    //             id: videoID,
+    //             part: 'snippet, statistics'
+    //         },
+    //         success: function (data) {
+    //             console.log('Youtube success', data);
+    //         },
+    //         error: function (data) {
+    //             console.log('something went wrong with YT', data);
+    //         }
+    //     })
+    // });
+    // //channel stats popover
+
 }
 
 //Channel Search by Name
@@ -314,7 +395,7 @@ function renderChannelSearchStats(i) {
         error: function (data) {
             console.log('something went wrong with YT', data);
         }
-    })
+    });
 }
 
 function clearChannelResults() {
@@ -337,9 +418,21 @@ function clearChannelResults() {
     }
 }
 
-function renderVideoList(videoArray) {
+function clearVideoList(){
     $(".tdTitle").popover('destroy');
 
+    $('.tdList').attr("videoID", "");
+    $('.tdTitle>span').text("");
+    $('.tdChannel').text("");
+    $('.tdUpDate').text("");
+    $('.tdInfo a').attr({
+        'data-content': "",
+        'data-original-title': ""
+    });
+    $('.tdList').hide();
+}
+
+function renderVideoList(videoArray) {
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
 
@@ -352,7 +445,10 @@ function renderVideoList(videoArray) {
             const d = new Date(dateString);
             dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
 
+            $(row).show();
+
             $(row).attr("videoID", videoArray[i].youtube_video_id);
+            $(row).attr("channelID", videoArray[i].youtube_channel_id);
             $(title).text(videoArray[i].video_title);
             $(channel).text(videoArray[i].channel_title);
             $(upDate).text(dateString);
@@ -374,9 +470,17 @@ function renderVideoList(videoArray) {
                 content: videoDataImg,
                 placement: 'auto',
                 container: 'body'
+            })
+            .attr({
+                'data-original-title': videoArray[i].video_title
+
             });
+
+
         }
+        // removePlaceholderAnimation();
     }, 250);
+
 }
 
 function ytChannelApiToDb(channelId) {
@@ -402,11 +506,7 @@ function ytChannelApiToDb(channelId) {
             channelDbObject.thumbnail = thumbnail;
 
             access_database.insert_channel(channelDbObject);
-            
-            // Doing API calls for these?
-            // channelDbObject.sub_count = data.items[0].statistics.subscriberCount;
-            // channelDbObject.video_count = data.items[0].statistics.videoCount;
-            // channelDbObject.view_count = data.items[0].statistics.viewCount;
+
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -414,8 +514,9 @@ function ytChannelApiToDb(channelId) {
     });
 }
 
-function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
+function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
     var packageToSendToDb = [];
+    var clientVideos = [];
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
         dataType: 'json',
@@ -431,7 +532,6 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
         },
         success: function (data) {
             console.log('ytVideoApiToDb success', data);
-            createPlaceholderAnimation();
             for (var i = 0; i < data.items.length; i++) {
                 var videoObject = {};
                 videoObject.channel_id = access_database.channel_id_hold;
@@ -444,20 +544,23 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
                 publishedAt = publishedAt.replace("T", " ");
                 publishedAt = publishedAt.replace(".000Z", "");
                 videoObject.published_at = publishedAt;
-                // var thumbnail = data.items[i].snippet.thumbnails.medium.url;
-                // thumbnail = thumbnail.replace('https://i.ytimg.com/vi/', '');
-                // thumbnail = thumbnail.replace('/mqdefault.jpg', '');
-                // videoObject.thumbnail = thumbnail;
 
-                allVideos.push(videoObject);
                 packageToSendToDb.push(videoObject);
+
+            }
+
+            if(firstRun){
+                clientVideoObjectArray = [];
+                var clientPackage = [];
+                for(var i = 0; i < 40; i++){
+                    clientPackage.push(packageToSendToDb[i])
+                }
+                clientVideoObjectArray = clientPackage
             }
             access_database.insert_video(packageToSendToDb);
 
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
-                ytVideoApiToDb(channelId, allVideos, data.nextPageToken)
-            } else {
-                clientVideoObjectArray = allVideos; //set to global variable  Can't return the array for some reason
+                ytVideoApiToDb(channelId, data.nextPageToken, false)
             }
         },
         error: function (data) {
@@ -466,15 +569,9 @@ function ytVideoApiToDb(channelId, allVideos = [], pageToken = "") {
     });
 }
 
-function convertVideoArrayToOnePage(videoArray, page = 0) { //Temp - will pull 40 at a time from database
-    let returnArray = [];
-    for (let i = (page * 40); i < ((page * 40) + 40); i++) {
-        returnArray.push(videoArray[i])
-    }
-    return returnArray
-}
-
 function manageDatabaseWithChannelId (channelID){
+    clientVideoObjectArray = null;
+    
     //Check channel database to see if channelID exists in db
     $.ajax({
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -487,12 +584,11 @@ function manageDatabaseWithChannelId (channelID){
         success:function(data){
             if(data.success){
                 console.log("Channel will be pulled from database", data);
-                //READ VIDEOS FROM DB
                 data.youtube_channel_id = channelID;
                 globalChannelObjectArray = [];
                 globalChannelObjectArray.push(data);
                 //get videos
-                $.ajax({
+                $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
                     url:'./script/api_calls_to_db/access_database/access.php',
                     method:'post',
                     dataType:'JSON',
@@ -508,7 +604,7 @@ function manageDatabaseWithChannelId (channelID){
                             globalChannelObjectArray = [];
                             globalChannelObjectArray.push(data.data[0]);
 
-                            $.ajax({
+                            $.ajax({    //RETRIEVE VIDEOS FROM DB
                                 url: './script/api_calls_to_db/access_database/access.php',
                                 method: 'POST',
                                 dataType: 'JSON',
@@ -522,7 +618,7 @@ function manageDatabaseWithChannelId (channelID){
                                         // promise.resolve(data);
                                         console.log('Videos Found', data);
                                         clientVideoObjectArray = data.data;
-                                        loadAndResetClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
+                                        loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                                     }
                                     else{
                                         console.log('Channel Found Without Videos', data)
@@ -541,12 +637,12 @@ function manageDatabaseWithChannelId (channelID){
                     }
                 })
             }
-            else{
+            else{   //RETRIEVE VIDEOS FROM YOUTUBE
                 if(data.nothing_to_read){
                     console.log("Retrieve Videos From You Tube", data);
                     ytVideoApiToDb(channelID);
                     ytChannelApiToDb(channelID);
-                    loadAndResetClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
+                    loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                 }
             }
         },
@@ -557,17 +653,20 @@ function manageDatabaseWithChannelId (channelID){
     });
 }
 
-function loadAndResetClientVideoObjectArray() {
+function loadClientVideoObjectArray() {
+
+
     if (clientVideoObjectArray === null) {
-        setTimeout(loadAndResetClientVideoObjectArray, 50);
+        setTimeout(loadClientVideoObjectArray, 50);
         return
     }
-    let videoArrayPage = convertVideoArrayToOnePage(clientVideoObjectArray);    //TODO - Temporary - until grab 40 vids at a time
-    renderVideoList(videoArrayPage);
-    clientVideoObjectArray = null;
+    renderVideoList(clientVideoObjectArray);
 }
 
 function handleBrowseButton() {
+    clearVideoList();
+    // createPlaceholderAnimation();
+
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
     // toastMsg('loading channel videos',1000);
@@ -584,8 +683,6 @@ function displayCurrentPageNumber() {
         $(".leftControl").show()
     }
 }
-
-
 
 function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
@@ -614,51 +711,96 @@ function toastMsg(msgString, time){
     }, time);
 }
 
-//Testing placeholder animation
-var classes = [
-    "background-masker header-top",
-    "background-masker header-left",
-    "background-masker header-right",
-    "background-masker header-bottom",
-    "background-masker subheader-left",
-    "background-masker subheader-right",
-    "background-masker subheader-bottom",
-    "background-masker content-top",
-    "background-masker content-first-end",
-    "background-masker content-second-line",
-    "background-masker content-second-end",
-    "background-masker content-third-line",
-    "background-masker content-third-end"
-]
+// //Testing placeholder animation
+// var classes = [
+//     "background-masker header-top",
+//     "background-masker header-left",
+//     "background-masker header-right",
+//     "background-masker header-bottom",
+//     "background-masker subheader-left",
+//     "background-masker subheader-right",
+//     "background-masker subheader-bottom",
+//     "background-masker content-top",
+//     "background-masker content-first-end",
+//     "background-masker content-second-line",
+//     "background-masker content-second-end",
+//     "background-masker content-third-line",
+//     "background-masker content-third-end"
+// ]
 
-function createPlaceholderAnimation() {
-    var outerDiv = $('<div>').addClass("timeline-wrapper");
-    var nestedDiv1 = $('<div>').addClass("timeline-item");
-    var nestedDiv2 = $('<div>').addClass("animated-background");
-    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2);
-    for (var i = 0; i < 12; i++) {
-        var childElements = $('<div>').addClass(classes[i]);
-        $(childElements).appendTo(nestedDiv2);
+// function createPlaceholderAnimation() {
+//     $(".tdList").show();
+//
+//     var outerDiv = $('<div>').addClass("timeline-wrapper");
+//     var nestedDiv1 = $('<div>').addClass("timeline-item");
+//     var nestedDiv2 = $('<div>').addClass("animated-background");
+//     var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2);
+//     for (var i = 0; i < 12; i++) {
+//         var childElements = $('<div>').addClass(classes[i]);
+//         $(childElements).appendTo(nestedDiv2);
+//
+//     }
+//     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
+// }
+//
+// function removePlaceholderAnimation(){
+//     for(var i = 0; i<40; i++){
+//         let row = "#tdList-" + (i + 1);
+//         let title = row + " .tdTitle>span";
+//
+//         if($(title).text() === ""){
+//             $(row).hide();
+//         }
+//     }
+// }
 
-    }
-    $('.tdTitle, .tdChannel').append(completedWrapper);
-}
+// function displayTableDataOnMobile(){
+//     var newSlideData = $(".firstPage>*").children().clone()
+//     var itemDiv = $("<div>").addClass('item mobileSlide');
+//     var contentDiv = $("<div>").addClass('carousel-content');
+//     var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
+//     rowDiv.append(newSlideData);
+//     contentDiv.append(rowDiv);
+//     itemDiv.append(contentDiv);
+//     // itemDiv.append(contentDiv).append(rowDiv).append(newSlideData);
+//     $(".tdListRight").hide();
+//     $(".tdListLeft").removeClass('col-md-6');
+//     $(".carousel-inner").append(itemDiv);
+    
+// }
 
 function displayTableDataOnMobile(){
-    var newSlideData = $(".firstPage>*").children().clone()
-    var itemDiv = $("<div>").addClass('item');
-    var contentDiv = $("<div>").addClass('carousel-content');
-    var rowDiv = $("<div>").addClass('row,tdRow,text-center');
-    var newElement = itemDiv.append(contentDiv).append(rowDiv).append(newSlideData);
-    $(".tdListRight").hide();
-    $(".tdListLeft").removeClass('col-md-6');
-    $(".carousel-inner").append(newElement).hasClass('mobileSlide')
+    var rightTableData = $(".item").find(".tdListRight").children().clone();
+    var newElementArray = []
+    for(var j = 0; j<rightTableData.length; j+=10){
+        var newImage = rightTableData.slice(j,j+10)
+        newElementArray.push(newImage);
+    }
+    for(var i = 0; i<newElementArray.length; i++){
+        var itemDiv = $("<div>").addClass('item mobileSlide');
+        var contentDiv = $("<div>").addClass('carousel-content');
+        var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
+        rowDiv.append(newElementArray[i]);
+        contentDiv.append(rowDiv);
+        itemDiv.append(contentDiv);
+        $(".carousel-inner").append(itemDiv);
+    }   
+        $(".tdListRight").hide();
+        $(".tdListLeft").removeClass('col-md-6');
+        // $(".carousel-inner").append(itemDiv);
+    
+
 }
 
 function displayTableDataOnDesktop(){
     $(".tdListRight").show();
+    $(".mobileSlide").remove();
     $(".tdListLeft").addClass('col-md-6');
-    $(".mobileSlide").hide();
+    var mobileSlideItem = $(".carousel-content>.mobileRow");
+    // for(var i = 0; i<mobileSlideItem.length; i++){
+    //     mobileSlideItem[i].children[i].addClass('tdListLeft')
+    // }
 }
+
 
 
