@@ -2,8 +2,8 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-if(empty($_POST['table'])){
-
+if(empty($_POST['ctu_id'])){
+    $output['errors'] = 'MISSING CTU ID';
 }
 $ctu_id = $_POST['ctu_id'];
 $stmt = $conn->prepare("DELETE FROM `channels_to_user` WHERE `ctu_id`=?");

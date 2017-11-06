@@ -27,7 +27,7 @@ $stmt = $conn->prepare("INSERT INTO `channels` SET
 `thumbnail_file_name` = ?, 
 `date_created`=?,
 `last_channel_pull`=?");
-$stmt->bind_param("ssssss",$channel_title,$youtube_channel_id,$description,$thumbnail,$date_created,$last_channel_pull);
+$stmt->bind_param('ssssss',$channel_title,$youtube_channel_id,$description,$thumbnail,$date_created,$last_channel_pull);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';

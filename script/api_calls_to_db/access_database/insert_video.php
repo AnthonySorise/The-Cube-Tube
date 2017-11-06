@@ -27,7 +27,7 @@ for($i = 0; $i<count($video_array); $i++ ){
         $output['errors'][] = 'PUBLISHED DATE MISSING';
     }
     if(empty($channel_id)){
-        $output['errors'][] = 'MISSING ID';
+        $output['errors'][] = 'MISSING CHANNEL ID';
     }
     $stmt = $conn->prepare("INSERT INTO `videos` SET 
     `video_title` = ?,
@@ -37,7 +37,7 @@ for($i = 0; $i<count($video_array); $i++ ){
     `published_at` = ?,
     `last_updated`=?,
     `channel_id`=?");
-    $stmt->bind_param("ssssssi",$video_title,$youtube_channel_id,$youtube_video_id,$description,$published_at,$last_updated,$channel_id);
+    $stmt->bind_param('ssssssi',$video_title,$youtube_channel_id,$youtube_video_id,$description,$published_at,$last_updated,$channel_id);
     $stmt->execute();
     if(empty($stmt)){
         $output['errors'][] = 'INVALID QUERY';
