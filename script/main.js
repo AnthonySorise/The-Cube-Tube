@@ -679,8 +679,10 @@ function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber);
     if (currentSlideNumber == 1) {
         $(".leftControl").hide()
+        $("#returnCarouselStart").hide();
     } else {
-        $(".leftControl").show()
+        $(".leftControl").show();
+        $("#returnCarouselStart").show();
     }
 }
 
@@ -800,6 +802,12 @@ function displayTableDataOnDesktop(){
     // for(var i = 0; i<mobileSlideItem.length; i++){
     //     mobileSlideItem[i].children[i].addClass('tdListLeft')
     // }
+}
+
+function returnToPageOne(){
+    $(".carousel").carousel(0);
+    currentSlideNumber = 1;
+    displayCurrentPageNumber();
 }
 
 
