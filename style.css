@@ -33,11 +33,13 @@ body {
 
 ::-webkit-scrollbar {
 	width: 4px;
+	height: 4px;
 	background-color: rgb(40, 40, 40);
 }
 
 ::-webkit-scrollbar-thumb {
 	width: 3.5px;
+	height: 4px;
 	border-radius: 25px;
 	background-color: #3F729B;
 }
@@ -71,42 +73,38 @@ body {
 .navbar-brand .fa {
 	color: rgb(255, 0, 0);
 }
-
-#mainNav-option form,
+#midNav-option{
+	z-index:1;
+}
 #midNav-option form {
 	margin-right: 20px;
 }
-
-#midNav-option .dropdown-toggle {
-	color: rgb(255, 205, 210);
-}
-
-#midNav-option .dropdown-toggle:hover {
-	background-color: rgba(35, 42, 57, 0.8);
-}
-
-#midNav-option .dropdown-toggle:focus {
-	background: none;
-}
-
 #mainNav-option .form-group {
 	display: inline-block;
 	margin: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-
 #midNav-option .form-group {
 	display: inline-block;
 	margin: 0;
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
-
 .channelSearchForm {
 	position: relative;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 0;
 }
-
+.infoButtons{
+	line-height: 3.5;
+}
+.autoPlayArea{
+	/*float: none;*/
+	/*display: inline-block;*/
+	margin-left: 35px;
+}
 #ui-id-1:focus {
 	top: 43px;
 }
@@ -156,9 +154,9 @@ body>.container-fluid {
 }
 
 #channelInfo {
-	position: absolute;
+/*	position: absolute;
 	right: 0;
-	bottom: 89px;
+	bottom: 89px;*/
 	color: rgba(255, 255, 255, 0.5);
 	/*color: rgba(49,176,213,0.5);*/
 	background: none;
@@ -170,9 +168,9 @@ body>.container-fluid {
 }
 
 #videoStats {
-	position: absolute;
+/*	position: absolute;
 	right: 0;
-	bottom: 52px;
+	bottom: 52px;*/
 	color: rgba(255, 255, 255, 0.5);
 	background: none;
 	border: none;
@@ -198,7 +196,7 @@ body>.container-fluid {
 
 #infoButtonContainer {
 	position: relative;
-	bottom: 13vh;
+	/*bottom: 13vh;*/
 }
 
 #midNav {
@@ -242,11 +240,19 @@ body>.container-fluid {
 	/* background-color: white; */
 }
 
+li#returnCarouselStart{
+	position: relative;
+	right: 6px;
+	font-size: small;
+}
+
 .carousel-control.right {
+	height: 100%;
 	background: none !important;
 }
 
 .carousel-control.left {
+	height: 100%;
 	background: none !important;
 }
 
@@ -373,6 +379,9 @@ body>.container-fluid {
 	#mainNav-option form,
 	#midNav-option form {
 		margin-right: 0;
+	}
+	.autoPlayArea{
+		margin-left: -15px;
 	}
 	/*end of hamburger/navbar css*/
 	body>.container-fluid {
@@ -626,14 +635,9 @@ input:checked+.slider {
 		width: auto;
 	}
 }
-
-ul ui-menu-item:focus {}
-
-
 /*testing if placeholder animation will work*/
 
 .timeline-item {
-	/* background: #fff; */
 	border: 0px solid;
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 	border-radius: 3px;
@@ -659,7 +663,7 @@ ul ui-menu-item:focus {}
 	background: #f6f7f8;
 	background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
 	background-size: 800px 104px;
-	height: 5px;
+	height: 100px;
 	position: relative;
 }
 

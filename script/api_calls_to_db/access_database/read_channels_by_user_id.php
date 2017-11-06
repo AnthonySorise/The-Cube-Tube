@@ -2,10 +2,10 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-if(empty($offset)){
-    $output['errors'][] = "MISSING OFFSET";
-}
 $user_id = $_POST['user_id'];
+if(empty($user_id)){
+    $output['errors'][] = 'MISSING USER ID';
+}
 $stmt = $conn->prepare("SELECT `c.channel_title`, 
 `c.youtube_channel_id`,`c.description`,`c.thumbnail_file_name` 
 FROM `channels` AS `c` 

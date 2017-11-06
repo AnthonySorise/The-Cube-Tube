@@ -1,7 +1,7 @@
  function Database(){
     var self = this;
     this.channel_id_hold = null;
-    this.delete_ctu = function(ctu_id){//delete by specifying table and id of entry i.e table = 'channels', id = 2
+    this.delete_ctu = function(ctu_id){//delete by specifying ctu id
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -18,7 +18,7 @@
             },
             success:function(data){
                 if(data.success){
-                    console.log('deleted success');
+                    console.log('deleted success', data);
                     // promise.resolve(data);
                 }
             },
@@ -28,7 +28,7 @@
             }
         })
     }
-     this.insert_channel = function(channel_object){//pass in channelobject and deconstruct it , not sure if were gonna include videos here
+     this.insert_channel = function(channel_object){//pass in channelobject and deconstruct it, match items in data object
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -50,8 +50,8 @@
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('insert channel success');
-                     console.log(data);
+                     console.log('insert channel success', data);
+                     // console.log(data);
                      self.channel_id_hold = data.id;
                  }
              },
@@ -62,7 +62,7 @@
          })
          // return promise;
      }
-     this.insert_ctu = function(user_id,channel_id){//numbers
+     this.insert_ctu = function(user_id,channel_id){//takes integers
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -81,7 +81,7 @@
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('insert ctu success');
+                     console.log('insert ctu success', data);
                  }
              },
              errors:function(){
@@ -91,7 +91,7 @@
          })
          // return promise;
      }
-     this.insert_user = function(link){
+     this.insert_user = function(link){//custom link
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -110,7 +110,7 @@
                  console.log(data);
                  if(data["success"]){
                      // promise.resolve(data);
-                     console.log('insert user success');
+                     console.log('insert user success', data);
                  }
              },
              errors:function(data){
@@ -120,7 +120,7 @@
          })
          // return promise
      }
-     this.insert_video = function (videoArray) {//pass in channelobject and deconstruct it , not sure if were gonna include videos here
+     this.insert_video = function (videoArray) {//pass in video array
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -138,17 +138,17 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('insert video success');
+                     console.log('insert video success', data);
                  }
              },
              errors: function (data) {
-                 console.log('insert error');
+                 console.log('insert error', data);
                  // promise.reject(data);
              }
          })
          // return promise
      }
-     this.read_channels_by_user_id = function(user_id){
+     this.read_channels_by_user_id = function(user_id){//itll read channel based on user, just pass in user id
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -166,17 +166,17 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('read success');
+                     console.log('read success', data);
                  }
              },
              errors: function (data) {
-                 console.log('read error');
+                 console.log('read error', data);
                  // promise.reject(data);
              }
          })
          // return promise
      }
-     this.read_ctu = function(user_id){
+     this.read_ctu = function(user_id){//give u all channels to users based on user id
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -194,22 +194,15 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('read success');
+                     console.log('read success', data);
                  }
              },
              errors: function (data) {
-                 console.log('read error');
+                 console.log('read error', data);
                  // promise.reject(data);
              }
          })
          // return promise
-     }
-     this.read
-     this.got_channels_from_database = function(){
-
-     }
-     this.channel_not_in_database = function(){
-
      }
     this.read_channels_by_youtube_id = function(youtube_channel_id){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
         var promise = {
@@ -241,7 +234,7 @@
         })
         // return promise;
     }
-    this.read_videos = function(offset,user_id){
+    this.read_videos = function(offset,user_id){//read videos with limit 40 based on user_id, can give an offset to read more.
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -260,17 +253,17 @@
             success: function (data) {
                 if (data.success) {
                     // promise.resolve(data);
-                    console.log('read video success');
+                    console.log('read video success', data);
                 }
             },
             errors: function (data) {
-                console.log('read error');
+                console.log('read error', data);
                 // promise.reject(data);
             }
         })
         // return promise
     }
-     this.read_videos_by_channel = function(youtube_channel_id,offset){
+     this.read_videos_by_channel = function(youtube_channel_id,offset){//give u a list of videos bassed on channels, limit 40, can pass in offset
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -289,24 +282,24 @@
              success: function (data) {
                  if (data.success) {
                      // promise.resolve(data);
-                     console.log('read success');
+                     console.log('read success', data);
                  }
              },
              errors: function (data) {
-                 console.log('read error');
+                 console.log('read error', data);
                  // promise.reject(data);
              }
          })
          // return promise
      }
-     this.update_channel = function(channel_object){//pass in channelobject and deconstruct it , not sure if were gonna include videos here
+     this.update_channel = function(channel_object){//pass in channelobject and deconstruct it, match items in data object
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
          //         this.reject = reject;
          //     }
          // }
-         const {channel_id, channel_title, description, thumbnail, sub_count,video_count,view_count} = channel_object;
+         const {channel_id, channel_title, description, thumbnail} = channel_object;
          $.ajax({
              url:'./script/api_calls_to_db/access_database/access.php',
              method:'post',
@@ -317,24 +310,21 @@
                  channel_title:channel_title,
                  description:description,
                  thumbnail:thumbnail,
-                 sub_count:sub_count,
-                 video_count:video_count,
-                 view_count:view_count
              },
              success:function(data){
                  if(data.success){
                      // promise.resolve(data);
-                     console.log('update success');
+                     console.log('update success', data);
                  }
              },
              errors:function(data){
-                 console.log('update error');
+                 console.log('update error', data);
                  // promise.reject(data);
              }
          })
          // return promise;
      }
-    this.update_video = function(video_object){
+    this.update_video = function(video_object){//pass in video object with things inside the data object
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -355,11 +345,11 @@
             success:function(data){
                 if(data.success){
                     // promise.resolve(data);
-                    console.log('update success');
+                    console.log('update success', data);
                 }
             },
             errors:function(data){
-                console.log('update error');
+                console.log('update error', data);
                 // promise.reject(data);
             }
         })

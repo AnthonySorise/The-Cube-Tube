@@ -6,6 +6,15 @@ consider carousel for the video list area:
 <html>
 
 <head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109199068-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-109199068-1');
+	</script>
+
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	 crossorigin="anonymous">
@@ -129,7 +138,7 @@ consider carousel for the video list area:
 					</li>
 				</ul>
 				<p class="navbar-text">Geography Now | The Great War</p>
-				<form class="navbar-right channelSearchForm">
+				<form class="navbar-right navbar-form channelSearchForm">
 					<!--form for searching channels-->
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="search channels" name="channelSearch" id="channelSearchInput">
@@ -161,14 +170,14 @@ consider carousel for the video list area:
 						 data-placement="bottom" title="video info" data-content="a section for video info maybe">
 							<i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
 						</a> -->
-						<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+						<!-- <a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 						 data-placement="bottom" title="channel info" data-content="section for channel info">
 							<i class="fa fa-list-alt fa-2x" aria-hidden="true"></i>
 						</a> 
-						<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body">
+						<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body"> -->
 						 <!--data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">-->
-							<i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
-						</a>
+							<!-- <i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
+						</a> -->
 						<!--can take function as content; meaning data only uploads when clicked-->
 						<button class="btn hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"
 						 title="Theater Mode">
@@ -191,19 +200,34 @@ consider carousel for the video list area:
 								<span class="glyphicon glyphicon-menu-hamburger"></span>
 							</span>
 						</button>
-
 					</div>
 					<!--end of nav header div-->
+
 					<div class="collapse navbar-collapse text-center" id="midNav-option">
 						<!--div for nav options-->
-						<form class="navbar-right">
-							<!--form for searching channels-->
+						<div class="navbar-nav nav-pills infoButtons">
+
+								<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
+									<!--data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">-->
+									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
+								</a>
+
+
+								<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
+									<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
+								</a>
+
+						</div>
+						<div class="navbar-nav nav-pills autoPlayArea">
 							<label id="autoplayText">Autoplay</label>
 							<label class="switch">
 								<input type="checkbox" id='autoplayCheckBox' checked>
 								<span class="slider round"></span>
 							</label>
-
+						</div>
+						
+						<form class="navbar-right nav-pills">
+							<!--form for searching channels-->
 							<div class="form-group">
 								<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">
 							</div>
@@ -232,7 +256,7 @@ consider carousel for the video list area:
 							<strong>Date</strong>
 						</div>
 						<div class="col-xs-1 thButton text-center">
-							<del>b</del>
+							<!-- <del>b</del> -->
 						</div>
 					</div>
 					<div class="hidden-xs hidden-sm col-md-6 thLabel text-center">
@@ -246,19 +270,19 @@ consider carousel for the video list area:
 						<div class="col-sm-2 thUpDate">
 							<strong>Date</strong>
 						</div>
-						<div class="col-sm-1 thButton">
-							<del>b</del>
+						<div class="col-sm-1 thButton text-center">
+							<!-- <del>b</del> -->
 						</div>
 					</div>
 				</div>
 				<!--end of table header div row-->
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
-
-
+					
 					<!-- Indicators -->
 					<ol class="carousel-indicators hidden-xs hidden-sm">
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
+						<li id="returnCarouselStart" class="glyphicon glyphicon-chevron-left" onclick=returnToPageOne()></li>
 						<li id="currentSlideNumberArea"></li>
 					</ol>
 
@@ -284,7 +308,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -307,7 +331,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -330,7 +354,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -353,7 +377,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -376,7 +400,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -399,7 +423,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -422,7 +446,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -445,7 +469,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -468,7 +492,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -491,7 +515,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -516,7 +540,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -539,7 +563,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -562,7 +586,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -585,7 +609,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -608,7 +632,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -631,7 +655,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -654,7 +678,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -677,7 +701,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -700,7 +724,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -723,7 +747,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -758,7 +782,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -781,7 +805,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -804,7 +828,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -827,7 +851,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -850,7 +874,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -873,7 +897,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -896,7 +920,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -919,7 +943,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -942,7 +966,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -965,7 +989,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -990,7 +1014,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -1013,7 +1037,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -1036,7 +1060,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -1059,7 +1083,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -1082,7 +1106,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -1105,7 +1129,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -1128,7 +1152,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -1151,7 +1175,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -1174,7 +1198,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -1197,7 +1221,7 @@ consider carousel for the video list area:
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
 														</a>
 													</div>
-													<div class="col-xs-3 tdChannel">
+													<div class="col-xs-3 tdChannel text-center">
 
 													</div>
 													<div class="col-xs-2 tdUpDate text-center">
@@ -1271,10 +1295,6 @@ consider carousel for the video list area:
 						</div>
 					</div>
 					<div class="modal-body" id="channelSearchModalBody">
-						<!-- sample target: for changing image source
-      						1-indexed
-							$('#chSearch-'+[i]+' img').src(img source);
-      					 -->
 						<li id="chSearch-1" class="col-xs-12">
 							<img class="col-xs-4" />
 							<h4 class="col-xs-7">
