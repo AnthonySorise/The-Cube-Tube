@@ -7,11 +7,14 @@ $offset = $_POST['offset'];
 if(empty($youtube_channel_id)){
     $output['errors'][] = 'MISSING YOUTUBE CHANNEL ID';
 }
+if(empty($offset)){
+    $output['errors'][] = 'MISSING OFFSET';
+}
 $stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at, v.video_title, c.channel_title
 FROM videos AS v JOIN channels AS c ON v.youtube_channel_id = c.youtube_channel_id
 WHERE v.youtube_channel_id = ? 
 ORDER BY v.published_at DESC LIMIT 40 OFFSET ?");
-$stmt->bind_param('si',$youtube_channel_id,$offset);
+$stmt->bind_param('ii',$youtube_channel_id,$offset);
 $stmt->execute();
 $result = mysqli_stmt_get_result($stmt);
 if(!empty($result)) {

@@ -1,7 +1,7 @@
  function Database(){
     var self = this;
     this.channel_id_hold = null;
-    this.delete_ctu = function(ctu_id){//delete by specifying table and id of entry i.e table = 'channels', id = 2
+    this.delete_ctu = function(ctu_id){//delete by specifying ctu id
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -28,7 +28,7 @@
             }
         })
     }
-     this.insert_channel = function(channel_object){//pass in channelobject and deconstruct it , not sure if were gonna include videos here
+     this.insert_channel = function(channel_object){//pass in channelobject and deconstruct it, match items in data object
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -62,7 +62,7 @@
          })
          // return promise;
      }
-     this.insert_ctu = function(user_id,channel_id){//numbers
+     this.insert_ctu = function(user_id,channel_id){//takes integers
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -91,7 +91,7 @@
          })
          // return promise;
      }
-     this.insert_user = function(link){
+     this.insert_user = function(link){//custom link
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -120,7 +120,7 @@
          })
          // return promise
      }
-     this.insert_video = function (videoArray) {//pass in channelobject and deconstruct it , not sure if were gonna include videos here
+     this.insert_video = function (videoArray) {//pass in video array
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -148,7 +148,7 @@
          })
          // return promise
      }
-     this.read_channels_by_user_id = function(user_id){
+     this.read_channels_by_user_id = function(user_id){//itll read channel based on user, just pass in user id
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -176,7 +176,7 @@
          })
          // return promise
      }
-     this.read_ctu = function(user_id){
+     this.read_ctu = function(user_id){//give u all channels to users based on user id
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -234,7 +234,7 @@
         })
         // return promise;
     }
-    this.read_videos = function(offset,user_id){
+    this.read_videos = function(offset,user_id){//read videos with limit 40 based on user_id, can give an offset to read more.
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
@@ -263,7 +263,7 @@
         })
         // return promise
     }
-     this.read_videos_by_channel = function(youtube_channel_id,offset){
+     this.read_videos_by_channel = function(youtube_channel_id,offset){//give u a list of videos bassed on channels, limit 40, can pass in offset
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -292,7 +292,7 @@
          })
          // return promise
      }
-     this.update_channel = function(channel_object){//pass in channelobject and deconstruct it , not sure if were gonna include videos here
+     this.update_channel = function(channel_object){//pass in channelobject and deconstruct it, match items in data object
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -324,7 +324,7 @@
          })
          // return promise;
      }
-    this.update_video = function(video_object){
+    this.update_video = function(video_object){//pass in video object with things inside the data object
         // var promise = {
         //     then:function(resolve,reject){
         //         this.resolve = resolve;
