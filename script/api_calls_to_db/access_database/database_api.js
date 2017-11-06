@@ -368,7 +368,7 @@
              dataType: 'JSON',
              data: {
                  action:'read_videos_by_channel_array',
-                 youtube_channel_id:channel_id_array,
+                 channel_id_array:channel_id_array,
                  offset:offset
              },
              success: function (data) {
