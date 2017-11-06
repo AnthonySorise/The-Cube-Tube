@@ -3,11 +3,12 @@ if(empty($LOCAL_ACCESS)){
     die("direction access not allowed");
 }
 $youtube_array = $_POST['channel_id_array'];
-$channels = "v.youtube_channel_id = "."'{$youtube_array[0]}'";
+$channels = "'{$youtube_array[0]}'";
 if(count($youtube_array)>1){
     for($i=1; $i<count($youtube_array); $i++){
-        $channels = $channels.' OR v.youtube_channel_id = '."'{$youtube_array[$i]}'";
+        $channels = $channels.','."'{$youtube_array[$i]}'";
     }
+    $channels = '('.$channels.')';
 };
 print($channels);
 $offset = $_POST['offset'];
@@ -19,7 +20,7 @@ if(!isset($offset)){
 }
 $stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at, v.video_title, c.channel_title, c.youtube_channel_id
 FROM videos AS v JOIN channels AS c ON v.youtube_channel_id = c.youtube_channel_id
-WHERE ?
+WHERE c.youtube_channel_id IN ?
 ORDER BY v.published_at DESC LIMIT 40 OFFSET ?");
 $stmt->bind_param('si',$channels,$offset);
 $stmt->execute();
