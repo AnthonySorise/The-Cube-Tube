@@ -635,14 +635,9 @@ input:checked+.slider {
 		width: auto;
 	}
 }
-
-ul ui-menu-item:focus {}
-
-
 /*testing if placeholder animation will work*/
 
 .timeline-item {
-	/* background: #fff; */
 	border: 0px solid;
 	border-color: #e5e6e9 #dfe0e4 #d0d1d5;
 	border-radius: 3px;
@@ -668,7 +663,7 @@ ul ui-menu-item:focus {}
 	background: #f6f7f8;
 	background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
 	background-size: 800px 104px;
-	height: 5px;
+	height: 100px;
 	position: relative;
 }
 
