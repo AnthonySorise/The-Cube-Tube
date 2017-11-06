@@ -25,7 +25,7 @@ description = ?,
 thumbnail_file_name = ?, 
 last_channel_pulled = ?
 WHERE channel_id = ?");
-$stmt->bind_param("ssssi",$channel_title,$description,$thumbnail,$last_channel_pulled,$channel_id);
+$stmt->bind_param('ssssi',$channel_title,$description,$thumbnail,$last_channel_pulled,$channel_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';
