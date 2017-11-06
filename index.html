@@ -6,7 +6,6 @@ consider carousel for the video list area:
 <html>
 
 <head>
-
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109199068-1"></script>
 	<script>
@@ -15,7 +14,6 @@ consider carousel for the video list area:
 		gtag('js', new Date());
 		gtag('config', 'UA-109199068-1');
 	</script>
-
 
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -209,11 +207,11 @@ consider carousel for the video list area:
 						<!--div for nav options-->
 						<div class="navbar-nav nav-pills infoButtons">
 							<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
-								<i class="fa fa-list-alt fa-2x" aria-hidden="true"></i>
+								<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="channel info"></i>
 							</a>
 							<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
 							 <!--data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">-->
-								<i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
+								<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="video stats"></i>
 							</a>
 						</div>
 						<div class="navbar-nav nav-pills autoPlayArea">
@@ -254,7 +252,7 @@ consider carousel for the video list area:
 							<strong>Date</strong>
 						</div>
 						<div class="col-xs-1 thButton text-center">
-							<del>b</del>
+							<!-- <del>b</del> -->
 						</div>
 					</div>
 					<div class="hidden-xs hidden-sm col-md-6 thLabel text-center">
@@ -269,26 +267,18 @@ consider carousel for the video list area:
 							<strong>Date</strong>
 						</div>
 						<div class="col-sm-1 thButton text-center">
-							<del>b</del>
+							<!-- <del>b</del> -->
 						</div>
 					</div>
 				</div>
 				<!--end of table header div row-->
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
 					
-					<!-- used to determine breakpoint and call carousel options based on size -->
-					<div id="determineScreenSize">
-						<div id="xs" class="visible-xs"></div>
-						<div id="sm" class="visible-sm"></div>
-						<div id="md" class="visible-md"></div>
-						<div id="lg" class="visible-lg"></div>
-					</div>
-
-
 					<!-- Indicators -->
 					<ol class="carousel-indicators hidden-xs hidden-sm">
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
+						<li id="returnCarouselStart" class="glyphicon glyphicon-chevron-left" onclick=returnToPageOne()></li>
 						<li id="currentSlideNumberArea"></li>
 					</ol>
 
@@ -1301,10 +1291,6 @@ consider carousel for the video list area:
 						</div>
 					</div>
 					<div class="modal-body" id="channelSearchModalBody">
-						<!-- sample target: for changing image source
-      						1-indexed
-							$('#chSearch-'+[i]+' img').src(img source);
-      					 -->
 						<li id="chSearch-1" class="col-xs-12">
 							<img class="col-xs-4" />
 							<h4 class="col-xs-7">
