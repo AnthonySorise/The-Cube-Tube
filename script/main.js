@@ -39,6 +39,10 @@ $(window).resize(function(){
 
 
 $(document).ready(function () {
+
+    $("#text-carousel").hide()
+    $(".videoHeader").hide()
+
     displayCurrentPageNumber();
     /**
      function for preventing page refresh with search button;
@@ -63,6 +67,7 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
     clearVideoList();   //hides list rows until they are needed
+
 });
 
 
@@ -107,6 +112,9 @@ function clickHandler() {
     $(".channelSearchForm .channelSearchButton").on('click', function (event) {
         event.preventDefault();
         searchChannelsByName().then(worked, failed);
+        $(".contentPlaceholder").hide();
+        $("#text-carousel").show()
+        $(".videoHeader").show()
     });
     //Browse Button
     $('.browseChannelButton').on("click", handleBrowseButton);
