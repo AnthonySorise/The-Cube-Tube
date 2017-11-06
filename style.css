@@ -399,7 +399,11 @@ li#returnCarouselStart{
 		height: 40vh;
 		width: 100%;
 	}
-	.thUpDate,
+
+	.thUpDate{
+		font-size: 14px;
+		padding: 0;
+	}
 	.tdUpDate {
 		font-size: 9px;
 		padding: 0;
@@ -688,4 +692,11 @@ input:checked+.slider {
 	top: 100%;
 	left: 0px;
 	width: 100%;
+}
+
+/*Transition to get hamburger menu to collapse when search button is clicked */
+.navbar-collapse {
+	-webkit-transition: all ease .5s;
+	-moz-transition: all ease .5s; 
+	transition: all ease .5s;
 }
