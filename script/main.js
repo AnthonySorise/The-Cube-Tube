@@ -108,6 +108,7 @@ function tooltipFunctions() {
 function clickHandler() {
     //Search Button
     $(".channelSearchForm .channelSearchButton").on('click', function (event) {
+        $(".navbar-collapse").collapse('hide');
         event.preventDefault();
         searchChannelsByName().then(worked, failed);
     });

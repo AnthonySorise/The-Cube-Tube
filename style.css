@@ -671,3 +671,10 @@ input:checked+.slider {
 	left: 0px;
 	width: 100%;
 }
+
+/*Transition to get hamburger menu to collapse when search button is clicked */
+.navbar-collapse {
+	-webkit-transition: all ease .5s;
+	-moz-transition: all ease .5s; 
+	transition: all ease .5s;
+}
