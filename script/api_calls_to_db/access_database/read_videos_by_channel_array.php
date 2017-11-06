@@ -4,12 +4,15 @@ if(empty($LOCAL_ACCESS)){
 }
 $youtube_array = $_POST['channel_id_array'];
 $channels = "v.youtube_channel_id = ".$youtube_array[0];
+print($channels);
+exit();
+if(count($youtube_array)){
+
+};
 for($i=1; $i<count($youtube_array); $i++){
     $channels += " OR v.youtube_channel_id = ".$youtube_array[i];
 }
 $offset = $_POST['offset'];
-print($channels);
-exit();
 if(empty($youtube_array)){
     $output['errors'][] = 'MISSING YOUTUBE ARRAY';
 }
