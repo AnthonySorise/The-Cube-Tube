@@ -355,7 +355,7 @@
         })
         // return promise;
     }
-     this.read_videos_by_channel = function(channel_id_array,offset){//give u a list of videos bassed on channels, limit 40, can pass in offset
+     this.read_videos_by_channel_array = function(channel_id_array,offset){//give u a list of videos bassed on channels, limit 40, can pass in offset
          // var promise = {
          //     then:function(resolve,reject){
          //         this.resolve = resolve;
@@ -415,4 +415,3 @@
      // }
 }
 var access_database = new Database();
- var channel_id_hold = null;
