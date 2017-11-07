@@ -485,42 +485,42 @@ function clearVideoList(){
 }
 
 function renderVideoList(videoArray) {
+    for (let i = 0; i < videoArray.length; i++) {
+
+        let row = "#tdList-" + (i + 1);
+        let title = row + " .tdTitle>span";
+        let channel = row + " .tdChannel";
+        let upDate = row + " .tdUpDate";
+
+        let dateString = videoArray[i].published_at;
+
+        if(checkIfAppleDevice()){
+            // let date = "2017-11-03 09:34:14" //testing only - sample data
+            let newDate = dateString.split(" ");
+            let removeTime = newDate[0].split("-")
+            let newDateString = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
+            dateString = newDateString
+        }else{
+            const d = new Date(dateString);
+            dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
+        }
+        // const d = new Date(dateString);
+        // dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
+
+        $(row).show();
+
+        $(row).attr("videoID", videoArray[i].youtube_video_id);
+        $(row).attr("channelID", videoArray[i].youtube_channel_id);
+        $(title).text(videoArray[i].video_title);
+        $(channel).text(videoArray[i].channel_title);
+        $(upDate).text(dateString);
+
+        let videoData = row + " .tdInfo a";
+        let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].youtube_video_id + '/mqdefault.jpg';
+    }
+
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
-
-            let row = "#tdList-" + (i + 1);
-            let title = row + " .tdTitle>span";
-            let channel = row + " .tdChannel";
-            let upDate = row + " .tdUpDate";
-
-            let dateString = videoArray[i].published_at;
-
-            if(checkIfAppleDevice()){
-            // let date = "2017-11-03 09:34:14" //testing only - sample data
-                let newDate = dateString.split(" ");
-                let removeTime = newDate[0].split("-")
-                let newDateString = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
-                dateString = newDateString
-            }else{
-                const d = new Date(dateString);
-                dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2); 
-            }
-        
-
-
-            // const d = new Date(dateString);
-            // dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
-
-            $(row).show();
-
-            $(row).attr("videoID", videoArray[i].youtube_video_id);
-            $(row).attr("channelID", videoArray[i].youtube_channel_id);
-            $(title).text(videoArray[i].video_title);
-            $(channel).text(videoArray[i].channel_title);
-            $(upDate).text(dateString);
-
-            let videoData = row + " .tdInfo a";
-            let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].youtube_video_id + '/mqdefault.jpg';
             const videoDataImg = $('<img>').attr('src', videoURL).css({
                 width: '240px',
                 height: '135px',
@@ -537,12 +537,9 @@ function renderVideoList(videoArray) {
                 placement: 'auto',
                 container: 'body'
             })
-            .attr({
-                'data-original-title': videoArray[i].video_title
-
-            });
-
-
+                .attr({
+                    'data-original-title': videoArray[i].video_title
+                });
         }
         // removePlaceholderAnimation();
     }, 150);
@@ -925,8 +922,8 @@ function loadNextPage(){
         console.log("INDEX TO START ON", indexToStartOn)
 
         if(clientVideoObjectArray.length < indexToStartOn+40){
-            // clearVideoList();
-            $(".tdTitle").popover('destroy');
+            clearVideoList();
+            // $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
@@ -976,8 +973,8 @@ function loadPreviousPage(){
         console.log("API PAGE IS", pageToLoad)
         console.log("INDEX TO START ON", indexToStartOn)
         if(clientVideoObjectArray.length < indexToStartOn+40){
-            // clearVideoList();
-            $(".tdTitle").popover('destroy');
+            clearVideoList();
+            // $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
