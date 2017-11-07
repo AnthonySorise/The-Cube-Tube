@@ -478,7 +478,6 @@ function clearVideoList(){
 function renderVideoList(videoArray) {
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
-
             let row = "#tdList-" + (i + 1);
             let title = row + " .tdTitle>span";
             let channel = row + " .tdChannel";
