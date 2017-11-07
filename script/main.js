@@ -923,8 +923,10 @@ function convertDateForApple(dateFromAPI){
 }
 function resetSelectedTd() {
     //NEEDS TO ALSO HANDLE FA FA SPINNER
-    $(".tdList").removeClass('selectedTd');
-    $('.fa-circle-o-notch').remove();
+    setTimeout(function(){
+        $(".tdList").removeClass('selectedTd');
+        $('.fa-circle-o-notch').remove();
+    }, 300);
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
@@ -938,7 +940,7 @@ function resetSelectedTd() {
                         'color': 'green'
                     });
                 $(row).find(".tdTitle>span").prepend(playSymbol);
-            }, 500)
+            }, 350)
         }
     }
 }
