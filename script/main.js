@@ -3,24 +3,27 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 
 var clientVideoObjectArray = null;
-var globalChannelObjectArray = null;
+var clientChannelObjectArray = null;
+var clientChannelIdArray = null;
 
 var currentSlideNumber = 1;
 
 // var currentChannels = [];
 // var currentVideos = [];
 
+let currentVolumeLevel = null;
+
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-        videoId: vidId || '7O24mrBRit0'
+        videoId: vidId || 'lrzIR8seNXs'
     });
     onYouTubeIframeAPIReady2();
 }
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
-        videoId: '7O24mrBRit0'
+        videoId: 'lrzIR8seNXs'
     });
 }
 var player;
@@ -61,8 +64,10 @@ $(document).ready(function () {
         console.log(ev)
         if(ev.direction=='left'){
             currentSlideNumber++
+            loadNextPage();
         }else{
             currentSlideNumber--
+            loadPreviousPage();
         }
         displayCurrentPageNumber()
     });
@@ -110,11 +115,15 @@ function tooltipFunctions() {
 function clickHandler() {
     //Search Button
     $(".channelSearchForm .channelSearchButton").on('click', function (event) {
+        $(".navbar-collapse").collapse('hide');
         event.preventDefault();
         searchChannelsByName().then(worked, failed);
-        $(".contentPlaceholder").hide();
-        $("#text-carousel").show()
-        $(".videoHeader").show()
+        // $(".contentPlaceholder").hide();
+        $('.contentPlaceholderWrapper').fadeOut(1000, function(){
+            $('#text-carousel, .videoHeader').slideDown(1100);
+        });
+        // $("#text-carousel").show()
+        // $(".videoHeader").show()
     });
     //Browse Button
     $('.browseChannelButton').on("click", handleBrowseButton);
@@ -293,7 +302,7 @@ function clickHandler() {
 
     //Theater mode
     $('.lightBoxMode').on('click', function () {
-        let currentVolumeLevel = null;
+
         player.pauseVideo();
         if (player.getPlayerState() === 2) {
             checkIfPlayerIsMuted();
@@ -545,6 +554,10 @@ function ytChannelApiToDb(channelId) {
 
             access_database.insert_channel(channelDbObject);
 
+            clientChannelObjectArray = [];
+            clientChannelObjectArray.push(channelDbObject);
+            clientChannelIdArray = [];
+            clientChannelIdArray.push(channelId);
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -609,6 +622,9 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
 
 function manageDatabaseWithChannelId (channelID){
     clientVideoObjectArray = null;
+    clientChannelObjectArray = null;
+    clientChannelIdArray = null;
+
     //Check channel database to see if channelID exists in db
     $.ajax({
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -621,9 +637,9 @@ function manageDatabaseWithChannelId (channelID){
         success:function(data){
             if(data.success){
                 console.log("Channel will be pulled from database", data);
-                data.youtube_channel_id = channelID;
-                globalChannelObjectArray = [];
-                globalChannelObjectArray.push(data);
+                // data.youtube_channel_id = channelID;
+                // clientChannelObjectArray = [];
+                // clientChannelObjectArray.push(data);
                 //get videos
                 $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
                     url:'./script/api_calls_to_db/access_database/access.php',
@@ -638,9 +654,11 @@ function manageDatabaseWithChannelId (channelID){
                         if(data.success){
                             // promise.resolve(data);
                             console.log('Channel Found', data);
-                            globalChannelObjectArray = [];
-                            globalChannelObjectArray.push(data.data[0]);
-                            console.log("CHANNEL ID IS", channelID);
+                            data.youtube_channel_id = channelID;
+                            clientChannelObjectArray = [];
+                            clientChannelObjectArray.push(data.data[0]);
+                            clientChannelIdArray = [];
+                            clientChannelIdArray.push(channelID);
                             $.ajax({    //RETRIEVE VIDEOS FROM DB
                                 url: './script/api_calls_to_db/access_database/access.php',
                                 method: 'POST',
@@ -848,11 +866,88 @@ function checkIfPlayer2IsMuted() {
 }
 
 function returnToPageOne(){
-    $(".carousel").carousel(0);
+    $(".carousel").carousel(0);     //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
     currentSlideNumber = 1;
     displayCurrentPageNumber();
 }
 
+function loadNextPage(){
+    if (currentSlideNumber % 2){
+        var pageToLoad = (currentSlideNumber - 1) / 2;
+        var indexToStartOn = (pageToLoad) * 40;
 
+        console.log("LOAD PAGE, PAGE IS " + currentSlideNumber)
+        console.log("API PAGE IS", pageToLoad)
+        console.log("INDEX TO START ON", indexToStartOn)
 
-
+        if(clientVideoObjectArray.length < indexToStartOn+40){
+            $.ajax({
+                url: './script/api_calls_to_db/access_database/access.php',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    action:'read_videos_by_channel_array',
+                    channel_id_array:clientChannelIdArray,
+                    offset:pageToLoad
+                },
+                success: function (data) {
+                    if (data.success) {
+                        // promise.resolve(data);
+                        console.log('read success', data);
+                        for(var i = 0; i < data.data.length; i++){
+                            clientVideoObjectArray.push(data.data[i])
+                        }
+                    }
+                },
+                errors: function (data) {
+                    console.log('read error', data);
+                    // promise.reject(data);
+                }
+            })
+        }
+        var videosToLoad = [];
+        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+            videosToLoad.push(clientVideoObjectArray[i])
+        }
+        renderVideoList(videosToLoad)
+    }
+}
+function loadPreviousPage(){
+    if (!(currentSlideNumber % 2)){
+        var pageToLoad = (currentSlideNumber/2)-1;
+        var indexToStartOn = (pageToLoad) * 40;
+        console.log("LOAD PREVIOUS PAGE, PAGE IS " + currentSlideNumber)
+        console.log("API PAGE IS", pageToLoad)
+        console.log("INDEX TO START ON", indexToStartOn)
+        if(clientVideoObjectArray.length < indexToStartOn+40){
+            $.ajax({
+                url: './script/api_calls_to_db/access_database/access.php',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    action:'read_videos_by_channel_array',
+                    channel_id_array:clientChannelIdArray,
+                    offset:pageToLoad
+                },
+                success: function (data) {
+                    if (data.success) {
+                        // promise.resolve(data);
+                        console.log('read success', data);
+                        for(var i = 0; i < data.data.length; i++){
+                            clientVideoObjectArray.push(data.data[i])
+                        }
+                    }
+                },
+                errors: function (data) {
+                    console.log('read error', data);
+                    // promise.reject(data);
+                }
+            })
+        }
+        var videosToLoad = [];
+        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+            videosToLoad.push(clientVideoObjectArray[i])
+        }
+        renderVideoList(videosToLoad)
+    }
+}
