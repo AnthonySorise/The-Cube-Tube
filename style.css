@@ -113,7 +113,6 @@ body {
 /**end of navbar styling**/
 
 body>.container-fluid {
-	padding-top: 51px;
 	/*removes navbar overlap*/
 	padding-right: 0;
 	padding-left: 0;
