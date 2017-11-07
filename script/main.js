@@ -489,7 +489,6 @@ function clearVideoList(){
 function renderVideoList(videoArray) {
     for (let i = 0; i < videoArray.length; i++) {
         if(videoArray[i] === undefined){
-            console.log("OUT")
             return
         }
 
@@ -947,7 +946,7 @@ function resetSelectedTd() {
                         'color': 'green'
                     });
                 $(row).find(".tdTitle>span").prepend(playSymbol);
-            }, 300)
+            }, 400)
         }
     }
 }
