@@ -481,6 +481,7 @@ function clearVideoList(){
 }
 
 function renderVideoList(videoArray) {
+    $("#videoStats").popover('destroy');
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
 
@@ -866,9 +867,9 @@ function checkIfPlayer2IsMuted() {
 }
 
 function returnToPageOne(){
-    $(".carousel").hide();
+    // $(".carousel").hide();
     $(".carousel").carousel(0);     //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
-    $(".carousel").show();
+    // $(".carousel").show();
     currentSlideNumber = 1;
     loadPreviousPage();
     displayCurrentPageNumber();
