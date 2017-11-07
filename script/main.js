@@ -854,6 +854,7 @@ function returnToPageOne(){
     displayCurrentPageNumber();
 }
 
+// check if device is apple mobile device (used to convert date object)
 function checkIfAppleDevice(){
     if(navigator.userAgent.match(/(iPhone|iPod|iPad)/) != null) {
         return true;
@@ -862,11 +863,17 @@ function checkIfAppleDevice(){
     }
 }
 
-function convertDateForApple(){
+//converts date object for apple mobile devices
+function convertDateForApple(dateFromAPI){
     if(checkIfAppleDevice()){
-        var date = new Date();
-        date.substring(0,10).split('-');
-        
+       // let date = "2017-11-03 09:34:14" //testing only - sample data
+        var newDate = dateFromAPI.split(" ");
+        var removeTime = newDate[0].split("-")
+        var iosDate = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
+        console.log(iosDate)
+        return iosDate
+    }else{
+        return;
     }
 }
 
