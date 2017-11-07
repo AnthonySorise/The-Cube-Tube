@@ -565,7 +565,7 @@ li#returnCarouselStart{
 	background-repeat: no-repeat;
 	background-size: 100% auto;
 	opacity: 0;
-	animation: backgroundChange 120s linear infinite;
+	animation: backgroundChange 100s linear infinite;
 }
 @keyframes backgroundChange{
 	10%{
