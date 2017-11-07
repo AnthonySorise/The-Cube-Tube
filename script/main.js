@@ -422,7 +422,7 @@ function failed(message) {
 }
 
 function renderChannelSearchStats(i) {
-    if($("#chSearch-"+i+">h4>span").text() !== "") {
+    if($("#chSearch-"+(i+1)+">h4>span").text() !== "") {
         const channelListData = "#chSearch-" + (i + 1);
         const chSub = "#chSearch-" + (i + 1) + " .chSub";
         const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
