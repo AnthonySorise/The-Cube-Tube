@@ -946,7 +946,7 @@ function resetSelectedTd() {
                         'color': 'green'
                     });
                 $(row).find(".tdTitle>span").prepend(playSymbol);
-            }, 400)
+            }, 750)
         }
     }
 }
