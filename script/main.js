@@ -131,6 +131,21 @@ function clickHandler() {
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
         if(!$(this).parent().hasClass('selectedTd')) {
+            //Table List Row Title that is selected
+            $(".tdTitle").on("click", function (){
+                if($(this).parent().hasClass('selectedTd')) {
+                    $("#videoStats").focus().click()
+                    // $("#videoStats").popover('toggle')
+                }
+            });
+
+            //Table List Row Channel that is selected
+            $(".tdChannel").on("click", function (){
+                if($(this).parent().hasClass('selectedTd')) {
+                    $("#channelInfo").focus().click()
+                }
+            });
+
             var videoID = $(this).parent().attr('videoId');
             var channelID = $(this).parent().attr('channelID');
 
@@ -276,20 +291,7 @@ function clickHandler() {
                     console.log('something went wrong with YT', data);
                 }
             })
-            //Table List Row Title that is selected
-            $(".tdTitle").on("click", function (){
-                if($(this).parent().hasClass('selectedTd')) {
-                    $("#videoStats").focus().click()
-                    // $("#videoStats").popover('toggle')
-                }
-            });
 
-            //Table List Row Channel that is selected
-            $(".tdChannel").on("click", function (){
-                if($(this).parent().hasClass('selectedTd')) {
-                    $("#channelInfo").focus().click()
-                }
-            });
         }
     });
 
