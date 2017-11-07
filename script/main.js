@@ -492,16 +492,16 @@ function renderVideoList(videoArray) {
 
             let dateString = videoArray[i].published_at;
 
-                if(checkIfAppleDevice()){
-                // let date = "2017-11-03 09:34:14" //testing only - sample data
-                    let newDate = dateString.split(" ");
-                    let removeTime = newDate[0].split("-")
-                    let newDateString = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
-                    dateString = newDateString
-                }else{
-                    const d = new Date(dateString);
-                    dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2); 
-                }
+            if(checkIfAppleDevice()){
+            // let date = "2017-11-03 09:34:14" //testing only - sample data
+                let newDate = dateString.split(" ");
+                let removeTime = newDate[0].split("-")
+                let newDateString = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
+                dateString = newDateString
+            }else{
+                const d = new Date(dateString);
+                dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2); 
+            }
         
 
 
