@@ -789,22 +789,22 @@ function toastMsg(msgString, time){
     }, time);
 }
 
-// //Testing placeholder animation
-// var classes = [
-//     "background-masker header-top",
-//     "background-masker header-left",
-//     "background-masker header-right",
-//     "background-masker header-bottom",
-//     "background-masker subheader-left",
-//     "background-masker subheader-right",
-//     "background-masker subheader-bottom",
-//     "background-masker content-top",
-//     "background-masker content-first-end",
-//     "background-masker content-second-line",
-//     "background-masker content-second-end",
-//     "background-masker content-third-line",
-//     "background-masker content-third-end"
-// ]
+//Testing placeholder animation
+var classes = [
+    "background-masker header-top",
+    "background-masker header-left",
+    "background-masker header-right",
+    "background-masker header-bottom",
+    "background-masker subheader-left",
+    "background-masker subheader-right",
+    "background-masker subheader-bottom",
+    "background-masker content-top",
+    "background-masker content-first-end",
+    "background-masker content-second-line",
+    "background-masker content-second-end",
+    "background-masker content-third-line",
+    "background-masker content-third-end"
+]
 
 function createPlaceholderAnimation() {
     $(".tdList").show();
