@@ -519,7 +519,7 @@ function renderVideoList(videoArray) {
 
 
         //select any rows that should be selected
-        if($(row).attr('videoid').indexOf(player.getVideoUrl()) !== -1){
+        if(player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1){
             row.addClass("selectedTd")
         }
     }
