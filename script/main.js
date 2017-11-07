@@ -8,8 +8,6 @@ var clientChannelIdArray = null;
 
 var currentSlideNumber = 1;
 
-// var currentChannels = [];
-// var currentVideos = [];
 
 let currentVolumeLevel = null;
 
@@ -134,15 +132,16 @@ function clickHandler() {
             //Table List Row Title that is selected
             $(".tdTitle").on("click", function (){
                 if($(this).parent().hasClass('selectedTd')) {
-                    $("#videoStats").focus().click()
-                    // $("#videoStats").popover('toggle')
+                    // $("#videoStats").focus().click()
+                    $("#videoStats").trigger('focus')
                 }
             });
 
             //Table List Row Channel that is selected
             $(".tdChannel").mouseup(function (){
                 if($(this).parent().hasClass('selectedTd')) {
-                    $("#channelInfo").focus().click()
+                    // $("#channelInfo").focus().click()
+                    $("#channelInfo").trigger('focus')
                 }
             });
 
@@ -922,7 +921,8 @@ function loadNextPage(){
         console.log("INDEX TO START ON", indexToStartOn)
 
         if(clientVideoObjectArray.length < indexToStartOn+40){
-            clearVideoList();
+            // clearVideoList();
+            $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
@@ -972,7 +972,8 @@ function loadPreviousPage(){
         console.log("API PAGE IS", pageToLoad)
         console.log("INDEX TO START ON", indexToStartOn)
         if(clientVideoObjectArray.length < indexToStartOn+40){
-            clearVideoList();
+            // clearVideoList();
+            $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
