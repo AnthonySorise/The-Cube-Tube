@@ -917,12 +917,8 @@ function loadNextPage(){
         var pageToLoad = (currentSlideNumber - 1) / 2;
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
-        console.log("LOAD PAGE, PAGE IS " + currentSlideNumber)
-        console.log("API PAGE IS", pageToLoad)
-        console.log("INDEX TO START ON", indexToStartOn)
-
+        clearVideoList();
         if(clientVideoObjectArray.length < indexToStartOn+40){
-            clearVideoList();
             // $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
@@ -969,47 +965,44 @@ function loadPreviousPage(){
         var pageToLoad = (currentSlideNumber/2)-1;
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
-        console.log("LOAD PREVIOUS PAGE, PAGE IS " + currentSlideNumber)
-        console.log("API PAGE IS", pageToLoad)
-        console.log("INDEX TO START ON", indexToStartOn)
-        if(clientVideoObjectArray.length < indexToStartOn+40){
-            clearVideoList();
-            // $(".tdTitle").popover('destroy');
-            $.ajax({
-                url: './script/api_calls_to_db/access_database/access.php',
-                method: 'POST',
-                dataType: 'JSON',
-                data: {
-                    action:'read_videos_by_channel_array',
-                    channel_id_array:clientChannelIdArray,
-                    offset:indexToStartOn
-                },
-                success: function (data) {
-                    if (data.success) {
-                        // promise.resolve(data);
-                        console.log('read success', data);
-                        for(var i = 0; i < data.data.length; i++){
-                            clientVideoObjectArray.push(data.data[i])
-                        }
-                        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                            videosToLoad.push(clientVideoObjectArray[i])
-                        }
-                        console.log("VIDEOS TO LOAD", videosToLoad)
-                        renderVideoList(videosToLoad)
-                    }
-                },
-                errors: function (data) {
-                    console.log('read error', data);
-                    // promise.reject(data);
-                }
-            })
-        }
-        else{
+        clearVideoList();
+        // if(clientVideoObjectArray.length < indexToStartOn+40){
+        //                 // $(".tdTitle").popover('destroy');
+        //                 $.ajax({
+        //                     url: './script/api_calls_to_db/access_database/access.php',
+        //                     method: 'POST',
+        //                     dataType: 'JSON',
+        //                     data: {
+        //                         action:'read_videos_by_channel_array',
+        //                         channel_id_array:clientChannelIdArray,
+        //                         offset:indexToStartOn
+        //                     },
+        //                     success: function (data) {
+        //                         if (data.success) {
+        //                             // promise.resolve(data);
+        //                 console.log('read success', data);
+        //                 for(var i = 0; i < data.data.length; i++){
+        //                     clientVideoObjectArray.push(data.data[i])
+        //                 }
+        //                 for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+        //                     videosToLoad.push(clientVideoObjectArray[i])
+        //                 }
+        //                 console.log("VIDEOS TO LOAD", videosToLoad)
+        //                 renderVideoList(videosToLoad)
+        //             }
+        //         },
+        //         errors: function (data) {
+        //             console.log('read error', data);
+        //             // promise.reject(data);
+        //         }
+        //     })
+        // }
+        // else{
             for(var i = indexToStartOn; i < indexToStartOn+40; i++){
                 videosToLoad.push(clientVideoObjectArray[i])
             }
-            console.log("VIDEOS TO LOAD", videosToLoad)
+            console.log("VIDEOS TO LOAD", videosToLoad);
             renderVideoList(videosToLoad)
-        }
+        // }
     }
 }
