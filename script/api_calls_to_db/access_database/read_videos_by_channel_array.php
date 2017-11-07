@@ -9,7 +9,7 @@ if(count($youtube_array)>1){
         $channels = $channels.','."'{$youtube_array[$i]}'";
     }
 };
-$offset = $_POST['offset'];
+$offset = intval(filter_var($_POST['offset'], FILTER_SANITIZE_NUMBER_INT));
 if(empty($youtube_array)){
     $output['errors'][] = 'MISSING YOUTUBE ARRAY';
 }
@@ -36,6 +36,8 @@ if(!empty($result)) {
         }
     } else {
         $output['errors'][] = 'no results';
+        $output['channels'] = $channels;
+        $output['offset'] = $offset;
     }
 }else{
     $output['errors'][] = 'INVALID QUERY';
