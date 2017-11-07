@@ -422,11 +422,10 @@ function failed(message) {
 }
 
 function renderChannelSearchStats(i) {
-    const channelListData = "#chSearch-" + (i + 1);
-    const chSub = "#chSearch-" + (i + 1) + " .chSub";
-    const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
-
     if($("#chSearch-"+i+">h4>span").text() !== "") {
+        const channelListData = "#chSearch-" + (i + 1);
+        const chSub = "#chSearch-" + (i + 1) + " .chSub";
+        const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
         $.ajax({
             url: 'https://www.googleapis.com/youtube/v3/channels',
             dataType: 'json',
