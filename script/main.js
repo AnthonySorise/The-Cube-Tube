@@ -875,7 +875,7 @@ function loadNextPage(){
     if (currentSlideNumber % 2){
         var pageToLoad = (currentSlideNumber - 1) / 2;
         var indexToStartOn = (pageToLoad) * 40;
-
+        var videosToLoad = [];
         console.log("LOAD PAGE, PAGE IS " + currentSlideNumber)
         console.log("API PAGE IS", pageToLoad)
         console.log("INDEX TO START ON", indexToStartOn)
@@ -897,6 +897,11 @@ function loadNextPage(){
                         for(var i = 0; i < data.data.length; i++){
                             clientVideoObjectArray.push(data.data[i])
                         }
+                        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+                            videosToLoad.push(clientVideoObjectArray[i])
+                        }
+                        console.log("VIDEOS TO LOAD", videosToLoad)
+                        renderVideoList(videosToLoad)
                     }
                 },
                 errors: function (data) {
@@ -905,17 +910,22 @@ function loadNextPage(){
                 }
             })
         }
-        var videosToLoad = [];
-        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-            videosToLoad.push(clientVideoObjectArray[i])
+        else{
+            for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+                videosToLoad.push(clientVideoObjectArray[i])
+            }
+            console.log("VIDEOS TO LOAD", videosToLoad)
+            renderVideoList(videosToLoad)
+
         }
-        renderVideoList(videosToLoad)
+
     }
 }
 function loadPreviousPage(){
     if (!(currentSlideNumber % 2)){
         var pageToLoad = (currentSlideNumber/2)-1;
         var indexToStartOn = (pageToLoad) * 40;
+        var videosToLoad = [];
         console.log("LOAD PREVIOUS PAGE, PAGE IS " + currentSlideNumber)
         console.log("API PAGE IS", pageToLoad)
         console.log("INDEX TO START ON", indexToStartOn)
@@ -936,7 +946,6 @@ function loadPreviousPage(){
                         for(var i = 0; i < data.data.length; i++){
                             clientVideoObjectArray.push(data.data[i])
                         }
-                        var videosToLoad = [];
                         for(var i = indexToStartOn; i < indexToStartOn+40; i++){
                             videosToLoad.push(clientVideoObjectArray[i])
                         }
@@ -951,13 +960,11 @@ function loadPreviousPage(){
             })
         }
         else{
-            var videosToLoad = [];
             for(var i = indexToStartOn; i < indexToStartOn+40; i++){
                 videosToLoad.push(clientVideoObjectArray[i])
             }
             console.log("VIDEOS TO LOAD", videosToLoad)
             renderVideoList(videosToLoad)
         }
-
     }
 }
