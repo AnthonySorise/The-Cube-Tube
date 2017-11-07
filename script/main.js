@@ -14,7 +14,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-        videoId: vidId || 'lrzIR8seNXs'
+        videoId: vidId || 'lrzIR8seNXs',
+        
     });
     onYouTubeIframeAPIReady2();
 }
@@ -39,7 +40,6 @@ $(window).resize(function(){
 
 
 $(document).ready(function () {
-
     $("#text-carousel").hide()
     $(".videoHeader").hide()
 
@@ -852,6 +852,22 @@ function returnToPageOne(){
     $(".carousel").carousel(0);
     currentSlideNumber = 1;
     displayCurrentPageNumber();
+}
+
+function checkIfAppleDevice(){
+    if(navigator.userAgent.match(/(iPhone|iPod|iPad)/) != null) {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function convertDateForApple(){
+    if(checkIfAppleDevice()){
+        var date = new Date();
+        date.substring(0,10).split('-');
+        
+    }
 }
 
 
