@@ -487,6 +487,11 @@ function clearVideoList(){
 }
 
 function renderVideoList(videoArray) {
+    if(videoArray[i] === undefined){
+        console.log("OUT")
+        return
+    }
+
     for (let i = 0; i < videoArray.length; i++) {
         let row = "#tdList-" + (i + 1);
         let title = row + " .tdTitle>span";
