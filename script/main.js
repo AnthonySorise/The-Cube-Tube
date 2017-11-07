@@ -132,7 +132,7 @@ function clickHandler() {
 
         if(!$(this).parent().hasClass('selectedTd')) {
             //Table List Row Title that is selected
-            $(".tdTitle").on("click", function (){
+            $(".tdTitle").mouseup(function (){
                 if($(this).parent().hasClass('selectedTd')) {
                     // $("#videoStats").focus().click()
                     $("#videoStats").trigger('focus')
