@@ -1,5 +1,6 @@
  function Database(){
     var self = this;
+    this.user_id_hold = null;
     this.channel_id_hold = null;
     this.delete_ctu = function(ctu_id){//delete by specifying ctu id
         $.ajax({
@@ -287,36 +288,7 @@
                  console.log('read error', data);
              }
          })
-         // return promise
      }
-     // this.update_user = function(user_id,new_link){
-     //     // var promise = {
-     //     //     then:function(resolve,reject){
-     //     //         this.resolve = resolve;
-     //     //         this.reject = reject;
-     //     //     }
-     //     // }
-     //     $.ajax({
-     //         url:'/script/api_calls_to_db/access_database/access.php',
-     //         method:'post',
-     //         dataType:'JSON',
-     //         data:{
-     //             action:'update_user',
-     //             id: user_id,
-     //             user_link:new_link
-     //         },
-     //         success:function(data){
-     //             if(data.success){
-     //                 // promise.resolve(data);
-     //                 console.log('update success');
-     //             }
-     //         },
-     //         errors:function(data){
-     //             console.log('update error');
-     //             // promise.reject(data);
-     //         }
-     //     })
-     //     // return promise;
-     // }
+     //read user based on user link get user id, read ctu(user_id) read channels, read videos
 }
 var access_database = new Database();

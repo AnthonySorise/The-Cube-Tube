@@ -7,7 +7,7 @@ $user_link = $_POST['user_link'];
 if(empty($user_link)){
     $output['errors'][] ='MISSING USER_LINK';
 }
-$stmt = $conn->prepare("SELECT * FROM `users` WHERE `user_link`=?");
+$stmt = $conn->prepare("SELECT `user_id` FROM `users` WHERE `user_link`=?");
 $stmt->bind_param('s',$user_link);
 $stmt->execute();
 $results = mysqli_stmt_get_result($stmt);
