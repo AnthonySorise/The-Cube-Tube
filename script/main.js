@@ -940,6 +940,7 @@ function loadPreviousPage(){
                         for(var i = indexToStartOn; i < indexToStartOn+40; i++){
                             videosToLoad.push(clientVideoObjectArray[i])
                         }
+                        console.log("VIDEOS TO LOAD", videosToLoad)
                         renderVideoList(videosToLoad)
                     }
                 },
@@ -954,6 +955,7 @@ function loadPreviousPage(){
             for(var i = indexToStartOn; i < indexToStartOn+40; i++){
                 videosToLoad.push(clientVideoObjectArray[i])
             }
+            console.log("VIDEOS TO LOAD", videosToLoad)
             renderVideoList(videosToLoad)
         }
 
