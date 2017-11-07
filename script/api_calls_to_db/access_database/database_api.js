@@ -184,6 +184,25 @@
             }
         })
     }
+     this.read_user = function(user_link){//lets u know if link already exist
+         $.ajax({
+             url: './script/api_calls_to_db/access_database/access.php',
+             method: 'POST',
+             dataType: 'JSON',
+             data: {
+                 action:'read_user',
+                 user_link:user_link,
+             },
+             success: function (data) {
+                 if (data.success) {
+                     console.log('read success', data);
+                 }
+             },
+             errors: function (data) {
+                 console.log('read error', data);
+             }
+         })
+     }
     this.read_user_content = function(user_link,offset){
         $.ajax({
             url: './script/api_calls_to_db/access_database/access.php',
