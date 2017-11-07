@@ -7,7 +7,7 @@ if(empty($user_id)){
     $output['errors'][] = 'MISSING USER ID';
 }
 $stmt = $conn->prepare("SELECT c.channel_title, 
-c.youtube_channel_id,c.description,c.thumbnail_file_name 
+c.youtube_channel_id,c.description,c.thumbnail_file_name,ctu.ctu_id 
 FROM channels AS c 
 JOIN channels_to_users AS ctu
 ON c.channel_id = ctu.channel_id 
