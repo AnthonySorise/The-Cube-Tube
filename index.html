@@ -30,7 +30,7 @@ consider carousel for the video list area:
 	<script type="text/javascript" src="script/main.js"></script>
 	<script type="text/javascript" src="script/autoSearch.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=">
 	<title>CubeTube 0.1</title>
 </head>
 
@@ -242,7 +242,7 @@ consider carousel for the video list area:
 			</nav>
 			<div class="col-xs-12 videoListRowWrapper">
 				<!--videoListRow for listing channel videos-->
-				<div class="row thRow">
+				<div class="row thRow videoHeader">
 					<div class="col-sm-12 col-md-6 thLabel text-center">
 						<div class="col-xs-5 thTitle">
 							<strong>Title</strong>
@@ -275,6 +275,19 @@ consider carousel for the video list area:
 						</div>
 					</div>
 				</div>
+
+								<!-- placeholder for first time user content: possible instruction area -->
+				
+								<div class='row contentPlaceholderWrapper'>
+									<div class="placeholderBg"></div>
+									<div class="col-sm-12 text-center contentPlaceholder">
+										<h1 class="text-center">Welcome to The CubeTube!</h1>
+										<h3>Start by searching for your favorite YouTube channel</h3>
+										<h3>Add channels by clicking the 'add' button, or simply browse content with 'browse'</h3>
+										<!--<img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png">-->
+									</div>
+								</div>
+
 				<!--end of table header div row-->
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
 					
@@ -282,7 +295,7 @@ consider carousel for the video list area:
 					<ol class="carousel-indicators hidden-xs hidden-sm">
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
-						<li id="returnCarouselStart" class="glyphicon glyphicon-chevron-left" onclick=returnToPageOne()></li>
+						<li id="returnCarouselStart" class="glyphicon glyphicon-fast-backward" onclick=returnToPageOne()></li>
 						<li id="currentSlideNumberArea"></li>
 					</ol>
 

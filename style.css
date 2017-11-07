@@ -287,6 +287,10 @@ li#returnCarouselStart{
 	background-color: rgba(43, 187, 173, 0.6);
 }
 
+.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
+	font-weight: bold;
+}
+
 .row {
 	margin: 0;
 }
@@ -395,7 +399,11 @@ li#returnCarouselStart{
 		height: 40vh;
 		width: 100%;
 	}
-	.thUpDate,
+
+	.thUpDate{
+		font-size: 14px;
+		padding: 0;
+	}
 	.tdUpDate {
 		font-size: 9px;
 		padding: 0;
@@ -540,6 +548,85 @@ li#returnCarouselStart{
 	color: red;
 }
 
+.contentPlaceholderWrapper{
+	height: 100%;
+}
+
+.placeholderBg{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	/*background-color: lightblue;*/
+	background-image: url("assets/images/img_01.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	opacity: 0;
+	animation: backgroundChange 100s linear infinite;
+}
+@keyframes backgroundChange{
+	10%{
+		background-image: url("assets/images/img_02.jpg");
+		opacity: 0;
+	}
+	5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%{
+		opacity: 0.6;
+	}
+	3%, 7%,13%, 17%,23%, 27%,33%, 37%,43%, 47%,53%, 57%,63%, 67%,73%, 77%,83%, 87%,93%, 97%{
+		opacity: 0.3;
+	}
+	20%{
+		background-image: url('assets/images/img_03.jpg');
+		opacity: 0;
+	}
+	30%{
+		background-image: url('assets/images/img_04.jpg');
+		opacity: 0;
+	}
+	40%{
+		background-image: url('assets/images/img_05.jpg');
+		opacity: 0;
+	}
+	50%{
+		background-image: url('assets/images/img_06.jpg');
+		opacity: 0;
+	}
+	60%{
+		background-image: url('assets/images/img_07.jpg');
+		opacity: 0;
+	}
+	70%{
+		background-image: url('assets/images/img_08.jpg');
+		opacity: 0;
+	}
+	80%{
+		background-image: url('assets/images/img_09.jpg');
+		opacity: 0;
+	}
+	90%{
+		background-image: url('assets/images/img_10.jpg');
+		opacity: 0;
+	}
+	100%{
+		background-image: url('assets/images/img_01.jpg');
+		opacity: 0;
+	}
+}
+
+.contentPlaceholder{
+	margin-top: 30px;
+	text-shadow:
+		-0.5px -0.5px 0 #fff,
+		0.5px 0.5px 0 #fff;
+}
+
+.contentPlaceholder>image{
+	margin: 0 auto; 
+}
+
 
 /* toggle button */
 
@@ -676,4 +763,11 @@ input:checked+.slider {
 	top: 100%;
 	left: 0px;
 	width: 100%;
+}
+
+/*Transition to get hamburger menu to collapse when search button is clicked */
+.navbar-collapse {
+	-webkit-transition: all ease .5s;
+	-moz-transition: all ease .5s; 
+	transition: all ease .5s;
 }

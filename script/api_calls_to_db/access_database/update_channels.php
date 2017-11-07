@@ -1,6 +1,6 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direction access not allowed');
+    die('direct access not allowed');
 }
 $channel_title = $_POST['channel_title'];
 $description = $_POST['description'];
@@ -25,7 +25,7 @@ description = ?,
 thumbnail_file_name = ?, 
 last_channel_pulled = ?
 WHERE channel_id = ?");
-$stmt->bind_param("ssssi",$channel_title,$description,$thumbnail,$last_channel_pulled,$channel_id);
+$stmt->bind_param('ssssi',$channel_title,$description,$thumbnail,$last_channel_pulled,$channel_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';
