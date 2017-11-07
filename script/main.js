@@ -926,7 +926,7 @@ function resetSelectedTd() {
     setTimeout(function(){
         $(".tdList").removeClass('selectedTd');
         $('.fa-circle-o-notch').remove();
-    }, 300);
+    }, 150);
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
