@@ -113,9 +113,12 @@ function clickHandler() {
         $(".navbar-collapse").collapse('hide');
         event.preventDefault();
         searchChannelsByName().then(worked, failed);
-        $(".contentPlaceholder").hide();
-        $("#text-carousel").show()
-        $(".videoHeader").show()
+        // $(".contentPlaceholder").hide();
+        $('.contentPlaceholderWrapper').fadeOut(1000, function(){
+            $('#text-carousel, .videoHeader').slideDown(1100);
+        });
+        // $("#text-carousel").show()
+        // $(".videoHeader").show()
     });
     //Browse Button
     $('.browseChannelButton').on("click", handleBrowseButton);
