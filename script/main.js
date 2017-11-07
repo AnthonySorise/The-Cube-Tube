@@ -921,7 +921,7 @@ function convertDateForApple(dateFromAPI){
     }
 }
 function resetSelectedTd() {
-    for (let i = 0; i < videoArray.length; i++) {
+    for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
         $(".tdList").removeClass('selectedTd')
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
