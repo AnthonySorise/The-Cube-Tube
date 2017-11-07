@@ -871,7 +871,6 @@ function returnToPageOne(){
     displayCurrentPageNumber();
 }
 
-
 function loadNextPage(){
     if (currentSlideNumber % 2){
         var pageToLoad = (currentSlideNumber - 1) / 2;
@@ -881,39 +880,74 @@ function loadNextPage(){
         console.log("API PAGE IS", pageToLoad)
         console.log("INDEX TO START ON", indexToStartOn)
 
-        if(clientVideoObjectArray.length >= indexToStartOn+40){
-            var videosToLoad = [];
-            for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                videosToLoad.push(clientVideoObjectArray[i])
-            }
-            renderVideoList(videosToLoad)
+        if(clientVideoObjectArray.length < indexToStartOn+40){
+            $.ajax({
+                url: './script/api_calls_to_db/access_database/access.php',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    action:'read_videos_by_channel_array',
+                    channel_id_array:clientChannelIdArray,
+                    offset:pageToLoad
+                },
+                success: function (data) {
+                    if (data.success) {
+                        // promise.resolve(data);
+                        console.log('read success', data);
+                        for(var i = 0; i < data.data.length; i++){
+                            clientVideoObjectArray.push(data.data[i])
+                        }
+                    }
+                },
+                errors: function (data) {
+                    console.log('read error', data);
+                    // promise.reject(data);
+                }
+            })
         }
-        else{
-
+        var videosToLoad = [];
+        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+            videosToLoad.push(clientVideoObjectArray[i])
         }
-        // access_database.read_videos_by_channel_array(clientChannelIdArray, 1)
-            //on success, append results of data to clientVideoObjectArray
+        renderVideoList(videosToLoad)
     }
 }
 function loadPreviousPage(){
     if (!(currentSlideNumber % 2)){
         var pageToLoad = (currentSlideNumber/2)-1;
         var indexToStartOn = (pageToLoad) * 40;
-
         console.log("LOAD PREVIOUS PAGE, PAGE IS " + currentSlideNumber)
         console.log("API PAGE IS", pageToLoad)
         console.log("INDEX TO START ON", indexToStartOn)
-
-        if(clientVideoObjectArray.length >= indexToStartOn+40){
-            var videosToLoad = [];
-            for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                videosToLoad.push(clientVideoObjectArray[i])
-            }
-            renderVideoList(videosToLoad)
+        if(clientVideoObjectArray.length < indexToStartOn+40){
+            $.ajax({
+                url: './script/api_calls_to_db/access_database/access.php',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    action:'read_videos_by_channel_array',
+                    channel_id_array:clientChannelIdArray,
+                    offset:pageToLoad
+                },
+                success: function (data) {
+                    if (data.success) {
+                        // promise.resolve(data);
+                        console.log('read success', data);
+                        for(var i = 0; i < data.data.length; i++){
+                            clientVideoObjectArray.push(data.data[i])
+                        }
+                    }
+                },
+                errors: function (data) {
+                    console.log('read error', data);
+                    // promise.reject(data);
+                }
+            })
         }
-        else{
-
+        var videosToLoad = [];
+        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+            videosToLoad.push(clientVideoObjectArray[i])
         }
-
+        renderVideoList(videosToLoad)
     }
 }
