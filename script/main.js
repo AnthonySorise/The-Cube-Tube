@@ -515,7 +515,7 @@ function renderVideoList(videoArray) {
         $(upDate).text(dateString);
 
     }
-
+    resetSelectedTd();
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
             let row = "#tdList-" + (i + 1);
@@ -543,7 +543,7 @@ function renderVideoList(videoArray) {
                 });
 
         }
-        resetSelectedTd();
+
 
     }, 350);
 
