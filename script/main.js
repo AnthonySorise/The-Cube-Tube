@@ -481,7 +481,7 @@ function clearVideoList(){
 }
 
 function renderVideoList(videoArray) {
-    $("#videoStats").popover('destroy');
+    clearVideoList();
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
 
