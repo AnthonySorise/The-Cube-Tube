@@ -989,7 +989,7 @@ function loadNextPage(){
         }
 
     }
-    resetSelectedTd();
+    setTimeout(resetSelectedTd(), 100)
 }
 function loadPreviousPage(){
     if (!(currentSlideNumber % 2)){
@@ -1005,5 +1005,5 @@ function loadPreviousPage(){
         renderVideoList(videosToLoad)
 
     }
-    resetSelectedTd();
+    setTimeout(resetSelectedTd(), 100)
 }
