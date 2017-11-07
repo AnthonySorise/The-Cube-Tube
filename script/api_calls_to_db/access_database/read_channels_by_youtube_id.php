@@ -19,9 +19,8 @@ if(!mysqli_stmt_prepare($stmt,$sqli)){
     $result = mysqli_stmt_get_result($stmt);
     if (mysqli_num_rows($result)>0) {
         $output['success'] = true;
-        while ($row = mysqli_fetch_assoc($result)) {
-            $output['data'][] = $row;
-        }
+        $row = mysqli_fetch_assoc($result);
+        $output['data'][] = $row;
     } else {
         $output['errors'][] = mysqli_error($conn);
         $output['nothing_to_read'] = true;

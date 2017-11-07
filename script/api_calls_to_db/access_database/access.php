@@ -41,6 +41,9 @@ switch($_POST['action']){
     case 'read_videos':
         include('read_videos.php');
         break;
+    case 'read_user':
+        include('read_user.php');
+        break;
     case 'read_user_content':
         include('read_user_content.php');
         break;

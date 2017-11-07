@@ -513,6 +513,7 @@ function renderVideoList(videoArray) {
         $(title).text(videoArray[i].video_title);
         $(channel).text(videoArray[i].channel_title);
         $(upDate).text(dateString);
+
     }
 
     setTimeout(function () {
@@ -540,8 +541,10 @@ function renderVideoList(videoArray) {
                 .attr({
                     'data-original-title': videoArray[i].video_title
                 });
+
         }
         // removePlaceholderAnimation();
+
     }, 350);
 }
 
@@ -917,6 +920,25 @@ function convertDateForApple(dateFromAPI){
         return;
     }
 }
+function resetSelectedTd() {
+    //NEEDS TO ALSO HANDLE FA FA SPINNER
+    $(".tdList").removeClass('selectedTd');
+    $('.fa-circle-o-notch').remove();
+    for (let i = 0; i < 40; i++) {
+        let row = "#tdList-" + (i + 1);
+
+        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
+            $(row).addClass("selectedTd")
+            var playSymbol = $('<i>')
+                .addClass('fa fa-circle-o-notch fa-spin fa-fw')
+                .css({
+                    "margin-right": '5px',
+                    'color': 'green'
+                });
+            $(row).find(".tdTitle>span").prepend(playSymbol);
+        }
+    }
+}
 
 function loadNextPage(){
     if (currentSlideNumber % 2){
@@ -967,6 +989,7 @@ function loadNextPage(){
         }
 
     }
+    resetSelectedTd();
 }
 function loadPreviousPage(){
     if (!(currentSlideNumber % 2)){
@@ -974,43 +997,13 @@ function loadPreviousPage(){
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
         clearVideoList();
-        // if(clientVideoObjectArray.length < indexToStartOn+40){
-        //                 // $(".tdTitle").popover('destroy');
-        //                 $.ajax({
-        //                     url: './script/api_calls_to_db/access_database/access.php',
-        //                     method: 'POST',
-        //                     dataType: 'JSON',
-        //                     data: {
-        //                         action:'read_videos_by_channel_array',
-        //                         channel_id_array:clientChannelIdArray,
-        //                         offset:indexToStartOn
-        //                     },
-        //                     success: function (data) {
-        //                         if (data.success) {
-        //                             // promise.resolve(data);
-        //                 console.log('read success', data);
-        //                 for(var i = 0; i < data.data.length; i++){
-        //                     clientVideoObjectArray.push(data.data[i])
-        //                 }
-        //                 for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-        //                     videosToLoad.push(clientVideoObjectArray[i])
-        //                 }
-        //                 console.log("VIDEOS TO LOAD", videosToLoad)
-        //                 renderVideoList(videosToLoad)
-        //             }
-        //         },
-        //         errors: function (data) {
-        //             console.log('read error', data);
-        //             // promise.reject(data);
-        //         }
-        //     })
-        // }
-        // else{
-            for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                videosToLoad.push(clientVideoObjectArray[i])
-            }
-            console.log("VIDEOS TO LOAD", videosToLoad);
-            renderVideoList(videosToLoad)
-        // }
+
+        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+            videosToLoad.push(clientVideoObjectArray[i])
+        }
+        console.log("VIDEOS TO LOAD", videosToLoad);
+        renderVideoList(videosToLoad)
+
     }
+    resetSelectedTd();
 }
