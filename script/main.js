@@ -925,7 +925,7 @@ function resetSelectedTd() {
         let row = "#tdList-" + (i + 1);
         $(".tdList").removeClass('selectedTd')
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            row.addClass("selectedTd")
+            $(row).addClass("selectedTd")
         }
     }
 }
