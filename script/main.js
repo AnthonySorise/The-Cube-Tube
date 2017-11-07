@@ -886,8 +886,8 @@ function returnToPageOne(){
     // $(".carousel").show();
     currentSlideNumber = 2;
     loadPreviousPage();
-    displayCurrentPageNumber();
     currentSlideNumber = 1;
+    displayCurrentPageNumber();
 }
 
 // check if device is apple mobile device (used to convert date object)
