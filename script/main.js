@@ -212,7 +212,7 @@ function clickHandler() {
                             placement: 'top',
                             container: 'body'
                         });
-                    }, 250);
+                    }, 50);
                     $("#videoStats").attr({
                         'data-original-title': data.items[0].snippet.title
                     });
@@ -528,7 +528,7 @@ function renderVideoList(videoArray) {
 
         }
         // removePlaceholderAnimation();
-    }, 250);
+    }, 50);
 }
 
 function ytChannelApiToDb(channelId) {
