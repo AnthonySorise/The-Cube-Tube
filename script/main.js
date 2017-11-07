@@ -140,7 +140,7 @@ function clickHandler() {
             });
 
             //Table List Row Channel that is selected
-            $(".tdChannel").on("click", function (){
+            $(".tdChannel").mouseup(function (){
                 if($(this).parent().hasClass('selectedTd')) {
                     $("#channelInfo").focus().click()
                 }
