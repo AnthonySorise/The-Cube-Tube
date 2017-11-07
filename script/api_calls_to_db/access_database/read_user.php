@@ -14,7 +14,7 @@ if(!empty($results)){
     if(mysqli_num_rows($results)>0){
         $output['read_user_success']=true;
         $row = mysqli_fetch_assoc($results);
-        $user_id=$row['user_id'];
+        $_POST['user_id'] =$row['user_id'];
     }else{
         $output['errors'][] = 'NOTHING TO READ';
         exit();

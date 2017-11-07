@@ -2,6 +2,7 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
+$user_id = $_POST['user_id'];
 $query = "SELECT c.channel_title, 
 c.youtube_channel_id,c.description,c.thumbnail_file_name, 
 v.video_title, v.description,v.published_at
