@@ -486,7 +486,6 @@ function clearVideoList(){
 
 function renderVideoList(videoArray) {
     for (let i = 0; i < videoArray.length; i++) {
-
         let row = "#tdList-" + (i + 1);
         let title = row + " .tdTitle>span";
         let channel = row + " .tdChannel";
@@ -514,13 +513,14 @@ function renderVideoList(videoArray) {
         $(title).text(videoArray[i].video_title);
         $(channel).text(videoArray[i].channel_title);
         $(upDate).text(dateString);
-
-        let videoData = row + " .tdInfo a";
-        let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].youtube_video_id + '/mqdefault.jpg';
     }
 
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
+            let row = "#tdList-" + (i + 1);
+            let videoData = row + " .tdInfo a";
+            let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].youtube_video_id + '/mqdefault.jpg';
+
             const videoDataImg = $('<img>').attr('src', videoURL).css({
                 width: '240px',
                 height: '135px',
