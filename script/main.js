@@ -929,14 +929,16 @@ function resetSelectedTd() {
         let row = "#tdList-" + (i + 1);
 
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            $(row).addClass("selectedTd")
-            var playSymbol = $('<i>')
-                .addClass('fa fa-circle-o-notch fa-spin fa-fw')
-                .css({
-                    "margin-right": '5px',
-                    'color': 'green'
-                });
-            $(row).find(".tdTitle>span").prepend(playSymbol);
+            setTimeout(function(){
+                $(row).addClass("selectedTd")
+                var playSymbol = $('<i>')
+                    .addClass('fa fa-circle-o-notch fa-spin fa-fw')
+                    .css({
+                        "margin-right": '5px',
+                        'color': 'green'
+                    });
+                $(row).find(".tdTitle>span").prepend(playSymbol);
+            }, 500)
         }
     }
 }
