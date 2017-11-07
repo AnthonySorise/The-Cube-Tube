@@ -73,19 +73,7 @@ body {
 	padding-left: 15px;
 	/*line-height: 2.6;*/
 }
-#cubeTubeLogo{
-	display: inline-block;
-	width: 36px;
-	height: 40px;
-	background-image: url('assets/images/ctube_logo.png');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 36px 40px;
-	margin-top:7px;
-}
-.logoText{
-	vertical-align: 55%;
-}
+
 .navbar-brand .fa {
 	color: rgb(255, 0, 0);
 }
