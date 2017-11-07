@@ -563,52 +563,52 @@ li#returnCarouselStart{
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 100% auto;
-	/*opacity: 0.6;*/
+	opacity: 0;
 	animation: backgroundChange 80s linear infinite;
 }
 @keyframes backgroundChange{
 	10%{
 		background-image: url("assets/images/img_02.jpg");
-		opacity: 0.6;
+		opacity: 0;
 	}
 	5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%{
-		opacity: 0;
+		opacity: 0.6;
 	}
 	20%{
 		background-image: url('assets/images/img_03.jpg');
-		opacity: 0.6;
+		opacity: 0;
 	}
 	30%{
 		background-image: url('assets/images/img_04.jpg');
-		opacity: 0.6;
+		opacity: 0;
 	}
 	40%{
 		background-image: url('assets/images/img_05.jpg');
-		opacity: 0.6;
+		opacity: 0;
 	}
 	50%{
 		background-image: url('assets/images/img_06.jpg');
-		opacity: 0.6;
+		opacity: 0;
 	}
 	60%{
 		background-image: url('assets/images/img_07.jpg');
-		opacity: 0.6;
+		opacity: 0;
 	}
 	70%{
 		background-image: url('assets/images/img_08.jpg');
-		opacity: 0.6;
+		opacity: 0;
 	}
 	80%{
 		background-image: url('assets/images/img_09.jpg');
-		opacity: 0.6;
+		opacity: 0;
 	}
 	90%{
 		background-image: url('assets/images/img_10.jpg');
-		opacity: 0.6;
+		opacity: 0;
 	}
 	100%{
 		background-image: url('assets/images/img_01.jpg');
-		opacity: 0.6;
+		opacity: 0;
 	}
 }
 .contentPlaceholder{
