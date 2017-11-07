@@ -888,7 +888,7 @@ function loadNextPage(){
                 data: {
                     action:'read_videos_by_channel_array',
                     channel_id_array:clientChannelIdArray,
-                    offset:pageToLoad
+                    offset:indexToStartOn
                 },
                 success: function (data) {
                     if (data.success) {
@@ -937,7 +937,7 @@ function loadPreviousPage(){
                 data: {
                     action:'read_videos_by_channel_array',
                     channel_id_array:clientChannelIdArray,
-                    offset:pageToLoad
+                    offset:indexToStartOn
                 },
                 success: function (data) {
                     if (data.success) {
