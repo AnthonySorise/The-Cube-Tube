@@ -5,22 +5,6 @@
 
 const user_query_string = location.search.slice(1); // set on page load, should only change when page url changes
 
-function manage_database_with_user_id(user_id){
-	$.ajax({
-		url:'./script/api_calls_to_db/access_database/access.php',
-		method:'post',
-		dataType:'JSON',
-		data:{
-			user_link: user_id,
-			action:'insert_user'
-		},
-		success:function(data){
-			if(data.success){
-				console.log(data)
-			}
-		}
-	})
-}
 
 function generate(){
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -31,3 +15,13 @@ function generate(){
   return user_id
 }
 
+$('.addChannelButton').on('click', function(){
+	if(user_query_string === 0){
+		var user_id = generate();
+		function_that_inserts_users_id(user_id);
+		// filler ajax call(s)
+			// if error user id is not in data base or reload default page
+		location.search = user_id.slice(1)
+		
+	}
+})
