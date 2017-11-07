@@ -741,6 +741,7 @@ function handleBrowseButton() {
     //reset page
     currentSlideNumber = 1;
     $(".carousel").carousel(0);
+    displayCurrentPageNumber();
 
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
