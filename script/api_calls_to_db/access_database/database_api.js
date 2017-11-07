@@ -355,6 +355,35 @@
         })
         // return promise;
     }
+     this.read_videos_by_channel_array = function(channel_id_array,offset){//give u a list of videos bassed on channels, limit 40, can pass in offset
+         // var promise = {
+         //     then:function(resolve,reject){
+         //         this.resolve = resolve;
+         //         this.reject = reject;
+         //     }
+         // }
+         $.ajax({
+             url: './script/api_calls_to_db/access_database/access.php',
+             method: 'POST',
+             dataType: 'JSON',
+             data: {
+                 action:'read_videos_by_channel_array',
+                 channel_id_array:channel_id_array,
+                 offset:offset
+             },
+             success: function (data) {
+                 if (data.success) {
+                     // promise.resolve(data);
+                     console.log('read success', data);
+                 }
+             },
+             errors: function (data) {
+                 console.log('read error', data);
+                 // promise.reject(data);
+             }
+         })
+         // return promise
+     }
      // this.update_user = function(user_id,new_link){
      //     // var promise = {
      //     //     then:function(resolve,reject){
@@ -386,4 +415,3 @@
      // }
 }
 var access_database = new Database();
- var channel_id_hold = null;

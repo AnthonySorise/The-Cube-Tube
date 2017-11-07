@@ -17,13 +17,13 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-        videoId: vidId || '7O24mrBRit0'
+        videoId: vidId || 'lrzIR8seNXs'
     });
     onYouTubeIframeAPIReady2();
 }
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
-        videoId: '7O24mrBRit0'
+        videoId: 'lrzIR8seNXs'
     });
 }
 var player;
@@ -42,6 +42,10 @@ $(window).resize(function(){
 
 
 $(document).ready(function () {
+
+    $("#text-carousel").hide()
+    $(".videoHeader").hide()
+
     displayCurrentPageNumber();
     /**
      function for preventing page refresh with search button;
@@ -53,7 +57,6 @@ $(document).ready(function () {
 
     tooltipFunctions();
 
-    
     
     clickHandler();
 
@@ -68,7 +71,6 @@ $(document).ready(function () {
         }
         displayCurrentPageNumber()
     });
-
     clearVideoList();   //hides list rows until they are needed
 
 });
@@ -113,8 +115,15 @@ function tooltipFunctions() {
 function clickHandler() {
     //Search Button
     $(".channelSearchForm .channelSearchButton").on('click', function (event) {
+        $(".navbar-collapse").collapse('hide');
         event.preventDefault();
         searchChannelsByName().then(worked, failed);
+        // $(".contentPlaceholder").hide();
+        $('.contentPlaceholderWrapper').fadeOut(1000, function(){
+            $('#text-carousel, .videoHeader').slideDown(1100);
+        });
+        // $("#text-carousel").show()
+        // $(".videoHeader").show()
     });
     //Browse Button
     $('.browseChannelButton').on("click", handleBrowseButton);
@@ -802,20 +811,6 @@ function toastMsg(msgString, time){
 //     }
 // }
 
-// function displayTableDataOnMobile(){
-//     var newSlideData = $(".firstPage>*").children().clone()
-//     var itemDiv = $("<div>").addClass('item mobileSlide');
-//     var contentDiv = $("<div>").addClass('carousel-content');
-//     var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
-//     rowDiv.append(newSlideData);
-//     contentDiv.append(rowDiv);
-//     itemDiv.append(contentDiv);
-//     // itemDiv.append(contentDiv).append(rowDiv).append(newSlideData);
-//     $(".tdListRight").hide();
-//     $(".tdListLeft").removeClass('col-md-6');
-//     $(".carousel-inner").append(itemDiv);
-    
-// }
 
 function displayTableDataOnMobile(){
     var rightTableData = $(".item").find(".tdListRight").children().clone();
