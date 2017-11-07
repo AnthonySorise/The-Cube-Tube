@@ -191,13 +191,11 @@
             dataType: 'JSON',
             data: {
                 action:'read_user',
-                user_id:user_link
+                user_link:user_link
             },
             success: function (data) {
                 if (data.success) {
                     console.log('read success', data);
-                    self.user_id_hold = data.id;
-
                 }
             },
             errors: function (data) {

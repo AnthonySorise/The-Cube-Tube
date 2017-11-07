@@ -2,7 +2,6 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$output['data'] = [];
 $user_link = $_POST['user_link'];
 if(empty($user_link)){
     $output['errors'][] ='MISSING USER_LINK';
@@ -16,6 +15,7 @@ if(!empty($results)){
         $output['read_user_success']=true;
         $row = mysqli_fetch_assoc($results);
         print($row);
+        exit();
         $user_id=$row;
     }else{
         $output['errors'][] = 'NOTHING TO READ';
