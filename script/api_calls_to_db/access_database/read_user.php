@@ -14,13 +14,14 @@ if(!empty($results)){
     if(mysqli_num_rows($results)>0){
         $output['read_user_success']=true;
         $row = mysqli_fetch_assoc($results);
-        print($row);
-        exit();
-        $user_id=$row;
+        $user_id=$row['user_id'];
     }else{
         $output['errors'][] = 'NOTHING TO READ';
+        exit();
     }
 }else{
     $output['errors'][] = 'INVALID QUERY';
+    exit();
 }
+include('read_channels_vids_by_user_link.php');
 ?>

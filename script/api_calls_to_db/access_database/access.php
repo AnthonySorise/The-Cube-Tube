@@ -45,7 +45,7 @@ switch($_POST['action']){
         include('read_videos.php');
         break;
     case 'read_user':
-        include('read_users.php');
+        include('read_user.php');
         break;
     case 'update_link'://in progress
         include('update_link.php');

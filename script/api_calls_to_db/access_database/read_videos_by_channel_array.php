@@ -17,10 +17,10 @@ if(!isset($offset)){
     $output['errors'][] = 'MISSING OFFSET';
 }
 $in_stmt = implode(',', array_fill(0, count($youtube_array), '?'));
-$stmt = $conn->prepare("SELECT `v.youtube_video_id`,`v.description`,`v.published_at`, `v.video_title`, `c.channel_title`, `c.youtube_channel_id`
-FROM `videos` AS `v` JOIN `channels` AS `c` ON `v.youtube_channel_id` = `c.youtube_channel_id`
-WHERE `c.youtube_channel_id` IN ($in_stmt)
-ORDER BY `v.published_at` DESC `LIMIT` 40 `OFFSET` ?");
+$stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at, v.video_title, c.channel_title, c.youtube_channel_id
+FROM videos AS v JOIN channels AS c ON v.youtube_channel_id = c.youtube_channel_id
+WHERE c.youtube_channel_id IN ($in_stmt)
+ORDER BY v.published_at DESC LIMIT 40 OFFSET ?");
 if(!$stmt){
     echo "prepared failed:(".$conn->errno . ")".$conn->error;
 }
