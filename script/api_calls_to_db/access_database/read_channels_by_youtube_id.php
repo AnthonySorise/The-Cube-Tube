@@ -1,15 +1,15 @@
  <?php
 if(empty($LOCAL_ACCESS)){
-    die('direction access not allowed');
+    die('direct access not allowed');
 }
 $output['data'] = [];
 $youtube_channel_id = $_POST['youtube_channel_id'];
 if(empty($youtube_channel_id)){
     $output['errors'][] = 'MISSING ID';
 }
-$sqli =  "SELECT `channel_title`, 
-`description`,`thumbnail_file_name` 
-FROM `channels` WHERE youtube_channel_id = ? ";
+$sqli =  "SELECT channel_title, 
+description,thumbnail_file_name 
+FROM channels WHERE youtube_channel_id = ? ";
 $stmt = mysqli_stmt_init($conn);
 if(!mysqli_stmt_prepare($stmt,$sqli)){
     echo 'SQL statement failed';

@@ -1,6 +1,6 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direction access not allowed');
+    die('direct access not allowed');
 }
 $user_link = $_POST['user_link'];
 $date_created = date('Y-m-d H:i:s');
@@ -28,7 +28,7 @@ if(empty($user_link)){
     $output['errors'] = 'MISSING USERLINK';
 }
 
-$stmt = $conn->prepare("INSERT INTO `users` SET `user_link`=?, `date_created`=?, `ip_address_at_signup`=?,`last_modified`=?");
+$stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?, ip_address_at_signup=?,last_modified=?");
 $stmt->bind_param('ssss',$user_link,$date_created,$ip_address_at_sign_up,$last_modified);
 $stmt->execute();
 
