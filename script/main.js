@@ -486,7 +486,7 @@ function clearVideoList(){
 
 function renderVideoList(videoArray) {
     //Remove selected class from any rows that may be selected
-    $(".tdList").removeClass('selectedTD')
+    $(".tdList").removeClass('selectedTd')
 
     for (let i = 0; i < videoArray.length; i++) {
         let row = "#tdList-" + (i + 1);
@@ -516,6 +516,12 @@ function renderVideoList(videoArray) {
         $(title).text(videoArray[i].video_title);
         $(channel).text(videoArray[i].channel_title);
         $(upDate).text(dateString);
+
+
+        //select any rows that should be selected
+        if($(row).attr('videoid').indexOf(player.getVideoUrl()) !== -1){
+            row.addClass("selectedTd")
+        }
     }
 
     setTimeout(function () {
@@ -543,11 +549,6 @@ function renderVideoList(videoArray) {
                 .attr({
                     'data-original-title': videoArray[i].video_title
                 });
-
-            //select any rows that should be selected
-            if($(row).attr('videoid').indexOf(player.getVideoUrl()) !== -1){
-                row.addClass("selectedTd")
-            }
 
         }
         // removePlaceholderAnimation();
