@@ -1,6 +1,6 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die("direction access not allowed");
+    die("direct access not allowed");
 }
 $youtube_array = $_POST['channel_id_array'];
 $channels = "'{$youtube_array[0]}'";
@@ -9,7 +9,7 @@ if(count($youtube_array)>1){
         $channels = $channels.','."'{$youtube_array[$i]}'";
     }
 };
-$offset = intval(filter_var($_POST['offset'], FILTER_SANITIZE_NUMBER_INT));
+$offset = $_POST['offset'];
 if(empty($youtube_array)){
     $output['errors'][] = 'MISSING YOUTUBE ARRAY';
 }

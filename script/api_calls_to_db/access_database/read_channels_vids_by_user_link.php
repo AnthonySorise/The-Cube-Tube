@@ -2,18 +2,22 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$user_id = $_POST['user_id'];
-if(empty($user_id)){
-    $output['errors'][] = 'MISSING USER ID';
+if(empty($_POST['offset'])){
+    $output['errors'][] = "MISSING OUTPUT";
 }
+$offset = $_POST['offset'];
+$user_id = $_POST['user_id'];
 $stmt = $conn->prepare("SELECT c.channel_title, 
-c.youtube_channel_id,c.description,c.thumbnail_file_name,ctu.ctu_id 
+c.youtube_channel_id,c.description,c.thumbnail_file_name, 
+v.video_title, v.description,v.published_at
 FROM channels AS c 
 JOIN channels_to_users AS ctu
 ON c.channel_id = ctu.channel_id 
-WHERE ctu.user_id = ?,
-ORDER BY c.channel_title");
-$stmt->bind_param('i',$user_id);
+JOIN videos AS v
+ON v.channel_id = c.channel_id
+WHERE ctu.user_id = {$user_id}
+ORDER BY v.published_at LIMIT 40 OFFSET ?");
+$stmt->bind_param('i',$offset);
 $stmt->execute();
 $result = mysqli_stmt_get_result($stmt);
 if(!empty($result)){
@@ -29,5 +33,3 @@ if(!empty($result)){
     $output['errors'][] = 'INVALID QUERY';
 }
 ?>
-
-
