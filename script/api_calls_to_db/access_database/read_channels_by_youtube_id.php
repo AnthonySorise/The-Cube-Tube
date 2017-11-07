@@ -1,6 +1,6 @@
  <?php
 if(empty($LOCAL_ACCESS)){
-    die('direction access not allowed');
+    die('direct access not allowed');
 }
 $output['data'] = [];
 $youtube_channel_id = $_POST['youtube_channel_id'];

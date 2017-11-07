@@ -2,16 +2,21 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$user_id = $_POST['user_id'];
-if(empty($user_id)){
+$user_link = $_POST['user_link'];
+if(empty($user_link)){
     $output['errors'][] = 'MISSING USER ID';
 }
+$stmt = $conn->prepare("SELECT `user_id` WHERE `user_link` = ?");
+$stmt->bind_param('i',$user_id);
+$stmt->execute();
 $stmt = $conn->prepare("SELECT `c.channel_title`, 
-`c.youtube_channel_id`,`c.description`,`c.thumbnail_file_name` 
+`c.youtube_channel_id`,`c.description`,`c.thumbnail_file_name`, `v.video_title`, `v.description`,`v.published_at`
 FROM `channels` AS `c` 
 JOIN `channels_to_users` AS `ctu`
 ON `c.channel_id` = `ctu.channel_id` 
-WHERE `ctu.user_id` = ?,
+JOIN `videos` AS `v`
+ON `v.channel_id` = `c.channel_id`
+WHERE `ctu.user_id` = {user_id},
 ORDER BY `c.channel_title`");
 $stmt->bind_param('i',$user_id);
 $stmt->execute();
@@ -29,5 +34,3 @@ if(!empty($result)){
     $output['errors'][] = 'INVALID QUERY';
 }
 ?>
-
-

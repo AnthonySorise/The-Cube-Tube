@@ -1,6 +1,6 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direction access not allowed');
+    die('direct access not allowed');
 }
 $offset = $_POST['offset'];
 $user_id = $_POST['user_id'];

@@ -1,6 +1,6 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direction access not allowed');
+    die('direct access not allowed');
 }
 if(empty($_POST['ctu_id'])){
     $output['errors'] = 'MISSING CTU ID';

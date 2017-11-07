@@ -1,6 +1,6 @@
     <?php
 if(empty($LOCAL_ACCESS)){
-    die('direction access not allowed');
+    die('direct access not allowed');
 }
 $video_array = $_POST['videoArray'];
 for($i = 0; $i<count($video_array); $i++ ){
