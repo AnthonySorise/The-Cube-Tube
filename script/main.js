@@ -128,9 +128,10 @@ function clickHandler() {
 
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
-        $(".tdTitle, .tdChannel").unbind("mouseup");
+
 
         if(!$(this).parent().hasClass('selectedTd')) {
+            $(".tdTitle, .tdChannel").unbind("mouseup");
             //Table List Row Title that is selected
             $(".tdTitle").mouseup(function (){
                 if($(this).parent().hasClass('selectedTd')) {
