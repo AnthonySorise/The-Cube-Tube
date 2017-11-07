@@ -19,12 +19,12 @@ if(empty($thumbnail)){
 if(empty($channel_id)){
     $output['errors'][] = "MISSING ID";
 }
-$stmt=$conn->prepare("UPDATE `channels` SET 
-`channel_title` = ?,  
-`description` = ?, 
-`thumbnail_file_name` = ?, 
-`last_channel_pulled` = ?
-WHERE `channel_id` = ?");
+$stmt=$conn->prepare("UPDATE channels SET 
+channel_title = ?,  
+description = ?, 
+thumbnail_file_name = ?, 
+last_channel_pulled = ?
+WHERE channel_id = ?");
 $stmt->bind_param('ssssi',$channel_title,$description,$thumbnail,$last_channel_pulled,$channel_id);
 $stmt->execute();
 if(empty($stmt)){

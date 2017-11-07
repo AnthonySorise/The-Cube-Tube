@@ -184,14 +184,15 @@
             }
         })
     }
-    this.read_user = function(user_link){
+    this.read_user_content = function(user_link,offset){
         $.ajax({
             url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
-                action:'read_user',
-                user_link:user_link
+                action:'read_user_content',
+                user_link:user_link,
+                offset:offset
             },
             success: function (data) {
                 if (data.success) {
@@ -289,26 +290,6 @@
              }
          })
      }
-    this.read_user_videos_by_user_link = function(user_link){
-        $.ajax({
-            url: './script/api_calls_to_db/access_database/access.php',
-            method: 'POST',
-            dataType: 'JSON',
-            data: {
-                action:'read_videos_by_channel_array',
-                user_link:user_link,
-                offset:offset
-            },
-            success: function (data) {
-                if (data.success) {
-                    console.log('read success', data);
-                }
-            },
-            errors: function (data) {
-                console.log('read error', data);
-            }
-        })
-    }
      //read user based on user link get user id, read ctu(user_id) read channels, read videos
 }
 var access_database = new Database();

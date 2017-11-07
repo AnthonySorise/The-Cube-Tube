@@ -29,14 +29,14 @@ for($i = 0; $i<count($video_array); $i++ ){
     if(empty($channel_id)){
         $output['errors'][] = 'MISSING CHANNEL ID';
     }
-    $stmt = $conn->prepare("INSERT INTO `videos` SET 
-    `video_title` = ?,
-    `youtube_channel_id` = ?,
-    `youtube_video_id` = ?, 
-    `description` = ?,
-    `published_at` = ?,
-    `last_updated`=?,
-    `channel_id`=?");
+    $stmt = $conn->prepare("INSERT INTO videos SET 
+    video_title = ?,
+    youtube_channel_id = ?,
+    youtube_video_id = ?, 
+    description = ?,
+    published_at = ?,
+    last_updated=?,
+    channel_id=?");
     $stmt->bind_param('ssssssi',$video_title,$youtube_channel_id,$youtube_video_id,$description,$published_at,$last_updated,$channel_id);
     $stmt->execute();
     if(empty($stmt)){
