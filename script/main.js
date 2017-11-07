@@ -543,9 +543,10 @@ function renderVideoList(videoArray) {
                 });
 
         }
-        // removePlaceholderAnimation();
+        resetSelectedTd();
 
     }, 350);
+
 }
 
 function ytChannelApiToDb(channelId) {
@@ -989,7 +990,6 @@ function loadNextPage(){
         }
 
     }
-    setTimeout(resetSelectedTd(), 100)
 }
 function loadPreviousPage(){
     if (!(currentSlideNumber % 2)){
@@ -1005,5 +1005,4 @@ function loadPreviousPage(){
         renderVideoList(videosToLoad)
 
     }
-    setTimeout(resetSelectedTd(), 100)
 }
