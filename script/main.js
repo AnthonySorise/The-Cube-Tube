@@ -941,7 +941,6 @@ function resetSelectedTd() {
 }
 
 function loadNextPage(){
-    resetSelectedTd();
     if (currentSlideNumber % 2){
         var pageToLoad = (currentSlideNumber - 1) / 2;
         var indexToStartOn = (pageToLoad) * 40;
@@ -990,9 +989,9 @@ function loadNextPage(){
         }
 
     }
+    resetSelectedTd();
 }
 function loadPreviousPage(){
-    resetSelectedTd();
     if (!(currentSlideNumber % 2)){
         var pageToLoad = (currentSlideNumber/2)-1;
         var indexToStartOn = (pageToLoad) * 40;
@@ -1006,4 +1005,5 @@ function loadPreviousPage(){
         renderVideoList(videosToLoad)
 
     }
+    resetSelectedTd();
 }
