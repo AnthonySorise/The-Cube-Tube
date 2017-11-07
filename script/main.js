@@ -422,32 +422,34 @@ function failed(message) {
 }
 
 function renderChannelSearchStats(i) {
-    const channelListData = "#chSearch-" + (i + 1);
-    const chSub = "#chSearch-" + (i + 1) + " .chSub";
-    const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
-    $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/channels',
-        dataType: 'json',
-        method: 'get',
-        data: {
-            key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-            id: $(channelListData).attr("channelId"),
-            part: 'snippet, statistics'
-        },
-        success: function (data) {
-            console.log('renderChannelSearchStats success', data);
-            const subNumber = parseInt(data.items[0].statistics.subscriberCount);
-            const numWithCommas = subNumber.toLocaleString("en-us");
-            $(chSub).text(numWithCommas);
-            $(chDesc).attr({
-                "data-original-title": data.items[0].snippet.title,
-                "data-content": data.items[0].snippet.description
-            });
-        },
-        error: function (data) {
-            console.log('something went wrong with YT', data);
-        }
-    });
+    if($("#chSearch-"+(i+1)+">h4>span").text() !== "") {
+        const channelListData = "#chSearch-" + (i + 1);
+        const chSub = "#chSearch-" + (i + 1) + " .chSub";
+        const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/channels',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: $(channelListData).attr("channelId"),
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('renderChannelSearchStats success', data);
+                const subNumber = parseInt(data.items[0].statistics.subscriberCount);
+                const numWithCommas = subNumber.toLocaleString("en-us");
+                $(chSub).text(numWithCommas);
+                $(chDesc).attr({
+                    "data-original-title": data.items[0].snippet.title,
+                    "data-content": data.items[0].snippet.description
+                });
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
+        });
+    }
 }
 
 function clearChannelResults() {
@@ -515,7 +517,7 @@ function renderVideoList(videoArray) {
         $(upDate).text(dateString);
 
     }
-
+    resetSelectedTd();
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
             let row = "#tdList-" + (i + 1);
@@ -543,9 +545,10 @@ function renderVideoList(videoArray) {
                 });
 
         }
-        // removePlaceholderAnimation();
+
 
     }, 350);
+
 }
 
 function ytChannelApiToDb(channelId) {
@@ -922,20 +925,24 @@ function convertDateForApple(dateFromAPI){
 }
 function resetSelectedTd() {
     //NEEDS TO ALSO HANDLE FA FA SPINNER
-    $(".tdList").removeClass('selectedTd');
-    $('.fa-circle-o-notch').remove();
+    setTimeout(function(){
+        $(".tdList").removeClass('selectedTd');
+        $('.fa-circle-o-notch').remove();
+    }, 100);
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            $(row).addClass("selectedTd")
-            var playSymbol = $('<i>')
-                .addClass('fa fa-circle-o-notch fa-spin fa-fw')
-                .css({
-                    "margin-right": '5px',
-                    'color': 'green'
-                });
-            $(row).find(".tdTitle>span").prepend(playSymbol);
+            setTimeout(function(){
+                $(row).addClass("selectedTd")
+                var playSymbol = $('<i>')
+                    .addClass('fa fa-circle-o-notch fa-spin fa-fw')
+                    .css({
+                        "margin-right": '5px',
+                        'color': 'green'
+                    });
+                $(row).find(".tdTitle>span").prepend(playSymbol);
+            }, 300)
         }
     }
 }
@@ -989,7 +996,6 @@ function loadNextPage(){
         }
 
     }
-    resetSelectedTd();
 }
 function loadPreviousPage(){
     if (!(currentSlideNumber % 2)){
@@ -1005,5 +1011,4 @@ function loadPreviousPage(){
         renderVideoList(videosToLoad)
 
     }
-    resetSelectedTd();
 }
