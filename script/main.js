@@ -940,18 +940,8 @@ function resetSelectedTd() {
     }
 }
 
-// $('.fa-circle-o-notch').remove();
-// var playSymbol = $('<i>')
-// // .addClass("fa fa-play-circle-o")
-//     .addClass('fa fa-circle-o-notch fa-spin fa-fw')
-//     .css({
-//         "margin-right": '5px',
-//         'color': 'green'
-//     });
-// $(this).parent().find(".tdTitle>span").prepend(playSymbol);
-
-
 function loadNextPage(){
+    resetSelectedTd();
     if (currentSlideNumber % 2){
         var pageToLoad = (currentSlideNumber - 1) / 2;
         var indexToStartOn = (pageToLoad) * 40;
@@ -1002,6 +992,7 @@ function loadNextPage(){
     }
 }
 function loadPreviousPage(){
+    resetSelectedTd();
     if (!(currentSlideNumber % 2)){
         var pageToLoad = (currentSlideNumber/2)-1;
         var indexToStartOn = (pageToLoad) * 40;
