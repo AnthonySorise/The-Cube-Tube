@@ -867,7 +867,8 @@ function checkIfPlayer2IsMuted() {
 
 function returnToPageOne(){
     $(".carousel").carousel(0);     //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
-    currentSlideNumber = 1;
+    currentSlideNumber = 2;
+    loadPreviousPage();
     displayCurrentPageNumber();
 }
 
