@@ -517,11 +517,6 @@ function renderVideoList(videoArray) {
         $(channel).text(videoArray[i].channel_title);
         $(upDate).text(dateString);
 
-
-        //select any rows that should be selected
-        if(player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1){
-            row.addClass("selectedTd")
-        }
     }
 
     setTimeout(function () {
@@ -549,6 +544,11 @@ function renderVideoList(videoArray) {
                 .attr({
                     'data-original-title': videoArray[i].video_title
                 });
+
+            //select any rows that should be selected
+            if(player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1){
+                row.addClass("selectedTd")
+            }
 
         }
         // removePlaceholderAnimation();
