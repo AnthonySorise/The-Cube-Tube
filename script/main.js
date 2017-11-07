@@ -936,6 +936,11 @@ function loadPreviousPage(){
                         for(var i = 0; i < data.data.length; i++){
                             clientVideoObjectArray.push(data.data[i])
                         }
+                        var videosToLoad = [];
+                        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+                            videosToLoad.push(clientVideoObjectArray[i])
+                        }
+                        renderVideoList(videosToLoad)
                     }
                 },
                 errors: function (data) {
@@ -944,10 +949,13 @@ function loadPreviousPage(){
                 }
             })
         }
-        var videosToLoad = [];
-        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-            videosToLoad.push(clientVideoObjectArray[i])
+        else{
+            var videosToLoad = [];
+            for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+                videosToLoad.push(clientVideoObjectArray[i])
+            }
+            renderVideoList(videosToLoad)
         }
-        renderVideoList(videosToLoad)
+
     }
 }
