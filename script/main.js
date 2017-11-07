@@ -806,31 +806,31 @@ function toastMsg(msgString, time){
 //     "background-masker content-third-end"
 // ]
 
-// function createPlaceholderAnimation() {
-//     $(".tdList").show();
-//
-//     var outerDiv = $('<div>').addClass("timeline-wrapper");
-//     var nestedDiv1 = $('<div>').addClass("timeline-item");
-//     var nestedDiv2 = $('<div>').addClass("animated-background");
-//     var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2);
-//     for (var i = 0; i < 12; i++) {
-//         var childElements = $('<div>').addClass(classes[i]);
-//         $(childElements).appendTo(nestedDiv2);
-//
-//     }
-//     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
-// }
-//
-// function removePlaceholderAnimation(){
-//     for(var i = 0; i<40; i++){
-//         let row = "#tdList-" + (i + 1);
-//         let title = row + " .tdTitle>span";
-//
-//         if($(title).text() === ""){
-//             $(row).hide();
-//         }
-//     }
-// }
+function createPlaceholderAnimation() {
+    $(".tdList").show();
+
+    var outerDiv = $('<div>').addClass("timeline-wrapper");
+    var nestedDiv1 = $('<div>').addClass("timeline-item");
+    var nestedDiv2 = $('<div>').addClass("animated-background");
+    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2);
+    for (var i = 0; i < 12; i++) {
+        var childElements = $('<div>').addClass(classes[i]);
+        $(childElements).appendTo(nestedDiv2);
+
+    }
+    $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
+}
+
+function removePlaceholderAnimation(){
+    for(var i = 0; i<40; i++){
+        let row = "#tdList-" + (i + 1);
+        let title = row + " .tdTitle>span";
+
+        if($(title).text() === ""){
+            $(row).hide();
+        }
+    }
+}
 
 
 function displayTableDataOnMobile(){
@@ -924,6 +924,7 @@ function loadNextPage(){
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
         clearVideoList();
+        createPlaceholderAnimation();
         if(clientVideoObjectArray.length < indexToStartOn+40){
             // $(".tdTitle").popover('destroy');
             $.ajax({
@@ -946,6 +947,7 @@ function loadNextPage(){
                             videosToLoad.push(clientVideoObjectArray[i])
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
+                        removePlaceholderAnimation();
                         renderVideoList(videosToLoad)
                     }
                 },
