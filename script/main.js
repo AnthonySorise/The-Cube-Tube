@@ -921,9 +921,11 @@ function convertDateForApple(dateFromAPI){
     }
 }
 function resetSelectedTd() {
+    //NEEDS TO ALSO HANDLE FA FA SPINNER
+    $(".tdList").removeClass('selectedTd')
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
-        $(".tdList").removeClass('selectedTd')
+
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
             $(row).addClass("selectedTd")
         }
