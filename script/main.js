@@ -737,6 +737,10 @@ function handleBrowseButton() {
     clearVideoList();
     // createPlaceholderAnimation();
 
+    //reset page
+    currentSlideNumber = 1;
+    $(".carousel").carousel(0);
+
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
     // toastMsg('loading channel videos',1000);
