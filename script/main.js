@@ -485,9 +485,6 @@ function clearVideoList(){
 }
 
 function renderVideoList(videoArray) {
-    //Remove selected class from any rows that may be selected
-    $(".tdList").removeClass('selectedTd')
-
     for (let i = 0; i < videoArray.length; i++) {
         let row = "#tdList-" + (i + 1);
         let title = row + " .tdTitle>span";
@@ -544,11 +541,6 @@ function renderVideoList(videoArray) {
                 .attr({
                     'data-original-title': videoArray[i].video_title
                 });
-
-            //select any rows that should be selected
-            if(player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1){
-                row.addClass("selectedTd")
-            }
 
         }
         // removePlaceholderAnimation();
@@ -926,6 +918,15 @@ function convertDateForApple(dateFromAPI){
         return iosDate
     }else{
         return;
+    }
+}
+function resetSelectedTd() {
+    for (let i = 0; i < videoArray.length; i++) {
+        let row = "#tdList-" + (i + 1);
+        $(".tdList").removeClass('selectedTd')
+        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
+            row.addClass("selectedTd")
+        }
     }
 }
 
