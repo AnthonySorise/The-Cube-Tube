@@ -935,7 +935,7 @@ function resetSelectedTd() {
                     "margin-right": '5px',
                     'color': 'green'
                 });
-            $(row+">tdTitle>span").prepend(playSymbol);
+            $(row).find(".tdTitle>span").prepend(playSymbol);
         }
     }
 }
