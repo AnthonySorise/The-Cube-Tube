@@ -9,7 +9,7 @@ if(count($youtube_array)>1){
         $channels = $channels.','."'{$youtube_array[$i]}'";
     }
 };
-$offset = intval(filter_var($_POST['offset'], FILTER_SANITIZE_NUMBER_INT));
+$offset = $_POST['offset'];
 if(empty($youtube_array)){
     $output['errors'][] = 'MISSING YOUTUBE ARRAY';
 }

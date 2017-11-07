@@ -8,8 +8,6 @@ var clientChannelIdArray = null;
 
 var currentSlideNumber = 1;
 
-// var currentChannels = [];
-// var currentVideos = [];
 
 let currentVolumeLevel = null;
 
@@ -130,19 +128,23 @@ function clickHandler() {
 
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
+
+
         if(!$(this).parent().hasClass('selectedTd')) {
+            $(".tdTitle, .tdChannel").unbind("mouseup");
             //Table List Row Title that is selected
-            $(".tdTitle").on("click", function (){
+            $(".tdTitle").mouseup(function (){
                 if($(this).parent().hasClass('selectedTd')) {
-                    $("#videoStats").focus().click()
-                    // $("#videoStats").popover('toggle')
+                    // $("#videoStats").focus().click()
+                    $("#videoStats").trigger('focus')
                 }
             });
 
             //Table List Row Channel that is selected
             $(".tdChannel").mouseup(function (){
                 if($(this).parent().hasClass('selectedTd')) {
-                    $("#channelInfo").focus().click()
+                    // $("#channelInfo").focus().click()
+                    $("#channelInfo").trigger('focus')
                 }
             });
 
@@ -493,16 +495,16 @@ function renderVideoList(videoArray) {
 
             let dateString = videoArray[i].published_at;
 
-                if(checkIfAppleDevice()){
-                // let date = "2017-11-03 09:34:14" //testing only - sample data
-                    let newDate = dateString.split(" ");
-                    let removeTime = newDate[0].split("-")
-                    let newDateString = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
-                    dateString = newDateString
-                }else{
-                    const d = new Date(dateString);
-                    dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2); 
-                }
+            if(checkIfAppleDevice()){
+            // let date = "2017-11-03 09:34:14" //testing only - sample data
+                let newDate = dateString.split(" ");
+                let removeTime = newDate[0].split("-")
+                let newDateString = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
+                dateString = newDateString
+            }else{
+                const d = new Date(dateString);
+                dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2); 
+            }
         
 
 
@@ -885,9 +887,10 @@ function returnToPageOne(){
     // $(".carousel").hide();
     $(".carousel").carousel(0);     //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
     // $(".carousel").show();
-    currentSlideNumber = 1;
+    currentSlideNumber = 2;
     loadPreviousPage();
     displayCurrentPageNumber();
+    currentSlideNumber = 1;
 }
 
 // check if device is apple mobile device (used to convert date object)
@@ -922,7 +925,8 @@ function loadNextPage(){
         console.log("INDEX TO START ON", indexToStartOn)
 
         if(clientVideoObjectArray.length < indexToStartOn+40){
-            clearVideoList();
+            // clearVideoList();
+            $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
@@ -972,7 +976,8 @@ function loadPreviousPage(){
         console.log("API PAGE IS", pageToLoad)
         console.log("INDEX TO START ON", indexToStartOn)
         if(clientVideoObjectArray.length < indexToStartOn+40){
-            clearVideoList();
+            // clearVideoList();
+            $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
