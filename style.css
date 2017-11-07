@@ -551,6 +551,7 @@ li#returnCarouselStart{
 .contentPlaceholderWrapper{
 	height: 100%;
 }
+
 .placeholderBg{
 	position: absolute;
 	left: 0;
@@ -564,7 +565,7 @@ li#returnCarouselStart{
 	background-repeat: no-repeat;
 	background-size: 100% auto;
 	opacity: 0;
-	animation: backgroundChange 80s linear infinite;
+	animation: backgroundChange 120s linear infinite;
 }
 @keyframes backgroundChange{
 	10%{
@@ -573,6 +574,9 @@ li#returnCarouselStart{
 	}
 	5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%{
 		opacity: 0.6;
+	}
+	3%, 7%,13%, 17%,23%, 27%,33%, 37%,43%, 47%,53%, 57%,63%, 67%,73%, 77%,83%, 87%,93%, 97%{
+		opacity: 0.3;
 	}
 	20%{
 		background-image: url('assets/images/img_03.jpg');
@@ -611,6 +615,7 @@ li#returnCarouselStart{
 		opacity: 0;
 	}
 }
+
 .contentPlaceholder{
 	margin-top: 30px;
 	text-shadow:
