@@ -836,7 +836,12 @@ function createPlaceholderAnimation() {
     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
 }
 
-function removePlaceholderAnimation(){
+function removePlaceHolderAnimation(){
+
+}
+
+
+function removeUnusedRows(){
     for(var i = 0; i<40; i++){
         let row = "#tdList-" + (i + 1);
         let title = row + " .tdTitle>span";
@@ -985,7 +990,8 @@ function loadNextPage(){
                             videosToLoad.push(clientVideoObjectArray[i])
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
-                        removePlaceholderAnimation();
+                        removeUnusedRows();
+                        removePlaceHolderAnimation();
                         renderVideoList(videosToLoad)
                     }
                 },
