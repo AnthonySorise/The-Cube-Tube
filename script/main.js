@@ -805,21 +805,6 @@ function toastMsg(msgString, time){
 }
 
 //Testing placeholder animation
-var classes = [
-    "background-masker header-top",
-    "background-masker header-left",
-    "background-masker header-right",
-    "background-masker header-bottom",
-    "background-masker subheader-left",
-    "background-masker subheader-right",
-    "background-masker subheader-bottom",
-    "background-masker content-top",
-    "background-masker content-first-end",
-    "background-masker content-second-line",
-    "background-masker content-second-end",
-    "background-masker content-third-line",
-    "background-masker content-third-end"
-]
 
 function createPlaceholderAnimation() {
     $(".tdList").show();
@@ -827,12 +812,8 @@ function createPlaceholderAnimation() {
     var outerDiv = $('<div>').addClass("timeline-wrapper");
     var nestedDiv1 = $('<div>').addClass("timeline-item");
     var nestedDiv2 = $('<div>').addClass("animated-background");
-    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2);
-    for (var i = 0; i < 12; i++) {
-        var childElements = $('<div>').addClass(classes[i]);
-        $(childElements).appendTo(nestedDiv2);
-
-    }
+    var nestedDiv3 = $ ('<div>').addClass("background-masker");
+    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2, nestedDiv3);
     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
 }
 
