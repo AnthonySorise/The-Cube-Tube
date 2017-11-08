@@ -54,6 +54,7 @@ body {
 	margin-bottom: 0;
 }
 
+
 #midNav {
 	border-radius: 0;
 	background-color: rgb(28, 35, 49);
@@ -65,11 +66,26 @@ body {
 	font-size: 22px;
 	margin-right: 20px;
 	color: rgb(40, 40, 40);
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Audiowide', sans-serif;
 	letter-spacing: -1.5px;
 	/*padding: 10px 10px;*/
+	padding: 0;
+	padding-left: 15px;
+	/*line-height: 2.6;*/
 }
-
+#cubeTubeLogo{
+	display: inline-block;
+	width: 36px;
+	height: 40px;
+	background-image: url('assets/images/ctube_logo.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 36px 40px;
+	margin-top:7px;
+}
+.logoText{
+	vertical-align: 55%;
+}
 .navbar-brand .fa {
 	color: rgb(255, 0, 0);
 }
@@ -215,6 +231,8 @@ body>.container-fluid {
 	font-family: 'Roboto', sans-serif;
 	background-color: rgba(34, 34, 34, 0.8);
 	color: white;
+	margin-left:15px;
+	margin-right:15px;
 	/*text-shadow: 
 		-0.5px -0.5px 0 #000,
 		0.5px 0.5px 0 #000;*/
@@ -720,6 +738,13 @@ input:checked+.slider {
 @media only screen and (max-width : 767px){
 	.navbar-header{
 		width: auto;
+	}
+	#mainVideo {
+		height: 100%;
+		width: 100vw;
+	}
+	.vidRowVideoCol {
+		padding: 0;
 	}
 }
 /*testing if placeholder animation will work*/

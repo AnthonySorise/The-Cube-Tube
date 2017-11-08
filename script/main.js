@@ -423,32 +423,34 @@ function failed(message) {
 }
 
 function renderChannelSearchStats(i) {
-    const channelListData = "#chSearch-" + (i + 1);
-    const chSub = "#chSearch-" + (i + 1) + " .chSub";
-    const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
-    $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/channels',
-        dataType: 'json',
-        method: 'get',
-        data: {
-            key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-            id: $(channelListData).attr("channelId"),
-            part: 'snippet, statistics'
-        },
-        success: function (data) {
-            console.log('renderChannelSearchStats success', data);
-            const subNumber = parseInt(data.items[0].statistics.subscriberCount);
-            const numWithCommas = subNumber.toLocaleString("en-us");
-            $(chSub).text(numWithCommas);
-            $(chDesc).attr({
-                "data-original-title": data.items[0].snippet.title,
-                "data-content": data.items[0].snippet.description
-            });
-        },
-        error: function (data) {
-            console.log('something went wrong with YT', data);
-        }
-    });
+    if($("#chSearch-"+(i+1)+">h4>span").text() !== "") {
+        const channelListData = "#chSearch-" + (i + 1);
+        const chSub = "#chSearch-" + (i + 1) + " .chSub";
+        const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/channels',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: $(channelListData).attr("channelId"),
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('renderChannelSearchStats success', data);
+                const subNumber = parseInt(data.items[0].statistics.subscriberCount);
+                const numWithCommas = subNumber.toLocaleString("en-us");
+                $(chSub).text(numWithCommas);
+                $(chDesc).attr({
+                    "data-original-title": data.items[0].snippet.title,
+                    "data-content": data.items[0].snippet.description
+                });
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
+        });
+    }
 }
 
 function clearChannelResults() {
@@ -487,6 +489,10 @@ function clearVideoList(){
 
 function renderVideoList(videoArray) {
     for (let i = 0; i < videoArray.length; i++) {
+        if(videoArray[i] === undefined){
+            return
+        }
+
         let row = "#tdList-" + (i + 1);
         let title = row + " .tdTitle>span";
         let channel = row + " .tdChannel";
@@ -514,8 +520,9 @@ function renderVideoList(videoArray) {
         $(title).text(videoArray[i].video_title);
         $(channel).text(videoArray[i].channel_title);
         $(upDate).text(dateString);
-    }
 
+    }
+    resetSelectedTd();
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
             let row = "#tdList-" + (i + 1);
@@ -541,9 +548,12 @@ function renderVideoList(videoArray) {
                 .attr({
                     'data-original-title': videoArray[i].video_title
                 });
+
         }
-        // removePlaceholderAnimation();
+
+
     }, 350);
+
 }
 
 function ytChannelApiToDb(channelId) {
@@ -918,6 +928,29 @@ function convertDateForApple(dateFromAPI){
         return;
     }
 }
+function resetSelectedTd() {
+    //NEEDS TO ALSO HANDLE FA FA SPINNER
+    setTimeout(function(){
+        $(".tdList").removeClass('selectedTd');
+        $('.fa-circle-o-notch').remove();
+    }, 100);
+    for (let i = 0; i < 40; i++) {
+        let row = "#tdList-" + (i + 1);
+
+        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
+            setTimeout(function(){
+                $(row).addClass("selectedTd")
+                var playSymbol = $('<i>')
+                    .addClass('fa fa-circle-o-notch fa-spin fa-fw')
+                    .css({
+                        "margin-right": '5px',
+                        'color': 'green'
+                    });
+                $(row).find(".tdTitle>span").prepend(playSymbol);
+            }, 500)
+        }
+    }
+}
 
 function loadNextPage(){
     if (currentSlideNumber % 2){
@@ -975,43 +1008,12 @@ function loadPreviousPage(){
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
         clearVideoList();
-        // if(clientVideoObjectArray.length < indexToStartOn+40){
-        //                 // $(".tdTitle").popover('destroy');
-        //                 $.ajax({
-        //                     url: './script/api_calls_to_db/access_database/access.php',
-        //                     method: 'POST',
-        //                     dataType: 'JSON',
-        //                     data: {
-        //                         action:'read_videos_by_channel_array',
-        //                         channel_id_array:clientChannelIdArray,
-        //                         offset:indexToStartOn
-        //                     },
-        //                     success: function (data) {
-        //                         if (data.success) {
-        //                             // promise.resolve(data);
-        //                 console.log('read success', data);
-        //                 for(var i = 0; i < data.data.length; i++){
-        //                     clientVideoObjectArray.push(data.data[i])
-        //                 }
-        //                 for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-        //                     videosToLoad.push(clientVideoObjectArray[i])
-        //                 }
-        //                 console.log("VIDEOS TO LOAD", videosToLoad)
-        //                 renderVideoList(videosToLoad)
-        //             }
-        //         },
-        //         errors: function (data) {
-        //             console.log('read error', data);
-        //             // promise.reject(data);
-        //         }
-        //     })
-        // }
-        // else{
-            for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                videosToLoad.push(clientVideoObjectArray[i])
-            }
-            console.log("VIDEOS TO LOAD", videosToLoad);
-            renderVideoList(videosToLoad)
-        // }
+
+        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+            videosToLoad.push(clientVideoObjectArray[i])
+        }
+        console.log("VIDEOS TO LOAD", videosToLoad);
+        renderVideoList(videosToLoad)
+
     }
 }
