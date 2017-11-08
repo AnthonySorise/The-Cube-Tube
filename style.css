@@ -99,7 +99,7 @@ body {
 	display: inline-block;
 	margin: 0;
 	padding-top: 10px;
-	padding-bottom: 10px;
+	/* padding-bottom: 10px; */
 }
 #midNav-option .form-group {
 	display: inline-block;
@@ -440,7 +440,7 @@ li#returnCarouselStart{
 		padding: 0;
 	}
 	.tdList {
-		font-size: 10px;
+		font-size: 12px;
 		margin-top: 1px;
 		margin-bottom: 1px;
 	}
@@ -740,7 +740,8 @@ input:checked+.slider {
 
 @media screen and (max-width: 1024px) {
 	#channelSearchModal .modal-dialog {
-		width: 75vw;
+		width: 100vw;
+		margin: 0 auto;
 	}
 	#channelSearchModalBody {
 		height: 75vh;
@@ -758,6 +759,37 @@ input:checked+.slider {
 	}
 	.vidRowVideoCol {
 		padding: 0;
+	}
+	/* Added these 6 css selectors to make mobile modal fit */
+	small {
+		display: none;
+	}
+	h4 {
+		font-size: .75em;
+	}
+	.browseChannelButton {
+		width:18%;
+		font-size: .70em;   
+	}
+	.addChannelButton {
+		width:15%;
+		font-size: .70em;
+	}
+	.col-xs-7 {
+		width: 50% !important;
+	}
+	.chName {
+		width: 85%;
+	}
+	/* End of css for mobile modal */
+	
+	ul {
+		top: 305px !important;
+		border: none !important;
+	}
+
+	.navbar-brand {
+		display: none;
 	}
 }
 /*testing if placeholder animation will work*/
@@ -796,13 +828,6 @@ input:checked+.slider {
 	background: #fff;
 	position: absolute;
 }
-
-.background-masker.header-bottom {
-	top: 100%;
-	left: 0px;
-	width: 100%;
-}
-
 /*Transition to get hamburger menu to collapse when search button is clicked */
 .navbar-collapse {
 	-webkit-transition: all ease .5s;
