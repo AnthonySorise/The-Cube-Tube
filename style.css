@@ -300,12 +300,7 @@ li#returnCarouselStart{
 	height: 3.2vh;
 	z-index: 1;
 }
-.tdList:nth-of-type(even){
-	background-color: rgb((177, 186, 206);
-}
-.tdList:nth-of-type(odd){
-	background-color: rgb(69, 82, 110);
-}
+
 
 .tdList:hover,
 .selectedTd {
@@ -321,21 +316,17 @@ li#returnCarouselStart{
 }
 .tdTitle, .tdChannel, .tdUpDate{
 	cursor: pointer;
-	color: white;
-	display:flex;
+	display: flex;
 	align-items: center;
 }
-
 .tdChannel, .tdUpDate{
 	justify-content: center;
 }
-
 .tdUpDate{
-	position:relative;
-	top:50%;
+	position: relative;
+	top: 50%;
 	transform: translateY(-50%);
 }
-
 
 /* need the row margin 0 above and padding 0 below for carousel width adjustment*/
 
