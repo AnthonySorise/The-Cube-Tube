@@ -1,15 +1,11 @@
 <?php
-require_once('mysql_connect.php');
-$LOCAL_ACCESS = true;
-$output = [
-    'success' => false,
-    'errors' => [],
-];
+sesson_start();
 if(empty($_POST['action'])){
     $output['errors'][] = 'No action specified';
     print(json_encode($output));
     exit();
 }
+require_once('mysql_connect.php');
 switch($_POST['action']){
     case 'delete_ctu':
         include('delete.php');

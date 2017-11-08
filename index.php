@@ -1,3 +1,6 @@
+<?php  
+require_once('./script/api_calls_to_db/access_database/get_user_query.php');
+?>
 <!--
 consider carousel for the video list area:
 	issue - accessibility issue

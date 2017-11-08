@@ -2,7 +2,7 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$user_link = $_POST['user_link'];
+$user_link = user_link;
 if(empty($user_link)){
     $output['errors'][] ='MISSING USER_LINK';
 }

@@ -1,4 +1,4 @@
-    <?php
+<?php
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }

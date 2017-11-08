@@ -2,7 +2,7 @@
 if(empty($LOCAL_ACCES)){
     $output['errors'][] = "no direct access allowed";
 }
-$user_link = $_POST['user_link'];
+$user_link = user_link;
 if(empty($user_link)){
     $output['errors'][] ='MISSING USER ID';
 }
