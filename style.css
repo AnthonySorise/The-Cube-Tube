@@ -99,7 +99,7 @@ body {
 	display: inline-block;
 	margin: 0;
 	padding-top: 10px;
-	padding-bottom: 10px;
+	/* padding-bottom: 10px; */
 }
 #midNav-option .form-group {
 	display: inline-block;
@@ -765,6 +765,10 @@ input:checked+.slider {
 	}
 	.chName {
 		width: 85%;
+	}
+	ul {
+		top: 305px !important;
+		border: none !important;
 	}
 }
 /*testing if placeholder animation will work*/
