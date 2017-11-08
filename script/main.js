@@ -805,21 +805,6 @@ function toastMsg(msgString, time){
 }
 
 //Testing placeholder animation
-var classes = [
-    "background-masker header-top",
-    "background-masker header-left",
-    "background-masker header-right",
-    "background-masker header-bottom",
-    "background-masker subheader-left",
-    "background-masker subheader-right",
-    "background-masker subheader-bottom",
-    "background-masker content-top",
-    "background-masker content-first-end",
-    "background-masker content-second-line",
-    "background-masker content-second-end",
-    "background-masker content-third-line",
-    "background-masker content-third-end"
-]
 
 function createPlaceholderAnimation() {
     $(".tdList").show();
@@ -827,12 +812,8 @@ function createPlaceholderAnimation() {
     var outerDiv = $('<div>').addClass("timeline-wrapper");
     var nestedDiv1 = $('<div>').addClass("timeline-item");
     var nestedDiv2 = $('<div>').addClass("animated-background");
-    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2);
-    for (var i = 0; i < 12; i++) {
-        var childElements = $('<div>').addClass(classes[i]);
-        $(childElements).appendTo(nestedDiv2);
-
-    }
+    var nestedDiv3 = $ ('<div>').addClass("background-masker");
+    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2, nestedDiv3);
     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
 }
 
@@ -1035,4 +1016,29 @@ function loadPreviousPage(){
             renderVideoList(videosToLoad)
         }, 250)
     }
+}
+
+// Making media query with javascript to hide saerch button inside hamburger menu and dynamically creat one on header
+
+if(window.matchMedia("(min-width: 1020px)").matches) {
+    var searchDiv = $('<div>').addClass('form-group');
+    var inputElement = $('<input>', {
+        type: 'text',
+        class: 'form-control',
+        placeholder: 'search channels',
+        name: 'channelSearch',
+        id: 'channelSearchInput'
+    });
+    var buttonElement = $('<button>', {
+        type: 'submit',
+        class: 'btn btn-danger channelSearchButton',
+        dataToggle: 'tooltip',
+        dataPlacement: 'bottom',
+        dataTrigger: 'hover',
+        title: 'search for channels to add',
+        text: 'search'
+    });
+   var searchDivWrapper = $(searchDiv).append(inputElement);
+   var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
+   $('#mainNav').append(completedSearchDiv); 
 }
