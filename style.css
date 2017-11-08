@@ -373,12 +373,14 @@ li#returnCarouselStart{
 }
 
 .tdButton i {
-	color: rgba(38, 50, 56, 0.5);
+	/*color: rgba(38, 50, 56, 0.5);*/
+	color:rgba(255,255,255,0.6);
 }
 
 .tdButton i:hover,
 .tdButton i:focus {
-	color: rgba(38, 50, 56, 1);
+	/*color: rgba(38, 50, 56, 1);*/
+	color: rgba(255,255,255,1);
 }
 
 .tdTitle,
