@@ -66,7 +66,7 @@ body {
 	font-size: 22px;
 	margin-right: 20px;
 	color: rgb(40, 40, 40);
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Audiowide', sans-serif;
 	letter-spacing: -1.5px;
 	/*padding: 10px 10px;*/
 	padding: 0;
@@ -738,6 +738,13 @@ input:checked+.slider {
 @media only screen and (max-width : 767px){
 	.navbar-header{
 		width: auto;
+	}
+	#mainVideo {
+		height: 100%;
+		width: 100vw;
+	}
+	.vidRowVideoCol {
+		padding: 0;
 	}
 }
 /*testing if placeholder animation will work*/
