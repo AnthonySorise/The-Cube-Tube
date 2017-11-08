@@ -16,14 +16,18 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
         videoId: vidId || 'lrzIR8seNXs',
-        rel: 0
+        playerVars: { 
+            'rel': 0
+        }
     });
     onYouTubeIframeAPIReady2();
 }
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
         videoId: 'lrzIR8seNXs',
-        rel: 0
+        playerVars: {
+            'rel': 0
+        }
     });
 }
 var player;
