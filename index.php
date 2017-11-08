@@ -18,7 +18,7 @@ consider carousel for the video list area:
 		gtag('config', 'UA-109199068-1');
 	</script>
 
-	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Audiowide" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	 crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -33,12 +33,13 @@ consider carousel for the video list area:
 	<script type="text/javascript" src="script/main.js"></script>
 	<script type="text/javascript" src="script/autoSearch.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
 	<title>CubeTube 0.1</title>
 </head>
 
 <body>
-	<nav class="navbar navbar-fixed-top" id="mainNav">
+	<nav class="navbar navbar-fixed-top navbar-inverse" id="mainNav">
 		<div class="container-fluid" id="">
 			<!--navbar content main div-->
 			<div class="navbar-header">
@@ -50,9 +51,9 @@ consider carousel for the video list area:
 					</span>
 				</button>
 				<span class="navbar-brand text-center">
-
-					<i class="fa fa-cube fa-lg" aria-hidden="true"></i>TheCubeTube
-
+					<!-- <img src="assets/images/ctube_logo.png" alt="logo" id="cubeTubeLogo"> -->
+					<span id="cubeTubeLogo"></span>
+					<span class="logoText">TheCubeTube</span>
 				</span>
 			</div>
 			<!--end of nav header div-->
@@ -156,7 +157,6 @@ consider carousel for the video list area:
 		</div>
 		<!--end of navbar content main div-->
 	</nav>
-
 	<div class="container-fluid">
 		<div class="main-content">
 			<div class="row videoRowWrapper text-center">
@@ -192,7 +192,7 @@ consider carousel for the video list area:
 				</div>
 			</div>
 			<!--end of videoRow div-->
-			<nav class="navbar" id="midNav">
+			<nav class="navbar navbar-inverse" id="midNav">
 				<div class="container-fluid" id="">
 					<!--navbar content main div-->
 					<div class="navbar-header">
