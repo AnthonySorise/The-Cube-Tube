@@ -745,6 +745,27 @@ input:checked+.slider {
 	.vidRowVideoCol {
 		padding: 0;
 	}
+	/* Added these 6 css selectors to make mobile modal fit */
+	small {
+		display: none;
+	}
+	h4 {
+		font-size: .75em;
+	}
+	.browseChannelButton {
+		width:18%;
+		font-size: .70em;   
+	}
+	.addChannelButton {
+		width:15%;
+		font-size: .70em;
+	}
+	.col-xs-7 {
+		width: 50% !important;
+	}
+	.chName {
+		width: 85%;
+	}
 }
 /*testing if placeholder animation will work*/
 
