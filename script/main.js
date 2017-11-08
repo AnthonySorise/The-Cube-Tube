@@ -947,8 +947,6 @@ function loadNextPage(){
         var pageToLoad = (currentSlideNumber - 1) / 2;
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
-        clearVideoList();
-        createPlaceholderAnimation();
         if(clientVideoObjectArray.length < indexToStartOn+40){
             // $(".tdTitle").popover('destroy');
             $.ajax({
@@ -971,9 +969,12 @@ function loadNextPage(){
                             videosToLoad.push(clientVideoObjectArray[i])
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
-                        removeUnusedRows();
-                        removePlaceHolderAnimation();
-                        renderVideoList(videosToLoad)
+                        setTimeout(function(){
+                            clearVideoList();
+                            renderVideoList(videosToLoad)
+                            removeUnusedRows();
+                        }, 250)
+
                     }
                 },
                 errors: function (data) {
@@ -987,10 +988,12 @@ function loadNextPage(){
                 videosToLoad.push(clientVideoObjectArray[i])
             }
             console.log("VIDEOS TO LOAD", videosToLoad)
-            renderVideoList(videosToLoad)
-
+            setTimeout(function(){
+                clearVideoList();
+                renderVideoList(videosToLoad)
+                removeUnusedRows();
+            }, 250)
         }
-
     }
 }
 function loadPreviousPage(){
@@ -998,14 +1001,16 @@ function loadPreviousPage(){
         var pageToLoad = (currentSlideNumber/2)-1;
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
-        clearVideoList();
+
 
         for(var i = indexToStartOn; i < indexToStartOn+40; i++){
             videosToLoad.push(clientVideoObjectArray[i])
         }
         console.log("VIDEOS TO LOAD", videosToLoad);
-        renderVideoList(videosToLoad)
-
+        setTimeout(function(){
+            clearVideoList();
+            renderVideoList(videosToLoad)
+        }, 250)
     }
 }
 
