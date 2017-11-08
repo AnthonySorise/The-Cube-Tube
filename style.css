@@ -46,6 +46,11 @@ body {
 
 /**styling for navbar area**/
 
+.btn-danger {
+	margin-top: 10px;
+    height: 34px;
+}
+
 .hamburger {
 	display: none !important;
 }
