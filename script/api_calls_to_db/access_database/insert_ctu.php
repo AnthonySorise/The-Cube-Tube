@@ -2,8 +2,8 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$user_id = $_POST['user_id'];
-$channel_id = $_POST['channel_id'];
+$user_id = user_id;
+$channel_id = channel_id;
 if(empty($user_id)){
     $output['errors'][] ='MISSING USER ID';
 }

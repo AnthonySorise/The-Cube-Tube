@@ -6,7 +6,7 @@ if(empty($_POST['offset'])){
     $output['errors'][] = "MISSING OUTPUT";
 }
 $offset = $_POST['offset'];
-$user_id = user_link;
+$user_id = user_id;
 $stmt = $conn->prepare("SELECT c.channel_title, 
 c.youtube_channel_id,c.description,c.thumbnail_file_name, 
 v.video_title, v.description,v.published_at
