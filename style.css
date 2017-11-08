@@ -227,12 +227,12 @@ body>.container-fluid {
 	/*overflow: auto;*/
 }
 
-.thRow {
+div.thRow {
 	font-family: 'Roboto', sans-serif;
 	background-color: rgba(34, 34, 34, 0.8);
 	color: white;
-	margin-left:15px;
-	margin-right:15px;
+	padding-left:15px;
+	padding-right:15px;
 	/*text-shadow: 
 		-0.5px -0.5px 0 #000,
 		0.5px 0.5px 0 #000;*/
