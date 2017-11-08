@@ -277,7 +277,7 @@ li#returnCarouselStart{
 #text-carousel {
 	overflow: auto;
 	height: 95%;
-	background-color: rgb(28, 35, 49);
+	background-color: rgb(69, 82, 110);
 }
 
 .tdListLeft,
@@ -301,10 +301,10 @@ li#returnCarouselStart{
 	z-index: 1;
 }
 .tdList:nth-of-type(even){
-	background-color: rgb(40,40,40);
+	background-color: rgb((177, 186, 206);
 }
 .tdList:nth-of-type(odd){
-	background-color: rgb(28,35,49);
+	background-color: rgb(69, 82, 110);
 }
 
 .tdList:hover,
