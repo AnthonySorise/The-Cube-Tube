@@ -818,7 +818,7 @@ function createPlaceholderAnimation() {
 }
 
 function removePlaceHolderAnimation(){
-
+    $('.timeline-wrapper').remove()
 }
 
 
