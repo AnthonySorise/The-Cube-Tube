@@ -16,15 +16,18 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
         videoId: vidId || 'lrzIR8seNXs',
-        rel: 0
-        
+        playerVars: { 
+            'rel': 0
+        }
     });
     onYouTubeIframeAPIReady2();
 }
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
         videoId: 'lrzIR8seNXs',
-        rel: 0
+        playerVars: {
+            'rel': 0
+        }
     });
 }
 var player;
@@ -833,7 +836,12 @@ function createPlaceholderAnimation() {
     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
 }
 
-function removePlaceholderAnimation(){
+function removePlaceHolderAnimation(){
+
+}
+
+
+function removeUnusedRows(){
     for(var i = 0; i<40; i++){
         let row = "#tdList-" + (i + 1);
         let title = row + " .tdTitle>span";
@@ -982,7 +990,8 @@ function loadNextPage(){
                             videosToLoad.push(clientVideoObjectArray[i])
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
-                        removePlaceholderAnimation();
+                        removeUnusedRows();
+                        removePlaceHolderAnimation();
                         renderVideoList(videosToLoad)
                     }
                 },
