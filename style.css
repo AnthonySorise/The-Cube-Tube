@@ -299,6 +299,12 @@ li#returnCarouselStart{
 	height: 3.2vh;
 	z-index: 1;
 }
+.tdList:nth-of-type(even){
+	background-color: rgb(40,40,40);
+}
+.tdList:nth-of-type(odd){
+	background-color: rgb(28,35,49);
+}
 
 .tdList:hover,
 .selectedTd {
