@@ -766,9 +766,15 @@ input:checked+.slider {
 	.chName {
 		width: 85%;
 	}
+	/* End of css for mobile modal */
+	
 	ul {
 		top: 305px !important;
 		border: none !important;
+	}
+
+	.navbar-brand {
+		display: none;
 	}
 }
 /*testing if placeholder animation will work*/
