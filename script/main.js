@@ -990,9 +990,12 @@ function loadNextPage(){
                             videosToLoad.push(clientVideoObjectArray[i])
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
-                        removeUnusedRows();
-                        removePlaceHolderAnimation();
-                        renderVideoList(videosToLoad)
+                        setTimeout(function(){
+                            renderVideoList(videosToLoad)
+                            removeUnusedRows();
+                            removePlaceHolderAnimation();
+                        }, 250)
+
                     }
                 },
                 errors: function (data) {
@@ -1023,7 +1026,8 @@ function loadPreviousPage(){
             videosToLoad.push(clientVideoObjectArray[i])
         }
         console.log("VIDEOS TO LOAD", videosToLoad);
-        renderVideoList(videosToLoad)
-
+        setTimeout(function(){
+            renderVideoList(videosToLoad)
+        }, 250)
     }
 }
