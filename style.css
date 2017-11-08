@@ -737,6 +737,13 @@ input:checked+.slider {
 	.navbar-header{
 		width: auto;
 	}
+	#mainVideo {
+		height: 100%;
+		width: 100vw;
+	}
+	.vidRowVideoCol {
+		padding: 0;
+	}
 }
 /*testing if placeholder animation will work*/
 
