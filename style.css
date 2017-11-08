@@ -57,7 +57,7 @@ body {
 
 #midNav {
 	border-radius: 0;
-	background-color: rgb(28, 35, 49);
+	/*background-color: rgb(28, 35, 49);*/
 	/*background-color: rgb(63,114,155);*/
 	border: none;
 }
@@ -99,7 +99,7 @@ body {
 	display: inline-block;
 	margin: 0;
 	padding-top: 10px;
-	padding-bottom: 10px;
+	/* padding-bottom: 10px; */
 }
 #midNav-option .form-group {
 	display: inline-block;
@@ -277,6 +277,7 @@ li#returnCarouselStart{
 #text-carousel {
 	overflow: auto;
 	height: 95%;
+	background-color: rgb(69, 82, 110);
 }
 
 .tdListLeft,
@@ -299,12 +300,7 @@ li#returnCarouselStart{
 	height: 3.2vh;
 	z-index: 1;
 }
-.tdList:nth-of-type(even){
-	background-color: rgb(40,40,40);
-}
-.tdList:nth-of-type(odd){
-	background-color: rgb(28,35,49);
-}
+
 
 .tdList:hover,
 .selectedTd {
@@ -331,6 +327,7 @@ li#returnCarouselStart{
 	top: 50%;
 	transform: translateY(-50%);
 }
+
 /* need the row margin 0 above and padding 0 below for carousel width adjustment*/
 
 .carouselCol {
@@ -367,12 +364,14 @@ li#returnCarouselStart{
 }
 
 .tdButton i {
-	color: rgba(38, 50, 56, 0.5);
+	/*color: rgba(38, 50, 56, 0.5);*/
+	color:rgba(255,255,255,0.6);
 }
 
 .tdButton i:hover,
 .tdButton i:focus {
-	color: rgba(38, 50, 56, 1);
+	/*color: rgba(38, 50, 56, 1);*/
+	color: rgba(255,255,255,1);
 }
 
 .tdTitle,
@@ -442,7 +441,7 @@ li#returnCarouselStart{
 		padding: 0;
 	}
 	.tdList {
-		font-size: 10px;
+		font-size: 12px;
 		margin-top: 1px;
 		margin-bottom: 1px;
 	}
@@ -742,7 +741,8 @@ input:checked+.slider {
 
 @media screen and (max-width: 1024px) {
 	#channelSearchModal .modal-dialog {
-		width: 75vw;
+		width: 100vw;
+		margin: 0 auto;
 	}
 	#channelSearchModalBody {
 		height: 75vh;
@@ -760,6 +760,37 @@ input:checked+.slider {
 	}
 	.vidRowVideoCol {
 		padding: 0;
+	}
+	/* Added these 6 css selectors to make mobile modal fit */
+	small {
+		display: none;
+	}
+	h4 {
+		font-size: .75em;
+	}
+	.browseChannelButton {
+		width:18%;
+		font-size: .70em;   
+	}
+	.addChannelButton {
+		width:15%;
+		font-size: .70em;
+	}
+	.col-xs-7 {
+		width: 50% !important;
+	}
+	.chName {
+		width: 85%;
+	}
+	/* End of css for mobile modal */
+	
+	ul {
+		top: 305px !important;
+		border: none !important;
+	}
+
+	.navbar-brand {
+		display: none;
 	}
 }
 /*testing if placeholder animation will work*/
@@ -798,13 +829,6 @@ input:checked+.slider {
 	background: #fff;
 	position: absolute;
 }
-
-.background-masker.header-bottom {
-	top: 100%;
-	left: 0px;
-	width: 100%;
-}
-
 /*Transition to get hamburger menu to collapse when search button is clicked */
 .navbar-collapse {
 	-webkit-transition: all ease .5s;
