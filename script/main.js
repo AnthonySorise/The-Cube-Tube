@@ -17,7 +17,6 @@ function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
         videoId: vidId || 'lrzIR8seNXs',
         rel: 0
-        
     });
     onYouTubeIframeAPIReady2();
 }
