@@ -16,13 +16,18 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
         videoId: vidId || 'lrzIR8seNXs',
-        
+        playerVars: { 
+            'rel': 0
+        }
     });
     onYouTubeIframeAPIReady2();
 }
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
-        videoId: 'lrzIR8seNXs'
+        videoId: 'lrzIR8seNXs',
+        playerVars: {
+            'rel': 0
+        }
     });
 }
 var player;
@@ -229,7 +234,7 @@ function clickHandler() {
                             placement: 'top',
                             container: 'body'
                         });
-                    }, 150);
+                    }, 350);
                     $("#videoStats").attr({
                         'data-original-title': data.items[0].snippet.title
                     });
@@ -422,32 +427,34 @@ function failed(message) {
 }
 
 function renderChannelSearchStats(i) {
-    const channelListData = "#chSearch-" + (i + 1);
-    const chSub = "#chSearch-" + (i + 1) + " .chSub";
-    const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
-    $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/channels',
-        dataType: 'json',
-        method: 'get',
-        data: {
-            key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-            id: $(channelListData).attr("channelId"),
-            part: 'snippet, statistics'
-        },
-        success: function (data) {
-            console.log('renderChannelSearchStats success', data);
-            const subNumber = parseInt(data.items[0].statistics.subscriberCount);
-            const numWithCommas = subNumber.toLocaleString("en-us");
-            $(chSub).text(numWithCommas);
-            $(chDesc).attr({
-                "data-original-title": data.items[0].snippet.title,
-                "data-content": data.items[0].snippet.description
-            });
-        },
-        error: function (data) {
-            console.log('something went wrong with YT', data);
-        }
-    });
+    if($("#chSearch-"+(i+1)+">h4>span").text() !== "") {
+        const channelListData = "#chSearch-" + (i + 1);
+        const chSub = "#chSearch-" + (i + 1) + " .chSub";
+        const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
+        $.ajax({
+            url: 'https://www.googleapis.com/youtube/v3/channels',
+            dataType: 'json',
+            method: 'get',
+            data: {
+                key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+                id: $(channelListData).attr("channelId"),
+                part: 'snippet, statistics'
+            },
+            success: function (data) {
+                console.log('renderChannelSearchStats success', data);
+                const subNumber = parseInt(data.items[0].statistics.subscriberCount);
+                const numWithCommas = subNumber.toLocaleString("en-us");
+                $(chSub).text(numWithCommas);
+                $(chDesc).attr({
+                    "data-original-title": data.items[0].snippet.title,
+                    "data-content": data.items[0].snippet.description
+                });
+            },
+            error: function (data) {
+                console.log('something went wrong with YT', data);
+            }
+        });
+    }
 }
 
 function clearChannelResults() {
@@ -485,42 +492,47 @@ function clearVideoList(){
 }
 
 function renderVideoList(videoArray) {
+    for (let i = 0; i < videoArray.length; i++) {
+        if(videoArray[i] === undefined){
+            return
+        }
+
+        let row = "#tdList-" + (i + 1);
+        let title = row + " .tdTitle>span";
+        let channel = row + " .tdChannel";
+        let upDate = row + " .tdUpDate";
+
+        let dateString = videoArray[i].published_at;
+
+        if(checkIfAppleDevice()){
+            // let date = "2017-11-03 09:34:14" //testing only - sample data
+            let newDate = dateString.split(" ");
+            let removeTime = newDate[0].split("-")
+            let newDateString = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
+            dateString = newDateString
+        }else{
+            const d = new Date(dateString);
+            dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
+        }
+        // const d = new Date(dateString);
+        // dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
+
+        $(row).show();
+
+        $(row).attr("videoID", videoArray[i].youtube_video_id);
+        $(row).attr("channelID", videoArray[i].youtube_channel_id);
+        $(title).text(videoArray[i].video_title);
+        $(channel).text(videoArray[i].channel_title);
+        $(upDate).text(dateString);
+
+    }
+    resetSelectedTd();
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
-
             let row = "#tdList-" + (i + 1);
-            let title = row + " .tdTitle>span";
-            let channel = row + " .tdChannel";
-            let upDate = row + " .tdUpDate";
-
-            let dateString = videoArray[i].published_at;
-
-            if(checkIfAppleDevice()){
-            // let date = "2017-11-03 09:34:14" //testing only - sample data
-                let newDate = dateString.split(" ");
-                let removeTime = newDate[0].split("-")
-                let newDateString = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
-                dateString = newDateString
-            }else{
-                const d = new Date(dateString);
-                dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2); 
-            }
-        
-
-
-            // const d = new Date(dateString);
-            // dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
-
-            $(row).show();
-
-            $(row).attr("videoID", videoArray[i].youtube_video_id);
-            $(row).attr("channelID", videoArray[i].youtube_channel_id);
-            $(title).text(videoArray[i].video_title);
-            $(channel).text(videoArray[i].channel_title);
-            $(upDate).text(dateString);
-
             let videoData = row + " .tdInfo a";
             let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].youtube_video_id + '/mqdefault.jpg';
+
             const videoDataImg = $('<img>').attr('src', videoURL).css({
                 width: '240px',
                 height: '135px',
@@ -537,15 +549,15 @@ function renderVideoList(videoArray) {
                 placement: 'auto',
                 container: 'body'
             })
-            .attr({
-                'data-original-title': videoArray[i].video_title
-
-            });
-
+                .attr({
+                    'data-original-title': videoArray[i].video_title
+                });
 
         }
-        // removePlaceholderAnimation();
-    }, 150);
+
+
+    }, 350);
+
 }
 
 function ytChannelApiToDb(channelId) {
@@ -644,21 +656,21 @@ function manageDatabaseWithChannelId (channelID){
     clientChannelIdArray = null;
 
     //Check channel database to see if channelID exists in db
-    $.ajax({
-        url:'./script/api_calls_to_db/access_database/access.php',
-        method:'post',
-        dataType:'JSON',
-        data:{
-            youtube_channel_id:channelID,
-            action:'read_channels_by_youtube_id'
-        },
-        success:function(data){
-            if(data.success){
-                console.log("Channel will be pulled from database", data);
-                // data.youtube_channel_id = channelID;
-                // clientChannelObjectArray = [];
-                // clientChannelObjectArray.push(data);
-                //get videos
+    // $.ajax({
+    //     url:'./script/api_calls_to_db/access_database/access.php',
+    //     method:'post',
+    //     dataType:'JSON',
+    //     data:{
+    //         youtube_channel_id:channelID,
+    //         action:'read_channels_by_youtube_id'
+    //     },
+    //     success:function(data){
+    //         if(data.success){
+    //             console.log("Channel will be pulled from database", data);
+    //             data.youtube_channel_id = channelID;
+    //             clientChannelObjectArray = [];
+    //             clientChannelObjectArray.push(data);
+
                 $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
                     url:'./script/api_calls_to_db/access_database/access.php',
                     method:'post',
@@ -703,27 +715,28 @@ function manageDatabaseWithChannelId (channelID){
                                 }
                             })
                         }
+                        else{   //RETRIEVE VIDEOS FROM YOUTUBE
+                            if(data.nothing_to_read){
+                                console.log("Retrieve Videos From You Tube", data);
+                                ytVideoApiToDb(channelID);
+                                ytChannelApiToDb(channelID);
+                                loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
+                            }
+                        }
                     },
                     errors:function(data){
                         // promise.reject(data);
                         console.log(data['read errors'], data);
                     }
                 })
-            }
-            else{   //RETRIEVE VIDEOS FROM YOUTUBE
-                if(data.nothing_to_read){
-                    console.log("Retrieve Videos From You Tube", data);
-                    ytVideoApiToDb(channelID);
-                    ytChannelApiToDb(channelID);
-                    loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
-                }
-            }
-        },
-        errors:function(data){
-            console.log(data['read errors'], data);
-            // promise.reject(data);
-        }
-    });
+    //         }
+    //
+    //     },
+    //     errors:function(data){
+    //         console.log(data['read errors'], data);
+    //         // promise.reject(data);
+    //     }
+    // });
 }
 
 function loadClientVideoObjectArray() {
@@ -739,6 +752,11 @@ function loadClientVideoObjectArray() {
 function handleBrowseButton() {
     clearVideoList();
     // createPlaceholderAnimation();
+
+    //reset page
+    currentSlideNumber = 1;
+    $(".carousel").carousel(0);
+    displayCurrentPageNumber();
 
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
@@ -786,48 +804,34 @@ function toastMsg(msgString, time){
     }, time);
 }
 
-// //Testing placeholder animation
-// var classes = [
-//     "background-masker header-top",
-//     "background-masker header-left",
-//     "background-masker header-right",
-//     "background-masker header-bottom",
-//     "background-masker subheader-left",
-//     "background-masker subheader-right",
-//     "background-masker subheader-bottom",
-//     "background-masker content-top",
-//     "background-masker content-first-end",
-//     "background-masker content-second-line",
-//     "background-masker content-second-end",
-//     "background-masker content-third-line",
-//     "background-masker content-third-end"
-// ]
+//Testing placeholder animation
 
-// function createPlaceholderAnimation() {
-//     $(".tdList").show();
-//
-//     var outerDiv = $('<div>').addClass("timeline-wrapper");
-//     var nestedDiv1 = $('<div>').addClass("timeline-item");
-//     var nestedDiv2 = $('<div>').addClass("animated-background");
-//     var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2);
-//     for (var i = 0; i < 12; i++) {
-//         var childElements = $('<div>').addClass(classes[i]);
-//         $(childElements).appendTo(nestedDiv2);
-//
-//     }
-//     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
-// }
-//
-// function removePlaceholderAnimation(){
-//     for(var i = 0; i<40; i++){
-//         let row = "#tdList-" + (i + 1);
-//         let title = row + " .tdTitle>span";
-//
-//         if($(title).text() === ""){
-//             $(row).hide();
-//         }
-//     }
-// }
+function createPlaceholderAnimation() {
+    $(".tdList").show();
+
+    var outerDiv = $('<div>').addClass("timeline-wrapper");
+    var nestedDiv1 = $('<div>').addClass("timeline-item");
+    var nestedDiv2 = $('<div>').addClass("animated-background");
+    var nestedDiv3 = $ ('<div>').addClass("background-masker");
+    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2, nestedDiv3);
+    $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
+}
+
+function removePlaceHolderAnimation(){
+    $('.timeline-wrapper').remove()
+}
+
+
+function removeUnusedRows(){
+    for(var i = 0; i<40; i++){
+        let row = "#tdList-" + (i + 1);
+        let title = row + " .tdTitle>span";
+
+        if($(title).text() === ""){
+            $(row).hide();
+        }
+    }
+}
 
 
 function displayTableDataOnMobile(){
@@ -889,8 +893,8 @@ function returnToPageOne(){
     // $(".carousel").show();
     currentSlideNumber = 2;
     loadPreviousPage();
-    displayCurrentPageNumber();
     currentSlideNumber = 1;
+    displayCurrentPageNumber();
 }
 
 // check if device is apple mobile device (used to convert date object)
@@ -914,19 +918,37 @@ function convertDateForApple(dateFromAPI){
         return;
     }
 }
+function resetSelectedTd() {
+    //NEEDS TO ALSO HANDLE FA FA SPINNER
+    setTimeout(function(){
+        $(".tdList").removeClass('selectedTd');
+        $('.fa-circle-o-notch').remove();
+    }, 100);
+    for (let i = 0; i < 40; i++) {
+        let row = "#tdList-" + (i + 1);
+
+        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
+            setTimeout(function(){
+                $(row).addClass("selectedTd")
+                var playSymbol = $('<i>')
+                    .addClass('fa fa-circle-o-notch fa-spin fa-fw')
+                    .css({
+                        "margin-right": '5px',
+                        'color': 'green'
+                    });
+                $(row).find(".tdTitle>span").prepend(playSymbol);
+            }, 500)
+        }
+    }
+}
 
 function loadNextPage(){
     if (currentSlideNumber % 2){
         var pageToLoad = (currentSlideNumber - 1) / 2;
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
-        console.log("LOAD PAGE, PAGE IS " + currentSlideNumber)
-        console.log("API PAGE IS", pageToLoad)
-        console.log("INDEX TO START ON", indexToStartOn)
-
         if(clientVideoObjectArray.length < indexToStartOn+40){
-            // clearVideoList();
-            $(".tdTitle").popover('destroy');
+            // $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
@@ -947,7 +969,12 @@ function loadNextPage(){
                             videosToLoad.push(clientVideoObjectArray[i])
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
-                        renderVideoList(videosToLoad)
+                        setTimeout(function(){
+                            clearVideoList();
+                            renderVideoList(videosToLoad)
+                            removeUnusedRows();
+                        }, 250)
+
                     }
                 },
                 errors: function (data) {
@@ -961,10 +988,12 @@ function loadNextPage(){
                 videosToLoad.push(clientVideoObjectArray[i])
             }
             console.log("VIDEOS TO LOAD", videosToLoad)
-            renderVideoList(videosToLoad)
-
+            setTimeout(function(){
+                clearVideoList();
+                renderVideoList(videosToLoad)
+                removeUnusedRows();
+            }, 250)
         }
-
     }
 }
 function loadPreviousPage(){
@@ -972,47 +1001,40 @@ function loadPreviousPage(){
         var pageToLoad = (currentSlideNumber/2)-1;
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
-        console.log("LOAD PREVIOUS PAGE, PAGE IS " + currentSlideNumber)
-        console.log("API PAGE IS", pageToLoad)
-        console.log("INDEX TO START ON", indexToStartOn)
-        if(clientVideoObjectArray.length < indexToStartOn+40){
-            // clearVideoList();
-            $(".tdTitle").popover('destroy');
-            $.ajax({
-                url: './script/api_calls_to_db/access_database/access.php',
-                method: 'POST',
-                dataType: 'JSON',
-                data: {
-                    action:'read_videos_by_channel_array',
-                    channel_id_array:clientChannelIdArray,
-                    offset:indexToStartOn
-                },
-                success: function (data) {
-                    if (data.success) {
-                        // promise.resolve(data);
-                        console.log('read success', data);
-                        for(var i = 0; i < data.data.length; i++){
-                            clientVideoObjectArray.push(data.data[i])
-                        }
-                        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                            videosToLoad.push(clientVideoObjectArray[i])
-                        }
-                        console.log("VIDEOS TO LOAD", videosToLoad)
-                        renderVideoList(videosToLoad)
-                    }
-                },
-                errors: function (data) {
-                    console.log('read error', data);
-                    // promise.reject(data);
-                }
-            })
+
+
+        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+            videosToLoad.push(clientVideoObjectArray[i])
         }
-        else{
-            for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                videosToLoad.push(clientVideoObjectArray[i])
-            }
-            console.log("VIDEOS TO LOAD", videosToLoad)
+        console.log("VIDEOS TO LOAD", videosToLoad);
+        setTimeout(function(){
+            clearVideoList();
             renderVideoList(videosToLoad)
-        }
+        }, 250)
     }
+}
+
+// Making media query with javascript to hide saerch button inside hamburger menu and dynamically creat one on header
+
+if(window.matchMedia("(min-width: 1020px)").matches) {
+    var searchDiv = $('<div>').addClass('form-group');
+    var inputElement = $('<input>', {
+        type: 'text',
+        class: 'form-control',
+        placeholder: 'search channels',
+        name: 'channelSearch',
+        id: 'channelSearchInput'
+    });
+    var buttonElement = $('<button>', {
+        type: 'submit',
+        class: 'btn btn-danger channelSearchButton',
+        dataToggle: 'tooltip',
+        dataPlacement: 'bottom',
+        dataTrigger: 'hover',
+        title: 'search for channels to add',
+        text: 'search'
+    });
+   var searchDivWrapper = $(searchDiv).append(inputElement);
+   var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
+   $('#mainNav').append(completedSearchDiv); 
 }

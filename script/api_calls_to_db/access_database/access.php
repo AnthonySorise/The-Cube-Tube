@@ -35,9 +35,6 @@ switch($_POST['action']){
     case 'read_ctu':
         include('read_ctu.php');
         break;
-    case 'read_database':
-        include('read_database.php');
-        break;
     case 'read_videos_by_channel':
         include('read_videos_by_channel.php');
         break;
@@ -45,7 +42,10 @@ switch($_POST['action']){
         include('read_videos.php');
         break;
     case 'read_user':
-        include('read_users.php');
+        include('read_user.php');
+        break;
+    case 'read_user_content':
+        include('read_user_content.php');
         break;
     case 'update_link'://in progress
         include('update_link.php');

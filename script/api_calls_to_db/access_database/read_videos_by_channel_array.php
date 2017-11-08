@@ -1,6 +1,6 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die("direction access not allowed");
+    die("direct access not allowed");
 }
 $youtube_array = $_POST['channel_id_array'];
 $channels = "'{$youtube_array[0]}'";

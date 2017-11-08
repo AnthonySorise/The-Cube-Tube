@@ -1,12 +1,12 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direction access not allowed');
+    die('direct access not allowed');
 }
 if(empty($_POST['ctu_id'])){
     $output['errors'] = 'MISSING CTU ID';
 }
 $ctu_id = $_POST['ctu_id'];
-$stmt = $conn->prepare("DELETE FROM `channels_to_user` WHERE `ctu_id`=?");
+$stmt = $conn->prepare("DELETE FROM channels_to_user WHERE ctu_id=?");
 $stmt->bind_param("i",$ctu_id);
 $stmt ->execute();
 if(!empty($stmt)){

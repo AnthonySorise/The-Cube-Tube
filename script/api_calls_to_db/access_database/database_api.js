@@ -1,5 +1,6 @@
  function Database(){
     var self = this;
+    this.user_id_hold = null;
     this.channel_id_hold = null;
     this.delete_ctu = function(ctu_id){//delete by specifying ctu id
         $.ajax({
@@ -183,14 +184,34 @@
             }
         })
     }
-    this.read_user = function(user_link){
+     this.read_user = function(user_link){//lets u know if link already exist
+         $.ajax({
+             url: './script/api_calls_to_db/access_database/access.php',
+             method: 'POST',
+             dataType: 'JSON',
+             data: {
+                 action:'read_user',
+                 user_link:user_link,
+             },
+             success: function (data) {
+                 if (data.success) {
+                     console.log('read success', data);
+                 }
+             },
+             errors: function (data) {
+                 console.log('read error', data);
+             }
+         })
+     }
+    this.read_user_content = function(user_link,offset){
         $.ajax({
             url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
-                action:'read_user',
-                user_id:user_link
+                action:'read_user_content',
+                user_link:user_link,
+                offset:offset
             },
             success: function (data) {
                 if (data.success) {
@@ -287,36 +308,7 @@
                  console.log('read error', data);
              }
          })
-         // return promise
      }
-     // this.update_user = function(user_id,new_link){
-     //     // var promise = {
-     //     //     then:function(resolve,reject){
-     //     //         this.resolve = resolve;
-     //     //         this.reject = reject;
-     //     //     }
-     //     // }
-     //     $.ajax({
-     //         url:'/script/api_calls_to_db/access_database/access.php',
-     //         method:'post',
-     //         dataType:'JSON',
-     //         data:{
-     //             action:'update_user',
-     //             id: user_id,
-     //             user_link:new_link
-     //         },
-     //         success:function(data){
-     //             if(data.success){
-     //                 // promise.resolve(data);
-     //                 console.log('update success');
-     //             }
-     //         },
-     //         errors:function(data){
-     //             console.log('update error');
-     //             // promise.reject(data);
-     //         }
-     //     })
-     //     // return promise;
-     // }
+     //read user based on user link get user id, read ctu(user_id) read channels, read videos
 }
 var access_database = new Database();
