@@ -3,9 +3,6 @@ if(empty($LOCAL_ACCES)){
     $output['errors'][] = "no direct access allowed";
 }
 $user_link = $_SESSION['user_link'];
-if(empty($user_link)){
-    $output['errors'][] ='MISSING USER LINK';
-}
 $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
 $stmt->bind_param('s',$user_link);
 $stmt->execute();

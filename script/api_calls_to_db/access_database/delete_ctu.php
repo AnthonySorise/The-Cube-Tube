@@ -11,9 +11,6 @@ $stmt = $conn->prepare("DELETE ctu FROM channels_to_users ctu
 JOIN users u ON ctu.user_id = u.user_id 
 JOIN channels c ON ctu.channel_id = c.channel_id 
 WHERE youtube_channel_id = ? AND user_link = ?");
-if(!$stmt){
-    echo "prepared failed:(".$conn->errno . ")".$conn->error;
-}
 $stmt->bind_param("ss",$youtube_channel_id,$user_link);
 $stmt ->execute();
 if(!empty($stmt)){
