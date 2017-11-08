@@ -971,10 +971,8 @@ function loadNextPage(){
                         console.log("VIDEOS TO LOAD", videosToLoad)
                         setTimeout(function(){
                             clearVideoList();
-                            createPlaceholderAnimation();
                             renderVideoList(videosToLoad)
                             removeUnusedRows();
-                            removePlaceHolderAnimation();
                         }, 250)
 
                     }
@@ -992,10 +990,8 @@ function loadNextPage(){
             console.log("VIDEOS TO LOAD", videosToLoad)
             setTimeout(function(){
                 clearVideoList();
-                createPlaceholderAnimation();
                 renderVideoList(videosToLoad)
                 removeUnusedRows();
-                removePlaceHolderAnimation();
             }, 250)
         }
     }
