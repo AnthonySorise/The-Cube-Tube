@@ -320,6 +320,7 @@ li#returnCarouselStart{
 }
 .tdTitle, .tdChannel, .tdUpDate{
 	cursor: pointer;
+	color: white;
 }
 
 /* need the row margin 0 above and padding 0 below for carousel width adjustment*/
