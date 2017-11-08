@@ -316,6 +316,9 @@ li#returnCarouselStart{
 	cursor: pointer;
 	display:flex;
 	align-items: center;
+}
+
+.tdChannel, .tdUpDate{
 	justify-content: center;
 }
 
