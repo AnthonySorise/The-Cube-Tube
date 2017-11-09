@@ -681,7 +681,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
     clientChannelIdArray.push(channelID);
 
-    returnToPageOne();
+    // returnToPageOne();
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -768,6 +768,25 @@ function handleBrowseButton() {
     $('.tdList').removeClass('selectedTd');
     $('#channelSearchModal').modal('hide')
 }
+
+function handleAddButton(){
+    clearVideoList();
+    // createPlaceholderAnimation();
+
+    //reset page
+    currentSlideNumber = 1;
+    $(".carousel").carousel(0);
+    displayCurrentPageNumber();
+
+    let channelID = $(this).parent().attr("channelId");
+    manageDatabaseWithChannelId(channelID);
+    // toastMsg('loading channel videos',1000);
+    $('.fa-play-circle-o').remove();
+    $('.tdList').removeClass('selectedTd');
+    $('#channelSearchModal').modal('hide')
+}
+
+
 
 function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber);
