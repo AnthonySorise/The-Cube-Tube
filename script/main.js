@@ -681,8 +681,6 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
     clientChannelIdArray.push(channelID);
 
-    // returnToPageOne();
-
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
         method:'post',
@@ -756,10 +754,11 @@ function handleBrowseButton() {
     clearVideoList();
     // createPlaceholderAnimation();
 
+    returnToPageOne();
     //reset page
-    currentSlideNumber = 1;
-    $(".carousel").carousel(0);
-    displayCurrentPageNumber();
+    // currentSlideNumber = 1;
+    // $(".carousel").carousel(0);
+    // displayCurrentPageNumber();
 
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
@@ -773,10 +772,11 @@ function handleAddButton(){
     clearVideoList();
     // createPlaceholderAnimation();
 
+    returnToPageOne();
     //reset page
-    currentSlideNumber = 1;
-    $(".carousel").carousel(0);
-    displayCurrentPageNumber();
+    // currentSlideNumber = 1;
+    // $(".carousel").carousel(0);
+    // displayCurrentPageNumber();
 
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
