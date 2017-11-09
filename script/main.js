@@ -584,13 +584,9 @@ function ytChannelApiToDb(channelId) {
 
             access_database.insert_channel(channelDbObject);
 
-            if(clientChannelObjectArray === null){
-                clientChannelObjectArray = [];
-            }
+            clientChannelObjectArray = [];
             clientChannelObjectArray.push(channelDbObject);
-            if(clientChannelIdArray){
-                clientChannelIdArray = [];
-            }
+            clientChannelIdArray = [];
             clientChannelIdArray.push(channelId);
         },
         error: function (data) {
@@ -601,6 +597,7 @@ function ytChannelApiToDb(channelId) {
 
 function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
     var packageToSendToDb = [];
+    var clientVideos = [];
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
         dataType: 'json',
@@ -630,6 +627,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
                 videoObject.published_at = publishedAt;
 
                 packageToSendToDb.push(videoObject);
+
             }
 
             if(firstRun){
@@ -706,8 +704,8 @@ function manageDatabaseWithChannelId (channelID){
             else{   //RETRIEVE VIDEOS FROM YOUTUBE
                 if(data.nothing_to_read){
                     console.log("Retrieve Videos From You Tube", data);
-                    ytChannelApiToDb(channelID);
                     ytVideoApiToDb(channelID);
+                    ytChannelApiToDb(channelID);
                     loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                 }
             }
@@ -872,10 +870,8 @@ function returnToPageOne(){
     $(".carousel").carousel(0);     //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
     // $(".carousel").show();
     if(currentSlideNumber !==1){
-        if(clientVideoObjectArray.length > 40) {
-            currentSlideNumber = 2;
-            loadPreviousPage();
-        }
+        currentSlideNumber = 2;
+        loadPreviousPage();
         currentSlideNumber = 1;
     }
     displayCurrentPageNumber();
