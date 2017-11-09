@@ -638,8 +638,8 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 
                 if(!isAdding){
                     for(var i = 0; i < 40; i++){
-                        clientPackage.push(packageToSendToDb[i])
-                        clientVideoObjectArray = clientPackage
+                        clientPackage.push(packageToSendToDb[i]);
+                        clientVideoObjectArray = clientPackage;
                         loadClientVideoObjectArray();
                     }
                 }
@@ -749,8 +749,9 @@ function manageDatabaseWithChannelId (channelID){
             else{   //RETRIEVE VIDEOS FROM YOUTUBE
                 if(data.nothing_to_read){
                     console.log("Retrieve Videos From You Tube", data);
-                    ytChannelApiToDb(channelID);
                     ytVideoApiToDb(channelID);
+                    ytChannelApiToDb(channelID);
+
 
                 }
             }
