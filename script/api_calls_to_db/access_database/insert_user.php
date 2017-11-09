@@ -2,7 +2,7 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$user_link = $_POST['user_link'];
+$user_link = user_link;
 $date_created = date('Y-m-d H:i:s');
 $last_modified = $date_created;
 $ip_address_at_sign_up = get_client_ip();
@@ -28,19 +28,25 @@ if(empty($user_link)){
     $output['errors'] = 'MISSING USERLINK';
 }
 
-$stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?, ip_address_at_signup=?,last_modified=?");
+$stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?, 
+ip_address_at_signup=?,last_modified=?");
 $stmt->bind_param('ssss',$user_link,$date_created,$ip_address_at_sign_up,$last_modified);
 $stmt->execute();
-
 if(!empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
-        $output['id'] = mysqli_insert_id($conn);
+        define('user_id',mysqli_insert_id($conn));
     }
     else{
         $output['errors'][] = 'Unable to insert data';
+        $json_output = json_encode($output);
+        print_r($json_output);
+        exit();
     }
 }else{
     $output['errors'][]= 'invalid query';
+    $json_output = json_encode($output);
+    print_r($json_output);
+    exit();
 }
 ?>

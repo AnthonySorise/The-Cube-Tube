@@ -2,19 +2,15 @@
 if(empty($LOCAL_ACCES)){
     $output['errors'][] = "no direct access allowed";
 }
-$user_link = $_POST['user_link'];
-if(empty($user_link)){
-    $output['errors'][] ='MISSING USER ID';
-}
+$user_link = $_SESSION['user_link'];
 $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
-$stmt->bind_param('s',$user_id);
+$stmt->bind_param('s',$user_link);
 $stmt->execute();
 $results = mysqli_stmt_get_result($stmt);
 if(!empty($results)){
     if(mysqli_num_rows($results)>0){
-        $output['success']=true;
         $row = mysqli_fetch_assoc($results);
-        $output['data'][]=$row;
+        define('user_id',$row['user_id']);
     }else{
         $output['errors'][] = 'NOTHING TO READ';
     }
