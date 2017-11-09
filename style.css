@@ -58,13 +58,16 @@ body {
 .navbar-toggle {
 	margin-bottom: 0;
 }
-
+#mainNav {
+	background-color: black;
+}
 
 #midNav {
 	border-radius: 0;
 	/*background-color: rgb(28, 35, 49);*/
 	/*background-color: rgb(63,114,155);*/
 	border: none;
+	background-color: rgba(34, 34, 34, 1);
 }
 
 .navbar-brand {
@@ -204,7 +207,7 @@ body>.container-fluid {
 
 .lightBoxMode {
 	position: absolute;
-	right: 20px;
+	right: 0vw;
 	bottom: 4px;
 	color: rgba(255, 255, 255, 0.5);
 	background: none;
@@ -795,7 +798,7 @@ input:checked+.slider {
 		border: none !important;
 	}
 
-	.navbar-brand {
+	.navbar-brand>span {
 		display: none;
 	}
 }
