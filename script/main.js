@@ -654,6 +654,7 @@ function manageDatabaseWithChannelId (channelID){
     clientVideoObjectArray = null;
     clientChannelObjectArray = null;
     clientChannelIdArray = null;
+
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
         method:'post',
@@ -712,7 +713,6 @@ function manageDatabaseWithChannelId (channelID){
             console.log(data['read errors'], data);
         }
     })
-    //If add button was clicked - then insert CTU (make a promise first)
 }
 
 function loadClientVideoObjectArray() {

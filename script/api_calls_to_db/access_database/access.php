@@ -14,12 +14,21 @@ if(empty($_POST['action'])){
     exit();
 }
 require_once('mysql_connect.php');
+function output_and_exit(){
+    global $output;
+    $json_output = json_encode($output);
+    print_r($json_output);
+    exit();
+}
 switch($_POST['action']){
     case 'delete_ctu':
         include('delete.php');
         break;
     case 'insert_channel':
         include('insert_channels.php');
+        break;
+    case 'insert_ctu':
+        include('insert_ctu');
         break;
     case 'insert_video':
         include('insert_video.php');
