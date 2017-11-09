@@ -27,7 +27,7 @@ switch($_POST['action']){
         include('insert_channels.php');
         break;
     case 'insert_ctu':
-        include('insert_ctu');
+        include('insert_ctu.php');
         break;
     case 'insert_video':
         include('insert_video.php');
