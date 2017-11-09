@@ -10,7 +10,8 @@ if(empty($youtube_channel_id)){
 if(empty($offset)){
     $output['errors'][] = 'MISSING OFFSET';
 }
-$stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at, v.video_title, c.channel_title, c.youtube_channel_id
+$stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at, 
+v.video_title, c.channel_title, c.youtube_channel_id
 FROM videos AS v JOIN channels AS c ON v.youtube_channel_id = c.youtube_channel_id
 WHERE v.youtube_channel_id = ? 
 ORDER BY v.published_at DESC LIMIT 40 OFFSET ?");
