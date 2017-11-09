@@ -277,6 +277,7 @@ li#returnCarouselStart{
 #text-carousel {
 	overflow: auto;
 	height: 95%;
+	background-color:#778899
 }
 
 .tdListLeft,
