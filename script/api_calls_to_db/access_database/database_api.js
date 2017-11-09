@@ -1,7 +1,5 @@
  function Database(){
     var self = this;
-    this.user_id_hold = null;
-    this.channel_id_hold = null;
     this.delete_ctu = function(youtube_channel_id){//delete by specifying ctu id
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
@@ -119,7 +117,7 @@
                 }
             },
             errors:function(data){
-                console.log(data['read errors'], data);
+                console.log(data['errors'], data);
             }
         })
     }

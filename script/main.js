@@ -655,88 +655,64 @@ function manageDatabaseWithChannelId (channelID){
     clientChannelObjectArray = null;
     clientChannelIdArray = null;
 
-    //Check channel database to see if channelID exists in db
-    // $.ajax({
-    //     url:'./script/api_calls_to_db/access_database/access.php',
-    //     method:'post',
-    //     dataType:'JSON',
-    //     data:{
-    //         youtube_channel_id:channelID,
-    //         action:'read_channels_by_youtube_id'
-    //     },
-    //     success:function(data){
-    //         if(data.success){
-    //             console.log("Channel will be pulled from database", data);
-    //             data.youtube_channel_id = channelID;
-    //             clientChannelObjectArray = [];
-    //             clientChannelObjectArray.push(data);
+    $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
+        url:'./script/api_calls_to_db/access_database/access.php',
+        method:'post',
+        dataType:'JSON',
+        data:{
+            youtube_channel_id:channelID,
+            action:'read_channels_by_youtube_id'
+        },
+        success:function(data){
 
-                $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
-                    url:'./script/api_calls_to_db/access_database/access.php',
-                    method:'post',
-                    dataType:'JSON',
-                    data:{
+            if(data.success){
+                // promise.resolve(data);
+                console.log('Channel Found', data);
+                data.youtube_channel_id = channelID;
+                clientChannelObjectArray = [];
+                clientChannelObjectArray.push(data.data[0]);
+                clientChannelIdArray = [];
+                clientChannelIdArray.push(channelID);
+                $.ajax({    //RETRIEVE VIDEOS FROM DB
+                    url: './script/api_calls_to_db/access_database/access.php',
+                    method: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        action:'read_videos_by_channel',
                         youtube_channel_id:channelID,
-                        action:'read_channels_by_youtube_id'
+                        offset:0
                     },
-                    success:function(data){
-
-                        if(data.success){
+                    success: function (data) {
+                        if (data.success) {
                             // promise.resolve(data);
-                            console.log('Channel Found', data);
-                            data.youtube_channel_id = channelID;
-                            clientChannelObjectArray = [];
-                            clientChannelObjectArray.push(data.data[0]);
-                            clientChannelIdArray = [];
-                            clientChannelIdArray.push(channelID);
-                            $.ajax({    //RETRIEVE VIDEOS FROM DB
-                                url: './script/api_calls_to_db/access_database/access.php',
-                                method: 'POST',
-                                dataType: 'JSON',
-                                data: {
-                                    action:'read_videos_by_channel',
-                                    youtube_channel_id:channelID,
-                                    offset:0
-                                },
-                                success: function (data) {
-                                    if (data.success) {
-                                        // promise.resolve(data);
-                                        console.log('Videos Found', data);
-                                        clientVideoObjectArray = data.data;
-                                        loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
-                                    }
-                                    else{
-                                        console.log('Channel Found Without Videos', data)
-                                    }
-                                },
-                                errors: function (data) {
-                                    console.log(data['read errors'], data);
-                                    // promise.reject(data);
-                                }
-                            })
+                            console.log('Videos Found', data);
+                            clientVideoObjectArray = data.data;
+                            loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                         }
-                        else{   //RETRIEVE VIDEOS FROM YOUTUBE
-                            if(data.nothing_to_read){
-                                console.log("Retrieve Videos From You Tube", data);
-                                ytVideoApiToDb(channelID);
-                                ytChannelApiToDb(channelID);
-                                loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
-                            }
+                        else{
+                            console.log('Channel Found Without Videos', data)
                         }
                     },
-                    errors:function(data){
-                        // promise.reject(data);
+                    errors: function (data) {
                         console.log(data['read errors'], data);
+                        // promise.reject(data);
                     }
                 })
-    //         }
-    //
-    //     },
-    //     errors:function(data){
-    //         console.log(data['read errors'], data);
-    //         // promise.reject(data);
-    //     }
-    // });
+            }
+            else{   //RETRIEVE VIDEOS FROM YOUTUBE
+                if(data.nothing_to_read){
+                    console.log("Retrieve Videos From You Tube", data);
+                    ytVideoApiToDb(channelID);
+                    ytChannelApiToDb(channelID);
+                    loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
+                }
+            }
+        },
+        errors:function(data){
+            // promise.reject(data);
+            console.log(data['read errors'], data);
+        }
+    })
 }
 
 function loadClientVideoObjectArray() {
