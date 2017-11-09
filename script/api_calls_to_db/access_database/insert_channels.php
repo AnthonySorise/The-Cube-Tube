@@ -15,10 +15,10 @@ if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }
 if(empty($description)){
-    $output['errors'][] = "MISSING CHANNEL DESCRIPTION";
+    $output['errors'][] = 'MISSING CHANNEL DESCRIPTION';
 }
 if(empty($thumbnail)){
-    $output['errors'][] = "MISSING THUMBNAILS";
+    $output['errors'][] = 'MISSING THUMBNAILS';
 }
 $stmt = $conn->prepare("INSERT INTO channels SET 
 channel_title = ?, 

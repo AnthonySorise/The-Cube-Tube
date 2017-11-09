@@ -1,5 +1,5 @@
 <?php
-sesson_start();
+session_start();
 $LOCAL_ACCESS = true;
 require_once('mysql_connect.php');
 $output = [
