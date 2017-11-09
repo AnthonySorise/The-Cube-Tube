@@ -872,8 +872,10 @@ function returnToPageOne(){
     $(".carousel").carousel(0);     //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
     // $(".carousel").show();
     if(currentSlideNumber !==1){
-        currentSlideNumber = 2;
-        loadPreviousPage();
+        if(clientVideoObjectArray.length > 40) {
+            currentSlideNumber = 2;
+            loadPreviousPage();
+        }
         currentSlideNumber = 1;
     }
     displayCurrentPageNumber();
