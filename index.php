@@ -39,7 +39,7 @@ consider carousel for the video list area:
 </head>
 
 <body>
-	<nav class="navbar navbar-fixed-top navbar-inverse" id="mainNav">
+	<nav class="navbar navbar-fixed-top" id="mainNav">
 		<div class="container-fluid" id="">
 			<!--navbar content main div-->
 			<div class="navbar-header">
@@ -61,87 +61,87 @@ consider carousel for the video list area:
 			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
 
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
-				<!--div for nav options-->
-				<ul class="nav navbar-nav">
-					<li class="dropdown channelDropDown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							Category
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="#">ALL</a>
-							</li>
-							<li role="separator" class="divider"></li>
-							<li>
-								<a href="#">
-									<button class="btn btn-danger btn-xs"> X</button> World History</a>
-							</li>
-							<li role="separator" class="divider"></li>
-							<li>
-								<a href="#">Computer Science</a>
-							</li>
-							<li>
-								<a href="#">Cooking</a>
-							</li>
-							<li>
-								<a href="#">Film Reviews</a>
-							</li>
-							<li>
-								<a href="#">Gaming Lets Plays</a>
-							</li>
-							<li>
-								<a href="#">Gaming News</a>
-							</li>
-							<li>
-								<a href="#">Music</a>
-							</li>
-							<li>
-								<a href="#">News</a>
-							</li>
-							<li>
-								<a href="#">Politics</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<p class="navbar-text">World History</p>
-				<ul class="nav navbar-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Channels
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="#">ALL</a>
-							</li>
-							<li role="separator" class="divider"></li>
-							<li>
-								<a href="#">
-									<button class="btn btn-danger btn-xs"> X</button> Geography Now </a>
-							</li>
-							<li>
-								<a href="#">
-									<button class="btn btn-danger btn-xs"> X</button> The Great War</a>
-							</li>
-							<li role="separator" class="divider"></li>
-							<li>
-								<a href="#">Alternate History Hub</a>
-							</li>
-							<li>
-								<a href="#">History Buffs</a>
-							</li>
-							<li>
-								<a href="#">Tales of History</a>
-							</li>
-							<li>
-								<a href="#">The Metatron</a>
-							</li>
+				<!--&lt;!&ndash;div for nav options&ndash;&gt;-->
+				<!--<ul class="nav navbar-nav">-->
+					<!--<li class="dropdown channelDropDown">-->
+						<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
+							<!--Category-->
+							<!--<span class="caret"></span>-->
+						<!--</a>-->
+						<!--<ul class="dropdown-menu">-->
+							<!--<li>-->
+								<!--<a href="#">ALL</a>-->
+							<!--</li>-->
+							<!--<li role="separator" class="divider"></li>-->
+							<!--<li>-->
+								<!--<a href="#">-->
+									<!--<button class="btn btn-danger btn-xs"> X</button> World History</a>-->
+							<!--</li>-->
+							<!--<li role="separator" class="divider"></li>-->
+							<!--<li>-->
+								<!--<a href="#">Computer Science</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">Cooking</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">Film Reviews</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">Gaming Lets Plays</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">Gaming News</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">Music</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">News</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">Politics</a>-->
+							<!--</li>-->
+						<!--</ul>-->
+					<!--</li>-->
+				<!--</ul>-->
+				<!--<p class="navbar-text">World History</p>-->
+				<!--<ul class="nav navbar-nav">-->
+					<!--<li class="dropdown">-->
+						<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Channels-->
+							<!--<span class="caret"></span>-->
+						<!--</a>-->
+						<!--<ul class="dropdown-menu">-->
+							<!--<li>-->
+								<!--<a href="#">ALL</a>-->
+							<!--</li>-->
+							<!--<li role="separator" class="divider"></li>-->
+							<!--<li>-->
+								<!--<a href="#">-->
+									<!--<button class="btn btn-danger btn-xs"> X</button> Geography Now </a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">-->
+									<!--<button class="btn btn-danger btn-xs"> X</button> The Great War</a>-->
+							<!--</li>-->
+							<!--<li role="separator" class="divider"></li>-->
+							<!--<li>-->
+								<!--<a href="#">Alternate History Hub</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">History Buffs</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">Tales of History</a>-->
+							<!--</li>-->
+							<!--<li>-->
+								<!--<a href="#">The Metatron</a>-->
+							<!--</li>-->
 
-						</ul>
-					</li>
-				</ul>
-				<p class="navbar-text">Geography Now | The Great War</p>
+						<!--</ul>-->
+					<!--</li>-->
+				<!--</ul>-->
+				<!--<p class="navbar-text">Geography Now | The Great War</p>-->
 				<form class="navbar-right navbar-form channelSearchForm">
 					<!--form for searching channels-->
 					<div class="form-group">
@@ -151,7 +151,7 @@ consider carousel for the video list area:
 					<button type="submit" class="btn btn-danger channelSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
 					 title="search for channels to add">search</button>
 				</form>
-				<!--end of form for channel search-->
+				<!--&lt;!&ndash;end of form for channel search&ndash;&gt;-->
 			</div>
 			<!--end of nav options div-->
 		</div>

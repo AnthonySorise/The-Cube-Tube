@@ -57,7 +57,7 @@ body {
 
 #midNav {
 	border-radius: 0;
-	/*background-color: rgb(28, 35, 49);*/
+	background-color: rgb(28, 35, 49);
 	/*background-color: rgb(63,114,155);*/
 	border: none;
 }
@@ -277,6 +277,7 @@ li#returnCarouselStart{
 #text-carousel {
 	overflow: auto;
 	height: 95%;
+	background-color:#778899
 }
 
 .tdListLeft,
@@ -314,8 +315,18 @@ li#returnCarouselStart{
 }
 .tdTitle, .tdChannel, .tdUpDate{
 	cursor: pointer;
+	/*display: flex;*/
+	/*align-items: center;*/
+	color:white;
 }
-
+/*.tdChannel, .tdUpDate{*/
+	/*justify-content: center;*/
+/*}*/
+/*.tdUpDate{*/
+	/*position: relative;*/
+	/*top: 50%;*/
+	/*transform: translateY(-50%);*/
+/*}*/
 /* need the row margin 0 above and padding 0 below for carousel width adjustment*/
 
 .carouselCol {
@@ -745,6 +756,37 @@ input:checked+.slider {
 	}
 	.vidRowVideoCol {
 		padding: 0;
+	}
+	/*!* Added these 6 css selectors to make mobile modal fit *!*/
+	/*small {*/
+		/*display: none;*/
+	/*}*/
+	/*h4 {*/
+		/*font-size: .75em;*/
+	/*}*/
+	/*.browseChannelButton {*/
+		/*width:18%;*/
+		/*font-size: .70em;*/
+	/*}*/
+	/*.addChannelButton {*/
+		/*width:15%;*/
+		/*font-size: .70em;*/
+	/*}*/
+	/*.col-xs-7 {*/
+		/*width: 50% !important;*/
+	/*}*/
+	/*.chName {*/
+		/*width: 85%;*/
+	/*}*/
+	/*!* End of css for mobile modal *!*/
+
+	/*ul {*/
+		/*top: 305px !important;*/
+		/*border: none !important;*/
+	/*}*/
+
+	.navbar-brand>span {
+		display: none;
 	}
 }
 /*testing if placeholder animation will work*/
