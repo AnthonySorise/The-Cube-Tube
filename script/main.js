@@ -526,7 +526,7 @@ function renderVideoList(videoArray) {
         $(upDate).text(dateString);
 
     }
-    resetSelectedTd();
+    // resetSelectedTd();
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
             let row = "#tdList-" + (i + 1);
@@ -945,8 +945,6 @@ function convertDateForApple(dateFromAPI){
     }
 }
 function resetSelectedTd() {
-    //NEEDS TO ALSO HANDLE FA FA SPINNER
-    
     setTimeout(function(){
         $(".tdList").removeClass('selectedTd');
         $('.fa-circle-o-notch').remove();
