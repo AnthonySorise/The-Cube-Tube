@@ -560,7 +560,7 @@ function renderVideoList(videoArray) {
 
 }
 
-function ytChannelApiToDb(channelId) {
+function ytChannelApiToDb(channelId, isAdding = false) {
     var channelDbObject = {};
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/channels',
@@ -586,7 +586,9 @@ function ytChannelApiToDb(channelId) {
 
             clientChannelObjectArray = [];
             clientChannelObjectArray.push(channelDbObject);
-            clientChannelIdArray = [];
+            if(!isAdding){
+                clientChannelIdArray = [];
+            }
             clientChannelIdArray.push(channelId);
         },
         error: function (data) {
@@ -595,9 +597,9 @@ function ytChannelApiToDb(channelId) {
     });
 }
 
-function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
+function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = false) {
     var packageToSendToDb = [];
-    var clientVideos = [];
+
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
         dataType: 'json',
@@ -633,13 +635,56 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
             if(firstRun){
                 clientVideoObjectArray = [];
                 var clientPackage = [];
-                for(var i = 0; i < 40; i++){
-                    clientPackage.push(packageToSendToDb[i])
-                }
-                clientVideoObjectArray = clientPackage
-            }
-            access_database.insert_video(packageToSendToDb);
 
+                if(!isAdding){
+                    for(var i = 0; i < 40; i++){
+                        clientPackage.push(packageToSendToDb[i])
+                        clientVideoObjectArray = clientPackage
+                        loadClientVideoObjectArray();
+                    }
+                }
+            }
+            $.ajax({
+                url: './script/api_calls_to_db/access_database/access.php',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    action: 'insert_video',
+                    videoArray: packageToSendToDb
+                },
+                success: function (data) {
+                    if (data.success) {
+                        console.log('insert video success', data);
+                        if(isAdding && firstRun){
+                            $.ajax({    //RETRIEVE VIDEOS FROM DB
+                                url: './script/api_calls_to_db/access_database/access.php',
+                                method: 'POST',
+                                dataType: 'JSON',
+                                data: {
+                                    action:'read_videos_by_channel_array',
+                                    channel_id_array:clientChannelIdArray,
+                                    offset:0
+                                },
+                                success: function (data) {
+                                    if (data.success) {
+                                        // promise.resolve(data);
+                                        console.log('Videos Found', data);
+                                        clientVideoObjectArray = data.data;
+                                        loadClientVideoObjectArray();
+                                    }
+                                },
+                                errors: function (data) {
+                                    console.log(data['read errors'], data);
+                                    // promise.reject(data);
+                                }
+                            })
+                        }
+                    }
+                },
+                errors: function (data) {
+                    console.log('insert error', data);
+                }
+            });
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
                 ytVideoApiToDb(channelId, data.nextPageToken, false)
             }
@@ -704,9 +749,9 @@ function manageDatabaseWithChannelId (channelID){
             else{   //RETRIEVE VIDEOS FROM YOUTUBE
                 if(data.nothing_to_read){
                     console.log("Retrieve Videos From You Tube", data);
-                    ytVideoApiToDb(channelID);
                     ytChannelApiToDb(channelID);
-                    loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
+                    ytVideoApiToDb(channelID);
+
                 }
             }
         },
