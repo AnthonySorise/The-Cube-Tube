@@ -639,7 +639,25 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                     clientVideoObjectArray = clientPackage
                 }
                 else{
-
+                    $.ajax({
+                        url: './script/api_calls_to_db/access_database/access.php',
+                        method: 'POST',
+                        dataType: 'JSON',
+                        data: {
+                            action:'read_videos_by_channel_array',
+                            channel_id_array:clientChannelIdArray,
+                            offset:0
+                        },
+                        success: function (data) {
+                            if (data.success) {
+                                console.log('read success', data);
+                                clientVideoObjectArray = data.data;
+                            }
+                        },
+                        errors: function (data) {
+                            console.log('read error', data);
+                        }
+                    })
                 }
             }
             access_database.insert_video(packageToSendToDb);
