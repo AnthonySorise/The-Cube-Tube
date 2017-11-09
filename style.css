@@ -785,7 +785,7 @@ input:checked+.slider {
 		border: none !important;
 	}
 
-	.navbar-brand {
+	.navbar-brand>span {
 		display: none;
 	}
 }
