@@ -416,6 +416,43 @@ div.thRow {
 }
 /****** END of PLACEHOLDER area*****/
 /********loading animation area*******/
+.timeline-item {
+    /* background: #fff; */
+    border: 0px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    padding: 12px;
+
+    margin: 0 auto;
+}
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    height: 10px;
+    position: relative;
+}
+
+
+.background-masker {
+    background: #fff;
+    position: absolute;
+}
 
 /******* end of loading animation area *******/
 /*****************************************
@@ -486,7 +523,7 @@ div.thRow {
 
 #channelSearchModalBody {
 	list-style-type: none;
-	height: 65vh;
+	height: 55vh;
 	background-color: rgb(89, 105, 141);
 	overflow: auto;
 }
@@ -747,7 +784,7 @@ safer appraoch than to resizing browser to see change
 		width: 75vw;
 	}
 	#channelSearchModalBody {
-		height: 75vh;
+		height: 55vh;
 	}
 }
 @media only screen and (max-width: 991px) {
@@ -773,33 +810,34 @@ safer appraoch than to resizing browser to see change
 	.vidRowVideoCol {
 		padding: 0;
 	}
-	/*!* Added these 6 css selectors to make mobile modal fit *!*/
-	/*small {*/
-		/*display: none;*/
-	/*}*/
-	/*h4 {*/
-		/*font-size: .75em;*/
-	/*}*/
-	/*.browseChannelButton {*/
-		/*width:18%;*/
-		/*font-size: .70em;*/
-	/*}*/
-	/*.addChannelButton {*/
-		/*width:15%;*/
-		/*font-size: .70em;*/
-	/*}*/
-	/*.col-xs-7 {*/
-		/*width: 50% !important;*/
-	/*}*/
-	/*.chName {*/
-		/*width: 85%;*/
-	/*}*/
-	/*!* End of css for mobile modal *!*/
-
-	/*ul {*/
-		/*top: 305px !important;*/
-		/*border: none !important;*/
-	/*}*/
+	/* Added these 6 css selectors to make mobile modal fit */
+	small {
+		display: none;
+	}
+	h4 {
+		font-size: .80em;
+	}
+	.browseChannelButton {
+		width:18%;
+		font-size: .70em;   
+	}
+	.addChannelButton {
+		width:15%;
+		font-size: .70em;
+	}
+	.col-xs-7 {
+		width: 50% !important;
+	}
+	.chName {
+		width: 85%;
+	}
+	.modal-content {
+		width: 96vw;
+	}
+	.modal-dialog {
+		margin: 10px !important;
+	}
+	/* End of css for mobile modal */
 
 	.navbar-brand>span {
 		display: none;
