@@ -16,7 +16,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
         videoId: vidId || 'lrzIR8seNXs',
-        playerVars: { 
+        playerVars: {
             'rel': 0
         }
     });
@@ -42,7 +42,7 @@ $(window).resize(function(){
     }else{
         displayTableDataOnDesktop()
     }
-}) 
+})
 
 
 $(document).ready(function () {
@@ -60,7 +60,7 @@ $(document).ready(function () {
 
     tooltipFunctions();
 
-    
+
     clickHandler();
 
     $('#text-carousel').on('slide.bs.carousel', function (ev) {
@@ -706,8 +706,7 @@ function manageDatabaseWithChannelId (channelID){
                     console.log("Retrieve Videos From You Tube", data);
                     ytVideoApiToDb(channelID);
                     ytChannelApiToDb(channelID);
-
-
+                    loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                 }
             }
         },
@@ -760,10 +759,10 @@ function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
 }
 
-function toastMsg(msgString, time){ 
+function toastMsg(msgString, time){
     const msg = $('<div>',{
         text: msgString,
-        class:'toast'       
+        class:'toast'
     }).css({
         position: 'fixed',
         right: '-150px',
@@ -828,11 +827,11 @@ function displayTableDataOnMobile(){
         contentDiv.append(rowDiv);
         itemDiv.append(contentDiv);
         $(".carousel-inner").append(itemDiv);
-    }   
-        $(".tdListRight").hide();
-        $(".tdListLeft").removeClass('col-md-6');
-        // $(".carousel-inner").append(itemDiv);
-    
+    }
+    $(".tdListRight").hide();
+    $(".tdListLeft").removeClass('col-md-6');
+    // $(".carousel-inner").append(itemDiv);
+
 
 }
 
@@ -890,7 +889,7 @@ function checkIfAppleDevice(){
 //converts date object for apple mobile devices
 function convertDateForApple(dateFromAPI){
     if(checkIfAppleDevice()){
-       // let date = "2017-11-03 09:34:14" //testing only - sample data
+        // let date = "2017-11-03 09:34:14" //testing only - sample data
         let newDate = dateFromAPI.split(" ");
         let removeTime = newDate[0].split("-")
         let iosDate = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
@@ -900,6 +899,8 @@ function convertDateForApple(dateFromAPI){
     }
 }
 function resetSelectedTd() {
+    //NEEDS TO ALSO HANDLE FA FA SPINNER
+
     setTimeout(function(){
         $(".tdList").removeClass('selectedTd');
         $('.fa-circle-o-notch').remove();
@@ -1014,7 +1015,7 @@ if(window.matchMedia("(min-width: 1020px)").matches) {
         title: 'search for channels to add',
         text: 'search'
     });
-   var searchDivWrapper = $(searchDiv).append(inputElement);
-   var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
-   $('#mainNav').append(completedSearchDiv); 
+    var searchDivWrapper = $(searchDiv).append(inputElement);
+    var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
+    $('#mainNav').append(completedSearchDiv);
 }
