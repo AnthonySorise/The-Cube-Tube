@@ -1,5 +1,6 @@
 <?php
 sesson_start();
+require_once('mysql_connect.php');
 $LOCAL_ACCESS = true;
 $output = [
     'success' => false,
@@ -13,7 +14,6 @@ if(empty($_POST['action'])){
     print(json_encode($output));
     exit();
 }
-require_once('mysql_connect.php');
 function output_and_exit(){
     global $output;
     $json_output = json_encode($output);
