@@ -584,9 +584,13 @@ function ytChannelApiToDb(channelId) {
 
             access_database.insert_channel(channelDbObject);
 
-            clientChannelObjectArray = [];
+            if(clientChannelObjectArray === null){
+                clientChannelObjectArray = [];
+            }
             clientChannelObjectArray.push(channelDbObject);
-            clientChannelIdArray = [];
+            if(clientChannelIdArray){
+                clientChannelIdArray = [];
+            }
             clientChannelIdArray.push(channelId);
         },
         error: function (data) {
@@ -597,7 +601,6 @@ function ytChannelApiToDb(channelId) {
 
 function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
     var packageToSendToDb = [];
-    var clientVideos = [];
     $.ajax({
         url: 'https://www.googleapis.com/youtube/v3/search',
         dataType: 'json',
@@ -627,7 +630,6 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true) {
                 videoObject.published_at = publishedAt;
 
                 packageToSendToDb.push(videoObject);
-
             }
 
             if(firstRun){
@@ -704,8 +706,8 @@ function manageDatabaseWithChannelId (channelID){
             else{   //RETRIEVE VIDEOS FROM YOUTUBE
                 if(data.nothing_to_read){
                     console.log("Retrieve Videos From You Tube", data);
-                    ytVideoApiToDb(channelID);
                     ytChannelApiToDb(channelID);
+                    ytVideoApiToDb(channelID);
                     loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                 }
             }
