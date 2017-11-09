@@ -1,14 +1,12 @@
  function Database(){
     var self = this;
-    this.user_id_hold = null;
-    this.channel_id_hold = null;
-    this.delete_ctu = function(ctu_id){//delete by specifying ctu id
+    this.delete_ctu = function(youtube_channel_id){//delete by specifying ctu id
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
-                id: ctu_id,
+                youtube_channel_id: youtube_channel_id,
                 action:'delete_ctu'
             },
             success:function(data){
@@ -45,47 +43,6 @@
              }
          })
      }
-     this.insert_ctu = function(user_id,channel_id){//takes integers
-         $.ajax({
-             url:'./script/api_calls_to_db/access_database/access.php',
-             method:'post',
-             dataType:'JSON',
-             data:{
-                 user_id:user_id,
-                 channel_id:channel_id,
-                 action:'insert_ctu'
-             },
-             success:function(data){
-                 if(data.success){
-                     console.log('insert ctu success', data);
-                 }
-             },
-             errors:function(){
-                 console.log(data['insert errors']);
-             }
-         })
-     }
-     this.insert_user = function(link){//custom link
-         $.ajax({
-             url:'./script/api_calls_to_db/access_database/access.php',
-             method:'POST',
-             dataType:'JSON',
-             data:{
-                 action:'insert_user',
-                 user_link: link
-             },
-             success:function(data){
-                 console.log(data);
-                 if(data["success"]){
-                     console.log('insert user success', data);
-                 }
-             },
-             errors:function(data){
-                 console.log(data['errors'])
-             }
-         })
-         // return promise
-     }
      this.insert_video = function (videoArray) {//pass in video array
          $.ajax({
              url: './script/api_calls_to_db/access_database/access.php',
@@ -105,14 +62,14 @@
              }
          })
      }
-     this.read_channels_by_user_id = function(user_id){//itll read channel based on user, just pass in user id
+     this.read_channels_by_user_link = function(user_link){//itll read channel based on user, just pass in user id
          $.ajax({
              url: './script/api_calls_to_db/access_database/access.php ',
              method: 'POST',
              dataType: 'JSON',
              data: {
                  action: 'read_channels_by_user_id',
-                 user_id:user_id
+                 user_id:user_link
              },
              success: function (data) {
                  if (data.success) {
@@ -124,25 +81,25 @@
              }
          })
      }
-     this.read_ctu = function(user_id){//give u all channels to users based on user id
-         $.ajax({
-             url: './script/api_calls_to_db/access_database/access.php',
-             method: 'POST',
-             dataType: 'JSON',
-             data: {
-                 action: 'read_ctu',
-                 user_id: user_id
-             },
-             success: function (data) {
-                 if (data.success) {
-                     console.log('read success', data);
-                 }
-             },
-             errors: function (data) {
-                 console.log('read error', data);
-             }
-         })
-     }
+    //  this.read_ctu = function(user_id){//give u all channels to users based on user id
+    //      $.ajax({
+    //          url: './script/api_calls_to_db/access_database/access.php',
+    //          method: 'POST',
+    //          dataType: 'JSON',
+    //          data: {
+    //              action: 'read_ctu',
+    //              user_link: user_id
+    //          },
+    //          success: function (data) {
+    //              if (data.success) {
+    //                  console.log('read success', data);
+    //              }
+    //          },
+    //          errors: function (data) {
+    //              console.log('read error', data);
+    //          }
+    //      })
+    //  }
     this.read_channels_by_youtube_id = function(youtube_channel_id){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
@@ -160,19 +117,18 @@
                 }
             },
             errors:function(data){
-                console.log(data['read errors'], data);
+                console.log(data['errors'], data);
             }
         })
     }
-    this.read_videos = function(offset,user_id){//read videos with limit 40 based on user_id, can give an offset to read more.
+    this.read_videos_by_user = function(offset){//read videos with limit 40, can give an offset to read more.
         $.ajax({
             url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
-                action: 'read_videos',
+                action: 'read_videos_by_user',
                 offset: offset,
-                user_id:user_id
             },
             success: function (data) {
                 if (data.success) {
@@ -184,33 +140,13 @@
             }
         })
     }
-     this.read_user = function(user_link){//lets u know if link already exist
-         $.ajax({
-             url: './script/api_calls_to_db/access_database/access.php',
-             method: 'POST',
-             dataType: 'JSON',
-             data: {
-                 action:'read_user',
-                 user_link:user_link,
-             },
-             success: function (data) {
-                 if (data.success) {
-                     console.log('read success', data);
-                 }
-             },
-             errors: function (data) {
-                 console.log('read error', data);
-             }
-         })
-     }
-    this.read_user_content = function(user_link,offset){
+    this.read_user_content = function(offset){
         $.ajax({
             url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
                 action:'read_user_content',
-                user_link:user_link,
                 offset:offset
             },
             success: function (data) {

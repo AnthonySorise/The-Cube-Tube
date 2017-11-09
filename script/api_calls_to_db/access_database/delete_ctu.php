@@ -2,17 +2,20 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-if(empty($_POST['ctu_id'])){
-    $output['errors'] = 'MISSING CTU ID';
+if(empty($_POST['youtube_channel_id'])){
+    $output['errors'] = 'MISSING YOUTUBE CHANNEL ID';
 }
-$ctu_id = $_POST['ctu_id'];
-$stmt = $conn->prepare("DELETE FROM channels_to_user WHERE ctu_id=?");
-$stmt->bind_param("i",$ctu_id);
+$youtube_channel_id = $_POST['youtube_channel_id'];
+$user_link = $_SESSION['user_link'];
+$stmt = $conn->prepare("DELETE ctu FROM channels_to_users ctu 
+JOIN users u ON ctu.user_id = u.user_id 
+JOIN channels c ON ctu.channel_id = c.channel_id 
+WHERE youtube_channel_id = ? AND user_link = ?");
+$stmt->bind_param("ss",$youtube_channel_id,$user_link);
 $stmt ->execute();
 if(!empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
-        $output['id'] = mysqli_insert_id($conn);
     }
     else{
         $output['error'] = 'Unable to delete data';
