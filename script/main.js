@@ -869,10 +869,14 @@ function returnToPageOne(){
     // $(".carousel").hide();
     $(".carousel").carousel(0);     //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
     // $(".carousel").show();
-    currentSlideNumber = 2;
-    loadPreviousPage();
-    currentSlideNumber = 1;
-    displayCurrentPageNumber();
+    if(currentSlideNumber !==1){
+        currentSlideNumber = 2;
+        loadPreviousPage();
+        currentSlideNumber = 1;
+    }
+    if(clientChannelIdArray.length !== 0){
+        displayCurrentPageNumber();
+    }
 }
 
 // check if device is apple mobile device (used to convert date object)
