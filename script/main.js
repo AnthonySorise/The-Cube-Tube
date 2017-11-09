@@ -874,9 +874,7 @@ function returnToPageOne(){
         loadPreviousPage();
         currentSlideNumber = 1;
     }
-    if(clientChannelIdArray.length !== 0){
-        displayCurrentPageNumber();
-    }
+    displayCurrentPageNumber();
 }
 
 // check if device is apple mobile device (used to convert date object)
