@@ -1,6 +1,8 @@
 <?php
 sesson_start();
 require_once('mysql_connect.php');
+$output['test'][]="here";
+output_and_exit();
 $LOCAL_ACCESS = true;
 $output = [
     'success' => false,
