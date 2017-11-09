@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('mysql_connect.php');
 $LOCAL_ACCESS = true;
 if(isset($_GET['user'])){
     require_once('mysql_connect.php');

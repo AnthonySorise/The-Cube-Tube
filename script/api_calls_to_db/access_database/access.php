@@ -1,6 +1,7 @@
 <?php
-sesson_start();
+session_start();
 $LOCAL_ACCESS = true;
+require_once('mysql_connect.php');
 $output = [
     'success' => false,
     'errors' => [],
@@ -10,10 +11,8 @@ if(isset($_SESSION['user_link'])){
 }
 if(empty($_POST['action'])){
     $output['errors'][] = 'No action specified';
-    print(json_encode($output));
-    exit();
+    output_and_exit();
 }
-require_once('mysql_connect.php');
 function output_and_exit(){
     global $output;
     $json_output = json_encode($output);
@@ -28,7 +27,7 @@ switch($_POST['action']){
         include('insert_channels.php');
         break;
     case 'insert_ctu':
-        include('insert_ctu');
+        include('insert_ctu.php');
         break;
     case 'insert_video':
         include('insert_video.php');

@@ -896,6 +896,7 @@ function convertDateForApple(dateFromAPI){
 }
 function resetSelectedTd() {
     //NEEDS TO ALSO HANDLE FA FA SPINNER
+    
     setTimeout(function(){
         $(".tdList").removeClass('selectedTd');
         $('.fa-circle-o-notch').remove();
