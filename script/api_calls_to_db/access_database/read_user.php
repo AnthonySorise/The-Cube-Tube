@@ -10,7 +10,7 @@ $results = mysqli_stmt_get_result($stmt);
 if(!empty($results)){
     if(mysqli_num_rows($results)>0){
         $row = mysqli_fetch_assoc($results);
-        define('user_id',$row['user_id']);
+        define('USER_ID',$row['user_id']);
     }else{
         $output['errors'][] = 'NOTHING TO READ';
     }

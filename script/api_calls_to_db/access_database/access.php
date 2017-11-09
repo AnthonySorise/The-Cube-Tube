@@ -1,25 +1,33 @@
 <?php
-sesson_start();
+session_start();
 $LOCAL_ACCESS = true;
+require_once('mysql_connect.php');
 $output = [
     'success' => false,
     'errors' => [],
 ];
-if(issset($_SESSION['user_link'])){
+if(isset($_SESSION['user_link'])){
     include('read_user.php');
 }
 if(empty($_POST['action'])){
     $output['errors'][] = 'No action specified';
-    print(json_encode($output));
+    output_and_exit();
+}
+function output_and_exit(){
+    global $output;
+    $json_output = json_encode($output);
+    print_r($json_output);
     exit();
 }
-require_once('mysql_connect.php');
 switch($_POST['action']){
     case 'delete_ctu':
         include('delete.php');
         break;
     case 'insert_channel':
         include('insert_channels.php');
+        break;
+    case 'insert_ctu':
+        include('insert_ctu.php');
         break;
     case 'insert_video':
         include('insert_video.php');
