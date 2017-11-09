@@ -5,7 +5,7 @@ $output = [
     'success' => false,
     'errors' => [],
 ];
-if(issset($_SESSION['user_link'])){
+if(isset($_SESSION['user_link'])){
     include('read_user.php');
 }
 if(empty($_POST['action'])){
