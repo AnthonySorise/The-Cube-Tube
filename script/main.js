@@ -655,21 +655,6 @@ function manageDatabaseWithChannelId (channelID){
     clientChannelObjectArray = null;
     clientChannelIdArray = null;
 
-    //Check channel database to see if channelID exists in db
-    // $.ajax({
-    //     url:'./script/api_calls_to_db/access_database/access.php',
-    //     method:'post',
-    //     dataType:'JSON',
-    //     data:{
-    //         youtube_channel_id:channelID,
-    //         action:'read_channels_by_youtube_id'
-    //     },
-    //     success:function(data){
-    //         if(data.success){
-    //             console.log("Channel will be pulled from database", data);
-    //             data.youtube_channel_id = channelID;
-    //             clientChannelObjectArray = [];
-    //             clientChannelObjectArray.push(data);
 
                 $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
                     url:'./script/api_calls_to_db/access_database/access.php',
