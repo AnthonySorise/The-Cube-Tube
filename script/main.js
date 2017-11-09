@@ -526,7 +526,7 @@ function renderVideoList(videoArray) {
         $(upDate).text(dateString);
 
     }
-    // resetSelectedTd();
+    resetSelectedTd();
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
             let row = "#tdList-" + (i + 1);
@@ -639,6 +639,8 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                 if(!isAdding){
                     for(var i = 0; i < 40; i++){
                         clientPackage.push(packageToSendToDb[i]);
+                    }
+                    if(clientPackage.length !== 0){
                         clientVideoObjectArray = clientPackage;
                         loadClientVideoObjectArray();
                     }
