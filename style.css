@@ -315,18 +315,18 @@ li#returnCarouselStart{
 }
 .tdTitle, .tdChannel, .tdUpDate{
 	cursor: pointer;
-	display: flex;
-	align-items: center;
+	/*display: flex;*/
+	/*align-items: center;*/
 	color:white;
 }
-.tdChannel, .tdUpDate{
-	justify-content: center;
-}
-.tdUpDate{
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-}
+/*.tdChannel, .tdUpDate{*/
+	/*justify-content: center;*/
+/*}*/
+/*.tdUpDate{*/
+	/*position: relative;*/
+	/*top: 50%;*/
+	/*transform: translateY(-50%);*/
+/*}*/
 /* need the row margin 0 above and padding 0 below for carousel width adjustment*/
 
 .carouselCol {
