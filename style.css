@@ -5,13 +5,11 @@ charcoal: 54,69,79
 font-family: 'Roboto', sans-serif;
 font-family: 'Montserrat', sans-serif;
 ******/
-
 html,
 body {
 	overflow-x: hidden;
 	font-family: 'Montserrat', sans-serif;
 }
-
 @keyframes typing {
 	from {
 		width: 0
@@ -20,7 +18,6 @@ body {
 		width: 100%
 	}
 }
-
 @keyframes blinkCaret {
 	from,
 	to {
@@ -30,38 +27,28 @@ body {
 		border-color: #2BBBAD;
 	}
 }
-
 ::-webkit-scrollbar {
 	width: 4px;
 	height: 4px;
 	background-color: rgb(40, 40, 40);
 }
-
 ::-webkit-scrollbar-thumb {
 	width: 3.5px;
 	height: 4px;
 	border-radius: 25px;
 	background-color: #3F729B;
 }
-
-/**styling for navbar area**/
-
+/************************************************************************************
+*  Any and all css for navbar - i.e. anything inside #mainNav<nav> / #midNav<nav>	*
+*  at this moment, the only exception for having it outside of this area 			*
+*  is for @ media rule which will be at the bottom	-may change in future         	*
+*************************************************************************************/
 .hamburger {
 	display: none !important;
 }
-
 .navbar-toggle {
 	margin-bottom: 0;
 }
-
-
-#midNav {
-	border-radius: 0;
-	background-color: rgb(28, 35, 49);
-	/*background-color: rgb(63,114,155);*/
-	border: none;
-}
-
 .navbar-brand {
 	font-size: 22px;
 	margin-right: 20px;
@@ -86,8 +73,13 @@ body {
 .logoText{
 	vertical-align: 55%;
 }
-.navbar-brand .fa {
-	color: rgb(255, 0, 0);
+#midNav {
+	border-radius: 0;
+	background-color: rgb(28, 35, 49);
+	/*background-color: rgb(63,114,155);*/
+	border: none;
+	height: 3.5%;
+	margin: 0;
 }
 #midNav-option{
 	z-index:1;
@@ -124,9 +116,16 @@ body {
 #ui-id-1:focus {
 	top: 43px;
 }
-
-
-/**end of navbar styling**/
+/*Transition to get hamburger menu to collapse when search button is clicked */
+.navbar-collapse {
+	-webkit-transition: all ease .5s;
+	-moz-transition: all ease .5s; 
+	transition: all ease .5s;
+}
+/********************************************************************
+* END of navbar css area. any navbar css beyond this point must be 	*
+* for @media rule purpose											*
+*********************************************************************/
 
 body>.container-fluid {
 	padding-top: 51px;
@@ -134,27 +133,31 @@ body>.container-fluid {
 	padding-right: 0;
 	padding-left: 0;
 }
-
 .main-content {
 	height: 94vh;
 }
 
+/********************************************************************
+* area for video player area - i.e. the section with youtube video;	*
+* i.e. things inside .videoRowWrapper<div>                         	*
+*********************************************************************/
 .videoRowWrapper {
 	height: 47%;
 	background-color: rgba(34, 34, 34, 1);
 }
-
 .vidRowVideoCol {
 	height: 100%;
 	/*border: 1px solid red;*/
 }
-
 #mainVideo {
 	height: 98%;
 	margin: 0.25% 0;
 	width: 85%;
 }
-
+/************************************
+* END of .videoRowWrapper<div> area *
+*************************************/
+/* location of buttons below may change in future*/
 #videoComments {
 	/*color: rgba(43,187,173, 0.5);*/
 	color: rgba(255, 255, 255, 0.5);
@@ -164,11 +167,9 @@ body>.container-fluid {
 	background: none;
 	border: none;
 }
-
 #videoComments:hover {
 	color: rgba(43, 187, 173, 1);
 }
-
 #channelInfo {
 /*	position: absolute;
 	right: 0;
@@ -178,11 +179,9 @@ body>.container-fluid {
 	background: none;
 	border: none;
 }
-
 #channelInfo:hover {
 	color: rgba(255,143,0, 1);
 }
-
 #videoStats {
 /*	position: absolute;
 	right: 0;
@@ -191,12 +190,10 @@ body>.container-fluid {
 	background: none;
 	border: none;
 }
-
 #videoStats:hover {
 	/*color: rgba(255,255,255,1);*/
 	color: rgba(0, 200, 81, 1);
 }
-
 .lightBoxMode {
 	position: absolute;
 	right: 20px;
@@ -205,42 +202,26 @@ body>.container-fluid {
 	background: none;
 	border: none;
 }
-
 .lightBoxMode:hover {
 	color: rgba(255, 0, 0, 1);
 }
-
 #infoButtonContainer {
 	position: relative;
 	/*bottom: 13vh;*/
 }
+/**end of button things that may move in future**/
 
-#midNav {
-	height: 3.5%;
-	margin: 0;
-}
-
+/************************************************************
+* .videoListRowWrapper<div> area  - i.e. area where video	*
+* list is generated below the middle navbar 			  	*
+*************************************************************/
 .videoListRowWrapper {
 	height: 46.5%;
 	padding: 0;
 	/*border: 2px solid red;*/
 	/*overflow: auto;*/
 }
-
-div.thRow {
-	font-family: 'Roboto', sans-serif;
-	background-color: rgba(34, 34, 34, 0.8);
-	color: white;
-	padding-left:15px;
-	padding-right:15px;
-	/*text-shadow: 
-		-0.5px -0.5px 0 #000,
-		0.5px 0.5px 0 #000;*/
-}
-
-
-/* carousel styles */
-
+/************ CAROUSEL styles *************/
 .carousel-indicators li {
 	/* background-color: red;
 	border-color: red; */
@@ -252,47 +233,47 @@ div.thRow {
 	position: relative;
 	top: 16px;
 }
-
-
 .carousel-indicators {
 	/* background-color: white; */
 }
-
 li#returnCarouselStart{
 	position: relative;
 	right: 6px;
 	font-size: small;
 }
-
 .carousel-control.right {
 	height: 100%;
 	background: none !important;
 }
-
 .carousel-control.left {
 	height: 100%;
 	background: none !important;
 }
-
 #text-carousel {
 	overflow: auto;
 	height: 95%;
 	background-color:#778899
 }
-
-.tdListLeft,
-.tdListRight {
+/*********** end of CAROUSEL styles ************/
+div.thRow {
+	font-family: 'Roboto', sans-serif;
+	background-color: rgba(34, 34, 34, 0.8);
+	color: white;
+	padding-left:15px;
+	padding-right:15px;
+	/*text-shadow: 
+		-0.5px -0.5px 0 #000,
+		0.5px 0.5px 0 #000;*/
+}
+.tdListLeft, .tdListRight {
 	padding: 0;
 }
-
 .tdListLeft {
 	border-right: 0.5px solid;
 }
-
 .tdListRight {
 	border-left: 0.5px solid;
 }
-
 .tdList {
 	font-size: 18px;
 	margin-top: 1.75px;
@@ -300,16 +281,12 @@ li#returnCarouselStart{
 	height: 3.2vh;
 	z-index: 1;
 }
-
-.tdList:hover,
-.selectedTd {
+.tdList:hover, .selectedTd {
 	background-color: rgba(43, 187, 173, 0.6);
 }
-
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
 }
-
 .row {
 	margin: 0;
 }
@@ -332,149 +309,147 @@ li#returnCarouselStart{
 .carouselCol {
 	padding: 0;
 }
-
-.tdTitle,
-.tdInfo,
-.tdChannel,
-.tdUpdate,
-.tdButton {
-
+.tdTitle, .tdInfo, .tdChannel, .tdUpdate, .tdButton {
 	height: 100%;
 }
-
-.tdInfo a,
-.tdInfo a:hover,
-.tdInfo a:focus,
-.tdButton a,
-.tdButton a:hover,
-.tdButton a:focus {
+.tdInfo a, .tdInfo a:hover, .tdInfo a:focus,
+.tdButton a, .tdButton a:hover, .tdButton a:focus {
 	height: 100%;
 	background: none;
 	border: none;
 }
-
 .tdInfo i {
 	color: rgba(63, 114, 155, 0.5);
 }
-
-.tdInfo i:hover,
-.tdInfo i:focus {
+.tdInfo i:hover, .tdInfo i:focus {
 	color: rgba(63, 114, 155, 1);
 }
-
 .tdButton i {
 	color: rgba(38, 50, 56, 0.5);
 }
-
-.tdButton i:hover,
-.tdButton i:focus {
+.tdButton i:hover, .tdButton i:focus {
 	color: rgba(38, 50, 56, 1);
 }
-
-.tdTitle,
-.tdChannel,
-.tdUpDate {
+.tdTitle, .tdChannel, .tdUpDate {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
-@media screen and (max-width: 1082px) {
-	.hamburger {
-		display: inline-block !important;
+/****** initial screen PLACEHOLDER AREA******/
+.contentPlaceholderWrapper{
+	height: 100%;
+}
+.placeholderBg{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	/*background-color: lightblue;*/
+	background-image: url("assets/images/img_01.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	opacity: 0;
+	animation: backgroundChange 100s linear infinite;
+}
+@keyframes backgroundChange{
+	10%{
+		background-image: url("assets/images/img_02.jpg");
+		opacity: 0;
 	}
-	.navbar-header{
-		width: 100%;
+	5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%{
+		opacity: 0.6;
 	}
-	.navbar-collapse.collapse{
-		display: none !important;
+	3%, 7%,13%, 17%,23%, 27%,33%, 37%,43%, 47%,53%, 57%,63%, 67%,73%, 77%,83%, 87%,93%, 97%{
+		opacity: 0.3;
 	}
-	.collapse.in{
-		display: block !important;
+	20%{
+		background-image: url('assets/images/img_03.jpg');
+		opacity: 0;
 	}
-	#mainNav-option{
-		border-top: 1px solid black;
-		background-color: white;
-		margin-right: -15px;
-		margin-left: -15px;
+	30%{
+		background-image: url('assets/images/img_04.jpg');
+		opacity: 0;
 	}
-	#midNav-option {
-		background-color: rgba(54, 69, 79, 1);
-		/*border-top: 0.5px solid blue;*/
-		margin: 0 -15px;
+	40%{
+		background-image: url('assets/images/img_05.jpg');
+		opacity: 0;
 	}
-	p.navbar-text, ul.navbar-nav{
-		font-size: 10.5px;
+	50%{
+		background-image: url('assets/images/img_06.jpg');
+		opacity: 0;
 	}
-	p.navbar-text{
-		line-height: 2.2;
+	60%{
+		background-image: url('assets/images/img_07.jpg');
+		opacity: 0;
 	}
-	#mainNav-option form,
-	#midNav-option form {
-		margin-right: 0;
+	70%{
+		background-image: url('assets/images/img_08.jpg');
+		opacity: 0;
 	}
-	.autoPlayArea{
-		margin-left: -15px;
+	80%{
+		background-image: url('assets/images/img_09.jpg');
+		opacity: 0;
 	}
-	/*end of hamburger/navbar css*/
-	body>.container-fluid {
-		padding-top: 56px;
+	90%{
+		background-image: url('assets/images/img_10.jpg');
+		opacity: 0;
 	}
-	.main-content {
-		height: 90vh;
-	}
-	.mainVideo {
-		margin-top: 2%;
-		height: 40vh;
-		width: 100%;
-	}
-
-	.thUpDate{
-		font-size: 14px;
-		padding: 0;
-	}
-	.tdUpDate {
-		font-size: 9px;
-		padding: 0;
-	}
-	.tdList {
-		font-size: 10px;
-		margin-top: 1px;
-		margin-bottom: 1px;
+	100%{
+		background-image: url('assets/images/img_01.jpg');
+		opacity: 0;
 	}
 }
+.contentPlaceholder{
+	margin-top: 30px;
+	text-shadow:
+		-0.5px -0.5px 0 #fff,
+		0.5px 0.5px 0 #fff;
+}
+.contentPlaceholder>image{
+	margin: 0 auto; 
+}
+/****** END of PLACEHOLDER area*****/
+/********loading animation area*******/
 
+/******* end of loading animation area *******/
+/*****************************************
+* END of .videoListRowWrapper<div> area  *
+* video LIST related things				 *
+******************************************/
 
-/**modal css**/
-
+/************************************************************************
+* .modal<div> area -  2 modals currently exist: lightBox, channelsearch	*
+* subdivided to specific, existing modals 		                        *
+*************************************************************************/
+.modal-open {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+		/********LIGHTBOX modal*********/
 #lightBoxModal .modal-dialog {
 	/*height: 80vh;*/
 	width: 80vw;
 	/*padding: 0;*/
 }
-
 #lightBoxModal .modal-content {
 	background: transparent;
 }
-
 #lightBoxModal .modal-body {
 	height: 80vh;
 	padding: 0;
 }
-
 #lightBoxModal .modal-footer {
 	background-color: black;
 }
-
 #lightBoxModal iframe {
 	height: 100%;
 	width: 100%;
 }
-
-.modal-open {
-	background-color: rgba(0, 0, 0, 0.5);
-}
-
+		/*******END of LIGHTBOX modal*********/
+		/***********CHANNEL SEARCH modal************/
 #channelSearchModal .modal-dialog {
 	width: 60vw;
 }
@@ -565,97 +540,18 @@ li#returnCarouselStart{
 	margin: 5px 2px;
 	float: right;
 }
-
-
-/*end of modal css*/
+		/*****END of CHANNEL SEARCH modal*****/
+/************************************
+* 	END of ALL MODAL related css 		*
+*************************************/
 
 .carousel-control {
 	width: 30px;
 }
 
-.glyphicon {
+.glyphicon {	/**target a class more specific to the glyphicon controllign carousel**/
 	color: red;
 }
-
-.contentPlaceholderWrapper{
-	height: 100%;
-}
-
-.placeholderBg{
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	z-index: -1;
-	/*background-color: lightblue;*/
-	background-image: url("assets/images/img_01.jpg");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 100% auto;
-	opacity: 0;
-	animation: backgroundChange 100s linear infinite;
-}
-@keyframes backgroundChange{
-	10%{
-		background-image: url("assets/images/img_02.jpg");
-		opacity: 0;
-	}
-	5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%{
-		opacity: 0.6;
-	}
-	3%, 7%,13%, 17%,23%, 27%,33%, 37%,43%, 47%,53%, 57%,63%, 67%,73%, 77%,83%, 87%,93%, 97%{
-		opacity: 0.3;
-	}
-	20%{
-		background-image: url('assets/images/img_03.jpg');
-		opacity: 0;
-	}
-	30%{
-		background-image: url('assets/images/img_04.jpg');
-		opacity: 0;
-	}
-	40%{
-		background-image: url('assets/images/img_05.jpg');
-		opacity: 0;
-	}
-	50%{
-		background-image: url('assets/images/img_06.jpg');
-		opacity: 0;
-	}
-	60%{
-		background-image: url('assets/images/img_07.jpg');
-		opacity: 0;
-	}
-	70%{
-		background-image: url('assets/images/img_08.jpg');
-		opacity: 0;
-	}
-	80%{
-		background-image: url('assets/images/img_09.jpg');
-		opacity: 0;
-	}
-	90%{
-		background-image: url('assets/images/img_10.jpg');
-		opacity: 0;
-	}
-	100%{
-		background-image: url('assets/images/img_01.jpg');
-		opacity: 0;
-	}
-}
-
-.contentPlaceholder{
-	margin-top: 30px;
-	text-shadow:
-		-0.5px -0.5px 0 #fff,
-		0.5px 0.5px 0 #fff;
-}
-
-.contentPlaceholder>image{
-	margin: 0 auto; 
-}
-
 
 /* toggle button */
 
@@ -723,72 +619,8 @@ input:checked+.slider {
 	border-radius: 50%;
 }
 
-@media only screen and (max-width: 991px) {
-	.carousel-control {
-		height: 75vh;
-	}
-	.right>.carousel-control {
-		width: 45px;
-	}
-	.tdListLeft, .tdListRight{
-		border-right: none;
-		border-left: none;
-	}
-}
-
-@media screen and (max-width: 1024px) {
-	#channelSearchModal .modal-dialog {
-		width: 75vw;
-	}
-	#channelSearchModalBody {
-		height: 75vh;
-	}
-}
 
 
-@media only screen and (max-width : 767px){
-	.navbar-header{
-		width: auto;
-	}
-	#mainVideo {
-		height: 100%;
-		width: 100vw;
-	}
-	.vidRowVideoCol {
-		padding: 0;
-	}
-	/*!* Added these 6 css selectors to make mobile modal fit *!*/
-	/*small {*/
-		/*display: none;*/
-	/*}*/
-	/*h4 {*/
-		/*font-size: .75em;*/
-	/*}*/
-	/*.browseChannelButton {*/
-		/*width:18%;*/
-		/*font-size: .70em;*/
-	/*}*/
-	/*.addChannelButton {*/
-		/*width:15%;*/
-		/*font-size: .70em;*/
-	/*}*/
-	/*.col-xs-7 {*/
-		/*width: 50% !important;*/
-	/*}*/
-	/*.chName {*/
-		/*width: 85%;*/
-	/*}*/
-	/*!* End of css for mobile modal *!*/
-
-	/*ul {*/
-		/*top: 305px !important;*/
-		/*border: none !important;*/
-	/*}*/
-
-	.navbar-brand>span {
-		display: none;
-	}
-}
 /*testing if placeholder animation will work*/
 
 .timeline-item {
@@ -832,9 +664,142 @@ input:checked+.slider {
 	width: 100%;
 }
 
-/*Transition to get hamburger menu to collapse when search button is clicked */
-.navbar-collapse {
-	-webkit-transition: all ease .5s;
-	-moz-transition: all ease .5s; 
-	transition: all ease .5s;
+
+/************************************************************
+* anything added below this should be for @MEDIA RULES ONLY	*
+* in DESCENDING ORDER of screen WIDTH 					    *
+* GENERAL WIDTH GUIDE: 										*
+* large dvcs(desktop):  >=1200px ; container width 1170px ; colWidth ~97px
+* medium dvcs(desktop): >=992px	 ; container width 970px  ; colWidth ~87px
+* small dvcs(tablets):  >=768px  ; container width 750px  ; colWidth ~62px
+* x-smll (phones):      <768px   ; container width none   ; colWidth auto
+******* i think using `toggle device toolbar` in browser is more likely 
+safer appraoch than to resizing browser to see change
+*************************************************************/
+@media screen and (max-width: 1082px) {
+	.hamburger {
+		display: inline-block !important;
+	}
+	.navbar-header{
+		width: 100%;
+	}
+	.navbar-collapse.collapse{
+		display: none !important;
+	}
+	.collapse.in{
+		display: block !important;
+	}
+	#mainNav-option{
+		border-top: 1px solid black;
+		background-color: white;
+		margin-right: -15px;
+		margin-left: -15px;
+	}
+	#midNav-option {
+		background-color: rgba(54, 69, 79, 1);
+		/*border-top: 0.5px solid blue;*/
+		margin: 0 -15px;
+	}
+	p.navbar-text, ul.navbar-nav{
+		font-size: 10.5px;
+	}
+	p.navbar-text{
+		line-height: 2.2;
+	}
+	#mainNav-option form,
+	#midNav-option form {
+		margin-right: 0;
+	}
+	.autoPlayArea{
+		margin-left: -15px;
+	}
+	/*end of hamburger/navbar css*/
+	body>.container-fluid {
+		padding-top: 56px;
+	}
+	.main-content {
+		height: 90vh;
+	}
+	.mainVideo {
+		margin-top: 2%;
+		height: 40vh;
+		width: 100%;
+	}
+
+	.thUpDate{
+		font-size: 14px;
+		padding: 0;
+	}
+	.tdUpDate {
+		font-size: 9px;
+		padding: 0;
+	}
+	.tdList {
+		font-size: 10px;
+		margin-top: 1px;
+		margin-bottom: 1px;
+	}
+}
+@media screen and (max-width: 1024px) {
+	#channelSearchModal .modal-dialog {
+		width: 75vw;
+	}
+	#channelSearchModalBody {
+		height: 75vh;
+	}
+}
+@media only screen and (max-width: 991px) {
+	.carousel-control {
+		height: 75vh;
+	}
+	.right>.carousel-control {
+		width: 45px;
+	}
+	.tdListLeft, .tdListRight{
+		border-right: none;
+		border-left: none;
+	}
+}
+@media only screen and (max-width : 767px){
+	.navbar-header{
+		width: auto;
+	}
+	#mainVideo {
+		height: 100%;
+		width: 100vw;
+	}
+	.vidRowVideoCol {
+		padding: 0;
+	}
+	/*!* Added these 6 css selectors to make mobile modal fit *!*/
+	/*small {*/
+		/*display: none;*/
+	/*}*/
+	/*h4 {*/
+		/*font-size: .75em;*/
+	/*}*/
+	/*.browseChannelButton {*/
+		/*width:18%;*/
+		/*font-size: .70em;*/
+	/*}*/
+	/*.addChannelButton {*/
+		/*width:15%;*/
+		/*font-size: .70em;*/
+	/*}*/
+	/*.col-xs-7 {*/
+		/*width: 50% !important;*/
+	/*}*/
+	/*.chName {*/
+		/*width: 85%;*/
+	/*}*/
+	/*!* End of css for mobile modal *!*/
+
+	/*ul {*/
+		/*top: 305px !important;*/
+		/*border: none !important;*/
+	/*}*/
+
+	.navbar-brand>span {
+		display: none;
+	}
 }
