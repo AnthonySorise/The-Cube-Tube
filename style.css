@@ -232,7 +232,7 @@ body>.container-fluid {
 	background-color: white;
 	position: relative;
 	top: 16px;
-	background-color: rgba(0,0,0,0);
+	background-color: rgba(0,0,0,0) !important;
 	border: none;
 }
 .carousel-indicators {
