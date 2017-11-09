@@ -46,6 +46,11 @@ body {
 
 /**styling for navbar area**/
 
+.btn-danger {
+	margin-top: 10px;
+    height: 34px;
+}
+
 .hamburger {
 	display: none !important;
 }
@@ -277,6 +282,7 @@ li#returnCarouselStart{
 #text-carousel {
 	overflow: auto;
 	height: 95%;
+	background-color: rgb(69, 82, 110);
 }
 
 .tdListLeft,
@@ -300,6 +306,7 @@ li#returnCarouselStart{
 	z-index: 1;
 }
 
+
 .tdList:hover,
 .selectedTd {
 	background-color: rgba(43, 187, 173, 0.6);
@@ -314,21 +321,18 @@ li#returnCarouselStart{
 }
 .tdTitle, .tdChannel, .tdUpDate{
 	cursor: pointer;
-	display:flex;
+	display: flex;
 	align-items: center;
 	color:white;
 }
-
 .tdChannel, .tdUpDate{
 	justify-content: center;
 }
-
 .tdUpDate{
-	position:relative;
-	top:50%;
+	position: relative;
+	top: 50%;
 	transform: translateY(-50%);
 }
-
 
 /* need the row margin 0 above and padding 0 below for carousel width adjustment*/
 
@@ -366,12 +370,14 @@ li#returnCarouselStart{
 }
 
 .tdButton i {
-	color: rgba(38, 50, 56, 0.5);
+	/*color: rgba(38, 50, 56, 0.5);*/
+	color:rgba(255,255,255,0.6);
 }
 
 .tdButton i:hover,
 .tdButton i:focus {
-	color: rgba(38, 50, 56, 1);
+	/*color: rgba(38, 50, 56, 1);*/
+	color: rgba(255,255,255,1);
 }
 
 .tdTitle,
@@ -801,6 +807,11 @@ input:checked+.slider {
 	border-radius: 3px;
 	padding: 12px;
 	margin: 0 auto;
+}
+
+.timeline-wrapper {
+	width: 100%;
+    height: 175%;
 }
 
 @keyframes placeHolderShimmer {
