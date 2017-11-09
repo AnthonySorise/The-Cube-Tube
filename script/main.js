@@ -655,6 +655,8 @@ function manageDatabaseWithChannelId (channelID){
     clientChannelObjectArray = null;
     clientChannelIdArray = null;
 
+    returnToPageOne();
+
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
         method:'post',
@@ -678,8 +680,8 @@ function manageDatabaseWithChannelId (channelID){
                     method: 'POST',
                     dataType: 'JSON',
                     data: {
-                        action:'read_videos_by_channel',
-                        youtube_channel_id:channelID,
+                        action:'read_videos_by_channel_array',
+                        channel_id_array:clientChannelIdArray,
                         offset:0
                     },
                     success: function (data) {
