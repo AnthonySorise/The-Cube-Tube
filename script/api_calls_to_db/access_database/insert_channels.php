@@ -2,7 +2,6 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $channel_title = $_POST['channel_title'];
 $description = $_POST['description'];
@@ -28,15 +27,16 @@ description = ?,
 thumbnail_file_name = ?, 
 date_created=?,
 last_channel_pull=?");
-    $stmt->bind_param('ssssss',$channel_title,$youtube_channel_id,$description,$thumbnail,$date_created,$last_channel_pull);
-    $stmt->execute();
-    if(empty($stmt)){
-        $output['errors'][]='invalid query';
+$stmt->bind_param('ssssss',$channel_title,$youtube_channel_id,
+$description,$thumbnail,$date_created,$last_channel_pull);
+$stmt->execute();
+if(empty($stmt)){
+    $output['errors'][]='invalid query';
+}else{
+    if(mysqli_affected_rows($conn)>0){
+        $output['success'] = true;
     }else{
-        if(mysqli_affected_rows($conn)>0){
-            $output['success'] = true;
-        }else{
-            $output['errors'][]='UNABLE TO INSERT';
-        }
+        $output['errors'][]='UNABLE TO INSERT';
     }
+}
 ?>

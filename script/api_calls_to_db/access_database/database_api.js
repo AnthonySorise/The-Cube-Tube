@@ -117,7 +117,7 @@
                 }
             },
             errors:function(data){
-                console.log(data['read errors'], data);
+                console.log(data['errors'], data);
             }
         })
     }

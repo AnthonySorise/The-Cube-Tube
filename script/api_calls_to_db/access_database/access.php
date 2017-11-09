@@ -1,9 +1,7 @@
 <?php
 sesson_start();
-require_once('mysql_connect.php');
-$output['test'][]="here";
-output_and_exit();
 $LOCAL_ACCESS = true;
+require_once('mysql_connect.php');
 $output = [
     'success' => false,
     'errors' => [],
@@ -13,8 +11,7 @@ if(isset($_SESSION['user_link'])){
 }
 if(empty($_POST['action'])){
     $output['errors'][] = 'No action specified';
-    print(json_encode($output));
-    exit();
+    output_and_exit();
 }
 function output_and_exit(){
     global $output;
