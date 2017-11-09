@@ -13,9 +13,16 @@ $offset = $_POST['offset'];
 if(empty($youtube_array)){
     $output['errors'][] = 'MISSING YOUTUBE ARRAY';
 }
+
 if(!isset($offset)){
     $output['errors'][] = 'MISSING OFFSET';
 }
+//TM87
+if(!preg_match('/0-9]+/', $offset)){
+    $output['errors'][] = 'INVALID OFFSET';
+    out_put_and_exit($output);
+}
+
 $in_stmt = implode(',', array_fill(0, count($youtube_array), '?'));
 $stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at, v.video_title, c.channel_title, c.youtube_channel_id
 FROM videos AS v JOIN channels AS c ON v.youtube_channel_id = c.youtube_channel_id
