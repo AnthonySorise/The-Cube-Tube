@@ -46,6 +46,11 @@ body {
 
 /**styling for navbar area**/
 
+.btn-danger {
+	margin-top: 10px;
+    height: 34px;
+}
+
 .hamburger {
 	display: none !important;
 }
@@ -801,6 +806,11 @@ input:checked+.slider {
 	border-radius: 3px;
 	padding: 12px;
 	margin: 0 auto;
+}
+
+.timeline-wrapper {
+	width: 100%;
+    height: 175%;
 }
 
 @keyframes placeHolderShimmer {
