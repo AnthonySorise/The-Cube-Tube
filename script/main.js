@@ -732,7 +732,9 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     console.log("Retrieve Videos From You Tube", data);
                     ytVideoApiToDb(channelID, "", true, isAdding);
                     ytChannelApiToDb(channelID, isAdding);
+                    console.log("LOAD CLIENT VIDEOS,", clientVideoObjectArray)
                     loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
+
                 }
             }
         },
@@ -745,6 +747,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
 function loadClientVideoObjectArray() {
     if (clientVideoObjectArray === null) {
+        console.log(clientVideoObjectArray === null)
         setTimeout(loadClientVideoObjectArray, 50);
         return
     }
