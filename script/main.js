@@ -905,9 +905,17 @@ function checkIfPlayer2IsMuted() {
 function returnToPageOne(){
     if(currentSlideNumber !== 1){
         //show backwards animation
-        currentSlideNumber = 2;
-        $(".carousel").carousel('prev');
-        $(".carousel").carousel(0);
+
+        if(currentSlideNumber % 2 === 0)
+        {
+            currentSlideNumber = 2;
+            $(".carousel").carousel('prev');
+        }
+        else
+        {
+            currentSlideNumber = 2;
+            $(".carousel").carousel(0);
+        }
         //
         //find and load data into list
         currentSlideNumber = 1; //redundant?
@@ -915,7 +923,7 @@ function returnToPageOne(){
         for(var i = 0; i < 40; i++){
             videosToLoad.push(clientVideoObjectArray[i])
         }
-        console.log("VIDEOS TO LOAD", videosToLoad);
+        console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
         setTimeout(function(){
             clearVideoList();
             renderVideoList(videosToLoad)
