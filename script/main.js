@@ -663,7 +663,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                                     },
                                     success: function (data) {
                                         if (data.success) {
-                                            console.log('YouTube videos added to database - clientVideoList created', data);
+                                            console.log('YouTube videos added to database - clientVideoList created', packageToSendToDb);
                                             loadClientVideoObjectArray(clientVideoObjectArray)
                                         }
                                     },
@@ -754,9 +754,6 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     console.log("Retrieve Videos From You Tube", data);
                     ytVideoApiToDb(channelID, "", true, isAdding);
                     ytChannelApiToDb(channelID, isAdding);
-                    console.log("LOAD CLIENT VIDEOS,", clientVideoObjectArray)
-
-
                 }
             }
         },
@@ -773,6 +770,7 @@ function loadClientVideoObjectArray() {
         setTimeout(loadClientVideoObjectArray, 50);
         return
     }
+    console.log("LOADING VIDEO LIST")
     renderVideoList(clientVideoObjectArray);
 }
 
