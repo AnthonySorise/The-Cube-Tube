@@ -51,10 +51,10 @@ if(empty($channel_id)){
     output_and_exit();
 }
 //tm87
-if(!preg_match('/[a-zA-Z0-9\-\_]{24}/', $channel_id)){
-    $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
-    out_put_and_exit($output);
-}
+// if(!preg_match('/[a-zA-Z0-9\-\_]{24}/', $channel_id)){
+//     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
+//     output_and_exit($output);
+// }
 
 $stmt = $conn->prepare("SELECT * FROM channels_to_users WHERE user_id=? AND channel_id=?");
 $stmt->bind_param('ii',$user_id,$channel_id);

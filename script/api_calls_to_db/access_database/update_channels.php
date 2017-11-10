@@ -13,7 +13,7 @@ if(empty($channel_title)){
 //TM87
 if(!preg_match('/[a-zA-Z0-9]{6,20}/', $channel_title)){
     $output['errors'][] = 'INVALID YOUTUBE CHANNEL TITLE';
-    out_put_and_exit($output);
+    output_and_exit($output);
 }
 if(empty($description)){
     $output['errors'][] = "MISSING CHANNEL DESCRIPTION";
@@ -25,10 +25,10 @@ if(empty($channel_id)){
     $output['errors'][] = "MISSING ID";
 }
 //tm87
-if(!preg_match('/[a-zA-Z0-9\-\_]{24}/', $channel_id)){
-    $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
-    out_put_and_exit($output);
-}
+// if(!preg_match('/[a-zA-Z0-9\-\_]{24}/', $channel_id)){
+//     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
+//     output_and_exit($output);
+// }
 $stmt=$conn->prepare("UPDATE channels SET 
 channel_title = ?,  
 description = ?, 
