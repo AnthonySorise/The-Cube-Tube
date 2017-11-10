@@ -680,6 +680,9 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                 }
 
             }
+            else{
+                access_database.insert_video(packageToSendToDb);
+            }
 
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
                 ytVideoApiToDb(channelId, data.nextPageToken, false)
