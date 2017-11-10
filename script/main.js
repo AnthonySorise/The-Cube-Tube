@@ -82,8 +82,11 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
     clearVideoList();   //hides list rows until they are needed
-    iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
-    $('.lightBoxMode').css('left', iframeRight+'px');
+    setTimeout(()=>{
+        iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
+        $('.lightBoxMode').css('left', iframeRight+'px');
+    },200);
+    
 });
 
 
