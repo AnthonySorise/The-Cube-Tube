@@ -2,10 +2,10 @@ var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 
-var clientVideoObjectArray = null;
+var videoObjectsToLoad = null;
 
-var clientSelectedChannelObjectArray = null;
-var clientSelectedChannelIdArray = null;
+var clientSelectedChannelObjects = [];
+var clientSelectedChannelIds = [];
 
 var clientSubscribedChannelIds = [];
 var clientSubscribedChannelObjects = [];
@@ -594,11 +594,10 @@ function ytChannelApiToDb(channelId, isAdding = false) {
             access_database.insert_channel(channelDbObject);
 
 
-            if(clientSelectedChannelObjectArray === null || !isAdding){
-                clientSelectedChannelObjectArray = [];
+            if(!isAdding){
+                clientSelectedChannelObjects = [];
             }
-            if(isAdding) {
-
+            else{
                 clientSubscribedChannelObjects.push(channelDbObject);
             }
 
@@ -649,8 +648,8 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                     for (var i = 0; i < 40; i++) {
                         clientPackage.push(packageToSendToDb[i])
                     }
-                    clientVideoObjectArray = clientPackage
-                    loadClientVideoObjectArray(clientVideoObjectArray)
+                    videoObjectsToLoad = clientPackage
+                    loadClientVideoObjectArray(videoObjectsToLoad)
                     access_database.insert_video(packageToSendToDb);
                 }
                 else{
@@ -670,14 +669,14 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                                     dataType: 'JSON',
                                     data: {
                                         action:'read_videos_by_channel_array',
-                                        channel_id_array:clientSelectedChannelIdArray,
+                                        channel_id_array:clientSelectedChannelIds,
                                         offset:0
                                     },
                                     success: function (data) {
                                         if (data.success) {
-                                            clientVideoObjectArray = data.data;
-                                            console.log('YouTube videos added to database - clientVideoList created', clientVideoObjectArray);
-                                            loadClientVideoObjectArray(clientVideoObjectArray)
+                                            videoObjectsToLoad = data.data;
+                                            console.log('YouTube videos added to database - clientVideoList created', videoObjectsToLoad);
+                                            loadClientVideoObjectArray(videoObjectsToLoad)
                                         }
                                     },
                                     errors: function (data) {
@@ -708,15 +707,16 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 }
 
 function manageDatabaseWithChannelId (channelID, isAdding = false){
-    clientVideoObjectArray = null;
+    videoObjectsToLoad = null;
 
-    if(clientSelectedChannelIdArray === null || !isAdding){
-        clientSelectedChannelIdArray = [];
+    if(!isAdding){
+        clientSelectedChannelIds = [];
     }
-    clientSelectedChannelIdArray.push(channelID);
-    if(isAdding){
+    else{
+
         clientSubscribedChannelIds.push(channelID);
     }
+    clientSelectedChannelIds.push(channelID);
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -733,29 +733,28 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                 console.log('Channel Found', data);
                 data.youtube_channel_id = channelID;
 
-                if(clientSelectedChannelObjectArray === null || !isAdding){
-                    clientSelectedChannelObjectArray = [];
+                if(!isAdding){
+                    clientSelectedChannelObjects = [];
                 }
-                if(isAdding) {
-
+                else{
                     clientSubscribedChannelObjects.push(data.data[0]);
                 }
 
-                clientSelectedChannelObjectArray.push(data.data[0]);
+                clientSelectedChannelObjects.push(data.data[0]);
                 $.ajax({    //RETRIEVE VIDEOS FROM DB
                     url: './script/api_calls_to_db/access_database/access.php',
                     method: 'POST',
                     dataType: 'JSON',
                     data: {
                         action:'read_videos_by_channel_array',
-                        channel_id_array:clientSelectedChannelIdArray,
+                        channel_id_array:clientSelectedChannelIds,
                         offset:0
                     },
                     success: function (data) {
                         if (data.success) {
                             // promise.resolve(data);
                             console.log('Videos Found', data);
-                            clientVideoObjectArray = data.data;
+                            videoObjectsToLoad = data.data;
 
                             loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                         }
@@ -785,13 +784,13 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 }
 
 function loadClientVideoObjectArray() {
-    if (clientVideoObjectArray === null) {
-        console.log(clientVideoObjectArray === null)
+    if (videoObjectsToLoad === null) {
+        console.log(videoObjectsToLoad === null)
         setTimeout(loadClientVideoObjectArray, 50);
         return
     }
     console.log("LOADING VIDEO LIST")
-    renderVideoList(clientVideoObjectArray);
+    renderVideoList(videoObjectsToLoad);
 }
 
 function handleBrowseButton() {
@@ -811,9 +810,12 @@ function handleBrowseButton() {
 }
 
 function handleAddButton(){
+    //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
+
+
     if(browsingMode){
-        clientSelectedChannelIdArray = [];
-        clientSelectedChannelObjectArray = [];
+        clientSelectedChannelIds = [];
+        clientSelectedChannelObjects = [];
     }
 
     browsingMode = false;
@@ -974,7 +976,7 @@ function returnToPageOne(){
         currentSlideNumber = 1; //redundant?
         var videosToLoad = [];
         for(var i = 0; i < 40; i++){
-            videosToLoad.push(clientVideoObjectArray[i])
+            videosToLoad.push(videoObjectsToLoad[i])
         }
         console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
         setTimeout(function(){
@@ -1036,7 +1038,7 @@ function loadNextPage(){
         var pageToLoad = (currentSlideNumber - 1) / 2;
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
-        if(clientVideoObjectArray.length < indexToStartOn+40){
+        if(videoObjectsToLoad.length < indexToStartOn+40){
             // $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
@@ -1044,7 +1046,7 @@ function loadNextPage(){
                 dataType: 'JSON',
                 data: {
                     action:'read_videos_by_channel_array',
-                    channel_id_array:clientSelectedChannelIdArray,
+                    channel_id_array:clientSelectedChannelIds,
                     offset:indexToStartOn
                 },
                 success: function (data) {
@@ -1052,10 +1054,10 @@ function loadNextPage(){
                         // promise.resolve(data);
                         console.log('read success', data);
                         for(var i = 0; i < data.data.length; i++){
-                            clientVideoObjectArray.push(data.data[i])
+                            videoObjectsToLoad.push(data.data[i])
                         }
                         for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                            videosToLoad.push(clientVideoObjectArray[i])
+                            videosToLoad.push(videoObjectsToLoad[i])
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
                         setTimeout(function(){
@@ -1074,7 +1076,7 @@ function loadNextPage(){
         }
         else{
             for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                videosToLoad.push(clientVideoObjectArray[i])
+                videosToLoad.push(videoObjectsToLoad[i])
             }
             console.log("VIDEOS TO LOAD", videosToLoad)
             setTimeout(function(){
@@ -1093,7 +1095,7 @@ function loadPreviousPage(){
 
 
         for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-            videosToLoad.push(clientVideoObjectArray[i])
+            videosToLoad.push(videoObjectsToLoad[i])
         }
         console.log("VIDEOS TO LOAD", videosToLoad);
         setTimeout(function(){
