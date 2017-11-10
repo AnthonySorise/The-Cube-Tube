@@ -557,7 +557,7 @@ function renderVideoList(videoArray) {
         }
 
 
-    }, 350);
+    }, 750);
 
 }
 
