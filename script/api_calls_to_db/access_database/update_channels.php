@@ -11,10 +11,10 @@ if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }
 //TM87
-if(!preg_match('/[a-zA-Z0-9]{6,20}/', $channel_title)){
-    $output['errors'][] = 'INVALID YOUTUBE CHANNEL TITLE';
-    output_and_exit($output);
-}
+// if(!preg_match('/[a-zA-Z0-9]{6,20}/', $channel_title)){
+//     $output['errors'][] = 'INVALID YOUTUBE CHANNEL TITLE';
+//     output_and_exit($output);
+// }
 if(empty($description)){
     $output['errors'][] = "MISSING CHANNEL DESCRIPTION";
 }
@@ -42,7 +42,6 @@ if(empty($stmt)){
 }else{
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
-        $output['id'] = mysqli_insert_id($conn);
     }else{
         $output['errors'][]='UNABLE TO UPDATE';
     }

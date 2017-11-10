@@ -13,10 +13,6 @@ if(empty($offset)){
 //     output_and_exit($output);
 // }
 
-if(empty($user_id)){
-    $output['errors'][] = "MISSING USER ID";
-}
-
 $stmt = $conn->prepare("SELECT v.youtube_video_id, v.description, v.published_at 
 FROM videos AS v
 JOIN channels_to_users AS c on v.channel_id = c.channel_id
