@@ -46,19 +46,23 @@ body {
 .hamburger {
 	display: none !important;
 }
+#mainNav{
+	background-color: rgb(20,20,20);
+}
 .navbar-toggle {
 	margin-bottom: 0;
 }
 .navbar-brand {
 	font-size: 22px;
 	margin-right: 20px;
-	color: rgb(40, 40, 40);
+	/*color: rgb(40, 40, 40);*/
 	font-family: 'Audiowide', sans-serif;
 	letter-spacing: -1.5px;
 	/*padding: 10px 10px;*/
 	padding: 0;
 	padding-left: 15px;
 	/*line-height: 2.6;*/
+	color: white;
 }
 #cubeTubeLogo{
 	display: inline-block;
