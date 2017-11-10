@@ -697,7 +697,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                 console.log('Channel Found', data);
                 data.youtube_channel_id = channelID;
 
-                if(!isAdding){
+                if(clientChannelObjectArray === null){
                     clientChannelObjectArray = [];
                 }
                 clientChannelObjectArray.push(data.data[0]);
