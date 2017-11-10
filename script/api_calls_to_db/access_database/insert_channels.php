@@ -14,7 +14,7 @@ if(empty($youtube_channel_id)){
 //tm87
 if(!preg_match('/[a-zA-Z0-9\-\_]{24}/', $youtube_channel_id)){
     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
-    out_put_and_exit($output);
+    output_and_exit($output);
 }
 if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
@@ -22,7 +22,7 @@ if(empty($channel_title)){
 //tm87
 if(!preg_match('/[a-zA-Z0-9]{6,20}/', $channel_title)){
     $output['errors'][] = 'INVALID YOUTUBE CHANNEL TITLE';
-    out_put_and_exit($output);
+    output_and_exit($output);
 }
 
 if(empty($description)){
