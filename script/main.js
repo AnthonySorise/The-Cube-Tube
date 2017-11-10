@@ -675,7 +675,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 function manageDatabaseWithChannelId (channelID, isAdding = false){
     clientVideoObjectArray = null;
 
-    if(!isAdding){
+    if(clientChannelIdArray === null){
         clientChannelIdArray = [];
     }
 
