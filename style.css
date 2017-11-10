@@ -132,13 +132,14 @@ body {
 *********************************************************************/
 
 body>.container-fluid {
-	padding-top: 51px;
+	/*padding-top: 51px;*/
+	padding-top: 54px;
 	/*removes navbar overlap*/
 	padding-right: 0;
 	padding-left: 0;
 }
 .main-content {
-	height: 94vh;
+	height: 94.3vh;
 }
 
 /********************************************************************
@@ -220,7 +221,8 @@ body>.container-fluid {
 * list is generated below the middle navbar 			  	*
 *************************************************************/
 .videoListRowWrapper {
-	height: 46.5%;
+	/*height: 46.5%;*/
+	height: 47%;
 	padding: 0;
 	/*border: 2px solid red;*/
 	/*overflow: auto;*/
@@ -758,10 +760,16 @@ safer appraoch than to resizing browser to see change
 	}
 	/*end of hamburger/navbar css*/
 	body>.container-fluid {
-		padding-top: 56px;
+		/*padding-top: 56px;*/
+		/*padding-top: 50.4px;*/
+		padding-top: 49.9px;
 	}
 	.main-content {
-		height: 90vh;
+		/*height: 90vh;*/
+		height:96.3vh;
+	}
+	.videoRowWrapper{
+		height: 49%;
 	}
 	.mainVideo {
 		margin-top: 2%;
@@ -792,6 +800,9 @@ safer appraoch than to resizing browser to see change
 	}
 }
 @media only screen and (max-width: 991px) {
+	.main-content{
+		height: 94vh;
+	}
 	.carousel-control {
 		height: 75vh;
 	}
@@ -807,12 +818,25 @@ safer appraoch than to resizing browser to see change
 	.navbar-header{
 		width: auto;
 	}
+	.main-content{
+		height: 93vh;
+	}
 	#mainVideo {
 		height: 100%;
 		width: 100vw;
 	}
+	body>.container-fluid {
+		/*padding-top: 56px;*/
+		padding-top: 51.4px;
+	}
+	.videoRowWrapper{
+		height: 47%;
+	}
 	.vidRowVideoCol {
 		padding: 0;
+	}
+	.videoListRowWrapper{
+		height: 45%;
 	}
 	/* Added these 6 css selectors to make mobile modal fit */
 	small {
