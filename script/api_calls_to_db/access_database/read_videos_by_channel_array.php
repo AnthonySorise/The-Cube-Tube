@@ -18,7 +18,7 @@ if(!isset($offset)){
     $output['errors'][] = 'MISSING OFFSET';
 }
 //TM87
-if(!preg_match('/0-9]+/', $offset)){
+if(!preg_match('/[0-9]+/', $offset)){
     $output['errors'][] = 'INVALID OFFSET';
     output_and_exit($output);
 }
