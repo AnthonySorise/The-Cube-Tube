@@ -20,7 +20,7 @@ if(!isset($offset)){
 //TM87
 if(!preg_match('/0-9]+/', $offset)){
     $output['errors'][] = 'INVALID OFFSET';
-    out_put_and_exit($output);
+    output_and_exit($output);
 }
 
 $in_stmt = implode(',', array_fill(0, count($youtube_array), '?'));

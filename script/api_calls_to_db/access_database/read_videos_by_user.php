@@ -10,7 +10,7 @@ if(empty($offset)){
 //tm87
 if(!preg_match('/[0-9]+/', $offset)){
     $output['errors'][] = 'INVALID OFFSET';
-    out_put_and_exit($output);
+    output_and_exit($output);
 }
 
 if(empty($user_id)){
