@@ -904,15 +904,21 @@ function checkIfPlayer2IsMuted() {
 
 function returnToPageOne(){
     if(currentSlideNumber !== 1){
+        //show backwards animation
         $(".carousel").carousel('prev');
         $(".carousel").carousel(0);
-    }
-    // $(".carousel").addClass('slide')    //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
-    // $(".carousel").show();
-    if(currentSlideNumber !==1){
-        currentSlideNumber = 2;
-        loadPreviousPage();
+        //
+        //find and load data into list
         currentSlideNumber = 1;
+        var videosToLoad = [];
+        for(var i = 0; i < 40; i++){
+            videosToLoad.push(clientVideoObjectArray[i])
+        }
+        console.log("VIDEOS TO LOAD", videosToLoad);
+        setTimeout(function(){
+            clearVideoList();
+            renderVideoList(videosToLoad)
+        }, 250)
     }
     displayCurrentPageNumber();
 }
