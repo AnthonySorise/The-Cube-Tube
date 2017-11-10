@@ -3,11 +3,16 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 
 var clientVideoObjectArray = null;
-var clientChannelObjectArray = null;
-var clientChannelIdArray = null;
+
+var clientSelectedChannelObjectArray = null;
+var clientSelectedChannelIdArray = null;
+
+var clientSubscribedChannelIds = [];
+var clientSubscribedChannelObjects = [];
 
 var currentSlideNumber = 1;
 
+var browsingMode = false;
 
 let currentVolumeLevel = null;
 
@@ -585,10 +590,15 @@ function ytChannelApiToDb(channelId, isAdding = false) {
 
             access_database.insert_channel(channelDbObject);
 
-            if(!isAdding){
-                clientChannelObjectArray = [];
+
+            if(clientSelectedChannelObjectArray === null || !isAdding){
+                clientSelectedChannelObjectArray = [];
             }
-            clientChannelObjectArray.push(channelDbObject);
+            if(isAdding) {
+
+                clientSubscribedChannelObjects.push(channelDbObject);
+            }
+
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -657,7 +667,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                                     dataType: 'JSON',
                                     data: {
                                         action:'read_videos_by_channel_array',
-                                        channel_id_array:clientChannelIdArray,
+                                        channel_id_array:clientSelectedChannelIdArray,
                                         offset:0
                                     },
                                     success: function (data) {
@@ -697,12 +707,13 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 function manageDatabaseWithChannelId (channelID, isAdding = false){
     clientVideoObjectArray = null;
 
-    if(clientChannelIdArray === null || !isAdding){
-        clientChannelIdArray = [];
+    if(clientSelectedChannelIdArray === null || !isAdding){
+        clientSelectedChannelIdArray = [];
     }
-
-    clientChannelIdArray.push(channelID);
-
+    clientSelectedChannelIdArray.push(channelID);
+    if(isAdding){
+        clientSubscribedChannelIds.push(channelID);
+    }
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -719,17 +730,22 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                 console.log('Channel Found', data);
                 data.youtube_channel_id = channelID;
 
-                if(clientChannelObjectArray === null){
-                    clientChannelObjectArray = [];
+                if(clientSelectedChannelObjectArray === null || !isAdding){
+                    clientSelectedChannelObjectArray = [];
                 }
-                clientChannelObjectArray.push(data.data[0]);
+                if(isAdding) {
+
+                    clientSubscribedChannelObjects.push(data.data[0]);
+                }
+
+                clientSelectedChannelObjectArray.push(data.data[0]);
                 $.ajax({    //RETRIEVE VIDEOS FROM DB
                     url: './script/api_calls_to_db/access_database/access.php',
                     method: 'POST',
                     dataType: 'JSON',
                     data: {
                         action:'read_videos_by_channel_array',
-                        channel_id_array:clientChannelIdArray,
+                        channel_id_array:clientSelectedChannelIdArray,
                         offset:0
                     },
                     success: function (data) {
@@ -737,6 +753,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                             // promise.resolve(data);
                             console.log('Videos Found', data);
                             clientVideoObjectArray = data.data;
+
                             loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                         }
                         else{
@@ -775,6 +792,8 @@ function loadClientVideoObjectArray() {
 }
 
 function handleBrowseButton() {
+    browsingMode = true;
+
     clearVideoList();
     // createPlaceholderAnimation();
 
@@ -789,6 +808,13 @@ function handleBrowseButton() {
 }
 
 function handleAddButton(){
+    if(browsingMode){
+        clientSelectedChannelIdArray = [];
+        clientSelectedChannelObjectArray = [];
+    }
+
+    browsingMode = false;
+
     clearVideoList();
     // createPlaceholderAnimation();
 
@@ -1015,7 +1041,7 @@ function loadNextPage(){
                 dataType: 'JSON',
                 data: {
                     action:'read_videos_by_channel_array',
-                    channel_id_array:clientChannelIdArray,
+                    channel_id_array:clientSelectedChannelIdArray,
                     offset:indexToStartOn
                 },
                 success: function (data) {
