@@ -7,6 +7,12 @@ $youtube_channel_id = $_POST['youtube_channel_id'];
 if(empty($youtube_channel_id)){
     $output['errors'][] = 'MISSING ID';
 }
+//tm87
+if(!preg_match('/[a-zA-Z0-9\-\_]{24}/', $youtube_channel_id)){
+    $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
+    out_put_and_exit($output);
+}
+
 $sqli =  "SELECT channel_title, 
 description,thumbnail_file_name 
 FROM channels WHERE youtube_channel_id = ? ";
