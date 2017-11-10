@@ -646,24 +646,23 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                         method: 'POST',
                         dataType: 'JSON',
                         data: {
-                            action:'read_videos_by_channel_array',
-                            channel_id_array:clientChannelIdArray,
-                            offset:0
+                            action: 'insert_video',
+                            videoArray: packageToSendToDb
                         },
                         success: function (data) {
                             if (data.success) {
-                                console.log("DATA", data)
-                                clientVideoObjectArray = data.data;
                                 $.ajax({
                                     url: './script/api_calls_to_db/access_database/access.php',
                                     method: 'POST',
                                     dataType: 'JSON',
                                     data: {
-                                        action: 'insert_video',
-                                        videoArray: packageToSendToDb
+                                        action:'read_videos_by_channel_array',
+                                        channel_id_array:clientChannelIdArray,
+                                        offset:0
                                     },
                                     success: function (data) {
                                         if (data.success) {
+                                            clientVideoObjectArray = data.data;
                                             console.log('YouTube videos added to database - clientVideoList created', clientVideoObjectArray);
                                             loadClientVideoObjectArray(clientVideoObjectArray)
                                         }
