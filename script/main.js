@@ -712,7 +712,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
     if(!isAdding){
         clientSelectedChannelIds = [];
     }
-    else(isAdding){
+    else{
 
         clientSubscribedChannelIds.push(channelID);
     }
