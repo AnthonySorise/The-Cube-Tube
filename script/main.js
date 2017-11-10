@@ -903,8 +903,10 @@ function checkIfPlayer2IsMuted() {
 }
 
 function returnToPageOne(){
-    $(".carousel").carousel('prev');
-    $(".carousel").carousel(0); 
+    if(currentSlideNumber !== 1){
+        $(".carousel").carousel('prev');
+        $(".carousel").carousel(0);
+    }
     // $(".carousel").addClass('slide')    //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
     // $(".carousel").show();
     if(currentSlideNumber !==1){
