@@ -25,10 +25,10 @@ for($i = 0; $i<count($video_array); $i++ ){
         $output['errors'][] = 'YOUTUBE MISSING VIDEO ID';
     }
     //tm87
-    if(!preg_match('[a-zA-Z0-9\-\_]{11}/',$youtube_video_id)){
-        $output['errors'][] = 'INVALID YOUTUBE VIDEO ID';
-        output_and_exit($output);
-    }
+    // if(!preg_match('[a-zA-Z0-9\-\_]{11}/',$youtube_video_id)){
+    //     $output['errors'][] = 'INVALID YOUTUBE VIDEO ID';
+    //     output_and_exit($output);
+    // }
     if (empty($description)) {
         $output['errors'][] = 'MISSING VIDEO DESCRIPTION';
     }

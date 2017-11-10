@@ -8,10 +8,10 @@ if(empty($offset)){
     $output['errors'][] = 'MISSING OFFSET';
 }
 //tm87
-if(!preg_match('/[0-9]+/', $offset)){
-    $output['errors'][] = 'INVALID OFFSET';
-    output_and_exit($output);
-}
+// if(!preg_match('/[0-9]+/', $offset)){
+//     $output['errors'][] = 'INVALID OFFSET';
+//     output_and_exit($output);
+// }
 
 if(empty($user_id)){
     $output['errors'][] = "MISSING USER ID";
