@@ -637,6 +637,8 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                         clientPackage.push(packageToSendToDb[i])
                     }
                     clientVideoObjectArray = clientPackage
+                    loadClientVideoObjectArray(clientVideoObjectArray)
+                    access_database.insert_video(packageToSendToDb);
                 }
                 else{
                     $.ajax({
@@ -650,8 +652,25 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                         },
                         success: function (data) {
                             if (data.success) {
-                                console.log('YouTube videos found and will be added to database', data);
-                                clientVideoObjectArray = data.data;
+                                $.ajax({
+                                    url: './script/api_calls_to_db/access_database/access.php',
+                                    method: 'POST',
+                                    dataType: 'JSON',
+                                    data: {
+                                        action: 'insert_video',
+                                        videoArray: videoArray
+                                    },
+                                    success: function (data) {
+                                        if (data.success) {
+                                            console.log('YouTube videos added to database - clientVideoList created', data);
+                                            clientVideoObjectArray = data.data;
+                                            loadClientVideoObjectArray(clientVideoObjectArray)
+                                        }
+                                    },
+                                    errors: function (data) {
+                                        console.log('insert error', data);
+                                    }
+                                })
                             }
                         },
                         errors: function (data) {
@@ -659,8 +678,8 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                         }
                     })
                 }
+
             }
-            access_database.insert_video(packageToSendToDb);
 
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
                 ytVideoApiToDb(channelId, data.nextPageToken, false)
@@ -733,7 +752,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     ytVideoApiToDb(channelID, "", true, isAdding);
                     ytChannelApiToDb(channelID, isAdding);
                     console.log("LOAD CLIENT VIDEOS,", clientVideoObjectArray)
-                    loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
+
 
                 }
             }
