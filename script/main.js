@@ -702,6 +702,7 @@ function manageDatabaseWithChannelId (channelID){
 
     returnToPageOne();
 
+
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
         method:'post',
@@ -911,8 +912,9 @@ function checkIfPlayer2IsMuted() {
 }
 
 function returnToPageOne(){
-    // $(".carousel").hide();
-    $(".carousel").carousel(0);     //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
+    $(".carousel").carousel('prev');
+    $(".carousel").carousel(0); 
+    // $(".carousel").addClass('slide')    //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
     // $(".carousel").show();
     if(currentSlideNumber !==1){
         currentSlideNumber = 2;
