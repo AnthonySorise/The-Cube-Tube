@@ -909,13 +909,13 @@ function returnToPageOne(){
         if(currentSlideNumber % 2 === 0)
         {
             currentSlideNumber = 2;
-            $(".carousel").carousel('prev');
+            $(".carousel").carousel(0);
         }
         else
         {
             currentSlideNumber = 3;
             $(".carousel").carousel('prev');
-            $(".carousel").carousel('prev');
+            $(".carousel").carousel(0);
         }
         //
         //find and load data into list
