@@ -913,9 +913,9 @@ function returnToPageOne(){
         }
         else
         {
-            currentSlideNumber = 3;
-            $(".carousel").carousel('prev');
-            $(".carousel").carousel(0);
+            // currentSlideNumber = 3;
+            // $(".carousel").carousel('prev');
+            // $(".carousel").carousel(0);
         }
         //
         //find and load data into list
