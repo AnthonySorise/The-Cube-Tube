@@ -652,6 +652,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                         },
                         success: function (data) {
                             if (data.success) {
+                                var clientPackage = data.data;
                                 $.ajax({
                                     url: './script/api_calls_to_db/access_database/access.php',
                                     method: 'POST',
@@ -664,7 +665,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                                         if (data.success) {
                                             console.log('YouTube videos added to database - clientVideoList created', data);
                                             clientVideoObjectArray = data.data;
-                                            loadClientVideoObjectArray(clientVideoObjectArray)
+                                            loadClientVideoObjectArray(clientPackage)
                                         }
                                     },
                                     errors: function (data) {
