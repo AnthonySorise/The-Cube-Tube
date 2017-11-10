@@ -47,7 +47,7 @@ $(window).resize(function(){
     }else{
         displayTableDataOnDesktop()
     }
-    iframeRight = $('#mainVideo').position().left + $('#mainVideo').width() + 54;
+    iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
     $('.lightBoxMode').css('left', iframeRight+'px');
 })
 
@@ -82,7 +82,7 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
     clearVideoList();   //hides list rows until they are needed
-    iframeRight = $('#mainVideo').position().left + $('#mainVideo').width() + 54;
+    iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
     $('.lightBoxMode').css('left', iframeRight+'px');
 });
 
