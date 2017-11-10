@@ -712,6 +712,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
     }
     clientSelectedChannelIdArray.push(channelID);
     if(isAdding){
+
         clientSubscribedChannelIds.push(channelID);
     }
 
@@ -808,6 +809,9 @@ function handleBrowseButton() {
 }
 
 function handleAddButton(){
+    //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIdArray and and clientSelectedChannelObjectArray
+
+
     if(browsingMode){
         clientSelectedChannelIdArray = [];
         clientSelectedChannelObjectArray = [];
