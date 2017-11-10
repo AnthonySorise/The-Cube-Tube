@@ -130,6 +130,7 @@ function clickHandler() {
     });
     //Browse Button
     $('.browseChannelButton').on("click", handleBrowseButton);
+    $('.addChannelButton').on("click", handleAddButton);
 
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
@@ -755,10 +756,6 @@ function handleBrowseButton() {
     // createPlaceholderAnimation();
 
     returnToPageOne();
-    //reset page
-    // currentSlideNumber = 1;
-    // $(".carousel").carousel(0);
-    // displayCurrentPageNumber();
 
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
@@ -773,13 +770,9 @@ function handleAddButton(){
     // createPlaceholderAnimation();
 
     returnToPageOne();
-    //reset page
-    // currentSlideNumber = 1;
-    // $(".carousel").carousel(0);
-    // displayCurrentPageNumber();
 
     let channelID = $(this).parent().attr("channelId");
-    manageDatabaseWithChannelId(channelID);
+    manageDatabaseWithChannelId(channelID, true);
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
