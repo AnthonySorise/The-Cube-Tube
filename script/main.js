@@ -39,7 +39,7 @@ var player;
 var player2;
 
 /*******needed for iframe player*******/
-
+let iframeRight = 0;
 $(window).resize(function(){
     let windowWidth = ($(window).width());
     if(windowWidth <= 768){
@@ -47,6 +47,8 @@ $(window).resize(function(){
     }else{
         displayTableDataOnDesktop()
     }
+    iframeRight = $('#mainVideo').position().left + $('#mainVideo').width() + 54;
+    $('.lightBoxMode').css('left', iframeRight+'px');
 })
 
 
@@ -80,7 +82,8 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
     clearVideoList();   //hides list rows until they are needed
-
+    iframeRight = $('#mainVideo').position().left + $('#mainVideo').width() + 54;
+    $('.lightBoxMode').css('left', iframeRight+'px');
 });
 
 
