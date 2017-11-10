@@ -27,7 +27,6 @@ if(empty($stmt)){
 }else{
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
-        $output['id'] = mysqli_insert_id($conn);
     }else{
         $output['errors'][]='UNABLE TO UPDATE';
     }
