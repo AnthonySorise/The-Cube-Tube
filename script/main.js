@@ -905,11 +905,12 @@ function checkIfPlayer2IsMuted() {
 function returnToPageOne(){
     if(currentSlideNumber !== 1){
         //show backwards animation
+        currentSlideNumber = 2;
         $(".carousel").carousel('prev');
         $(".carousel").carousel(0);
         //
         //find and load data into list
-        currentSlideNumber = 1;
+        currentSlideNumber = 1; //redundant?
         var videosToLoad = [];
         for(var i = 0; i < 40; i++){
             videosToLoad.push(clientVideoObjectArray[i])
