@@ -632,7 +632,6 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 
             if(firstRun){
                 if(!isAdding) {
-                    clientVideoObjectArray = [];
                     var clientPackage = [];
                     for (var i = 0; i < 40; i++) {
                         clientPackage.push(packageToSendToDb[i])
@@ -651,7 +650,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                         },
                         success: function (data) {
                             if (data.success) {
-                                console.log('read success', data);
+                                console.log('YouTube videos found and will be added to database', data);
                                 clientVideoObjectArray = data.data;
                             }
                         },
