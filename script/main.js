@@ -658,7 +658,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                                     dataType: 'JSON',
                                     data: {
                                         action: 'insert_video',
-                                        videoArray: videoArray
+                                        videoArray: packageToSendToDb
                                     },
                                     success: function (data) {
                                         if (data.success) {
