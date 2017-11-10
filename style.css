@@ -46,19 +46,23 @@ body {
 .hamburger {
 	display: none !important;
 }
+#mainNav{
+	background-color: rgb(20,20,20);
+}
 .navbar-toggle {
 	margin-bottom: 0;
 }
 .navbar-brand {
 	font-size: 22px;
 	margin-right: 20px;
-	color: rgb(40, 40, 40);
+	/*color: rgb(40, 40, 40);*/
 	font-family: 'Audiowide', sans-serif;
 	letter-spacing: -1.5px;
 	/*padding: 10px 10px;*/
 	padding: 0;
 	padding-left: 15px;
 	/*line-height: 2.6;*/
+	color: white;
 }
 #cubeTubeLogo{
 	display: inline-block;
@@ -128,13 +132,14 @@ body {
 *********************************************************************/
 
 body>.container-fluid {
-	padding-top: 51px;
+	/*padding-top: 51px;*/
+	padding-top: 54px;
 	/*removes navbar overlap*/
 	padding-right: 0;
 	padding-left: 0;
 }
 .main-content {
-	height: 94vh;
+	height: 94.3vh;
 }
 
 /********************************************************************
@@ -216,7 +221,8 @@ body>.container-fluid {
 * list is generated below the middle navbar 			  	*
 *************************************************************/
 .videoListRowWrapper {
-	height: 46.5%;
+	/*height: 46.5%;*/
+	height: 47%;
 	padding: 0;
 	/*border: 2px solid red;*/
 	/*overflow: auto;*/
@@ -754,10 +760,16 @@ safer appraoch than to resizing browser to see change
 	}
 	/*end of hamburger/navbar css*/
 	body>.container-fluid {
-		padding-top: 56px;
+		/*padding-top: 56px;*/
+		/*padding-top: 50.4px;*/
+		padding-top: 49.9px;
 	}
 	.main-content {
-		height: 90vh;
+		/*height: 90vh;*/
+		height:96.3vh;
+	}
+	.videoRowWrapper{
+		height: 49%;
 	}
 	.mainVideo {
 		margin-top: 2%;
@@ -788,6 +800,9 @@ safer appraoch than to resizing browser to see change
 	}
 }
 @media only screen and (max-width: 991px) {
+	.main-content{
+		height: 94vh;
+	}
 	.carousel-control {
 		height: 75vh;
 	}
@@ -803,12 +818,25 @@ safer appraoch than to resizing browser to see change
 	.navbar-header{
 		width: auto;
 	}
+	.main-content{
+		height: 93vh;
+	}
 	#mainVideo {
 		height: 100%;
 		width: 100vw;
 	}
+	body>.container-fluid {
+		/*padding-top: 56px;*/
+		padding-top: 51.4px;
+	}
+	.videoRowWrapper{
+		height: 47%;
+	}
 	.vidRowVideoCol {
 		padding: 0;
+	}
+	.videoListRowWrapper{
+		height: 45%;
 	}
 	/* Added these 6 css selectors to make mobile modal fit */
 	small {

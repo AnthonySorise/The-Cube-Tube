@@ -81,7 +81,7 @@ function searchVideosWithinChannel(){        //string = channel ID
         }
     })
 }
-
+var x = {}
 
 //Get video information from video ID
 function getVideoInfoFromVideoId(string) {
@@ -97,6 +97,7 @@ function getVideoInfoFromVideoId(string) {
         },
         success: function (data) {
             console.log('Youtube success',data);
+            x = data
         },
         error: function (data) {
             console.log('something went wrong with YT', data);

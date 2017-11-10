@@ -15,6 +15,12 @@ if(empty($description)){
 if(empty($video_id)){
     $output['errors'][] = 'MISSING ID';
 }
+//tm87
+// if(!preg_match('/[a-zA-Z0-9\-\_]{11}/', $video_id)){
+//     $output['errors'][] = 'INVALID YOUTUBE VIDEO ID';
+//     output_and_exit($output);
+// }
+
 $stmt = $conn->prepare("UPDATE video SET 
 channel_title = ?,  
 description = ?, 
