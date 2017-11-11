@@ -117,8 +117,12 @@ body {
 	/*display: inline-block;*/
 	margin-left: 35px;
 }
-#ui-id-1:focus {
-	top: 43px;
+.ui-widget-content {
+	color: #fff !important;
+    top: 49px !important;
+	background-color: rgb(20,20,20) !important;
+	border: none !important;
+	background: unset;
 }
 /*Transition to get hamburger menu to collapse when search button is clicked */
 .navbar-collapse {
