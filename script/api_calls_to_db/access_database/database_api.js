@@ -62,7 +62,7 @@
              }
          })
      }
-     this.read_channels_by_user_link = function(){//itll read channel based on user, just pass in user id
+     this.read_channels_by_user_id = function(){//itll read channel based on user, just pass in user id
          $.ajax({
              url: './script/api_calls_to_db/access_database/access.php ',
              method: 'POST',
