@@ -10,9 +10,9 @@ if(isset($_GET['user'])){
     $results = mysqli_stmt_get_result($stmt);
     if($results>0){
         $_SESSION['user_link'][] = $_GET['user'];
-        header('Location: thecubetube/collindev.com');
+        header('Location: thecubetube.collindev.com');
     }else{
-        header('Location: thecubetube/collindev.com');
+        header('Location: thecubetube.collindev.com');
         exit();
     }
 }
