@@ -1,6 +1,6 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direct access not allowed');
+    die('insert channel, direct access not allowed');
 }
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $channel_title = $_POST['channel_title'];
