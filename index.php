@@ -1506,7 +1506,7 @@ consider carousel for the video list area:
         				</button>
         				<div class="modal-title-wrap">
         					<h5 class="modal-title" id="userLinkModalTitle">
-        						Save this link!
+        						Channel Added!
         					</h5>
         				</div>
       				</div>

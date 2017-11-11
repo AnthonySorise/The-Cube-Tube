@@ -570,7 +570,7 @@ function renderVideoList(videoArray) {
 
 function addChannelModal(userLink){
     if(userLink){
-        $('.userLinkBody').text("www.TheCubeTube.com/?user="+userLink)
+        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user="+userLink)
     }
     else{
         $('.userLinkBody').text("Channel added to your subscriptions!")
