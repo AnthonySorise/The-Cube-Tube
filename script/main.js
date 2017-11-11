@@ -765,7 +765,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
                 clientSelectedChannelObjects.push(data.data[0]);
 
-                access_database.insert_ctu(channelId);
+                access_database.insert_ctu(channelID);
 
                 $.ajax({    //RETRIEVE VIDEOS FROM DB
                     url: './script/api_calls_to_db/access_database/access.php',
