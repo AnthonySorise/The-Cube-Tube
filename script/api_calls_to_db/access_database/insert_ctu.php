@@ -13,7 +13,7 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         }
         return $randomString;
         }
-        $_SESSION['user_link'][] = generateRandomString();
+        $_SESSION['user_link'] = generateRandomString();
         //creates random string for user and inserts into database as well as show to front end
         include('./script/api_calls_to_db/access_database/insert_user.php');
         define('USER_LINK',$_SESSION['user_link']);
