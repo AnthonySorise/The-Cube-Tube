@@ -34,7 +34,7 @@ $stmt->bind_param('ssss',$user_link,$date_created,$ip_address_at_sign_up,$last_m
 $stmt->execute();
 if(!empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
-        $output['success'] = true;
+        $output['insert_user_success'] = true;
         define('USER_ID',mysqli_insert_id($conn));
     }
     else{
