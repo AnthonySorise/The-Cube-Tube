@@ -9,7 +9,8 @@ if(isset($_GET['user'])){
     $stmt->execute();
     $results = mysqli_stmt_get_result($stmt);
     if($results>0){
-        $_SESSION['user_link'][] = $_GET['user'];
+        $_SESSION['user_link'] = $_GET['user'];
+        print($_SESSION['user_link']);
         header('Location: /');
     }else{
         header('Location: /');
