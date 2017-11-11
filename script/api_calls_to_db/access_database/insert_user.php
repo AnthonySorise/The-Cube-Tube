@@ -31,7 +31,6 @@ if(empty($user_link)){
 $stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?, 
 ip_address_at_signup=?,last_modified=?");
 print_r($stmt);
-
 $stmt->bind_param('ssss',$user_link,$date_created,$ip_address_at_sign_up,$last_modified);
 $stmt->execute();
 
@@ -40,6 +39,7 @@ if(!empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
         define('USER_ID',mysqli_insert_id($conn));
+        output_and_exit($output);
     }
     else{
         $output['errors'][] = 'Unable to insert data';
