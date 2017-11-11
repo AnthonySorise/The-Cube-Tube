@@ -15,8 +15,6 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         $stmt->bind_param('s',$randomString);
         $stmt->execute();
         $results = mysqli_stmt_get_result($stmt);
-        echo('i am here');
-        output_and_exit($output);
         if(!empty($results)){
             if(mysqli_num_rows($results)>0){
                 return generateRandomString();
@@ -30,6 +28,8 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         }
     }
     $_SESSION['user_link'] = generateRandomString();
+    echo('i am here');
+    output_and_exit($output);
     include('./insert_user.php');
     //creates random string for user and inserts into database as well as show to front end
     define('USER_LINK',$_SESSION['user_link']);
