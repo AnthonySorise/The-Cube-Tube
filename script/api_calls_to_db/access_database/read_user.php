@@ -17,3 +17,4 @@ if(!empty($results)){
 }else{
     $output['errors'][] = 'INVALID QUERY';
 }
+?>
