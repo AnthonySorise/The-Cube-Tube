@@ -1,6 +1,6 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direct access not allowed');
+    die('insert user, direct access not allowed');
 }
 $user_link = $_SESSION['user_link'];
 $date_created = date('Y-m-d H:i:s');
@@ -39,7 +39,6 @@ if(!empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
         define('USER_ID',mysqli_insert_id($conn));
-        output_and_exit($output);
     }
     else{
         $output['errors'][] = 'Unable to insert data';
