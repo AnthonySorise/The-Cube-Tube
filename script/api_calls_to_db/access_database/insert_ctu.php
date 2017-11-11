@@ -15,6 +15,8 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         $stmt->bind_param('s',$randomString);
         $stmt->execute();
         $results = mysqli_stmt_get_result($stmt);
+        echo('i am here');
+        output_and_exit($output);
         if(!empty($results)){
             if(mysqli_num_rows($results)>0){
                 return generateRandomString();
