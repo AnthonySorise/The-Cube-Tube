@@ -26,7 +26,7 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $stmt = $conn->prepare("SELECT channel_id FROM channels 
 WHERE youtube_channel_id = ?");
-$stmt->bind_param(s,$youtube_channel_id);
+$stmt->bind_param('s',$youtube_channel_id);
 $stmt->execute();
 $result = mysqli_stmt_get_result($stmt);
 if(empty($result)){

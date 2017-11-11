@@ -30,8 +30,6 @@ if(empty($user_link)){
 
 $stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?, 
 ip_address_at_signup=?,last_modified=?");
-echo("Do the thing");
-echo($stmt);
 $stmt->bind_param('ssss',$user_link,$date_created,$ip_address_at_sign_up,$last_modified);
 $stmt->execute();
 if(!empty($stmt)){
