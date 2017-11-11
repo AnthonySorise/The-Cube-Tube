@@ -12,13 +12,14 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
-        }
-        $_SESSION['user_link'] = generateRandomString();
-        include('./insert_user.php');
-        //creates random string for user and inserts into database as well as show to front end
-        define('USER_LINK',$_SESSION['user_link']);
-        $output['user_link'] = USER_LINK;
-        include('./read_user.php');
+    }
+    $_SESSION['user_link'] = generateRandomString();
+    echo("Sup dawg");
+    include('./insert_user.php');
+    //creates random string for user and inserts into database as well as show to front end
+    define('USER_LINK',$_SESSION['user_link']);
+    $output['user_link'] = USER_LINK;
+    include('./read_user.php');
 }
 //get user id
 //grabbing channel id from db to add to user link
