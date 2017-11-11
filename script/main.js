@@ -564,16 +564,17 @@ function renderVideoList(videoArray) {
                 .attr({
                     'data-original-title': videoArray[i].video_title
                 });
-
         }
-
-
     }, 750);
-
 }
 
 function addChannelModal(userLink){
-    $('.userLinkBody').text("www.TheCubeTube.com/?user="+userLink)
+    if(userLink){
+        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user="+userLink)
+    }
+    else{
+        $('.userLinkBody').text("Channel added to your subscriptions!")
+    }
     $('#userLinkModal').modal('show');
 }
 
