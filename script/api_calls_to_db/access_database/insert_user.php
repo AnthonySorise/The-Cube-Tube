@@ -32,6 +32,8 @@ $stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?,
 ip_address_at_signup=?,last_modified=?");
 $stmt->bind_param('ssss',$user_link,$date_created,$ip_address_at_sign_up,$last_modified);
 $stmt->execute();
+
+echo("This is the result of !empty()" . !empty($stmt));
 if(!empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
