@@ -2,7 +2,7 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$user_link = USER_LINK;
+$user_link = $_SESSION['user_link'];
 $date_created = date('Y-m-d H:i:s');
 $last_modified = $date_created;
 $ip_address_at_sign_up = get_client_ip();
