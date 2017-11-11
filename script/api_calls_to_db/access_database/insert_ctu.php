@@ -16,8 +16,8 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     $_SESSION['user_link'] = generateRandomString();
     include('./insert_user.php');
     //creates random string for user and inserts into database as well as show to front end
-    // define('USER_LINK',$_SESSION['user_link']);
-    // $output['user_link'] = USER_LINK;
+    define('USER_LINK',$_SESSION['user_link']);
+    $output['user_link'] = USER_LINK;
     // include('./read_user.php');
 }
 //get user id
@@ -62,7 +62,7 @@ $stmt->execute();
 $results = mysqli_stmt_get_result($stmt);
 if(!empty($results)){
     if(mysqli_num_rows($results)>0){
-        $output['errors'][] = "DUPLICATE";
+        $output['errors'][] = "DUPLICATE CTU";
         output_and_exit($output);
     }else{
         $sqli = "INSERT INTO channels_to_users SET user_id = ?, channel_id=?";
