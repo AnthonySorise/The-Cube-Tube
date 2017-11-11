@@ -2,8 +2,6 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-echo('i am here');
-echo($_SESSION['user_link']);
 $user_link = $_SESSION['user_link'];
 $date_created = date('Y-m-d H:i:s');
 $last_modified = $date_created;
@@ -32,6 +30,7 @@ if(empty($user_link)){
 
 $stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?, 
 ip_address_at_signup=?,last_modified=?");
+echo($stmt);
 $stmt->bind_param('ssss',$user_link,$date_created,$ip_address_at_sign_up,$last_modified);
 $stmt->execute();
 if(!empty($stmt)){
