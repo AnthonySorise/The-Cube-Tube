@@ -2,7 +2,7 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-nclude('./insert_user.php');
+include('./insert_user.php');
 //makes user link if session and get is empty
 if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     function generateRandomString(){
