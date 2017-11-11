@@ -7,16 +7,15 @@ $output = [
     'errors' => [],
 ];
 if(isset($_SESSION['user_link'])){
-    include('read_user.php');
+    include('./script/api_calls_to_db/access_database/read_user.php');
 }
 if(empty($_POST['action'])){
     $output['errors'][] = 'No action specified';
-    output_and_exit();
+    output_and_exit($output);
 }
-function output_and_exit(){
-    global $output;
+function output_and_exit($output){
     $json_output = json_encode($output);
-    print_r($json_output);
+    print($json_output);
     exit();
 }
 switch($_POST['action']){
@@ -60,5 +59,5 @@ switch($_POST['action']){
         $output['errors'][] = 'invalid action';
 }
 $json_output = json_encode($output);
-print_r($json_output);
+print($json_output);
 ?>

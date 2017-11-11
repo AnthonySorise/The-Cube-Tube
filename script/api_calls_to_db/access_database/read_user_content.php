@@ -2,7 +2,7 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$user_id = user_id;
+$user_id = USER_ID;
 if(empty($_POST['offset'])){
     $output['errors'][] = "MISSING OUTPUT";
 }
