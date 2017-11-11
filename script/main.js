@@ -572,6 +572,11 @@ function renderVideoList(videoArray) {
 
 }
 
+function addChannelModal(userLink){
+    $('.userLinkBody').text("www.TheCubeTube.com/?user="+userLink)
+    $('#userLinkModal').modal('show');
+}
+
 function ytChannelApiToDb(channelId, isAdding = false) {
     var channelDbObject = {};
     $.ajax({
@@ -616,7 +621,24 @@ function ytChannelApiToDb(channelId, isAdding = false) {
                         else{
 
                             clientSubscribedChannelObjects.push(channelDbObject);
-                            access_database.insert_ctu(channelId)
+                            $.ajax({
+                                url:'./script/api_calls_to_db/access_database/access.php',
+                                method:'post',
+                                dataType:'JSON',
+                                data:{
+                                    action:'insert_ctu',
+                                    youtube_channel_id:channelId
+                                },
+                                success: function (data) {
+                                    if (data.success) {
+                                        console.log('insert success', data);
+                                        addChannelModal(data.user_link)
+                                    }
+                                },
+                                errors: function (data) {
+                                    console.log('insert error', data);
+                                }
+                            })
                         }
                         clientSelectedChannelObjects.push(channelDbObject);
                     }
@@ -762,7 +784,24 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                 }
                 else{
                     clientSubscribedChannelObjects.push(data.data[0]);
-                    access_database.insert_ctu(channelID);
+                    $.ajax({
+                        url:'./script/api_calls_to_db/access_database/access.php',
+                        method:'post',
+                        dataType:'JSON',
+                        data:{
+                            action:'insert_ctu',
+                            youtube_channel_id:channelID
+                        },
+                        success: function (data) {
+                            if (data.success) {
+                                console.log('insert success', data);
+                                addChannelModal(data.user_link)
+                            }
+                        },
+                        errors: function (data) {
+                            console.log('insert error', data);
+                        }
+                    })
                 }
 
                 clientSelectedChannelObjects.push(data.data[0]);
