@@ -2,6 +2,8 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
+echo('i am here');
+echo($_SESSION['user_link']);
 $user_link = $_SESSION['user_link'];
 $date_created = date('Y-m-d H:i:s');
 $last_modified = $date_created;

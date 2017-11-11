@@ -2,6 +2,7 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
+nclude('./insert_user.php');
 //makes user link if session and get is empty
 if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     function generateRandomString(){
@@ -15,7 +16,6 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         }
         $_SESSION['user_link'] = generateRandomString();
         //creates random string for user and inserts into database as well as show to front end
-        include('./insert_user.php');
         define('USER_LINK',$_SESSION['user_link']);
         $output['user_link'] = USER_LINK;
         include('./read_user.php');
