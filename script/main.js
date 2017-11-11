@@ -620,8 +620,16 @@ function ytChannelApiToDb(channelId, isAdding = false) {
                             clientSelectedChannelObjects = [];
                         }
                         else{
+                            var isDup = false;
+                            for(var i = 0; i < clientSubscribedChannelObjects.length; i++){
+                                if(clientSubscribedChannelObjects[i].youtube_channel_id === channelDbObject.youtube_channel_id){
+                                    isDup = true
+                                }
+                            }
+                            if(!isDup){
+                                clientSubscribedChannelObjects.push(channelDbObject);
+                            }
 
-                            clientSubscribedChannelObjects.push(channelDbObject);
                             $.ajax({
                                 url:'./script/api_calls_to_db/access_database/access.php',
                                 method:'post',
@@ -760,8 +768,15 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
         clientSelectedChannelIds = [];
     }
     else{
-
-        clientSubscribedChannelIds.push(channelID);
+        var isDup = false;
+        for(var i = 0; i<clientSubscribedChannelIds.length; i++){
+            if(clientSubscribedChannelIds[i] === channelID){
+                isDup = true
+            }
+        }
+        if(!isDup){
+            clientSubscribedChannelIds.push(channelID);
+        }
     }
     clientSelectedChannelIds.push(channelID);
 
@@ -784,7 +799,16 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     clientSelectedChannelObjects = [];
                 }
                 else{
-                    clientSubscribedChannelObjects.push(data.data[0]);
+                    var isDup = false;
+                    for(var i = 0; i < clientSubscribedChannelObjects.length; i++){
+                        if(clientSubscribedChannelObjects[i].youtube_channel_id === data.data[0].youtube_channel_id){
+                            isDup = true
+                        }
+                    }
+                    if(!isDup){
+                        clientSubscribedChannelObjects.push(data.data[0]);
+                    }
+
                     $.ajax({
                         url:'./script/api_calls_to_db/access_database/access.php',
                         method:'post',
