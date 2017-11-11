@@ -61,7 +61,7 @@ consider carousel for the video list area:
 			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
 
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
-				<!--&lt;!&ndash;div for nav options&ndash;&gt;-->
+				&lt;!&ndash;div for nav options&ndash;&gt;
 				<!--<ul class="nav navbar-nav">-->
 					<!--<li class="dropdown channelDropDown">-->
 						<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
