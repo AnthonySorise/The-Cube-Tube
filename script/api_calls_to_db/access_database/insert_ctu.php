@@ -73,6 +73,7 @@ if(!empty($results)){
             mysqli_stmt_execute($stmt);
             if(mysqli_affected_rows($conn)>0){
                 $output['success'] = true;
+                $output['insert_etu'] = success;
             }
             else{
                 $output['errors'] = 'UNABLE TO INSERT INTO CTU';

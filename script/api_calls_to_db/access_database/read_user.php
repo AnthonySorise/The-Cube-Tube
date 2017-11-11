@@ -11,10 +11,10 @@ if(!empty($results)){
     if(mysqli_num_rows($results)>0){
         $row = mysqli_fetch_assoc($results);
         define('USER_ID',$row['user_id']);
-        echo(USER_ID);
     }else{
         $output['errors'][] = 'NOTHING TO READ';
     }
 }else{
     $output['errors'][] = 'INVALID QUERY';
 }
+?>
