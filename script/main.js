@@ -609,21 +609,22 @@ function ytChannelApiToDb(channelId, isAdding = false) {
                 success:function(data){
                     if(data.success){
                         console.log('insert channel success', data);
-                        access_database.insert_ctu(channelId)
+
+                        if(!isAdding){
+                            clientSelectedChannelObjects = [];
+                        }
+                        else{
+
+                            clientSubscribedChannelObjects.push(channelDbObject);
+                            access_database.insert_ctu(channelId)
+                        }
+                        clientSelectedChannelObjects.push(channelDbObject);
                     }
                 },
                 errors:function(data){
                     console.log('insert error');
                 }
             })
-
-            if(!isAdding){
-                clientSelectedChannelObjects = [];
-            }
-            else{
-                clientSubscribedChannelObjects.push(channelDbObject);
-            }
-
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -761,11 +762,10 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                 }
                 else{
                     clientSubscribedChannelObjects.push(data.data[0]);
+                    access_database.insert_ctu(channelID);
                 }
 
                 clientSelectedChannelObjects.push(data.data[0]);
-
-                access_database.insert_ctu(channelID);
 
                 $.ajax({    //RETRIEVE VIDEOS FROM DB
                     url: './script/api_calls_to_db/access_database/access.php',
