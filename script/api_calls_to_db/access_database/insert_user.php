@@ -39,10 +39,10 @@ if(!empty($stmt)){
     }
     else{
         $output['errors'][] = 'Unable to insert data';
-        output_and_exit();
+        output_and_exit($output);
     }
 }else{
     $output['errors'][]= 'invalid query';
-    output_and_exit();
+    output_and_exit($output);
 }
 ?>

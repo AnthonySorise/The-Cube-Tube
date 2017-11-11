@@ -2,12 +2,17 @@ var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 
-var clientVideoObjectArray = null;
-var clientChannelObjectArray = null;
-var clientChannelIdArray = null;
+var videoObjectsToLoad = null;
+
+var clientSelectedChannelObjects = [];
+var clientSelectedChannelIds = [];
+
+var clientSubscribedChannelIds = [];
+var clientSubscribedChannelObjects = [];
 
 var currentSlideNumber = 1;
 
+var browsingMode = false;
 
 let currentVolumeLevel = null;
 
@@ -34,7 +39,7 @@ var player;
 var player2;
 
 /*******needed for iframe player*******/
-
+let iframeRight = 0;
 $(window).resize(function(){
     let windowWidth = ($(window).width());
     if(windowWidth <= 768){
@@ -42,6 +47,8 @@ $(window).resize(function(){
     }else{
         displayTableDataOnDesktop()
     }
+    iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
+    $('.lightBoxMode').css('left', iframeRight+'px');
 })
 
 
@@ -75,7 +82,11 @@ $(document).ready(function () {
         displayCurrentPageNumber()
     });
     clearVideoList();   //hides list rows until they are needed
-
+    setTimeout(()=>{
+        iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
+        $('.lightBoxMode').css('left', iframeRight+'px');
+    },200);
+    
 });
 
 
@@ -130,6 +141,7 @@ function clickHandler() {
     });
     //Browse Button
     $('.browseChannelButton').on("click", handleBrowseButton);
+    $('.addChannelButton').on("click", handleAddButton);
 
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
@@ -556,7 +568,7 @@ function renderVideoList(videoArray) {
         }
 
 
-    }, 350);
+    }, 750);
 
 }
 
@@ -584,10 +596,14 @@ function ytChannelApiToDb(channelId, isAdding = false) {
 
             access_database.insert_channel(channelDbObject);
 
+
             if(!isAdding){
-                clientChannelObjectArray = [];
+                clientSelectedChannelObjects = [];
             }
-            clientChannelObjectArray.push(channelDbObject);
+            else{
+                clientSubscribedChannelObjects.push(channelDbObject);
+            }
+
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -631,18 +647,57 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 
             if(firstRun){
                 if(!isAdding) {
-                    clientVideoObjectArray = [];
                     var clientPackage = [];
                     for (var i = 0; i < 40; i++) {
                         clientPackage.push(packageToSendToDb[i])
                     }
-                    clientVideoObjectArray = clientPackage
+                    videoObjectsToLoad = clientPackage
+                    loadClientVideoObjectArray(videoObjectsToLoad)
+                    access_database.insert_video(packageToSendToDb);
                 }
                 else{
-
+                    $.ajax({
+                        url: './script/api_calls_to_db/access_database/access.php',
+                        method: 'POST',
+                        dataType: 'JSON',
+                        data: {
+                            action: 'insert_video',
+                            videoArray: packageToSendToDb
+                        },
+                        success: function (data) {
+                            if (data.success) {
+                                $.ajax({
+                                    url: './script/api_calls_to_db/access_database/access.php',
+                                    method: 'POST',
+                                    dataType: 'JSON',
+                                    data: {
+                                        action:'read_videos_by_channel_array',
+                                        channel_id_array:clientSelectedChannelIds,
+                                        offset:0
+                                    },
+                                    success: function (data) {
+                                        if (data.success) {
+                                            videoObjectsToLoad = data.data;
+                                            console.log('YouTube videos added to database - clientVideoList created', videoObjectsToLoad);
+                                            loadClientVideoObjectArray(videoObjectsToLoad)
+                                        }
+                                    },
+                                    errors: function (data) {
+                                        console.log('insert error', data);
+                                    }
+                                })
+                            }
+                        },
+                        errors: function (data) {
+                            console.log('read error', data);
+                        }
+                    })
                 }
+
             }
-            access_database.insert_video(packageToSendToDb);
+            else{
+                access_database.insert_video(packageToSendToDb);
+            }
 
             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
                 ytVideoApiToDb(channelId, data.nextPageToken, false)
@@ -655,15 +710,16 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 }
 
 function manageDatabaseWithChannelId (channelID, isAdding = false){
-    clientVideoObjectArray = null;
+    videoObjectsToLoad = null;
 
     if(!isAdding){
-        clientChannelIdArray = [];
+        clientSelectedChannelIds = [];
     }
+    else{
 
-    clientChannelIdArray.push(channelID);
-
-    returnToPageOne();
+        clientSubscribedChannelIds.push(channelID);
+    }
+    clientSelectedChannelIds.push(channelID);
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -681,23 +737,28 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                 data.youtube_channel_id = channelID;
 
                 if(!isAdding){
-                    clientChannelObjectArray = [];
+                    clientSelectedChannelObjects = [];
                 }
-                clientChannelObjectArray.push(data.data[0]);
+                else{
+                    clientSubscribedChannelObjects.push(data.data[0]);
+                }
+
+                clientSelectedChannelObjects.push(data.data[0]);
                 $.ajax({    //RETRIEVE VIDEOS FROM DB
                     url: './script/api_calls_to_db/access_database/access.php',
                     method: 'POST',
                     dataType: 'JSON',
                     data: {
                         action:'read_videos_by_channel_array',
-                        channel_id_array:clientChannelIdArray,
+                        channel_id_array:clientSelectedChannelIds,
                         offset:0
                     },
                     success: function (data) {
                         if (data.success) {
                             // promise.resolve(data);
                             console.log('Videos Found', data);
-                            clientVideoObjectArray = data.data;
+                            videoObjectsToLoad = data.data;
+
                             loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                         }
                         else{
@@ -715,7 +776,6 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     console.log("Retrieve Videos From You Tube", data);
                     ytVideoApiToDb(channelID, "", true, isAdding);
                     ytChannelApiToDb(channelID, isAdding);
-                    loadClientVideoObjectArray();  //TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                 }
             }
         },
@@ -727,21 +787,22 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 }
 
 function loadClientVideoObjectArray() {
-    if (clientVideoObjectArray === null) {
+    if (videoObjectsToLoad === null) {
+        console.log(videoObjectsToLoad === null)
         setTimeout(loadClientVideoObjectArray, 50);
         return
     }
-    renderVideoList(clientVideoObjectArray);
+    console.log("LOADING VIDEO LIST")
+    renderVideoList(videoObjectsToLoad);
 }
 
 function handleBrowseButton() {
+    browsingMode = true;
+
     clearVideoList();
     // createPlaceholderAnimation();
 
-    //reset page
-    currentSlideNumber = 1;
-    $(".carousel").carousel(0);
-    displayCurrentPageNumber();
+    returnToPageOne();
 
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
@@ -750,6 +811,32 @@ function handleBrowseButton() {
     $('.tdList').removeClass('selectedTd');
     $('#channelSearchModal').modal('hide')
 }
+
+function handleAddButton(){
+    //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
+
+
+    if(browsingMode){
+        clientSelectedChannelIds = [];
+        clientSelectedChannelObjects = [];
+    }
+
+    browsingMode = false;
+
+    clearVideoList();
+    // createPlaceholderAnimation();
+
+    returnToPageOne();
+
+    let channelID = $(this).parent().attr("channelId");
+    manageDatabaseWithChannelId(channelID, true);
+    // toastMsg('loading channel videos',1000);
+    $('.fa-play-circle-o').remove();
+    $('.tdList').removeClass('selectedTd');
+    $('#channelSearchModal').modal('hide')
+}
+
+
 
 function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber);
@@ -873,13 +960,32 @@ function checkIfPlayer2IsMuted() {
 }
 
 function returnToPageOne(){
-    // $(".carousel").hide();
-    $(".carousel").carousel(0);     //hide and unhide for visual consistency?  Sometimes carousel will move, other times it won't depending on page number
-    // $(".carousel").show();
-    if(currentSlideNumber !==1){
-        currentSlideNumber = 2;
-        loadPreviousPage();
-        currentSlideNumber = 1;
+    if(currentSlideNumber !== 1){
+        //show backwards animation
+
+        if(currentSlideNumber % 2 === 0)
+        {
+            currentSlideNumber = 2;
+            $(".carousel").carousel(0);
+        }
+        else
+        {
+            // currentSlideNumber = 3;
+            // $(".carousel").carousel('prev');
+            // $(".carousel").carousel(0);
+        }
+        //
+        //find and load data into list
+        currentSlideNumber = 1; //redundant?
+        var videosToLoad = [];
+        for(var i = 0; i < 40; i++){
+            videosToLoad.push(videoObjectsToLoad[i])
+        }
+        console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
+        setTimeout(function(){
+            clearVideoList();
+            renderVideoList(videosToLoad)
+        }, 250)
     }
     displayCurrentPageNumber();
 }
@@ -935,7 +1041,7 @@ function loadNextPage(){
         var pageToLoad = (currentSlideNumber - 1) / 2;
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
-        if(clientVideoObjectArray.length < indexToStartOn+40){
+        if(videoObjectsToLoad.length < indexToStartOn+40){
             // $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
@@ -943,7 +1049,7 @@ function loadNextPage(){
                 dataType: 'JSON',
                 data: {
                     action:'read_videos_by_channel_array',
-                    channel_id_array:clientChannelIdArray,
+                    channel_id_array:clientSelectedChannelIds,
                     offset:indexToStartOn
                 },
                 success: function (data) {
@@ -951,10 +1057,10 @@ function loadNextPage(){
                         // promise.resolve(data);
                         console.log('read success', data);
                         for(var i = 0; i < data.data.length; i++){
-                            clientVideoObjectArray.push(data.data[i])
+                            videoObjectsToLoad.push(data.data[i])
                         }
                         for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                            videosToLoad.push(clientVideoObjectArray[i])
+                            videosToLoad.push(videoObjectsToLoad[i])
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
                         setTimeout(function(){
@@ -973,7 +1079,7 @@ function loadNextPage(){
         }
         else{
             for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-                videosToLoad.push(clientVideoObjectArray[i])
+                videosToLoad.push(videoObjectsToLoad[i])
             }
             console.log("VIDEOS TO LOAD", videosToLoad)
             setTimeout(function(){
@@ -992,7 +1098,7 @@ function loadPreviousPage(){
 
 
         for(var i = indexToStartOn; i < indexToStartOn+40; i++){
-            videosToLoad.push(clientVideoObjectArray[i])
+            videosToLoad.push(videoObjectsToLoad[i])
         }
         console.log("VIDEOS TO LOAD", videosToLoad);
         setTimeout(function(){
@@ -1026,3 +1132,16 @@ if(window.matchMedia("(min-width: 1020px)").matches) {
     var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
     $('#mainNav').append(completedSearchDiv);
 }
+
+$(window).bind('orientationchange resize', function(event){
+    if (event.orientation) {
+      if (event.orientation == 'landscape') {
+        if (window.rotation == 90) {
+          rotate(this, -90);
+        } else {
+          rotate(this, 90);
+        }
+      }
+    }
+  });
+  
