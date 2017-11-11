@@ -15,10 +15,10 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         }
         $_SESSION['user_link'] = generateRandomString();
         //creates random string for user and inserts into database as well as show to front end
-        include('./script/api_calls_to_db/access_database/insert_user.php');
+        include('./insert_user.php');
         define('USER_LINK',$_SESSION['user_link']);
         $output['user_link'] = USER_LINK;
-        include('./script/api_calls_to_db/access_database/read_user.php');
+        include('./read_user.php');
 }
 //get user id
 //grabbing channel id from db to add to user link
