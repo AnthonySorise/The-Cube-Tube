@@ -30,17 +30,16 @@ if(empty($user_link)){
 
 $stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?, 
 ip_address_at_signup=?,last_modified=?");
+print_r($stmt);
+
 $stmt->bind_param('ssss',$user_link,$date_created,$ip_address_at_sign_up,$last_modified);
 $stmt->execute();
 
 echo("This is the prepared thing");
-print_r($stmt);
 if(!empty($stmt)){
-    echo("Sup");
     if(mysqli_affected_rows($conn)>0){
         $output['success'] = true;
         define('USER_ID',mysqli_insert_id($conn));
-        echo("Query successful");
     }
     else{
         $output['errors'][] = 'Unable to insert data';
