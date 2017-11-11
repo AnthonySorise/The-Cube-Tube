@@ -3,7 +3,7 @@ if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
 $output['data'] = [];
-$user_id = $_POST['user_id'];
+$user_id = USER_ID;
 if(empty($user_id)){
     $output['errors'][] ='MISSING USER_ID';
 }
