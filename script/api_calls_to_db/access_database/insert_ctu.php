@@ -11,7 +11,16 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         for ($i = 0; $i < 12; $i++){
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        return $randomString;
+        $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
+        $stmt->bind_param('s',$user_link);
+        $stmt->execute();
+        $results = mysqli_stmt_get_result($stmt);
+        if(!empty($results)){
+            if(mysqli_num_rows($results)>0){
+                return generateRandomString();
+            }else{
+                return $randomString;
+            }
     }
     $_SESSION['user_link'] = generateRandomString();
     include('./insert_user.php');
