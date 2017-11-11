@@ -594,8 +594,28 @@ function ytChannelApiToDb(channelId, isAdding = false) {
             thumbnail = thumbnail.replace('/photo.jpg', '');
             channelDbObject.thumbnail = thumbnail;
 
-            access_database.insert_channel(channelDbObject);
-
+            // access_database.insert_channel(channelDbObject);
+            $.ajax({
+                url:'./script/api_calls_to_db/access_database/access.php',
+                method:'post',
+                dataType:'JSON',
+                data:{
+                    action:'insert_channel',
+                    youtube_channel_id:channelDbObject.youtube_channel_id,
+                    channel_title:channelDbObject.channel_title,
+                    description:channelDbObject.description,
+                    thumbnail:channelDbObject.thumbnail
+                },
+                success:function(data){
+                    if(data.success){
+                        console.log('insert channel success', data);
+                        access_database.insert_ctu(channelId)
+                    }
+                },
+                errors:function(data){
+                    console.log('insert error');
+                }
+            })
 
             if(!isAdding){
                 clientSelectedChannelObjects = [];
@@ -744,6 +764,9 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                 }
 
                 clientSelectedChannelObjects.push(data.data[0]);
+
+                access_database.insert_ctu(channelID);
+
                 $.ajax({    //RETRIEVE VIDEOS FROM DB
                     url: './script/api_calls_to_db/access_database/access.php',
                     method: 'POST',
@@ -814,8 +837,6 @@ function handleBrowseButton() {
 
 function handleAddButton(){
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
-
-
     if(browsingMode){
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
@@ -831,6 +852,10 @@ function handleAddButton(){
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID, true);
     // toastMsg('loading channel videos',1000);
+
+
+
+
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
     $('#channelSearchModal').modal('hide')
@@ -1133,5 +1158,3 @@ if(window.matchMedia("(min-width: 1020px)").matches) {
     $('#mainNav').append(completedSearchDiv);
 }
 
-
-  

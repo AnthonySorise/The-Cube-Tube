@@ -62,14 +62,13 @@
              }
          })
      }
-     this.read_channels_by_user_link = function(user_link){//itll read channel based on user, just pass in user id
+     this.read_channels_by_user_link = function(){//itll read channel based on user, just pass in user id
          $.ajax({
              url: './script/api_calls_to_db/access_database/access.php ',
              method: 'POST',
              dataType: 'JSON',
              data: {
                  action: 'read_channels_by_user_id',
-                 user_id:user_link
              },
              success: function (data) {
                  if (data.success) {
@@ -246,5 +245,24 @@
          })
      }
      //read user based on user link get user id, read ctu(user_id) read channels, read videos
+     this.insert_ctu = function(youtube_channel_id){
+         $.ajax({
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                action:'insert_ctu',
+                youtube_channel_id:youtube_channel_id
+            },
+            success: function (data) {
+                if (data.success) {
+                    console.log('insert success', data);
+                }
+            },
+            errors: function (data) {
+                console.log('insert error', data);
+            }
+         })
+     }
 }
 var access_database = new Database();
