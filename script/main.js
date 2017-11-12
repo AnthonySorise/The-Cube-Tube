@@ -380,7 +380,6 @@ function initiateUser(){
                 $('.contentPlaceholderWrapper').fadeOut(1000, function(){
                     $('#text-carousel, .videoHeader').slideDown(1100);
                 });
-                collectVideosToLoad();
                 for(var i = 0; i<data.data.length; i++){
                     numSubscribedChannels = data.data.length;
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
@@ -409,6 +408,7 @@ function initiateUser(){
                         }
                     });
                 }
+                collectVideosToLoad();
             }else{
                 console.log(data);
             }
