@@ -85,8 +85,8 @@ $(document).ready(function () {
     setTimeout(()=>{
         iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
         $('.lightBoxMode').css('left', iframeRight+'px');
+        initiateUser();
     },200);
-    initiateUser();
 });
 
 
