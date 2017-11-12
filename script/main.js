@@ -86,7 +86,7 @@ $(document).ready(function () {
         iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
         $('.lightBoxMode').css('left', iframeRight+'px');
     },200);
-    // initiateUser();
+    initiateUser();
 });
 
 
@@ -834,7 +834,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 }
 
 function manageDatabaseWithChannelId (channelID, isAdding = false){
-    // videoObjectsToLoad = null;
+    videoObjectsToLoad = null;
 
     if(!isAdding){
         clientSelectedChannelIds = [];
