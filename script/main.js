@@ -376,9 +376,9 @@ function initiateUser(){
                     $('#text-carousel, .videoHeader').slideDown(1100);
                 });
                 for(var i = 0; i<data.data.length; i++){
-                    clientSubscribedChannelIds.push(data.data[i]);
-                    clientSelectedChannelIds.push(data.data[i]);
-                    videoObjectsToLoad.push(data.data[i]);
+                    clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
+                    clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
+                    videoObjectsToLoad.push(data.data[i].youtube_channel_id);
 
                     $.ajax({
                         url:'./script/api_calls_to_db/access_database/access.php',
