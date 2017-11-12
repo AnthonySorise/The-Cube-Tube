@@ -317,13 +317,6 @@ function clickHandler() {
         }
     });
 
-    // //click hides popover
-    // $('body').on("click",function(){
-    //     $("#videoStats").popover('hide');
-    //     $("#channelInfo").popover('hide');
-    //     console.log("hey now")
-    // });
-
     //Theater mode
     $('.lightBoxMode').on('click', function () {
 
@@ -366,7 +359,6 @@ function clickHandler() {
 function initiateUser(){
     // access_database.read_channels_by_user_id()
     var numSubscribedChannels = null;
-    var loadVideos = false;
     $.ajax({
         url: './script/api_calls_to_db/access_database/access.php ',
         method: 'POST',
@@ -416,7 +408,7 @@ function initiateUser(){
         errors: function (data) {
             console.log('read error', data);
         }
-    })
+    });
 
     function collectVideosToLoad(){
         if (numSubscribedChannels !== clientSelectedChannelIds.length) {
@@ -448,9 +440,6 @@ function initiateUser(){
         })
 
     }
-
-
-
 }
 
 
