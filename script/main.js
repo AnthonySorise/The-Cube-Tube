@@ -630,7 +630,7 @@ function renderVideoList(videoArray) {
                     'data-original-title': videoArray[i].video_title
                 });
         }
-    }, 1500);
+    }, 750);
 }
 
 function addChannelModal(userLink){
@@ -1261,8 +1261,8 @@ function loadNextPage(){
                             videosToLoad.push(videoObjectsToLoad[i])
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
+                        clearVideoList();
                         setTimeout(function(){
-                            clearVideoList();
                             renderVideoList(videosToLoad)
                             removeUnusedRows();
                         }, 250)
@@ -1299,8 +1299,8 @@ function loadPreviousPage(){
             videosToLoad.push(videoObjectsToLoad[i])
         }
         console.log("VIDEOS TO LOAD", videosToLoad);
+        clearVideoList();
         setTimeout(function(){
-            clearVideoList();
             renderVideoList(videosToLoad)
         }, 250)
     }
