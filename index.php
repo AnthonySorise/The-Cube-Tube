@@ -306,9 +306,9 @@ consider carousel for the video list area:
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="carousel-inner">
-								<div class="item active ">
+								<div class="item active pageOne">
 									<div class="carousel-content">
-										<div class="row tdRow text-center firstPage">
+										<div class="row tdRow text-center ">
 											<!--target each list:
                                                 e.g. changing video title
                                                 $('#tdList-' + [i] +' .tdTitle')
@@ -780,7 +780,7 @@ consider carousel for the video list area:
 										</div>
 									</div>
 								</div>
-								<div class="item">
+								<div class="item pageTwo">
 									<div class="carousel-content">
 										<div class="row tdRow text-center">
 											<!--target each list:
@@ -1495,7 +1495,32 @@ consider carousel for the video list area:
 			</div>
 		</div>
 		<!--modal end for channel search result-->
-
+		<!--modal for user link-->
+				<!-- command for modal show:  $('#userLinkModal').modal('show') -->
+		<div class="modal fade" id="userLinkModal" tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
+        				</button>
+        				<div class="modal-title-wrap">
+        					<h5 class="modal-title" id="userLinkModalTitle">
+        						Channel Added!
+        					</h5>
+        				</div>
+      				</div>
+					<div class="modal-body userLinkBody">
+						
+					</div>
+					<div class="modal-footer">
+						<span id="userLinkModalFooter"></span>
+						<button type="button" class="btn btn-danger modalClose userLinkModalClose" data-dismiss="modal">close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--modal end for user link-->
 	</div>
 </body>
 

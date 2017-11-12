@@ -11,14 +11,24 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         for ($i = 0; $i < 12; $i++){
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
+        // $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
+        // $stmt->bind_param('s',$randomString);
+        // echo('im here');
+        // $stmt->execute();
+        // $results = mysqli_stmt_get_result($stmt);
+        // if(!empty($results)){
+        //     if(mysqli_num_rows($results)>0){
+        //         return generateRandomString();
+        //     }else{
         return $randomString;
+            // }
+    // }
     }
     $_SESSION['user_link'] = generateRandomString();
     include('./insert_user.php');
     //creates random string for user and inserts into database as well as show to front end
     define('USER_LINK',$_SESSION['user_link']);
     $output['user_link'] = USER_LINK;
-    // include('./read_user.php');
 }
 //get user id
 //grabbing channel id from db to add to user link
@@ -74,6 +84,7 @@ if(!empty($results)){
             mysqli_stmt_execute($stmt);
             if(mysqli_affected_rows($conn)>0){
                 $output['success'] = true;
+                $output['insert_etu'] = success;
             }
             else{
                 $output['errors'] = 'UNABLE TO INSERT INTO CTU';
