@@ -394,7 +394,7 @@ function initiateUser(){
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 console.log("i is " + i)
-                                console.log("numSubscribedChannels is " numSubscribedChannels)
+                                console.log("numSubscribedChannels is " + numSubscribedChannels)
                                 if(i = numSubscribedChannels-1){
                                     console.log("HERE")
                                     $.ajax({
