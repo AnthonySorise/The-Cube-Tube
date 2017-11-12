@@ -394,6 +394,7 @@ function initiateUser(){
                                 clientSubscribedChannelObjects.push(data.data[0]);
 
                                 if(i = data.data.length-1){
+                                    console.log("HERE")
                                     $.ajax({
                                         url: './script/api_calls_to_db/access_database/access.php',
                                         method: 'POST',
@@ -401,7 +402,7 @@ function initiateUser(){
                                         data: {
                                             action:'read_videos_by_channel_array',
                                             channel_id_array:clientSelectedChannelIds,
-                                            offset:offset
+                                            offset:0
                                         },
                                         success: function (data) {
                                             if (data.success) {
