@@ -131,7 +131,7 @@ function tooltipFunctions() {
 //Click handler to console log search results
 function clickHandler() {
     //Search Button
-    $(".channelSearchForm .channelSearchButton").on('click', function (event) {
+    $(".channelSearchForm").on('submit', function (event) {
         $(".navbar-collapse").collapse('hide');
         event.preventDefault();
         searchChannelsByName().then(worked, failed);
@@ -448,7 +448,7 @@ function initiateUser(){
 function searchChannelsByName() {
     $(".addChannelButton").removeClass("disabled").text("Add");
 
-    var string = $('#channelSearchInput').val();
+    var string = $('.channelSearchInput').val();
     var promise = {
         then: function (resolve, reject) {
             this.resolve = resolve;
@@ -1307,26 +1307,26 @@ function loadPreviousPage(){
 
 // Making media query with javascript to hide saerch button inside hamburger menu and dynamically creat one on header
 
-if(window.matchMedia("(min-width: 1020px)").matches) {
-    var searchDiv = $('<div>').addClass('form-group');
-    var inputElement = $('<input>', {
-        type: 'text',
-        class: 'form-control',
-        placeholder: 'search channels',
-        name: 'channelSearch',
-        id: 'channelSearchInput'
-    });
-    var buttonElement = $('<button>', {
-        type: 'submit',
-        class: 'btn btn-danger channelSearchButton',
-        dataToggle: 'tooltip',
-        dataPlacement: 'bottom',
-        dataTrigger: 'hover',
-        title: 'search for channels to add',
-        text: 'search'
-    });
-    var searchDivWrapper = $(searchDiv).append(inputElement);
-    var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
-    $('#mainNav').append(completedSearchDiv);
-}
+// if(window.matchMedia("(min-width: 1020px)").matches) {
+//     var searchDiv = $('<div>').addClass('form-group');
+//     var inputElement = $('<input>', {
+//         type: 'text',
+//         class: 'form-control',
+//         placeholder: 'search channels',
+//         name: 'channelSearch',
+//         id: 'channelSearchInput'
+//     });
+//     var buttonElement = $('<button>', {
+//         type: 'submit',
+//         class: 'btn btn-danger channelSearchButton',
+//         dataToggle: 'tooltip',
+//         dataPlacement: 'bottom',
+//         dataTrigger: 'hover',
+//         title: 'search for channels to add',
+//         text: 'search'
+//     });
+//     var searchDivWrapper = $(searchDiv).append(inputElement);
+//     var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
+//     $('#mainNav').append(completedSearchDiv);
+// }
 

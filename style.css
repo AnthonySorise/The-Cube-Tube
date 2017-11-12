@@ -109,6 +109,13 @@ body {
 	margin-bottom: 0;
 	margin-right: 0;
 }
+.channelSearchForm input{
+	border: none;
+}
+.channelSearchForm .input-group-addon{
+	background: white;
+	border: none;
+}
 .infoButtons{
 	line-height: 3.5;
 }
@@ -822,6 +829,9 @@ safer appraoch than to resizing browser to see change
 	.navbar-header{
 		width: auto;
 	}
+	.channelSearchForm{
+		display: inline-block !important;
+	}
 	.main-content{
 		height: 93vh;
 	}
@@ -871,9 +881,9 @@ safer appraoch than to resizing browser to see change
 	}
 	/* End of css for mobile modal */
 
-	.navbar-brand>span {
+	/*.navbar-brand>span {
 		display: none;
-	}
+	}*/
 }
 
 
