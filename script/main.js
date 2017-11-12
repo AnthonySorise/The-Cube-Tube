@@ -555,7 +555,7 @@ function clearChannelResults() {
 }
 
 function clearVideoList(){
-    $(".tdTitle").popover('destroy');
+    $(".tdList").popover('destroy');
 
     $('.tdList').attr("videoID", "");
     $('.tdTitle>span').text("");
@@ -630,7 +630,7 @@ function renderVideoList(videoArray) {
                     'data-original-title': videoArray[i].video_title
                 });
         }
-    }, 1500);
+    }, 750);
 }
 
 function addChannelModal(userLink){
@@ -1240,7 +1240,6 @@ function loadNextPage(){
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
         if(videoObjectsToLoad.length < indexToStartOn+40){
-            // $(".tdTitle").popover('destroy');
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
