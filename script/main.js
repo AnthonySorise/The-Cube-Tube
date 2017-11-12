@@ -132,9 +132,15 @@ function tooltipFunctions() {
 function clickHandler() {
     //Search Button
     $(".channelSearchForm").submit(function (event) {
-        $(".navbar-collapse").collapse('hide');
         event.preventDefault();
-        searchChannelsByName().then(worked, failed);
+        let inputStr = '';
+        if($(event.target).find('input').val()===""){
+            return;     //prevent empty input
+        }else{
+            inputStr=$(event.target).find('input').val();
+        }
+        $(".navbar-collapse").collapse('hide');       
+        searchChannelsByName(inputStr).then(worked, failed);
         // $(".contentPlaceholder").hide();
         $('.contentPlaceholderWrapper').fadeOut(1000, function(){
             $('#text-carousel, .videoHeader').slideDown(1100);
@@ -445,16 +451,16 @@ function initiateUser(){
 
 
 //Channel Search by Name
-function searchChannelsByName() {
+function searchChannelsByName(inputStr) {
     $(".addChannelButton").removeClass("disabled").text("Add");
-    let string = '';
-    if($('.channelSearchInput:odd').val()!==""){
-        string = $('.channelSearchInput:odd').val();
-    }else if($('.channelSearchInput:even').val()!==""){
-        string = $('.channelSearchInput:even').val();
-    }else{
-        string='';
-    }
+    let string = inputStr;
+    // if($('.channelSearchInput:odd').val()!==""){
+    //     string = $('.channelSearchInput:odd').val();
+    // }else if($('.channelSearchInput:even').val()!==""){
+    //     string = $('.channelSearchInput:even').val();
+    // }else{
+    //     string='';
+    // }
     $('.channelSearchInput').val('');
     // var string = $('.channelSearchInput').val();
     var promise = {
