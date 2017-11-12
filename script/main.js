@@ -395,8 +395,8 @@ function initiateUser(){
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSubscribedChannelObjects.push(data.data[0]);
 
-                                loadClientVideoObjectArray();
-                                videoObjectsToLoad = null;
+                                // loadClientVideoObjectArray();
+                                // videoObjectsToLoad = null;
                             }else{
                                 console.log(data);
                             }
