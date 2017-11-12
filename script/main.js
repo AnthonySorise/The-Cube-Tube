@@ -371,7 +371,7 @@ function initiateUser(){
         },
         success: function (data) {
             if (data.success){
-                console.log('read success', data);
+                console.log('REad success', data.data);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function(){
                     $('#text-carousel, .videoHeader').slideDown(1100);
                 });
@@ -390,7 +390,7 @@ function initiateUser(){
                         },
                         success:function(data){
                             if(data.success){
-                                console.log('Read data success', data.data);
+                                console.log('read data success', data.data);
                                 // clientSubscribedChannelObjects.push(data.data[0]);
                                 // clientSubscribedChannelObjects.push(data.data[0]);
                             }else{
