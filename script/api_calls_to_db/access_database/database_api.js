@@ -73,6 +73,8 @@
              success: function (data) {
                  if (data.success) {
                      console.log('read success', data);
+                 }else{
+                    console.log(data);
                  }
              },
              errors: function (data) {
