@@ -953,7 +953,6 @@ function loadClientVideoObjectArray() {
     }
     console.log("LOADING VIDEO LIST")
     renderVideoList(videoObjectsToLoad);
-    videoObjectsToLoad = null;
 }
 
 function handleBrowseButton() {
