@@ -371,7 +371,7 @@ function initiateUser(){
         },
         success: function (data) {
             if (data.success){
-                console.log('REad success', data.data);
+                console.log('read success', data.data[0].youtube_channel_id);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function(){
                     $('#text-carousel, .videoHeader').slideDown(1100);
                 });
@@ -390,9 +390,9 @@ function initiateUser(){
                         },
                         success:function(data){
                             if(data.success){
-                                console.log('read data success', data.data);
-                                // clientSubscribedChannelObjects.push(data.data[0]);
-                                // clientSubscribedChannelObjects.push(data.data[0]);
+                                console.log('read data success', data.data.youtube_channel_id);
+                                clientSubscribedChannelObjects.push(data.data[0].youtube_channel_id);
+                                clientSubscribedChannelObjects.push(data.data[0].youtube_channel_id);
                             }else{
                                 console.log(data);
                             }
