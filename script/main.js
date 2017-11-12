@@ -87,9 +87,9 @@ $(document).ready(function () {
         $('.lightBoxMode').css('left', iframeRight+'px');
     },200);
 
-    // setTimeout(()=>{
-    //     initiateUser();
-    // }, 750)
+    setTimeout(()=>{
+        initiateUser();
+    }, 2000)
 });
 
 
