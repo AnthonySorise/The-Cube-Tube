@@ -436,8 +436,6 @@ function initiateUser(){
                     videoObjectsToLoad = [];
                     videoObjectsToLoad = data.data;
                     loadClientVideoObjectArray(videoObjectsToLoad);
-                    videoObjectsToLoad = null;
-
                 }
             },
             errors: function (data) {
@@ -836,7 +834,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 }
 
 function manageDatabaseWithChannelId (channelID, isAdding = false){
-    videoObjectsToLoad = null;
+    // videoObjectsToLoad = null;
 
     if(!isAdding){
         clientSelectedChannelIds = [];
@@ -955,6 +953,7 @@ function loadClientVideoObjectArray() {
     }
     console.log("LOADING VIDEO LIST")
     renderVideoList(videoObjectsToLoad);
+    videoObjectsToLoad = null;
 }
 
 function handleBrowseButton() {
