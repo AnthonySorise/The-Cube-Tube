@@ -306,9 +306,9 @@ consider carousel for the video list area:
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="carousel-inner">
-								<div class="item active ">
+								<div class="item active pageOne">
 									<div class="carousel-content">
-										<div class="row tdRow text-center firstPage">
+										<div class="row tdRow text-center ">
 											<!--target each list:
                                                 e.g. changing video title
                                                 $('#tdList-' + [i] +' .tdTitle')
@@ -780,7 +780,7 @@ consider carousel for the video list area:
 										</div>
 									</div>
 								</div>
-								<div class="item">
+								<div class="item pageTwo">
 									<div class="carousel-content">
 										<div class="row tdRow text-center">
 											<!--target each list:
