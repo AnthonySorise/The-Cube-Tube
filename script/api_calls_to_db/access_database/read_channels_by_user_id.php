@@ -3,7 +3,7 @@ if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
 $user_id = USER_ID;
-if(empty(USER_ID)){
+if(empty($user_id)){
     $output['user'] = false;
     output_and_exit($output);
 }
