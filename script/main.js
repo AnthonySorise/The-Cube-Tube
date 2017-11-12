@@ -378,6 +378,7 @@ function initiateUser(){
                 for(var i = 0; i<data.data.length; i++){
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
+                    videoObjectsToLoad = [];
                     videoObjectsToLoad.push(data.data[i].youtube_channel_id);
 
                     $.ajax({
@@ -393,6 +394,8 @@ function initiateUser(){
                                 console.log('read data success', data.data.youtube_channel_id);
                                 clientSubscribedChannelObjects.push(data.data[0].youtube_channel_id);
                                 clientSubscribedChannelObjects.push(data.data[0].youtube_channel_id);
+
+                                videoObjectsToLoad = null;
                             }else{
                                 console.log(data);
                             }
