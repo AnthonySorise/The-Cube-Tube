@@ -630,7 +630,7 @@ function renderVideoList(videoArray) {
                     'data-original-title': videoArray[i].video_title
                 });
         }
-    }, 750);
+    }, 1500);
 }
 
 function addChannelModal(userLink){
