@@ -55,7 +55,7 @@ consider carousel for the video list area:
 					<span id="cubeTubeLogo"></span>
 					<span class="logoText hidden-xs">TheCubeTube</span>
 				</span>
-				<form class="navbar-form channelSearchForm visible-xs">
+				<form class="navbar-form channelSearchForm channelSearchFormMobile visible-xs">
 					<div class="form-group">
 						<div class="input-group">
 							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">

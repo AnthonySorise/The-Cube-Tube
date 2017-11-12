@@ -829,8 +829,9 @@ safer appraoch than to resizing browser to see change
 	.navbar-header{
 		width: auto;
 	}
-	.channelSearchForm{
+	.channelSearchFormMobile{
 		display: inline-block !important;
+		width: 275px;
 	}
 	.main-content{
 		height: 93vh;
