@@ -1122,7 +1122,7 @@ function checkIfPlayer2IsMuted() {
 
 function fadeToFirstSlideEffect(){
     $(".tdRow").hide();
-    $(".tdRow").fadeIn(3000)
+    $(".tdRow").fadeIn(2000)
 }
 
 function returnToPageOne(){
