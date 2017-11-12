@@ -86,7 +86,7 @@ $(document).ready(function () {
         iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
         $('.lightBoxMode').css('left', iframeRight+'px');
     },200);
-    // initiateUser();
+    initiateUser();
 });
 
 
@@ -362,6 +362,8 @@ function clickHandler() {
 
 function initiateUser(){
     // access_database.read_channels_by_user_id()
+    var numSubscribedChannels = null;
+    var loadVideos = false;
     $.ajax({
         url: './script/api_calls_to_db/access_database/access.php ',
         method: 'POST',
@@ -376,7 +378,7 @@ function initiateUser(){
                     $('#text-carousel, .videoHeader').slideDown(1100);
                 });
                 for(var i = 0; i<data.data.length; i++){
-                    var numSubscribedChannels = data.data.length;
+                    numSubscribedChannels = data.data.length;
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
 
@@ -393,35 +395,7 @@ function initiateUser(){
                                 console.log('read data success', data.data);
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSubscribedChannelObjects.push(data.data[0]);
-                                console.log("i is " + i)
-                                console.log("numSubscribedChannels is " + numSubscribedChannels)
-                                if(i = numSubscribedChannels-1){
-                                    console.log("HERE")
-                                    $.ajax({
-                                        url: './script/api_calls_to_db/access_database/access.php',
-                                        method: 'POST',
-                                        dataType: 'JSON',
-                                        data: {
-                                            action:'read_videos_by_channel_array',
-                                            channel_id_array:clientSelectedChannelIds,
-                                            offset:0
-                                        },
-                                        success: function (data) {
-                                            if (data.success) {
-                                                console.log('READ success', data);
 
-                                                videoObjectsToLoad = [];
-                                                videoObjectsToLoad = data.data;
-                                                loadClientVideoObjectArray(videoObjectsToLoad);
-                                                videoObjectsToLoad = null;
-
-                                            }
-                                        },
-                                        errors: function (data) {
-                                            console.log('read error', data);
-                                        }
-                                    })
-                                }
                             }else{
                                 console.log(data);
                             }
@@ -439,6 +413,39 @@ function initiateUser(){
             console.log('read error', data);
         }
     })
+
+    function collectVideosToLoad(){
+        if (numSubscribedChannels !== clientSelectedChannelIds.length) {
+            console.log(numSubscribedChannels !== clientSubscribedChannelIds.length)
+            setTimeout(collectVideosToLoad, 50);
+            return
+        }
+        $.ajax({
+            url: './script/api_calls_to_db/access_database/access.php',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                action:'read_videos_by_channel_array',
+                channel_id_array:clientSelectedChannelIds,
+                offset:0
+            },
+            success: function (data) {
+                if (data.success) {
+                    console.log('READ success', data);
+
+                    videoObjectsToLoad = [];
+                    videoObjectsToLoad = data.data;
+                    loadClientVideoObjectArray(videoObjectsToLoad);
+                }
+            },
+            errors: function (data) {
+                console.log('read error', data);
+            }
+        })
+
+    }
+
+    collectVideosToLoad();
 
 }
 
