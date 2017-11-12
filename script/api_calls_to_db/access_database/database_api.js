@@ -71,7 +71,7 @@
                  action: 'read_channels_by_user_id',
              },
              success: function (data) {
-                 if (data.success) {
+                 if (data.success){
                      console.log('read success', data);
                  }else{
                     console.log(data);

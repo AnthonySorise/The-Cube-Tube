@@ -4,7 +4,7 @@ if(empty($LOCAL_ACCESS)){
 }
 if(!isset($_SESSION['user_link'])){
     $output['user'] = false;
-    output_and_exit();
+    output_and_exit($output);
 }
 $user_id = USER_ID;
 $stmt = $conn->prepare("SELECT c.channel_title, 
