@@ -378,8 +378,6 @@ function initiateUser(){
                 for(var i = 0; i<data.data.length; i++){
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
-                    videoObjectsToLoad = [];
-                    videoObjectsToLoad.push(data.data[i].youtube_channel_id);
 
                     $.ajax({
                         url:'./script/api_calls_to_db/access_database/access.php',
@@ -395,8 +393,32 @@ function initiateUser(){
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSubscribedChannelObjects.push(data.data[0]);
 
-                                // loadClientVideoObjectArray();
-                                // videoObjectsToLoad = null;
+                                if(i = data.data.length-1){
+                                    $.ajax({
+                                        url: './script/api_calls_to_db/access_database/access.php',
+                                        method: 'POST',
+                                        dataType: 'JSON',
+                                        data: {
+                                            action:'read_videos_by_channel_array',
+                                            channel_id_array:clientSelectedChannelIds,
+                                            offset:offset
+                                        },
+                                        success: function (data) {
+                                            if (data.success) {
+                                                console.log('READ success', data);
+
+                                                videoObjectsToLoad = [];
+                                                videoObjectsToLoad = data.data;
+                                                loadClientVideoObjectArray(videoObjectsToLoad);
+                                                videoObjectsToLoad = null;
+
+                                            }
+                                        },
+                                        errors: function (data) {
+                                            console.log('read error', data);
+                                        }
+                                    })
+                                }
                             }else{
                                 console.log(data);
                             }
@@ -404,7 +426,7 @@ function initiateUser(){
                         errors:function(data){
                             console.log(data['errors'], data);
                         }
-                    })
+                    });
                 }
             }else{
                 console.log(data);
