@@ -376,6 +376,7 @@ function initiateUser(){
                     $('#text-carousel, .videoHeader').slideDown(1100);
                 });
                 for(var i = 0; i<data.data.length; i++){
+                    var numSubscribedChannels = data.data.length;
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
 
@@ -392,8 +393,7 @@ function initiateUser(){
                                 console.log('read data success', data.data);
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSubscribedChannelObjects.push(data.data[0]);
-
-                                if(i = data.data.length-1){
+                                if(i = numSubscribedChannels-1){
                                     console.log("HERE")
                                     $.ajax({
                                         url: './script/api_calls_to_db/access_database/access.php',
