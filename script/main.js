@@ -86,7 +86,7 @@ $(document).ready(function () {
         iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
         $('.lightBoxMode').css('left', iframeRight+'px');
     },200);
-    
+    initiateUser();
 });
 
 
@@ -358,36 +358,59 @@ function clickHandler() {
             $('#lightBoxModal').modal('show');
         }
     });
-
-    // //video stats popover    //NOT USED PROBABLY
-    // $("#videoStats").on('show.bs.popover', function () {
-    //     const videoLink = ($('#mainVideo').attr("src"));
-    //     let videoID = videoLink.replace("https://www.youtube.com/embed/", "");
-    //     videoID = videoID.substring(0, videoID.indexOf('?'));
-    //     $.ajax({
-    //         url: 'https://www.googleapis.com/youtube/v3/videos',
-    //         dataType: 'json',
-    //         method: 'get',
-    //         data: {
-    //             key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-    //             id: videoID,
-    //             part: 'snippet, statistics'
-    //         },
-    //         success: function (data) {
-    //             console.log('Youtube success', data);
-    //         },
-    //         error: function (data) {
-    //             console.log('something went wrong with YT', data);
-    //         }
-    //     })
-    // });
-    // //channel stats popover
-
 }
 
 function initiateUser(){
     // access_database.read_channels_by_user_id()
+    $.ajax({
+        url: './script/api_calls_to_db/access_database/access.php ',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+            action: 'read_channels_by_user_id',
+        },
+        success: function (data) {
+            if (data.success){
+                console.log('read success', data);
+                $('.contentPlaceholderWrapper').fadeOut(1000, function(){
+                    $('#text-carousel, .videoHeader').slideDown(1100);
+                });
+                for(var i = 0; i<data.data.length; i++){
+                    clientSubscribedChannelIds.push(data.data[i]);
+                    clientSelectedChannelIds.push(data.data[i]);
+                    videoObjectsToLoad.push(data.data[i]);
 
+                    $.ajax({
+                        url:'./script/api_calls_to_db/access_database/access.php',
+                        method:'post',
+                        dataType:'JSON',
+                        data:{
+                            youtube_channel_id:youtube_channel_id,
+                            action:'read_channels_by_youtube_id'
+                        },
+                        success:function(data){
+                            if(data.success){
+                                console.log('read data success', data);
+                                clientSubscribedChannelObjects.push(data.data[0]);
+                                clientSubscribedChannelObjects.push(data.data[0]);
+                            }else{
+                                console.log(data);
+                            }
+                        },
+                        errors:function(data){
+                            console.log(data['errors'], data);
+                        }
+                    })
+                }
+            }else{
+                console.log(data);
+            }
+        },
+        errors: function (data) {
+            console.log('read error', data);
+        }
+    })
+    loadClientVideoObjectArray();
 
 }
 
