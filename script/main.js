@@ -385,6 +385,14 @@ function clickHandler() {
 
 }
 
+function initiateUser(){
+    // access_database.read_channels_by_user_id()
+
+
+}
+
+
+
 //Channel Search by Name
 function searchChannelsByName() {
     $(".addChannelButton").removeClass("disabled").text("Add");
@@ -1054,7 +1062,32 @@ function checkIfPlayer2IsMuted() {
     }
 }
 
+// function returnToPageOne(){
+//     $(".carousel").fadeOut();
+//     $(".carousel").removeClass('slide')
+//     $(".carousel").carousel(0)
+//     // $(".active").hide();
+//         currentSlideNumber = 1; //redundant?
+//         var videosToLoad = [];
+//         for(var i = 0; i < 40; i++){
+//             videosToLoad.push(videoObjectsToLoad[i])
+//         }
+//         console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
+//         setTimeout(function(){
+//             clearVideoList();
+//             renderVideoList(videosToLoad)
+//         }, 250)
+//     // $('.active').hide();
+//     $('.carousel').fadeIn("slow")
+//     // $(".carousel").fadeIn('slow');
+    
+//     $(".carousel").addClass('slide')
+    
+//     displayCurrentPageNumber()
+// }
+
 function returnToPageOne(){
+    $(".active").fadeOut();
     if(currentSlideNumber !== 1){
         //show backwards animation
 
@@ -1062,6 +1095,7 @@ function returnToPageOne(){
         {
             currentSlideNumber = 2;
             $(".carousel").carousel(0);
+            
         }
         else
         {
@@ -1082,6 +1116,7 @@ function returnToPageOne(){
             renderVideoList(videosToLoad)
         }, 250)
     }
+    $(".active").fadeIn();
     displayCurrentPageNumber();
 }
 
