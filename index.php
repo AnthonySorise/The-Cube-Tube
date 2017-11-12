@@ -209,13 +209,17 @@ consider carousel for the video list area:
 							</label>
 						</div>
 						
-						<form class="navbar-right nav-pills">
+						<form class="navbar-right nav-pills form-inline">
 							<!--form for searching channels-->
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">
+									<span class="input-group-addon videoToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for videos from your channels">
+										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									</span>
+								</div>
 							</div>
-							<button type="submit" class="btn btn-primary videoSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
-							 title="videos in your channels">search</button>
+							<!-- <button type="submit" class="btn btn-primary videoSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="videos in your channels">search</button> -->
 						</form>
 						<!--end of form for channel search-->
 					</div>
@@ -264,9 +268,12 @@ consider carousel for the video list area:
 								<div class='row contentPlaceholderWrapper'>
 									<div class="placeholderBg"></div>
 									<div class="col-sm-12 text-center contentPlaceholder">
-										<h1 class="text-center">Welcome to The CubeTube!</h1>
-										<h3>Start by searching for your favorite YouTube channel</h3>
-										<h3>Add channels by clicking the 'add' button, or simply browse content with 'browse'</h3>
+										<h1 class="text-center hidden-xs">Welcome to The CubeTube!</h1>
+										<h3 class="text-center visible-xs">Welcome to The CubeTube!</h3>
+										<h3 class="hidden-xs">Start by searching for your favorite YouTube channel</h3>
+										<h5 class="visible-xs">Start by searching for your favorite YouTube channel</h5>
+										<h3 class="hidden-xs">Add channels by clicking the 'add' button, or simply browse content with 'browse'</h3>
+										<p class="visible-xs">Add channels by clicking the 'add' button, or simply browse content with 'browse'</p>
 										<!--<img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png">-->
 									</div>
 								</div>

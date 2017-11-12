@@ -109,10 +109,11 @@ body {
 	margin-bottom: 0;
 	margin-right: 0;
 }
-.channelSearchForm input{
+.channelSearchForm input, #videoSearchInput{
 	border: none;
+	border-radius:0;
 }
-.channelSearchForm .input-group-addon{
+.channelSearchForm .input-group-addon, .videoToolTip{
 	background: white;
 	border: none;
 }
@@ -733,21 +734,21 @@ input:checked+.slider {
 safer appraoch than to resizing browser to see change
 *************************************************************/
 @media screen and (max-width: 1082px) {
-	.hamburger {
+	/*.hamburger {
 		display: inline-block !important;
-	}
+	}*/
 	.navbar-header{
-		width: 100%;
+		/*width: 100%;*/
 	}
-	.navbar-collapse.collapse{
+	/*.navbar-collapse.collapse{
 		display: none !important;
-	}
-	.collapse.in{
+	}*/
+	/*.collapse.in{
 		display: block !important;
-	}
+	}*/
 	#mainNav-option{
 		border-top: 1px solid black;
-		background-color: white;
+		/*background-color: white;*/
 		margin-right: -15px;
 		margin-left: -15px;
 	}
@@ -829,9 +830,19 @@ safer appraoch than to resizing browser to see change
 	.navbar-header{
 		width: auto;
 	}
+	.hamburger {
+		display: inline-block !important;
+		margin-right:8px;
+	}
+	.navbar-collapse.collapse{
+		display: none !important;
+	}
+	.collapse.in{
+		display: block !important;
+	}
 	.channelSearchFormMobile{
 		display: inline-block !important;
-		width: 275px;
+		width: 220px;
 	}
 	.main-content{
 		height: 93vh;
