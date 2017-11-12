@@ -386,14 +386,14 @@ function initiateUser(){
                         method:'post',
                         dataType:'JSON',
                         data:{
-                            youtube_channel_id:youtube_channel_id,
+                            youtube_channel_id:data.data[i].youtube_channel_id,
                             action:'read_channels_by_youtube_id'
                         },
                         success:function(data){
                             if(data.success){
-                                console.log('read data success', data.data.youtube_channel_id);
-                                clientSubscribedChannelObjects.push(data.data[0].youtube_channel_id);
-                                clientSubscribedChannelObjects.push(data.data[0].youtube_channel_id);
+                                console.log('read data success', data.data);
+                                clientSubscribedChannelObjects.push(data.data[0]);
+                                clientSubscribedChannelObjects.push(data.data[0]);
 
                                 videoObjectsToLoad = null;
                             }else{
