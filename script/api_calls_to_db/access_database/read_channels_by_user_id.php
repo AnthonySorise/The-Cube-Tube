@@ -3,6 +3,10 @@ if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
 $user_id = USER_ID;
+if(empty(USER_ID)){
+    $output['user'] = false;
+    output_and_exit($output);
+}
 $stmt = $conn->prepare("SELECT c.channel_title, 
 c.youtube_channel_id,c.description,c.thumbnail_file_name,ctu.ctu_id 
 FROM channels AS c 
