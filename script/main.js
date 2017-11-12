@@ -390,9 +390,9 @@ function initiateUser(){
                         },
                         success:function(data){
                             if(data.success){
-                                console.log('read data success', data);
-                                clientSubscribedChannelObjects.push(data.data[0]);
-                                clientSubscribedChannelObjects.push(data.data[0]);
+                                console.log('Read data success', data.data);
+                                // clientSubscribedChannelObjects.push(data.data[0]);
+                                // clientSubscribedChannelObjects.push(data.data[0]);
                             }else{
                                 console.log(data);
                             }
