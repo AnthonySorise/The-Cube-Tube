@@ -385,6 +385,14 @@ function clickHandler() {
 
 }
 
+function initiateUser(){
+    // access_database.read_channels_by_user_id()
+
+
+}
+
+
+
 //Channel Search by Name
 function searchChannelsByName() {
     $(".addChannelButton").removeClass("disabled").text("Add");
