@@ -387,7 +387,9 @@ function clickHandler() {
 
 //Channel Search by Name
 function searchChannelsByName() {
-    string = $('#channelSearchInput').val();
+    $(".addChannelButton").removeClass("disabled").text("Add");
+
+    var string = $('#channelSearchInput').val();
     var promise = {
         then: function (resolve, reject) {
             this.resolve = resolve;
@@ -417,6 +419,10 @@ function searchChannelsByName() {
                 $(channelListData).attr("channelId", data.items[i].snippet.channelId);
                 $(chName).text(data.items[i].snippet.channelTitle);
                 $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
+
+                if(clientSubscribedChannelIds.includes(data.items[i].snippet.channelId)){
+                    $(channelListData + " .addChannelButton").addClass("disabled").text("Added");
+                }
             }
             promise.resolve(data);
         },
@@ -564,12 +570,18 @@ function renderVideoList(videoArray) {
                 .attr({
                     'data-original-title': videoArray[i].video_title
                 });
-
         }
-
-
     }, 750);
+}
 
+function addChannelModal(userLink){
+    if(userLink){
+        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user="+userLink)
+    }
+    else{
+        $('.userLinkBody').text("Channel added to your subscriptions!")
+    }
+    $('#userLinkModal').modal('show');
 }
 
 function ytChannelApiToDb(channelId, isAdding = false) {
@@ -594,16 +606,62 @@ function ytChannelApiToDb(channelId, isAdding = false) {
             thumbnail = thumbnail.replace('/photo.jpg', '');
             channelDbObject.thumbnail = thumbnail;
 
-            access_database.insert_channel(channelDbObject);
+            // access_database.insert_channel(channelDbObject);
+            $.ajax({
+                url:'./script/api_calls_to_db/access_database/access.php',
+                method:'post',
+                dataType:'JSON',
+                data:{
+                    action:'insert_channel',
+                    youtube_channel_id:channelDbObject.youtube_channel_id,
+                    channel_title:channelDbObject.channel_title,
+                    description:channelDbObject.description,
+                    thumbnail:channelDbObject.thumbnail
+                },
+                success:function(data){
+                    if(data.success){
+                        console.log('insert channel success', data);
 
+                        if(!isAdding){
+                            clientSelectedChannelObjects = [];
+                        }
+                        else{
+                            var isDup = false;
+                            for(var i = 0; i < clientSubscribedChannelObjects.length; i++){
+                                if(clientSubscribedChannelObjects[i].youtube_channel_id === channelDbObject.youtube_channel_id){
+                                    isDup = true
+                                }
+                            }
+                            if(!isDup){
+                                clientSubscribedChannelObjects.push(channelDbObject);
+                            }
 
-            if(!isAdding){
-                clientSelectedChannelObjects = [];
-            }
-            else{
-                clientSubscribedChannelObjects.push(channelDbObject);
-            }
-
+                            $.ajax({
+                                url:'./script/api_calls_to_db/access_database/access.php',
+                                method:'post',
+                                dataType:'JSON',
+                                data:{
+                                    action:'insert_ctu',
+                                    youtube_channel_id:channelId
+                                },
+                                success: function (data) {
+                                    if (data.success) {
+                                        console.log('insert success', data);
+                                        addChannelModal(data.user_link)
+                                    }
+                                },
+                                errors: function (data) {
+                                    console.log('insert error', data);
+                                }
+                            })
+                        }
+                        clientSelectedChannelObjects.push(channelDbObject);
+                    }
+                },
+                errors:function(data){
+                    console.log('insert error');
+                }
+            })
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
@@ -716,8 +774,15 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
         clientSelectedChannelIds = [];
     }
     else{
-
-        clientSubscribedChannelIds.push(channelID);
+        var isDup = false;
+        for(var i = 0; i<clientSubscribedChannelIds.length; i++){
+            if(clientSubscribedChannelIds[i] === channelID){
+                isDup = true
+            }
+        }
+        if(!isDup){
+            clientSubscribedChannelIds.push(channelID);
+        }
     }
     clientSelectedChannelIds.push(channelID);
 
@@ -740,10 +805,38 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     clientSelectedChannelObjects = [];
                 }
                 else{
-                    clientSubscribedChannelObjects.push(data.data[0]);
+                    var isDup = false;
+                    for(var i = 0; i < clientSubscribedChannelObjects.length; i++){
+                        if(clientSubscribedChannelObjects[i].youtube_channel_id === data.data[0].youtube_channel_id){
+                            isDup = true
+                        }
+                    }
+                    if(!isDup){
+                        clientSubscribedChannelObjects.push(data.data[0]);
+                    }
+
+                    $.ajax({
+                        url:'./script/api_calls_to_db/access_database/access.php',
+                        method:'post',
+                        dataType:'JSON',
+                        data:{
+                            action:'insert_ctu',
+                            youtube_channel_id:channelID
+                        },
+                        success: function (data) {
+                            if (data.success) {
+                                console.log('insert success', data);
+                                addChannelModal(data.user_link)
+                            }
+                        },
+                        errors: function (data) {
+                            console.log('insert error', data);
+                        }
+                    })
                 }
 
                 clientSelectedChannelObjects.push(data.data[0]);
+
                 $.ajax({    //RETRIEVE VIDEOS FROM DB
                     url: './script/api_calls_to_db/access_database/access.php',
                     method: 'POST',
@@ -814,8 +907,6 @@ function handleBrowseButton() {
 
 function handleAddButton(){
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
-
-
     if(browsingMode){
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
@@ -831,6 +922,10 @@ function handleAddButton(){
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID, true);
     // toastMsg('loading channel videos',1000);
+
+
+
+
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
     $('#channelSearchModal').modal('hide')
@@ -1160,15 +1255,3 @@ if(window.matchMedia("(min-width: 1020px)").matches) {
     $('#mainNav').append(completedSearchDiv);
 }
 
-$(window).bind('orientationchange resize', function(event){
-    if (event.orientation) {
-      if (event.orientation == 'landscape') {
-        if (window.rotation == 90) {
-          rotate(this, -90);
-        } else {
-          rotate(this, 90);
-        }
-      }
-    }
-  });
-  

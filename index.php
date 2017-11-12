@@ -1495,7 +1495,32 @@ consider carousel for the video list area:
 			</div>
 		</div>
 		<!--modal end for channel search result-->
-
+		<!--modal for user link-->
+				<!-- command for modal show:  $('#userLinkModal').modal('show') -->
+		<div class="modal fade" id="userLinkModal" tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
+        				</button>
+        				<div class="modal-title-wrap">
+        					<h5 class="modal-title" id="userLinkModalTitle">
+        						Channel Added!
+        					</h5>
+        				</div>
+      				</div>
+					<div class="modal-body userLinkBody">
+						
+					</div>
+					<div class="modal-footer">
+						<span id="userLinkModalFooter"></span>
+						<button type="button" class="btn btn-danger modalClose userLinkModalClose" data-dismiss="modal">close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--modal end for user link-->
 	</div>
 </body>
 

@@ -1,8 +1,8 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direct access not allowed');
+    die('insert user, direct access not allowed');
 }
-$user_link = USER_LINK;
+$user_link = $_SESSION['user_link'];
 $date_created = date('Y-m-d H:i:s');
 $last_modified = $date_created;
 $ip_address_at_sign_up = get_client_ip();
@@ -34,7 +34,7 @@ $stmt->bind_param('ssss',$user_link,$date_created,$ip_address_at_sign_up,$last_m
 $stmt->execute();
 if(!empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
-        $output['success'] = true;
+        $output['insert_user_success'] = true;
         define('USER_ID',mysqli_insert_id($conn));
     }
     else{
