@@ -619,7 +619,7 @@ function renderVideoList(videoArray) {
                 'data-content': videoArray[i].description,
                 'data-original-title': videoArray[i].video_title
             });
-            $(row + " .tdTitle").popover({
+            $(row).popover({
                 trigger: "hover",
                 html: true,
                 content: videoDataImg,
