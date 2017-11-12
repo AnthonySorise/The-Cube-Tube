@@ -455,7 +455,7 @@ function searchChannelsByName() {
     }else{
         string='';
     }
-
+    $('.channelSearchInput').val('');
     // var string = $('.channelSearchInput').val();
     var promise = {
         then: function (resolve, reject) {
