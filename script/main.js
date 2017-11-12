@@ -131,7 +131,7 @@ function tooltipFunctions() {
 //Click handler to console log search results
 function clickHandler() {
     //Search Button
-    $(".channelSearchForm").on('submit', function (event) {
+    $(".channelSearchForm").submit(function (event) {
         $(".navbar-collapse").collapse('hide');
         event.preventDefault();
         searchChannelsByName().then(worked, failed);
