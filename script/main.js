@@ -447,8 +447,16 @@ function initiateUser(){
 //Channel Search by Name
 function searchChannelsByName() {
     $(".addChannelButton").removeClass("disabled").text("Add");
+    let string = '';
+    if($('.channelSearchInput:odd').val()!==""){
+        string = $('.channelSearchInput:odd').val();
+    }else if($('.channelSearchInput:even').val()!==""){
+        string = $('.channelSearchInput:even').val();
+    }else{
+        string='';
+    }
 
-    var string = $('.channelSearchInput').val();
+    // var string = $('.channelSearchInput').val();
     var promise = {
         then: function (resolve, reject) {
             this.resolve = resolve;
