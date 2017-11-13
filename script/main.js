@@ -397,7 +397,7 @@ function initiateUser(){
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
 
                     // var channelId = data.data[i].youtube_channel_id;
-                    console.log("!!!!!!CHANNEL ID IS", channelId)
+
                     $.ajax({
                         url:'./script/api_calls_to_db/access_database/access.php',
                         method:'post',
