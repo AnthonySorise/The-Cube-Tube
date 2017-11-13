@@ -598,7 +598,8 @@ function renderChannelSelectionDropdown(){
             'name' : clientSubscribedChannelObjects.channel_title,
             'value' : clientSubscribedChannelObjects.channel_id,
             'text' : clientSubscribedChannelObjects.channel_title,
-        }).appendTo(channelLi);
+        });
+        channelLi.append(channel);
 
         $('#channelCategoryUl').append(channelLi)
     }
