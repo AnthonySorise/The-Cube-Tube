@@ -378,7 +378,6 @@ function clickHandler() {
 function initiateUser(){
     // access_database.read_channels_by_user_id()
     var numSubscribedChannels = null;
-    var channelId = "";
     $.ajax({
         url: './script/api_calls_to_db/access_database/access.php ',
         method: 'POST',
@@ -396,7 +395,8 @@ function initiateUser(){
                     numSubscribedChannels = data.data.length;
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
-                    channelId = data.data[i].youtube_channel_id;
+
+                    var channelId = data.data[i].youtube_channel_id;
                     console.log("!!!!!!CHANNEL ID IS", channelId)
                     $.ajax({
                         url:'./script/api_calls_to_db/access_database/access.php',
