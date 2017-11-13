@@ -4,27 +4,27 @@ if(empty($LOCAL_ACCESS)){
 }
 //makes user link if session and get is empty
 if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
-    function generateRandomString(){
+    function generateRandomString($conn){
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
-        for ($i = 0; $i < 12; $i++){
+        for ($i = 0; $i<12; $i++){
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        // $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
-        // $stmt->bind_param('s',$randomString);
-        // echo('im here');
-        // $stmt->execute();
-        // $results = mysqli_stmt_get_result($stmt);
-        // if(!empty($results)){
-        //     if(mysqli_num_rows($results)>0){
-        //         return generateRandomString();
-        //     }else{
-        return $randomString;
-            // }
-    // }
+        $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
+        $stmt->bind_param('s',$randomString);
+        echo('im here');
+        $stmt->execute();
+        $results = mysqli_stmt_get_result($stmt);
+        if(!empty($results)){
+            if(mysqli_num_rows($results)>0){
+                return generateRandomString($conn);
+            }else{
+                return $randomString;
+            }
+        }
     }
-    $_SESSION['user_link'] = generateRandomString();
+    $_SESSION['user_link'] = generateRandomString($conn);
     include('./insert_user.php');
     //creates random string for user and inserts into database as well as show to front end
     define('USER_LINK',$_SESSION['user_link']);
