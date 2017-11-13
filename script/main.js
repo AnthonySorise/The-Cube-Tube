@@ -580,8 +580,10 @@ function clearVideoList(){
 }
 
 function renderChannelSelectionDropdown(){
-    var sorted = false;
+    $(".dropdownChannelLi").remove();
 
+
+    var sorted = false;
     //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
         if(a.channel_title < b.channel_title){
