@@ -32,6 +32,7 @@ consider carousel for the video list area:
 	<script type="text/javascript" src="script/api_calls_to_db/access_database/database_api.js"></script>
 	<script type="text/javascript" src="script/main.js"></script>
 	<script type="text/javascript" src="script/autoSearch.js"></script>
+	<script type="text/javascript" src="script/uiControl.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
@@ -44,10 +45,9 @@ consider carousel for the video list area:
 			<!--navbar content main div-->
 			<div class="navbar-header">
 				<!--nav header div; includes hamburger menu and navbrand-->
-				<button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#mainNav-option" data-parent="#accordion"
-				 aria-expanded="true">
+				<button type="button" class="navbar-toggle collapsed hamburger" id="channelCategoryHamburger" aria-expanded="true">
 					<span class="hamburger-box">
-						<span class="glyphicon glyphicon-menu-hamburger"></span>
+						<span class="glyphicon glyphicon-th-list"></span>
 					</span>
 				</button>
 				<span class="navbar-brand text-center">
@@ -74,20 +74,18 @@ consider carousel for the video list area:
 
 			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown channelDropDown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							Category
+						<a href="#" class="dropdown-toggle hidden-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							Channels
 							<span class="caret"></span>
 						</a>
-						<ul class="dropdown-menu">
+						<a href="#" class="visible-xs closeChannelDropXs">
+							close <i class="fa fa-times" aria-hidden="true"></i>
+						</a>
+						<ul class="dropdown-menu" id="channelCategoryUl">
 							<li>
-								<a href="#">ALL</a>
-							</li>
-							<li role="separator" class="divider"></li>
-							<li>
-								<a href="#">
-									<button class="btn btn-danger btn-xs"> X</button> World History</a>
+								<a href="#">category</a>
 							</li>
 							<li role="separator" class="divider"></li>
 							<li>
