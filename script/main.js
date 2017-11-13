@@ -965,6 +965,7 @@ function loadClientVideoObjectArray() {
 
 function handleBrowseButton() {
     browsingMode = true;
+    videoObjectsToLoad = [];
 
     returnToPageOne();
     clearVideoList();
@@ -982,6 +983,7 @@ function handleBrowseButton() {
 
 function handleAddButton(){
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
+    videoObjectsToLoad = [];
     if(browsingMode){
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
@@ -1141,15 +1143,17 @@ function returnToPageOne(){
     if(currentSlideNumber !== 1){
 
         currentSlideNumber = 1; //redundant?
-        var videosToLoad = [];
-        for(var i = 0; i < 40; i++){
-            videosToLoad.push(videoObjectsToLoad[i])
-        }
-        console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
-        // setTimeout(function(){
+        if(videoObjectsToLoad.length !== 0) {
+            var videosToLoad = [];
+            for (var i = 0; i < 40; i++) {
+                videosToLoad.push(videoObjectsToLoad[i])
+            }
+            console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
+            // setTimeout(function(){
             clearVideoList();
             renderVideoList(videosToLoad)
-        // }, 250)
+            // }, 250)
+        }
     }
     $(".carousel").addClass('slide')
     fadeToFirstSlideEffect();
