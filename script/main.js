@@ -631,6 +631,7 @@ function compileSelectedChannelsFromDropdown(){
     for(var i = 0; i<selectedInputs.length; i++){
         clientSelectedChannelIds.push($(selectedInputs[i]).attr("channel_id"))
     }
+    clientSelectedChannelObjects = [];
     for (var i = 0; i<clientSubscribedChannelObjects.length; i++){
         if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects.youtube_channel_id) !== -1){
             clientSelectedChannelObjects.push(clientSubscribedChannelObjects[i])
