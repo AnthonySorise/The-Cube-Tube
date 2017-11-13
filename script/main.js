@@ -369,6 +369,7 @@ function clickHandler() {
 function initiateUser(){
     // access_database.read_channels_by_user_id()
     var numSubscribedChannels = null;
+    var channelId = "";
     $.ajax({
         url: './script/api_calls_to_db/access_database/access.php ',
         method: 'POST',
@@ -386,18 +387,19 @@ function initiateUser(){
                     numSubscribedChannels = data.data.length;
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
-
+                    channelId = data.data[i].youtube_channel_id;
                     $.ajax({
                         url:'./script/api_calls_to_db/access_database/access.php',
                         method:'post',
                         dataType:'JSON',
                         data:{
-                            youtube_channel_id:data.data[i].youtube_channel_id,
+                            youtube_channel_id:channelId,
                             action:'read_channels_by_youtube_id'
                         },
                         success:function(data){
                             if(data.success){
                                 console.log('read data success', data.data);
+                                data.data[0].youtube_channel_id = channelId;
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSelectedChannelObjects.push(data.data[0]);
 
