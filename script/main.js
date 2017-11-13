@@ -589,9 +589,10 @@ function renderChannelSelectionDropdown(){
         var channel = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects[i].channel_title,
-            'value' : clientSubscribedChannelObjects[i].channel_id,
-            'text' : clientSubscribedChannelObjects[i].channel_title,
+            'value' : clientSubscribedChannelObjects[i].youtube_channel_id,
         });
+        channel.text(clientSubscribedChannelObjects[i].channel_title);
+
         channelLi.append(channel);
 
         $('#channelCategoryUl').append(channelLi)

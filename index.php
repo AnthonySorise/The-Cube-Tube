@@ -84,23 +84,7 @@ consider carousel for the video list area:
 								<a href="#">category</a>
 							</li>
 							<li role="separator" class="divider"></li>
-							<!-- 
-								$('<li>').attr({
-									'type' : 'checkbox',
-									'name' : '',
-									'value' : '',
-									'text' : ''
-								})
-							 -->
-							<li>
-								<input type="checkbox" name="channel name" value="channelName"> channel 1
-							</li>
-							<li>
-								<input type="checkbox" name="channel2 name" value="channelName2"> channel 2
-							</li>
-							<li>
-								<input type="checkbox" name="channel3 name" value="channelName3"> channel 3 
-							</li>
+
 						</ul>
 					</li>
 				</ul>
