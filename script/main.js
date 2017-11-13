@@ -714,7 +714,6 @@ function renderVideoList(videoArray) {
 
     }
     resetSelectedTd();
-    renderChannelSelectionDropdown()
     //update thumbnail hover popover
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
@@ -819,6 +818,7 @@ function ytChannelApiToDb(channelId, isAdding = false) {
                                     if (data.success) {
                                         console.log('insert success', data);
                                         addChannelModal(data.user_link)
+                                        renderChannelSelectionDropdown()
                                     }
                                 },
                                 errors: function (data) {
@@ -963,6 +963,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                             if (data.success) {
                                 console.log('insert success', data);
                                 addChannelModal(data.user_link)
+                                renderChannelSelectionDropdown()
                             }
                         },
                         errors: function (data) {
