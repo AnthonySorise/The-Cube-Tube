@@ -84,9 +84,12 @@ consider carousel for the video list area:
 								<a href="#">category</a>
 							</li>
 							<li role="separator" class="divider"></li>
-							<li>
+							<li class="dropdownChannelLi">
 								<input type="checkbox" name="All checkbox" value="all"> All
 							</li>
+							<!-- <li class="dropdownChannelLi">
+								<input type="checkbox" name="All checkbox" value="all"> Allasefasefasegasegasefewebcvntyrty
+							</li> -->
 						</ul>
 					</li>
 				</ul>

@@ -143,8 +143,17 @@ body {
 }
 #channelCategoryUl{
 	text-align: center;
+	padding: 5px 10px;
+	overflow: auto;
 }
-#channelCategoryUl li:not(:first-child):hover{
+.dropdownChannelLi{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: left;
+	margin-top: 5px;
+}
+.dropdownChannelLi:hover{
 	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
 }
@@ -870,6 +879,10 @@ safer appraoch than to resizing browser to see change
 @media only screen and (min-width: 768px){
 	#mainNav-option{
 		width: auto !important;
+	}
+	#channelCategoryUl{
+		max-height: 40vh;
+		max-width: 15vw;
 	}
 }
 @media only screen and (max-width : 767px){
