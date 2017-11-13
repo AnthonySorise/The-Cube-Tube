@@ -415,6 +415,7 @@ function initiateUser(){
 
                                 if (numSubscribedChannels === clientSelectedChannelIds.length) {
                                     loadSelectedChannels();
+                                    renderChannelSelectionDropdown();
                                 }
                             }else{
                                 console.log(data);
