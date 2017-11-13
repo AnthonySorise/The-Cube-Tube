@@ -328,8 +328,16 @@ function clickHandler() {
     });
 
     //Theater mode
-    $('.lightBoxMode').on('click', function () {
+    $('.lightBoxMode').on('click', checkHomePageVideoStatus);
+    $('.theatreModalClose').on('click', checkTheatreModeStatus);
+    $(document).on('keyup', function (event) {
+        if(event.keyCode === 27 && $('body').hasClass('modal-open')) {
+            console.log('Esc was pressed');
+            checkTheatreModeStatus();
+        }
+    })
 
+    function checkHomePageVideoStatus() {
         player.pauseVideo();
         if (player.getPlayerState() === 2) {
             checkIfPlayerIsMuted();
@@ -346,24 +354,25 @@ function clickHandler() {
         } else if (player.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
         }
-    });
-    $('.theatreModalClose').on('click', function () {
+    }
+
+    function checkTheatreModeStatus() {
         if (player2.getPlayerState() === 2) {
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
             player.pauseVideo();
-            $('#lightBoxModal').modal('show');
+            $('#lightBoxModal').modal('hide');
         } else if (player2.getPlayerState() === 1) {
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
-            $('#lightBoxModal').modal('show');
+            $('#lightBoxModal').modal('hide');
             player.playVideo();
         } else if (player2.getPlayerState() === 5) {
-            $('#lightBoxModal').modal('show');
+            $('#lightBoxModal').modal('hide');
         }
-    });
+    }
 }
 
 function initiateUser(){
