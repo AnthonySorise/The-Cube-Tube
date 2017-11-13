@@ -12,6 +12,8 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
+        echo($stmt);
+        exit();
         $stmt->bind_param('s',$randomString);
         echo('im here');
         $stmt->execute();
