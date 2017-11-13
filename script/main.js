@@ -714,6 +714,7 @@ function renderVideoList(videoArray) {
 
     }
     resetSelectedTd();
+    renderChannelSelectionDropdown()
     //update thumbnail hover popover
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
