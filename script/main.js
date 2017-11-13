@@ -396,20 +396,20 @@ function initiateUser(){
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
 
-                    var channelId = data.data[i].youtube_channel_id;
+                    // var channelId = data.data[i].youtube_channel_id;
                     console.log("!!!!!!CHANNEL ID IS", channelId)
                     $.ajax({
                         url:'./script/api_calls_to_db/access_database/access.php',
                         method:'post',
                         dataType:'JSON',
                         data:{
-                            youtube_channel_id:channelId,
+                            youtube_channel_id:data.data[i].youtube_channel_id,
                             action:'read_channels_by_youtube_id'
                         },
                         success:function(data){
                             if(data.success){
                                 console.log('read data success', data.data);
-                                data.data[0].youtube_channel_id = channelId;
+                                // data.data[0].youtube_channel_id = channelId;
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSelectedChannelObjects.push(data.data[0]);
 
@@ -927,7 +927,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
             if(data.success){
                 // promise.resolve(data);
                 console.log('Channel Found', data);
-                data.youtube_channel_id = channelID;
+                // data.youtube_channel_id = channelID;
 
                 if(!isAdding){
                     clientSelectedChannelObjects = [];
