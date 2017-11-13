@@ -60,14 +60,10 @@ consider carousel for the video list area:
 						<div class="input-group">
 							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
 							<span type="button" class="input-group-addon channelSearchButton">
-							<!-- <button class="channelSearchButton"> -->
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-							<!-- </button> -->
 							</span>
 						</div>
 					</div>
-					<!-- <button type="submit" class="btn btn-danger channelSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
-					 title="search for channels to add">search</button> -->
 				</form>
 			</div>
 			<!--end of nav header div-->
@@ -108,8 +104,6 @@ consider carousel for the video list area:
 							</span>
 						</div>
 					</div>
-					<!-- <button type="submit" class="btn btn-danger channelSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
-					 title="search for channels to add">search</button> -->
 				</form>
 			</div>
 			<!--end of nav options div-->
@@ -170,7 +164,6 @@ consider carousel for the video list area:
 						<div class="navbar-nav nav-pills infoButtons">
 
 								<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
-									<!--data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">-->
 									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
 								</a>
 
@@ -198,7 +191,6 @@ consider carousel for the video list area:
 									</span>
 								</div>
 							</div>
-							<!-- <button type="submit" class="btn btn-primary videoSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="videos in your channels">search</button> -->
 						</form>
 						<!--end of form for channel search-->
 					</div>
