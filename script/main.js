@@ -131,8 +131,8 @@ function tooltipFunctions() {
 //Click handler to console log search results
 function clickHandler() {
     //Search Button
-    $('.channelSearchButton').click((e)=>{
-        // e.preventDefault();
+    $('.channelSearchForm').on('click','.channelSearchButton',(e)=>{
+        e.preventDefault();
         $('.channelSearchForm').submit();
     });
     $(".channelSearchForm").submit(function (event) {
