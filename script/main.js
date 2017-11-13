@@ -401,6 +401,9 @@ function initiateUser(){
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSubscribedChannelObjects.push(data.data[0]);
 
+                                if (numSubscribedChannels === clientSelectedChannelIds.length) {
+                                    loadSelectedChannels();
+                                }
                             }else{
                                 console.log(data);
                             }
@@ -410,7 +413,7 @@ function initiateUser(){
                         }
                     });
                 }
-                collectVideosToLoad();
+                // collectVideosToLoad();
             }else{
                 console.log(data);
             }
@@ -420,15 +423,15 @@ function initiateUser(){
         }
     });
 
-    function collectVideosToLoad(){
-        if (numSubscribedChannels !== clientSelectedChannelIds.length) {
-            console.log(numSubscribedChannels !== clientSubscribedChannelIds.length)
-            setTimeout(collectVideosToLoad, 50);
-            return
-        }
-        loadSelectedChannels();
-
-    }
+    // function collectVideosToLoad(){
+    //     if (numSubscribedChannels !== clientSelectedChannelIds.length) {
+    //         console.log(numSubscribedChannels !== clientSubscribedChannelIds.length)
+    //         setTimeout(collectVideosToLoad, 50);
+    //         return
+    //     }
+    //     loadSelectedChannels();
+    //
+    // }
 }
 
 
