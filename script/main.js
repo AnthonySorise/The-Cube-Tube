@@ -441,7 +441,8 @@ function initiateUser(){
 
                     videoObjectsToLoad = [];
                     videoObjectsToLoad = data.data;
-                    loadClientVideoObjectArray(videoObjectsToLoad);
+                    // loadClientVideoObjectArray(videoObjectsToLoad);
+                    renderVideoList(videoObjectsToLoad);
                 }
             },
             errors: function (data) {
@@ -587,6 +588,11 @@ function clearVideoList(){
 }
 
 function renderVideoList(videoArray) {
+    if (videoObjectsToLoad === null) {
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    }
+    console.log("LOADING VIDEO LIST")
+
     for (let i = 0; i < videoArray.length; i++) {
         if(videoArray[i] === undefined){
             return
@@ -788,7 +794,8 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                         clientPackage.push(packageToSendToDb[i])
                     }
                     videoObjectsToLoad = clientPackage
-                    loadClientVideoObjectArray(videoObjectsToLoad)
+                    // loadClientVideoObjectArray(videoObjectsToLoad)
+                    renderVideoList(videoObjectsToLoad);
                     access_database.insert_video(packageToSendToDb);
                 }
                 else{
@@ -815,7 +822,8 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                                         if (data.success) {
                                             videoObjectsToLoad = data.data;
                                             console.log('YouTube videos added to database - clientVideoList created', videoObjectsToLoad);
-                                            loadClientVideoObjectArray(videoObjectsToLoad)
+                                            // loadClientVideoObjectArray(videoObjectsToLoad)
+                                            renderVideoList(videoObjectsToLoad);
                                         }
                                     },
                                     errors: function (data) {
@@ -930,7 +938,8 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                             console.log('Videos Found', data);
                             videoObjectsToLoad = data.data;
 
-                            loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
+                            // loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
+                            renderVideoList(videoObjectsToLoad);
                         }
                         else{
                             console.log('Channel Found Without Videos', data)
@@ -957,15 +966,15 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
     })
 }
 
-function loadClientVideoObjectArray() {
-    if (videoObjectsToLoad === null) {
-        console.log(videoObjectsToLoad === null)
-        setTimeout(loadClientVideoObjectArray, 50);
-        return
-    }
-    console.log("LOADING VIDEO LIST")
-    renderVideoList(videoObjectsToLoad);
-}
+// function loadClientVideoObjectArray() {
+//     if (videoObjectsToLoad === null) {
+//         console.log(videoObjectsToLoad === null)
+//         setTimeout(loadClientVideoObjectArray, 50);
+//         return
+//     }
+//     console.log("LOADING VIDEO LIST")
+//     renderVideoList(videoObjectsToLoad);
+// }
 
 function handleBrowseButton() {
     browsingMode = true;
