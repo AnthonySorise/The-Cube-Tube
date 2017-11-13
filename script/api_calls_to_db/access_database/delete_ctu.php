@@ -1,6 +1,6 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direct access not allowed');
+    die('delete ctu, direct access not allowed');
 }
 if(empty($_POST['youtube_channel_id'])){
     $output['errors'] = 'MISSING YOUTUBE CHANNEL ID';

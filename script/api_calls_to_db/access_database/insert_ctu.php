@@ -1,31 +1,40 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direct access not allowed');
+    die('insert ctu, direct access not allowed');
 }
 //makes user link if session and get is empty
 if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
-    function generateRandomString(){
+    function generateRandomString($conn){
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
-        for ($i = 0; $i < 12; $i++){
+        for ($i=0; $i<12; $i++){
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        return $randomString;
+        $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
+        $stmt->bind_param('s',$randomString);
+        $stmt->execute();
+        $results = mysqli_stmt_get_result($stmt);
+        if(!empty($results)){
+            if(mysqli_num_rows($results)>0){
+                return generateRandomString($conn);
+            }else{
+                return $randomString;
+            }
         }
-        $_SESSION['user_link'][] = generateRandomString();
-        //creates random string for user and inserts into database as well as show to front end
-        include('./script/api_calls_to_db/access_database/insert_user.php');
-        define('USER_LINK',$_SESSION['user_link']);
-        $output['user_link'] = USER_LINK;
-        include('./script/api_calls_to_db/access_database/read_user.php');
+    }
+    $_SESSION['user_link'] = generateRandomString($conn);
+    include('./insert_user.php');
+    //creates random string for user and inserts into database as well as show to front end
+    define('USER_LINK',$_SESSION['user_link']);
+    $output['user_link'] = USER_LINK;
 }
 //get user id
 //grabbing channel id from db to add to user link
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $stmt = $conn->prepare("SELECT channel_id FROM channels 
 WHERE youtube_channel_id = ?");
-$stmt->bind_param(s,$youtube_channel_id);
+$stmt->bind_param('s',$youtube_channel_id);
 $stmt->execute();
 $result = mysqli_stmt_get_result($stmt);
 if(empty($result)){
@@ -62,7 +71,7 @@ $stmt->execute();
 $results = mysqli_stmt_get_result($stmt);
 if(!empty($results)){
     if(mysqli_num_rows($results)>0){
-        $output['errors'][] = "DUPLICATE";
+        $output['errors'][] = "DUPLICATE CTU";
         output_and_exit($output);
     }else{
         $sqli = "INSERT INTO channels_to_users SET user_id = ?, channel_id=?";
@@ -74,6 +83,7 @@ if(!empty($results)){
             mysqli_stmt_execute($stmt);
             if(mysqli_affected_rows($conn)>0){
                 $output['success'] = true;
+                $output['insert_etu'] = success;
             }
             else{
                 $output['errors'] = 'UNABLE TO INSERT INTO CTU';

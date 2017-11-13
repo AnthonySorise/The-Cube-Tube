@@ -7,7 +7,7 @@ $output = [
     'errors' => [],
 ];
 if(isset($_SESSION['user_link'])){
-    include('./script/api_calls_to_db/access_database/read_user.php');
+    include('./read_user.php');
 }
 if(empty($_POST['action'])){
     $output['errors'][] = 'No action specified';

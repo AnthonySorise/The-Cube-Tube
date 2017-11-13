@@ -1,6 +1,6 @@
 <?php
-if(empty($LOCAL_ACCES)){
-    $output['errors'][] = "no direct access allowed";
+if(empty($LOCAL_ACCESS)){
+    die("No direct access allowed");
 }
 $user_link = $_SESSION['user_link'];
 $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
@@ -17,3 +17,4 @@ if(!empty($results)){
 }else{
     $output['errors'][] = 'INVALID QUERY';
 }
+?>
