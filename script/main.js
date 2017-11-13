@@ -126,7 +126,7 @@ function tooltipFunctions() {
 }
 
 //Click handler to console log search results
-function clickHandler() {
+function clickHandler() {  
     //Search Button
     $(".channelSearchForm .channelSearchButton").on('click', function (event) {
         $(".navbar-collapse").collapse('hide');
@@ -387,7 +387,7 @@ function clickHandler() {
 
 //Channel Search by Name
 function searchChannelsByName() {
-    string = $('#channelSearchInput').val();
+    string = $('.ui-menu-item-wrapper').val() || $('#channelSearchInput').val();
     var promise = {
         then: function (resolve, reject) {
             this.resolve = resolve;

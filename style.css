@@ -108,6 +108,7 @@ body {
 	margin-top: 0;
 	margin-bottom: 0;
 	margin-right: 0;
+	background-color: rgb(20,20,20);
 }
 .infoButtons{
 	line-height: 3.5;
@@ -119,7 +120,7 @@ body {
 }
 .ui-widget-content {
 	color: #fff !important;
-    top: 49px !important;
+    top: 12% !important;
 	background-color: rgb(20,20,20) !important;
 	border: none !important;
 	background: unset;
@@ -740,7 +741,7 @@ safer appraoch than to resizing browser to see change
 	}
 	#mainNav-option{
 		border-top: 1px solid black;
-		background-color: white;
+		background-color: rgb(20,20,20);
 		margin-right: -15px;
 		margin-left: -15px;
 	}
@@ -874,6 +875,11 @@ safer appraoch than to resizing browser to see change
 	.navbar-brand>span {
 		display: none;
 	}
+	.ui-widget-content {
+		color: #fff !important;
+		top: 19% !important;
+		background-color: rgb(20,20,20) !important;
+		border: none !important;
+		background: unset;
+	}
 }
-
-
