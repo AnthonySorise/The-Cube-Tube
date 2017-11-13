@@ -607,6 +607,7 @@ function renderChannelSelectionDropdown(){
 
         //check if channel is selected
         if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
+            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id)
             channel.attr("checked", "checked")
         }
 
