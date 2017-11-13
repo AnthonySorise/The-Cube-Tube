@@ -9,11 +9,11 @@ session_start();
  * Google Developers Console: https://console.developers.google.com/
  * Please ensure that you have enabled the YouTube Data API for your project.
  */
-include('./script/api_calls_to_db/access_database/youtube_api_key.php');
+include('youtube_api_key.php');
 define('CREDENTIALS_PATH', '~/php-yt-oauth2.json');
 function getClient() {
   $client = new Google_Client();
-  $client->setApplicationName('API Samples');
+  $client->setApplicationName('thecubetube');
   $client->setScopes('https://www.googleapis.com/auth/youtube.force-ssl');
   // Set to name/location of your client_secrets.json file.
   $client->setAuthConfig('client_secrets.json');
@@ -158,6 +158,5 @@ function uploadMedia($client, $request, $filePath, $mimeType) {
 /***** END BOILERPLATE CODE *****/
 
 // Sample php code for channels.list
-// include('./script/youtube_api_php/access.php');
-include('get_channel_data_from_youtube.php');
+// include('./script/youtube_api_php/access.php');0
 ?>

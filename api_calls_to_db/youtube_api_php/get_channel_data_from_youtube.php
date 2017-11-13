@@ -18,25 +18,25 @@ $channel_title = $channel_data['items'][0]['snippet']['title'];
 $description = $channel_data['items'][0]['snippet']['description'];
 $date_created = date('Y-m-d H:i:s');
 $last_channel_pull = date("Y-m-d H:i:s");
-
-$stmt = $conn->prepare("INSERT INTO channels SET 
-channel_title = ?, 
-youtube_channel_id = ?,
-description = ?, 
-thumbnail_file_name = ?, 
-date_created=?,
-last_channel_pull=?");
-$stmt->bind_param('ssssss',$channel_title,$youtube_channel_id,
-$description,$thumbnail,$date_created,$last_channel_pull);
-$stmt->execute();
-if(empty($stmt)){
-    $output['errors'][]='invalid query';
-}else{
-    if(mysqli_affected_rows($conn)>0){
-        $output['success'] = true;
-    }else{
-        $output['errors'][]='UNABLE TO INSERT';
-    }
-}
-output_and_exit();
+print($channel_data);
+// $stmt = $conn->prepare("INSERT INTO channels SET 
+// channel_title = ?, 
+// youtube_channel_id = ?,
+// description = ?, 
+// thumbnail_file_name = ?, 
+// date_created=?,
+// last_channel_pull=?");
+// $stmt->bind_param('ssssss',$channel_title,$youtube_channel_id,
+// $description,$thumbnail,$date_created,$last_channel_pull);
+// $stmt->execute();
+// if(empty($stmt)){
+//     $output['errors'][]='invalid query';
+// }else{
+//     if(mysqli_affected_rows($conn)>0){
+//         $output['success'] = true;
+//     }else{
+//         $output['errors'][]='UNABLE TO INSERT';
+//     }
+// }
+// output_and_exit();
 ?>
