@@ -74,7 +74,7 @@ consider carousel for the video list area:
 
 			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
-				<!-- <ul class="nav navbar-nav">
+				<ul class="nav navbar-nav">
 					<li class="dropdown channelDropDown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							Category
@@ -97,7 +97,7 @@ consider carousel for the video list area:
 							
 						</ul>
 					</li>
-				</ul> -->
+				</ul>
 				<form class="navbar-right navbar-form channelSearchForm hidden-xs form-inline">
 					<!--form for searching channels-->
 					<div class="form-group">
@@ -154,7 +154,7 @@ consider carousel for the video list area:
 			</div>
 			<!--end of videoRow div-->
 			<nav class="navbar navbar-inverse" id="midNav">
-				<div class="container-fluid" id="">
+				<!-- <div class="container-fluid" id=""> -->
 					<!--navbar content main div-->
 					<div class="navbar-header">
 						<!--nav header div; includes hamburger menu and navbrand-->
@@ -205,7 +205,7 @@ consider carousel for the video list area:
 						<!--end of form for channel search-->
 					</div>
 					<!--end of nav options div-->
-				</div>
+				<!-- </div> -->
 				<!--end of navbar content main div-->
 			</nav>
 			<div class="col-xs-12 videoListRowWrapper">

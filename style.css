@@ -49,7 +49,7 @@ body {
 }
 #mainNav{
 	background-color: rgb(20,20,20);
-	z-index:0;
+	/*z-index:0;*/
 }
 .navbar-toggle {
 	margin-bottom: 0;
@@ -89,6 +89,7 @@ body {
 }
 #midNav-option{
 	z-index:1;
+	position: relative;
 }
 #midNav-option form {
 	margin-right: 20px;
@@ -110,6 +111,7 @@ body {
 	margin-top: 0;
 	margin-bottom: 0;
 	margin-right: 0;
+	box-shadow: none;
 }
 .channelSearchForm input, #videoSearchInput{
 	border: none;
@@ -849,6 +851,10 @@ safer appraoch than to resizing browser to see change
 	.channelSearchFormMobile{
 		display: inline-block !important;
 		width: 220px;
+	}
+	#midNav-option form{
+		width: 95%;
+		margin: 0 2.5%;
 	}
 	.main-content{
 		height: 93vh;
