@@ -419,6 +419,7 @@ function initiateUser(){
 
                                 if (numSubscribedChannels === clientSelectedChannelIds.length) {
                                     loadSelectedChannels();
+                                    renderChannelSelectionDropdown();
                                 }
                             }else{
                                 console.log(data);
@@ -606,7 +607,7 @@ function renderChannelSelectionDropdown(){
         let channel = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects[i].channel_title,
-            'value' : clientSubscribedChannelObjects[i].youtube_channel_id,
+            'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
             'class' : 'dropdownChannel'
         });
 
@@ -630,9 +631,16 @@ function renderChannelSelectionDropdown(){
 }
 
 function compileSelectedChannelsFromDropdown(){
-    var dropdownChannels = $(".dropdownChannel")
-    for(var i = 0; i<dropdownChannels.length; i++){
-
+    var selectedInputs = $(".dropdownChannel:checked")
+    clientSelectedChannelIds = [];
+    for(var i = 0; i<selectedInputs.length; i++){
+        clientSelectedChannelIds.push($(selectedInputs[i]).attr("channel_id"))
+    }
+    clientSelectedChannelObjects = [];
+    for (var i = 0; i<clientSubscribedChannelObjects.length; i++){
+        if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1){
+            clientSelectedChannelObjects.push(clientSubscribedChannelObjects[i])
+        }
     }
 }
 
@@ -815,6 +823,7 @@ function ytChannelApiToDb(channelId, isAdding = false) {
                                     if (data.success) {
                                         console.log('insert success', data);
                                         addChannelModal(data.user_link)
+                                        renderChannelSelectionDropdown()
                                     }
                                 },
                                 errors: function (data) {
@@ -959,6 +968,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                             if (data.success) {
                                 console.log('insert success', data);
                                 addChannelModal(data.user_link)
+                                renderChannelSelectionDropdown()
                             }
                         },
                         errors: function (data) {
