@@ -595,15 +595,16 @@ function renderChannelSelectionDropdown(){
 
     //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
-        var channelLi = $('<li>');
-        var channel = $('<input>').attr({
+        // var channelLi = $('<li>');
+        let channel = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects[i].channel_title,
-            'value' : clientSubscribedChannelObjects[i].youtube_channel_id
+            'value' : clientSubscribedChannelObjects[i].youtube_channel_id,
+            'class' : 'dropdownChannel'
         });
 
-        channel.addClass("dropdownChannel");
-        channelLi.append(channel).text(clientSubscribedChannelObjects[i].channel_title);
+        let channelLi = $('<li>').text(clientSubscribedChannelObjects[i].channel_title);
+        channelLi.prepend(channel);
 
         $('#channelCategoryUl').append(channelLi)
     }
