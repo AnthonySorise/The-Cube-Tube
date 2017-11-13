@@ -426,29 +426,7 @@ function initiateUser(){
             setTimeout(collectVideosToLoad, 50);
             return
         }
-        $.ajax({
-            url: './script/api_calls_to_db/access_database/access.php',
-            method: 'POST',
-            dataType: 'JSON',
-            data: {
-                action:'read_videos_by_channel_array',
-                channel_id_array:clientSelectedChannelIds,
-                offset:0
-            },
-            success: function (data) {
-                if (data.success) {
-                    console.log('READ success', data);
-
-                    videoObjectsToLoad = [];
-                    videoObjectsToLoad = data.data;
-                    // loadClientVideoObjectArray(videoObjectsToLoad);
-                    renderVideoList(videoObjectsToLoad);
-                }
-            },
-            errors: function (data) {
-                console.log('read error', data);
-            }
-        })
+        loadSelectedChannels();
 
     }
 }
@@ -586,6 +564,38 @@ function clearVideoList(){
     });
     $('.tdList').hide();
 }
+
+function loadSelectedChannels(){
+    $.ajax({    //RETRIEVE VIDEOS FROM DB
+        url: './script/api_calls_to_db/access_database/access.php',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+            action:'read_videos_by_channel_array',
+            channel_id_array:clientSelectedChannelIds,
+            offset:0
+        },
+        success: function (data) {
+            if (data.success) {
+                // promise.resolve(data);
+                console.log('Videos Found', data);
+                videoObjectsToLoad = [];
+                videoObjectsToLoad = data.data;
+
+                // loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
+                renderVideoList(videoObjectsToLoad);
+            }
+            else{
+                console.log('Channel Found Without Videos', data)
+            }
+        },
+        errors: function (data) {
+            console.log(data['read errors'], data);
+            // promise.reject(data);
+        }
+    })
+}
+
 
 function renderVideoList(videoArray) {
     if (videoObjectsToLoad === null) {
@@ -799,45 +809,8 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                     access_database.insert_video(packageToSendToDb);
                 }
                 else{
-                    $.ajax({
-                        url: './script/api_calls_to_db/access_database/access.php',
-                        method: 'POST',
-                        dataType: 'JSON',
-                        data: {
-                            action: 'insert_video',
-                            videoArray: packageToSendToDb
-                        },
-                        success: function (data) {
-                            if (data.success) {
-                                $.ajax({
-                                    url: './script/api_calls_to_db/access_database/access.php',
-                                    method: 'POST',
-                                    dataType: 'JSON',
-                                    data: {
-                                        action:'read_videos_by_channel_array',
-                                        channel_id_array:clientSelectedChannelIds,
-                                        offset:0
-                                    },
-                                    success: function (data) {
-                                        if (data.success) {
-                                            videoObjectsToLoad = data.data;
-                                            console.log('YouTube videos added to database - clientVideoList created', videoObjectsToLoad);
-                                            // loadClientVideoObjectArray(videoObjectsToLoad)
-                                            renderVideoList(videoObjectsToLoad);
-                                        }
-                                    },
-                                    errors: function (data) {
-                                        console.log('insert error', data);
-                                    }
-                                })
-                            }
-                        },
-                        errors: function (data) {
-                            console.log('read error', data);
-                        }
-                    })
+                    loadSelectedChannels();
                 }
-
             }
             else{
                 access_database.insert_video(packageToSendToDb);
@@ -923,33 +896,8 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
                 clientSelectedChannelObjects.push(data.data[0]);
 
-                $.ajax({    //RETRIEVE VIDEOS FROM DB
-                    url: './script/api_calls_to_db/access_database/access.php',
-                    method: 'POST',
-                    dataType: 'JSON',
-                    data: {
-                        action:'read_videos_by_channel_array',
-                        channel_id_array:clientSelectedChannelIds,
-                        offset:0
-                    },
-                    success: function (data) {
-                        if (data.success) {
-                            // promise.resolve(data);
-                            console.log('Videos Found', data);
-                            videoObjectsToLoad = data.data;
+                loadSelectedChannels();
 
-                            // loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
-                            renderVideoList(videoObjectsToLoad);
-                        }
-                        else{
-                            console.log('Channel Found Without Videos', data)
-                        }
-                    },
-                    errors: function (data) {
-                        console.log(data['read errors'], data);
-                        // promise.reject(data);
-                    }
-                })
             }
             else{   //RETRIEVE VIDEOS FROM YOUTUBE
                 if(data.nothing_to_read){
