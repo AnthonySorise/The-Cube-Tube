@@ -571,33 +571,24 @@ function clearVideoList(){
 function renderChannelSelectionDropdown(){
     var sorted = false;
 
-    while (!sorted){
-        sorted = true;
-        var previousValue = "";
-        for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
-
-            if(i>0 && clientSubscribedChannelObjects.channel_title<previousValue){
-                sorted = false;
-                var previousObj = clientSubscribedChannelObjects[i-1];
-                clientSubscribedChannelObjects[i-1] = clientSubscribedChannelObjects[i]
-                clientSubscribedChannelObjects[i] = previousObj;
-            }
-
-
-            previousValue = clientSubscribedChannelObjects.channel_title;
+    clientSubscribedChannelObjects.sort(function(a, b){
+        if(a.channel_title < b.channel_title){
+            return -1
+        }
+        if(a.channel_title > b.channel_title){
+            return 1
         }
 
-
-    }
+    })
 
 
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
         var channelLi = $('<li>');
         var channel = $('<input>').attr({
             'type' : 'checkbox',
-            'name' : clientSubscribedChannelObjects.channel_title,
-            'value' : clientSubscribedChannelObjects.channel_id,
-            'text' : clientSubscribedChannelObjects.channel_title,
+            'name' : clientSubscribedChannelObjects[i].channel_title,
+            'value' : clientSubscribedChannelObjects[i].channel_id,
+            'text' : clientSubscribedChannelObjects[i].channel_title,
         });
         channelLi.append(channel);
 
