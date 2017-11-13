@@ -603,7 +603,8 @@ function renderChannelSelectionDropdown(){
             'class' : 'dropdownChannel'
         });
 
-        let channelLi = $('<li>').text(clientSubscribedChannelObjects[i].channel_title);
+        let channelLi = $('<li>').addClass('dropdownChannelLi')
+            .text(clientSubscribedChannelObjects[i].channel_title);
         channelLi.prepend(channel);
 
         $('#channelCategoryUl').append(channelLi)
