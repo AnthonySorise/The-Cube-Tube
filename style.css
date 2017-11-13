@@ -142,6 +142,9 @@ body {
 	border: none;
 	border-radius:0;
 }
+#channelCategoryUl{
+	text-align: center;
+}
 .videoToolTip{
 	background: white;
 	border: none;
