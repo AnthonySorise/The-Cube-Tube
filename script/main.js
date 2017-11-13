@@ -592,13 +592,15 @@ function renderChannelSelectionDropdown(){
 
 
     for(var i = 0; i< clientSubscribedChannelObjects; i++){
-        var channel = $('<li>').attr({
+        var channelLi = $('<li>');
+        var channel = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects.channel_title,
             'value' : clientSubscribedChannelObjects.channel_id,
             'text' : clientSubscribedChannelObjects.channel_title,
-        })
-        $('#channelCategoryUl').append(channel)
+        }).appendTo(channelLi);
+
+        $('#channelCategoryUl').append(channelLi)
     }
 
 
