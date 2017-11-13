@@ -633,7 +633,7 @@ function compileSelectedChannelsFromDropdown(){
     }
     clientSelectedChannelObjects = [];
     for (var i = 0; i<clientSubscribedChannelObjects.length; i++){
-        if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects.youtube_channel_id) !== -1){
+        if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1){
             clientSelectedChannelObjects.push(clientSubscribedChannelObjects[i])
         }
     }
