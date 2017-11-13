@@ -122,6 +122,9 @@ body {
 	margin-right: 0;
 	box-shadow: none;
 }
+.channelSearchInput{
+	border-bottom: 1px solid;
+}
 .channelSearchForm input, #videoSearchInput{
 	border: none;
 	border-radius:0;
@@ -147,6 +150,7 @@ body {
 	background-color: rgb(255,255,255) !important;
 	border: none !important;
 	background: unset;
+	z-index: 5000;
 }
 /*Transition to get hamburger menu to collapse when search button is clicked */
 .navbar-collapse {

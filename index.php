@@ -59,7 +59,7 @@ consider carousel for the video list area:
 					<div class="form-group">
 						<div class="input-group">
 							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
-							<span class="input-group-addon">
+							<span type="button" class="input-group-addon channelSearchButton">
 							<!-- <button class="channelSearchButton"> -->
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							<!-- </button> -->
@@ -101,7 +101,7 @@ consider carousel for the video list area:
 					<div class="form-group">
 						<div class="input-group">
 							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
-							<span class="input-group-addon channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for channels to add">
+							<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for channels to add">
 							<!-- <button class="channelSearchButton"> -->
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							<!-- </button> -->
