@@ -131,10 +131,16 @@ function tooltipFunctions() {
 //Click handler to console log search results
 function clickHandler() {
     //Search Button
-    $(".channelSearchForm .channelSearchButton").on('click', function (event) {
-        $(".navbar-collapse").collapse('hide');
+    $(".channelSearchForm").submit(function (event) {
         event.preventDefault();
-        searchChannelsByName().then(worked, failed);
+        let inputStr = '';
+        if($(event.target).find('input').val()===""){
+            return;     //prevent empty input
+        }else{
+            inputStr=$(event.target).find('input').val();
+        }
+        $(".navbar-collapse").collapse('hide');       
+        searchChannelsByName(inputStr).then(worked, failed);
         // $(".contentPlaceholder").hide();
         $('.contentPlaceholderWrapper').fadeOut(1000, function(){
             $('#text-carousel, .videoHeader').slideDown(1100);
@@ -445,10 +451,18 @@ function initiateUser(){
 
 
 //Channel Search by Name
-function searchChannelsByName() {
+function searchChannelsByName(inputStr) {
     $(".addChannelButton").removeClass("disabled").text("Add");
-
-    var string = $('#channelSearchInput').val();
+    let string = inputStr;
+    // if($('.channelSearchInput:odd').val()!==""){
+    //     string = $('.channelSearchInput:odd').val();
+    // }else if($('.channelSearchInput:even').val()!==""){
+    //     string = $('.channelSearchInput:even').val();
+    // }else{
+    //     string='';
+    // }
+    $('.channelSearchInput').val('');
+    // var string = $('.channelSearchInput').val();
     var promise = {
         then: function (resolve, reject) {
             this.resolve = resolve;
@@ -1295,26 +1309,26 @@ function loadPreviousPage(){
 
 // Making media query with javascript to hide saerch button inside hamburger menu and dynamically creat one on header
 
-if(window.matchMedia("(min-width: 1020px)").matches) {
-    var searchDiv = $('<div>').addClass('form-group');
-    var inputElement = $('<input>', {
-        type: 'text',
-        class: 'form-control',
-        placeholder: 'search channels',
-        name: 'channelSearch',
-        id: 'channelSearchInput'
-    });
-    var buttonElement = $('<button>', {
-        type: 'submit',
-        class: 'btn btn-danger channelSearchButton',
-        dataToggle: 'tooltip',
-        dataPlacement: 'bottom',
-        dataTrigger: 'hover',
-        title: 'search for channels to add',
-        text: 'search'
-    });
-    var searchDivWrapper = $(searchDiv).append(inputElement);
-    var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
-    $('#mainNav').append(completedSearchDiv);
-}
+// if(window.matchMedia("(min-width: 1020px)").matches) {
+//     var searchDiv = $('<div>').addClass('form-group');
+//     var inputElement = $('<input>', {
+//         type: 'text',
+//         class: 'form-control',
+//         placeholder: 'search channels',
+//         name: 'channelSearch',
+//         id: 'channelSearchInput'
+//     });
+//     var buttonElement = $('<button>', {
+//         type: 'submit',
+//         class: 'btn btn-danger channelSearchButton',
+//         dataToggle: 'tooltip',
+//         dataPlacement: 'bottom',
+//         dataTrigger: 'hover',
+//         title: 'search for channels to add',
+//         text: 'search'
+//     });
+//     var searchDivWrapper = $(searchDiv).append(inputElement);
+//     var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
+//     $('#mainNav').append(completedSearchDiv);
+// }
 

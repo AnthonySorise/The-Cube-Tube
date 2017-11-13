@@ -53,15 +53,27 @@ consider carousel for the video list area:
 				<span class="navbar-brand text-center">
 					<!-- <img src="assets/images/ctube_logo.png" alt="logo" id="cubeTubeLogo"> -->
 					<span id="cubeTubeLogo"></span>
-					<span class="logoText">TheCubeTube</span>
+					<span class="logoText hidden-xs">TheCubeTube</span>
 				</span>
+				<form class="navbar-form channelSearchForm channelSearchFormMobile visible-xs">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
+							<span class="input-group-addon">
+							<!-- <button class="channelSearchButton"> -->
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							<!-- </button> -->
+							</span>
+						</div>
+					</div>
+					<!-- <button type="submit" class="btn btn-danger channelSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
+					 title="search for channels to add">search</button> -->
+				</form>
 			</div>
 			<!--end of nav header div-->
 
 			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
-
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
-				<!--&lt;!&ndash;div for nav options&ndash;&gt;-->
 				<!--<ul class="nav navbar-nav">-->
 					<!--<li class="dropdown channelDropDown">-->
 						<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
@@ -105,53 +117,21 @@ consider carousel for the video list area:
 						<!--</ul>-->
 					<!--</li>-->
 				<!--</ul>-->
-				<!--<p class="navbar-text">World History</p>-->
-				<!--<ul class="nav navbar-nav">-->
-					<!--<li class="dropdown">-->
-						<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Channels-->
-							<!--<span class="caret"></span>-->
-						<!--</a>-->
-						<!--<ul class="dropdown-menu">-->
-							<!--<li>-->
-								<!--<a href="#">ALL</a>-->
-							<!--</li>-->
-							<!--<li role="separator" class="divider"></li>-->
-							<!--<li>-->
-								<!--<a href="#">-->
-									<!--<button class="btn btn-danger btn-xs"> X</button> Geography Now </a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">-->
-									<!--<button class="btn btn-danger btn-xs"> X</button> The Great War</a>-->
-							<!--</li>-->
-							<!--<li role="separator" class="divider"></li>-->
-							<!--<li>-->
-								<!--<a href="#">Alternate History Hub</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">History Buffs</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">Tales of History</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">The Metatron</a>-->
-							<!--</li>-->
-
-						<!--</ul>-->
-					<!--</li>-->
-				<!--</ul>-->
-				<!--<p class="navbar-text">Geography Now | The Great War</p>-->
-				<form class="navbar-right navbar-form channelSearchForm">
+				<form class="navbar-right navbar-form channelSearchForm hidden-xs form-inline">
 					<!--form for searching channels-->
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="search channels" name="channelSearch" id="channelSearchInput">
-
+						<div class="input-group">
+							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
+							<span class="input-group-addon channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for channels to add">
+							<!-- <button class="channelSearchButton"> -->
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							<!-- </button> -->
+							</span>
+						</div>
 					</div>
-					<button type="submit" class="btn btn-danger channelSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
-					 title="search for channels to add">search</button>
+					<!-- <button type="submit" class="btn btn-danger channelSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
+					 title="search for channels to add">search</button> -->
 				</form>
-				<!--&lt;!&ndash;end of form for channel search&ndash;&gt;-->
 			</div>
 			<!--end of nav options div-->
 		</div>
@@ -229,13 +209,17 @@ consider carousel for the video list area:
 							</label>
 						</div>
 						
-						<form class="navbar-right nav-pills">
+						<form class="navbar-right nav-pills form-inline">
 							<!--form for searching channels-->
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">
+									<span class="input-group-addon videoToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for videos from your channels">
+										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									</span>
+								</div>
 							</div>
-							<button type="submit" class="btn btn-primary videoSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
-							 title="videos in your channels">search</button>
+							<!-- <button type="submit" class="btn btn-primary videoSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="videos in your channels">search</button> -->
 						</form>
 						<!--end of form for channel search-->
 					</div>
@@ -284,9 +268,12 @@ consider carousel for the video list area:
 								<div class='row contentPlaceholderWrapper'>
 									<div class="placeholderBg"></div>
 									<div class="col-sm-12 text-center contentPlaceholder">
-										<h1 class="text-center">Welcome to The CubeTube!</h1>
-										<h3>Start by searching for your favorite YouTube channel</h3>
-										<h3>Add channels by clicking the 'add' button, or simply browse content with 'browse'</h3>
+										<h1 class="text-center hidden-xs">Welcome to The CubeTube!</h1>
+										<h3 class="text-center visible-xs">Welcome to The CubeTube!</h3>
+										<h3 class="hidden-xs">Start by searching for your favorite YouTube channel</h3>
+										<h5 class="visible-xs">Start by searching for your favorite YouTube channel</h5>
+										<h3 class="hidden-xs">Add channels by clicking the 'add' button, or simply browse content with 'browse'</h3>
+										<p class="visible-xs">Add channels by clicking the 'add' button, or simply browse content with 'browse'</p>
 										<!--<img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png">-->
 									</div>
 								</div>

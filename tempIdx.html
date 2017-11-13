@@ -1,7 +1,3 @@
-<!--
-consider carousel for the video list area:
-	issue - accessibility issue
--->
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +10,7 @@ consider carousel for the video list area:
 		gtag('js', new Date());
 		gtag('config', 'UA-109199068-1');
 	</script>
-
+	
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Audiowide" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	 crossorigin="anonymous">
@@ -50,15 +46,27 @@ consider carousel for the video list area:
 				<span class="navbar-brand text-center">
 					<!-- <img src="assets/images/ctube_logo.png" alt="logo" id="cubeTubeLogo"> -->
 					<span id="cubeTubeLogo"></span>
-					<span class="logoText">TheCubeTube</span>
+					<span class="logoText hidden-xs">TheCubeTube</span>
 				</span>
+				<form class="navbar-form channelSearchForm visible-xs">
+					<div class="form-group">
+						<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
+					</div>
+					<!-- <button type="submit" class="btn btn-danger channelSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
+					 title="search for channels to add">search</button> -->
+				</form>
 			</div>
 			<!--end of nav header div-->
 
 			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
+				<!-- <form class="navbar-right navbar-form channelSearchForm">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="search channels" name="channelSearch" id="channelSearchInput">
 
+					</div>
+					<button type="submit" class="btn btn-danger channelSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for channels to add">search</button>
+				</form> -->
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
-				<!--&lt;!&ndash;div for nav options&ndash;&gt;-->
 				<!--<ul class="nav navbar-nav">-->
 					<!--<li class="dropdown channelDropDown">-->
 						<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
@@ -102,53 +110,14 @@ consider carousel for the video list area:
 						<!--</ul>-->
 					<!--</li>-->
 				<!--</ul>-->
-				<!--<p class="navbar-text">World History</p>-->
-				<!--<ul class="nav navbar-nav">-->
-					<!--<li class="dropdown">-->
-						<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Channels-->
-							<!--<span class="caret"></span>-->
-						<!--</a>-->
-						<!--<ul class="dropdown-menu">-->
-							<!--<li>-->
-								<!--<a href="#">ALL</a>-->
-							<!--</li>-->
-							<!--<li role="separator" class="divider"></li>-->
-							<!--<li>-->
-								<!--<a href="#">-->
-									<!--<button class="btn btn-danger btn-xs"> X</button> Geography Now </a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">-->
-									<!--<button class="btn btn-danger btn-xs"> X</button> The Great War</a>-->
-							<!--</li>-->
-							<!--<li role="separator" class="divider"></li>-->
-							<!--<li>-->
-								<!--<a href="#">Alternate History Hub</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">History Buffs</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">Tales of History</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">The Metatron</a>-->
-							<!--</li>-->
-
-						<!--</ul>-->
-					<!--</li>-->
-				<!--</ul>-->
-				<!--<p class="navbar-text">Geography Now | The Great War</p>-->
 				<form class="navbar-right navbar-form channelSearchForm">
 					<!--form for searching channels-->
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="search channels" name="channelSearch" id="channelSearchInput">
-
+						<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
 					</div>
 					<button type="submit" class="btn btn-danger channelSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
 					 title="search for channels to add">search</button>
 				</form>
-				<!--&lt;!&ndash;end of form for channel search&ndash;&gt;-->
 			</div>
 			<!--end of nav options div-->
 		</div>
@@ -303,9 +272,9 @@ consider carousel for the video list area:
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="carousel-inner">
-								<div class="item active ">
+								<div class="item active pageOne">
 									<div class="carousel-content">
-										<div class="row tdRow text-center firstPage">
+										<div class="row tdRow text-center ">
 											<!--target each list:
                                                 e.g. changing video title
                                                 $('#tdList-' + [i] +' .tdTitle')
@@ -777,7 +746,7 @@ consider carousel for the video list area:
 										</div>
 									</div>
 								</div>
-								<div class="item">
+								<div class="item pageTwo">
 									<div class="carousel-content">
 										<div class="row tdRow text-center">
 											<!--target each list:
@@ -1492,7 +1461,32 @@ consider carousel for the video list area:
 			</div>
 		</div>
 		<!--modal end for channel search result-->
-
+		<!--modal for user link-->
+				<!-- command for modal show:  $('#userLinkModal').modal('show') -->
+		<div class="modal fade" id="userLinkModal" tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
+        				</button>
+        				<div class="modal-title-wrap">
+        					<h5 class="modal-title" id="userLinkModalTitle">
+        						Channel Added!
+        					</h5>
+        				</div>
+      				</div>
+					<div class="modal-body userLinkBody">
+						
+					</div>
+					<div class="modal-footer">
+						<span id="userLinkModalFooter"></span>
+						<button type="button" class="btn btn-danger modalClose userLinkModalClose" data-dismiss="modal">close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--modal end for user link-->
 	</div>
 </body>
 
