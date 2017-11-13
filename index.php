@@ -74,49 +74,30 @@ consider carousel for the video list area:
 
 			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
-				<!--<ul class="nav navbar-nav">-->
-					<!--<li class="dropdown channelDropDown">-->
-						<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
-							<!--Category-->
-							<!--<span class="caret"></span>-->
-						<!--</a>-->
-						<!--<ul class="dropdown-menu">-->
-							<!--<li>-->
-								<!--<a href="#">ALL</a>-->
-							<!--</li>-->
-							<!--<li role="separator" class="divider"></li>-->
-							<!--<li>-->
-								<!--<a href="#">-->
-									<!--<button class="btn btn-danger btn-xs"> X</button> World History</a>-->
-							<!--</li>-->
-							<!--<li role="separator" class="divider"></li>-->
-							<!--<li>-->
-								<!--<a href="#">Computer Science</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">Cooking</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">Film Reviews</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">Gaming Lets Plays</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">Gaming News</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">Music</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">News</a>-->
-							<!--</li>-->
-							<!--<li>-->
-								<!--<a href="#">Politics</a>-->
-							<!--</li>-->
-						<!--</ul>-->
-					<!--</li>-->
-				<!--</ul>-->
+				<!-- <ul class="nav navbar-nav">
+					<li class="dropdown channelDropDown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							Category
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">ALL</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li>
+								<a href="#">
+									<button class="btn btn-danger btn-xs"> X</button> World History</a>
+							</li>
+							<li role="separator" class="divider"></li>
+							<li>
+								<a href="#">Computer Science</a>
+							</li>
+
+							
+						</ul>
+					</li>
+				</ul> -->
 				<form class="navbar-right navbar-form channelSearchForm hidden-xs form-inline">
 					<!--form for searching channels-->
 					<div class="form-group">
@@ -268,8 +249,8 @@ consider carousel for the video list area:
 								<div class='row contentPlaceholderWrapper'>
 									<div class="placeholderBg"></div>
 									<div class="col-sm-12 text-center contentPlaceholder">
-										<h1 class="text-center hidden-xs">Welcome to The CubeTube!</h1>
-										<h3 class="text-center visible-xs">Welcome to The CubeTube!</h3>
+										<h1 class="text-center hidden-xs">Welcome to TheCubeTube!</h1>
+										<h3 class="text-center visible-xs">Welcome to TheCubeTube!</h3>
 										<h3 class="hidden-xs">Start by searching for your favorite YouTube channel</h3>
 										<h5 class="visible-xs">Start by searching for your favorite YouTube channel</h5>
 										<h3 class="hidden-xs">Add channels by clicking the 'add' button, or simply browse content with 'browse'</h3>
