@@ -604,6 +604,7 @@ function renderVideoList(videoArray) {
 
     }
     resetSelectedTd();
+    //update thumbnail hover popover
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
             let row = "#tdList-" + (i + 1);
@@ -951,10 +952,11 @@ function loadClientVideoObjectArray() {
 function handleBrowseButton() {
     browsingMode = true;
 
+    returnToPageOne();
     clearVideoList();
     // createPlaceholderAnimation();
 
-    returnToPageOne();
+
 
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID);
@@ -973,10 +975,11 @@ function handleAddButton(){
 
     browsingMode = false;
 
+    returnToPageOne();
     clearVideoList();
     // createPlaceholderAnimation();
 
-    returnToPageOne();
+
 
     let channelID = $(this).parent().attr("channelId");
     manageDatabaseWithChannelId(channelID, true);
@@ -1122,35 +1125,20 @@ function returnToPageOne(){
     $(".carousel").removeClass('slide')
     $(".carousel").carousel(0);
     if(currentSlideNumber !== 1){
-        //show backwards animation
-           
-        if(currentSlideNumber % 2 === 0)
-        {
-            currentSlideNumber = 2;
-            // $(".carousel").carousel(0)
-          
-        }
-        else
-        {
-            // currentSlideNumber = 3;
-            // $(".carousel").carousel('prev');
-            // $(".carousel").carousel(0);
-        }
-        //
-        //find and load data into list
+
         currentSlideNumber = 1; //redundant?
         var videosToLoad = [];
         for(var i = 0; i < 40; i++){
             videosToLoad.push(videoObjectsToLoad[i])
         }
         console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
-        setTimeout(function(){
+        // setTimeout(function(){
             clearVideoList();
             renderVideoList(videosToLoad)
-        }, 250)
+        // }, 250)
     }
     $(".carousel").addClass('slide')
-    fadeToFirstSlideEffect()
+    fadeToFirstSlideEffect();
     displayCurrentPageNumber();
 }
 
