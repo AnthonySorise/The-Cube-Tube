@@ -378,6 +378,7 @@ function clickHandler() {
 function initiateUser(){
     // access_database.read_channels_by_user_id()
     var numSubscribedChannels = null;
+    var channelId = "";
     $.ajax({
         url: './script/api_calls_to_db/access_database/access.php ',
         method: 'POST',
@@ -395,20 +396,21 @@ function initiateUser(){
                     numSubscribedChannels = data.data.length;
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
-
+                    channelId = data.data[i].youtube_channel_id;
                     $.ajax({
                         url:'./script/api_calls_to_db/access_database/access.php',
                         method:'post',
                         dataType:'JSON',
                         data:{
-                            youtube_channel_id:data.data[i].youtube_channel_id,
+                            youtube_channel_id:channelId,
                             action:'read_channels_by_youtube_id'
                         },
                         success:function(data){
                             if(data.success){
                                 console.log('read data success', data.data);
+                                data.data[0].youtube_channel_id = channelId;
                                 clientSubscribedChannelObjects.push(data.data[0]);
-                                clientSubscribedChannelObjects.push(data.data[0]);
+                                clientSelectedChannelObjects.push(data.data[0]);
 
                                 if (numSubscribedChannels === clientSelectedChannelIds.length) {
                                     loadSelectedChannels();
@@ -577,6 +579,45 @@ function clearVideoList(){
     $('.tdList').hide();
 }
 
+function renderChannelSelectionDropdown(){
+    var sorted = false;
+
+    clientSubscribedChannelObjects.sort(function(a, b){
+        if(a.channel_title < b.channel_title){
+            return -1
+        }
+        if(a.channel_title > b.channel_title){
+            return 1
+        }
+
+    })
+
+
+    for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
+        var channelLi = $('<li>');
+        var channel = $('<input>').attr({
+            'type' : 'checkbox',
+            'name' : clientSubscribedChannelObjects[i].channel_title,
+            'value' : clientSubscribedChannelObjects[i].channel_id,
+            'text' : clientSubscribedChannelObjects[i].channel_title,
+        });
+        channelLi.append(channel);
+
+        $('#channelCategoryUl').append(channelLi)
+    }
+
+
+
+
+}
+
+function compileSelectedChannelsFromDropdown(){
+
+
+
+}
+
+
 function loadSelectedChannels(){
     $.ajax({    //RETRIEVE VIDEOS FROM DB
         url: './script/api_calls_to_db/access_database/access.php',
@@ -614,6 +655,7 @@ function renderVideoList(videoArray) {
         console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     }
     console.log("LOADING VIDEO LIST")
+    clearVideoList();
 
     for (let i = 0; i < videoArray.length; i++) {
         if(videoArray[i] === undefined){
@@ -941,7 +983,7 @@ function handleBrowseButton() {
     videoObjectsToLoad = [];
 
     returnToPageOne();
-    clearVideoList();
+    // clearVideoList();
     // createPlaceholderAnimation();
 
 
@@ -961,11 +1003,16 @@ function handleAddButton(){
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
     }
+    else{
+        //FUNCTION THAT LOOPS THROUGH clientSubscribedChannelIds and ClientSubscribedChannelObjects - and
+            //compares with what's on the channel selection dropdown
+                //populates clientSelectedChannelIds and clientSelectedChannelObjects
+    }
 
     browsingMode = false;
 
     returnToPageOne();
-    clearVideoList();
+    // clearVideoList();
     // createPlaceholderAnimation();
 
 
@@ -1123,7 +1170,7 @@ function returnToPageOne(){
             }
             console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
             // setTimeout(function(){
-            clearVideoList();
+            // clearVideoList();
             renderVideoList(videosToLoad)
             // }, 250)
         }
@@ -1240,7 +1287,7 @@ function loadNextPage(){
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
                         setTimeout(function(){
-                            clearVideoList();
+                            // clearVideoList();
                             renderVideoList(videosToLoad)
                             removeUnusedRows();
                         }, 250)
@@ -1259,7 +1306,7 @@ function loadNextPage(){
             }
             console.log("VIDEOS TO LOAD", videosToLoad)
             setTimeout(function(){
-                clearVideoList();
+                // clearVideoList();
                 renderVideoList(videosToLoad)
                 removeUnusedRows();
             }, 250)
@@ -1278,7 +1325,7 @@ function loadPreviousPage(){
         }
         console.log("VIDEOS TO LOAD", videosToLoad);
         setTimeout(function(){
-            clearVideoList();
+            // clearVideoList();
             renderVideoList(videosToLoad)
         }, 250)
     }

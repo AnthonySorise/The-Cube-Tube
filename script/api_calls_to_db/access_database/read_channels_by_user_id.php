@@ -8,7 +8,7 @@ if(!isset($_SESSION['user_link'])){
 }
 $user_id = USER_ID;
 $stmt = $conn->prepare("SELECT c.channel_title, 
-c.youtube_channel_id,c.description,c.thumbnail_file_name,ctu.ctu_id 
+c.youtube_channel_id,c.description,c.thumbnail_file_name
 FROM channels AS c 
 JOIN channels_to_users AS ctu
 ON c.channel_id = ctu.channel_id 
