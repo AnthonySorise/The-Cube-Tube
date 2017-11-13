@@ -605,6 +605,7 @@ function renderVideoList(videoArray) {
         console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     }
     console.log("LOADING VIDEO LIST")
+    clearVideoList();
 
     for (let i = 0; i < videoArray.length; i++) {
         if(videoArray[i] === undefined){
@@ -932,7 +933,7 @@ function handleBrowseButton() {
     videoObjectsToLoad = [];
 
     returnToPageOne();
-    clearVideoList();
+    // clearVideoList();
     // createPlaceholderAnimation();
 
 
@@ -952,11 +953,16 @@ function handleAddButton(){
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
     }
+    else{
+        //FUNCTION THAT LOOPS THROUGH clientSubscribedChannelIds and ClientSubscribedChannelObjects - and
+            //compares with what's on the channel selection dropdown
+                //populates clientSelectedChannelIds and clientSelectedChannelObjects
+    }
 
     browsingMode = false;
 
     returnToPageOne();
-    clearVideoList();
+    // clearVideoList();
     // createPlaceholderAnimation();
 
 
@@ -1114,7 +1120,7 @@ function returnToPageOne(){
             }
             console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
             // setTimeout(function(){
-            clearVideoList();
+            // clearVideoList();
             renderVideoList(videosToLoad)
             // }, 250)
         }
@@ -1231,7 +1237,7 @@ function loadNextPage(){
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
                         setTimeout(function(){
-                            clearVideoList();
+                            // clearVideoList();
                             renderVideoList(videosToLoad)
                             removeUnusedRows();
                         }, 250)
@@ -1250,7 +1256,7 @@ function loadNextPage(){
             }
             console.log("VIDEOS TO LOAD", videosToLoad)
             setTimeout(function(){
-                clearVideoList();
+                // clearVideoList();
                 renderVideoList(videosToLoad)
                 removeUnusedRows();
             }, 250)
@@ -1269,7 +1275,7 @@ function loadPreviousPage(){
         }
         console.log("VIDEOS TO LOAD", videosToLoad);
         setTimeout(function(){
-            clearVideoList();
+            // clearVideoList();
             renderVideoList(videosToLoad)
         }, 250)
     }
