@@ -601,12 +601,23 @@ function renderChannelSelectionDropdown(){
             'name' : clientSubscribedChannelObjects[i].channel_title,
             'value' : clientSubscribedChannelObjects[i].youtube_channel_id
         });
-
         channel.addClass("dropdownChannel");
+
+        //check if channel is selected
+        for(var i = 0; i<clientSelectedChannelIds; i++){
+            if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
+
+            }
+        }
+
+
         channelLi.append(channel).text(clientSubscribedChannelObjects[i].channel_title);
 
         $('#channelCategoryUl').append(channelLi)
     }
+
+
+
 }
 
 function compileSelectedChannelsFromDropdown(){
