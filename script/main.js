@@ -399,7 +399,7 @@ function initiateUser(){
                             if(data.success){
                                 console.log('read data success', data.data);
                                 clientSubscribedChannelObjects.push(data.data[0]);
-                                clientSubscribedChannelObjects.push(data.data[0]);
+                                clientSelectedChannelObjects.push(data.data[0]);
 
                                 if (numSubscribedChannels === clientSelectedChannelIds.length) {
                                     loadSelectedChannels();
@@ -574,7 +574,7 @@ function renderChannelSelectionDropdown(){
     while (!sorted){
         sorted = true;
         var previousValue = "";
-        for(var i = 0; i< clientSubscribedChannelObjects; i++){
+        for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
 
             if(i>0 && clientSubscribedChannelObjects.channel_title<previousValue){
                 sorted = false;
@@ -591,7 +591,7 @@ function renderChannelSelectionDropdown(){
     }
 
 
-    for(var i = 0; i< clientSubscribedChannelObjects; i++){
+    for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
         var channelLi = $('<li>');
         var channel = $('<input>').attr({
             'type' : 'checkbox',
