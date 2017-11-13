@@ -79,16 +79,28 @@ consider carousel for the video list area:
 						<a href="#" class="visible-xs closeChannelDropXs">
 							close <i class="fa fa-times" aria-hidden="true"></i>
 						</a>
-						<ul class="dropdown-menu" id="channelCategoryUl">
+						<ul class="dropdown-menu text-center" id="channelCategoryUl">
 							<li>
 								<a href="#">category</a>
 							</li>
 							<li role="separator" class="divider"></li>
+							<!-- 
+								$('<li>').attr({
+									'type' : 'checkbox',
+									'name' : '',
+									'value' : '',
+									'text' : ''
+								})
+							 -->
 							<li>
-								<a href="#">Computer Science</a>
+								<input type="checkbox" name="channel name" value="channelName"> channel 1
 							</li>
-
-							
+							<li>
+								<input type="checkbox" name="channel2 name" value="channelName2"> channel 2
+							</li>
+							<li>
+								<input type="checkbox" name="channel3 name" value="channelName3"> channel 3 
+							</li>
 						</ul>
 					</li>
 				</ul>
