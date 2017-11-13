@@ -9,6 +9,7 @@ html,
 body {
 	overflow-x: hidden;
 	font-family: 'Montserrat', sans-serif;
+	background-color: rgba(34, 34, 34, 1);
 }
 @keyframes typing {
 	from {
@@ -48,9 +49,16 @@ body {
 }
 #mainNav{
 	background-color: rgb(20,20,20);
+	height: 3.5%;
+}
+#mainNav>.container-fluid{
+	position:relative;
 }
 .navbar-toggle {
-	margin-bottom: 0;
+	/*margin-bottom: 0;*/
+	margin: 0;
+	height: 50px;
+	width: 50px;
 }
 .navbar-brand {
 	font-size: 22px;
@@ -77,6 +85,11 @@ body {
 .logoText{
 	vertical-align: 55%;
 }
+#mainNav-option{
+	z-index: 1;
+	width: auto !important;
+	height: auto;
+}
 #midNav {
 	border-radius: 0;
 	background-color: rgb(28, 35, 49);
@@ -87,6 +100,7 @@ body {
 }
 #midNav-option{
 	z-index:1;
+	position: relative;
 }
 #midNav-option form {
 	margin-right: 20px;
@@ -108,7 +122,30 @@ body {
 	margin-top: 0;
 	margin-bottom: 0;
 	margin-right: 0;
-	background-color: rgb(20,20,20);
+	box-shadow: none;
+}
+.channelSearchInput{
+	border-bottom: 1px solid;
+}
+.channelSearchButton{
+	background-color: rgba(255, 0, 0, 0.3);
+	border-radius: 0;
+	border:none;
+}
+.channelSearchButton>.glyphicon-search{
+	color: white;
+}
+.channelSearchButton:hover{
+	background-color: rgba(255, 0, 0, 1);
+}
+.channelSearchForm input, #videoSearchInput{
+	border: none;
+	border-radius:0;
+}
+.videoToolTip{
+	background: white;
+	border: none;
+	border-left: 1px solid !important;
 }
 .infoButtons{
 	line-height: 3.5;
@@ -119,11 +156,15 @@ body {
 	margin-left: 35px;
 }
 .ui-widget-content {
-	color: #fff !important;
-    top: 12% !important;
-	background-color: rgb(20,20,20) !important;
+	/*color: #fff !important;*/
+	color: #000 !important;
+    /*top: 49px !important;*/
+    top:44px !important;
+	/*background-color: rgb(20,20,20) !important;*/
+	background-color: rgb(255,255,255) !important;
 	border: none !important;
 	background: unset;
+	z-index: 5000;
 }
 /*Transition to get hamburger menu to collapse when search button is clicked */
 .navbar-collapse {
@@ -352,6 +393,7 @@ div.thRow {
 /****** initial screen PLACEHOLDER AREA******/
 .contentPlaceholderWrapper{
 	height: 100%;
+	background-color:white;
 }
 .placeholderBg{
 	position: absolute;
@@ -359,7 +401,7 @@ div.thRow {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	z-index: -1;
+	/*z-index: -1;*/
 	/*background-color: lightblue;*/
 	background-image: url("assets/images/img_01.jpg");
 	background-position: center;
@@ -727,21 +769,21 @@ input:checked+.slider {
 safer appraoch than to resizing browser to see change
 *************************************************************/
 @media screen and (max-width: 1082px) {
-	.hamburger {
+	/*.hamburger {
 		display: inline-block !important;
-	}
+	}*/
 	.navbar-header{
-		width: 100%;
+		/*width: 100%;*/
 	}
-	.navbar-collapse.collapse{
+	/*.navbar-collapse.collapse{
 		display: none !important;
-	}
-	.collapse.in{
+	}*/
+	/*.collapse.in{
 		display: block !important;
-	}
+	}*/
 	#mainNav-option{
 		border-top: 1px solid black;
-		background-color: rgb(20,20,20);
+		/*background-color: white;*/
 		margin-right: -15px;
 		margin-left: -15px;
 	}
@@ -823,8 +865,39 @@ safer appraoch than to resizing browser to see change
 	.navbar-header{
 		width: auto;
 	}
+	.hamburger {
+		display: inline-block !important;
+		/*margin-right:8px;*/
+	}
+	.navbar-collapse.collapse{
+		display: none !important;
+	}
+	.collapse.in{
+		display: block !important;
+	}
+	.channelSearchFormMobile{
+		display: inline-block !important;
+		width: 214px;
+		padding: 10px 0;
+	}
+	#mainNav-option{
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 5;
+		width: 95vw !important;
+		/*width: 0;*/
+		min-height: 100vh;
+		/*min-height: 0;*/
+		background-color: white;
+	}
+	#midNav-option form{
+		width: 95%;
+		margin: 0 2.5%;
+	}
 	.main-content{
 		height: 93vh;
+		/*height: 92vh;*/
 	}
 	#mainVideo {
 		height: 100%;
@@ -832,10 +905,12 @@ safer appraoch than to resizing browser to see change
 	}
 	body>.container-fluid {
 		/*padding-top: 56px;*/
-		padding-top: 51.4px;
+		/*padding-top: 51.4px;*/
+		padding-top:51px;
 	}
 	.videoRowWrapper{
-		height: 47%;
+		/*height: 47%;*/
+		height:45%;
 	}
 	.vidRowVideoCol {
 		padding: 0;
@@ -872,14 +947,9 @@ safer appraoch than to resizing browser to see change
 	}
 	/* End of css for mobile modal */
 
-	.navbar-brand>span {
+	/*.navbar-brand>span {
 		display: none;
-	}
-	.ui-widget-content {
-		color: #fff !important;
-		top: 19% !important;
-		background-color: rgb(20,20,20) !important;
-		border: none !important;
-		background: unset;
-	}
+	}*/
 }
+
+
