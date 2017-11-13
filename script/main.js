@@ -582,6 +582,7 @@ function clearVideoList(){
 function renderChannelSelectionDropdown(){
     var sorted = false;
 
+    //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
         if(a.channel_title < b.channel_title){
             return -1
@@ -590,30 +591,28 @@ function renderChannelSelectionDropdown(){
             return 1
         }
 
-    })
+    });
 
-
+    //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
         var channelLi = $('<li>');
         var channel = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects[i].channel_title,
-            'value' : clientSubscribedChannelObjects[i].youtube_channel_id,
+            'value' : clientSubscribedChannelObjects[i].youtube_channel_id
         });
+        channel.addClass("dropdownChannel");
         channelLi.append(channel).text(clientSubscribedChannelObjects[i].channel_title);
 
         $('#channelCategoryUl').append(channelLi)
     }
-
-
-
-
 }
 
 function compileSelectedChannelsFromDropdown(){
+    var dropdownChannels = $(".dropdownChannel")
+    for(var i = 0; i<dropdownChannels.length; i++){
 
-
-
+    }
 }
 
 
