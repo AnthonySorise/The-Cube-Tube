@@ -595,23 +595,24 @@ function renderChannelSelectionDropdown(){
 
     //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
-        var channelLi = $('<li>');
-        var channel = $('<input>').attr({
+        // var channelLi = $('<li>');
+        let channel = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects[i].channel_title,
-            'value' : clientSubscribedChannelObjects[i].youtube_channel_id
+            'value' : clientSubscribedChannelObjects[i].youtube_channel_id,
+            'class' : 'dropdownChannel'
         });
-        channel.addClass("dropdownChannel");
 
         //check if channel is selected
-        for(var i = 0; i<clientSelectedChannelIds; i++){
-            if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
-
-            }
+        if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
+            channel.attr("checked", "checked")
         }
 
 
-        channelLi.append(channel).text(clientSubscribedChannelObjects[i].channel_title);
+        let channelLi = $('<li>').addClass('dropdownChannelLi')
+            .text(clientSubscribedChannelObjects[i].channel_title);
+        channelLi.prepend(channel);
+
 
         $('#channelCategoryUl').append(channelLi)
     }
