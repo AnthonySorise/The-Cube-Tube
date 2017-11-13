@@ -600,8 +600,8 @@ function renderChannelSelectionDropdown(){
             'name' : clientSubscribedChannelObjects[i].channel_title,
             'value' : clientSubscribedChannelObjects[i].youtube_channel_id,
         });
-        const channelLi = $('<li>').prepend(channel)
-            .text(clientSubscribedChannelObjects[i].channel_title);
+        let channelLi = $('<li>').text(clientSubscribedChannelObjects[i].channel_title);
+        channelLi.prepend(channel);
 
         $('#channelCategoryUl').append(channelLi)
     }
