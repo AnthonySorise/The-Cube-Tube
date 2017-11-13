@@ -84,7 +84,9 @@ consider carousel for the video list area:
 								<a href="#">category</a>
 							</li>
 							<li role="separator" class="divider"></li>
-
+							<li>
+								<input type="checkbox" name="All checkbox" value="all"> All
+							</li>
 						</ul>
 					</li>
 				</ul>
