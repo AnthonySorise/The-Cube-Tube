@@ -568,6 +568,51 @@ function clearVideoList(){
     $('.tdList').hide();
 }
 
+function renderChannelSelectionDropdown(){
+    var sorted = false;
+
+    while (!sorted){
+        sorted = true;
+        var previousValue = "";
+        for(var i = 0; i< clientSubscribedChannelObjects; i++){
+
+            if(i>0 && clientSubscribedChannelObjects.channel_title<previousValue){
+                sorted = false;
+                var previousObj = clientSubscribedChannelObjects[i-1];
+                clientSubscribedChannelObjects[i-1] = clientSubscribedChannelObjects[i]
+                clientSubscribedChannelObjects[i] = previousObj;
+            }
+
+
+            previousValue = clientSubscribedChannelObjects.channel_title;
+        }
+
+
+    }
+
+
+    for(var i = 0; i< clientSubscribedChannelObjects; i++){
+        var channel = $('<li>').attr({
+            'type' : 'checkbox',
+            'name' : clientSubscribedChannelObjects.channel_title,
+            'value' : clientSubscribedChannelObjects.channel_id,
+            'text' : clientSubscribedChannelObjects.channel_title,
+        })
+        $('#channelCategoryUl').append(channel)
+    }
+
+
+
+
+}
+
+function compileSelectedChannelsFromDropdown(){
+
+
+
+}
+
+
 function loadSelectedChannels(){
     $.ajax({    //RETRIEVE VIDEOS FROM DB
         url: './script/api_calls_to_db/access_database/access.php',
