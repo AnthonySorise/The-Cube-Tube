@@ -129,7 +129,12 @@ function tooltipFunctions() {
 }
 
 //Click handler to console log search results
-function clickHandler() {
+function clickHandler() {  
+    $('.channelDropDown').on('click','.dropdownChannelLiLoad',()=>{
+        returnToPageOne();
+        compileSelectedChannelsFromDropdown();
+        loadSelectedChannels();
+    });
     //Search Button
     $('.channelSearchForm').on('click','.channelSearchButton',(e)=>{
         e.preventDefault();
@@ -328,8 +333,16 @@ function clickHandler() {
     });
 
     //Theater mode
-    $('.lightBoxMode').on('click', function () {
+    $('.lightBoxMode').on('click', checkHomePageVideoStatus);
+    $('.theatreModalClose').on('click', checkTheatreModeStatus);
+    $(document).on('keyup', function (event) {
+        if(event.keyCode === 27 && $('body').hasClass('modal-open')) {
+            console.log('Esc was pressed');
+            checkTheatreModeStatus();
+        }
+    })
 
+    function checkHomePageVideoStatus() {
         player.pauseVideo();
         if (player.getPlayerState() === 2) {
             checkIfPlayerIsMuted();
@@ -346,24 +359,25 @@ function clickHandler() {
         } else if (player.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
         }
-    });
-    $('.theatreModalClose').on('click', function () {
+    }
+
+    function checkTheatreModeStatus() {
         if (player2.getPlayerState() === 2) {
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
             player.pauseVideo();
-            $('#lightBoxModal').modal('show');
+            $('#lightBoxModal').modal('hide');
         } else if (player2.getPlayerState() === 1) {
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
-            $('#lightBoxModal').modal('show');
+            $('#lightBoxModal').modal('hide');
             player.playVideo();
         } else if (player2.getPlayerState() === 5) {
-            $('#lightBoxModal').modal('show');
+            $('#lightBoxModal').modal('hide');
         }
-    });
+    }
 }
 
 function initiateUser(){
@@ -387,6 +401,8 @@ function initiateUser(){
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
 
+                    // var channelId = data.data[i].youtube_channel_id;
+
                     $.ajax({
                         url:'./script/api_calls_to_db/access_database/access.php',
                         method:'post',
@@ -398,11 +414,13 @@ function initiateUser(){
                         success:function(data){
                             if(data.success){
                                 console.log('read data success', data.data);
+                                // data.data[0].youtube_channel_id = channelId;
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSelectedChannelObjects.push(data.data[0]);
 
                                 if (numSubscribedChannels === clientSelectedChannelIds.length) {
                                     loadSelectedChannels();
+                                    renderChannelSelectionDropdown();
                                 }
                             }else{
                                 console.log(data);
@@ -569,8 +587,11 @@ function clearVideoList(){
 }
 
 function renderChannelSelectionDropdown(){
-    var sorted = false;
+    $(".dropdownChannelLi").remove();
 
+
+    var sorted = false;
+    //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
         if(a.channel_title < b.channel_title){
             return -1
@@ -579,31 +600,49 @@ function renderChannelSelectionDropdown(){
             return 1
         }
 
-    })
+    });
 
-
+    //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
-        var channelLi = $('<li>');
-        var channel = $('<input>').attr({
+        // var channelLi = $('<li>');
+        let channel = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects[i].channel_title,
-            'value' : clientSubscribedChannelObjects[i].channel_id,
-            'text' : clientSubscribedChannelObjects[i].channel_title,
+            'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
+            'class' : 'dropdownChannel'
         });
-        channelLi.append(channel);
+
+        //check if channel is selected
+        if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
+            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id)
+            channel.attr("checked", "checked")
+        }
+
+
+        let channelLi = $('<li>').addClass('dropdownChannelLi')
+            .text(clientSubscribedChannelObjects[i].channel_title);
+        channelLi.prepend(channel);
+
 
         $('#channelCategoryUl').append(channelLi)
     }
 
 
 
-
 }
 
 function compileSelectedChannelsFromDropdown(){
-
-
-
+    var selectedInputs = $(".dropdownChannel:checked")
+    clientSelectedChannelIds = [];
+    for(var i = 0; i<selectedInputs.length; i++){
+        clientSelectedChannelIds.push($(selectedInputs[i]).attr("channel_id"))
+    }
+    clientSelectedChannelObjects = [];
+    for (var i = 0; i<clientSubscribedChannelObjects.length; i++){
+        if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1){
+            clientSelectedChannelObjects.push(clientSubscribedChannelObjects[i])
+        }
+    }
 }
 
 
@@ -785,6 +824,7 @@ function ytChannelApiToDb(channelId, isAdding = false) {
                                     if (data.success) {
                                         console.log('insert success', data);
                                         addChannelModal(data.user_link)
+                                        renderChannelSelectionDropdown()
                                     }
                                 },
                                 errors: function (data) {
@@ -901,7 +941,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
             if(data.success){
                 // promise.resolve(data);
                 console.log('Channel Found', data);
-                data.youtube_channel_id = channelID;
+                // data.youtube_channel_id = channelID;
 
                 if(!isAdding){
                     clientSelectedChannelObjects = [];
@@ -929,6 +969,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                             if (data.success) {
                                 console.log('insert success', data);
                                 addChannelModal(data.user_link)
+                                renderChannelSelectionDropdown()
                             }
                         },
                         errors: function (data) {

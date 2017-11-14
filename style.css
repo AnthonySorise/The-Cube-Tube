@@ -87,7 +87,6 @@ body {
 }
 #mainNav-option{
 	z-index: 1;
-	width: auto !important;
 	height: auto;
 }
 #midNav {
@@ -144,6 +143,23 @@ body {
 }
 #channelCategoryUl{
 	text-align: center;
+	padding: 5px 10px;
+	overflow: auto;
+}
+.dropdownChannelLi, .dropdownChannelLiAll{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: left;
+	margin-top: 5px;
+}
+.dropdownChannelLiLoad:hover{
+	background-color: rgba(40,40,40,0.6);
+	color: white;
+}
+.dropdownChannelLi:hover, .dropdownChannelLiAll:hover{
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
 }
 .videoToolTip{
 	background: white;
@@ -864,6 +880,15 @@ safer appraoch than to resizing browser to see change
 		border-left: none;
 	}
 }
+@media only screen and (min-width: 768px){
+	#mainNav-option{
+		width: auto !important;
+	}
+	#channelCategoryUl{
+		max-height: 40vh;
+		max-width: 15vw;
+	}
+}
 @media only screen and (max-width : 767px){
 	.navbar-header{
 		width: auto;
@@ -873,10 +898,10 @@ safer appraoch than to resizing browser to see change
 		/*margin-right:8px;*/
 	}
 	.navbar-collapse.collapse{
-		display: none !important;
+		/*display: none !important;*/
 	}
 	.collapse.in{
-		display: block !important;
+		/*display: block !important;*/
 	}
 	.channelSearchFormMobile{
 		display: inline-block !important;
@@ -888,10 +913,10 @@ safer appraoch than to resizing browser to see change
 		top: 0;
 		right: 0;
 		z-index: 5;
-		width: 95vw !important;
-		/*width: 0;*/
-		min-height: 100vh;
-		/*min-height: 0;*/
+		/*width: 95vw !important;*/
+		width: 0;
+		/*min-height: 100vh;*/
+		min-height: 0;
 		background-color: white;
 	}
 	#midNav-option form{
