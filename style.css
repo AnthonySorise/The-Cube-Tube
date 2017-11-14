@@ -146,14 +146,18 @@ body {
 	padding: 5px 10px;
 	overflow: auto;
 }
-.dropdownChannelLi{
+.dropdownChannelLi, .dropdownChannelLiAll{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	text-align: left;
 	margin-top: 5px;
 }
-.dropdownChannelLi:hover{
+.dropdownChannelLiLoad:hover{
+	background-color: rgba(40,40,40,0.6);
+	color: white;
+}
+.dropdownChannelLi:hover, .dropdownChannelLiAll:hover{
 	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
 }

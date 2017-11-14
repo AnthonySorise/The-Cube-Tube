@@ -130,6 +130,11 @@ function tooltipFunctions() {
 
 //Click handler to console log search results
 function clickHandler() {  
+    $('.channelDropDown').on('click','.dropdownChannelLiLoad',()=>{
+        returnToPageOne();
+        compileSelectedChannelsFromDropdown();
+        loadSelectedChannels();
+    });
     //Search Button
     $('.channelSearchForm').on('click','.channelSearchButton',(e)=>{
         e.preventDefault();
