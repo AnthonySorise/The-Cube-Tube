@@ -14,7 +14,7 @@ FROM channels AS c
 JOIN channels_to_users AS ctu
 ON c.channel_id = ctu.channel_id 
 JOIN videos AS v
-ON v.channel_id = c.channel_id
+ON v.youtube_channel_id = c.youtube_channel_id
 WHERE ctu.user_id = {$user_id}
 ORDER BY v.published_at LIMIT 40 OFFSET ?");
 $stmt->bind_param('i',$offset);

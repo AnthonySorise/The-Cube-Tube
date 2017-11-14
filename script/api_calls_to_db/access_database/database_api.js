@@ -248,7 +248,7 @@
      }
      this.insert_channels_by_youtube_id_php = function(youtube_channel_id){
         $.ajax({
-            url:'../youtube_api_php/access.php',
+            url:'./youtube_api_php/access.php',
             method:'post',
             dataType:'JSON',
             data:{
