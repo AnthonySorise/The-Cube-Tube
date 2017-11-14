@@ -150,6 +150,9 @@ body {
 	padding: 5px 10px;
 	overflow: auto;
 }
+#channelCategoryUl li{
+	cursor: default;
+}
 #channelCategoryUl input{
 	cursor: pointer;
 }
