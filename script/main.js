@@ -15,6 +15,7 @@ var currentSlideNumber = 1;
 var browsingMode = false;
 
 let currentVolumeLevel = null;
+var ytPlaying = false;
 var play = "fa fa-play modalControls playButton";
 var pause = "fa fa-pause modalControls pauseButton";
 
@@ -25,6 +26,9 @@ function onYouTubeIframeAPIReady(vidId) {
         videoId: vidId || 'lrzIR8seNXs',
         playerVars: {
             'rel': 0
+        },
+        events: {
+            'onStateChange': onPlayerStateChange
         }
     });
     onYouTubeIframeAPIReady2();
@@ -34,6 +38,9 @@ function onYouTubeIframeAPIReady2() {
         videoId: 'lrzIR8seNXs',
         playerVars: {
             'rel': 0
+        }, 
+        events: {
+            'onStateChange': onPlayerStateChange
         }
     });
 }
