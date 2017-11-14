@@ -15,6 +15,8 @@ var currentSlideNumber = 1;
 var browsingMode = false;
 
 let currentVolumeLevel = null;
+var play = "fa fa-play modalControls playButton";
+var pause = "fa fa-pause modalControls pauseButton";
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -56,7 +58,7 @@ $(document).ready(function () {
     $("#text-carousel").hide()
     $(".videoHeader").hide()
   
-
+    rendertheatreControls();
     displayCurrentPageNumber();
     /**
      function for preventing page refresh with search button;
@@ -336,6 +338,9 @@ function clickHandler() {
     //Theater mode
     $('.lightBoxMode').on('click', checkHomePageVideoStatus);
     $('.theatreModalClose').on('click', checkTheatreModeStatus);
+    $('.fastForwardButton').on('click', fastForwardVideo);
+    $('.rewindButton').on('click', rewindVideo);
+    $('.playButton').on('click', playYtVideo);
     $(document).on('keyup', function (event) {
         if(event.keyCode === 27 && $('body').hasClass('modal-open')) {
             console.log('Esc was pressed');
@@ -350,26 +355,28 @@ function clickHandler() {
             player.pauseVideo();
             player2.seekTo(player.getCurrentTime());
             player2.pauseVideo();
+            $('.pauseButton').removeClass().addClass(play);
             $('#lightBoxModal').modal('show');
         } else if (player.getPlayerState() === 1) {
             checkIfPlayerIsMuted();
             player.pauseVideo();
             player2.seekTo(player.getCurrentTime());
-            $('#lightBoxModal').modal('show');
+            $('.playButton').removeClass().addClass(pause);
             player2.playVideo();
+            $('#lightBoxModal').modal('show');
         } else if (player.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
         }
     }
 
     function checkTheatreModeStatus() {
-        if (player2.getPlayerState() === 2) {
+        if (player2.getPlayerState() === 2) {            
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
             player.pauseVideo();
             $('#lightBoxModal').modal('hide');
-        } else if (player2.getPlayerState() === 1) {
+        } else if (player2.getPlayerState() === 1) {                               
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
@@ -378,6 +385,44 @@ function clickHandler() {
         } else if (player2.getPlayerState() === 5) {
             $('#lightBoxModal').modal('hide');
         }
+    }
+
+    function fastForwardVideo() {
+        var fastForward = player2.getCurrentTime();
+        var add15Seconds = fastForward + 15;
+        var player2State = player2.getPlayerState();
+        if(player2State === 2) {
+            player2.seekTo(add15Seconds);
+            player2.pauseVideo();
+            return;
+        } else {
+            player2.seekTo(add15Seconds);
+    
+        }
+        
+    }
+    function playYtVideo() {
+        player2.playVideo();
+        if(this.classList.value === play) {
+            $('.playButton').removeClass(play).toggleClass(pause);                    
+        } else {
+            $('.pauseButton').removeClass(pause).toggleClass(play);
+            player2.pauseVideo()        
+            
+        }
+    }
+    function rewindVideo() {
+        var fastForward = player2.getCurrentTime();
+        var minus15Seconds = fastForward - 15;
+        var player2State = player2.getPlayerState();
+        if(player2State === 2) {
+            player2.seekTo(minus15Seconds);
+            player2.pauseVideo();
+            return;
+        } else {
+            player2.seekTo(minus15Seconds);
+        }
+
     }
 }
 
@@ -1403,28 +1448,30 @@ function loadPreviousPage(){
     }
 }
 
-// Making media query with javascript to hide saerch button inside hamburger menu and dynamically creat one on header
-
-// if(window.matchMedia("(min-width: 1020px)").matches) {
-//     var searchDiv = $('<div>').addClass('form-group');
-//     var inputElement = $('<input>', {
-//         type: 'text',
-//         class: 'form-control',
-//         placeholder: 'search channels',
-//         name: 'channelSearch',
-//         id: 'channelSearchInput'
-//     });
-//     var buttonElement = $('<button>', {
-//         type: 'submit',
-//         class: 'btn btn-danger channelSearchButton',
-//         dataToggle: 'tooltip',
-//         dataPlacement: 'bottom',
-//         dataTrigger: 'hover',
-//         title: 'search for channels to add',
-//         text: 'search'
-//     });
-//     var searchDivWrapper = $(searchDiv).append(inputElement);
-//     var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
-//     $('#mainNav').append(completedSearchDiv);
-// }
-
+function rendertheatreControls() {
+    var rewindElement = $('<i>', {
+        class: "fa fa-undo modalControls rewindButton",
+        dataToggle: "tooltip",
+        dataPlacement: "left",
+        dataContainer: "body",
+        title: "Rewind 15s"
+    });
+    var playElement = $('<i>', {
+        class: "fa fa-play modalControls playButton",
+    });
+    var fastForwardElement = $('<i>', {
+        class: "fa fa-repeat modalControls fastForwardButton",
+        dataToggle: "tooltip",
+        dataPlacement: "right",
+        dataContainer: "body",
+        title: "Fast Forward 15s"
+    });
+    var closeButton = $('<button>', {
+        class: "btn btn-danger modalClose theatreModalClose",
+        dataDismiss: "modal",
+        text: "close",
+        type: "button"
+    });
+    $('#lightBoxModalFooter').append(rewindElement, playElement, fastForwardElement, closeButton);
+    
+}

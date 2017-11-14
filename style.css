@@ -651,6 +651,21 @@ div.thRow {
 	margin: 5px 2px;
 	float: right;
 }
+
+#lightBoxModalFooter {
+	display: flex;
+    justify-content: space-between;
+}
+
+.modalControls {
+	font-size: 2em;
+	cursor: pointer;
+}
+
+.rewindButton {
+	margin-left: 25%;
+}
+
 		/*****END of CHANNEL SEARCH modal*****/
 /************************************
 * 	END of ALL MODAL related css 		*

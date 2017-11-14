@@ -1257,8 +1257,15 @@ consider carousel for the video list area:
 						<div id="theaterVideo"></div>
 					</div>
 					<div class="modal-footer">
-						<span id="lightBoxModalFooter"></span>
-						<button type="button" class="btn btn-danger modalClose theatreModalClose" data-dismiss="modal">close</button>
+						<span id="lightBoxModalFooter">
+							<!-- <i class="fa fa-undo modalControls rewindButton" data-toggle="tooltip" data-placement="left" title="Rewind 15s"
+								data-container="body"></i>
+							<i class="fa fa-play modalControls playButton" data-toggle="tooltip" data-placement="bottom" title="Play"
+							data-container="body"></i>	 
+							<i class="fa fa-repeat modalControls fastForwardButton" data-toggle="tooltip" data-placement="right" title="Fast Forward 15s"
+								data-container="body"></i>
+							<button type="button" class="btn btn-danger modalClose theatreModalClose" data-dismiss="modal">close</button -->
+						 </span>
 					</div>
 				</div>
 			</div>
