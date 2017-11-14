@@ -137,7 +137,7 @@ function clickHandler() {
         loadSelectedChannels();
     });
     //Search Button
-    $('.channelSearchForm').on('click','.channelSearchButton',(e)=>{
+    $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
         e.preventDefault();
         $('.channelSearchForm').submit();
     });
