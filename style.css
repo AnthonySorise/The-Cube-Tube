@@ -360,6 +360,9 @@ div.thRow {
 	height: 3.2vh;
 	z-index: 1;
 }
+.tdList:nth-child(even){
+	background-color: rgba(50,50,50,0.7);
+}
 .tdList:hover, .selectedTd {
 	background-color: rgba(43, 187, 173, 0.6);
 }
@@ -404,10 +407,10 @@ div.thRow {
 	color: rgba(63, 114, 155, 1);
 }
 .tdButton i {
-	color: rgba(38, 50, 56, 0.5);
+	color: rgba(255, 255, 255, 0.5);
 }
 .tdButton i:hover, .tdButton i:focus {
-	color: rgba(38, 50, 56, 1);
+	color: rgba(255, 255, 255, 1);
 }
 .tdTitle, .tdChannel, .tdUpDate {
 	overflow: hidden;
