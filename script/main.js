@@ -149,7 +149,7 @@ function clickHandler() {
         clientSelectedChannelIds = clientSubscribedChannelIds;
         clientSelectedChannelObjects = clientSubscribedChannelObjects;
         returnToPageOne();
-        compileSelectedChannelsFromDropdown();
+        renderChannelSelectionDropdown();
         loadSelectedChannels();
         if(window.innerWidth <500){
             closeChannelDrop();
