@@ -507,7 +507,7 @@ function initiateUser(){
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSelectedChannelObjects.push(data.data[0]);
 
-                                if (numSubscribedChannels === clientSelectedChannelIds.length) {
+                                if (numSubscribedChannels === clientSubscribedChannelObjects.length) {
                                     loadSelectedChannels();
                                     renderChannelSelectionDropdown();
                                 }
@@ -704,13 +704,13 @@ function renderChannelSelectionDropdown(){
 
         //check if channel is selected
         if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
-            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id)
+            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
             channel.attr("checked", "checked")
         }
 
 
         let channelLi = $('<li>').addClass('dropdownChannelLi')
-            .text(clientSubscribedChannelObjects[i].channel_title);
+            .text(" "+clientSubscribedChannelObjects[i].channel_title);
         channelLi.prepend(channel);
 
 
@@ -1022,6 +1022,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
     if(!isAdding){
         clientSelectedChannelIds = [];
+        clientSelectedChannelIds.push(channelID);
     }
     else{
         var isDup = false;
@@ -1035,7 +1036,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
             clientSelectedChannelIds.push(channelID);
         }
     }
-    // clientSelectedChannelIds.push(channelID);
+
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -1054,6 +1055,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
                 if(!isAdding){
                     clientSelectedChannelObjects = [];
+                    clientSelectedChannelObjects.push(data.data[0]);
                 }
                 else{
                     var isDup = false;
@@ -1088,7 +1090,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     })
                 }
 
-                // clientSelectedChannelObjects.push(data.data[0]);
+
 
                 loadSelectedChannels();
 

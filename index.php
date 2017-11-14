@@ -87,7 +87,7 @@ consider carousel for the video list area:
 							<li role="separator" class="divider"></li>
 							<li class="dropdownChannelLiLoad">
 								<i class="fa fa-refresh" aria-hidden="true"></i>
-								Update Channels
+								Load Channels
 							</li>
 							<li class="dropdownChannelLiAll">
                                 <i class="fa fa-cube" aria-hidden="true"></i>
@@ -103,7 +103,7 @@ consider carousel for the video list area:
 					<div class="form-group">
 						<div class="input-group">
 							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
-							<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for channels to add">
+							<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
 							<!-- <button class="channelSearchButton"> -->
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							<!-- </button> -->
@@ -1282,11 +1282,11 @@ consider carousel for the video list area:
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
 						</button>
-						<div class="modal-title-wrap">
-							<h4 class="modal-title" id="channelSearchModalTitle">
-								Search Results...
-							</h4>
-						</div>
+<!--						<div class="modal-title-wrap">-->
+<!--							<h4 class="modal-title" id="channelSearchModalTitle">-->
+<!--								Search Results...-->
+<!--							</h4>-->
+<!--						</div>-->
 					</div>
 					<div class="modal-body" id="channelSearchModalBody">
 						<li id="chSearch-1" class="col-xs-12">
@@ -1465,10 +1465,10 @@ consider carousel for the video list area:
 							<button class="btn btn-success addChannelButton"> Add </button>
 						</li>
 					</div>
-					<div class="modal-footer">
-						<span id="channelSearchModalFooter"></span>
-						<button type="button" class="btn btn-danger modalClose theaterModalClose" data-dismiss="modal">close</button>
-					</div>
+<!--					<div class="modal-footer">-->
+<!--						<span id="channelSearchModalFooter"></span>-->
+<!--						<button type="button" class="btn btn-danger modalClose theaterModalClose" data-dismiss="modal">close</button>-->
+<!--					</div>-->
 				</div>
 			</div>
 		</div>
