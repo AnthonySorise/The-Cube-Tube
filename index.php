@@ -90,8 +90,10 @@ consider carousel for the video list area:
 								Update Channels
 							</li>
 							<li class="dropdownChannelLiAll">
-								<input type="checkbox" name="All checkbox" value="all"> All
+                                <i class="fa fa-cube" aria-hidden="true"></i>
+                                All
 							</li>
+                            <li role="separator" class="divider"></li>
 
 						</ul>
 					</li>

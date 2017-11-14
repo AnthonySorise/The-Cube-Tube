@@ -144,6 +144,22 @@ function clickHandler() {
         }
         
     });
+
+    $(".dropdownChannelLiAll").on("click", function(){
+        clientSelectedChannelIds = clientSubscribedChannelIds;
+        clientSelectedChannelObjects = clientSubscribedChannelObjects;
+        returnToPageOne();
+        compileSelectedChannelsFromDropdown();
+        loadSelectedChannels();
+        if(window.innerWidth <500){
+            closeChannelDrop();
+        }else{
+            $('mainNav-option').removeClass('in')
+                .attr('aria-expanded','false');
+            $('.channelDropDown').removeClass('open');
+        }
+    });
+
     $('#channelCategoryUl').on('click','.dropdownChannelLi',(e)=>{
         let input = $(e.target).children('input');
         if(input[0].checked == true){
