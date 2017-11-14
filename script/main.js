@@ -1012,6 +1012,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     }
                     if(!isDup){
                         clientSubscribedChannelObjects.push(data.data[0]);
+                        clientSelectedChannelObjects.push(data.data[0]);
                     }
 
                     $.ajax({
@@ -1035,7 +1036,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     })
                 }
 
-                clientSelectedChannelObjects.push(data.data[0]);
+                // clientSelectedChannelObjects.push(data.data[0]);
 
                 loadSelectedChannels();
 
