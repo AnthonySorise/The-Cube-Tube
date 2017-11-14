@@ -151,9 +151,6 @@ body {
 	overflow: auto;
 }
 #channelCategoryUl li{
-	cursor: default;
-}
-#channelCategoryUl input{
 	cursor: pointer;
 }
 .dropdownChannelLi, .dropdownChannelLiAll{
