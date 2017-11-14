@@ -407,6 +407,7 @@ function initiateUser(){
                 console.log('read success', data.data[0].youtube_channel_id);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function(){
                     $('#text-carousel, .videoHeader').slideDown(1100);
+                    toastMsg('Welcome back', 3000);
                 });
                 for(var i = 0; i<data.data.length; i++){
                     numSubscribedChannels = data.data.length;
