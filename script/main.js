@@ -137,6 +137,41 @@ function clickHandler() {
         returnToPageOne();
         compileSelectedChannelsFromDropdown();
         loadSelectedChannels();
+        if(window.innerWidth <500){
+            closeChannelDrop();
+        }else{
+            $('mainNav-option').removeClass('in')
+                .attr('aria-expanded','false');
+            $('.channelDropDown').removeClass('open');
+        }
+        
+    });
+
+    $(".dropdownChannelLiAll").on("click", function(){
+        clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds)   ;
+        clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
+        returnToPageOne();
+        renderChannelSelectionDropdown();
+        loadSelectedChannels();
+        if(window.innerWidth <500){
+            closeChannelDrop();
+        }else{
+            $('mainNav-option').removeClass('in')
+                .attr('aria-expanded','false');
+            $('.channelDropDown').removeClass('open');
+        }
+    });
+
+    $('#channelCategoryUl').on('click','.dropdownChannelLi',(e)=>{
+        let input = $(e.target).children('input');
+        if(input[0].checked == true){
+            input[0].checked = false;
+        }else if(input[0].checked==false){
+            input[0].checked = true;
+        }
+    });
+    $('a.dropdown-toggle').on('click',()=>{
+        $('.channelDropDown').toggleClass('open');
     });
     //Search Button
     $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
@@ -441,6 +476,7 @@ function initiateUser(){
                 console.log('read success', data.data[0].youtube_channel_id);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function(){
                     $('#text-carousel, .videoHeader').slideDown(1100);
+                    toastMsg('Welcome back', 3000);
                 });
                 for(var i = 0; i<data.data.length; i++){
                     numSubscribedChannels = data.data.length;
@@ -634,6 +670,7 @@ function clearVideoList(){
 
 function renderChannelSelectionDropdown(){
     $(".dropdownChannelLi").remove();
+
 
 
     var sorted = false;
@@ -988,9 +1025,10 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
         }
         if(!isDup){
             clientSubscribedChannelIds.push(channelID);
+            clientSelectedChannelIds.push(channelID);
         }
     }
-    clientSelectedChannelIds.push(channelID);
+    // clientSelectedChannelIds.push(channelID);
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -1019,6 +1057,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     }
                     if(!isDup){
                         clientSubscribedChannelObjects.push(data.data[0]);
+                        clientSelectedChannelObjects.push(data.data[0]);
                     }
 
                     $.ajax({
@@ -1042,7 +1081,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     })
                 }
 
-                clientSelectedChannelObjects.push(data.data[0]);
+                // clientSelectedChannelObjects.push(data.data[0]);
 
                 loadSelectedChannels();
 
@@ -1473,5 +1512,4 @@ function rendertheatreControls() {
         type: "button"
     });
     $('#lightBoxModalFooter').append(rewindElement, playElement, fastForwardElement, closeButton);
-    
 }
