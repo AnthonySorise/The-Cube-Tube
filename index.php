@@ -72,7 +72,7 @@ consider carousel for the video list area:
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown channelDropDown">
-						<a href="#" class="dropdown-toggle hidden-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<a href="#" class="dropdown-toggle hidden-xs" role="button" aria-haspopup="true" aria-expanded="false">
 							Channels
 							<span class="caret"></span>
 						</a>
@@ -91,7 +91,15 @@ consider carousel for the video list area:
 							<li class="dropdownChannelLiAll">
 								<input type="checkbox" name="All checkbox" value="all"> All
 							</li>
-							
+							<li class="dropdownChannelLi">
+								<input type="checkbox" name=""> stuff1
+							</li>
+							<li class="dropdownChannelLi">
+								<input type="checkbox" name=""> stuff1
+							</li>
+							<li class="dropdownChannelLi">
+								<input type="checkbox" name=""> stuff1
+							</li>
 						</ul>
 					</li>
 				</ul>
