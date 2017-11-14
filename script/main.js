@@ -627,6 +627,7 @@ function renderChannelSelectionDropdown(){
     $(".dropdownChannelLi").remove();
 
 
+
     var sorted = false;
     //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
@@ -979,9 +980,10 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
         }
         if(!isDup){
             clientSubscribedChannelIds.push(channelID);
+            clientSelectedChannelIds.push(channelID);
         }
     }
-    clientSelectedChannelIds.push(channelID);
+    // clientSelectedChannelIds.push(channelID);
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
