@@ -401,10 +401,10 @@ div.thRow {
 	border: none;
 }
 .tdInfo i {
-	color: rgba(63, 114, 155, 0.5);
+	color: rgba(124, 221, 249, 0.5);
 }
 .tdInfo i:hover, .tdInfo i:focus {
-	color: rgba(63, 114, 155, 1);
+	color: rgba(124, 221, 249, 1);
 }
 .tdButton i {
 	color: rgba(255, 255, 255, 0.5);
