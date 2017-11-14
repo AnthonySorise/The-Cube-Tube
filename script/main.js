@@ -55,6 +55,7 @@ $(window).resize(function(){
 $(document).ready(function () {
     $("#text-carousel").hide()
     $(".videoHeader").hide()
+  
 
     displayCurrentPageNumber();
     /**
@@ -147,7 +148,7 @@ function clickHandler() {
         $('.channelDropDown').toggleClass('open');
     });
     //Search Button
-    $('.channelSearchForm').on('click','.channelSearchButton',(e)=>{
+    $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
         e.preventDefault();
         $('.channelSearchForm').submit();
     });
@@ -909,7 +910,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                         dataType: 'JSON',
                         data: {
                             action: 'insert_video',
-                            videoArray: videoArray
+                            videoArray: packageToSendToDb
                         },
                         success: function (data) {
                             if (data.success) {
@@ -1166,20 +1167,43 @@ function displayTableDataOnMobile(){
         newElementArray.push(newImage);
     }
     for(var i = 0; i<newElementArray.length; i++){
-        var itemDiv = $("<div>").addClass('item mobileSlide');
+        var itemDiv = $(".pageOne_mobile").addClass('item')
         var contentDiv = $("<div>").addClass('carousel-content');
         var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
         rowDiv.append(newElementArray[i]);
         contentDiv.append(rowDiv);
         itemDiv.append(contentDiv);
+        
         $(".carousel-inner").append(itemDiv);
     }
+    $(".mobileSlide").show();
+    
     $(".tdListRight").hide();
     $(".tdListLeft").removeClass('col-md-6');
     // $(".carousel-inner").append(itemDiv);
-
-
 }
+
+
+// function displayTableDataOnMobile(){
+//     var rightTableData = $(".item").find(".tdListRight").children().clone();
+//     var newElementArray = []
+//     for(var j = 0; j<rightTableData.length; j+=10){
+//         var newImage = rightTableData.slice(j,j+10)
+//         newElementArray.push(newImage);
+//     }
+//     for(var i = 0; i<newElementArray.length; i++){
+//         var itemDiv = $("<div>").addClass('item mobileSlide');
+//         var contentDiv = $("<div>").addClass('carousel-content');
+//         var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
+//         rowDiv.append(newElementArray[i]);
+//         contentDiv.append(rowDiv);
+//         itemDiv.append(contentDiv);
+//         $(".carousel-inner").append(itemDiv);
+//     }
+//     $(".tdListRight").hide();
+//     $(".tdListLeft").removeClass('col-md-6');
+//     // $(".carousel-inner").append(itemDiv);
+// }
 
 function displayTableDataOnDesktop(){
     $(".tdListRight").show();
