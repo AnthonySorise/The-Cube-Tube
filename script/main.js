@@ -887,7 +887,25 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                     access_database.insert_video(packageToSendToDb);
                 }
                 else{
-                    loadSelectedChannels();
+                    $.ajax({
+                        url: './script/api_calls_to_db/access_database/access.php',
+                        method: 'POST',
+                        dataType: 'JSON',
+                        data: {
+                            action: 'insert_video',
+                            videoArray: videoArray
+                        },
+                        success: function (data) {
+                            if (data.success) {
+                                console.log('insert video success', data);
+                                loadSelectedChannels();
+                            }
+                        },
+                        errors: function (data) {
+                            console.log('insert error', data);
+                        }
+                    })
+
                 }
             }
             else{
