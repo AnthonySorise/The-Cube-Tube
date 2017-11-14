@@ -246,7 +246,25 @@
              }
          })
      }
-     this.read_channels_by_youtube_id
+     this.insert_channels_by_youtube_id_php = function(youtube_channel_id){
+        $.ajax({
+            url:'../youtube_api_php/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                action:'insert_channel_from_youtube',
+                youtube_channel_id:youtube_channel_id
+            },
+            success: function (data) {
+                if (data.success) {
+                    console.log('insert success', data);
+                }
+            },
+            errors: function (data) {
+                console.log('insert error', data);
+            }
+        })
+     }
      //read user based on user link get user id, read ctu(user_id) read channels, read videos
      this.insert_ctu = function(youtube_channel_id){
          $.ajax({

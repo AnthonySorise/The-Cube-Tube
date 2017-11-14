@@ -156,7 +156,5 @@ function uploadMedia($client, $request, $filePath, $mimeType) {
 }
 
 /***** END BOILERPLATE CODE *****/
-
-// Sample php code for channels.list
-// include('./script/youtube_api_php/access.php');0
+include('get_chanel_data_from_youtube.php');
 ?>

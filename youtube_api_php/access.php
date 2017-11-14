@@ -15,12 +15,12 @@ if(empty($_POST['action'])){
 }
 require('youtube_api_main.php');
 switch($_POST['action']){
-    case 'read_channels_from_youtube':
-        include('read_channel_data_from_youtube.php');
+    case 'insert_channel_from_youtube':
+        include('insert_channel_data_from_youtube.php');
         break;
-    case 'read_videos_from_youtube':
-        include('read_videos_from_youtube.php');
-        break;
+    // case 'read_videos_from_youtube':
+    //     include('read_videos_from_youtube.php');
+    //     break;
     default:
         $output['errors'][] = "INVALID ACTION";
         break;
