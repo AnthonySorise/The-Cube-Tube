@@ -1490,9 +1490,9 @@ function loadPreviousPage(){
 function rendertheatreControls() {
     var rewindElement = $('<i>', {
         class: "fa fa-undo modalControls rewindButton",
-        dataToggle: "tooltip",
-        dataPlacement: "left",
-        dataContainer: "body",
+        ["data-toggle"]: "tooltip",
+        ["data-placement"]: "left",
+        ["data-container"]: "body",
         title: "Rewind 15s"
     });
     var playElement = $('<i>', {
@@ -1500,9 +1500,9 @@ function rendertheatreControls() {
     });
     var fastForwardElement = $('<i>', {
         class: "fa fa-repeat modalControls fastForwardButton",
-        dataToggle: "tooltip",
-        dataPlacement: "right",
-        dataContainer: "body",
+        ["data-toggle"]: "tooltip",
+        ["data-placement"]: "right",
+        ["data-container"]: "body",
         title: "Fast Forward 15s"
     });
     var closeButton = $('<button>', {

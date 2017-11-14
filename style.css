@@ -680,6 +680,9 @@ div.thRow {
 .rewindButton {
 	margin-left: 25%;
 }
+.playButton:hover, .rewindButton:hover, .fastForwardButton:hover, .pauseButton:hover {
+	color: #fff; 
+}
 
 		/*****END of CHANNEL SEARCH modal*****/
 /************************************
