@@ -57,7 +57,6 @@ body {
 	font-family: 'Arvo', serif;
 }
 .navbar-toggle {
-	/*margin-bottom: 0;*/
 	margin: 0;
 	height: 50px;
 	width: 50px;
@@ -65,14 +64,15 @@ body {
 .navbar-brand {
 	font-size: 22px;
 	margin-right: 20px;
-	/*color: rgb(40, 40, 40);*/
 	font-family: 'Audiowide', sans-serif;
 	letter-spacing: -1.5px;
-	/*padding: 10px 10px;*/
 	padding: 0;
 	padding-left: 15px;
-	/*line-height: 2.6;*/
-	color: white;
+	color: rgba(255, 255, 255, 0.6);
+	cursor: default;
+}
+.navbar-brand:hover{
+	color: rgba(255, 255, 255, 1);
 }
 #cubeTubeLogo{
 	display: inline-block;
@@ -133,6 +133,7 @@ body {
 	background-color: rgba(255, 0, 0, 0.3);
 	border-radius: 0;
 	border:none;
+	cursor: pointer;
 }
 .channelSearchButton>.glyphicon-search{
 	color: white;
@@ -149,6 +150,9 @@ body {
 	padding: 5px 10px;
 	overflow: auto;
 }
+#channelCategoryUl input{
+	cursor: pointer;
+}
 .dropdownChannelLi, .dropdownChannelLiAll{
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -159,9 +163,10 @@ body {
 .dropdownChannelLiLoad>.fa-refresh, #categoryButton>.fa{
 	color: red;
 }
-.dropdownChannelLiLoad:hover{
-	background-color: rgba(40,40,40,0.6);
+.dropdownChannelLiLoad:hover, #categoryButton:hover{
+	background-color: rgba(40,40,40,0.9);
 	color: white;
+	cursor: pointer;
 }
 .dropdownChannelLi:hover, .dropdownChannelLiAll:hover{
 	background-color: rgba(0, 0, 0, 0.5);
