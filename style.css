@@ -366,10 +366,10 @@ div.thRow {
 	z-index: 1;
 }
 .tdList:nth-child(even){
-	background-color: rgba(50,50,50,0.7);
+	background-color: #364e5a;
 }
 .tdList:hover, .selectedTd {
-	background-color: rgba(43, 187, 173, 0.6);
+	background-color: #b4bdc1;
 }
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
