@@ -156,7 +156,7 @@ body {
 	text-align: left;
 	margin-top: 5px;
 }
-.dropdownChannelLiLoad>.fa-refresh{
+.dropdownChannelLiLoad>.fa-refresh, #categoryButton>.fa{
 	color: red;
 }
 .dropdownChannelLiLoad:hover{
