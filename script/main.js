@@ -135,6 +135,17 @@ function clickHandler() {
         returnToPageOne();
         compileSelectedChannelsFromDropdown();
         loadSelectedChannels();
+        if(window.innerWidth <500){
+            closeChannelDrop();
+        }else{
+            $('mainNav-option').removeClass('in')
+                .attr('aria-expanded','false');
+            $('.channelDropDown').removeClass('open');
+        }
+        
+    });
+    $('a.dropdown-toggle').on('click',()=>{
+        $('.channelDropDown').toggleClass('open');
     });
     //Search Button
     $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
