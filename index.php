@@ -18,7 +18,7 @@ consider carousel for the video list area:
 		gtag('config', 'UA-109199068-1');
 	</script>
 	
-	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Audiowide" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Audiowide|Arvo" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	 crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -91,15 +91,7 @@ consider carousel for the video list area:
 							<li class="dropdownChannelLiAll">
 								<input type="checkbox" name="All checkbox" value="all"> All
 							</li>
-							<li class="dropdownChannelLi">
-								<input type="checkbox" name=""> stuff1
-							</li>
-							<li class="dropdownChannelLi">
-								<input type="checkbox" name=""> stuff1
-							</li>
-							<li class="dropdownChannelLi">
-								<input type="checkbox" name=""> stuff1
-							</li>
+
 						</ul>
 					</li>
 				</ul>

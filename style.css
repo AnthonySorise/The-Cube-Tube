@@ -4,6 +4,7 @@ almost black: 40,40,40
 charcoal: 54,69,79
 font-family: 'Roboto', sans-serif;
 font-family: 'Montserrat', sans-serif;
+font-family: 'Arvo', serif;
 ******/
 html,
 body {
@@ -53,6 +54,7 @@ body {
 }
 #mainNav>.container-fluid{
 	position:relative;
+	font-family: 'Arvo', serif;
 }
 .navbar-toggle {
 	/*margin-bottom: 0;*/
@@ -100,6 +102,7 @@ body {
 #midNav-option{
 	z-index:1;
 	position: relative;
+	font-family: 'Roboto', sans-serif;
 }
 #midNav-option form {
 	margin-right: 20px;
@@ -152,6 +155,9 @@ body {
 	white-space: nowrap;
 	text-align: left;
 	margin-top: 5px;
+}
+.dropdownChannelLiLoad>.fa-refresh{
+	color: red;
 }
 .dropdownChannelLiLoad:hover{
 	background-color: rgba(40,40,40,0.6);
@@ -918,6 +924,9 @@ safer appraoch than to resizing browser to see change
 		/*min-height: 100vh;*/
 		min-height: 0;
 		background-color: white;
+	}
+	#channelCategoryUl{
+		font-size:20px;
 	}
 	#midNav-option form{
 		width: 95%;
