@@ -455,7 +455,7 @@ function initiateUser(){
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSelectedChannelObjects.push(data.data[0]);
 
-                                if (numSubscribedChannels === clientSelectedChannelIds.length) {
+                                if (numSubscribedChannels === clientSubscribedChannelObjects.length) {
                                     loadSelectedChannels();
                                     renderChannelSelectionDropdown();
                                 }
