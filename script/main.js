@@ -55,6 +55,7 @@ $(window).resize(function(){
 $(document).ready(function () {
     $("#text-carousel").hide()
     $(".videoHeader").hide()
+  
 
     displayCurrentPageNumber();
     /**
@@ -131,11 +132,47 @@ function tooltipFunctions() {
 //Click handler to console log search results
 function clickHandler() {  
     $('.channelDropDown').on('click','.dropdownChannelLiLoad',()=>{
+        returnToPageOne();
         compileSelectedChannelsFromDropdown();
         loadSelectedChannels();
+        if(window.innerWidth <500){
+            closeChannelDrop();
+        }else{
+            $('mainNav-option').removeClass('in')
+                .attr('aria-expanded','false');
+            $('.channelDropDown').removeClass('open');
+        }
+        
+    });
+
+    $(".dropdownChannelLiAll").on("click", function(){
+        clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds)   ;
+        clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
+        returnToPageOne();
+        renderChannelSelectionDropdown();
+        loadSelectedChannels();
+        if(window.innerWidth <500){
+            closeChannelDrop();
+        }else{
+            $('mainNav-option').removeClass('in')
+                .attr('aria-expanded','false');
+            $('.channelDropDown').removeClass('open');
+        }
+    });
+
+    $('#channelCategoryUl').on('click','.dropdownChannelLi',(e)=>{
+        let input = $(e.target).children('input');
+        if(input[0].checked == true){
+            input[0].checked = false;
+        }else if(input[0].checked==false){
+            input[0].checked = true;
+        }
+    });
+    $('a.dropdown-toggle').on('click',()=>{
+        $('.channelDropDown').toggleClass('open');
     });
     //Search Button
-    $('.channelSearchForm').on('click','.channelSearchButton',(e)=>{
+    $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
         e.preventDefault();
         $('.channelSearchForm').submit();
     });
@@ -394,6 +431,7 @@ function initiateUser(){
                 console.log('read success', data.data[0].youtube_channel_id);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function(){
                     $('#text-carousel, .videoHeader').slideDown(1100);
+                    toastMsg('Welcome back', 3000);
                 });
                 for(var i = 0; i<data.data.length; i++){
                     numSubscribedChannels = data.data.length;
@@ -417,7 +455,7 @@ function initiateUser(){
                                 clientSubscribedChannelObjects.push(data.data[0]);
                                 clientSelectedChannelObjects.push(data.data[0]);
 
-                                if (numSubscribedChannels === clientSelectedChannelIds.length) {
+                                if (numSubscribedChannels === clientSubscribedChannelObjects.length) {
                                     loadSelectedChannels();
                                     renderChannelSelectionDropdown();
                                 }
@@ -589,6 +627,7 @@ function renderChannelSelectionDropdown(){
     $(".dropdownChannelLi").remove();
 
 
+
     var sorted = false;
     //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
@@ -613,13 +652,13 @@ function renderChannelSelectionDropdown(){
 
         //check if channel is selected
         if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
-            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id)
+            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
             channel.attr("checked", "checked")
         }
 
 
         let channelLi = $('<li>').addClass('dropdownChannelLi')
-            .text(clientSubscribedChannelObjects[i].channel_title);
+            .text(" "+clientSubscribedChannelObjects[i].channel_title);
         channelLi.prepend(channel);
 
 
@@ -891,7 +930,25 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                     access_database.insert_video(packageToSendToDb);
                 }
                 else{
-                    loadSelectedChannels();
+                    $.ajax({
+                        url: './script/api_calls_to_db/access_database/access.php',
+                        method: 'POST',
+                        dataType: 'JSON',
+                        data: {
+                            action: 'insert_video',
+                            videoArray: packageToSendToDb
+                        },
+                        success: function (data) {
+                            if (data.success) {
+                                console.log('insert video success', data);
+                                loadSelectedChannels();
+                            }
+                        },
+                        errors: function (data) {
+                            console.log('insert error', data);
+                        }
+                    })
+
                 }
             }
             else{
@@ -913,6 +970,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
     if(!isAdding){
         clientSelectedChannelIds = [];
+        clientSelectedChannelIds.push(channelID);
     }
     else{
         var isDup = false;
@@ -923,9 +981,10 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
         }
         if(!isDup){
             clientSubscribedChannelIds.push(channelID);
+            // clientSelectedChannelIds.push(channelID);
         }
     }
-    clientSelectedChannelIds.push(channelID);
+
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -944,6 +1003,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
                 if(!isAdding){
                     clientSelectedChannelObjects = [];
+                    clientSelectedChannelObjects.push(data.data[0]);
                 }
                 else{
                     var isDup = false;
@@ -954,6 +1014,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     }
                     if(!isDup){
                         clientSubscribedChannelObjects.push(data.data[0]);
+                        clientSelectedChannelObjects.push(data.data[0]);
                     }
 
                     $.ajax({
@@ -977,7 +1038,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     })
                 }
 
-                clientSelectedChannelObjects.push(data.data[0]);
+
 
                 loadSelectedChannels();
 
@@ -1136,20 +1197,43 @@ function displayTableDataOnMobile(){
         newElementArray.push(newImage);
     }
     for(var i = 0; i<newElementArray.length; i++){
-        var itemDiv = $("<div>").addClass('item mobileSlide');
+        var itemDiv = $(".pageOne_mobile").addClass('item')
         var contentDiv = $("<div>").addClass('carousel-content');
         var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
         rowDiv.append(newElementArray[i]);
         contentDiv.append(rowDiv);
         itemDiv.append(contentDiv);
+        
         $(".carousel-inner").append(itemDiv);
     }
+    $(".mobileSlide").show();
+    
     $(".tdListRight").hide();
     $(".tdListLeft").removeClass('col-md-6');
     // $(".carousel-inner").append(itemDiv);
-
-
 }
+
+
+// function displayTableDataOnMobile(){
+//     var rightTableData = $(".item").find(".tdListRight").children().clone();
+//     var newElementArray = []
+//     for(var j = 0; j<rightTableData.length; j+=10){
+//         var newImage = rightTableData.slice(j,j+10)
+//         newElementArray.push(newImage);
+//     }
+//     for(var i = 0; i<newElementArray.length; i++){
+//         var itemDiv = $("<div>").addClass('item mobileSlide');
+//         var contentDiv = $("<div>").addClass('carousel-content');
+//         var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
+//         rowDiv.append(newElementArray[i]);
+//         contentDiv.append(rowDiv);
+//         itemDiv.append(contentDiv);
+//         $(".carousel-inner").append(itemDiv);
+//     }
+//     $(".tdListRight").hide();
+//     $(".tdListLeft").removeClass('col-md-6');
+//     // $(".carousel-inner").append(itemDiv);
+// }
 
 function displayTableDataOnDesktop(){
     $(".tdListRight").show();
@@ -1385,3 +1469,57 @@ function loadPreviousPage(){
 //     $('#mainNav').append(completedSearchDiv);
 // }
 
+function deepCopy(toCopy){
+    function objectDeepCopy(object){
+        var objectCopy = {};
+        for(var prop in object){
+            var currentValue = object[prop];
+            if(typeof currentValue !== "object"){
+                objectCopy[prop] = currentValue
+            }
+            else{
+                if(Array.isArray(currentValue)){
+                    objectCopy[prop] = arrayDeepCopy(currentValue)
+                }
+                else{
+                    objectCopy[prop] = objectDeepCopy(currentValue)
+                }
+
+            }
+        }
+        return objectCopy;
+    }
+
+    function arrayDeepCopy(array){
+        var arrayCopy = [];
+        for(var i = 0; i < array.length; i++){
+            var currentValue = array[i];
+            if(typeof currentValue !== "object"){
+                arrayCopy[i] = currentValue
+            }
+            else{
+                if(Array.isArray(currentValue)){
+                    arrayCopy[i] = arrayDeepCopy(currentValue)
+                }
+                else{
+                    arrayCopy[i] = objectDeepCopy(currentValue)
+                }
+
+            }
+
+        }
+        return arrayCopy
+    }
+    if(typeof toCopy === "object"){
+        if(Array.isArray(toCopy)){
+            return arrayDeepCopy(toCopy)
+        }
+        else{
+            return objectDeepCopy(toCopy)
+        }
+    }
+    else{
+        var copy = toCopy;
+        return toCopy;
+    }
+}
