@@ -424,6 +424,7 @@ div.thRow {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	line-height: 175%;
 }
 
 /****** initial screen PLACEHOLDER AREA******/
