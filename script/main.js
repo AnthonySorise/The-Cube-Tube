@@ -970,6 +970,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
     if(!isAdding){
         clientSelectedChannelIds = [];
+        clientSelectedChannelIds.push(channelID);
     }
     else{
         var isDup = false;
@@ -980,10 +981,10 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
         }
         if(!isDup){
             clientSubscribedChannelIds.push(channelID);
-            clientSelectedChannelIds.push(channelID);
+            // clientSelectedChannelIds.push(channelID);
         }
     }
-    // clientSelectedChannelIds.push(channelID);
+
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -1002,6 +1003,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
                 if(!isAdding){
                     clientSelectedChannelObjects = [];
+                    clientSelectedChannelObjects.push(data.data[0]);
                 }
                 else{
                     var isDup = false;
@@ -1036,7 +1038,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     })
                 }
 
-                // clientSelectedChannelObjects.push(data.data[0]);
+
 
                 loadSelectedChannels();
 
