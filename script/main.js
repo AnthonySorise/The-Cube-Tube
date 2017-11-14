@@ -55,6 +55,7 @@ $(window).resize(function(){
 $(document).ready(function () {
     $("#text-carousel").hide()
     $(".videoHeader").hide()
+  
 
     displayCurrentPageNumber();
     /**
@@ -134,9 +135,28 @@ function clickHandler() {
         returnToPageOne();
         compileSelectedChannelsFromDropdown();
         loadSelectedChannels();
+        if(window.innerWidth <500){
+            closeChannelDrop();
+        }else{
+            $('mainNav-option').removeClass('in')
+                .attr('aria-expanded','false');
+            $('.channelDropDown').removeClass('open');
+        }
+        
+    });
+    $('#channelCategoryUl').on('click','.dropdownChannelLi',(e)=>{
+        let input = $(e.target).children('input');
+        if(input[0].checked == true){
+            input[0].checked = false;
+        }else if(input[0].checked==false){
+            input[0].checked = true;
+        }
+    });
+    $('a.dropdown-toggle').on('click',()=>{
+        $('.channelDropDown').toggleClass('open');
     });
     //Search Button
-    $('.channelSearchForm').on('click','.channelSearchButton',(e)=>{
+    $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
         e.preventDefault();
         $('.channelSearchForm').submit();
     });
@@ -395,6 +415,7 @@ function initiateUser(){
                 console.log('read success', data.data[0].youtube_channel_id);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function(){
                     $('#text-carousel, .videoHeader').slideDown(1100);
+                    toastMsg('Welcome back', 3000);
                 });
                 for(var i = 0; i<data.data.length; i++){
                     numSubscribedChannels = data.data.length;
@@ -1155,20 +1176,43 @@ function displayTableDataOnMobile(){
         newElementArray.push(newImage);
     }
     for(var i = 0; i<newElementArray.length; i++){
-        var itemDiv = $("<div>").addClass('item mobileSlide');
+        var itemDiv = $(".pageOne_mobile").addClass('item')
         var contentDiv = $("<div>").addClass('carousel-content');
         var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
         rowDiv.append(newElementArray[i]);
         contentDiv.append(rowDiv);
         itemDiv.append(contentDiv);
+        
         $(".carousel-inner").append(itemDiv);
     }
+    $(".mobileSlide").show();
+    
     $(".tdListRight").hide();
     $(".tdListLeft").removeClass('col-md-6');
     // $(".carousel-inner").append(itemDiv);
-
-
 }
+
+
+// function displayTableDataOnMobile(){
+//     var rightTableData = $(".item").find(".tdListRight").children().clone();
+//     var newElementArray = []
+//     for(var j = 0; j<rightTableData.length; j+=10){
+//         var newImage = rightTableData.slice(j,j+10)
+//         newElementArray.push(newImage);
+//     }
+//     for(var i = 0; i<newElementArray.length; i++){
+//         var itemDiv = $("<div>").addClass('item mobileSlide');
+//         var contentDiv = $("<div>").addClass('carousel-content');
+//         var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
+//         rowDiv.append(newElementArray[i]);
+//         contentDiv.append(rowDiv);
+//         itemDiv.append(contentDiv);
+//         $(".carousel-inner").append(itemDiv);
+//     }
+//     $(".tdListRight").hide();
+//     $(".tdListLeft").removeClass('col-md-6');
+//     // $(".carousel-inner").append(itemDiv);
+// }
 
 function displayTableDataOnDesktop(){
     $(".tdListRight").show();

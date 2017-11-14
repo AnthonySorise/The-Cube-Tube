@@ -36,11 +36,11 @@ for($i = 0; $i<count($video_array); $i++ ){
         $output['errors'][] = 'PUBLISHED DATE MISSING';
     }
     $stmt = $conn->prepare("INSERT INTO videos SET 
-    video_title = ?,
-    youtube_channel_id = ?,
-    youtube_video_id = ?, 
-    description = ?,
-    published_at = ?,
+    video_title=?,
+    youtube_channel_id=?,
+    youtube_video_id=?, 
+    description=?,
+    published_at=?,
     last_updated=?");
     $stmt->bind_param('ssssss',$video_title,$youtube_channel_id,$youtube_video_id,
     $description,$published_at,$last_updated);

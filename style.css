@@ -4,6 +4,7 @@ almost black: 40,40,40
 charcoal: 54,69,79
 font-family: 'Roboto', sans-serif;
 font-family: 'Montserrat', sans-serif;
+font-family: 'Arvo', serif;
 ******/
 html,
 body {
@@ -53,9 +54,9 @@ body {
 }
 #mainNav>.container-fluid{
 	position:relative;
+	font-family: 'Arvo', serif;
 }
 .navbar-toggle {
-	/*margin-bottom: 0;*/
 	margin: 0;
 	height: 50px;
 	width: 50px;
@@ -63,14 +64,15 @@ body {
 .navbar-brand {
 	font-size: 22px;
 	margin-right: 20px;
-	/*color: rgb(40, 40, 40);*/
 	font-family: 'Audiowide', sans-serif;
 	letter-spacing: -1.5px;
-	/*padding: 10px 10px;*/
 	padding: 0;
 	padding-left: 15px;
-	/*line-height: 2.6;*/
-	color: white;
+	color: rgba(255, 255, 255, 0.6);
+	cursor: default;
+}
+.navbar-brand:hover{
+	color: rgba(255, 255, 255, 1);
 }
 #cubeTubeLogo{
 	display: inline-block;
@@ -100,6 +102,7 @@ body {
 #midNav-option{
 	z-index:1;
 	position: relative;
+	font-family: 'Roboto', sans-serif;
 }
 #midNav-option form {
 	margin-right: 20px;
@@ -130,6 +133,7 @@ body {
 	background-color: rgba(255, 0, 0, 0.3);
 	border-radius: 0;
 	border:none;
+	cursor: pointer;
 }
 .channelSearchButton>.glyphicon-search{
 	color: white;
@@ -146,6 +150,9 @@ body {
 	padding: 5px 10px;
 	overflow: auto;
 }
+#channelCategoryUl li{
+	cursor: pointer;
+}
 .dropdownChannelLi, .dropdownChannelLiAll{
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -153,9 +160,13 @@ body {
 	text-align: left;
 	margin-top: 5px;
 }
-.dropdownChannelLiLoad:hover{
-	background-color: rgba(40,40,40,0.6);
+.dropdownChannelLiLoad>.fa-refresh, #categoryButton>.fa{
+	color: red;
+}
+.dropdownChannelLiLoad:hover, #categoryButton:hover{
+	background-color: rgba(40,40,40,0.9);
 	color: white;
+	cursor: pointer;
 }
 .dropdownChannelLi:hover, .dropdownChannelLiAll:hover{
 	background-color: rgba(0, 0, 0, 0.5);
@@ -297,7 +308,7 @@ body>.container-fluid {
 	/* background-color: red;
 	border-color: red; */
 	text-indent: 0px;
-	color: red;
+	color: white;
 	font-size: 1.2em;
 	font-weight: 700px;
 	background-color: white;
@@ -354,6 +365,9 @@ div.thRow {
 	height: 3.2vh;
 	z-index: 1;
 }
+.tdList:nth-child(even){
+	background-color: rgba(50,50,50,0.7);
+}
 .tdList:hover, .selectedTd {
 	background-color: rgba(43, 187, 173, 0.6);
 }
@@ -392,21 +406,22 @@ div.thRow {
 	border: none;
 }
 .tdInfo i {
-	color: rgba(63, 114, 155, 0.5);
+	color: rgba(124, 221, 249, 0.5);
 }
 .tdInfo i:hover, .tdInfo i:focus {
-	color: rgba(63, 114, 155, 1);
+	color: rgba(124, 221, 249, 1);
 }
 .tdButton i {
-	color: rgba(38, 50, 56, 0.5);
+	color: rgba(255, 255, 255, 0.5);
 }
 .tdButton i:hover, .tdButton i:focus {
-	color: rgba(38, 50, 56, 1);
+	color: rgba(255, 255, 255, 1);
 }
 .tdTitle, .tdChannel, .tdUpDate {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	line-height: 175%;
 }
 
 /****** initial screen PLACEHOLDER AREA******/
@@ -918,6 +933,9 @@ safer appraoch than to resizing browser to see change
 		/*min-height: 100vh;*/
 		min-height: 0;
 		background-color: white;
+	}
+	#channelCategoryUl{
+		font-size:20px;
 	}
 	#midNav-option form{
 		width: 95%;
