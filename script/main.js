@@ -981,7 +981,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
         }
         if(!isDup){
             clientSubscribedChannelIds.push(channelID);
-            // clientSelectedChannelIds.push(channelID);
+            clientSelectedChannelIds.push(channelID);
         }
     }
 
