@@ -856,9 +856,10 @@ safer appraoch than to resizing browser to see change
 	.videoRowWrapper{
 		height: 49%;
 	}
-	.vidRowVideoCol{
+/*	.vidRowVideoCol{
 		margin-left:0;
-	}
+		padding: 0;
+	}*/
 
 	.thUpDate{
 		font-size: 14px;
@@ -880,6 +881,10 @@ safer appraoch than to resizing browser to see change
 	}
 	#channelSearchModalBody {
 		height: 55vh;
+	}
+	.vidRowVideoCol{
+		margin-left:0;
+		padding: 0;
 	}
 }
 @media only screen and (max-width: 991px) {
