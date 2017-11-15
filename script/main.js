@@ -724,7 +724,7 @@ function renderChannelSelectionDropdown(){
             'data-toggle': 'popover'
         }).append(cog);;
         const channelSettingsSpan = $('<div>',{
-            class: 'channelSettingButton col-xs-2'
+            class: 'channelSettingButton col-xs-2 text-center'
         }).css({
             padding: '0'
         }).append(channelSettingsButton);
@@ -747,7 +747,8 @@ function renderChannelSelectionDropdown(){
             padding: '0',
             'overflow': 'hidden',
             'text-overflow': 'ellipsis',
-            'white-space' : 'nowrap'
+            'white-space' : 'nowrap',
+            'height': '34px'
         }).text(clientSubscribedChannelObjects[i].channel_title);
         channelLiMain.prepend(channelCheckbox);
         // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
