@@ -1150,6 +1150,7 @@ function handleAddButton(){
     if(browsingMode){
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
+        compileSelectedChannelsFromDropdown()
     }
     else{
         //FUNCTION THAT LOOPS THROUGH clientSubscribedChannelIds and ClientSubscribedChannelObjects - and
