@@ -708,7 +708,9 @@ function renderChannelSelectionDropdown(){
     //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
 
-        let channelLi = $('<li>').addClass('dropdownChannelLi')
+        let channelLi = $('<li>',{
+            'class': 'dropdownChannelLi row'
+        });
 
         //let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
         const cog = $('<i>',{
