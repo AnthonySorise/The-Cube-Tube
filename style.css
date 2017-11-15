@@ -962,6 +962,9 @@ safer appraoch than to resizing browser to see change
 		font-size:20px;
 		min-height: 90vh;
 	}
+	#dropdownChannelUl{
+		max-height: 85vh;
+	}
 	#midNav-option{
 		background-color: rgb(40,40,40);
 	}
