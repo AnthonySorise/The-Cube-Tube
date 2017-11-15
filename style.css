@@ -150,7 +150,7 @@ body {
 #channelCategoryUl li{
 	cursor: pointer;
 }
-.dropdownChannelLi .col-xs-11, .dropdownChannelLiAll{
+.dropdownChannelLi, .dropdownChannelLiAll{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -165,7 +165,7 @@ body {
 	color: white;
 	cursor: pointer;
 }
-.dropdownChannelLi:hover, .dropdownChannelLiAll:hover{
+.channelLiChannel:hover, .dropdownChannelLiAll:hover{
 	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
 }

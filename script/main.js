@@ -708,7 +708,9 @@ function renderChannelSelectionDropdown(){
     //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
 
-        let channelLi = $('<li>').addClass('dropdownChannelLi')
+        let channelLi = $('<li>',{
+            'class': 'dropdownChannelLi row'
+        });
 
         //let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
         const cog = $('<i>',{
@@ -720,9 +722,11 @@ function renderChannelSelectionDropdown(){
             'data-trigger': 'focus',
             'data-container': 'body',
             'data-toggle': 'popover'
+        }).css({
+            padding: '0'
         }).append(cog);;
         const channelSettingsSpan = $('<div>',{
-            class: 'channelSettingButton col-xs-2'
+            class: 'channelSettingButton col-xs-2 text-center'
         }).css({
             padding: '0'
         }).append(channelSettingsButton);
@@ -745,7 +749,8 @@ function renderChannelSelectionDropdown(){
             padding: '0',
             'overflow': 'hidden',
             'text-overflow': 'ellipsis',
-            'white-space' : 'nowrap'
+            'white-space' : 'nowrap',
+            'height': '34px'
         }).text(clientSubscribedChannelObjects[i].channel_title);
         channelLiMain.prepend(channelCheckbox);
         // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
