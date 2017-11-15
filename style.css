@@ -863,11 +863,10 @@ safer appraoch than to resizing browser to see change
 	.videoRowWrapper{
 		height: 49%;
 	}
-	/*.mainVideo {*/
-		/*margin-top: 2%;*/
-		/*height: 40vh;*/
-		/*width: 72vh*/
-	/*}*/
+/*	.vidRowVideoCol{
+		margin-left:0;
+		padding: 0;
+	}*/
 
 	.thUpDate{
 		font-size: 14px;
@@ -890,6 +889,10 @@ safer appraoch than to resizing browser to see change
 	#channelSearchModalBody {
 		height: 55vh;
 	}
+/*	.vidRowVideoCol{
+		margin-left:0;
+		padding: 0;
+	}*/
 }
 @media only screen and (max-width: 991px) {
 	.main-content{
@@ -968,9 +971,16 @@ safer appraoch than to resizing browser to see change
 		/*height: 47%;*/
 		height:45%;
 	}
+
 	/*.vidRowVideoCol {*/
 		/*padding: 0;*/
 	/*}*/
+
+	/*.vidRowVideoCol {*/
+		/*padding: 0;*/
+		/*margin-left:0;*/
+	/*}*/
+
 	.videoListRowWrapper{
 		height: 45%;
 	}

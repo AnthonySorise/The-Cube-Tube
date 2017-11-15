@@ -123,7 +123,7 @@ consider carousel for the video list area:
 				<!-- <div class="col-sm-3"></div> -->
 				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center" id="mainVideoContainer">
 					<!--This is where the iframe element will go-->
-					<div id="mainVideo" class="iframeVideo responsive-4by3"></div>
+					<div id="mainVideo" class="iframeVideo"></div>
 					<div id=infoButtonContainer>
 						<!-- <a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body"
 						 data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
@@ -1272,7 +1272,7 @@ consider carousel for the video list area:
         				</div>
       				</div> -->
 					<div class="modal-body">
-						<div id="theaterVideo" class="responsive-4by3"></div>
+						<div id="theaterVideo"></div>
 					</div>
 					<div class="modal-footer">
 						<span id="lightBoxModalFooter">
