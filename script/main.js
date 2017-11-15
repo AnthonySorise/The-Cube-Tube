@@ -708,7 +708,7 @@ function renderChannelSelectionDropdown(){
         let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
 
 
-        let checkboxDiv = $('<div>');
+        let checkboxDiv = $('<div style="display: inline-block">');
 
         let channelCheckbox = $('<input>').attr({
             'type' : 'checkbox',
@@ -723,7 +723,7 @@ function renderChannelSelectionDropdown(){
             channelCheckbox.attr("checked", "checked")
         }
 
-        let channelText = $('<div style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
+        let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
 
         checkboxDiv.append(channelCheckbox).append(channelText)
 
