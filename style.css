@@ -150,6 +150,8 @@ body {
 }
 #dropdownChannelUl{
 	overflow:auto;
+	padding: 0;
+	max-height: 90%;
 }
 #channelCategoryUl li{
 	cursor: pointer;
@@ -952,8 +954,13 @@ safer appraoch than to resizing browser to see change
 		min-height: 0;
 		background-color: white;
 	}
+	#mainNav-option>.nav, .channelDropDown{
+		min-height: 95vh;
+	}
+
 	#channelCategoryUl{
 		font-size:20px;
+		min-height: 90vh;
 	}
 	#midNav-option{
 		background-color: rgb(40,40,40);
