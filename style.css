@@ -68,11 +68,8 @@ body {
 	letter-spacing: -1.5px;
 	padding: 0;
 	padding-left: 15px;
-	color: rgba(255, 255, 255, 0.6);
-	cursor: default;
-}
-.navbar-brand:hover{
 	color: rgba(255, 255, 255, 1);
+	cursor: default;
 }
 #cubeTubeLogo{
 	display: inline-block;
@@ -177,9 +174,9 @@ body {
 	border: none;
 	border-left: 1px solid !important;
 }
-.infoButtons{
-	line-height: 3.5;
-}
+/*.infoButtons{*/
+	/*line-height: 3.5;*/
+/*}*/
 .autoPlayArea{
 	/*float: none;*/
 	/*display: inline-block;*/
@@ -363,6 +360,7 @@ div.thRow {
 	margin-top: 1.75px;
 	margin-bottom: 1.75px;
 	height: 3.2vh;
+	line-height: 3.2vh;
 	z-index: 1;
 }
 .tdList:nth-child(even){
@@ -382,6 +380,9 @@ div.thRow {
 	/*display: flex;*/
 	/*align-items: center;*/
 	color:white;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 /*.tdChannel, .tdUpDate{*/
 	/*justify-content: center;*/
@@ -417,12 +418,13 @@ div.thRow {
 .tdButton i:hover, .tdButton i:focus {
 	color: rgba(255, 255, 255, 1);
 }
+
 .tdTitle, .tdChannel, .tdUpDate {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	line-height: 175%;
 }
+
 
 /****** initial screen PLACEHOLDER AREA******/
 .contentPlaceholderWrapper{
@@ -666,6 +668,24 @@ div.thRow {
 	margin: 5px 2px;
 	float: right;
 }
+
+#lightBoxModalFooter {
+	display: flex;
+    justify-content: space-between;
+}
+
+.modalControls {
+	font-size: 2em;
+	cursor: pointer;
+}
+
+.rewindButton {
+	margin-left: 25%;
+}
+.playButton:hover, .rewindButton:hover, .fastForwardButton:hover, .pauseButton:hover {
+	color: #fff; 
+}
+
 		/*****END of CHANNEL SEARCH modal*****/
 /************************************
 * 	END of ALL MODAL related css 		*
@@ -803,27 +823,11 @@ input:checked+.slider {
 safer appraoch than to resizing browser to see change
 *************************************************************/
 @media screen and (max-width: 1082px) {
-	/*.hamburger {
-		display: inline-block !important;
-	}*/
-	.navbar-header{
-		/*width: 100%;*/
-	}
-	/*.navbar-collapse.collapse{
-		display: none !important;
-	}*/
-	/*.collapse.in{
-		display: block !important;
-	}*/
 	#mainNav-option{
 		border-top: 1px solid black;
 		/*background-color: white;*/
 		margin-right: -15px;
 		margin-left: -15px;
-	}
-	#midNav-option {
-		/*border-top: 0.5px solid blue;*/
-		margin: 0 -15px;
 	}
 	p.navbar-text, ul.navbar-nav{
 		font-size: 10.5px;
@@ -936,6 +940,9 @@ safer appraoch than to resizing browser to see change
 	#channelCategoryUl{
 		font-size:20px;
 	}
+	#midNav-option{
+		background-color: rgb(40,40,40);
+	}
 	#midNav-option form{
 		width: 95%;
 		margin: 0 2.5%;
@@ -962,6 +969,10 @@ safer appraoch than to resizing browser to see change
 	}
 	.videoListRowWrapper{
 		height: 45%;
+	}
+	.tdList{
+		height: 3.7vh;
+		line-height: 3.7vh;
 	}
 	/* Added these 6 css selectors to make mobile modal fit */
 	small {

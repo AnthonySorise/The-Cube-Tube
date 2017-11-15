@@ -33,6 +33,7 @@ consider carousel for the video list area:
 	<script type="text/javascript" src="script/main.js"></script>
 	<script type="text/javascript" src="script/autoSearch.js"></script>
 	<script type="text/javascript" src="script/uiControl.js"></script>
+    <script type="text/javascript" src="script/utilities.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
@@ -122,7 +123,7 @@ consider carousel for the video list area:
 				<!-- <div class="col-sm-3"></div> -->
 				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center vidRowVideoCol">
 					<!--This is where the iframe element will go-->
-					<div id="mainVideo" class="iframeVideo"></div>
+					<div id="mainVideo" class="iframeVideo responsive-4by3"></div>
 					<div id=infoButtonContainer>
 						<!-- <a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body"
 						 data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
@@ -1257,7 +1258,7 @@ consider carousel for the video list area:
 		</div>
 		<!--end of main content div-->
 		<!--modal for lightbox-->
-		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<!-- <div class="modal-header">
@@ -1271,18 +1272,25 @@ consider carousel for the video list area:
         				</div>
       				</div> -->
 					<div class="modal-body">
-						<div id="theaterVideo"></div>
+						<div id="theaterVideo" class="responsive-4by3"></div>
 					</div>
 					<div class="modal-footer">
-						<span id="lightBoxModalFooter"></span>
-						<button type="button" class="btn btn-danger modalClose theatreModalClose" data-dismiss="modal">close</button>
+						<span id="lightBoxModalFooter">
+							<!-- <i class="fa fa-undo modalControls rewindButton" data-toggle="tooltip" data-placement="left" title="Rewind 15s"
+								data-container="body"></i>
+							<i class="fa fa-play modalControls playButton" data-toggle="tooltip" data-placement="bottom" title="Play"
+							data-container="body"></i>	 
+							<i class="fa fa-repeat modalControls fastForwardButton" data-toggle="tooltip" data-placement="right" title="Fast Forward 15s"
+								data-container="body"></i>
+							<button type="button" class="btn btn-danger modalClose theatreModalClose" data-dismiss="modal">close</button -->
+						 </span>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!--modal end for lightbox-->
 		<!--modal for channel search result-->
-		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content searchModal">
 					<div class="modal-header" id="channelSearchModalHeader">
