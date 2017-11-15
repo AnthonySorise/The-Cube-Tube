@@ -157,6 +157,7 @@ function clickHandler() {
             $('mainNav-option').removeClass('in')
                 .attr('aria-expanded','false');
             $('.channelDropDown').removeClass('open');
+            dropOpened = false;
         }
     });
 
@@ -170,6 +171,9 @@ function clickHandler() {
     });
     $('a.dropdown-toggle').on('click',()=>{
         $('.channelDropDown').toggleClass('open');
+        setTimeout(()=>{
+            dropOpened=true;
+        },300);
     });
     //Search Button
     $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{

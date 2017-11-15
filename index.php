@@ -122,7 +122,7 @@ consider carousel for the video list area:
 				<!-- <div class="col-sm-3"></div> -->
 				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center vidRowVideoCol">
 					<!--This is where the iframe element will go-->
-					<div id="mainVideo" class="iframeVideo"></div>
+					<div id="mainVideo" class="iframeVideo responsive-4by3"></div>
 					<div id=infoButtonContainer>
 						<!-- <a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body"
 						 data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
@@ -1243,7 +1243,7 @@ consider carousel for the video list area:
 		</div>
 		<!--end of main content div-->
 		<!--modal for lightbox-->
-		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<!-- <div class="modal-header">
@@ -1257,7 +1257,7 @@ consider carousel for the video list area:
         				</div>
       				</div> -->
 					<div class="modal-body">
-						<div id="theaterVideo"></div>
+						<div id="theaterVideo" class="responsive-4by3"></div>
 					</div>
 					<div class="modal-footer">
 						<span id="lightBoxModalFooter"></span>
@@ -1268,7 +1268,7 @@ consider carousel for the video list area:
 		</div>
 		<!--modal end for lightbox-->
 		<!--modal for channel search result-->
-		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content searchModal">
 					<div class="modal-header" id="channelSearchModalHeader">
