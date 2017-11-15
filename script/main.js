@@ -1405,10 +1405,10 @@ function convertDateForApple(dateFromAPI){
 function resetSelectedTd() {
     //NEEDS TO ALSO HANDLE FA FA SPINNER
 
-    setTimeout(function(){
+    // setTimeout(function(){
         $(".tdList").removeClass('selectedTd');
         $('.fa-circle-o-notch').remove();
-    }, 50);
+    // }, 50);
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
