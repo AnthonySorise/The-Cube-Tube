@@ -704,35 +704,35 @@ function renderChannelSelectionDropdown(){
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
         // var channelLi = $('<li>');
 
-        let channelLi = $('<li>').addClass('dropdownChannelLi')
-
-        let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
-
-
-        let checkboxDiv = $('div');
-
-        let channelCheckbox = $('<input>').attr({
-            'type' : 'checkbox',
-            'name' : clientSubscribedChannelObjects[i].channel_title,
-            'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
-            'class' : 'dropdownChannel'
-        });
-
-        //check if channel is selected
-        if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
-            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
-            channelCheckbox.attr("checked", "checked")
-        }
-
-        let channelText = $('<div style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
-
-        checkboxDiv.append(channelCheckbox).append(channelText)
-
-
-        channelLi.append(channelSettings).append(checkboxDiv);
-
-
-        $('#channelCategoryUl').append(channelLi)
+        // let channelLi = $('<li>').addClass('dropdownChannelLi')
+        //
+        // let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+        //
+        //
+        // let checkboxDiv = $('div');
+        //
+        // let channelCheckbox = $('<input>').attr({
+        //     'type' : 'checkbox',
+        //     'name' : clientSubscribedChannelObjects[i].channel_title,
+        //     'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
+        //     'class' : 'dropdownChannel'
+        // });
+        //
+        // //check if channel is selected
+        // if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
+        //     console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
+        //     channelCheckbox.attr("checked", "checked")
+        // }
+        //
+        // let channelText = $('<div style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
+        //
+        // checkboxDiv.append(channelCheckbox).append(channelText)
+        //
+        //
+        // channelLi.append(channelSettings).append(checkboxDiv);
+        //
+        //
+        // $('#channelCategoryUl').append(channelLi)
     }
 
 
