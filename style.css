@@ -228,9 +228,9 @@ body>.container-fluid {
 	/*height: 100%;*/
 	/*!*border: 1px solid red;*!*/
 /*}*/
-#mainVideoContainer{
-	display:flex;
-}
+/*#mainVideoContainer{*/
+	/*display:flex;*/
+/*}*/
 
 #mainVideo {
 	margin: 0.25% 0;
@@ -861,9 +861,9 @@ safer appraoch than to resizing browser to see change
 		/*height: 90vh;*/
 		height:96.3vh;
 	}
-	.videoRowWrapper{
-		height: 49%;
-	}
+	/*.videoRowWrapper{*/
+		/*height: 49%;*/
+	/*}*/
 /*	.vidRowVideoCol{
 		margin-left:0;
 		padding: 0;

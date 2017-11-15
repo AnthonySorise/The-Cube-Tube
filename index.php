@@ -121,7 +121,7 @@ consider carousel for the video list area:
 		<div class="main-content">
 			<div class="row videoRowWrapper text-center">
 				<!-- <div class="col-sm-3"></div> -->
-				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center" id="mainVideoContainer">
+				<div class="text-center" id="mainVideoContainer">
 					<!--This is where the iframe element will go-->
 					<div id="mainVideo" class="iframeVideo"></div>
 					<div id=infoButtonContainer>
