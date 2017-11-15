@@ -710,10 +710,7 @@ function renderChannelSelectionDropdown(){
 
         let channelLi = $('<li>').addClass('dropdownChannelLi')
 
-        let channelSettings = $("<div class='col-xs-1' style='padding: 0'><a class='btn' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
-
-
-        let checkboxDiv = $('<div class="col-xs-11" style="padding: 0">');
+        let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
 
         let channelCheckbox = $('<input>').attr({
             'type' : 'checkbox',
@@ -730,10 +727,8 @@ function renderChannelSelectionDropdown(){
 
         let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
 
-        checkboxDiv.append(channelCheckbox).append(channelText)
 
-
-        channelLi.append(channelSettings).append(checkboxDiv);
+        channelLi.append(channelSettings,channelCheckbox, channelText);
 
 
         $('#channelCategoryUl').append(channelLi)
