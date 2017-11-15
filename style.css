@@ -228,9 +228,9 @@ body>.container-fluid {
 	/*height: 100%;*/
 	/*!*border: 1px solid red;*!*/
 /*}*/
-#mainVideoContainer{
-	display:flex;
-}
+/*#mainVideoContainer{*/
+	/*display:flex;*/
+/*}*/
 
 #mainVideo {
 	margin: 0.25% 0;
