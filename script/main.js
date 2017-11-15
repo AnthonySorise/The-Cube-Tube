@@ -716,16 +716,16 @@ function renderChannelSelectionDropdown(){
 
         var settingsContent = $('<div>').text("TEST")
 
-        const channelSettingsButton = $('<a>',{
-            class: 'btn',
-            'role': 'button',
-            'data-trigger': 'focus',
-            'data-container': 'body',
-            'data-toggle': 'popover',
-            'content' : settingsContent
-        }).css({
+        const channelSettingsButton = $('<a>')
+        .css({
             padding: '0'
-        }).append(cog);;
+        }).append(cog);
+        channelSettingsButton.popover({
+            html: true,
+            content: settingsContent,
+            placement: 'top',
+            container: 'body'
+        });
         const channelSettingsSpan = $('<div>',{
             class: 'channelSettingButton col-xs-2 text-center'
         }).css({
@@ -756,7 +756,7 @@ function renderChannelSelectionDropdown(){
 
         channelLi.append(channelLiMain, channelSettingsSpan);
 
-        $('#channelCategoryUl').append(channelLi)
+        $('#channelCategoryUl').append(channelLi);
 
 
         channelLi.append(channelSettingsSpan, channelLiMain);
