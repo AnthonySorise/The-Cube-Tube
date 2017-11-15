@@ -704,7 +704,7 @@ function renderChannelSelectionDropdown(){
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
         // var channelLi = $('<li>');
 
-        let channelSettings = $("<div><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+        let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
 
 
 
@@ -724,7 +724,7 @@ function renderChannelSelectionDropdown(){
 
 
         let channelLi = $('<li>').addClass('dropdownChannelLi')
-        let channelText = $('<div>').text(" "+clientSubscribedChannelObjects[i].channel_title);
+        let channelText = $('<div style="display: inline-block">').text(" "+clientSubscribedChannelObjects[i].channel_title);
 
 
 
