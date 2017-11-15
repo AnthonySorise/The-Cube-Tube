@@ -724,13 +724,13 @@ function renderChannelSelectionDropdown(){
 
 
         let channelLi = $('<li>').addClass('dropdownChannelLi')
-        let channelText = $('<div style="display: inline-block">').text(" "+clientSubscribedChannelObjects[i].channel_title);
+        let channelText = $('<div style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
 
 
 
 
-
-        channelLi.append(channelSettings).append(channelCheckbox).append(channelText);
+        channelCheckbox.append(channelText);
+        channelLi.append(channelSettings).append(channelCheckbox);
 
 
         $('#channelCategoryUl').append(channelLi)
