@@ -151,7 +151,7 @@ body {
 #dropdownChannelUl{
 	overflow:auto;
 	padding: 0;
-	max-height: 90%;
+	max-height: 25vh;
 }
 #channelCategoryUl li{
 	cursor: pointer;
