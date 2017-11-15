@@ -51,6 +51,7 @@ body {
 #mainNav{
 	background-color: black;
 	height: 3.5%;
+	margin-bottom: 0;
 }
 #mainNav>.container-fluid{
 	position:relative;
@@ -206,7 +207,7 @@ body {
 
 body>.container-fluid {
 	/*padding-top: 51px;*/
-	padding-top: 54px;
+	/*padding-top: 54px;*/
 	/*removes navbar overlap*/
 	padding-right: 0;
 	padding-left: 0;
@@ -847,7 +848,7 @@ safer appraoch than to resizing browser to see change
 	body>.container-fluid {
 		/*padding-top: 56px;*/
 		/*padding-top: 50.4px;*/
-		padding-top: 49.9px;
+		/*padding-top: 49.9px;*/
 	}
 	.main-content {
 		/*height: 90vh;*/
@@ -958,7 +959,7 @@ safer appraoch than to resizing browser to see change
 	body>.container-fluid {
 		/*padding-top: 56px;*/
 		/*padding-top: 51.4px;*/
-		padding-top:51px;
+		/*padding-top:51px;*/
 	}
 	.videoRowWrapper{
 		/*height: 47%;*/
