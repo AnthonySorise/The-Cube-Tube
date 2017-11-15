@@ -882,10 +882,10 @@ safer appraoch than to resizing browser to see change
 	#channelSearchModalBody {
 		height: 55vh;
 	}
-	.vidRowVideoCol{
+/*	.vidRowVideoCol{
 		margin-left:0;
 		padding: 0;
-	}
+	}*/
 }
 @media only screen and (max-width: 991px) {
 	.main-content{
@@ -966,6 +966,7 @@ safer appraoch than to resizing browser to see change
 	}
 	.vidRowVideoCol {
 		padding: 0;
+		margin-left:0;
 	}
 	.videoListRowWrapper{
 		height: 45%;
