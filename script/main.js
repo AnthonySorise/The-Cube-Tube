@@ -1150,6 +1150,7 @@ function handleAddButton(){
     if(browsingMode){
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
+        compileSelectedChannelsFromDropdown()
     }
     else{
         //FUNCTION THAT LOOPS THROUGH clientSubscribedChannelIds and ClientSubscribedChannelObjects - and
@@ -1409,15 +1410,15 @@ function convertDateForApple(dateFromAPI){
 function resetSelectedTd() {
     //NEEDS TO ALSO HANDLE FA FA SPINNER
 
-    setTimeout(function(){
+    // setTimeout(function(){
         $(".tdList").removeClass('selectedTd');
         $('.fa-circle-o-notch').remove();
-    }, 50);
+    // }, 50);
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            setTimeout(function(){
+            // setTimeout(function(){
                 $(row).addClass("selectedTd")
                 var playSymbol = $('<i>')
                     .addClass('fa fa-circle-o-notch fa-spin fa-fw')
@@ -1426,7 +1427,7 @@ function resetSelectedTd() {
                         'color': 'green'
                     });
                 $(row).find(".tdTitle>span").prepend(playSymbol);
-            }, 500)
+            // }, 500)
         }
     }
 }
