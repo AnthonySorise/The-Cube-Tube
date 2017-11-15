@@ -146,7 +146,12 @@ body {
 #channelCategoryUl{
 	text-align: center;
 	padding: 5px 10px;
-	overflow: auto;
+	/*overflow: auto;*/
+}
+#dropdownChannelUl{
+	overflow:auto;
+	padding: 0;
+	max-height: 25vh;
 }
 #channelCategoryUl li{
 	cursor: pointer;
@@ -213,7 +218,7 @@ body>.container-fluid {
 	padding-left: 0;
 }
 .main-content {
-	height: 94.3vh;
+	height: 94vh;
 }
 
 /********************************************************************
@@ -375,7 +380,7 @@ div.thRow {
 .tdList:nth-child(even){
 	background-color: #364e5a;
 }
-.tdList:hover, .selectedTd {
+.tdList:hover, .tdRow div.selectedTd {
 	background-color: #b4bdc1;
 }
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
@@ -949,8 +954,16 @@ safer appraoch than to resizing browser to see change
 		min-height: 0;
 		background-color: white;
 	}
+	#mainNav-option>.nav, .channelDropDown{
+		min-height: 95vh;
+	}
+
 	#channelCategoryUl{
 		font-size:20px;
+		min-height: 90vh;
+	}
+	#dropdownChannelUl{
+		max-height: 85vh;
 	}
 	#midNav-option{
 		background-color: rgb(40,40,40);
@@ -960,7 +973,7 @@ safer appraoch than to resizing browser to see change
 		margin: 0 2.5%;
 	}
 	.main-content{
-		height: 93vh;
+		height: 90.6vh;
 		/*height: 92vh;*/
 	}
 	body>.container-fluid {

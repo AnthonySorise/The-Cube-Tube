@@ -170,7 +170,7 @@ function clickHandler() {
         }
     });
 
-    $('#channelCategoryUl').on('click','.dropdownChannelLi',(e)=>{
+    $('#channelCategoryUl').on('click','.channelLiChannel',(e)=>{
         let input = $(e.target).children('input');
         if(input[0].checked == true){
             input[0].checked = false;
@@ -757,6 +757,14 @@ function renderChannelSelectionDropdown(){
         channelLi.append(channelLiMain, channelSettingsSpan);
 
         $('#channelCategoryUl').append(channelLi)
+
+
+        channelLi.append(channelSettingsSpan, channelLiMain);
+
+
+        // $('#channelCategoryUl').append(channelLi)
+        $('#dropdownChannelUl').append(channelLi);
+
     }
 }
 

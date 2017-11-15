@@ -95,7 +95,7 @@ consider carousel for the video list area:
                                 All
 							</li>
                             <li role="separator" class="divider"></li>
-
+                            <ul id="dropdownChannelUl"></ul>
 						</ul>
 					</li>
 				</ul>
@@ -171,12 +171,12 @@ consider carousel for the video list area:
 						<div class="navbar-nav nav-pills infoButtons">
 
 								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
-									<i class="fa fa-bar-chart fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
+									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
 								</a>
 
 
 								<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
-									<i class="fa fa-list-alt fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
+									<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
 								</a>
 
 						</div>
