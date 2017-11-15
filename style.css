@@ -855,11 +855,9 @@ safer appraoch than to resizing browser to see change
 	.videoRowWrapper{
 		height: 49%;
 	}
-	/*.mainVideo {*/
-		/*margin-top: 2%;*/
-		/*height: 40vh;*/
-		/*width: 72vh*/
-	/*}*/
+	.vidRowVideoCol{
+		margin-left:0;
+	}
 
 	.thUpDate{
 		font-size: 14px;
