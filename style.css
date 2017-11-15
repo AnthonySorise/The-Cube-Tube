@@ -823,27 +823,11 @@ input:checked+.slider {
 safer appraoch than to resizing browser to see change
 *************************************************************/
 @media screen and (max-width: 1082px) {
-	/*.hamburger {
-		display: inline-block !important;
-	}*/
-	.navbar-header{
-		/*width: 100%;*/
-	}
-	/*.navbar-collapse.collapse{
-		display: none !important;
-	}*/
-	/*.collapse.in{
-		display: block !important;
-	}*/
 	#mainNav-option{
 		border-top: 1px solid black;
 		/*background-color: white;*/
 		margin-right: -15px;
 		margin-left: -15px;
-	}
-	#midNav-option {
-		/*border-top: 0.5px solid blue;*/
-		margin: 0 -15px;
 	}
 	p.navbar-text, ul.navbar-nav{
 		font-size: 10.5px;
@@ -956,6 +940,9 @@ safer appraoch than to resizing browser to see change
 	#channelCategoryUl{
 		font-size:20px;
 	}
+	#midNav-option{
+		background-color: rgb(40,40,40);
+	}
 	#midNav-option form{
 		width: 95%;
 		margin: 0 2.5%;
@@ -982,6 +969,10 @@ safer appraoch than to resizing browser to see change
 	}
 	.videoListRowWrapper{
 		height: 45%;
+	}
+	.tdList{
+		height: 3.7vh;
+		line-height: 3.7vh;
 	}
 	/* Added these 6 css selectors to make mobile modal fit */
 	small {
