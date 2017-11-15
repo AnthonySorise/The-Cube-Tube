@@ -41,7 +41,7 @@ consider carousel for the video list area:
 </head>
 
 <body>
-	<nav class="navbar navbar-fixed-top" id="mainNav">
+	<nav class="navbar" id="mainNav">
 		<div class="container-fluid" id="">
 			<!--navbar content main div-->
 			<div class="navbar-header">
