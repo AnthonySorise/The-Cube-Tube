@@ -702,7 +702,6 @@ function renderChannelSelectionDropdown(){
 
     //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
-        var channelLi = $('<li>');
 
         let channelLi = $('<li>').addClass('dropdownChannelLi')
 
