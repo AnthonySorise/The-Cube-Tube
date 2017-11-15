@@ -855,11 +855,11 @@ safer appraoch than to resizing browser to see change
 	.videoRowWrapper{
 		height: 49%;
 	}
-	.mainVideo {
-		margin-top: 2%;
-		height: 40vh;
-		width: 72vh
-	}
+	/*.mainVideo {*/
+		/*margin-top: 2%;*/
+		/*height: 40vh;*/
+		/*width: 72vh*/
+	/*}*/
 
 	.thUpDate{
 		font-size: 14px;
@@ -952,8 +952,8 @@ safer appraoch than to resizing browser to see change
 		/*height: 92vh;*/
 	}
 	#mainVideo {
-		height: 100%;
-		width: 100vw;
+		height: 40vh;
+		width: 72vh
 	}
 	body>.container-fluid {
 		/*padding-top: 56px;*/
