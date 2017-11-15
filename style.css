@@ -380,7 +380,7 @@ div.thRow {
 .tdList:nth-child(even){
 	background-color: #364e5a;
 }
-.tdList:hover, .selectedTd {
+.tdList:hover, .tdRow div.selectedTd {
 	background-color: #b4bdc1;
 }
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
