@@ -1187,7 +1187,26 @@ function handleAddButton(){
     $('#channelSearchModal').modal('hide')
 }
 
-
+function handleRemoveChannelDropdownButton(){
+    let channelId = ""   //NEEDS IMPLEMENTATION, USE JQUERY
+    access_database.delete_ctu(channelId)
+    for(var i = 0; i<clientSubscribedChannelObjects; i++){
+        if(clientSubscribedChannelObjects[i].youtube_channel_id === channelId){
+            clientSubscribedChannelObjects.splice(i, 1)
+        }
+        if(clientSubscribedChannelIds[i] === channelId){
+            clientSubscribedChannelIds.splice(i, 1)
+        }
+        if(clientSelectedChannelObjects[i].youtube_channel_id === channelId){
+            clientSelectedChannelObjects.splice(i, 1)
+        }
+        if(clientSelectedChannelIds[i] === channelId){
+            clientSelectedChannelIds.splice(i, 1)
+        }
+    }
+    renderChannelSelectionDropdown();
+    loadSelectedChannels();
+}
 
 function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber);
