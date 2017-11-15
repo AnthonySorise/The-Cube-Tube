@@ -703,7 +703,13 @@ function renderChannelSelectionDropdown(){
     //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
         // var channelLi = $('<li>');
-        let channel = $('<input>').attr({
+
+        let channelSettings = $("<div><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+
+
+
+
+        let channelCheckbox = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects[i].channel_title,
             'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
@@ -718,8 +724,13 @@ function renderChannelSelectionDropdown(){
 
 
         let channelLi = $('<li>').addClass('dropdownChannelLi')
-            .text(" "+clientSubscribedChannelObjects[i].channel_title);
-        channelLi.prepend(channel);
+        let channelText = $('<div>').text(" "+clientSubscribedChannelObjects[i].channel_title);
+
+
+
+
+
+        channelLi.append(channelSettings).append(channelCheckbox).append(channelText);
 
 
         $('#channelCategoryUl').append(channelLi)
