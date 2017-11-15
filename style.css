@@ -360,6 +360,7 @@ div.thRow {
 	margin-top: 1.75px;
 	margin-bottom: 1.75px;
 	height: 3.2vh;
+	line-height: 3.2vh;
 	z-index: 1;
 }
 .tdList:nth-child(even){
@@ -379,6 +380,9 @@ div.thRow {
 	/*display: flex;*/
 	/*align-items: center;*/
 	color:white;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 /*.tdChannel, .tdUpDate{*/
 	/*justify-content: center;*/
@@ -414,12 +418,13 @@ div.thRow {
 .tdButton i:hover, .tdButton i:focus {
 	color: rgba(255, 255, 255, 1);
 }
+
 .tdTitle, .tdChannel, .tdUpDate {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-
 }
+
 
 /****** initial screen PLACEHOLDER AREA******/
 .contentPlaceholderWrapper{
