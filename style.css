@@ -360,6 +360,7 @@ div.thRow {
 	margin-top: 1.75px;
 	margin-bottom: 1.75px;
 	height: 3.2vh;
+	line-height: 3.2vh;
 	z-index: 1;
 }
 .tdList:nth-child(even){
