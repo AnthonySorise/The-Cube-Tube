@@ -970,6 +970,10 @@ safer appraoch than to resizing browser to see change
 	.videoListRowWrapper{
 		height: 45%;
 	}
+	.tdList{
+		height: 3.7vh;
+		line-height: 3.7vh;
+	}
 	/* Added these 6 css selectors to make mobile modal fit */
 	small {
 		display: none;
