@@ -722,7 +722,7 @@ function renderChannelSelectionDropdown(){
             'data-toggle': 'popover'
         }).append(cog);;
         const channelSettingsSpan = $('<span>',{
-            class: 'channelSettingButton'
+            class: 'channelSettingButton pull-right'
         }).append(channelSettingsButton);
 
         let channelCheckbox = $('<input>').attr({
@@ -738,7 +738,9 @@ function renderChannelSelectionDropdown(){
         }
 
         let channelLiMain = $('<span>',{
-            class:'channelLiChannel'
+            class:'channelLiChannel pull-left'
+        }).css({
+
         }).text(clientSubscribedChannelObjects[i].channel_title);
         channelLiMain.prepend(channelCheckbox);
         // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
