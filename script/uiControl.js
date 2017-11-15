@@ -59,6 +59,18 @@ function channelDropClickHandle(){
 	
 // });
 
+$(window).on('click',(e)=>{
+	if(dropOpened){
+		if( !($.contains($('.channelDropDown.open'),e.target)) && !($.contains($('.dropdownChannelLi'),e.target))) {
+			 $('mainNav-option').removeClass('in')
+                .attr('aria-expanded','false');
+            $('.channelDropDown').removeClass('open');
+            dropOpened = false;
+		}
+	}
+	
+});
+
 $(document).ready(function(){
 	channelDropClickHandle();
 });
