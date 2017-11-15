@@ -61,7 +61,7 @@ function channelDropClickHandle(){
 
 $(window).on('click',(e)=>{
 	if(dropOpened){
-		if( !($.contains($('#channelCategoryUl'),e.target)) ) {
+		if( !($.contains($('.channelDropDown.open'),e.target)) && !($('#channelCategoryUl').find(e.target).length)) {
 			 $('mainNav-option').removeClass('in')
                 .attr('aria-expanded','false');
             $('.channelDropDown').removeClass('open');
