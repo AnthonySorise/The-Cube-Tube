@@ -1,23 +1,19 @@
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
-
 var videoObjectsToLoad = null;
-
 var clientSelectedChannelObjects = [];
 var clientSelectedChannelIds = [];
-
 var clientSubscribedChannelIds = [];
 var clientSubscribedChannelObjects = [];
-
 var currentSlideNumber = 1;
-
 var browsingMode = false;
-
-let currentVolumeLevel = null;
+var currentVolumeLevel = null;
 var ytPlaying = false;
 var play = "fa fa-play modalControls playButton";
 var pause = "fa fa-pause modalControls pauseButton";
+var player;
+var player2;
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -26,9 +22,6 @@ function onYouTubeIframeAPIReady(vidId) {
         videoId: vidId || 'lrzIR8seNXs',
         playerVars: {
             'rel': 0
-        },
-        events: {
-            'onStateChange': onPlayerStateChange
         }
     });
     onYouTubeIframeAPIReady2();
@@ -37,15 +30,22 @@ function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
         videoId: 'lrzIR8seNXs',
         playerVars: {
-            'rel': 0
-        }, 
+            'rel': 0,
+        },
         events: {
             'onStateChange': onPlayerStateChange
-        }
+          }
     });
 }
-var player;
-var player2;
+
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING) {
+        $('.playButton').removeClass(play).toggleClass(pause);
+
+    } else if (event.data == YT.PlayerState.PAUSED) {
+        $('.pauseButton').removeClass(pause).toggleClass(play);        
+    }
+}
 
 /*******needed for iframe player*******/
 let iframeRight = 0;
@@ -389,6 +389,10 @@ function clickHandler() {
             checkTheatreModeStatus();
         }
     })
+    //Lets user click outside of theatre modal to close and save the state of video
+    $('#lightBoxModal').on('hidden.bs.modal', () => {
+        checkTheatreModeStatus();
+      })
 
     function checkHomePageVideoStatus() {
         player.pauseVideo();

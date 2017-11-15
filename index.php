@@ -1243,7 +1243,7 @@ consider carousel for the video list area:
 		</div>
 		<!--end of main content div-->
 		<!--modal for lightbox-->
-		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<!-- <div class="modal-header">
