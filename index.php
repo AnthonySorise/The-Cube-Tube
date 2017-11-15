@@ -33,6 +33,7 @@ consider carousel for the video list area:
 	<script type="text/javascript" src="script/main.js"></script>
 	<script type="text/javascript" src="script/autoSearch.js"></script>
 	<script type="text/javascript" src="script/uiControl.js"></script>
+    <script type="text/javascript" src="script/utilities.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
