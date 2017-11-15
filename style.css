@@ -174,9 +174,9 @@ body {
 	border: none;
 	border-left: 1px solid !important;
 }
-.infoButtons{
-	line-height: 3.5;
-}
+/*.infoButtons{*/
+	/*line-height: 3.5;*/
+/*}*/
 .autoPlayArea{
 	/*float: none;*/
 	/*display: inline-block;*/
@@ -418,7 +418,7 @@ div.thRow {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	line-height: 175%;
+
 }
 
 /****** initial screen PLACEHOLDER AREA******/
