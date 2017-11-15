@@ -228,9 +228,9 @@ body>.container-fluid {
 	/*border: 1px solid red;*/
 }
 #mainVideo {
-	height: 98%;
 	margin: 0.25% 0;
-	width: 85%;
+	height: 40vh;
+	width: 72vh
 }
 /************************************
 * END of .videoRowWrapper<div> area *
@@ -950,10 +950,6 @@ safer appraoch than to resizing browser to see change
 	.main-content{
 		height: 93vh;
 		/*height: 92vh;*/
-	}
-	#mainVideo {
-		height: 40vh;
-		width: 72vh
 	}
 	body>.container-fluid {
 		/*padding-top: 56px;*/
