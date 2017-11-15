@@ -6,8 +6,9 @@ $output = [
     'success' => false,
     'errors' => [],
 ];
-if(isset($_SESSION['user_link'])){
-    include('./read_user.php');
+if(!empty($_SESSION['user_link'])){
+    // include('./read_user.php');
+    $user_link = $_SESSION['user_link'];
 }
 if(empty($_POST['action'])){
     $output['errors'][] = 'No action specified';
@@ -40,9 +41,6 @@ switch($_POST['action']){
     case 'read_videos_by_channel':
         include('read_videos_by_channel.php');
         break;
-    case 'read_videos_by_user':
-        include('read_videos_by_user.php');
-        break;
     case 'read_user_content':
         include('read_user_content.php');
         break;
@@ -54,6 +52,9 @@ switch($_POST['action']){
         break;
     case 'read_videos_by_channel_array':
         include('read_videos_by_channel_array.php');
+        break;
+    case 'youtube_channel_curl':
+        include('youtube_channel_curl.php');
         break;
     default:
         $output['errors'][] = 'invalid action';

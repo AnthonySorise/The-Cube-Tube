@@ -2,17 +2,18 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-if(!isset($_SESSION['user_link'])){
+if(empty($_SESSION['user_link'])){
     $output['user'] = false;
     output_and_exit($output);
 }
-$user_id = USER_ID;
 $stmt = $conn->prepare("SELECT c.channel_title, 
 c.youtube_channel_id,c.description,c.thumbnail_file_name
 FROM channels AS c 
 JOIN channels_to_users AS ctu
 ON c.channel_id = ctu.channel_id 
-WHERE ctu.user_id = ?
+JOIN users AS u
+ON u.user_id = ctu.user_id
+WHERE u.user_link = ?
 ORDER BY c.channel_title");
 $stmt->bind_param('i',$user_id);
 $stmt->execute();
