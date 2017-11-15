@@ -174,9 +174,9 @@ body {
 	border: none;
 	border-left: 1px solid !important;
 }
-.infoButtons{
-	line-height: 3.5;
-}
+/*.infoButtons{*/
+	/*line-height: 3.5;*/
+/*}*/
 .autoPlayArea{
 	/*float: none;*/
 	/*display: inline-block;*/
@@ -418,6 +418,13 @@ div.thRow {
 .tdButton i:hover, .tdButton i:focus {
 	color: rgba(255, 255, 255, 1);
 }
+
+.tdTitle, .tdChannel, .tdUpDate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 
 /****** initial screen PLACEHOLDER AREA******/
 .contentPlaceholderWrapper{
