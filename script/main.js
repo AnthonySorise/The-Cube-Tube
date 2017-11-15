@@ -1417,7 +1417,7 @@ function resetSelectedTd() {
         let row = "#tdList-" + (i + 1);
 
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            setTimeout(function(){
+            // setTimeout(function(){
                 $(row).addClass("selectedTd")
                 var playSymbol = $('<i>')
                     .addClass('fa fa-circle-o-notch fa-spin fa-fw')
@@ -1426,7 +1426,7 @@ function resetSelectedTd() {
                         'color': 'green'
                     });
                 $(row).find(".tdTitle>span").prepend(playSymbol);
-            }, 500)
+            // }, 500)
         }
     }
 }
