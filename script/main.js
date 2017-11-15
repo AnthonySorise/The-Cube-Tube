@@ -756,10 +756,11 @@ function renderChannelSelectionDropdown(){
         // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
 
 
-        channelLi.append(channelLiMain, channelSettingsSpan);
+        channelLi.append(channelSettingsSpan, channelLiMain);
 
 
-        $('#channelCategoryUl').append(channelLi)
+        // $('#channelCategoryUl').append(channelLi)
+        $('#dropdownChannelUl').append(channelLi);
     }
 
 
