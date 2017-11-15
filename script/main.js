@@ -742,7 +742,10 @@ function renderChannelSelectionDropdown(){
         let channelLiMain = $('<div>',{
             class:'channelLiChannel col-xs-10'
         }).css({
-            padding: '0'
+            padding: '0',
+            'overflow': 'hidden',
+            'text-overflow': 'ellipsis',
+            'white-space' : 'nowrap'
         }).text(clientSubscribedChannelObjects[i].channel_title);
         channelLiMain.prepend(channelCheckbox);
         // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
