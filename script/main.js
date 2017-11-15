@@ -703,7 +703,13 @@ function renderChannelSelectionDropdown(){
     //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
         // var channelLi = $('<li>');
-        let channel = $('<input>').attr({
+
+        let channelSettings = $("<div><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+
+
+
+
+        let channelCheckbox = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects[i].channel_title,
             'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
@@ -713,13 +719,18 @@ function renderChannelSelectionDropdown(){
         //check if channel is selected
         if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
             console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
-            channel.attr("checked", "checked")
+            channelCheckbox.attr("checked", "checked")
         }
 
 
         let channelLi = $('<li>').addClass('dropdownChannelLi')
-            .text(" "+clientSubscribedChannelObjects[i].channel_title);
-        channelLi.prepend(channel);
+        let channelText = $('<div>').text(" "+clientSubscribedChannelObjects[i].channel_title);
+
+
+
+
+
+        channelLi.append(channelSettings).append(channelCheckbox).append(channelText);
 
 
         $('#channelCategoryUl').append(channelLi)
@@ -1248,6 +1259,7 @@ function removeUnusedRows(){
 }
 
 
+
 function displayTableDataOnMobile(){
     var rightTableData = $(".item").find(".tdListRight").children().clone();
     var newElementArray = []
@@ -1255,20 +1267,23 @@ function displayTableDataOnMobile(){
         var newImage = rightTableData.slice(j,j+10)
         newElementArray.push(newImage);
     }
-    for(var i = 0; i<newElementArray.length; i++){
-        var itemDiv = $(".pageOne_mobile").addClass('item')
-        var contentDiv = $("<div>").addClass('carousel-content');
-        var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
-        rowDiv.append(newElementArray[i]);
-        contentDiv.append(rowDiv);
-        itemDiv.append(contentDiv);
-        
-        $(".carousel-inner").append(itemDiv);
-    }
-    $(".mobileSlide").show();
-    
+    debugger
     $(".tdListRight").hide();
-    $(".tdListLeft").removeClass('col-md-6');
+    $(".pageOne_mobile").addClass('item')
+    for(var i=0; i<newElementArray[0].length; i++){
+        $(".newArea").append(newElementArray[0][i])
+    }
+    // $(".pageTwo_mobile").addClass('item')
+    // $(".pageOne_mobile").addClass('item')
+    // $(".pageTwo_mobile").addClass('item')
+    // for(var i = 0; i<newElementArray[0].length; i++){
+    //     $(".newArea").append(newElementArray[0][i])
+    // }
+    // for(var i = 0; i<newElementArray[1].length; i++){
+    //     $(".newArea2").append(newElementArray[1][i])
+    // }
+    // $(".mobileSlide").show();
+
     // $(".carousel-inner").append(itemDiv);
 }
 
@@ -1280,8 +1295,9 @@ function displayTableDataOnMobile(){
 //         var newImage = rightTableData.slice(j,j+10)
 //         newElementArray.push(newImage);
 //     }
+//     debugger
 //     for(var i = 0; i<newElementArray.length; i++){
-//         var itemDiv = $("<div>").addClass('item mobileSlide');
+//         var itemDiv = $(".pageOne_mobile").addClass('item')
 //         var contentDiv = $("<div>").addClass('carousel-content');
 //         var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
 //         rowDiv.append(newElementArray[i]);
@@ -1289,14 +1305,17 @@ function displayTableDataOnMobile(){
 //         itemDiv.append(contentDiv);
 //         $(".carousel-inner").append(itemDiv);
 //     }
+//     $(".mobileSlide").show();
+    
 //     $(".tdListRight").hide();
 //     $(".tdListLeft").removeClass('col-md-6');
 //     // $(".carousel-inner").append(itemDiv);
 // }
 
+
 function displayTableDataOnDesktop(){
     $(".tdListRight").show();
-    $(".mobileSlide").remove();
+    // $(".mobileSlide").remove();
     $(".tdListLeft").addClass('col-md-6');
     var mobileSlideItem = $(".carousel-content>.mobileRow");
     // for(var i = 0; i<mobileSlideItem.length; i++){

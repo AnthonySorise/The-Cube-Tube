@@ -747,6 +747,14 @@ consider carousel for the video list area:
 								</div>
 
 								<div class="pageOne_mobile mobileSlide">
+									<div class="carousel-content">
+										<div class="row tdRow text-center">
+											<div class="col-xs-12 col-md-6 newArea">
+												
+											</div>
+										</div>
+									</div>
+
 								</div>
 
 								<div class="item pageTwo">
@@ -1224,8 +1232,14 @@ consider carousel for the video list area:
 									</div>
 								</div>
 
-								<div class="pageTwo_mobile mobileSlide"></div>
-
+								<div class="pageTwo_mobile mobileSlide">
+									<div class="carousel-content">
+											<div class="row tdRow text-center">
+												<div class="col-xs-12 col-md-6 newArea2">
+													
+												</div>
+											</div>
+									</div>
 							</div>
 						</div>
 					</div>
