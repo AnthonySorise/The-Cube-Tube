@@ -710,7 +710,20 @@ function renderChannelSelectionDropdown(){
 
         let channelLi = $('<li>').addClass('dropdownChannelLi')
 
-        let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+        //let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+        const cog = $('<i>',{
+            class: 'fa fa-cog'
+        });
+        const channelSettingsButton = $('<a>',{
+            class: 'btn',
+            'role': 'button',
+            'data-trigger': 'focus',
+            'data-container': 'body',
+            'data-toggle': 'popover'
+        }).append(cog);;
+        const channelSettingsSpan = $('<span>',{
+            class: 'channelSettingButton'
+        }).append(channelSettingsButton);
 
         let channelCheckbox = $('<input>').attr({
             'type' : 'checkbox',
@@ -718,17 +731,20 @@ function renderChannelSelectionDropdown(){
             'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
             'class' : 'dropdownChannel'
         });
-
         //check if channel is selected
         if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
             console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
             channelCheckbox.attr("checked", "checked")
         }
 
-        let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
+        let channelLiMain = $('<span>',{
+            class:'channelLiChannel'
+        }).text(clientSubscribedChannelObjects[i].channel_title);
+        channelLiMain.prepend(channelCheckbox);
+        // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
 
 
-        channelLi.append(channelSettings,channelCheckbox, channelText);
+        channelLi.append(channelLiMain, channelSettingsSpan);
 
 
         $('#channelCategoryUl').append(channelLi)
