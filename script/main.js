@@ -725,12 +725,12 @@ function renderChannelSelectionDropdown(){
 
         browseButton.on("click", function(){
             handleBrowseButton();
-            $('.dropdownSettingsPopover').popover('hide')
+            // $('.dropdownSettingsPopover').popover('hide')
         });
 
         removeButton.on("click", function(){
             handleRemoveButton();
-            $('.dropdownSettingsPopover').popover('hide')
+            // $('.dropdownSettingsPopover').popover('hide')
         });
 
         settingsContent.append(browseButton, removeButton);
