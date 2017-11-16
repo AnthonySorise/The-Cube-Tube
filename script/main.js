@@ -738,7 +738,7 @@ function renderChannelSelectionDropdown(){
 
         let channelSettingsButton = $('<a>').attr({
             'role':'button',
-            // 'class':'dropdownSettingsPopover'
+            'class':'dropdownSettingsPopover'
         }).css({
             padding: '0'
         }).popover({
