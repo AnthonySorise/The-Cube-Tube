@@ -729,7 +729,7 @@ function renderChannelSelectionDropdown(){
 
         settingsContent.append(browseButton, removeButton);
 
-        const channelSettingsButton = $('<a>')
+        const channelSettingsButton = $('<a>').attr("data-trigger", "focus")
         .css({
             padding: '0'
         }).append(cog);
@@ -737,8 +737,7 @@ function renderChannelSelectionDropdown(){
             html: true,
             content: settingsContent,
             placement: 'left',
-            container: 'body',
-            toggle:'focus'
+            container: 'body'
         });
         const channelSettingsSpan = $('<div>',{
             class: 'channelSettingButton col-xs-2 text-center'
