@@ -214,7 +214,7 @@ consider carousel for the video list area:
 						<div class="col-xs-6 thTitle">
 							<strong>Title</strong>
 						</div>
-						<div class="col-xs-1"></div>
+						<div class="col-xs-1 hidden-xs"></div>
 
 						<div class="col-xs-3 thChannel">
 							<strong>Channel</strong>
@@ -279,7 +279,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -296,7 +296,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -313,7 +313,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -330,7 +330,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -347,7 +347,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -364,7 +364,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -381,7 +381,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -398,7 +398,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -415,7 +415,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -432,7 +432,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -451,7 +451,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -468,7 +468,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -485,7 +485,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -502,7 +502,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -519,7 +519,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -536,7 +536,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -553,7 +553,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -570,7 +570,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -587,7 +587,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -604,7 +604,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -633,7 +633,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -650,7 +650,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -667,7 +667,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -684,7 +684,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -701,7 +701,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -718,7 +718,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -735,7 +735,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -752,7 +752,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -769,7 +769,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -786,7 +786,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -805,7 +805,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -822,7 +822,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -839,7 +839,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -856,7 +856,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -873,7 +873,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -890,7 +890,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -907,7 +907,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -924,7 +924,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -941,7 +941,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -958,7 +958,7 @@ consider carousel for the video list area:
 													<div class="col-xs-6 tdTitle">
 														<span></span>
 													</div>
-													<div class="col-xs-1 tdInfo hiden-xs text-center">
+													<div class="col-xs-1 tdInfo hidden-xs text-center">
 														<a tabindex="0" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="right" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
