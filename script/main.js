@@ -736,10 +736,12 @@ function renderChannelSelectionDropdown(){
             padding: '0'
         }).popover({
             html: true,
-            'content': settingsContent,
-            'placement': 'left',
-            'container': 'body',
-            'trigger': 'focus',
+            content: function(){
+                return settingsContent;
+            },
+            placement: 'left',
+            container: 'body',
+            trigger: 'focus',
             selector: '[rel="popover"]'
         }).append(cog);
         const channelSettingsSpan = $('<div>',{
