@@ -53,8 +53,11 @@ switch($_POST['action']){
     case 'read_videos_by_channel_array':
         include('read_videos_by_channel_array.php');
         break;
-    case 'youtube_channel_curl':
+    case 'insert_youtube_channel_curl':
         include('youtube_channel_curl.php');
+        break;
+    case 'insert_youtube_video_curl':
+        include('youtube_video_curl.php');
         break;
     default:
         $output['errors'][] = 'invalid action';

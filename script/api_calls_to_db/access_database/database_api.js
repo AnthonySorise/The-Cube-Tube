@@ -252,7 +252,26 @@
             method:'post',
             dataType:'JSON',
             data:{
-                action:'youtube_channel_curl',
+                action:'insert_youtube_channel_curl',
+                youtube_channel_id:youtube_channel_id
+            },
+            success: function (data) {
+                if (data.success) {
+                    console.log('insert success', data);
+                }
+            },
+            errors: function (data) {
+                console.log('insert error', data);
+            }
+        })
+     }
+     this.insert_videos_by_youtube_id_php = function(youtube_channel_id){
+        $.ajax({
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                action:'insert_youtube_videos_curl',
                 youtube_channel_id:youtube_channel_id
             },
             success: function (data) {
