@@ -77,7 +77,6 @@ $(document).ready(function () {
 
     tooltipFunctions();
 
-
     clickHandler();
 
     $('#text-carousel').on('slide.bs.carousel', function (ev) {
@@ -101,7 +100,6 @@ $(document).ready(function () {
         initiateUser();
     }, 2000)
 });
-
 
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
@@ -191,7 +189,6 @@ function clickHandler() {
                 dropOpened=true;
             },300);
         }
-        
     });
     //Search Button
     $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
@@ -281,7 +278,7 @@ function clickHandler() {
                     let videoURL = 'https://i.ytimg.com/vi/' + selectedVideoId + '/mqdefault.jpg';
                     const videoThumbnail = $('<img>').attr('src', videoURL).css({
                         width: '120px',
-                        height: '70px',
+                        height: '45vh',
                     });
                     videoThumbnail.css("position", "relative")
                         .css("left", "50%")
@@ -347,7 +344,7 @@ function clickHandler() {
 
                     const channelThumbnail = $('<img>').attr('src', data.items[0].snippet.thumbnails.medium.url).css({
                         width: '70px',
-                        height: '70px',
+                        height: '40vh',
                     });
                     channelThumbnail.css("position", "relative")
                         .css("left", "50%")
