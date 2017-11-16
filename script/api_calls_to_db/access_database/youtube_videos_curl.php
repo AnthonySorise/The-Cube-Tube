@@ -1,9 +1,9 @@
 <?php
 function insert_videos($youtube_channel_id,$channel_id,$pageToken){
       if($pageToken=="first"){
-            $query==="";
+            $query="";
       }else{
-            $query==="&pageToken={$pageToken}"; 
+            $query="&pageToken={$pageToken}"; 
       }
       $ch = curl_init("https://www.googleapis.com/youtube/v3/search?type=video/?channelId={$youtube_channel_id}&part=snippet{$query}&order=date&maxResults=50&key={$DEVELOPER_KEY}");
       // $pageToken
