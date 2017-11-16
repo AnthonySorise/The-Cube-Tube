@@ -3,8 +3,7 @@ if(empty($LOCAL_ACCESS)){
     die('insert user, direct access not allowed');
 }
 $user_link = $_SESSION['user_link'];
-$date_created = date('Y-m-d H:i:s');
-$last_modified = $date_created;
+$date = date('Y-m-d H:i:s');
 $ip_address_at_sign_up = get_client_ip();
 function get_client_ip() {
     $ipaddress = '';
@@ -30,7 +29,7 @@ if(empty($user_link)){
 
 $stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?, 
 ip_address_at_signup=?,last_modified=?");
-$stmt->bind_param('ssss',$user_link,$date_created,$ip_address_at_sign_up,$last_modified);
+$stmt->bind_param('ssss',$user_link,$date,$ip_address_at_sign_up,$date);
 $stmt->execute();
 if(!empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
