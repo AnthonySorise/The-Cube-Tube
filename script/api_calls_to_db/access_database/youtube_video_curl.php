@@ -1,11 +1,12 @@
 <?php
 $youtube_channel_id = $_POST['youtube_channel_id'];
 require_once('youtube_api_key.php');
-$ch = curl_init("GET https://www.googleapis.com/youtube/v3/search?
+$ch = curl_init("https://www.googleapis.com/youtube/v3/search?
 type=video/
 ?channelId={$youtube_channel_id}
 &part=snippet
 &order=date
+&maxResults=50
 &key={$DEVELOPER_KEY}");
 // publishedAfter = RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -26,9 +27,9 @@ if ($error_occurred ){
                  'var_export(curl_getinfo($ch), true): ' . var_export(curl_getinfo($ch), true) . "\n\n" .
                  '$json: ' . $json . "\n";
       //echo $body;
-      mail('YOUREMAILGOESHERE', 'TheCubeTube.com - YouTube JSON Error', $body);
 } else {
-      $entries = json_decode($json, true)['items'];
+      $entries = json_decode($json, true);
+      print_r($entries);
       //Do stuff
 }
 ?>
