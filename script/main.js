@@ -691,9 +691,6 @@ function clearVideoList(){
 function renderChannelSelectionDropdown(){
     $(".dropdownChannelLi").remove();
 
-
-
-    var sorted = false;
     //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
         if(a.channel_title < b.channel_title){
@@ -716,15 +713,19 @@ function renderChannelSelectionDropdown(){
         const cog = $('<i>',{
             class: 'fa fa-cog'
         });
-        const channelSettingsButton = $('<a>',{
-            class: 'btn',
-            'role': 'button',
-            'data-trigger': 'focus',
-            'data-container': 'body',
-            'data-toggle': 'popover'
-        }).css({
+
+        var settingsContent = $('<div>').text("TEST")
+
+        const channelSettingsButton = $('<a>')
+        .css({
             padding: '0'
-        }).append(cog);;
+        }).append(cog);
+        channelSettingsButton.popover({
+            html: true,
+            content: settingsContent,
+            placement: 'top',
+            container: 'body'
+        });
         const channelSettingsSpan = $('<div>',{
             class: 'channelSettingButton col-xs-2 text-center'
         }).css({
@@ -742,18 +743,20 @@ function renderChannelSelectionDropdown(){
             console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
             channelCheckbox.attr("checked", "checked")
         }
-
         let channelLiMain = $('<div>',{
             class:'channelLiChannel col-xs-10'
         }).css({
             padding: '0',
             'overflow': 'hidden',
             'text-overflow': 'ellipsis',
-            'white-space' : 'nowrap',
-            'height': '34px'
+            'white-space' : 'nowrap'
         }).text(clientSubscribedChannelObjects[i].channel_title);
         channelLiMain.prepend(channelCheckbox);
         // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
+
+        channelLi.append(channelLiMain, channelSettingsSpan);
+
+        $('#channelCategoryUl').append(channelLi);
 
 
         channelLi.append(channelSettingsSpan, channelLiMain);
@@ -761,10 +764,8 @@ function renderChannelSelectionDropdown(){
 
         // $('#channelCategoryUl').append(channelLi)
         $('#dropdownChannelUl').append(channelLi);
+
     }
-
-
-
 }
 
 function compileSelectedChannelsFromDropdown(){
