@@ -35,5 +35,8 @@ if ($error_occurred ){
       $description = $channel_data['items'][0]['snippet']['description'];
       $date_created = date('Y-m-d H:i:s');
       $last_channel_pull = date("Y-m-d H:i:s");
+      print("thumbnail".$thumnail);
+      print("channel title".$channel_title);
+      print("description".$desciption);
 }
 ?>
