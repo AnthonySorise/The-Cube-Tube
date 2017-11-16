@@ -162,6 +162,7 @@ body {
 	white-space: nowrap;
 	text-align: left;
 	margin-top: 5px;
+	line-height: 0.0;
 }
 .dropdownChannelLiLoad>.fa-refresh, #categoryButton>.fa{
 	color: red;
@@ -377,12 +378,32 @@ div.thRow {
 	line-height: 3.2vh;
 	z-index: 1;
 }
-.tdList:nth-child(even){
-	background-color: #364e5a;
+.tdList:nth-child(even) div {
+	/* background-color: #364e5a; */
+	background-color: rgba(54, 78, 90,0.5);
+	display: inline;
 }
-.tdList:hover, .tdRow div.selectedTd {
-	background-color: #b4bdc1;
+
+.tdList:nth-child(even):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0) !important;
+	display: inline;
 }
+
+.tdList:nth-child(odd):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0) !important;
+	display: inline;
+}
+
+.selectedTd div {
+	background-color: rgba(180,189,193,1.0) !important;
+}
+
+/* .tdList:hover, .tdRow div.selectedTd {
+	/* background-color: #b4bdc1; */
+	/* background-color: rgba(180, 189, 193, 1.0) !important;} */ */
+
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
 }

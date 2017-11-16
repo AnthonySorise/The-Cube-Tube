@@ -191,7 +191,6 @@ function clickHandler() {
                 dropOpened=true;
             },300);
         }
-        
     });
     //Search Button
     $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
@@ -697,10 +696,10 @@ function renderChannelSelectionDropdown(){
 
     //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
-        if(a.channel_title < b.channel_title){
+        if(a.channel_title.toLowerCase() < b.channel_title.toLowerCase()){
             return -1
         }
-        if(a.channel_title > b.channel_title){
+        if(a.channel_title.toLowerCase() > b.channel_title.toLowerCase()){
             return 1
         }
 
@@ -718,21 +717,27 @@ function renderChannelSelectionDropdown(){
             class: 'fa fa-cog'
         });
 
-        var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
+        // var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
+        var settingsContent = $('<div>',{
+            'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
+        });
 
-        var browseButton = $('<button class="btn">Browse</button>');
-        var removeButton = $('<button class="btn">Remove</button>');
+        var browseButton = $('<button class="btn-primary">Browse</button>').css("display", "block");
+        var removeButton = $('<button class="btn-danger">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
 
-        browseButton.on("click", handleBrowseButton);
+        browseButton.on("click", handleBrowseButton)
 
-        removeButton.on("click", handleRemoveButton);
+
+        removeButton.on("click", handleRemoveButton)
 
         settingsContent.append(browseButton, removeButton);
 
         let channelSettingsButton = $('<a>').attr({
-            'role':'button'
+            'role':'button',
+            'class':'dropdownSettingsPopover'
         }).css({
-            padding: '0'
+            padding: '0',
+            'line-height':'180%'
         }).popover({
             html: true,
             'content': settingsContent,
@@ -763,7 +768,8 @@ function renderChannelSelectionDropdown(){
             padding: '0',
             'overflow': 'hidden',
             'text-overflow': 'ellipsis',
-            'white-space' : 'nowrap'
+            'white-space' : 'nowrap',
+            'line-height':'200%'
         }).text(clientSubscribedChannelObjects[i].channel_title);
         channelLiMain.prepend(channelCheckbox);
         // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
@@ -1180,6 +1186,9 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 // }
 
 function handleBrowseButton() {
+    $('.dropdownSettingsPopover').popover('hide');
+
+
     browsingMode = true;
     videoObjectsToLoad = [];
 
@@ -1232,10 +1241,11 @@ function handleAddButton(){
 }
 
 function handleRemoveButton(){
+    $('.dropdownSettingsPopover').popover('hide');
     let channelId = $(this).parent().attr("channelId");
-    console.log("REMOVING "+channelId)
+    console.log("REMOVING "+channelId);
     access_database.delete_ctu(channelId);
-    for(var i = 0; i<clientSubscribedChannelObjects; i++){
+    for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
         if(clientSubscribedChannelObjects[i].youtube_channel_id === channelId){
             clientSubscribedChannelObjects.splice(i, 1)
         }
