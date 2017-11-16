@@ -25,11 +25,19 @@ if ($error_occurred ){
       //echo $body;
 } else {
       echo('success <br>');
-      $entries = json_decode($json, true);
+      $entries = json_decode($json, true)['items'];
       // print_r($entries);
       echo("item: ");
-      print_r($entries['items'][0]);
-      print_r("video id: ". $entries['items'][0]['id']['videoId']);
+      print_r($entries[0]);
+      print("video id: ". $entries[0]['id']['videoId']."\n");
+      echo("description: ". $entries[0]['snippet']['description']);
+      echo("\npublished data: ". $entries[0]['snippet']['publishedAt']);
+      $published_at = $entries[0]['snippet']['publishedAt'];
+      $published_at = str_replace("T","",$published_at);
+      $published_at = str_replace(".000Z","");
+      echo($published_at);
+
+
       //Do stuff
 }
 ?>

@@ -1023,7 +1023,6 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
             console.log('ytVideoApiToDb success', data);
             for (var i = 0; i < data.items.length; i++) {
                 var videoObject = {};
-                videoObject.channel_id = access_database.channel_id_hold;
                 videoObject.video_title = data.items[i].snippet.title;
                 videoObject.youtube_video_id = data.items[i].id.videoId;
                 videoObject.youtube_channel_id = data.items[i].snippet.channelId;
