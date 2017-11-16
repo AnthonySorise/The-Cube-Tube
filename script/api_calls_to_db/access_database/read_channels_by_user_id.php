@@ -7,7 +7,7 @@ if(empty($_SESSION['user_link'])){
     output_and_exit($output);
 }
 $stmt = $conn->prepare("SELECT c.channel_title, 
-c.youtube_channel_id,c.description,c.thumbnail_file_name
+c.youtube_channel_id,c.description,c.thumbnail_file_name,c.last_channel_pull
 FROM channels AS c 
 JOIN channels_to_users AS ctu
 ON c.channel_id = ctu.channel_id 
