@@ -171,11 +171,15 @@ function clickHandler() {
     });
 
     $('#channelCategoryUl').on('click','.channelLiChannel, .dropdownChannelLi input',(e)=>{
-        let input = $(e.target).children('input');
-        if(input[0].checked == true){
-            input[0].checked = false;
-        }else if(input[0].checked==false){
-            input[0].checked = true;
+        if($(e.target).is('input')){
+            return;
+        }else{
+            let input = $(e.target).children('input');
+            if(input[0].checked == true){
+                input[0].checked = false;
+            }else if(input[0].checked==false){
+                input[0].checked = true;
+            }
         }
     });
     $('a.dropdown-toggle').on('click',()=>{
