@@ -27,7 +27,8 @@ if ($error_occurred ){
       echo('success <br>');
       $entries = json_decode($json, true);
       // print_r($entries);
-      print_r("item: ".$entries['items'][0]);
+      echo("item: ")
+      print_r($entries['items'][0]);
       print_r("video id: ". $entries['items'][0]['id']['videoId']);
       //Do stuff
 }
