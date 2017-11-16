@@ -7,6 +7,7 @@ var clientSelectedChannelIds = [];
 var clientSubscribedChannelIds = [];
 var clientSubscribedChannelObjects = [];
 var currentSlideNumber = 1;
+var currentVideoindex = null;
 var browsingMode = false;
 var currentVolumeLevel = null;
 var ytPlaying = false;
@@ -14,6 +15,8 @@ var play = "fa fa-play modalControls playButton";
 var pause = "fa fa-pause modalControls pauseButton";
 var player;
 var player2;
+var videoID = null;
+var nextVideoIdToLoad = null;
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -22,7 +25,10 @@ function onYouTubeIframeAPIReady(vidId) {
         videoId: vidId || 'lrzIR8seNXs',
         playerVars: {
             'rel': 0
-        }
+        },
+        events: {
+            'onStateChange': onPlayerStateChange
+          }
     });
     onYouTubeIframeAPIReady2();
 }
@@ -45,6 +51,41 @@ function onPlayerStateChange(event) {
     } else if (event.data == YT.PlayerState.PAUSED) {
         $('.pauseButton').removeClass(pause).toggleClass(play);        
     }
+    if(event.data == YT.PlayerState.ENDED && getAutoPlayValue()) {
+        console.log('video ended');
+        currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == videoID);        
+        if(videoObjectsToLoad.length <= currentVideoindex + 1) {
+           $.when(loadNextPage()).then(playNextYTVideo);
+           $('.carousel').carousel('next');
+        }
+        else if(videoObjectsToLoad.length % 20 === 0 && (currentVideoindex + 1) % 20 === 0) {
+            $('.carousel').carousel('next');
+            playNextYTVideo();
+        } else {
+            playNextYTVideo();
+        }
+    } 
+}
+//Function to play next video and change spinner icon to current video playing
+function playNextYTVideo() {
+    currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == videoID);
+    nextVideoIdToLoad = videoObjectsToLoad[currentVideoindex + 1].youtube_video_id 
+    if (getAutoPlayValue()) {
+        player.loadVideoById(nextVideoIdToLoad);
+    } else {
+        player.cueVideoById(nextVideoIdToLoad);
+    }
+    player2.cueVideoById(nextVideoIdToLoad);
+    videoID = nextVideoIdToLoad;
+    $(".tdList").removeClass('selectedTd');
+    $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
+    $("[videoid='" + videoID + "'] span:first").before('<i>');
+    $("[videoid='" + videoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
+        "margin-right": '5px',
+        'color': 'green'
+    });
+    $("[videoid='" + videoID + "']").addClass('selectedTd');
+   
 }
 
 /*******needed for iframe player*******/
@@ -207,7 +248,7 @@ function clickHandler() {
     $('.addChannelButton').on("click", handleAddButton);
 
     //Table List Rows that are unselected
-    $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
+    $(".tdTitle, .tdChannel, .tdUpDate").on("click touchend", function () {
 
 
         if(!$(this).parent().hasClass('selectedTd')) {
@@ -228,7 +269,7 @@ function clickHandler() {
                 }
             });
 
-            var videoID = $(this).parent().attr('videoId');
+            videoID = $(this).parent().attr('videoId');
             var channelID = $(this).parent().attr('channelID');
 
             var selectedVideoId = $(this).parent().attr('videoId');
