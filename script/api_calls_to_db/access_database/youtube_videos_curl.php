@@ -27,10 +27,9 @@ if ($error_occurred ){
       echo('success <br>');
       $video_array = json_decode($json, true);
       $next_page_token = $video_array['nextPageToken'];
+      echo($next_page_token."\n");
       $entries = $video_array['items'];
       // print_r($entries);
-      echo("item: ");
-      print_r($entries[0]);
       $video_id = $entries[0]['id']['videoId'];
       echo($video_id."\n");
       $description = $entries[0]['snippet']['description'];
