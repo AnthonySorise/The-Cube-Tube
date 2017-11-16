@@ -697,10 +697,10 @@ function renderChannelSelectionDropdown(){
 
     //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
-        if(a.channel_title < b.channel_title){
+        if(a.channel_title.toLowerCase() < b.channel_title.toLowerCase()){
             return -1
         }
-        if(a.channel_title > b.channel_title){
+        if(a.channel_title.toLowerCase() > b.channel_title.toLowerCase()){
             return 1
         }
 
@@ -1244,9 +1244,9 @@ function handleAddButton(){
 function handleRemoveButton(){
     $('.dropdownSettingsPopover').popover('hide');
     let channelId = $(this).parent().attr("channelId");
-    console.log("REMOVING "+channelId)
+    console.log("REMOVING "+channelId);
     access_database.delete_ctu(channelId);
-    for(var i = 0; i<clientSubscribedChannelObjects; i++){
+    for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
         if(clientSubscribedChannelObjects[i].youtube_channel_id === channelId){
             clientSubscribedChannelObjects.splice(i, 1)
         }
