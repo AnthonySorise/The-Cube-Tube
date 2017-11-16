@@ -389,10 +389,14 @@ div.thRow {
 	display: inline;
 }
 
-.tdList:hover, .tdRow div.selectedTd {
-	/* background-color: #b4bdc1; */
-	background-color: rgba(180, 189, 193, 1.0)
+.selectedTd div {
+	background-color: rgba(180,189,193,1.0) !important;
 }
+
+/* .tdList:hover, .tdRow div.selectedTd {
+	/* background-color: #b4bdc1; */
+	background-color: rgba(180, 189, 193, 1.0) !important;
+} */
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
 }
