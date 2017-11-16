@@ -5,7 +5,6 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY
       }else{
             $query="&pageToken={$pageToken}"; 
       }
-      echo("https://www.googleapis.com/youtube/v3/search?type=video/?channelId={$youtube_channel_id}&part=snippet{$query}&order=date&maxResults=50&key={$DEVELOPER_KEY}");
       $ch = curl_init("https://www.googleapis.com/youtube/v3/search?type=video/?channelId={$youtube_channel_id}&part=snippet{$query}&order=date&maxResults=50&key={$DEVELOPER_KEY}");
       // $pageToken
       // publishedAfter = RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
@@ -20,7 +19,6 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY
       $error_occurred = true;
       }
       if ($error_occurred ){
-      echo('i failed');
       $body = 'Error occurred in ' . __FILE__ . "\n\n" .
                   'curl_errno: ' . curl_errno($ch) . "\n" .
                   'curl_error: ' . curl_error($ch) . "\n" .
@@ -29,24 +27,17 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY
                   '$json: ' . $json . "\n";
       //echo $body;
       } else {
-            echo('video query success'."\n");
             $video_array = json_decode($json, true);
-            print_r($video_array);
             $next_page_token = $video_array['nextPageToken'];
-            echo('next page token: '.$next_page_token."\n");
             $entries = $video_array['items'];
             $last_updated = date("Y-m-d H-i-s");
             for($i = 0; $i<count($entries); $i++){
                   $youtube_video_id = $entries[$i]['id']['videoId'];
-                  echo("video id : ".$youtube_video_id."\n");
                   $description = $entries[$i]['snippet']['description'];
-                  echo('description : '.$description."\n");
                   $video_title = $entries[$i]['snippet']['title'];
-                  echo('video title:'. $video_title . "\n");
                   $published_at = $entries[$i]['snippet']['publishedAt'];
                   $published_at = str_replace("T"," ",$published_at);
                   $published_at = str_replace(".000Z","",$published_at);
-                  echo("published at : ".$published_at."\n");
                   $stmt = $conn->prepare("INSERT INTO videos SET 
                   video_title=?,
                   channel_id=?,

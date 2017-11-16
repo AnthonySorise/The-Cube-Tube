@@ -265,14 +265,15 @@
             }
         })
      }
-     this.insert_videos_by_youtube_id_php = function(youtube_channel_id){
+     this.insert_videos_by_youtube_id_php = function(youtube_channel_id,last_channel_pull){//get last channel pull from read channels by youtube id
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
                 action:'insert_youtube_videos_curl',
-                youtube_channel_id:youtube_channel_id
+                youtube_channel_id:youtube_channel_id,
+                last_channel_pull:last_channel_pull
             },
             success: function (data) {
                 if (data.success) {
