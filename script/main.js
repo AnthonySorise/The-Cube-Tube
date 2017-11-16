@@ -716,8 +716,18 @@ function renderChannelSelectionDropdown(){
 
         var settingsContent = $('<div>');
 
-        var browseButton = $('<button>Browse</button>');
-        var removeButton = $('<button>Remove</button>');
+        var browseButton = $('<button class="btn">Browse</button>');
+        var removeButton = $('<button class="btn">Remove</button>');
+
+        browseButton.on("click", function(){
+            console.log("BROWSE")
+
+
+        })
+
+        removeButton.on("click", function(){
+            console.log("REMOVE")
+        })
 
         settingsContent.append(browseButton, removeButton);
 
@@ -730,7 +740,7 @@ function renderChannelSelectionDropdown(){
             content: settingsContent,
             placement: 'left',
             container: 'body',
-            toggle:focus
+            toggle:'focus'
         });
         const channelSettingsSpan = $('<div>',{
             class: 'channelSettingButton col-xs-2 text-center'
