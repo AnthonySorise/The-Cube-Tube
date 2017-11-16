@@ -723,15 +723,14 @@ function renderChannelSelectionDropdown(){
         var browseButton = $('<button class="btn">Browse</button>');
         var removeButton = $('<button class="btn">Remove</button>');
 
-        browseButton.on("click", function(){
-            handleBrowseButton();
+        browseButton.on("click", handleBrowseButton)
             // $('.dropdownSettingsPopover').popover('hide')
-        });
 
-        removeButton.on("click", function(){
-            handleRemoveButton();
-            // $('.dropdownSettingsPopover').popover('hide')
-        });
+
+        removeButton.on("click", handleRemoveButton)
+
+        // $('.dropdownSettingsPopover').popover('hide')
+
 
         settingsContent.append(browseButton, removeButton);
 
