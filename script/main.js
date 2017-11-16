@@ -718,7 +718,10 @@ function renderChannelSelectionDropdown(){
             class: 'fa fa-cog'
         });
 
-        var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
+        // var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
+        var settingsContent = $('<div>',{
+            'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
+        });
 
         var browseButton = $('<button class="btn">Browse</button>');
         var removeButton = $('<button class="btn">Remove</button>');
