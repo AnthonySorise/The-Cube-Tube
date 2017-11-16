@@ -27,7 +27,7 @@ if ($error_occurred ){
       $next_page_token = $video_array['nextPageToken'];
       echo($next_page_token."\n");
       $entries = $video_array['items'];
-      echo($video_array);
+      print_r($video_array);
       exit();
       // print_r($entries);
       for($i = 0; $i<count($entries); $i++){
