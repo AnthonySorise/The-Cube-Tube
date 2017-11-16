@@ -739,7 +739,7 @@ function renderChannelSelectionDropdown(){
             'content': settingsContent,
             'placement': 'left',
             'container': 'body',
-            'trigger': 'focus'
+            'trigger': 'focus',
         }).append(cog);
         const channelSettingsSpan = $('<div>',{
             class: 'channelSettingButton col-xs-2 text-center'
@@ -755,7 +755,6 @@ function renderChannelSelectionDropdown(){
         });
         //check if channel is selected
         if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
-            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
             channelCheckbox.attr("checked", "checked")
         }
         let channelLiMain = $('<div>',{
