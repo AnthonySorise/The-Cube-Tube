@@ -22,13 +22,11 @@ if ($error_occurred ){
                  '$json: ' . $json . "\n";
       //echo $body;
 } else {
-      echo('success\n');
+      echo('success \n');
       $video_array = json_decode($json, true);
       $next_page_token = $video_array['nextPageToken'];
       echo($next_page_token."\n");
       $entries = $video_array['items'];
-      print_r($video_array);
-      exit();
       // print_r($entries);
       for($i = 0; $i<count($entries); $i++){
             $youtube_video_id = $entries[0]['id']['videoId'];
