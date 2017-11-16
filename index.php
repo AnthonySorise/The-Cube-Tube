@@ -41,7 +41,7 @@ consider carousel for the video list area:
 </head>
 
 <body>
-	<nav class="navbar navbar-fixed-top" id="mainNav">
+	<nav class="navbar" id="mainNav">
 		<div class="container-fluid" id="">
 			<!--navbar content main div-->
 			<div class="navbar-header">
@@ -95,7 +95,7 @@ consider carousel for the video list area:
                                 All
 							</li>
                             <li role="separator" class="divider"></li>
-
+                            <ul id="dropdownChannelUl"></ul>
 						</ul>
 					</li>
 				</ul>
@@ -121,9 +121,9 @@ consider carousel for the video list area:
 		<div class="main-content">
 			<div class="row videoRowWrapper text-center">
 				<!-- <div class="col-sm-3"></div> -->
-				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center vidRowVideoCol">
+				<div class="text-center" id="mainVideoContainer">
 					<!--This is where the iframe element will go-->
-					<div id="mainVideo" class="iframeVideo responsive-4by3"></div>
+					<div id="mainVideo" class="iframeVideo"></div>
 					<div id=infoButtonContainer>
 						<!-- <a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body"
 						 data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
@@ -171,12 +171,12 @@ consider carousel for the video list area:
 						<div class="navbar-nav nav-pills infoButtons">
 
 								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
-									<i class="fa fa-bar-chart fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
+									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
 								</a>
 
 
 								<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
-									<i class="fa fa-list-alt fa-3x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
+									<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
 								</a>
 
 						</div>
@@ -1260,7 +1260,7 @@ consider carousel for the video list area:
         				</div>
       				</div> -->
 					<div class="modal-body">
-						<div id="theaterVideo" class="responsive-4by3"></div>
+						<div id="theaterVideo"></div>
 					</div>
 					<div class="modal-footer">
 						<span id="lightBoxModalFooter">

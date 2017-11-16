@@ -170,12 +170,16 @@ function clickHandler() {
         }
     });
 
-    $('#channelCategoryUl').on('click','.dropdownChannelLi',(e)=>{
-        let input = $(e.target).children('input');
-        if(input[0].checked == true){
-            input[0].checked = false;
-        }else if(input[0].checked==false){
-            input[0].checked = true;
+    $('#channelCategoryUl').on('click','.channelLiChannel, .dropdownChannelLi input',(e)=>{
+        if($(e.target).is('input')){
+            return;
+        }else{
+            let input = $(e.target).children('input');
+            if(input[0].checked == true){
+                input[0].checked = false;
+            }else if(input[0].checked==false){
+                input[0].checked = true;
+            }
         }
     });
     $('a.dropdown-toggle').on('click',()=>{
@@ -691,9 +695,6 @@ function clearVideoList(){
 function renderChannelSelectionDropdown(){
     $(".dropdownChannelLi").remove();
 
-
-
-    var sorted = false;
     //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
         if(a.channel_title < b.channel_title){
@@ -708,12 +709,43 @@ function renderChannelSelectionDropdown(){
     //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
 
-        let channelLi = $('<li>').addClass('dropdownChannelLi')
+        let channelLi = $('<li>',{
+            'class': 'dropdownChannelLi row'
+        });
 
-        let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+        //let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+        const cog = $('<i>',{
+            class: 'fa fa-cog'
+        });
 
+        var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
 
-        let checkboxDiv = $('<div style="display: inline-block">');
+        var browseButton = $('<button class="btn">Browse</button>');
+        var removeButton = $('<button class="btn">Remove</button>');
+
+        browseButton.on("click", handleBrowseButton);
+
+        removeButton.on("click", handleRemoveButton);
+
+        settingsContent.append(browseButton, removeButton);
+
+        let channelSettingsButton = $('<a>').attr({
+            'role':'button'
+        }).css({
+            padding: '0'
+        }).popover({
+            html: true,
+            'content': settingsContent,
+            'placement': 'left',
+            'container': 'body',
+            'toggle': 'focus'
+        }).append(cog);
+
+        const channelSettingsSpan = $('<div>',{
+            class: 'channelSettingButton col-xs-2 text-center'
+        }).css({
+            padding: '0'
+        }).append(channelSettingsButton);
 
         let channelCheckbox = $('<input>').attr({
             'type' : 'checkbox',
@@ -721,26 +753,33 @@ function renderChannelSelectionDropdown(){
             'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
             'class' : 'dropdownChannel'
         });
-
         //check if channel is selected
         if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
-            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
             channelCheckbox.attr("checked", "checked")
         }
+        let channelLiMain = $('<div>',{
+            class:'channelLiChannel col-xs-10'
+        }).css({
+            padding: '0',
+            'overflow': 'hidden',
+            'text-overflow': 'ellipsis',
+            'white-space' : 'nowrap'
+        }).text(clientSubscribedChannelObjects[i].channel_title);
+        channelLiMain.prepend(channelCheckbox);
+        // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
 
-        let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
+        channelLi.append(channelLiMain, channelSettingsSpan);
 
-        checkboxDiv.append(channelCheckbox).append(channelText)
-
-
-        channelLi.append(channelSettings).append(checkboxDiv);
+        $('#channelCategoryUl').append(channelLi);
 
 
-        $('#channelCategoryUl').append(channelLi)
+        channelLi.append(channelSettingsSpan, channelLiMain);
+
+
+        // $('#channelCategoryUl').append(channelLi)
+        $('#dropdownChannelUl').append(channelLi);
+
     }
-
-
-
 }
 
 function compileSelectedChannelsFromDropdown(){
@@ -1192,7 +1231,27 @@ function handleAddButton(){
     $('#channelSearchModal').modal('hide')
 }
 
-
+function handleRemoveButton(){
+    let channelId = $(this).parent().attr("channelId");
+    console.log("REMOVING "+channelId)
+    access_database.delete_ctu(channelId);
+    for(var i = 0; i<clientSubscribedChannelObjects; i++){
+        if(clientSubscribedChannelObjects[i].youtube_channel_id === channelId){
+            clientSubscribedChannelObjects.splice(i, 1)
+        }
+        if(clientSubscribedChannelIds[i] === channelId){
+            clientSubscribedChannelIds.splice(i, 1)
+        }
+        if(clientSelectedChannelObjects[i].youtube_channel_id === channelId){
+            clientSelectedChannelObjects.splice(i, 1)
+        }
+        if(clientSelectedChannelIds[i] === channelId){
+            clientSelectedChannelIds.splice(i, 1)
+        }
+    }
+    renderChannelSelectionDropdown();
+    loadSelectedChannels();
+}
 
 function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber);
