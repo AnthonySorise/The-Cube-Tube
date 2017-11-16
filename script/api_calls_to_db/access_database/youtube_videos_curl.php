@@ -29,11 +29,11 @@ if ($error_occurred ){
       $entries = $video_array['items'];
       // print_r($entries);
       for($i = 0; $i<count($entries); $i++){
-            $youtube_video_id = $entries[0]['id']['videoId'];
+            $youtube_video_id = $entries[$i]['id']['videoId'];
             echo("video id : ".$youtube_video_id."\n");
-            $description = $entries[0]['snippet']['description'];
+            $description = $entries[$i]['snippet']['description'];
             echo("description : ".$description."\n");
-            $published_at = $entries[0]['snippet']['publishedAt'];
+            $published_at = $entries[$i]['snippet']['publishedAt'];
             $published_at = str_replace("T"," ",$published_at);
             $published_at = str_replace(".000Z","",$published_at);
             echo("published at : ".$published_at."\n");
