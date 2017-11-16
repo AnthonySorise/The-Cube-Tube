@@ -723,8 +723,8 @@ function renderChannelSelectionDropdown(){
             'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
         });
 
-        var browseButton = $('<button class="btn">Browse</button>');
-        var removeButton = $('<button class="btn">Remove</button>');
+        var browseButton = $('<button class="btn-primary col-xs-12">Browse</button>');
+        var removeButton = $('<button class="btn-danger col-xs-12">Unsubscribe</button>');
 
         browseButton.on("click", handleBrowseButton)
 
