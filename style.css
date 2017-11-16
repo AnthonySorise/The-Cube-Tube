@@ -51,6 +51,7 @@ body {
 #mainNav{
 	background-color: black;
 	height: 3.5%;
+	margin-bottom: 0;
 }
 #mainNav>.container-fluid{
 	position:relative;
@@ -68,11 +69,8 @@ body {
 	letter-spacing: -1.5px;
 	padding: 0;
 	padding-left: 15px;
-	color: rgba(255, 255, 255, 0.6);
-	cursor: default;
-}
-.navbar-brand:hover{
 	color: rgba(255, 255, 255, 1);
+	cursor: default;
 }
 #cubeTubeLogo{
 	display: inline-block;
@@ -148,7 +146,12 @@ body {
 #channelCategoryUl{
 	text-align: center;
 	padding: 5px 10px;
-	overflow: auto;
+	/*overflow: auto;*/
+}
+#dropdownChannelUl{
+	overflow:auto;
+	padding: 0;
+	max-height: 25vh;
 }
 #channelCategoryUl li{
 	cursor: pointer;
@@ -168,7 +171,7 @@ body {
 	color: white;
 	cursor: pointer;
 }
-.dropdownChannelLi:hover, .dropdownChannelLiAll:hover{
+.channelLiChannel:hover, .dropdownChannelLiAll:hover{
 	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
 }
@@ -177,9 +180,9 @@ body {
 	border: none;
 	border-left: 1px solid !important;
 }
-.infoButtons{
-	line-height: 3.5;
-}
+/*.infoButtons{*/
+	/*line-height: 3.5;*/
+/*}*/
 .autoPlayArea{
 	/*float: none;*/
 	/*display: inline-block;*/
@@ -209,13 +212,13 @@ body {
 
 body>.container-fluid {
 	/*padding-top: 51px;*/
-	padding-top: 54px;
+	/*padding-top: 54px;*/
 	/*removes navbar overlap*/
 	padding-right: 0;
 	padding-left: 0;
 }
 .main-content {
-	height: 94.3vh;
+	height: 94vh;
 }
 
 /********************************************************************
@@ -226,15 +229,23 @@ body>.container-fluid {
 	height: 47%;
 	background-color: #020e13;
 }
-.vidRowVideoCol {
-	height: 100%;
-	/*border: 1px solid red;*/
-}
+/*.vidRowVideoCol {*/
+	/*height: 100%;*/
+	/*!*border: 1px solid red;*!*/
+/*}*/
+/*#mainVideoContainer{*/
+	/*display:flex;*/
+/*}*/
+
 #mainVideo {
-	height: 98%;
 	margin: 0.25% 0;
-	width: 85%;
+	height: 43.5vh;
+	width: 78vh;
+	max-width:100vw;
+	justify-self: center;
 }
+
+
 /************************************
 * END of .videoRowWrapper<div> area *
 *************************************/
@@ -363,12 +374,15 @@ div.thRow {
 	margin-top: 1.75px;
 	margin-bottom: 1.75px;
 	height: 3.2vh;
+	line-height: 3.2vh;
 	z-index: 1;
 }
-.tdList:nth-child(even){
-	background-color: #364e5a;
+.tdList:nth-child(even) div {
+	/* background-color: #364e5a; */
+	background-color: rgba(54, 78, 90,0.5);
+	display: inline;
 }
-.tdList:hover, .selectedTd {
+.tdList:hover, .tdRow div.selectedTd {
 	background-color: #b4bdc1;
 }
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
@@ -382,6 +396,9 @@ div.thRow {
 	/*display: flex;*/
 	/*align-items: center;*/
 	color:white;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 /*.tdChannel, .tdUpDate{*/
 	/*justify-content: center;*/
@@ -417,12 +434,13 @@ div.thRow {
 .tdButton i:hover, .tdButton i:focus {
 	color: rgba(255, 255, 255, 1);
 }
+
 .tdTitle, .tdChannel, .tdUpDate {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	line-height: 175%;
 }
+
 
 /****** initial screen PLACEHOLDER AREA******/
 .contentPlaceholderWrapper{
@@ -821,27 +839,11 @@ input:checked+.slider {
 safer appraoch than to resizing browser to see change
 *************************************************************/
 @media screen and (max-width: 1082px) {
-	/*.hamburger {
-		display: inline-block !important;
-	}*/
-	.navbar-header{
-		/*width: 100%;*/
-	}
-	/*.navbar-collapse.collapse{
-		display: none !important;
-	}*/
-	/*.collapse.in{
-		display: block !important;
-	}*/
 	#mainNav-option{
 		border-top: 1px solid black;
 		/*background-color: white;*/
 		margin-right: -15px;
 		margin-left: -15px;
-	}
-	#midNav-option {
-		/*border-top: 0.5px solid blue;*/
-		margin: 0 -15px;
 	}
 	p.navbar-text, ul.navbar-nav{
 		font-size: 10.5px;
@@ -860,20 +862,19 @@ safer appraoch than to resizing browser to see change
 	body>.container-fluid {
 		/*padding-top: 56px;*/
 		/*padding-top: 50.4px;*/
-		padding-top: 49.9px;
+		/*padding-top: 49.9px;*/
 	}
 	.main-content {
 		/*height: 90vh;*/
 		height:96.3vh;
 	}
-	.videoRowWrapper{
-		height: 49%;
-	}
-	.mainVideo {
-		margin-top: 2%;
-		height: 40vh;
-		width: 100%;
-	}
+	/*.videoRowWrapper{*/
+		/*height: 49%;*/
+	/*}*/
+/*	.vidRowVideoCol{
+		margin-left:0;
+		padding: 0;
+	}*/
 
 	.thUpDate{
 		font-size: 14px;
@@ -896,6 +897,10 @@ safer appraoch than to resizing browser to see change
 	#channelSearchModalBody {
 		height: 55vh;
 	}
+/*	.vidRowVideoCol{
+		margin-left:0;
+		padding: 0;
+	}*/
 }
 @media only screen and (max-width: 991px) {
 	.main-content{
@@ -951,35 +956,53 @@ safer appraoch than to resizing browser to see change
 		min-height: 0;
 		background-color: white;
 	}
+	#mainNav-option>.nav, .channelDropDown{
+		min-height: 95vh;
+	}
+
 	#channelCategoryUl{
 		font-size:20px;
+		min-height: 90vh;
+	}
+	#dropdownChannelUl{
+		max-height: 85vh;
+	}
+	#midNav-option{
+		background-color: rgb(40,40,40);
 	}
 	#midNav-option form{
 		width: 95%;
 		margin: 0 2.5%;
 	}
 	.main-content{
-		height: 93vh;
+		height: 90.6vh;
 		/*height: 92vh;*/
-	}
-	#mainVideo {
-		height: 100%;
-		width: 100vw;
 	}
 	body>.container-fluid {
 		/*padding-top: 56px;*/
 		/*padding-top: 51.4px;*/
-		padding-top:51px;
+		/*padding-top:51px;*/
 	}
 	.videoRowWrapper{
 		/*height: 47%;*/
 		height:45%;
 	}
-	.vidRowVideoCol {
-		padding: 0;
-	}
+
+	/*.vidRowVideoCol {*/
+		/*padding: 0;*/
+	/*}*/
+
+	/*.vidRowVideoCol {*/
+		/*padding: 0;*/
+		/*margin-left:0;*/
+	/*}*/
+
 	.videoListRowWrapper{
 		height: 45%;
+	}
+	.tdList{
+		height: 3.7vh;
+		line-height: 3.7vh;
 	}
 	/* Added these 6 css selectors to make mobile modal fit */
 	small {

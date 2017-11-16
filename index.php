@@ -33,6 +33,7 @@ consider carousel for the video list area:
 	<script type="text/javascript" src="script/main.js"></script>
 	<script type="text/javascript" src="script/autoSearch.js"></script>
 	<script type="text/javascript" src="script/uiControl.js"></script>
+    <script type="text/javascript" src="script/utilities.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
@@ -40,7 +41,7 @@ consider carousel for the video list area:
 </head>
 
 <body>
-	<nav class="navbar navbar-fixed-top" id="mainNav">
+	<nav class="navbar" id="mainNav">
 		<div class="container-fluid" id="">
 			<!--navbar content main div-->
 			<div class="navbar-header">
@@ -94,7 +95,7 @@ consider carousel for the video list area:
                                 All
 							</li>
                             <li role="separator" class="divider"></li>
-
+                            <ul id="dropdownChannelUl"></ul>
 						</ul>
 					</li>
 				</ul>
@@ -120,7 +121,7 @@ consider carousel for the video list area:
 		<div class="main-content">
 			<div class="row videoRowWrapper text-center">
 				<!-- <div class="col-sm-3"></div> -->
-				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center vidRowVideoCol">
+				<div class="text-center" id="mainVideoContainer">
 					<!--This is where the iframe element will go-->
 					<div id="mainVideo" class="iframeVideo"></div>
 					<div id=infoButtonContainer>
@@ -169,7 +170,7 @@ consider carousel for the video list area:
 						<!--div for nav options-->
 						<div class="navbar-nav nav-pills infoButtons">
 
-								<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
+								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
 									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
 								</a>
 
@@ -744,10 +745,6 @@ consider carousel for the video list area:
 										</div>
 									</div>
 								</div>
-
-								<div class="pageOne_mobile mobileSlide">
-								</div>
-
 								<div class="item pageTwo">
 									<div class="carousel-content">
 										<div class="row tdRow text-center">
@@ -1223,8 +1220,14 @@ consider carousel for the video list area:
 									</div>
 								</div>
 
-								<div class="pageTwo_mobile mobileSlide"></div>
-
+								<div class="pageTwo_mobile mobileSlide">
+									<div class="carousel-content">
+											<div class="row tdRow text-center">
+												<div class="col-xs-12 col-md-6 newArea2">
+													
+												</div>
+											</div>
+									</div>
 							</div>
 						</div>
 					</div>
@@ -1275,7 +1278,7 @@ consider carousel for the video list area:
 		</div>
 		<!--modal end for lightbox-->
 		<!--modal for channel search result-->
-		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content searchModal">
 					<div class="modal-header" id="channelSearchModalHeader">

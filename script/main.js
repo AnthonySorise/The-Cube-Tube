@@ -93,9 +93,9 @@ let iframeRight = 0;
 $(window).resize(function(){
     let windowWidth = ($(window).width());
     if(windowWidth <= 768){
-        displayTableDataOnMobile()
+        // displayTableDataOnMobile()
     }else{
-        displayTableDataOnDesktop()
+        // displayTableDataOnDesktop()
     }
     iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
     $('.lightBoxMode').css('left', iframeRight+'px');
@@ -207,19 +207,32 @@ function clickHandler() {
             $('mainNav-option').removeClass('in')
                 .attr('aria-expanded','false');
             $('.channelDropDown').removeClass('open');
+            dropOpened = false;
         }
     });
 
-    $('#channelCategoryUl').on('click','.dropdownChannelLi',(e)=>{
-        let input = $(e.target).children('input');
-        if(input[0].checked == true){
-            input[0].checked = false;
-        }else if(input[0].checked==false){
-            input[0].checked = true;
+    $('#channelCategoryUl').on('click','.channelLiChannel, .dropdownChannelLi input',(e)=>{
+        if($(e.target).is('input')){
+            return;
+        }else{
+            let input = $(e.target).children('input');
+            if(input[0].checked == true){
+                input[0].checked = false;
+            }else if(input[0].checked==false){
+                input[0].checked = true;
+            }
         }
     });
     $('a.dropdown-toggle').on('click',()=>{
         $('.channelDropDown').toggleClass('open');
+        if(dropOpened){
+            dropOpened = false;
+        }else{
+            setTimeout(()=>{
+                dropOpened=true;
+            },300);
+        }
+        
     });
     //Search Button
     $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
@@ -723,9 +736,6 @@ function clearVideoList(){
 function renderChannelSelectionDropdown(){
     $(".dropdownChannelLi").remove();
 
-
-
-    var sorted = false;
     //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
         if(a.channel_title < b.channel_title){
@@ -739,31 +749,87 @@ function renderChannelSelectionDropdown(){
 
     //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
-        // var channelLi = $('<li>');
-        let channel = $('<input>').attr({
+
+        let channelLi = $('<li>',{
+            'class': 'dropdownChannelLi row'
+        });
+
+        //let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+        const cog = $('<i>',{
+            class: 'fa fa-cog'
+        });
+
+        // var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
+        var settingsContent = $('<div>',{
+            'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
+        });
+
+        var browseButton = $('<button class="btn">Browse</button>');
+        var removeButton = $('<button class="btn">Remove</button>');
+
+        browseButton.on("click", handleBrowseButton)
+            // $('.dropdownSettingsPopover').popover('hide')
+
+
+        removeButton.on("click", handleRemoveButton)
+
+        // $('.dropdownSettingsPopover').popover('hide')
+
+
+        settingsContent.append(browseButton, removeButton);
+
+        let channelSettingsButton = $('<a>').attr({
+            'role':'button',
+            // 'class':'dropdownSettingsPopover'
+        }).css({
+            padding: '0'
+        }).popover({
+            html: true,
+            'content': settingsContent,
+            'placement': 'left',
+            'container': 'body',
+            'toggle': 'focus'
+        }).append(cog);
+
+        const channelSettingsSpan = $('<div>',{
+            class: 'channelSettingButton col-xs-2 text-center'
+        }).css({
+            padding: '0'
+        }).append(channelSettingsButton);
+
+        let channelCheckbox = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects[i].channel_title,
             'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
             'class' : 'dropdownChannel'
         });
-
         //check if channel is selected
         if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
-            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
-            channel.attr("checked", "checked")
+            channelCheckbox.attr("checked", "checked")
         }
+        let channelLiMain = $('<div>',{
+            class:'channelLiChannel col-xs-10'
+        }).css({
+            padding: '0',
+            'overflow': 'hidden',
+            'text-overflow': 'ellipsis',
+            'white-space' : 'nowrap'
+        }).text(clientSubscribedChannelObjects[i].channel_title);
+        channelLiMain.prepend(channelCheckbox);
+        // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
+
+        channelLi.append(channelLiMain, channelSettingsSpan);
+
+        $('#channelCategoryUl').append(channelLi);
 
 
-        let channelLi = $('<li>').addClass('dropdownChannelLi')
-            .text(" "+clientSubscribedChannelObjects[i].channel_title);
-        channelLi.prepend(channel);
+        channelLi.append(channelSettingsSpan, channelLiMain);
 
 
-        $('#channelCategoryUl').append(channelLi)
+        // $('#channelCategoryUl').append(channelLi)
+        $('#dropdownChannelUl').append(channelLi);
+
     }
-
-
-
 }
 
 function compileSelectedChannelsFromDropdown(){
@@ -1067,7 +1133,6 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
     if(!isAdding){
         clientSelectedChannelIds = [];
-        clientSelectedChannelIds.push(channelID);
     }
     else{
         var isDup = false;
@@ -1078,10 +1143,10 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
         }
         if(!isDup){
             clientSubscribedChannelIds.push(channelID);
-            clientSelectedChannelIds.push(channelID);
+            // clientSelectedChannelIds.push(channelID);
         }
     }
-
+    clientSelectedChannelIds.push(channelID);
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -1100,7 +1165,6 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
                 if(!isAdding){
                     clientSelectedChannelObjects = [];
-                    clientSelectedChannelObjects.push(data.data[0]);
                 }
                 else{
                     var isDup = false;
@@ -1135,7 +1199,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     })
                 }
 
-
+                // clientSelectedChannelObjects.push(data.data[0]);
 
                 loadSelectedChannels();
 
@@ -1176,6 +1240,9 @@ function handleBrowseButton() {
 
 
     let channelID = $(this).parent().attr("channelId");
+
+    console.log("BROWSING CHANNEL ID ", channelID)
+
     manageDatabaseWithChannelId(channelID);
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
@@ -1189,6 +1256,7 @@ function handleAddButton(){
     if(browsingMode){
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
+        compileSelectedChannelsFromDropdown()
     }
     else{
         //FUNCTION THAT LOOPS THROUGH clientSubscribedChannelIds and ClientSubscribedChannelObjects - and
@@ -1216,7 +1284,27 @@ function handleAddButton(){
     $('#channelSearchModal').modal('hide')
 }
 
-
+function handleRemoveButton(){
+    let channelId = $(this).parent().attr("channelId");
+    console.log("REMOVING "+channelId)
+    access_database.delete_ctu(channelId);
+    for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
+        if(clientSubscribedChannelObjects[i].youtube_channel_id === channelId){
+            clientSubscribedChannelObjects.splice(i, 1)
+        }
+        if(clientSubscribedChannelIds[i] === channelId){
+            clientSubscribedChannelIds.splice(i, 1)
+        }
+        if(clientSelectedChannelObjects[i].youtube_channel_id === channelId){
+            clientSelectedChannelObjects.splice(i, 1)
+        }
+        if(clientSelectedChannelIds[i] === channelId){
+            clientSelectedChannelIds.splice(i, 1)
+        }
+    }
+    renderChannelSelectionDropdown();
+    loadSelectedChannels();
+}
 
 function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber);
@@ -1286,29 +1374,33 @@ function removeUnusedRows(){
 }
 
 
-function displayTableDataOnMobile(){
-    var rightTableData = $(".item").find(".tdListRight").children().clone();
-    var newElementArray = []
-    for(var j = 0; j<rightTableData.length; j+=10){
-        var newImage = rightTableData.slice(j,j+10)
-        newElementArray.push(newImage);
-    }
-    for(var i = 0; i<newElementArray.length; i++){
-        var itemDiv = $(".pageOne_mobile").addClass('item')
-        var contentDiv = $("<div>").addClass('carousel-content');
-        var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
-        rowDiv.append(newElementArray[i]);
-        contentDiv.append(rowDiv);
-        itemDiv.append(contentDiv);
-        
-        $(".carousel-inner").append(itemDiv);
-    }
-    $(".mobileSlide").show();
-    
-    $(".tdListRight").hide();
-    $(".tdListLeft").removeClass('col-md-6');
-    // $(".carousel-inner").append(itemDiv);
-}
+
+// function displayTableDataOnMobile(){
+//     var rightTableData = $(".item").find(".tdListRight").children().clone();
+//     var newElementArray = []
+//     for(var j = 0; j<rightTableData.length; j+=10){
+//         var newImage = rightTableData.slice(j,j+10)
+//         newElementArray.push(newImage);
+//     }
+//     debugger
+//     $(".tdListRight").hide();
+//     $(".pageOne_mobile").addClass('item')
+//     for(var i=0; i<newElementArray[0].length; i++){
+//         $(".newArea").append(newElementArray[0][i])
+//     }
+//     // $(".pageTwo_mobile").addClass('item')
+//     // $(".pageOne_mobile").addClass('item')
+//     // $(".pageTwo_mobile").addClass('item')
+//     // for(var i = 0; i<newElementArray[0].length; i++){
+//     //     $(".newArea").append(newElementArray[0][i])
+//     // }
+//     // for(var i = 0; i<newElementArray[1].length; i++){
+//     //     $(".newArea2").append(newElementArray[1][i])
+//     // }
+//     // $(".mobileSlide").show();
+
+//     // $(".carousel-inner").append(itemDiv);
+// }
 
 
 // function displayTableDataOnMobile(){
@@ -1318,8 +1410,9 @@ function displayTableDataOnMobile(){
 //         var newImage = rightTableData.slice(j,j+10)
 //         newElementArray.push(newImage);
 //     }
+//     debugger
 //     for(var i = 0; i<newElementArray.length; i++){
-//         var itemDiv = $("<div>").addClass('item mobileSlide');
+//         var itemDiv = $(".pageOne_mobile").addClass('item')
 //         var contentDiv = $("<div>").addClass('carousel-content');
 //         var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
 //         rowDiv.append(newElementArray[i]);
@@ -1327,14 +1420,17 @@ function displayTableDataOnMobile(){
 //         itemDiv.append(contentDiv);
 //         $(".carousel-inner").append(itemDiv);
 //     }
+//     $(".mobileSlide").show();
+    
 //     $(".tdListRight").hide();
 //     $(".tdListLeft").removeClass('col-md-6');
 //     // $(".carousel-inner").append(itemDiv);
 // }
 
+
 function displayTableDataOnDesktop(){
     $(".tdListRight").show();
-    $(".mobileSlide").remove();
+    // $(".mobileSlide").remove();
     $(".tdListLeft").addClass('col-md-6');
     var mobileSlideItem = $(".carousel-content>.mobileRow");
     // for(var i = 0; i<mobileSlideItem.length; i++){
@@ -1371,7 +1467,7 @@ function returnToPageOne(){
     $(".carousel").removeClass('slide')
     $(".carousel").carousel(0);
     if(currentSlideNumber !== 1){
-
+        clearVideoList();
         currentSlideNumber = 1; //redundant?
         if(videoObjectsToLoad.length !== 0) {
             var videosToLoad = [];
@@ -1448,15 +1544,15 @@ function convertDateForApple(dateFromAPI){
 function resetSelectedTd() {
     //NEEDS TO ALSO HANDLE FA FA SPINNER
 
-    setTimeout(function(){
+    // setTimeout(function(){
         $(".tdList").removeClass('selectedTd');
         $('.fa-circle-o-notch').remove();
-    }, 100);
+    // }, 50);
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            setTimeout(function(){
+            // setTimeout(function(){
                 $(row).addClass("selectedTd")
                 var playSymbol = $('<i>')
                     .addClass('fa fa-circle-o-notch fa-spin fa-fw')
@@ -1465,7 +1561,7 @@ function resetSelectedTd() {
                         'color': 'green'
                     });
                 $(row).find(".tdTitle>span").prepend(playSymbol);
-            }, 500)
+            // }, 500)
         }
     }
 }
