@@ -726,23 +726,17 @@ function renderChannelSelectionDropdown(){
         var browseButton = $('<button class="btn">Browse</button>');
         var removeButton = $('<button class="btn">Remove</button>');
 
-        browseButton.on("click", function(){
-            handleBrowseButton();
-            // $('.dropdownSettingsPopover').popover('hide')
-        });
+        browseButton.on("click", handleBrowseButton);
 
-        removeButton.on("click", function(){
-            handleRemoveButton();
-            // $('.dropdownSettingsPopover').popover('hide')
-        });
+        removeButton.on("click", handleRemoveButton);
 
         settingsContent.append(browseButton, removeButton);
 
         let channelSettingsButton = $('<a>').attr({
-            'role':'button',
-            // 'class':'dropdownSettingsPopover'
+            'role':'button'
         }).css({
-            padding: '0'
+            padding: '0',
+            'line-height':'180%'
         }).popover({
             html: true,
             'content': settingsContent,
@@ -773,7 +767,8 @@ function renderChannelSelectionDropdown(){
             padding: '0',
             'overflow': 'hidden',
             'text-overflow': 'ellipsis',
-            'white-space' : 'nowrap'
+            'white-space' : 'nowrap',
+            'line-height':'200%'
         }).text(clientSubscribedChannelObjects[i].channel_title);
         channelLiMain.prepend(channelCheckbox);
         // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
@@ -1200,9 +1195,6 @@ function handleBrowseButton() {
 
 
     let channelID = $(this).parent().attr("channelId");
-
-    console.log("BROWSING CHANNEL ID ", channelID)
-
     manageDatabaseWithChannelId(channelID);
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
@@ -1248,7 +1240,7 @@ function handleRemoveButton(){
     let channelId = $(this).parent().attr("channelId");
     console.log("REMOVING "+channelId)
     access_database.delete_ctu(channelId);
-    for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
+    for(var i = 0; i<clientSubscribedChannelObjects; i++){
         if(clientSubscribedChannelObjects[i].youtube_channel_id === channelId){
             clientSubscribedChannelObjects.splice(i, 1)
         }
