@@ -1235,7 +1235,7 @@ function handleRemoveButton(){
     let channelId = $(this).parent().attr("channelId");
     console.log("REMOVING "+channelId)
     access_database.delete_ctu(channelId);
-    for(var i = 0; i<clientSubscribedChannelObjects; i++){
+    for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
         if(clientSubscribedChannelObjects[i].youtube_channel_id === channelId){
             clientSubscribedChannelObjects.splice(i, 1)
         }
