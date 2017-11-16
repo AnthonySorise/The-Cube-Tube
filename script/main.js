@@ -731,8 +731,7 @@ function renderChannelSelectionDropdown(){
 
         let channelSettingsButton = $('<a>').attr({
             'role':'button',
-            'data-toggle': 'popover',
-            'data-trigger': 'focus'
+            'data-toggle': 'popover'
         }).css({
             padding: '0'
         }).popover({
@@ -740,7 +739,8 @@ function renderChannelSelectionDropdown(){
             'content': settingsContent,
             'placement': 'left',
             'container': 'body',
-            'trigger': 'focus'
+            'trigger': 'focus',
+            selector: '[rel="popover"]'
         }).append(cog);
         const channelSettingsSpan = $('<div>',{
             class: 'channelSettingButton col-xs-2 text-center'
