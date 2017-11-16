@@ -26,7 +26,7 @@ if ($error_occurred ){
       print_r($body);
 } else {
       echo('i success');
-      $channel_data = json_decode($json, true)['items'][0]['snippets'];
+      $channel_data = json_decode($json, true)['items'];
       print_r($channel_data);
       $thumbnail = $channel_data['thumbnails'].['medium.url'];
       $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
