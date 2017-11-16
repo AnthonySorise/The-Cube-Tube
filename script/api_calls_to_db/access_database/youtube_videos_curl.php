@@ -1,5 +1,4 @@
 <?php
-$pageToken = "";
 $youtube_channel_id = $_POST['youtube_channel_id'];
 require_once('youtube_api_key.php');
 $ch = curl_init("https://www.googleapis.com/youtube/v3/search?type=video/
@@ -7,7 +6,6 @@ $ch = curl_init("https://www.googleapis.com/youtube/v3/search?type=video/
 &part=snippet
 &order=date
 &maxResults=50
-&pageToken={$pageToken}
 &key={$DEVELOPER_KEY}");
 // $pageToken
 // publishedAfter = RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
