@@ -729,8 +729,10 @@ function renderChannelSelectionDropdown(){
 
         settingsContent.append(browseButton, removeButton);
 
-        const channelSettingsButton = $('<a>').attr("data-trigger", "focus")
-        .css({
+        let channelSettingsButton = $('<a>').attr({
+            "data-trigger": "focus",
+            "data-toggle" : "popover"
+        }).css({
             padding: '0'
         }).append(cog);
         channelSettingsButton.popover({
