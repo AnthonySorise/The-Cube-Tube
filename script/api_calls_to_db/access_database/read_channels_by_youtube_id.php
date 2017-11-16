@@ -13,7 +13,7 @@ if(empty($youtube_channel_id)){
 //     output_and_exit($output);
 // }
 
-$sqli =  "SELECT channel_title, 
+$sqli = "SELECT channel_title, 
 description,thumbnail_file_name, youtube_channel_id, last_channel_pull
 FROM channels WHERE youtube_channel_id = ? ";
 $stmt = mysqli_stmt_init($conn);

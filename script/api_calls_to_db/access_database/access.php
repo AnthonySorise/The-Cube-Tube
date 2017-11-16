@@ -21,7 +21,7 @@ function output_and_exit($output){
 }
 switch($_POST['action']){
     case 'delete_ctu':
-        include('delete.php');
+        include('delete_ctu.php');
         break;
     case 'insert_channel':
         include('insert_channels.php');
