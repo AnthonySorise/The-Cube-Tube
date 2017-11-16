@@ -718,7 +718,12 @@ function renderChannelSelectionDropdown(){
             class: 'fa fa-cog'
         });
 
-        var settingsContent = $('<div>').text("TEST")
+        var settingsContent = $('<div>');
+
+        var browseButton = $('<button>Browse</button>');
+        var removeButton = $('<button>Remove</button>');
+
+        settingsContent.append(browseButton, removeButton);
 
         const channelSettingsButton = $('<a>')
         .css({
@@ -727,8 +732,9 @@ function renderChannelSelectionDropdown(){
         channelSettingsButton.popover({
             html: true,
             content: settingsContent,
-            placement: 'top',
-            container: 'body'
+            placement: 'left',
+            container: 'body',
+            toggle:focus
         });
         const channelSettingsSpan = $('<div>',{
             class: 'channelSettingButton col-xs-2 text-center'
