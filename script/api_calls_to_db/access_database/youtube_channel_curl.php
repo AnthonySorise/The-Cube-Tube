@@ -26,13 +26,13 @@ if ($error_occurred ){
       print_r($body);
 } else {
       echo('i success');
-      $channel_data = json_decode($json, true)[items][0];
+      $channel_data = json_decode($json, true)['items'][0]['snippets'];
       print_r($channel_data);
-      $thumbnail = $channel_data.items[0].snippet.thumbnails.medium.url;
+      $thumbnail = $channel_data['thumbnails'].['medium.url'];
       $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
       $thumbnail = str_replace('/photo.jpg','',$thumbnail);
-      $channel_title = $channel_data['items'][0]['snippet']['title'];
-      $description = $channel_data['items'][0]['snippet']['description'];
+      $channel_title = $channel_data['title'];
+      $description = $channel_data['description'];
       $date_created = date('Y-m-d H:i:s');
       $last_channel_pull = date("Y-m-d H:i:s");
       print($thumnail);
