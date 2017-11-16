@@ -29,13 +29,13 @@ if ($error_occurred ){
       print_r($channel_data);
       $output['data'][] = $channel_data;
       $thumbnail = $channel_data['thumbnails']['medium']['url'];
-      // $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
-      // $thumbnail = str_replace('/photo.jpg','',$thumbnail);
+      $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
+      $thumbnail = str_replace('/photo.jpg','',$thumbnail);
       $channel_title = $channel_data['title'];
       $description = $channel_data['description'];
       $date_created = date('Y-m-d H:i:s');
       $last_channel_pull = date("Y-m-d H:i:s");
-      print($thumnail);
+      print($thumbnail);
       print($channel_title);
       print($desciption);
 }
