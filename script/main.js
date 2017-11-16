@@ -77,7 +77,6 @@ $(document).ready(function () {
 
     tooltipFunctions();
 
-
     clickHandler();
 
     $('#text-carousel').on('slide.bs.carousel', function (ev) {
