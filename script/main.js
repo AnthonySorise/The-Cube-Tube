@@ -101,7 +101,6 @@ $(document).ready(function () {
     }, 2000)
 });
 
-
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
