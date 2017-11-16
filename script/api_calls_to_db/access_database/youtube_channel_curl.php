@@ -1,9 +1,13 @@
 <?php
 $youtube_channel_id = $_POST['youtube_channel_id'];
 require_once('youtube_api_key.php');
-$ch = curl_init("GET https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
+$ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $json = curl_exec($ch);
+
+print_r($json);
+
+exit;
 $error_occurred = false;
 if ($json === false || curl_errno($ch)) {
       $error_occurred = true;
@@ -22,7 +26,7 @@ if ($error_occurred ){
       //echo $body;
       //mail('YOUREMAILGOESHERE', 'TheCubeTube.com - YouTube JSON Error', $body);
       $error = json_encode($body);
-      print_r($error);
+      print_r($body);
 } else {
       $channel_data = json_decode($json, true)['items'];
       echo($channel_data);
