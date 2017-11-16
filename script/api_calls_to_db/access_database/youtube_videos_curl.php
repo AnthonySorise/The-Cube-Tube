@@ -1,5 +1,5 @@
 <?php
-function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY){
+function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY,$conn){
       if($pageToken=="first"){
             $query="";
       }else{
@@ -68,9 +68,9 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY
                   }
             }//end for
             if(!empty($next_page_token)){
-                  insert_videos($youtube_channel_id,$channel_id,$next_page_token,$DEVELOPER_KEY);
+                  insert_videos($youtube_channel_id,$channel_id,$next_page_token,$DEVELOPER_KEY,$conn);
             }
       }
 }    
-insert_videos($youtube_channel_id,$channel_id,"first",$DEVELOPER_KEY); 
+insert_videos($youtube_channel_id,$channel_id,"first",$DEVELOPER_KEY,$conn); 
 ?>
