@@ -42,6 +42,7 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY
                   $description = $entries[$i]['snippet']['description'];
                   echo('description : '.$description."\n");
                   $video_title = $entries[$i]['snippet']['title'];
+                  echo('video title:'. $video_title . "\n");
                   $published_at = $entries[$i]['snippet']['publishedAt'];
                   $published_at = str_replace("T"," ",$published_at);
                   $published_at = str_replace(".000Z","",$published_at);
