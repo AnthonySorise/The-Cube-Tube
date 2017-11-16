@@ -31,10 +31,9 @@ if ($error_occurred ){
       print_r($entries[0]);
       print("video id: ". $entries[0]['id']['videoId']."\n");
       echo("description: ". $entries[0]['snippet']['description']);
-      echo("\npublished data: ". $entries[0]['snippet']['publishedAt']);
       $published_at = $entries[0]['snippet']['publishedAt'];
       $published_at = str_replace("T","",$published_at);
-      $published_at = str_replace(".000Z","");
+      $published_at = str_replace(".000Z","",$published_at);
       echo($published_at);
 
 

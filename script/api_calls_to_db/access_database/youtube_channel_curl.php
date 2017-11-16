@@ -49,6 +49,7 @@ if ($error_occurred ){
       }else{
           if(mysqli_affected_rows($conn)>0){
               $output['success'] = true;
+              $channel_id = mysqli_insert_id($conn);
           }else{
               $output['errors'][]='UNABLE TO INSERT';
           }
