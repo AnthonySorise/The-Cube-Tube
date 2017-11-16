@@ -33,6 +33,7 @@ if ($error_occurred ){
             echo("video id : ".$youtube_video_id."\n");
             $description = $entries[$i]['snippet']['description'];
             echo("description : ".$description."\n");
+            $video_title = $entries[$i]['snippet']['title'];
             $published_at = $entries[$i]['snippet']['publishedAt'];
             $published_at = str_replace("T"," ",$published_at);
             $published_at = str_replace(".000Z","",$published_at);
