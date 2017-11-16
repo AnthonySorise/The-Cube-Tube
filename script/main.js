@@ -444,8 +444,8 @@ function clickHandler() {
         }
     })
     //Lets user click outside of theatre modal to close and save the state of video
-    $('#lightBoxModal').on('hidden.bs.modal', () => {
-        checkTheatreModeStatus();
+    $('body').on('hidden.bs.modal', () => {
+        checkTheatreModeStatus()
       })
 
     function checkHomePageVideoStatus() {
@@ -1656,7 +1656,6 @@ function rendertheatreControls() {
     });
     var closeButton = $('<button>', {
         class: "btn btn-danger modalClose theatreModalClose",
-        dataDismiss: "modal",
         text: "close",
         type: "button"
     });
