@@ -13,6 +13,7 @@ if ($decoded_json === NULL ) {
       $error_occurred = true;
 }
 if ($error_occurred ){
+      echo('i failed');
       $body = 'Error occurred in ' . __FILE__ . "\n\n" .
                  'curl_errno: ' . curl_errno($ch) . "\n" .
                  'curl_error: ' . curl_error($ch) . "\n" .
@@ -24,6 +25,7 @@ if ($error_occurred ){
       $error = json_encode($body);
       print_r($body);
 } else {
+      echo('i success');
       $channel_data = json_decode($json, true)['items'];
       echo($channel_data);
       $thumbnail = $channel_data.items[0].snippet.thumbnails.medium.url;
