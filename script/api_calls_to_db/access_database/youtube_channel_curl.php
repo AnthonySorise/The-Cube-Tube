@@ -27,7 +27,7 @@ if ($error_occurred ){
 } else {
       echo('i success');
       $channel_data = json_decode($json, true)['items'];
-      echo($channel_data);
+      print_r($channel_data);
       $thumbnail = $channel_data.items[0].snippet.thumbnails.medium.url;
       $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
       $thumbnail = str_replace('/photo.jpg','',$thumbnail);
@@ -35,6 +35,5 @@ if ($error_occurred ){
       $description = $channel_data['items'][0]['snippet']['description'];
       $date_created = date('Y-m-d H:i:s');
       $last_channel_pull = date("Y-m-d H:i:s");
-      print($channel_data);
 }
 ?>
