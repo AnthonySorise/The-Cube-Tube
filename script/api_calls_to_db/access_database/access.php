@@ -56,8 +56,8 @@ switch($_POST['action']){
     case 'insert_youtube_channel_curl':
         include('youtube_channel_curl.php');
         break;
-    case 'insert_youtube_video_curl':
-        include('youtube_video_curl.php');
+    case 'insert_youtube_videos_curl':
+        include('youtube_videos_curl.php');
         break;
     default:
         $output['errors'][] = 'invalid action';
