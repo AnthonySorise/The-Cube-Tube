@@ -718,20 +718,14 @@ function renderChannelSelectionDropdown(){
             class: 'fa fa-cog'
         });
 
-        var settingsContent = $('<div>');
+        var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
 
         var browseButton = $('<button class="btn">Browse</button>');
         var removeButton = $('<button class="btn">Remove</button>');
 
-        browseButton.on("click", function(){
-            console.log("BROWSE")
+        browseButton.on("click", handleBrowseButton);
 
-
-        })
-
-        removeButton.on("click", function(){
-            console.log("REMOVE")
-        })
+        removeButton.on("click", handleRemoveButton);
 
         settingsContent.append(browseButton, removeButton);
 
@@ -744,7 +738,7 @@ function renderChannelSelectionDropdown(){
             content: settingsContent,
             placement: 'left',
             container: 'body',
-            toggle:'focus'
+            trigger:'focus'
         });
         const channelSettingsSpan = $('<div>',{
             class: 'channelSettingButton col-xs-2 text-center'
@@ -1237,9 +1231,9 @@ function handleAddButton(){
     $('#channelSearchModal').modal('hide')
 }
 
-function handleRemoveChannelDropdownButton(){
-    let channelId = ""   //NEEDS IMPLEMENTATION, USE JQUERY
-    access_database.delete_ctu(channelId)
+function handleRemoveButton(){
+    let channelId = $(this).parent().attr("channelId");
+    access_database.delete_ctu(channelId);
     for(var i = 0; i<clientSubscribedChannelObjects; i++){
         if(clientSubscribedChannelObjects[i].youtube_channel_id === channelId){
             clientSubscribedChannelObjects.splice(i, 1)
