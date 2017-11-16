@@ -377,8 +377,10 @@ div.thRow {
 	line-height: 3.2vh;
 	z-index: 1;
 }
-.tdList:nth-child(even){
-	background-color: #364e5a;
+.tdList:nth-child(even) div {
+	/* background-color: #364e5a; */
+	background-color: rgba(54, 78, 90,0.5);
+	display: inline;
 }
 .tdList:hover, .tdRow div.selectedTd {
 	background-color: #b4bdc1;
