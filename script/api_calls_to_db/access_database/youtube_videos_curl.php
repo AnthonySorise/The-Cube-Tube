@@ -31,7 +31,7 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken){
             echo('video query success'."\n");
             $video_array = json_decode($json, true);
             $next_page_token = $video_array['nextPageToken'];
-            echo($next_page_token."\n");
+            echo('next page token: '.$next_page_token."\n");
             $entries = $video_array['items'];
             $last_updated = date("Y-m-d H-i-s");
             for($i = 0; $i<count($entries); $i++){
