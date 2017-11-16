@@ -70,6 +70,7 @@ function onPlayerStateChange(event) {
 function playNextYTVideo() {
     currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == videoID);
     nextVideoIdToLoad = videoObjectsToLoad[currentVideoindex + 1].youtube_video_id 
+
     if (getAutoPlayValue()) {
         player.loadVideoById(nextVideoIdToLoad);
     } else {
