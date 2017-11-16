@@ -26,7 +26,6 @@ if ($error_occurred ){
       print_r($body);
 } else {
       $channel_data = json_decode($json, true)['items'][0]['snippet'];
-      print_r($channel_data);
       $output['data'][] = $channel_data;
       $thumbnail = $channel_data['thumbnails']['medium']['url'];
       $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
@@ -35,8 +34,24 @@ if ($error_occurred ){
       $description = $channel_data['description'];
       $date_created = date('Y-m-d H:i:s');
       $last_channel_pull = date("Y-m-d H:i:s");
-      print($thumbnail);
-      print($channel_title);
-      print($desciption);
+      $stmt = $conn->prepare("INSERT INTO channels SET 
+      channel_title = ?, 
+      youtube_channel_id = ?,
+      description = ?, 
+      thumbnail_file_name = ?, 
+      date_created=?,
+      last_channel_pull=?");
+      $stmt->bind_param('ssssss',$channel_title,$youtube_channel_id,
+      $description,$thumbnail,$date_created,$last_channel_pull);
+      $stmt->execute();
+      if(empty($stmt)){
+          $output['errors'][]='invalid query';
+      }else{
+          if(mysqli_affected_rows($conn)>0){
+              $output['success'] = true;
+          }else{
+              $output['errors'][]='UNABLE TO INSERT';
+          }
+      }
 }
 ?>
