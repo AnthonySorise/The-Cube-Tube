@@ -1,20 +1,19 @@
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
-
 var videoObjectsToLoad = null;
-
 var clientSelectedChannelObjects = [];
 var clientSelectedChannelIds = [];
-
 var clientSubscribedChannelIds = [];
 var clientSubscribedChannelObjects = [];
-
 var currentSlideNumber = 1;
-
 var browsingMode = false;
-
-let currentVolumeLevel = null;
+var currentVolumeLevel = null;
+var ytPlaying = false;
+var play = "fa fa-play modalControls playButton";
+var pause = "fa fa-pause modalControls pauseButton";
+var player;
+var player2;
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -31,21 +30,31 @@ function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
         videoId: 'lrzIR8seNXs',
         playerVars: {
-            'rel': 0
-        }
+            'rel': 0,
+        },
+        events: {
+            'onStateChange': onPlayerStateChange
+          }
     });
 }
-var player;
-var player2;
+
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING) {
+        $('.playButton').removeClass(play).toggleClass(pause);
+
+    } else if (event.data == YT.PlayerState.PAUSED) {
+        $('.pauseButton').removeClass(pause).toggleClass(play);        
+    }
+}
 
 /*******needed for iframe player*******/
 let iframeRight = 0;
 $(window).resize(function(){
     let windowWidth = ($(window).width());
     if(windowWidth <= 768){
-        displayTableDataOnMobile()
+        // displayTableDataOnMobile()
     }else{
-        displayTableDataOnDesktop()
+        // displayTableDataOnDesktop()
     }
     iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
     $('.lightBoxMode').css('left', iframeRight+'px');
@@ -56,7 +65,7 @@ $(document).ready(function () {
     $("#text-carousel").hide()
     $(".videoHeader").hide()
   
-
+    rendertheatreControls();
     displayCurrentPageNumber();
     /**
      function for preventing page refresh with search button;
@@ -157,19 +166,32 @@ function clickHandler() {
             $('mainNav-option').removeClass('in')
                 .attr('aria-expanded','false');
             $('.channelDropDown').removeClass('open');
+            dropOpened = false;
         }
     });
 
-    $('#channelCategoryUl').on('click','.dropdownChannelLi',(e)=>{
-        let input = $(e.target).children('input');
-        if(input[0].checked == true){
-            input[0].checked = false;
-        }else if(input[0].checked==false){
-            input[0].checked = true;
+    $('#channelCategoryUl').on('click','.channelLiChannel, .dropdownChannelLi input',(e)=>{
+        if($(e.target).is('input')){
+            return;
+        }else{
+            let input = $(e.target).children('input');
+            if(input[0].checked == true){
+                input[0].checked = false;
+            }else if(input[0].checked==false){
+                input[0].checked = true;
+            }
         }
     });
     $('a.dropdown-toggle').on('click',()=>{
         $('.channelDropDown').toggleClass('open');
+        if(dropOpened){
+            dropOpened = false;
+        }else{
+            setTimeout(()=>{
+                dropOpened=true;
+            },300);
+        }
+        
     });
     //Search Button
     $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
@@ -371,12 +393,19 @@ function clickHandler() {
     //Theater mode
     $('.lightBoxMode').on('click', checkHomePageVideoStatus);
     $('.theatreModalClose').on('click', checkTheatreModeStatus);
+    $('.fastForwardButton').on('click', fastForwardVideo);
+    $('.rewindButton').on('click', rewindVideo);
+    $('.playButton').on('click', playYtVideo);
     $(document).on('keyup', function (event) {
         if(event.keyCode === 27 && $('body').hasClass('modal-open')) {
             console.log('Esc was pressed');
             checkTheatreModeStatus();
         }
     })
+    //Lets user click outside of theatre modal to close and save the state of video
+    $('#lightBoxModal').on('hidden.bs.modal', () => {
+        checkTheatreModeStatus();
+      })
 
     function checkHomePageVideoStatus() {
         player.pauseVideo();
@@ -385,26 +414,28 @@ function clickHandler() {
             player.pauseVideo();
             player2.seekTo(player.getCurrentTime());
             player2.pauseVideo();
+            $('.pauseButton').removeClass().addClass(play);
             $('#lightBoxModal').modal('show');
         } else if (player.getPlayerState() === 1) {
             checkIfPlayerIsMuted();
             player.pauseVideo();
             player2.seekTo(player.getCurrentTime());
-            $('#lightBoxModal').modal('show');
+            $('.playButton').removeClass().addClass(pause);
             player2.playVideo();
+            $('#lightBoxModal').modal('show');
         } else if (player.getPlayerState() === 5) {
             $('#lightBoxModal').modal('show');
         }
     }
 
     function checkTheatreModeStatus() {
-        if (player2.getPlayerState() === 2) {
+        if (player2.getPlayerState() === 2) {            
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
             player.pauseVideo();
             $('#lightBoxModal').modal('hide');
-        } else if (player2.getPlayerState() === 1) {
+        } else if (player2.getPlayerState() === 1) {                               
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
@@ -413,6 +444,44 @@ function clickHandler() {
         } else if (player2.getPlayerState() === 5) {
             $('#lightBoxModal').modal('hide');
         }
+    }
+
+    function fastForwardVideo() {
+        var fastForward = player2.getCurrentTime();
+        var add15Seconds = fastForward + 15;
+        var player2State = player2.getPlayerState();
+        if(player2State === 2) {
+            player2.seekTo(add15Seconds);
+            player2.pauseVideo();
+            return;
+        } else {
+            player2.seekTo(add15Seconds);
+    
+        }
+        
+    }
+    function playYtVideo() {
+        player2.playVideo();
+        if(this.classList.value === play) {
+            $('.playButton').removeClass(play).toggleClass(pause);                    
+        } else {
+            $('.pauseButton').removeClass(pause).toggleClass(play);
+            player2.pauseVideo()        
+            
+        }
+    }
+    function rewindVideo() {
+        var fastForward = player2.getCurrentTime();
+        var minus15Seconds = fastForward - 15;
+        var player2State = player2.getPlayerState();
+        if(player2State === 2) {
+            player2.seekTo(minus15Seconds);
+            player2.pauseVideo();
+            return;
+        } else {
+            player2.seekTo(minus15Seconds);
+        }
+
     }
 }
 
@@ -626,9 +695,6 @@ function clearVideoList(){
 function renderChannelSelectionDropdown(){
     $(".dropdownChannelLi").remove();
 
-
-
-    var sorted = false;
     //sort by name
     clientSubscribedChannelObjects.sort(function(a, b){
         if(a.channel_title < b.channel_title){
@@ -642,31 +708,78 @@ function renderChannelSelectionDropdown(){
 
     //render to dropdown
     for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
-        // var channelLi = $('<li>');
-        let channel = $('<input>').attr({
+
+        let channelLi = $('<li>',{
+            'class': 'dropdownChannelLi row'
+        });
+
+        //let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+        const cog = $('<i>',{
+            class: 'fa fa-cog'
+        });
+
+        var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
+
+        var browseButton = $('<button class="btn">Browse</button>');
+        var removeButton = $('<button class="btn">Remove</button>');
+
+        browseButton.on("click", handleBrowseButton);
+
+        removeButton.on("click", handleRemoveButton);
+
+        settingsContent.append(browseButton, removeButton);
+
+        let channelSettingsButton = $('<a>').attr({
+            'role':'button'
+        }).css({
+            padding: '0'
+        }).popover({
+            html: true,
+            'content': settingsContent,
+            'placement': 'left',
+            'container': 'body',
+            'toggle': 'focus'
+        }).append(cog);
+
+        const channelSettingsSpan = $('<div>',{
+            class: 'channelSettingButton col-xs-2 text-center'
+        }).css({
+            padding: '0'
+        }).append(channelSettingsButton);
+
+        let channelCheckbox = $('<input>').attr({
             'type' : 'checkbox',
             'name' : clientSubscribedChannelObjects[i].channel_title,
             'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
             'class' : 'dropdownChannel'
         });
-
         //check if channel is selected
         if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
-            console.log("FOUND ", clientSubscribedChannelObjects[i].youtube_channel_id);
-            channel.attr("checked", "checked")
+            channelCheckbox.attr("checked", "checked")
         }
+        let channelLiMain = $('<div>',{
+            class:'channelLiChannel col-xs-10'
+        }).css({
+            padding: '0',
+            'overflow': 'hidden',
+            'text-overflow': 'ellipsis',
+            'white-space' : 'nowrap'
+        }).text(clientSubscribedChannelObjects[i].channel_title);
+        channelLiMain.prepend(channelCheckbox);
+        // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
+
+        channelLi.append(channelLiMain, channelSettingsSpan);
+
+        $('#channelCategoryUl').append(channelLi);
 
 
-        let channelLi = $('<li>').addClass('dropdownChannelLi')
-            .text(" "+clientSubscribedChannelObjects[i].channel_title);
-        channelLi.prepend(channel);
+        channelLi.append(channelSettingsSpan, channelLiMain);
 
 
-        $('#channelCategoryUl').append(channelLi)
+        // $('#channelCategoryUl').append(channelLi)
+        $('#dropdownChannelUl').append(channelLi);
+
     }
-
-
-
 }
 
 function compileSelectedChannelsFromDropdown(){
@@ -970,7 +1083,6 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
     if(!isAdding){
         clientSelectedChannelIds = [];
-        clientSelectedChannelIds.push(channelID);
     }
     else{
         var isDup = false;
@@ -984,7 +1096,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
             // clientSelectedChannelIds.push(channelID);
         }
     }
-
+    clientSelectedChannelIds.push(channelID);
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -1003,7 +1115,6 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 
                 if(!isAdding){
                     clientSelectedChannelObjects = [];
-                    clientSelectedChannelObjects.push(data.data[0]);
                 }
                 else{
                     var isDup = false;
@@ -1038,7 +1149,7 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                     })
                 }
 
-
+                // clientSelectedChannelObjects.push(data.data[0]);
 
                 loadSelectedChannels();
 
@@ -1092,6 +1203,7 @@ function handleAddButton(){
     if(browsingMode){
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
+        compileSelectedChannelsFromDropdown()
     }
     else{
         //FUNCTION THAT LOOPS THROUGH clientSubscribedChannelIds and ClientSubscribedChannelObjects - and
@@ -1119,7 +1231,27 @@ function handleAddButton(){
     $('#channelSearchModal').modal('hide')
 }
 
-
+function handleRemoveButton(){
+    let channelId = $(this).parent().attr("channelId");
+    console.log("REMOVING "+channelId)
+    access_database.delete_ctu(channelId);
+    for(var i = 0; i<clientSubscribedChannelObjects; i++){
+        if(clientSubscribedChannelObjects[i].youtube_channel_id === channelId){
+            clientSubscribedChannelObjects.splice(i, 1)
+        }
+        if(clientSubscribedChannelIds[i] === channelId){
+            clientSubscribedChannelIds.splice(i, 1)
+        }
+        if(clientSelectedChannelObjects[i].youtube_channel_id === channelId){
+            clientSelectedChannelObjects.splice(i, 1)
+        }
+        if(clientSelectedChannelIds[i] === channelId){
+            clientSelectedChannelIds.splice(i, 1)
+        }
+    }
+    renderChannelSelectionDropdown();
+    loadSelectedChannels();
+}
 
 function displayCurrentPageNumber() {
     $("#currentSlideNumberArea").text(currentSlideNumber);
@@ -1189,29 +1321,33 @@ function removeUnusedRows(){
 }
 
 
-function displayTableDataOnMobile(){
-    var rightTableData = $(".item").find(".tdListRight").children().clone();
-    var newElementArray = []
-    for(var j = 0; j<rightTableData.length; j+=10){
-        var newImage = rightTableData.slice(j,j+10)
-        newElementArray.push(newImage);
-    }
-    for(var i = 0; i<newElementArray.length; i++){
-        var itemDiv = $(".pageOne_mobile").addClass('item')
-        var contentDiv = $("<div>").addClass('carousel-content');
-        var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
-        rowDiv.append(newElementArray[i]);
-        contentDiv.append(rowDiv);
-        itemDiv.append(contentDiv);
-        
-        $(".carousel-inner").append(itemDiv);
-    }
-    $(".mobileSlide").show();
-    
-    $(".tdListRight").hide();
-    $(".tdListLeft").removeClass('col-md-6');
-    // $(".carousel-inner").append(itemDiv);
-}
+
+// function displayTableDataOnMobile(){
+//     var rightTableData = $(".item").find(".tdListRight").children().clone();
+//     var newElementArray = []
+//     for(var j = 0; j<rightTableData.length; j+=10){
+//         var newImage = rightTableData.slice(j,j+10)
+//         newElementArray.push(newImage);
+//     }
+//     debugger
+//     $(".tdListRight").hide();
+//     $(".pageOne_mobile").addClass('item')
+//     for(var i=0; i<newElementArray[0].length; i++){
+//         $(".newArea").append(newElementArray[0][i])
+//     }
+//     // $(".pageTwo_mobile").addClass('item')
+//     // $(".pageOne_mobile").addClass('item')
+//     // $(".pageTwo_mobile").addClass('item')
+//     // for(var i = 0; i<newElementArray[0].length; i++){
+//     //     $(".newArea").append(newElementArray[0][i])
+//     // }
+//     // for(var i = 0; i<newElementArray[1].length; i++){
+//     //     $(".newArea2").append(newElementArray[1][i])
+//     // }
+//     // $(".mobileSlide").show();
+
+//     // $(".carousel-inner").append(itemDiv);
+// }
 
 
 // function displayTableDataOnMobile(){
@@ -1221,8 +1357,9 @@ function displayTableDataOnMobile(){
 //         var newImage = rightTableData.slice(j,j+10)
 //         newElementArray.push(newImage);
 //     }
+//     debugger
 //     for(var i = 0; i<newElementArray.length; i++){
-//         var itemDiv = $("<div>").addClass('item mobileSlide');
+//         var itemDiv = $(".pageOne_mobile").addClass('item')
 //         var contentDiv = $("<div>").addClass('carousel-content');
 //         var rowDiv = $("<div>").addClass('row,tdRow,text-center mobileRow');
 //         rowDiv.append(newElementArray[i]);
@@ -1230,14 +1367,17 @@ function displayTableDataOnMobile(){
 //         itemDiv.append(contentDiv);
 //         $(".carousel-inner").append(itemDiv);
 //     }
+//     $(".mobileSlide").show();
+    
 //     $(".tdListRight").hide();
 //     $(".tdListLeft").removeClass('col-md-6');
 //     // $(".carousel-inner").append(itemDiv);
 // }
 
+
 function displayTableDataOnDesktop(){
     $(".tdListRight").show();
-    $(".mobileSlide").remove();
+    // $(".mobileSlide").remove();
     $(".tdListLeft").addClass('col-md-6');
     var mobileSlideItem = $(".carousel-content>.mobileRow");
     // for(var i = 0; i<mobileSlideItem.length; i++){
@@ -1274,7 +1414,7 @@ function returnToPageOne(){
     $(".carousel").removeClass('slide')
     $(".carousel").carousel(0);
     if(currentSlideNumber !== 1){
-
+        clearVideoList();
         currentSlideNumber = 1; //redundant?
         if(videoObjectsToLoad.length !== 0) {
             var videosToLoad = [];
@@ -1351,15 +1491,15 @@ function convertDateForApple(dateFromAPI){
 function resetSelectedTd() {
     //NEEDS TO ALSO HANDLE FA FA SPINNER
 
-    setTimeout(function(){
+    // setTimeout(function(){
         $(".tdList").removeClass('selectedTd');
         $('.fa-circle-o-notch').remove();
-    }, 100);
+    // }, 50);
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            setTimeout(function(){
+            // setTimeout(function(){
                 $(row).addClass("selectedTd")
                 var playSymbol = $('<i>')
                     .addClass('fa fa-circle-o-notch fa-spin fa-fw')
@@ -1368,7 +1508,7 @@ function resetSelectedTd() {
                         'color': 'green'
                     });
                 $(row).find(".tdTitle>span").prepend(playSymbol);
-            }, 500)
+            // }, 500)
         }
     }
 }
@@ -1444,82 +1584,29 @@ function loadPreviousPage(){
     }
 }
 
-// Making media query with javascript to hide saerch button inside hamburger menu and dynamically creat one on header
-
-// if(window.matchMedia("(min-width: 1020px)").matches) {
-//     var searchDiv = $('<div>').addClass('form-group');
-//     var inputElement = $('<input>', {
-//         type: 'text',
-//         class: 'form-control',
-//         placeholder: 'search channels',
-//         name: 'channelSearch',
-//         id: 'channelSearchInput'
-//     });
-//     var buttonElement = $('<button>', {
-//         type: 'submit',
-//         class: 'btn btn-danger channelSearchButton',
-//         dataToggle: 'tooltip',
-//         dataPlacement: 'bottom',
-//         dataTrigger: 'hover',
-//         title: 'search for channels to add',
-//         text: 'search'
-//     });
-//     var searchDivWrapper = $(searchDiv).append(inputElement);
-//     var completedSearchDiv = $(searchDivWrapper).append(buttonElement);
-//     $('#mainNav').append(completedSearchDiv);
-// }
-
-function deepCopy(toCopy){
-    function objectDeepCopy(object){
-        var objectCopy = {};
-        for(var prop in object){
-            var currentValue = object[prop];
-            if(typeof currentValue !== "object"){
-                objectCopy[prop] = currentValue
-            }
-            else{
-                if(Array.isArray(currentValue)){
-                    objectCopy[prop] = arrayDeepCopy(currentValue)
-                }
-                else{
-                    objectCopy[prop] = objectDeepCopy(currentValue)
-                }
-
-            }
-        }
-        return objectCopy;
-    }
-
-    function arrayDeepCopy(array){
-        var arrayCopy = [];
-        for(var i = 0; i < array.length; i++){
-            var currentValue = array[i];
-            if(typeof currentValue !== "object"){
-                arrayCopy[i] = currentValue
-            }
-            else{
-                if(Array.isArray(currentValue)){
-                    arrayCopy[i] = arrayDeepCopy(currentValue)
-                }
-                else{
-                    arrayCopy[i] = objectDeepCopy(currentValue)
-                }
-
-            }
-
-        }
-        return arrayCopy
-    }
-    if(typeof toCopy === "object"){
-        if(Array.isArray(toCopy)){
-            return arrayDeepCopy(toCopy)
-        }
-        else{
-            return objectDeepCopy(toCopy)
-        }
-    }
-    else{
-        var copy = toCopy;
-        return toCopy;
-    }
+function rendertheatreControls() {
+    var rewindElement = $('<i>', {
+        class: "fa fa-undo modalControls rewindButton",
+        ["data-toggle"]: "tooltip",
+        ["data-placement"]: "left",
+        ["data-container"]: "body",
+        title: "Rewind 15s"
+    });
+    var playElement = $('<i>', {
+        class: "fa fa-play modalControls playButton",
+    });
+    var fastForwardElement = $('<i>', {
+        class: "fa fa-repeat modalControls fastForwardButton",
+        ["data-toggle"]: "tooltip",
+        ["data-placement"]: "right",
+        ["data-container"]: "body",
+        title: "Fast Forward 15s"
+    });
+    var closeButton = $('<button>', {
+        class: "btn btn-danger modalClose theatreModalClose",
+        dataDismiss: "modal",
+        text: "close",
+        type: "button"
+    });
+    $('#lightBoxModalFooter').append(rewindElement, playElement, fastForwardElement, closeButton);
 }
