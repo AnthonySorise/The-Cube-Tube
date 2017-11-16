@@ -68,5 +68,6 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken){
                   insert_videos($youtube_channel_id,$channel_id,$next_page_token);
             }
       }
-}     
+}    
+insert_videos($youtube_channel_id,$channel_id,"first"); 
 ?>
