@@ -162,6 +162,7 @@ body {
 	white-space: nowrap;
 	text-align: left;
 	margin-top: 5px;
+	line-height: 0.0;
 }
 .dropdownChannelLiLoad>.fa-refresh, #categoryButton>.fa{
 	color: red;
