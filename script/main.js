@@ -170,7 +170,7 @@ function clickHandler() {
         }
     });
 
-    $('#channelCategoryUl').on('click','.channelLiChannel',(e)=>{
+    $('#channelCategoryUl').on('click','.channelLiChannel, .dropdownChannelLi input',(e)=>{
         let input = $(e.target).children('input');
         if(input[0].checked == true){
             input[0].checked = false;
