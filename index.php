@@ -1,3 +1,6 @@
+<?php  
+require_once('./script/api_calls_to_db/access_database/get_user_query.php');
+?>
 <!--
 consider carousel for the video list area:
 	issue - accessibility issue
@@ -14,8 +17,8 @@ consider carousel for the video list area:
 		gtag('js', new Date());
 		gtag('config', 'UA-109199068-1');
 	</script>
-
-	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Audiowide" rel="stylesheet">
+	
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Audiowide|Arvo" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	 crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -29,6 +32,8 @@ consider carousel for the video list area:
 	<script type="text/javascript" src="script/api_calls_to_db/access_database/database_api.js"></script>
 	<script type="text/javascript" src="script/main.js"></script>
 	<script type="text/javascript" src="script/autoSearch.js"></script>
+	<script type="text/javascript" src="script/uiControl.js"></script>
+    <script type="text/javascript" src="script/utilities.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
@@ -36,119 +41,77 @@ consider carousel for the video list area:
 </head>
 
 <body>
-	<nav class="navbar navbar-fixed-top" id="mainNav">
+	<nav class="navbar" id="mainNav">
 		<div class="container-fluid" id="">
 			<!--navbar content main div-->
 			<div class="navbar-header">
 				<!--nav header div; includes hamburger menu and navbrand-->
-				<button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#mainNav-option" data-parent="#accordion"
-				 aria-expanded="true">
+				<button type="button" class="navbar-toggle collapsed hamburger" id="channelCategoryHamburger" aria-expanded="true">
 					<span class="hamburger-box">
-						<span class="glyphicon glyphicon-menu-hamburger"></span>
+						<span class="glyphicon glyphicon-th-list"></span>
 					</span>
 				</button>
 				<span class="navbar-brand text-center">
 					<!-- <img src="assets/images/ctube_logo.png" alt="logo" id="cubeTubeLogo"> -->
 					<span id="cubeTubeLogo"></span>
-					<span class="logoText">TheCubeTube</span>
+					<span class="logoText hidden-xs">TheCubeTube</span>
 				</span>
+				<form class="navbar-form channelSearchForm channelSearchFormMobile visible-xs">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
+							<span type="button" class="input-group-addon channelSearchButton">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</span>
+						</div>
+					</div>
+				</form>
 			</div>
 			<!--end of nav header div-->
 
 			<!-- having bootstrap js before jquery js makes it so the hamburger menu does not expand -->
-
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
-				<!--div for nav options-->
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown channelDropDown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							Category
+						<a href="#" class="dropdown-toggle hidden-xs" role="button" aria-haspopup="true" aria-expanded="false">
+							Channels
 							<span class="caret"></span>
 						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="#">ALL</a>
+						<a href="#" class="visible-xs closeChannelDropXs">
+							close <i class="fa fa-times" aria-hidden="true"></i>
+						</a>
+						<ul class="dropdown-menu text-center" id="channelCategoryUl">
+							<li id="categoryButton">
+								<i class="fa fa-caret-square-o-left" aria-hidden="true"></i>
+								Category
 							</li>
 							<li role="separator" class="divider"></li>
-							<li>
-								<a href="#">
-									<button class="btn btn-danger btn-xs"> X</button> World History</a>
+							<li class="dropdownChannelLiLoad">
+								<i class="fa fa-refresh" aria-hidden="true"></i>
+								Load Channels
 							</li>
-							<li role="separator" class="divider"></li>
-							<li>
-								<a href="#">Computer Science</a>
+							<li class="dropdownChannelLiAll">
+                                <i class="fa fa-cube" aria-hidden="true"></i>
+                                All
 							</li>
-							<li>
-								<a href="#">Cooking</a>
-							</li>
-							<li>
-								<a href="#">Film Reviews</a>
-							</li>
-							<li>
-								<a href="#">Gaming Lets Plays</a>
-							</li>
-							<li>
-								<a href="#">Gaming News</a>
-							</li>
-							<li>
-								<a href="#">Music</a>
-							</li>
-							<li>
-								<a href="#">News</a>
-							</li>
-							<li>
-								<a href="#">Politics</a>
-							</li>
+                            <li role="separator" class="divider"></li>
+                            <ul id="dropdownChannelUl"></ul>
 						</ul>
 					</li>
 				</ul>
-				<p class="navbar-text">World History</p>
-				<ul class="nav navbar-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Channels
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="#">ALL</a>
-							</li>
-							<li role="separator" class="divider"></li>
-							<li>
-								<a href="#">
-									<button class="btn btn-danger btn-xs"> X</button> Geography Now </a>
-							</li>
-							<li>
-								<a href="#">
-									<button class="btn btn-danger btn-xs"> X</button> The Great War</a>
-							</li>
-							<li role="separator" class="divider"></li>
-							<li>
-								<a href="#">Alternate History Hub</a>
-							</li>
-							<li>
-								<a href="#">History Buffs</a>
-							</li>
-							<li>
-								<a href="#">Tales of History</a>
-							</li>
-							<li>
-								<a href="#">The Metatron</a>
-							</li>
-
-						</ul>
-					</li>
-				</ul>
-				<p class="navbar-text">Geography Now | The Great War</p>
-				<form class="navbar-right navbar-form channelSearchForm">
+				<form class="navbar-right navbar-form channelSearchForm hidden-xs form-inline">
 					<!--form for searching channels-->
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="search channels" name="channelSearch" id="channelSearchInput">
-
+						<div class="input-group">
+							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
+							<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
+							<!-- <button class="channelSearchButton"> -->
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							<!-- </button> -->
+							</span>
+						</div>
 					</div>
-					<button type="submit" class="btn btn-danger channelSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
-					 title="search for channels to add">search</button>
 				</form>
-				<!--end of form for channel search-->
 			</div>
 			<!--end of nav options div-->
 		</div>
@@ -158,7 +121,7 @@ consider carousel for the video list area:
 		<div class="main-content">
 			<div class="row videoRowWrapper text-center">
 				<!-- <div class="col-sm-3"></div> -->
-				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center vidRowVideoCol">
+				<div class="text-center" id="mainVideoContainer">
 					<!--This is where the iframe element will go-->
 					<div id="mainVideo" class="iframeVideo"></div>
 					<div id=infoButtonContainer>
@@ -189,8 +152,8 @@ consider carousel for the video list area:
 				</div>
 			</div>
 			<!--end of videoRow div-->
-			<nav class="navbar" id="midNav">
-				<div class="container-fluid" id="">
+			<nav class="navbar navbar-inverse" id="midNav">
+				<!-- <div class="container-fluid" id=""> -->
 					<!--navbar content main div-->
 					<div class="navbar-header">
 						<!--nav header div; includes hamburger menu and navbrand-->
@@ -207,8 +170,7 @@ consider carousel for the video list area:
 						<!--div for nav options-->
 						<div class="navbar-nav nav-pills infoButtons">
 
-								<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
-									<!--data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">-->
+								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
 									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
 								</a>
 
@@ -226,18 +188,21 @@ consider carousel for the video list area:
 							</label>
 						</div>
 						
-						<form class="navbar-right nav-pills">
+						<form class="navbar-right nav-pills form-inline">
 							<!--form for searching channels-->
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">
+									<span class="input-group-addon videoToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for videos from your channels">
+										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									</span>
+								</div>
 							</div>
-							<button type="submit" class="btn btn-primary videoSearchButton" data-toggle="tooltip" data-placement="bottom" data-trigger="hover"
-							 title="videos in your channels">search</button>
 						</form>
 						<!--end of form for channel search-->
 					</div>
 					<!--end of nav options div-->
-				</div>
+				<!-- </div> -->
 				<!--end of navbar content main div-->
 			</nav>
 			<div class="col-xs-12 videoListRowWrapper">
@@ -281,9 +246,12 @@ consider carousel for the video list area:
 								<div class='row contentPlaceholderWrapper'>
 									<div class="placeholderBg"></div>
 									<div class="col-sm-12 text-center contentPlaceholder">
-										<h1 class="text-center">Welcome to The CubeTube!</h1>
-										<h3>Start by searching for your favorite YouTube channel</h3>
-										<h3>Add channels by clicking the 'add' button, or simply browse content with 'browse'</h3>
+										<h1 class="text-center hidden-xs">Welcome to TheCubeTube!</h1>
+										<h3 class="text-center visible-xs">Welcome to TheCubeTube!</h3>
+										<h3 class="hidden-xs">Start by searching for your favorite YouTube channel</h3>
+										<h5 class="visible-xs">Start by searching for your favorite YouTube channel</h5>
+										<h3 class="hidden-xs">Add channels by clicking the 'add' button, or simply browse content with 'browse'</h3>
+										<p class="visible-xs">Add channels by clicking the 'add' button, or simply browse content with 'browse'</p>
 										<!--<img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png">-->
 									</div>
 								</div>
@@ -303,9 +271,9 @@ consider carousel for the video list area:
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="carousel-inner">
-								<div class="item active ">
+								<div class="item active pageOne">
 									<div class="carousel-content">
-										<div class="row tdRow text-center firstPage">
+										<div class="row tdRow text-center ">
 											<!--target each list:
                                                 e.g. changing video title
                                                 $('#tdList-' + [i] +' .tdTitle')
@@ -328,7 +296,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -351,7 +319,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -374,7 +342,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -397,7 +365,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -420,7 +388,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -443,7 +411,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -466,7 +434,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -489,7 +457,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -512,7 +480,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -535,7 +503,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -560,7 +528,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -583,7 +551,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -606,7 +574,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -629,7 +597,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -652,7 +620,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -675,7 +643,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -698,7 +666,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -721,7 +689,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -744,7 +712,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -767,7 +735,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -777,7 +745,7 @@ consider carousel for the video list area:
 										</div>
 									</div>
 								</div>
-								<div class="item">
+								<div class="item pageTwo">
 									<div class="carousel-content">
 										<div class="row tdRow text-center">
 											<!--target each list:
@@ -802,7 +770,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -825,7 +793,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -848,7 +816,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -871,7 +839,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -894,7 +862,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -917,7 +885,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -940,7 +908,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -963,7 +931,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -986,7 +954,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1009,7 +977,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1034,7 +1002,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1057,7 +1025,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1080,7 +1048,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1103,7 +1071,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1126,7 +1094,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1149,7 +1117,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1172,7 +1140,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1195,7 +1163,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1218,7 +1186,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1241,7 +1209,7 @@ consider carousel for the video list area:
 
 													</div>
 													<div class="col-xs-1 tdButton text-center">
-														<a tabindex="0" class="btn btn-danger hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
+														<a tabindex="0" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 														 data-placement="top" title="video info" data-content="a section for video info and picture">
 															<i class="fa fa-cog fa-lg" aria-hidden="true"></i>
 														</a>
@@ -1251,6 +1219,15 @@ consider carousel for the video list area:
 										</div>
 									</div>
 								</div>
+
+								<div class="pageTwo_mobile mobileSlide">
+									<div class="carousel-content">
+											<div class="row tdRow text-center">
+												<div class="col-xs-12 col-md-6 newArea2">
+													
+												</div>
+											</div>
+									</div>
 							</div>
 						</div>
 					</div>
@@ -1269,7 +1246,7 @@ consider carousel for the video list area:
 		</div>
 		<!--end of main content div-->
 		<!--modal for lightbox-->
-		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<!-- <div class="modal-header">
@@ -1286,26 +1263,33 @@ consider carousel for the video list area:
 						<div id="theaterVideo"></div>
 					</div>
 					<div class="modal-footer">
-						<span id="lightBoxModalFooter"></span>
-						<button type="button" class="btn btn-danger modalClose theatreModalClose" data-dismiss="modal">close</button>
+						<span id="lightBoxModalFooter">
+							<!-- <i class="fa fa-undo modalControls rewindButton" data-toggle="tooltip" data-placement="left" title="Rewind 15s"
+								data-container="body"></i>
+							<i class="fa fa-play modalControls playButton" data-toggle="tooltip" data-placement="bottom" title="Play"
+							data-container="body"></i>	 
+							<i class="fa fa-repeat modalControls fastForwardButton" data-toggle="tooltip" data-placement="right" title="Fast Forward 15s"
+								data-container="body"></i>
+							<button type="button" class="btn btn-danger modalClose theatreModalClose" data-dismiss="modal">close</button -->
+						 </span>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!--modal end for lightbox-->
 		<!--modal for channel search result-->
-		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content searchModal">
 					<div class="modal-header" id="channelSearchModalHeader">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
 						</button>
-						<div class="modal-title-wrap">
-							<h4 class="modal-title" id="channelSearchModalTitle">
-								Search Results...
-							</h4>
-						</div>
+<!--						<div class="modal-title-wrap">-->
+<!--							<h4 class="modal-title" id="channelSearchModalTitle">-->
+<!--								Search Results...-->
+<!--							</h4>-->
+<!--						</div>-->
 					</div>
 					<div class="modal-body" id="channelSearchModalBody">
 						<li id="chSearch-1" class="col-xs-12">
@@ -1484,15 +1468,40 @@ consider carousel for the video list area:
 							<button class="btn btn-success addChannelButton"> Add </button>
 						</li>
 					</div>
-					<div class="modal-footer">
-						<span id="channelSearchModalFooter"></span>
-						<button type="button" class="btn btn-danger modalClose theaterModalClose" data-dismiss="modal">close</button>
-					</div>
+<!--					<div class="modal-footer">-->
+<!--						<span id="channelSearchModalFooter"></span>-->
+<!--						<button type="button" class="btn btn-danger modalClose theaterModalClose" data-dismiss="modal">close</button>-->
+<!--					</div>-->
 				</div>
 			</div>
 		</div>
 		<!--modal end for channel search result-->
-
+		<!--modal for user link-->
+				<!-- command for modal show:  $('#userLinkModal').modal('show') -->
+		<div class="modal fade" id="userLinkModal" tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
+        				</button>
+        				<div class="modal-title-wrap">
+        					<h5 class="modal-title" id="userLinkModalTitle">
+        						Channel Added!
+        					</h5>
+        				</div>
+      				</div>
+					<div class="modal-body userLinkBody">
+						
+					</div>
+					<div class="modal-footer">
+						<span id="userLinkModalFooter"></span>
+						<button type="button" class="btn btn-danger modalClose userLinkModalClose" data-dismiss="modal">close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--modal end for user link-->
 	</div>
 </body>
 

@@ -3,13 +3,16 @@ if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
 $offset = $_POST['offset'];
-$user_id = $_POST['user_id'];
+$user_id = USER_ID;
 if(empty($offset)){
     $output['errors'][] = 'MISSING OFFSET';
 }
-if(empty($user_id)){
-    $output['errors'][] = "MISSING USER ID";
-}
+//tm87
+// if(!preg_match('/[0-9]+/', $offset)){
+//     $output['errors'][] = 'INVALID OFFSET';
+//     output_and_exit($output);
+// }
+
 $stmt = $conn->prepare("SELECT v.youtube_video_id, v.description, v.published_at 
 FROM videos AS v
 JOIN channels_to_users AS c on v.channel_id = c.channel_id

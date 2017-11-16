@@ -2,16 +2,17 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$user_id = $_POST['user_id'];
-if(empty($user_id)){
-    $output['errors'][] = 'MISSING USER ID';
+if(!isset($_SESSION['user_link'])){
+    $output['user'] = false;
+    output_and_exit($output);
 }
+$user_id = USER_ID;
 $stmt = $conn->prepare("SELECT c.channel_title, 
-c.youtube_channel_id,c.description,c.thumbnail_file_name,ctu.ctu_id 
+c.youtube_channel_id,c.description,c.thumbnail_file_name,c.last_channel_pull
 FROM channels AS c 
 JOIN channels_to_users AS ctu
 ON c.channel_id = ctu.channel_id 
-WHERE ctu.user_id = ?,
+WHERE ctu.user_id = ?
 ORDER BY c.channel_title");
 $stmt->bind_param('i',$user_id);
 $stmt->execute();
