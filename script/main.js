@@ -723,17 +723,19 @@ function renderChannelSelectionDropdown(){
             'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
         });
 
-        var browseButton = $('<button class="btn">Browse</button>');
-        var removeButton = $('<button class="btn">Remove</button>');
+        var browseButton = $('<button class="btn-primary">Browse</button>').css("display", "block");
+        var removeButton = $('<button class="btn-danger">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
 
-        browseButton.on("click", handleBrowseButton);
+        browseButton.on("click", handleBrowseButton)
 
-        removeButton.on("click", handleRemoveButton);
+
+        removeButton.on("click", handleRemoveButton)
 
         settingsContent.append(browseButton, removeButton);
 
         let channelSettingsButton = $('<a>').attr({
-            'role':'button'
+            'role':'button',
+            'class':'dropdownSettingsPopover'
         }).css({
             padding: '0',
             'line-height':'180%'
@@ -1185,6 +1187,9 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 // }
 
 function handleBrowseButton() {
+    $('.dropdownSettingsPopover').popover('hide');
+
+
     browsingMode = true;
     videoObjectsToLoad = [];
 
@@ -1237,6 +1242,7 @@ function handleAddButton(){
 }
 
 function handleRemoveButton(){
+    $('.dropdownSettingsPopover').popover('hide');
     let channelId = $(this).parent().attr("channelId");
     console.log("REMOVING "+channelId)
     access_database.delete_ctu(channelId);

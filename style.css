@@ -162,6 +162,7 @@ body {
 	white-space: nowrap;
 	text-align: left;
 	margin-top: 5px;
+	line-height: 0.75;
 }
 .dropdownChannelLiLoad>.fa-refresh, #categoryButton>.fa{
 	color: red;
@@ -382,8 +383,16 @@ div.thRow {
 	background-color: rgba(54, 78, 90,0.5);
 	display: inline;
 }
+
+.tdList:nth-child(even):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0) !important;
+	display: inline;
+}
+
 .tdList:hover, .tdRow div.selectedTd {
-	background-color: #b4bdc1;
+	/* background-color: #b4bdc1; */
+	background-color: rgba(180, 189, 193, 1.0)
 }
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
