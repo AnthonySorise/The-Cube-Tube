@@ -723,14 +723,21 @@ function renderChannelSelectionDropdown(){
         var browseButton = $('<button class="btn">Browse</button>');
         var removeButton = $('<button class="btn">Remove</button>');
 
-        browseButton.on("click", handleBrowseButton);
+        browseButton.on("click", function(){
+            handleBrowseButton();
+            // $('.dropdownSettingsPopover').popover('hide')
+        });
 
-        removeButton.on("click", handleRemoveButton);
+        removeButton.on("click", function(){
+            handleRemoveButton();
+            // $('.dropdownSettingsPopover').popover('hide')
+        });
 
         settingsContent.append(browseButton, removeButton);
 
         let channelSettingsButton = $('<a>').attr({
-            'role':'button'
+            'role':'button',
+            // 'class':'dropdownSettingsPopover'
         }).css({
             padding: '0'
         }).popover({
@@ -1190,6 +1197,9 @@ function handleBrowseButton() {
 
 
     let channelID = $(this).parent().attr("channelId");
+
+    console.log("BROWSING CHANNEL ID ", channelID)
+
     manageDatabaseWithChannelId(channelID);
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
