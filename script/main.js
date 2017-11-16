@@ -727,12 +727,11 @@ function renderChannelSelectionDropdown(){
         var removeButton = $('<button class="btn">Remove</button>');
 
         browseButton.on("click", handleBrowseButton)
-            // $('.dropdownSettingsPopover').popover('hide')
 
 
         removeButton.on("click", handleRemoveButton)
 
-        // $('.dropdownSettingsPopover').popover('hide')
+
 
 
         settingsContent.append(browseButton, removeButton);
@@ -1189,6 +1188,9 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 // }
 
 function handleBrowseButton() {
+    $('.dropdownSettingsPopover').popover('hide');
+
+
     browsingMode = true;
     videoObjectsToLoad = [];
 
@@ -1244,6 +1246,7 @@ function handleAddButton(){
 }
 
 function handleRemoveButton(){
+    $('.dropdownSettingsPopover').popover('hide');
     let channelId = $(this).parent().attr("channelId");
     console.log("REMOVING "+channelId)
     access_database.delete_ctu(channelId);

@@ -25,6 +25,7 @@ function closeChannelDrop(){
 			.attr('aria-expanded','false');
 		$('.channelDropDown').removeClass('open');
 		dropOpened = false;
+        $('.dropdownSettingsPopover').popover('hide');
 	});
 }
 
@@ -66,6 +67,7 @@ $(window).on('click',(e)=>{
                 .attr('aria-expanded','false');
             $('.channelDropDown').removeClass('open');
             dropOpened = false;
+            $('.dropdownSettingsPopover').popover('hide');
 		}
 	}
 	
