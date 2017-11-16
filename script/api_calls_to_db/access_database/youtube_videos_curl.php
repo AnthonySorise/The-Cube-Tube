@@ -28,7 +28,7 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken){
                   '$json: ' . $json . "\n";
       //echo $body;
       } else {
-            echo('success \n');
+            echo('video query success'."\n");
             $video_array = json_decode($json, true);
             $next_page_token = $video_array['nextPageToken'];
             echo($next_page_token."\n");
@@ -38,7 +38,7 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken){
                   $youtube_video_id = $entries[$i]['id']['videoId'];
                   echo("video id : ".$youtube_video_id."\n");
                   $description = $entries[$i]['snippet']['description'];
-                  echo("description : ".$description."\n");
+                  echo('description : '.$description."\n");
                   $video_title = $entries[$i]['snippet']['title'];
                   $published_at = $entries[$i]['snippet']['publishedAt'];
                   $published_at = str_replace("T"," ",$published_at);

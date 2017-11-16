@@ -50,7 +50,6 @@ if ($error_occurred ){
           if(mysqli_affected_rows($conn)>0){
               $output['success'] = true;
               $channel_id = mysqli_insert_id($conn);
-              echo("channel id : ".$channel_id);
               include("youtube_videos_curl.php");
           }else{
               $output['errors'][]='UNABLE TO INSERT';
