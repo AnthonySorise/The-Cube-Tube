@@ -718,20 +718,21 @@ function renderChannelSelectionDropdown(){
             class: 'fa fa-cog'
         });
 
-        var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
+        // var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
+        var settingsContent = $('<div>',{
+            'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
+        });
 
         var browseButton = $('<button class="btn">Browse</button>');
         var removeButton = $('<button class="btn">Remove</button>');
 
-        browseButton.on("click", function(){
-            handleBrowseButton();
-            // $('.dropdownSettingsPopover').popover('hide')
-        });
+        browseButton.on("click", handleBrowseButton)
 
-        removeButton.on("click", function(){
-            handleRemoveButton();
-            // $('.dropdownSettingsPopover').popover('hide')
-        });
+
+        removeButton.on("click", handleRemoveButton)
+
+
+
 
         settingsContent.append(browseButton, removeButton);
 
@@ -1187,6 +1188,9 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
 // }
 
 function handleBrowseButton() {
+    $('.dropdownSettingsPopover').popover('hide');
+
+
     browsingMode = true;
     videoObjectsToLoad = [];
 
@@ -1242,6 +1246,7 @@ function handleAddButton(){
 }
 
 function handleRemoveButton(){
+    $('.dropdownSettingsPopover').popover('hide');
     let channelId = $(this).parent().attr("channelId");
     console.log("REMOVING "+channelId)
     access_database.delete_ctu(channelId);
