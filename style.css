@@ -378,7 +378,8 @@ div.thRow {
 	z-index: 1;
 }
 .tdList:nth-child(even){
-	background-color: #364e5a;
+	/* background-color: #364e5a; */
+	background-color: rgba(54, 78, 90,0.5)
 }
 .tdList:hover, .tdRow div.selectedTd {
 	background-color: #b4bdc1;
