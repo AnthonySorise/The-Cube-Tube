@@ -278,7 +278,7 @@ function clickHandler() {
                     let videoURL = 'https://i.ytimg.com/vi/' + selectedVideoId + '/mqdefault.jpg';
                     const videoThumbnail = $('<img>').attr('src', videoURL).css({
                         width: '120px',
-                        height: '70px',
+                        height: '45vh',
                     });
                     videoThumbnail.css("position", "relative")
                         .css("left", "50%")
@@ -344,7 +344,7 @@ function clickHandler() {
 
                     const channelThumbnail = $('<img>').attr('src', data.items[0].snippet.thumbnails.medium.url).css({
                         width: '70px',
-                        height: '70px',
+                        height: '40vh',
                     });
                     channelThumbnail.css("position", "relative")
                         .css("left", "50%")
