@@ -191,7 +191,6 @@ function clickHandler() {
                 dropOpened=true;
             },300);
         }
-        
     });
     //Search Button
     $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
