@@ -731,16 +731,19 @@ function renderChannelSelectionDropdown(){
 
         let channelSettingsButton = $('<a>').attr({
             "data-trigger": "focus",
-            "data-toggle" : "popover"
+            "data-toggle" : "popover",
+            "data-content" : settingsContent,
+            "data-placemet" : 'left',
+            'data-container' : 'body'
         }).css({
             padding: '0'
         }).append(cog);
-        channelSettingsButton.popover({
-            html: true,
-            content: settingsContent,
-            placement: 'left',
-            container: 'body'
-        });
+        // channelSettingsButton.popover({
+        //     html: true,
+        //     content: settingsContent,
+        //     placement: 'left',
+        //     container: 'body'
+        // });
         const channelSettingsSpan = $('<div>',{
             class: 'channelSettingButton col-xs-2 text-center'
         }).css({
