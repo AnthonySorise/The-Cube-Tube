@@ -74,7 +74,8 @@ consider carousel for the video list area:
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown channelDropDown">
 						<a href="#" class="dropdown-toggle hidden-xs" role="button" aria-haspopup="true" aria-expanded="false">
-							Channels
+							<i class="fa fa-cube" aria-hidden="true"></i>
+							MyCube
 							<span class="caret"></span>
 						</a>
 						<a href="#" class="visible-xs closeChannelDropXs">
@@ -91,7 +92,7 @@ consider carousel for the video list area:
 								Load Channels
 							</li>
 							<li class="dropdownChannelLiAll">
-                                <i class="fa fa-cube" aria-hidden="true"></i>
+                                <i class="fa fa-cubes" aria-hidden="true"></i>
                                 All
 							</li>
                             <li role="separator" class="divider"></li>
@@ -168,26 +169,27 @@ consider carousel for the video list area:
 
 					<div class="collapse navbar-collapse text-center" id="midNav-option">
 						<!--div for nav options-->
-						<div class="navbar-nav nav-pills infoButtons">
+						<div class="navbar-nav nav-pills midNavButtonWrap">
+							<div class="navbar-nav nav-pills infoButtons">
 
-								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
-									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
-								</a>
+									<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
+										<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
+									</a>
 
 
-								<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
-									<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
-								</a>
+									<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
+										<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
+									</a>
 
+							</div>
+							<div class="navbar-nav nav-pills autoPlayArea">
+								<label id="autoplayText">Autoplay</label>
+								<label class="switch">
+									<input type="checkbox" id='autoplayCheckBox' checked>
+									<span class="slider round"></span>
+								</label>
+							</div>
 						</div>
-						<div class="navbar-nav nav-pills autoPlayArea">
-							<label id="autoplayText">Autoplay</label>
-							<label class="switch">
-								<input type="checkbox" id='autoplayCheckBox' checked>
-								<span class="slider round"></span>
-							</label>
-						</div>
-						
 						<form class="navbar-right nav-pills form-inline">
 							<!--form for searching channels-->
 							<div class="form-group">
