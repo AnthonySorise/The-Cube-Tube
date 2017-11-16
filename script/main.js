@@ -737,7 +737,7 @@ function renderChannelSelectionDropdown(){
 
         let channelSettingsButton = $('<a>').attr({
             'role':'button',
-            'class':'dropdownSettingsPopover'
+            // 'class':'dropdownSettingsPopover'
         }).css({
             padding: '0'
         }).popover({
@@ -1197,6 +1197,9 @@ function handleBrowseButton() {
 
 
     let channelID = $(this).parent().attr("channelId");
+
+    console.log("BROWSING CHANNEL ID ", channelID)
+
     manageDatabaseWithChannelId(channelID);
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
