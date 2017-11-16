@@ -31,8 +31,7 @@ if ($error_occurred ){
       $thumbnail = str_replace('/photo.jpg','',$thumbnail);
       $channel_title = $channel_data['title'];
       $description = $channel_data['description'];
-      $date_created = date('Y-m-d H:i:s');
-      $last_channel_pull = date("Y-m-d H:i:s");
+      $date = date('Y-m-d H:i:s');
       $stmt = $conn->prepare("INSERT INTO channels SET 
       channel_title = ?, 
       youtube_channel_id = ?,
@@ -41,7 +40,7 @@ if ($error_occurred ){
       date_created=?,
       last_channel_pull=?");
       $stmt->bind_param('ssssss',$channel_title,$youtube_channel_id,
-      $description,$thumbnail,$date_created,$last_channel_pull);
+      $description,$thumbnail,$date,$date);
       $stmt->execute();
       if(empty($stmt)){
           $output['errors'][]='invalid query';
