@@ -739,8 +739,7 @@ function renderChannelSelectionDropdown(){
             html: true,
             content: settingsContent,
             placement: 'left',
-            container: 'body',
-            trigger: 'focus'
+            container: 'body'
         }).append(cog);
         const channelSettingsSpan = $('<div>',{
             class: 'channelSettingButton col-xs-2 text-center'
