@@ -18,7 +18,7 @@ if(empty($offset)){
 }
 $stmt = $conn->prepare("SELECT v.youtube_video_id,v.description,v.published_at, 
 v.video_title, c.channel_title, c.youtube_channel_id
-FROM videos AS v JOIN channels AS c ON v.youtube_channel_id = c.youtube_channel_id
+FROM videos AS v JOIN channels AS c ON v.channel_id = c.channel_id
 WHERE v.youtube_channel_id = ? 
 ORDER BY v.published_at DESC LIMIT 40 OFFSET ?");
 $stmt->bind_param('si',$youtube_channel_id,$offset);
