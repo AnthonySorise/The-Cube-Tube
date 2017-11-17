@@ -69,6 +69,7 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY
                   }else{
                         if(mysqli_affected_rows($conn)>0){
                               $output['success'] = true;
+                              $output['messages'][] = "insert video success";
                         }else{
                               $output['errors'][] = 'unable to insert video';
                         }

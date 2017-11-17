@@ -53,7 +53,7 @@ if ($error_occurred ){
           $output['errors'][]='invalid query';
       }else{
           if(mysqli_affected_rows($conn)>0){
-              $output['success'] = true;
+              $output['messages'][] = "insert channel success";
               $channel_id = mysqli_insert_id($conn);
               include("youtube_videos_curl.php");
           }else{

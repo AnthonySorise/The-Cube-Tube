@@ -4,11 +4,28 @@ if(empty($LOCAL_ACCESS)){
 }
 require_once("youtube_api_key");
 $youtube_channel_id = $_POST['youtube_channel_id'];
-if(empty($youtube_channel_id)){
-    $output['errors'][] = "MISSING CHANNEL ID";
+$last_channel_pull = $_POST['last_channel_pull'];
+if(empty($last_channel_pull)){
+    $output['errors'][] = "MISSING LAST CHANNEL PULL AT UPDATE";
     output_and_exit($output);
 }
-$last_pull_date = date(("Y-m-d H:i:s"));
-$sqli = "UPDATE channels SET last_published = ? WHERE youtube_channel_id = ?";
-$stmt = 
+if(empty($youtube_channel_id)){
+    $output['errors'][] = "MISSING CHANNEL ID AT UPDATE";
+    output_and_exit($output);
+}
+$time = date(("Y-m-d H:i:s"));
+$sqli = "UPDATE channels SET last_channel_pull = ? WHERE youtube_channel_id = ?";
+$stmt = $conn->prepare($sqli);
+$stmt->bind_param("ss",$time,$youtube_channel_id);
+$stmt->execute();
+if(empty($stmt)){
+    $output['errors'][]='invalid query';
+}else{
+    if(mysqli_affected_rows($conn)>0){
+        $output['messages'][] = "channel updated with last channel pull";
+    }else{
+        $output['errors'][]='UNABLE TO UPDATE';
+    }
+}
+include('youtube_videos_curl.php');
 ?>
