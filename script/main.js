@@ -274,7 +274,7 @@ function clickHandler() {
                 success: function (data) {
                     console.log('Youtube success', data);
                     let videoStatsDiv = $('<div></div>');
-                    videoStatsDiv.css("height", '45vh')
+                    videoStatsDiv.css("height", '35vh')
                     let videoURL = 'https://i.ytimg.com/vi/' + selectedVideoId + '/mqdefault.jpg';
                     const videoThumbnail = $('<img>').attr('src', videoURL).css({
                         width: '120px',
@@ -344,7 +344,7 @@ function clickHandler() {
 
                     const channelThumbnail = $('<img>').attr('src', data.items[0].snippet.thumbnails.medium.url).css({
                         width: '70px',
-                        height: '40vh',
+                        height: '70px',
                     });
                     channelThumbnail.css("position", "relative")
                         .css("left", "50%")
