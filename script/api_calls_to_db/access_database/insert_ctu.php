@@ -29,9 +29,13 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     define('USER_LINK',$_SESSION['user_link']);
     $output['user_link'] = USER_LINK;
 }
-//get user id
-//grabbing channel id from db to add to user link
+// get user id
+// grabbing channel id from db to add to user link
 $youtube_channel_id = $_POST['youtube_channel_id'];
+if(empty($youtube_channel_id)){
+    $output['errors'][] ='MISSING YOUTUBE CHANNEL ID';
+    output_and_exit($output);
+}
 $stmt = $conn->prepare("SELECT channel_id FROM channels 
 WHERE youtube_channel_id = ?");
 $stmt->bind_param('s',$youtube_channel_id);
@@ -83,7 +87,7 @@ if(!empty($results)){
             mysqli_stmt_execute($stmt);
             if(mysqli_affected_rows($conn)>0){
                 $output['success'] = true;
-                $output['insert_etu'] = success;
+                $output['insert_ctu'] = success;
             }
             else{
                 $output['errors'] = 'UNABLE TO INSERT INTO CTU';

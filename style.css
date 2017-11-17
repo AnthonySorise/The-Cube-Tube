@@ -102,6 +102,11 @@ body {
 	position: relative;
 	font-family: 'Roboto', sans-serif;
 }
+.midNavButtonWrap{
+	position: absolute;
+	left: 0;
+	margin-left: 20px;
+}
 #midNav-option form {
 	margin-right: 20px;
 }
@@ -390,14 +395,20 @@ div.thRow {
 	display: inline;
 }
 
+.tdList:nth-child(odd):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0) !important;
+	display: inline;
+}
+
 .selectedTd div {
 	background-color: rgba(180,189,193,1.0) !important;
 }
 
 /* .tdList:hover, .tdRow div.selectedTd {
 	/* background-color: #b4bdc1; */
-	background-color: rgba(180, 189, 193, 1.0) !important;
-} */
+	/* background-color: rgba(180, 189, 193, 1.0) !important;} */
+
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
 }
@@ -858,9 +869,7 @@ safer appraoch than to resizing browser to see change
 		margin-right: -15px;
 		margin-left: -15px;
 	}
-	p.navbar-text, ul.navbar-nav{
-		font-size: 10.5px;
-	}
+	
 	p.navbar-text{
 		line-height: 2.2;
 	}
@@ -869,7 +878,7 @@ safer appraoch than to resizing browser to see change
 		margin-right: 0;
 	}
 	.autoPlayArea{
-		margin-left: -15px;
+		/*margin-left: -15px;*/
 	}
 	/*end of hamburger/navbar css*/
 	body>.container-fluid {
@@ -955,7 +964,7 @@ safer appraoch than to resizing browser to see change
 	}
 	.channelSearchFormMobile{
 		display: inline-block !important;
-		width: 214px;
+		width: 208px;
 		padding: 10px 0;
 	}
 	#mainNav-option{
@@ -982,6 +991,11 @@ safer appraoch than to resizing browser to see change
 	}
 	#midNav-option{
 		background-color: rgb(40,40,40);
+	}
+	.midNavButtonWrap{
+		position: relative;
+		margin-left: -15px;
+		
 	}
 	#midNav-option form{
 		width: 95%;

@@ -5,7 +5,6 @@ if(empty($LOCAL_ACCESS)){
 $video_array = $_POST['videoArray'];
 for($i = 0; $i<count($video_array); $i++ ){
     $video_title = $video_array[$i]['video_title'];
-    $youtube_channel_id = $video_array[$i]['youtube_channel_id'];
     $youtube_video_id = $video_array[$i]['youtube_video_id'];
     $description = $video_array[$i]['description'];
     $published_at = $video_array[$i]['published_at'];
@@ -37,12 +36,11 @@ for($i = 0; $i<count($video_array); $i++ ){
     }
     $stmt = $conn->prepare("INSERT INTO videos SET 
     video_title=?,
-    youtube_channel_id=?,
     youtube_video_id=?, 
     description=?,
     published_at=?,
     last_updated=?");
-    $stmt->bind_param('ssssss',$video_title,$youtube_channel_id,$youtube_video_id,
+    $stmt->bind_param('sssss',$video_title,$youtube_video_id,
     $description,$published_at,$last_updated);
     $stmt->execute();
     if(empty($stmt)){
