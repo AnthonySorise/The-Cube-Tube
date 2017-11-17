@@ -7,6 +7,7 @@ var clientSelectedChannelIds = [];
 var clientSubscribedChannelIds = [];
 var clientSubscribedChannelObjects = [];
 var currentSlideNumber = 1;
+var currentVideoindex = null;
 var browsingMode = false;
 var currentVolumeLevel = null;
 var ytPlaying = false;
@@ -14,6 +15,8 @@ var play = "fa fa-play modalControls playButton";
 var pause = "fa fa-pause modalControls pauseButton";
 var player;
 var player2;
+var videoID = null;
+var nextVideoIdToLoad = null;
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -22,6 +25,9 @@ function onYouTubeIframeAPIReady(vidId) {
         videoId: vidId || 'lrzIR8seNXs',
         playerVars: {
             'rel': 0
+        },
+        events: {
+            'onStateChange': onPlayerStateChange
         }
     });
     onYouTubeIframeAPIReady2();
@@ -34,7 +40,7 @@ function onYouTubeIframeAPIReady2() {
         },
         events: {
             'onStateChange': onPlayerStateChange
-          }
+        }
     });
 }
 
@@ -43,28 +49,64 @@ function onPlayerStateChange(event) {
         $('.playButton').removeClass(play).toggleClass(pause);
 
     } else if (event.data == YT.PlayerState.PAUSED) {
-        $('.pauseButton').removeClass(pause).toggleClass(play);        
+        $('.pauseButton').removeClass(pause).toggleClass(play);
     }
+    if (event.data == YT.PlayerState.ENDED && getAutoPlayValue()) {
+        console.log('video ended');
+        currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == videoID);
+        if (videoObjectsToLoad.length <= currentVideoindex + 1) {
+            $.when(loadNextPage()).then(playNextYTVideo);
+            $('.carousel').carousel('next');
+        }
+        else if (videoObjectsToLoad.length % 20 === 0 && (currentVideoindex + 1) % 20 === 0) {
+            $('.carousel').carousel('next');
+            playNextYTVideo();
+        } else {
+            playNextYTVideo();
+        }
+    }
+}
+//Function to play next video and change spinner icon to current video playing
+function playNextYTVideo() {
+    currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == videoID);
+    nextVideoIdToLoad = videoObjectsToLoad[currentVideoindex + 1].youtube_video_id
+
+    if (getAutoPlayValue()) {
+        player.loadVideoById(nextVideoIdToLoad);
+    } else {
+        player.cueVideoById(nextVideoIdToLoad);
+    }
+    player2.cueVideoById(nextVideoIdToLoad);
+    videoID = nextVideoIdToLoad;
+    $(".tdList").removeClass('selectedTd');
+    $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
+    $("[videoid='" + videoID + "'] span:first").before('<i>');
+    $("[videoid='" + videoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
+        "margin-right": '5px',
+        'color': 'green'
+    });
+    $("[videoid='" + videoID + "']").addClass('selectedTd');
+
 }
 
 /*******needed for iframe player*******/
 let iframeRight = 0;
-$(window).resize(function(){
+$(window).resize(function () {
     let windowWidth = ($(window).width());
-    if(windowWidth <= 768){
+    if (windowWidth <= 768) {
         // displayTableDataOnMobile()
-    }else{
+    } else {
         // displayTableDataOnDesktop()
     }
     iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
-    $('.lightBoxMode').css('left', iframeRight+'px');
+    $('.lightBoxMode').css('left', iframeRight + 'px');
 })
 
 
 $(document).ready(function () {
     $("#text-carousel").hide()
     $(".videoHeader").hide()
-  
+
     rendertheatreControls();
     displayCurrentPageNumber();
     /**
@@ -81,22 +123,22 @@ $(document).ready(function () {
 
     $('#text-carousel').on('slide.bs.carousel', function (ev) {
         console.log(ev)
-        if(ev.direction=='left'){
+        if (ev.direction == 'left') {
             currentSlideNumber++
             loadNextPage();
-        }else{
+        } else {
             currentSlideNumber--
             loadPreviousPage();
         }
         displayCurrentPageNumber()
     });
     clearVideoList();   //hides list rows until they are needed
-    setTimeout(()=>{
+    setTimeout(() => {
         iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
-        $('.lightBoxMode').css('left', iframeRight+'px');
-    },200);
+        $('.lightBoxMode').css('left', iframeRight + 'px');
+    }, 200);
 
-    setTimeout(()=>{
+    setTimeout(() => {
         initiateUser();
     }, 2000)
 });
@@ -124,128 +166,128 @@ function tooltipFunctions() {
             $('.videoSearchButton').tooltip('hide');
         }, 1000);
     });
-    $('#videoStats .fa-bar-chart').mouseenter(function(){
-        setTimeout(function(){
+    $('#videoStats .fa-bar-chart').mouseenter(function () {
+        setTimeout(function () {
             $('#videoStats .fa-bar-chart').tooltip('hide');
         }, 1000);
     });
-    $('#channelInfo .fa-list-alt').mouseenter(function(){
-        setTimeout(function(){
+    $('#channelInfo .fa-list-alt').mouseenter(function () {
+        setTimeout(function () {
             $('#channelInfo .fa-list-alt').tooltip('hide');
         }, 1000);
     });
 }
 
 //Click handler to console log search results
-function clickHandler() {  
-    $('.channelDropDown').on('click','.dropdownChannelLiLoad',()=>{
+function clickHandler() {
+    $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         returnToPageOne();
         compileSelectedChannelsFromDropdown();
         loadSelectedChannels();
-        if(window.innerWidth <500){
+        if (window.innerWidth < 500) {
             closeChannelDrop();
-        }else{
+        } else {
             $('mainNav-option').removeClass('in')
-                .attr('aria-expanded','false');
+                .attr('aria-expanded', 'false');
             $('.channelDropDown').removeClass('open');
         }
-        
+
     });
 
-    $(".dropdownChannelLiAll").on("click", function(){
-        clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds)   ;
+    $(".dropdownChannelLiAll").on("click", function () {
+        clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds);
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
         returnToPageOne();
         renderChannelSelectionDropdown();
         loadSelectedChannels();
-        if(window.innerWidth <500){
+        if (window.innerWidth < 500) {
             closeChannelDrop();
-        }else{
+        } else {
             $('mainNav-option').removeClass('in')
-                .attr('aria-expanded','false');
+                .attr('aria-expanded', 'false');
             $('.channelDropDown').removeClass('open');
             dropOpened = false;
         }
     });
 
-    $('#channelCategoryUl').on('click','.channelLiChannel, .dropdownChannelLi input',(e)=>{
-        if($(e.target).is('input')){
+    $('#channelCategoryUl').on('click touchend', '.channelLiChannel, .dropdownChannelLi input', (e) => {
+        if ($(e.target).is('input')) {
             return;
-        }else{
+        } else {
             let input = $(e.target).children('input');
-            if(input[0].checked == true){
+            if (input[0].checked == true) {
                 input[0].checked = false;
-            }else if(input[0].checked==false){
+            } else if (input[0].checked == false) {
                 input[0].checked = true;
             }
         }
     });
-    $('a.dropdown-toggle').on('click',()=>{
+    $('a.dropdown-toggle').on('click touchend', () => {
         $('.channelDropDown').toggleClass('open');
-        if(dropOpened){
+        if (dropOpened) {
             dropOpened = false;
-        }else{
-            setTimeout(()=>{
-                dropOpened=true;
-            },300);
+        } else {
+            setTimeout(() => {
+                dropOpened = true;
+            }, 300);
         }
     });
     //Search Button
-    $('.channelSearchForm').on('click touchend','.channelSearchButton',(e)=>{
+    $('.channelSearchForm').on('click touchend', '.channelSearchButton', (e) => {
         e.preventDefault();
         $('.channelSearchForm').submit();
     });
     $(".channelSearchForm").submit(function (event) {
         event.preventDefault();
         let inputStr = '';
-        if($(event.target).find('input').val()===""){
+        if ($(event.target).find('input').val() === "") {
             return;     //prevent empty input
-        }else{
-            inputStr=$(event.target).find('input').val();
+        } else {
+            inputStr = $(event.target).find('input').val();
         }
-        $(".navbar-collapse").collapse('hide');       
+        $(".navbar-collapse").collapse('hide');
         searchChannelsByName(inputStr).then(worked, failed);
         // $(".contentPlaceholder").hide();
-        $('.contentPlaceholderWrapper').fadeOut(1000, function(){
+        $('.contentPlaceholderWrapper').fadeOut(1000, function () {
             $('#text-carousel, .videoHeader').slideDown(1100);
         });
         // $("#text-carousel").show()
         // $(".videoHeader").show()
     });
     //Browse Button
-    $('.browseChannelButton').on("click", handleBrowseButton);
-    $('.addChannelButton').on("click", handleAddButton);
+    $('.browseChannelButton').on("click touchend", handleBrowseButton);
+    $('.addChannelButton').on("click touchend", handleAddButton);
 
     //Table List Rows that are unselected
-    $(".tdTitle, .tdChannel, .tdUpDate").on("click", function () {
+    $(".tdTitle, .tdChannel, .tdUpDate").on("click touchend", function () {
 
 
-        if(!$(this).parent().hasClass('selectedTd')) {
+        if (!$(this).parent().hasClass('selectedTd')) {
             $(".tdTitle, .tdChannel").unbind("mouseup");
             //Table List Row Title that is selected
-            $(".tdTitle").mouseup(function (){
-                if($(this).parent().hasClass('selectedTd')) {
+            $(".tdTitle").mouseup(function () {
+                if ($(this).parent().hasClass('selectedTd')) {
                     // $("#videoStats").focus().click()
                     $("#videoStats").trigger('focus')
                 }
             });
 
             //Table List Row Channel that is selected
-            $(".tdChannel").mouseup(function (){
-                if($(this).parent().hasClass('selectedTd')) {
+            $(".tdChannel").mouseup(function () {
+                if ($(this).parent().hasClass('selectedTd')) {
                     // $("#channelInfo").focus().click()
                     $("#channelInfo").trigger('focus')
                 }
             });
 
-            var videoID = $(this).parent().attr('videoId');
+            videoID = $(this).parent().attr('videoId');
             var channelID = $(this).parent().attr('channelID');
 
             var selectedVideoId = $(this).parent().attr('videoId');
             // $('.fa-play-circle-o').remove();
             $('.fa-circle-o-notch').remove();
             var playSymbol = $('<i>')
-            // .addClass("fa fa-play-circle-o")
+                // .addClass("fa fa-play-circle-o")
                 .addClass('fa fa-circle-o-notch fa-spin fa-fw')
                 .css({
                     "margin-right": '5px',
@@ -274,11 +316,11 @@ function clickHandler() {
                 success: function (data) {
                     console.log('Youtube success', data);
                     let videoStatsDiv = $('<div></div>');
-                    videoStatsDiv.css("height", '45vh')
+                    videoStatsDiv.css("height", '35vh')
                     let videoURL = 'https://i.ytimg.com/vi/' + selectedVideoId + '/mqdefault.jpg';
                     const videoThumbnail = $('<img>').attr('src', videoURL).css({
                         width: '120px',
-                        height: '120px',
+                        height: '70px',
                     });
                     videoThumbnail.css("position", "relative")
                         .css("left", "50%")
@@ -344,7 +386,7 @@ function clickHandler() {
 
                     const channelThumbnail = $('<img>').attr('src', data.items[0].snippet.thumbnails.medium.url).css({
                         width: '70px',
-                        height: '40vh',
+                        height: '70px',
                     });
                     channelThumbnail.css("position", "relative")
                         .css("left", "50%")
@@ -394,17 +436,23 @@ function clickHandler() {
     $('.rewindButton').on('click', rewindVideo);
     $('.playButton').on('click', playYtVideo);
     $(document).on('keyup', function (event) {
-        if(event.keyCode === 27 && $('body').hasClass('modal-open')) {
+        if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
             console.log('Esc was pressed');
             checkTheatreModeStatus();
         }
     })
     //Lets user click outside of theatre modal to close and save the state of video
-    $('#lightBoxModal').on('hidden.bs.modal', () => {
+    $('body').on('click', (event) => {
+        //Have to check if modal footer is being clicked to stop from closing modal
+        if(event.target.classList[0] == "fa" || event.target.classList == "") {
+            return;
+        }
         checkTheatreModeStatus();
-      })
+        $('.modal-content').modal('hide');
+    })
 
-    function checkHomePageVideoStatus() {
+    function checkHomePageVideoStatus(event) {
+        event.stopPropagation()
         player.pauseVideo();
         if (player.getPlayerState() === 2) {
             checkIfPlayerIsMuted();
@@ -426,13 +474,13 @@ function clickHandler() {
     }
 
     function checkTheatreModeStatus() {
-        if (player2.getPlayerState() === 2) {            
+        if (player2.getPlayerState() === 2) {
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
             player.pauseVideo();
             $('#lightBoxModal').modal('hide');
-        } else if (player2.getPlayerState() === 1) {                               
+        } else if (player2.getPlayerState() === 1) {
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
             player.seekTo(player2.getCurrentTime());
@@ -447,31 +495,31 @@ function clickHandler() {
         var fastForward = player2.getCurrentTime();
         var add15Seconds = fastForward + 15;
         var player2State = player2.getPlayerState();
-        if(player2State === 2) {
+        if (player2State === 2) {
             player2.seekTo(add15Seconds);
             player2.pauseVideo();
             return;
         } else {
             player2.seekTo(add15Seconds);
-    
+
         }
-        
+
     }
     function playYtVideo() {
         player2.playVideo();
-        if(this.classList.value === play) {
-            $('.playButton').removeClass(play).toggleClass(pause);                    
+        if (this.classList.value === play) {
+            $('.playButton').removeClass(play).toggleClass(pause);
         } else {
             $('.pauseButton').removeClass(pause).toggleClass(play);
-            player2.pauseVideo()        
-            
+            player2.pauseVideo()
+
         }
     }
     function rewindVideo() {
         var fastForward = player2.getCurrentTime();
         var minus15Seconds = fastForward - 15;
         var player2State = player2.getPlayerState();
-        if(player2State === 2) {
+        if (player2State === 2) {
             player2.seekTo(minus15Seconds);
             player2.pauseVideo();
             return;
@@ -482,7 +530,7 @@ function clickHandler() {
     }
 }
 
-function initiateUser(){
+function initiateUser() {
     // access_database.read_channels_by_user_id()
     var numSubscribedChannels = null;
     $.ajax({
@@ -493,13 +541,13 @@ function initiateUser(){
             action: 'read_channels_by_user_id',
         },
         success: function (data) {
-            if (data.success){
+            if (data.success) {
                 console.log('read success', data.data[0].youtube_channel_id);
-                $('.contentPlaceholderWrapper').fadeOut(1000, function(){
+                $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                     $('#text-carousel, .videoHeader').slideDown(1100);
                     toastMsg('Welcome back', 3000);
                 });
-                for(var i = 0; i<data.data.length; i++){
+                for (var i = 0; i < data.data.length; i++) {
                     numSubscribedChannels = data.data.length;
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
@@ -507,15 +555,15 @@ function initiateUser(){
                     // var channelId = data.data[i].youtube_channel_id;
 
                     $.ajax({
-                        url:'./script/api_calls_to_db/access_database/access.php',
-                        method:'post',
-                        dataType:'JSON',
-                        data:{
-                            youtube_channel_id:data.data[i].youtube_channel_id,
-                            action:'read_channels_by_youtube_id'
+                        url: './script/api_calls_to_db/access_database/access.php',
+                        method: 'post',
+                        dataType: 'JSON',
+                        data: {
+                            youtube_channel_id: data.data[i].youtube_channel_id,
+                            action: 'read_channels_by_youtube_id'
                         },
-                        success:function(data){
-                            if(data.success){
+                        success: function (data) {
+                            if (data.success) {
                                 console.log('read data success', data.data);
                                 // data.data[0].youtube_channel_id = channelId;
                                 clientSubscribedChannelObjects.push(data.data[0]);
@@ -525,17 +573,17 @@ function initiateUser(){
                                     loadSelectedChannels();
                                     renderChannelSelectionDropdown();
                                 }
-                            }else{
+                            } else {
                                 console.log(data);
                             }
                         },
-                        errors:function(data){
+                        errors: function (data) {
                             console.log(data['errors'], data);
                         }
                     });
                 }
                 // collectVideosToLoad();
-            }else{
+            } else {
                 console.log(data);
             }
         },
@@ -600,7 +648,7 @@ function searchChannelsByName(inputStr) {
                 $(chName).text(data.items[i].snippet.channelTitle);
                 $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
 
-                if(clientSubscribedChannelIds.includes(data.items[i].snippet.channelId)){
+                if (clientSubscribedChannelIds.includes(data.items[i].snippet.channelId)) {
                     $(channelListData + " .addChannelButton").addClass("disabled").text("Added");
                 }
             }
@@ -625,7 +673,7 @@ function failed(message) {
 }
 
 function renderChannelSearchStats(i) {
-    if($("#chSearch-"+(i+1)+">h4>span").text() !== "") {
+    if ($("#chSearch-" + (i + 1) + ">h4>span").text() !== "") {
         const channelListData = "#chSearch-" + (i + 1);
         const chSub = "#chSearch-" + (i + 1) + " .chSub";
         const chDesc = "#chSearch-" + (i + 1) + " .chInfoButton";
@@ -675,7 +723,7 @@ function clearChannelResults() {
     }
 }
 
-function clearVideoList(){
+function clearVideoList() {
     $(".tdList").popover('destroy');
 
     $('.tdList').attr("videoID", "");
@@ -689,53 +737,53 @@ function clearVideoList(){
     $('.tdList').hide();
 }
 
-function renderChannelSelectionDropdown(){
+function renderChannelSelectionDropdown() {
     $(".dropdownChannelLi").remove();
 
     //sort by name
-    clientSubscribedChannelObjects.sort(function(a, b){
-        if(a.channel_title.toLowerCase() < b.channel_title.toLowerCase()){
+    clientSubscribedChannelObjects.sort(function (a, b) {
+        if (a.channel_title.toLowerCase() < b.channel_title.toLowerCase()) {
             return -1
         }
-        if(a.channel_title.toLowerCase() > b.channel_title.toLowerCase()){
+        if (a.channel_title.toLowerCase() > b.channel_title.toLowerCase()) {
             return 1
         }
 
     });
 
     //render to dropdown
-    for(var i = 0; i< clientSubscribedChannelObjects.length; i++){
+    for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
 
-        let channelLi = $('<li>',{
+        let channelLi = $('<li>', {
             'class': 'dropdownChannelLi row'
         });
 
         //let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
-        const cog = $('<i>',{
+        const cog = $('<i>', {
             class: 'fa fa-cog'
         });
 
         // var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
-        var settingsContent = $('<div>',{
+        var settingsContent = $('<div>', {
             'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
         });
 
         var browseButton = $('<button class="btn-primary">Browse</button>').css("display", "block");
         var removeButton = $('<button class="btn-danger">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
 
-        browseButton.on("click", handleBrowseButton)
+        browseButton.on("click touchend", handleBrowseButton)
 
 
-        removeButton.on("click", handleRemoveButton)
+        removeButton.on("click touchend", handleRemoveButton)
 
         settingsContent.append(browseButton, removeButton);
 
         let channelSettingsButton = $('<a>').attr({
-            'role':'button',
-            'class':'dropdownSettingsPopover'
+            'role': 'button',
+            'class': 'dropdownSettingsPopover'
         }).css({
             padding: '0',
-            'line-height':'180%'
+            'line-height': '180%'
         }).popover({
             html: true,
             'content': settingsContent,
@@ -744,30 +792,30 @@ function renderChannelSelectionDropdown(){
             'toggle': 'focus'
         }).append(cog);
 
-        const channelSettingsSpan = $('<div>',{
+        const channelSettingsSpan = $('<div>', {
             class: 'channelSettingButton col-xs-2 text-center'
         }).css({
             padding: '0'
         }).append(channelSettingsButton);
 
         let channelCheckbox = $('<input>').attr({
-            'type' : 'checkbox',
-            'name' : clientSubscribedChannelObjects[i].channel_title,
-            'channel_id' : clientSubscribedChannelObjects[i].youtube_channel_id,
-            'class' : 'dropdownChannel'
+            'type': 'checkbox',
+            'name': clientSubscribedChannelObjects[i].channel_title,
+            'channel_id': clientSubscribedChannelObjects[i].youtube_channel_id,
+            'class': 'dropdownChannel'
         });
         //check if channel is selected
-        if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id)!== -1){
+        if (clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1) {
             channelCheckbox.attr("checked", "checked")
         }
-        let channelLiMain = $('<div>',{
-            class:'channelLiChannel col-xs-10'
+        let channelLiMain = $('<div>', {
+            class: 'channelLiChannel col-xs-10'
         }).css({
             padding: '0',
             'overflow': 'hidden',
             'text-overflow': 'ellipsis',
-            'white-space' : 'nowrap',
-            'line-height':'200%'
+            'white-space': 'nowrap',
+            'line-height': '200%'
         }).text(clientSubscribedChannelObjects[i].channel_title);
         channelLiMain.prepend(channelCheckbox);
         // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
@@ -786,30 +834,30 @@ function renderChannelSelectionDropdown(){
     }
 }
 
-function compileSelectedChannelsFromDropdown(){
+function compileSelectedChannelsFromDropdown() {
     var selectedInputs = $(".dropdownChannel:checked")
     clientSelectedChannelIds = [];
-    for(var i = 0; i<selectedInputs.length; i++){
+    for (var i = 0; i < selectedInputs.length; i++) {
         clientSelectedChannelIds.push($(selectedInputs[i]).attr("channel_id"))
     }
     clientSelectedChannelObjects = [];
-    for (var i = 0; i<clientSubscribedChannelObjects.length; i++){
-        if(clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1){
+    for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
+        if (clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1) {
             clientSelectedChannelObjects.push(clientSubscribedChannelObjects[i])
         }
     }
 }
 
 
-function loadSelectedChannels(){
+function loadSelectedChannels() {
     $.ajax({    //RETRIEVE VIDEOS FROM DB
         url: './script/api_calls_to_db/access_database/access.php',
         method: 'POST',
         dataType: 'JSON',
         data: {
-            action:'read_videos_by_channel_array',
-            channel_id_array:clientSelectedChannelIds,
-            offset:0
+            action: 'read_videos_by_channel_array',
+            channel_id_array: clientSelectedChannelIds,
+            offset: 0
         },
         success: function (data) {
             if (data.success) {
@@ -821,7 +869,7 @@ function loadSelectedChannels(){
                 // loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                 renderVideoList(videoObjectsToLoad);
             }
-            else{
+            else {
                 console.log('Channel Found Without Videos', data)
             }
         },
@@ -841,7 +889,7 @@ function renderVideoList(videoArray) {
     clearVideoList();
 
     for (let i = 0; i < videoArray.length; i++) {
-        if(videoArray[i] === undefined){
+        if (videoArray[i] === undefined) {
             return
         }
 
@@ -852,13 +900,13 @@ function renderVideoList(videoArray) {
 
         let dateString = videoArray[i].published_at;
 
-        if(checkIfAppleDevice()){
+        if (checkIfAppleDevice()) {
             // let date = "2017-11-03 09:34:14" //testing only - sample data
             let newDate = dateString.split(" ");
             let removeTime = newDate[0].split("-")
-            let newDateString = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
+            let newDateString = removeTime[1] + '/' + removeTime[2] + '/' + removeTime[0]
             dateString = newDateString
-        }else{
+        } else {
             const d = new Date(dateString);
             dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
         }
@@ -905,11 +953,11 @@ function renderVideoList(videoArray) {
     }, 750);
 }
 
-function addChannelModal(userLink){
-    if(userLink){
-        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user="+userLink)
+function addChannelModal(userLink) {
+    if (userLink) {
+        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user=" + userLink)
     }
-    else{
+    else {
         $('.userLinkBody').text("Channel added to your subscriptions!")
     }
     $('#userLinkModal').modal('show');
@@ -939,41 +987,41 @@ function ytChannelApiToDb(channelId, isAdding = false) {
 
             // access_database.insert_channel(channelDbObject);
             $.ajax({
-                url:'./script/api_calls_to_db/access_database/access.php',
-                method:'post',
-                dataType:'JSON',
-                data:{
-                    action:'insert_channel',
-                    youtube_channel_id:channelDbObject.youtube_channel_id,
-                    channel_title:channelDbObject.channel_title,
-                    description:channelDbObject.description,
-                    thumbnail:channelDbObject.thumbnail
+                url: './script/api_calls_to_db/access_database/access.php',
+                method: 'post',
+                dataType: 'JSON',
+                data: {
+                    action: 'insert_channel',
+                    youtube_channel_id: channelDbObject.youtube_channel_id,
+                    channel_title: channelDbObject.channel_title,
+                    description: channelDbObject.description,
+                    thumbnail: channelDbObject.thumbnail
                 },
-                success:function(data){
-                    if(data.success){
+                success: function (data) {
+                    if (data.success) {
                         console.log('insert channel success', data);
 
-                        if(!isAdding){
+                        if (!isAdding) {
                             clientSelectedChannelObjects = [];
                         }
-                        else{
+                        else {
                             var isDup = false;
-                            for(var i = 0; i < clientSubscribedChannelObjects.length; i++){
-                                if(clientSubscribedChannelObjects[i].youtube_channel_id === channelDbObject.youtube_channel_id){
+                            for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
+                                if (clientSubscribedChannelObjects[i].youtube_channel_id === channelDbObject.youtube_channel_id) {
                                     isDup = true
                                 }
                             }
-                            if(!isDup){
+                            if (!isDup) {
                                 clientSubscribedChannelObjects.push(channelDbObject);
                             }
 
                             $.ajax({
-                                url:'./script/api_calls_to_db/access_database/access.php',
-                                method:'post',
-                                dataType:'JSON',
-                                data:{
-                                    action:'insert_ctu',
-                                    youtube_channel_id:channelId
+                                url: './script/api_calls_to_db/access_database/access.php',
+                                method: 'post',
+                                dataType: 'JSON',
+                                data: {
+                                    action: 'insert_ctu',
+                                    youtube_channel_id: channelId
                                 },
                                 success: function (data) {
                                     if (data.success) {
@@ -990,7 +1038,7 @@ function ytChannelApiToDb(channelId, isAdding = false) {
                         clientSelectedChannelObjects.push(channelDbObject);
                     }
                 },
-                errors:function(data){
+                errors: function (data) {
                     console.log('insert error');
                 }
             })
@@ -1034,8 +1082,8 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 
             }
 
-            if(firstRun){
-                if(!isAdding) {
+            if (firstRun) {
+                if (!isAdding) {
                     var clientPackage = [];
                     for (var i = 0; i < 40; i++) {
                         clientPackage.push(packageToSendToDb[i])
@@ -1045,7 +1093,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
                     renderVideoList(videoObjectsToLoad);
                     access_database.insert_video(packageToSendToDb);
                 }
-                else{
+                else {
                     $.ajax({
                         url: './script/api_calls_to_db/access_database/access.php',
                         method: 'POST',
@@ -1067,7 +1115,7 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
 
                 }
             }
-            else{
+            else {
                 access_database.insert_video(packageToSendToDb);
             }
 
@@ -1081,20 +1129,20 @@ function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = f
     });
 }
 
-function manageDatabaseWithChannelId (channelID, isAdding = false){
+function manageDatabaseWithChannelId(channelID, isAdding = false) {
     videoObjectsToLoad = null;
 
-    if(!isAdding){
+    if (!isAdding) {
         clientSelectedChannelIds = [];
     }
-    else{
+    else {
         var isDup = false;
-        for(var i = 0; i<clientSubscribedChannelIds.length; i++){
-            if(clientSubscribedChannelIds[i] === channelID){
+        for (var i = 0; i < clientSubscribedChannelIds.length; i++) {
+            if (clientSubscribedChannelIds[i] === channelID) {
                 isDup = true
             }
         }
-        if(!isDup){
+        if (!isDup) {
             clientSubscribedChannelIds.push(channelID);
             // clientSelectedChannelIds.push(channelID);
         }
@@ -1102,42 +1150,42 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
     clientSelectedChannelIds.push(channelID);
 
     $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
-        url:'./script/api_calls_to_db/access_database/access.php',
-        method:'post',
-        dataType:'JSON',
-        data:{
-            youtube_channel_id:channelID,
-            action:'read_channels_by_youtube_id'
+        url: './script/api_calls_to_db/access_database/access.php',
+        method: 'post',
+        dataType: 'JSON',
+        data: {
+            youtube_channel_id: channelID,
+            action: 'read_channels_by_youtube_id'
         },
-        success:function(data){
+        success: function (data) {
 
-            if(data.success){
+            if (data.success) {
                 // promise.resolve(data);
                 console.log('Channel Found', data);
                 // data.youtube_channel_id = channelID;
 
-                if(!isAdding){
+                if (!isAdding) {
                     clientSelectedChannelObjects = [];
                 }
-                else{
+                else {
                     var isDup = false;
-                    for(var i = 0; i < clientSubscribedChannelObjects.length; i++){
-                        if(clientSubscribedChannelObjects[i].youtube_channel_id === data.data[0].youtube_channel_id){
+                    for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
+                        if (clientSubscribedChannelObjects[i].youtube_channel_id === data.data[0].youtube_channel_id) {
                             isDup = true
                         }
                     }
-                    if(!isDup){
+                    if (!isDup) {
                         clientSubscribedChannelObjects.push(data.data[0]);
                         clientSelectedChannelObjects.push(data.data[0]);
                     }
 
                     $.ajax({
-                        url:'./script/api_calls_to_db/access_database/access.php',
-                        method:'post',
-                        dataType:'JSON',
-                        data:{
-                            action:'insert_ctu',
-                            youtube_channel_id:channelID
+                        url: './script/api_calls_to_db/access_database/access.php',
+                        method: 'post',
+                        dataType: 'JSON',
+                        data: {
+                            action: 'insert_ctu',
+                            youtube_channel_id: channelID
                         },
                         success: function (data) {
                             if (data.success) {
@@ -1157,15 +1205,15 @@ function manageDatabaseWithChannelId (channelID, isAdding = false){
                 loadSelectedChannels();
 
             }
-            else{   //RETRIEVE VIDEOS FROM YOUTUBE
-                if(data.nothing_to_read){
+            else {   //RETRIEVE VIDEOS FROM YOUTUBE
+                if (data.nothing_to_read) {
                     console.log("Retrieve Videos From You Tube", data);
                     ytVideoApiToDb(channelID, "", true, isAdding);
                     ytChannelApiToDb(channelID, isAdding);
                 }
             }
         },
-        errors:function(data){
+        errors: function (data) {
             // promise.reject(data);
             console.log(data['read errors'], data);
         }
@@ -1203,18 +1251,18 @@ function handleBrowseButton() {
     $('#channelSearchModal').modal('hide')
 }
 
-function handleAddButton(){
+function handleAddButton() {
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
     videoObjectsToLoad = [];
-    if(browsingMode){
+    if (browsingMode) {
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
         compileSelectedChannelsFromDropdown()
     }
-    else{
+    else {
         //FUNCTION THAT LOOPS THROUGH clientSubscribedChannelIds and ClientSubscribedChannelObjects - and
-            //compares with what's on the channel selection dropdown
-                //populates clientSelectedChannelIds and clientSelectedChannelObjects
+        //compares with what's on the channel selection dropdown
+        //populates clientSelectedChannelIds and clientSelectedChannelObjects
     }
 
     browsingMode = false;
@@ -1237,22 +1285,22 @@ function handleAddButton(){
     $('#channelSearchModal').modal('hide')
 }
 
-function handleRemoveButton(){
+function handleRemoveButton() {
     $('.dropdownSettingsPopover').popover('hide');
     let channelId = $(this).parent().attr("channelId");
-    console.log("REMOVING "+channelId);
+    console.log("REMOVING " + channelId);
     access_database.delete_ctu(channelId);
-    for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
-        if(clientSubscribedChannelObjects[i].youtube_channel_id === channelId){
+    for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
+        if (clientSubscribedChannelObjects[i].youtube_channel_id === channelId) {
             clientSubscribedChannelObjects.splice(i, 1)
         }
-        if(clientSubscribedChannelIds[i] === channelId){
+        if (clientSubscribedChannelIds[i] === channelId) {
             clientSubscribedChannelIds.splice(i, 1)
         }
-        if(clientSelectedChannelObjects[i].youtube_channel_id === channelId){
+        if (clientSelectedChannelObjects[i].youtube_channel_id === channelId) {
             clientSelectedChannelObjects.splice(i, 1)
         }
-        if(clientSelectedChannelIds[i] === channelId){
+        if (clientSelectedChannelIds[i] === channelId) {
             clientSelectedChannelIds.splice(i, 1)
         }
     }
@@ -1275,10 +1323,10 @@ function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
 }
 
-function toastMsg(msgString, time){
-    const msg = $('<div>',{
+function toastMsg(msgString, time) {
+    const msg = $('<div>', {
         text: msgString,
-        class:'toast'
+        class: 'toast'
     }).css({
         position: 'fixed',
         right: '-150px',
@@ -1286,14 +1334,14 @@ function toastMsg(msgString, time){
         'width': '150px',
         'padding': '7px',
         'background-color': 'rgba(0,0,0,0.7)',
-        'color' : 'white',
+        'color': 'white',
         'z-index': 1000,
         'border-radius': '15px'
     }).animate({
         right: '+=155px'
     }, 900);
     $('body').append(msg);
-    setTimeout(function(){
+    setTimeout(function () {
         $('.toast').remove();
     }, time);
 }
@@ -1306,22 +1354,22 @@ function createPlaceholderAnimation() {
     var outerDiv = $('<div>').addClass("timeline-wrapper");
     var nestedDiv1 = $('<div>').addClass("timeline-item");
     var nestedDiv2 = $('<div>').addClass("animated-background");
-    var nestedDiv3 = $ ('<div>').addClass("background-masker");
+    var nestedDiv3 = $('<div>').addClass("background-masker");
     var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2, nestedDiv3);
     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
 }
 
-function removePlaceHolderAnimation(){
+function removePlaceHolderAnimation() {
     $('.timeline-wrapper').remove()
 }
 
 
-function removeUnusedRows(){
-    for(var i = 0; i<40; i++){
+function removeUnusedRows() {
+    for (var i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
         let title = row + " .tdTitle>span";
 
-        if($(title).text() === ""){
+        if ($(title).text() === "") {
             $(row).hide();
         }
     }
@@ -1375,14 +1423,14 @@ function removeUnusedRows(){
 //         $(".carousel-inner").append(itemDiv);
 //     }
 //     $(".mobileSlide").show();
-    
+
 //     $(".tdListRight").hide();
 //     $(".tdListLeft").removeClass('col-md-6');
 //     // $(".carousel-inner").append(itemDiv);
 // }
 
 
-function displayTableDataOnDesktop(){
+function displayTableDataOnDesktop() {
     $(".tdListRight").show();
     // $(".mobileSlide").remove();
     $(".tdListLeft").addClass('col-md-6');
@@ -1393,7 +1441,7 @@ function displayTableDataOnDesktop(){
 }
 
 function checkIfPlayerIsMuted() {
-    if(player.isMuted()) {
+    if (player.isMuted()) {
         player2.mute();
     } else {
         player2.unMute();
@@ -1403,7 +1451,7 @@ function checkIfPlayerIsMuted() {
 }
 
 function checkIfPlayer2IsMuted() {
-    if(player2.isMuted()) {
+    if (player2.isMuted()) {
         player.mute();
     } else {
         player.unMute();
@@ -1412,18 +1460,18 @@ function checkIfPlayer2IsMuted() {
     }
 }
 
-function fadeToFirstSlideEffect(){
+function fadeToFirstSlideEffect() {
     $(".tdRow").hide();
     $(".tdRow").fadeIn(2000)
 }
 
-function returnToPageOne(){
+function returnToPageOne() {
     $(".carousel").removeClass('slide')
     $(".carousel").carousel(0);
-    if(currentSlideNumber !== 1){
+    if (currentSlideNumber !== 1) {
         clearVideoList();
         currentSlideNumber = 1; //redundant?
-        if(videoObjectsToLoad.length !== 0) {
+        if (videoObjectsToLoad.length !== 0) {
             var videosToLoad = [];
             for (var i = 0; i < 40; i++) {
                 videosToLoad.push(videoObjectsToLoad[i])
@@ -1449,7 +1497,7 @@ function returnToPageOne(){
 //         {
 //             currentSlideNumber = 2;
 //             $(".carousel").carousel(0);
-            
+
 //         }
 //         else
 //         {
@@ -1475,23 +1523,23 @@ function returnToPageOne(){
 // }
 
 // check if device is apple mobile device (used to convert date object)
-function checkIfAppleDevice(){
-    if(navigator.userAgent.match(/(iPhone|iPod|iPad)/) != null) {
+function checkIfAppleDevice() {
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad)/) != null) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
 //converts date object for apple mobile devices
-function convertDateForApple(dateFromAPI){
-    if(checkIfAppleDevice()){
+function convertDateForApple(dateFromAPI) {
+    if (checkIfAppleDevice()) {
         // let date = "2017-11-03 09:34:14" //testing only - sample data
         let newDate = dateFromAPI.split(" ");
         let removeTime = newDate[0].split("-")
-        let iosDate = removeTime[1]+ '/' + removeTime[2]+ '/'+removeTime[0]
+        let iosDate = removeTime[1] + '/' + removeTime[2] + '/' + removeTime[0]
         return iosDate
-    }else{
+    } else {
         return;
     }
 }
@@ -1499,54 +1547,54 @@ function resetSelectedTd() {
     //NEEDS TO ALSO HANDLE FA FA SPINNER
 
     // setTimeout(function(){
-        $(".tdList").removeClass('selectedTd');
-        $('.fa-circle-o-notch').remove();
+    $(".tdList").removeClass('selectedTd');
+    $('.fa-circle-o-notch').remove();
     // }, 50);
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
             // setTimeout(function(){
-                $(row).addClass("selectedTd")
-                var playSymbol = $('<i>')
-                    .addClass('fa fa-circle-o-notch fa-spin fa-fw')
-                    .css({
-                        "margin-right": '5px',
-                        'color': 'green'
-                    });
-                $(row).find(".tdTitle>span").prepend(playSymbol);
+            $(row).addClass("selectedTd")
+            var playSymbol = $('<i>')
+                .addClass('fa fa-circle-o-notch fa-spin fa-fw')
+                .css({
+                    "margin-right": '5px',
+                    'color': 'green'
+                });
+            $(row).find(".tdTitle>span").prepend(playSymbol);
             // }, 500)
         }
     }
 }
 
-function loadNextPage(){
-    if (currentSlideNumber % 2){
+function loadNextPage() {
+    if (currentSlideNumber % 2) {
         var pageToLoad = (currentSlideNumber - 1) / 2;
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
-        if(videoObjectsToLoad.length < indexToStartOn+40){
+        if (videoObjectsToLoad.length < indexToStartOn + 40) {
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
                 dataType: 'JSON',
                 data: {
-                    action:'read_videos_by_channel_array',
-                    channel_id_array:clientSelectedChannelIds,
-                    offset:indexToStartOn
+                    action: 'read_videos_by_channel_array',
+                    channel_id_array: clientSelectedChannelIds,
+                    offset: indexToStartOn
                 },
                 success: function (data) {
                     if (data.success) {
                         // promise.resolve(data);
                         console.log('read success', data);
-                        for(var i = 0; i < data.data.length; i++){
+                        for (var i = 0; i < data.data.length; i++) {
                             videoObjectsToLoad.push(data.data[i])
                         }
-                        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+                        for (var i = indexToStartOn; i < indexToStartOn + 40; i++) {
                             videosToLoad.push(videoObjectsToLoad[i])
                         }
                         console.log("VIDEOS TO LOAD", videosToLoad)
-                        setTimeout(function(){
+                        setTimeout(function () {
                             // clearVideoList();
                             renderVideoList(videosToLoad)
                             removeUnusedRows();
@@ -1560,12 +1608,12 @@ function loadNextPage(){
                 }
             })
         }
-        else{
-            for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+        else {
+            for (var i = indexToStartOn; i < indexToStartOn + 40; i++) {
                 videosToLoad.push(videoObjectsToLoad[i])
             }
             console.log("VIDEOS TO LOAD", videosToLoad)
-            setTimeout(function(){
+            setTimeout(function () {
                 // clearVideoList();
                 renderVideoList(videosToLoad)
                 removeUnusedRows();
@@ -1573,18 +1621,18 @@ function loadNextPage(){
         }
     }
 }
-function loadPreviousPage(){
-    if (!(currentSlideNumber % 2)){
-        var pageToLoad = (currentSlideNumber/2)-1;
+function loadPreviousPage() {
+    if (!(currentSlideNumber % 2)) {
+        var pageToLoad = (currentSlideNumber / 2) - 1;
         var indexToStartOn = (pageToLoad) * 40;
         var videosToLoad = [];
 
 
-        for(var i = indexToStartOn; i < indexToStartOn+40; i++){
+        for (var i = indexToStartOn; i < indexToStartOn + 40; i++) {
             videosToLoad.push(videoObjectsToLoad[i])
         }
         console.log("VIDEOS TO LOAD", videosToLoad);
-        setTimeout(function(){
+        setTimeout(function () {
             // clearVideoList();
             renderVideoList(videosToLoad)
         }, 250)
@@ -1611,7 +1659,6 @@ function rendertheatreControls() {
     });
     var closeButton = $('<button>', {
         class: "btn btn-danger modalClose theatreModalClose",
-        dataDismiss: "modal",
         text: "close",
         type: "button"
     });
