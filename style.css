@@ -119,6 +119,7 @@ body {
 }
 .watchingLabel, .browsingLabel{
 	font-size: 100%;
+	padding: 9px 2.5px;
 }
 #midNav-option form {
 	margin-right: 20px;

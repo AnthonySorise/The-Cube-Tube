@@ -186,13 +186,12 @@ consider carousel for the video list area:
 								</label>
 							</div>
 							<div class="navbar-nav nav-pills midNavChannels">
-								<!-- target class 'midNavBrowsing' && 'midNavWatching' and toggle show/hide
-									$('.midNavBrowsing').hide(); $('.midNavWatching').show();
-
-								edit tooltip content dpending on channels for midNavWatching-->
 								<span class="midNavBrowsing">Browsing:</span> 
 								<span class="label label-primary midNavBrowsing browsingLabel">
 									channel name
+								</span>
+								<span class="midNavBrowsing">
+									<button class="btn btn-success addChannelButton">Subscribe</button>
 								</span>
 								<span class="midNavWatching">Watching:</span>
 								<span class="label label-success midNavWatching watchingLabel" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
