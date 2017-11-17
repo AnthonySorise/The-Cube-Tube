@@ -7,7 +7,7 @@ if(!empty($_POST['last_channel_pull'])){
       $last_channel_pull = str_replace(" ","T", $last_channel_pull);
       $last_channel_pull .= ".000Z";
 }else{
-      $last_channel_pull = null;
+      $last_channel_pull = "";
 }
 function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY,$conn,$last_channel_pull){
       if(!empty($last_channel_pull)){
@@ -20,7 +20,7 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY
       }else{
             $query="&pageToken={$pageToken}"; 
       }
-      $ch = curl_init("https://www.googleapis.com/youtube/v3/search?type=video&channelId={$youtube_channel_id}&part=snippet{$query}&order=date{$last_channel_pull}&maxResults=50&key={$DEVELOPER_KEY}");
+      $ch = curl_init("https://www.googleapis.com/youtube/v3/search?&channelId={$youtube_channel_id}&part=snippet{$query}&order=date{$last_channel_pull}&maxResults=50&key={$DEVELOPER_KEY}");
       // $pageToken
       // publishedAfter = RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
