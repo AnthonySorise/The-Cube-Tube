@@ -278,7 +278,7 @@ function clickHandler() {
                     let videoURL = 'https://i.ytimg.com/vi/' + selectedVideoId + '/mqdefault.jpg';
                     const videoThumbnail = $('<img>').attr('src', videoURL).css({
                         width: '120px',
-                        height: '120px',
+                        height: '70px',
                     });
                     videoThumbnail.css("position", "relative")
                         .css("left", "50%")
