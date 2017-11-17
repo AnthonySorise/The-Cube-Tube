@@ -443,6 +443,10 @@ function clickHandler() {
     })
     //Lets user click outside of theatre modal to close and save the state of video
     $('body').on('click', (event) => {
+        //Have to check if modal footer is being clicked to stop from closing modal
+        if(event.target.classList[0] == "fa" || event.target.classList == "") {
+            return;
+        }
         checkTheatreModeStatus();
         $('.modal-content').modal('hide');
     })
