@@ -180,7 +180,7 @@ function tooltipFunctions() {
 
 //Click handler to console log search results
 function clickHandler() {
-    $('.channelDropDown').on('click', '.dropdownChannelLiLoad', () => {
+    $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         returnToPageOne();
         compileSelectedChannelsFromDropdown();
         loadSelectedChannels();
@@ -210,7 +210,7 @@ function clickHandler() {
         }
     });
 
-    $('#channelCategoryUl').on('click', '.channelLiChannel, .dropdownChannelLi input', (e) => {
+    $('#channelCategoryUl').on('click touchend', '.channelLiChannel, .dropdownChannelLi input', (e) => {
         if ($(e.target).is('input')) {
             return;
         } else {
@@ -222,7 +222,7 @@ function clickHandler() {
             }
         }
     });
-    $('a.dropdown-toggle').on('click', () => {
+    $('a.dropdown-toggle').on('click touchend', () => {
         $('.channelDropDown').toggleClass('open');
         if (dropOpened) {
             dropOpened = false;
@@ -255,8 +255,8 @@ function clickHandler() {
         // $(".videoHeader").show()
     });
     //Browse Button
-    $('.browseChannelButton').on("click", handleBrowseButton);
-    $('.addChannelButton').on("click", handleAddButton);
+    $('.browseChannelButton').on("click touchend", handleBrowseButton);
+    $('.addChannelButton').on("click touchend", handleAddButton);
 
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click touchend", function () {
@@ -771,10 +771,10 @@ function renderChannelSelectionDropdown() {
         var browseButton = $('<button class="btn-primary">Browse</button>').css("display", "block");
         var removeButton = $('<button class="btn-danger">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
 
-        browseButton.on("click", handleBrowseButton)
+        browseButton.on("click touchend", handleBrowseButton)
 
 
-        removeButton.on("click", handleRemoveButton)
+        removeButton.on("click touchend", handleRemoveButton)
 
         settingsContent.append(browseButton, removeButton);
 
