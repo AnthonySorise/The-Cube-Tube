@@ -46,7 +46,6 @@ function insert_videos($youtube_channel_id,$channel_id,$pageToken,$DEVELOPER_KEY
       } else {
             $video_array = json_decode($json, true);
             print_r($video_array);
-            exit();
             $next_page_token = $video_array['nextPageToken'];
             $entries = $video_array['items'];
             $last_updated = date("Y-m-d H-i-s");
