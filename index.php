@@ -191,7 +191,7 @@ consider carousel for the video list area:
 									channel name
 								</span>
 								<span class="midNavBrowsing">
-									<button class="btn btn-success addChannelButton">Subscribe</button>
+									<button class="btn btn-success addChannelBtn midNavAddBtn">Subscribe</button>
 								</span>
 								<span class="midNavWatching">Watching:</span>
 								<span class="label label-success midNavWatching watchingLabel" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
