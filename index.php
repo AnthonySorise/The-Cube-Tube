@@ -197,7 +197,7 @@ consider carousel for the video list area:
 								<span class="midNavWatching">Watching:</span>
 								<span class="label label-success midNavWatching watchingLabel" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
 									<i class="fa fa-cubes"></i>
-									channels 
+									Subscribed Channels
 								</span>
 							</div>
 						</div>

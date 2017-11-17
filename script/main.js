@@ -848,6 +848,26 @@ function compileSelectedChannelsFromDropdown() {
     }
 }
 
+function updateMidNavText(){
+    if(browsingMode){
+        $('.midNavBrowsing').show();
+        $('.midNavWatching').hide()
+        $(".browsingLabel").text(clientSelectedChannelObjects[0].channel_title)
+    }
+    else{
+        $('.midNavBrowsing').hide();
+        $('.midNavWatching').show();
+        var channelsWatching = "";
+        for(var i = 0; i < clientSelectedChannelObjects.length; i++){
+            channelsWatching += clientSelectedChannelObjects[i].channel_title;
+            if(i !== clientSelectedChannelObjects.length && clientSelectedChannelObjects.length !== 1){
+                channelsWatching += ", "
+            }
+        }
+        $(".watchingLabel").attr("data-original-title", channelsWatching)
+    }
+}
+
 
 function loadSelectedChannels() {
     $.ajax({    //RETRIEVE VIDEOS FROM DB
@@ -866,8 +886,8 @@ function loadSelectedChannels() {
                 videoObjectsToLoad = [];
                 videoObjectsToLoad = data.data;
 
-                // loadClientVideoObjectArray();//TODO Conditional Run on BROWSE, only run on SEARCH when no channels pre-selected
                 renderVideoList(videoObjectsToLoad);
+                updateMidNavText()
             }
             else {
                 console.log('Channel Found Without Videos', data)
@@ -1176,7 +1196,6 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                     }
                     if (!isDup) {
                         clientSubscribedChannelObjects.push(data.data[0]);
-                        clientSelectedChannelObjects.push(data.data[0]);
                     }
 
                     $.ajax({
@@ -1200,7 +1219,7 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                     })
                 }
 
-                // clientSelectedChannelObjects.push(data.data[0]);
+                clientSelectedChannelObjects.push(data.data[0]);
 
                 loadSelectedChannels();
 
@@ -1258,11 +1277,6 @@ function handleAddButton() {
         clientSelectedChannelIds = [];
         clientSelectedChannelObjects = [];
         compileSelectedChannelsFromDropdown()
-    }
-    else {
-        //FUNCTION THAT LOOPS THROUGH clientSubscribedChannelIds and ClientSubscribedChannelObjects - and
-        //compares with what's on the channel selection dropdown
-        //populates clientSelectedChannelIds and clientSelectedChannelObjects
     }
 
     browsingMode = false;
