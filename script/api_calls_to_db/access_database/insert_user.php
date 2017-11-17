@@ -28,8 +28,8 @@ if(empty($user_link)){
 }
 
 $stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?, 
-ip_address_at_signup=?,last_modified=?");
-$stmt->bind_param('ssss',$user_link,$date,$ip_address_at_sign_up,$date);
+ip_address_at_signup=?");
+$stmt->bind_param('sss',$user_link,$date,$ip_address_at_sign_up);
 $stmt->execute();
 if(!empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
