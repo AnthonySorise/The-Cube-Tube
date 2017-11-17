@@ -114,6 +114,9 @@ body {
 	line-height: 3.25em;
 	margin-left: 25px;
 }
+.midNavBrowsing, .midNavWatching{
+	display: none;
+}
 .watchingLabel, .browsingLabel{
 	font-size: 100%;
 }
