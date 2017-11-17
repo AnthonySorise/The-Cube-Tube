@@ -9,6 +9,7 @@ for($i = 0; $i<count($video_array); $i++ ){
     $description = $video_array[$i]['description'];
     $published_at = $video_array[$i]['published_at'];
     $last_updated = date("Y-m-d H-i-s");
+    $youtube_channel_id = $video_array[$i]['youtube_channel_id'];
     if(empty($video_title)){
         $output['errors'][] = 'MISSING VIDEO TITLE';
     }
@@ -39,6 +40,7 @@ for($i = 0; $i<count($video_array); $i++ ){
     youtube_video_id=?, 
     description=?,
     published_at=?,
+    youtube_channel_id=?,
     last_updated=?");
     $stmt->bind_param('sssss',$video_title,$youtube_video_id,
     $description,$published_at,$last_updated);
