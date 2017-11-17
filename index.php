@@ -1063,7 +1063,7 @@ consider carousel for the video list area:
 							</h4>
 							<button class="btn btn-primary browseChannelButton" data-toggle="tooltip" data-placement="top" title="Browse channel videos before adding"
 							 data-container="body">Browse</button>
-							<button class="btn btn-success addChannelButton"> Add </button>
+							<button class="btn btn-success addChannelButton"> Subscribe </button>
 						</li>
 						<li id="chSearch-2" class="col-xs-12">
 							<img class="col-xs-4" />
@@ -1080,7 +1080,7 @@ consider carousel for the video list area:
 							</h4>
 							<button class="btn btn-primary browseChannelButton" data-toggle="tooltip" data-placement="top" title="Browse channel videos before adding"
 							 data-container="body">Browse</button>
-							<button class="btn btn-success addChannelButton"> Add </button>
+							<button class="btn btn-success addChannelButton"> Subscribe </button>
 
 						</li>
 						<li id="chSearch-3" class="col-xs-12">
@@ -1098,7 +1098,7 @@ consider carousel for the video list area:
 							</h4>
 							<button class="btn btn-primary browseChannelButton" data-toggle="tooltip" data-placement="top" title="Browse channel videos before adding"
 							 data-container="body">Browse</button>
-							<button class="btn btn-success addChannelButton"> Add </button>
+							<button class="btn btn-success addChannelButton"> Subscribe </button>
 
 						</li>
 						<li id="chSearch-4" class="col-xs-12">
@@ -1116,7 +1116,7 @@ consider carousel for the video list area:
 							</h4>
 							<button class="btn btn-primary browseChannelButton" data-toggle="tooltip" data-placement="top" title="Browse channel videos before adding"
 							 data-container="body">Browse</button>
-							<button class="btn btn-success addChannelButton"> Add </button>
+							<button class="btn btn-success addChannelButton"> Subscribe </button>
 						</li>
 						<li id="chSearch-5" class="col-xs-12">
 							<img class="col-xs-4" />
@@ -1134,7 +1134,7 @@ consider carousel for the video list area:
 							</h4>
 							<button class="btn btn-primary browseChannelButton" data-toggle="tooltip" data-placement="top" title="Browse channel videos before adding"
 							 data-container="body">Browse</button>
-							<button class="btn btn-success addChannelButton"> Add </button>
+							<button class="btn btn-success addChannelButton"> Subscribe </button>
 
 						</li>
 						<li id="chSearch-6" class="col-xs-12">
@@ -1152,7 +1152,7 @@ consider carousel for the video list area:
 							</h4>
 							<button class="btn btn-primary browseChannelButton" data-toggle="tooltip" data-placement="top" title="Browse channel videos before adding"
 							 data-container="body">Browse</button>
-							<button class="btn btn-success addChannelButton"> Add </button>
+							<button class="btn btn-success addChannelButton"> Subscribe </button>
 						</li>
 						<li id="chSearch-7" class="col-xs-12">
 							<img class="col-xs-4" />
@@ -1169,7 +1169,7 @@ consider carousel for the video list area:
 							</h4>
 							<button class="btn btn-primary browseChannelButton" data-toggle="tooltip" data-placement="top" title="Browse channel videos before adding"
 							 data-container="body">Browse</button>
-							<button class="btn btn-success addChannelButton"> Add </button>
+							<button class="btn btn-success addChannelButton"> Subscribe </button>
 						</li>
 						<li id="chSearch-8" class="col-xs-12">
 							<img class="col-xs-4" />
@@ -1186,7 +1186,7 @@ consider carousel for the video list area:
 							</h4>
 							<button class="btn btn-primary browseChannelButton" data-toggle="tooltip" data-placement="top" title="Browse channel videos before adding"
 							 data-container="body">Browse</button>
-							<button class="btn btn-success addChannelButton"> Add </button>
+							<button class="btn btn-success addChannelButton"> Subscribe </button>
 
 						</li>
 						<li id="chSearch-9" class="col-xs-12">
@@ -1204,7 +1204,7 @@ consider carousel for the video list area:
 							</h4>
 							<button class="btn btn-primary browseChannelButton" data-toggle="tooltip" data-placement="top" title="Browse channel videos before adding"
 							 data-container="body">Browse</button>
-							<button class="btn btn-success addChannelButton"> Add </button>
+							<button class="btn btn-success addChannelButton"> Subscribe </button>
 						</li>
 						<li id="chSearch-10" class="col-xs-12">
 							<img class="col-xs-4" />
@@ -1221,7 +1221,7 @@ consider carousel for the video list area:
 							</h4>
 							<button class="btn btn-primary browseChannelButton" data-toggle="tooltip" data-placement="top" title="Browse channel videos before adding"
 							 data-container="body">Browse</button>
-							<button class="btn btn-success addChannelButton"> Add </button>
+							<button class="btn btn-success addChannelButton"> Subscribe </button>
 						</li>
 					</div>
 <!--					<div class="modal-footer">-->
