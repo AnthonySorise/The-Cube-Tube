@@ -107,6 +107,16 @@ body {
 	left: 0;
 	margin-left: 20px;
 }
+.midNavChannels{
+	font-family: 'Arvo', serif;
+	color: white;
+	font-size: 1em;
+	line-height: 3.25em;
+	margin-left: 25px;
+}
+.watchingLabel, .browsingLabel{
+	font-size: 100%;
+}
 #midNav-option form {
 	margin-right: 20px;
 }
@@ -994,8 +1004,11 @@ safer appraoch than to resizing browser to see change
 	}
 	.midNavButtonWrap{
 		position: relative;
+		/*margin-left: -15px;*/
+		margin: 0;
+	}
+	.autoPlayArea, .midNavChannels{
 		margin-left: -15px;
-		
 	}
 	#midNav-option form{
 		width: 95%;
