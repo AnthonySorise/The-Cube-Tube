@@ -170,17 +170,13 @@ consider carousel for the video list area:
 					<div class="collapse navbar-collapse text-center" id="midNav-option">
 						<!--div for nav options-->
 						<div class="navbar-nav nav-pills midNavButtonWrap">
-							<div class="navbar-nav nav-pills infoButtons">
-
-									<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
-										<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
-									</a>
-
-
-									<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
-										<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
-									</a>
-
+							<div class="navbar-nav nav-pills infoButtons hidden-xs">
+								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
+									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
+								</a>
+								<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
+									<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
+								</a>
 							</div>
 							<div class="navbar-nav nav-pills autoPlayArea">
 								<label id="autoplayText">Autoplay</label>
@@ -188,6 +184,20 @@ consider carousel for the video list area:
 									<input type="checkbox" id='autoplayCheckBox' checked>
 									<span class="slider round"></span>
 								</label>
+							</div>
+							<div class="navbar-nav nav-pills midNavChannels">
+								<!-- target class 'midNavBrowsing' && 'midNavWatching' and toggle class
+								'hide' to show and hide depending on what user is doing
+								edit tooltip content dpending on channels for midNavWatching-->
+								<span class="midNavBrowsing hide">Browsing:</span> 
+								<span class="label label-primary midNavBrowsing hide browsingLabel">
+									channel name
+								</span>
+								<span class="midNavWatching">Watching:</span>
+								<span class="label label-success midNavWatching watchingLabel"> 
+									<i class="fa fa-cubes"></i>
+									channels 
+								</span>
 							</div>
 						</div>
 						<form class="navbar-right nav-pills form-inline">
