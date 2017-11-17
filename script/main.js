@@ -607,7 +607,7 @@ function initiateUser() {
 
 //Channel Search by Name
 function searchChannelsByName(inputStr) {
-    $(".addChannelButton").removeClass("disabled").text("Add");
+    $(".addChannelButton").removeClass("disabled").text("Subscribe");
     let string = inputStr;
     // if($('.channelSearchInput:odd').val()!==""){
     //     string = $('.channelSearchInput:odd').val();
@@ -649,7 +649,7 @@ function searchChannelsByName(inputStr) {
                 $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
 
                 if (clientSubscribedChannelIds.includes(data.items[i].snippet.channelId)) {
-                    $(channelListData + " .addChannelButton").addClass("disabled").text("Added");
+                    $(channelListData + " .addChannelButton").addClass("disabled").text("Subscribed");
                 }
             }
             promise.resolve(data);

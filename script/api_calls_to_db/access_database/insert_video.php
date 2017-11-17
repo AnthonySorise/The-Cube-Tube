@@ -42,8 +42,8 @@ for($i = 0; $i<count($video_array); $i++ ){
     published_at=?,
     youtube_channel_id=?,
     last_updated=?");
-    $stmt->bind_param('sssss',$video_title,$youtube_video_id,
-    $description,$published_at,$last_updated);
+    $stmt->bind_param('ssssss',$video_title,$youtube_video_id,
+    $description,$published_at,$youtube_channel_id,$last_updated);
     $stmt->execute();
     if(empty($stmt)){
         $output['errors'][] = 'INVALID QUERY';
