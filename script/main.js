@@ -860,7 +860,7 @@ function updateMidNavText(){
         var channelsWatching = "";
         for(var i = 0; i < clientSelectedChannelObjects.length; i++){
             channelsWatching += clientSelectedChannelObjects[i].channel_title;
-            if(i !== clientSelectedChannelObjects.length && clientSelectedChannelObjects.length !== 1){
+            if(i !== clientSelectedChannelObjects.length-1 && clientSelectedChannelObjects.length !== 1){
                 channelsWatching += ", "
             }
         }
