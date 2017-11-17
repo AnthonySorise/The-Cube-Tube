@@ -860,7 +860,7 @@ function updateMidNavText(){
         var channelsWatching = "";
         for(var i = 0; i < clientSelectedChannelObjects.length; i++){
             channelsWatching += clientSelectedChannelObjects[i].channel_title;
-            if(i !== clientSelectedChannelObjects.length){
+            if(i !== clientSelectedChannelObjects.length && clientSelectedChannelObjects.length !== 1){
                 channelsWatching += ", "
             }
         }
@@ -1196,7 +1196,6 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                     }
                     if (!isDup) {
                         clientSubscribedChannelObjects.push(data.data[0]);
-                        clientSelectedChannelObjects.push(data.data[0]);
                     }
 
                     $.ajax({
@@ -1220,7 +1219,7 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                     })
                 }
 
-                // clientSelectedChannelObjects.push(data.data[0]);
+                clientSelectedChannelObjects.push(data.data[0]);
 
                 loadSelectedChannels();
 
