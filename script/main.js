@@ -256,6 +256,8 @@ function clickHandler() {
     });
     //Browse Button
     $('.browseChannelButton').on("click touchend", handleBrowseButton);
+
+    //Add Buttons
     $('.addChannelButton').on("click touchend", handleAddButton);
 
     //Table List Rows that are unselected
@@ -853,6 +855,8 @@ function updateMidNavText(){
         $('.midNavBrowsing').show();
         $('.midNavWatching').hide()
         $(".browsingLabel").text(clientSelectedChannelObjects[0].channel_title)
+        $(".midNavChannels").attr("channelId", clientSelectedChannelObjects[0].youtube_channel_id)
+        $(".midNavAddButton").hide()
     }
     else{
         $('.midNavBrowsing').hide();
@@ -864,6 +868,7 @@ function updateMidNavText(){
                 channelsWatching += ", "
             }
         }
+        $(".midNavAddButton").show();
         $(".watchingLabel").attr("data-original-title", channelsWatching)
     }
 }
