@@ -15,7 +15,7 @@ if(!empty($_SESSION['user_link'])){
     if(!empty($result)){
         if(mysqli_num_rows($result)>0){
             $row = mysqli_fetch_assoc($result);
-            define('USER_LINK',$row['user_link']);
+            define('USER_ID',$row['user_id']);
         }else{
             $output['nothing_to_read'] = true;
         }
