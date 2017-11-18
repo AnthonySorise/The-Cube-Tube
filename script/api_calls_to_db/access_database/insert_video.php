@@ -3,7 +3,8 @@ if(empty($LOCAL_ACCESS)){
     die('insert video, direct access not allowed');
 }
 $video_array = $_POST['videoArray'];
-for($i = 0; $i<count($video_array); $i++ ){
+$max = count($video_array);
+for($i = 0; $i<$max; $i++){
     $video_title = $video_array[$i]['video_title'];
     $youtube_video_id = $video_array[$i]['youtube_video_id'];
     $description = $video_array[$i]['description'];

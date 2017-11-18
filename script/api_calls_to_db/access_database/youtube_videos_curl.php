@@ -1,5 +1,5 @@
 <?php
-if(empty($LOCAL_ACCESS)){
+if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
       die("no direct access allowed");
 }
 // if(empty$_GET['page_token'])
@@ -10,8 +10,7 @@ if(!empty($_POST['last_channel_pull'])){
 }else{
       $last_channel_pull = "";
 }
-function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull){
-      global $output;
+function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
       if(!empty($last_channel_pull)){
             $last_channel_pull = "&publishedAfter={$last_channel_pull}";
       }else{
@@ -23,7 +22,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $page_query="&pageToken={$page_token}"; 
       }
       $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=50");
-      curl_setopt($ch,CURLOPT_TIMEOUT,0);
       // $pageToken
       // publishedAfter = RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -46,12 +44,19 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
       //echo $body;
       } else {
             $video_array = json_decode($json, true);
-            // print_r($video_array);
             $next_page_token = $video_array['nextPageToken'];
-            $output['token'] = $next_page_token;
             $entries = $video_array['items'];
             $last_updated = date("Y-m-d H-i-s");
-            for($i = 0; $i<count($entries); $i++){
+            // $query = "INSERT INTO videos ('video_title','channel_id','youtube_video_id') ";
+            // $bind_str = '';
+            // foreach($entries as $key=>$value){
+            //       $query.= "(?,?,?),";
+            //       $bind_str  .='sis';
+            // }
+            //"INSERT INTO videos (video_title , channel_id) VALUES ('abc',1), ('xyz',2), ('hgf',4)""
+            $output['insert_success'] = 0;
+            $maxCount = count($entries);
+            for($i = 0; $i<$maxCount; $i++){
                   $youtube_video_id = $entries[$i]['id']['videoId'];
                   $description = $entries[$i]['snippet']['description'];
                   $video_title = $entries[$i]['snippet']['title'];
@@ -72,21 +77,29 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                         $output['errors'][] = 'INVALID QUERY';
                   }else{
                         if(mysqli_affected_rows($conn)>0){
-                              $output['success'] = true;
-                              $output['messages'][] = "insert video success";
-                              if($page_token === "first"){
-                                    
-                              }
+                              //if last one is wrong, they will all be wrong
+                              $output['insert_success'] += 1;
                         }else{
                               $output['errors'][] = 'unable to insert video';
                         }
                   }
+                  if($output['insert_success']>1){
+                        $output['success']=true;
+                  }
+                  if(!empty($next_page_token)){//calls file again if there is a next page token
+                        curl_setopt($ch,CURLOPT_URL, 'youtube_videos_curl.php');
+                        curl_setopt($ch, CURLOPT_POST, 1);
+                        $_POST['page_token'] = $next_page_token;
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
+                        curl_setopt($ch,CURLOPT_TIMEOUT,0);
+                        curl_exec($ch);
+                  }
+                  if($page_token === "first"){
+                        output_and_exit($output);
+                  }
+                  //REALLY SHOULD RETURN $output 
             }//end for
-            if(!empty($next_page_token)){
-                  // curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=50");
-                  insert_videos($youtube_channel_id,$channel_id,$next_page_token,$DEVELOPER_KEY,$conn,$last_channel_pull);
-            }
       }
 }    
-insert_videos($youtube_channel_id,$channel_id,"first",$DEVELOPER_KEY,$conn,$last_channel_pull); 
+insert_videos($youtube_channel_id,$channel_id,"first",$DEVELOPER_KEY,$conn,$last_channel_pull,$output); 
 ?>
