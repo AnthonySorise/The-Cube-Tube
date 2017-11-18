@@ -23,6 +23,7 @@ if(!empty($_POST['page_token'])){
             $output['messages'] = "can't read channel";
         }
     }
+    $output = [];
     $last_channel_pull = "";
 }else{
     if(!empty($_POST['last_channel_pull'])){
