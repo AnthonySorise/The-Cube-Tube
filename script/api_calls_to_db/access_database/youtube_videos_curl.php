@@ -11,6 +11,7 @@ if(!empty($_POST['last_channel_pull'])){
       $last_channel_pull = "";
 }
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull){
+      global $output;
       if(!empty($last_channel_pull)){
             $last_channel_pull = "&publishedAfter={$last_channel_pull}";
       }else{
@@ -45,7 +46,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
       //echo $body;
       } else {
             $video_array = json_decode($json, true);
-            print_r($video_array);
+            // print_r($video_array);
             $next_page_token = $video_array['nextPageToken'];
             $output['token'] = $next_page_token;
             $entries = $video_array['items'];
