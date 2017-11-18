@@ -83,7 +83,8 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                               $output['errors'][] = 'unable to insert video';
                         }
                   }
-                  if($output['insert_success']>1){
+            }//end for
+                  if($output['insert_success']>0){
                         $output['success']=true;
                   }
                   if(!empty($next_page_token)){//calls file again if there is a next page token
@@ -98,8 +99,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                         output_and_exit($output);
                   }
                   //REALLY SHOULD RETURN $output 
-            }//end for
-      }
-}    
+            }
+      }    
 insert_videos($youtube_channel_id,$channel_id,"first",$DEVELOPER_KEY,$conn,$last_channel_pull,$output); 
 ?>
