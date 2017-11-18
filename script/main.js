@@ -549,8 +549,9 @@ function initiateUser() {
                     $('#text-carousel, .videoHeader').slideDown(1100);
                     toastMsg('Welcome back', 3000);
                 });
+                numSubscribedChannels = data.data.length;
                 for (var i = 0; i < data.data.length; i++) {
-                    numSubscribedChannels = data.data.length;
+
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
 
