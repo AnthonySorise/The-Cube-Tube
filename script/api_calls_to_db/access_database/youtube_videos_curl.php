@@ -100,13 +100,13 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             curl_setopt($ch,CURLOPT_URL, 'youtube_videos_curl.php');
             // curl_setopt($ch, CURLOPT_POST, 1);
             // $_POST['page_token'] = $next_page_token;
-            $_POST = [
+            $POST = [
                 'page_token' => $next_page_token,
                 'youtube_channel_id' => $youtube_channel_id,
                 'channel_id' => $channel_id,
                 'last_channel_pull'=>$last_channel_pull
             ];
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $POST);
             curl_setopt($ch,CURLOPT_TIMEOUT,0);
             curl_exec($ch);
         }
