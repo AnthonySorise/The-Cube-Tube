@@ -7,6 +7,7 @@ $output = [
     'errors' => [],
 ];
 if(!empty($_SESSION['user_link'])){
+    $user_link = $_SESSION['user_link'];
     $stmt = $conn->prepare("SELECT user_id WHERE user_link = ?");
     $stmt->bind_param('s',$user_link);
     $stmt->execute();
