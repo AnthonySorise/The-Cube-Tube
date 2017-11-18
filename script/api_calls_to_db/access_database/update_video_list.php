@@ -2,7 +2,7 @@
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
-require_once("youtube_api_key");
+require_once("youtube_api_key.php");
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $last_channel_pull = $_POST['last_channel_pull'];
 if(empty($last_channel_pull)){
