@@ -181,6 +181,7 @@ function tooltipFunctions() {
 //Click handler to console log search results
 function clickHandler() {
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
+        browsingMode = false;
         returnToPageOne();
         compileSelectedChannelsFromDropdown();
         loadSelectedChannels();
@@ -195,6 +196,7 @@ function clickHandler() {
     });
 
     $(".dropdownChannelLiAll").on("click", function () {
+        browsingMode = false;
         clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds);
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
         returnToPageOne();
