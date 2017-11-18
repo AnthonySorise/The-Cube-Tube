@@ -1262,7 +1262,7 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                                     method:'post',
                                     dataType:'JSON',
                                     data:{
-                                        youtube_channel_id:youtube_channel_id,
+                                        youtube_channel_id:channelID,
                                         action:'read_channels_by_youtube_id'
                                     },
                                     success:function(data){
