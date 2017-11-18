@@ -544,7 +544,7 @@ function initiateUser() {
         },
         success: function (data) {
             if (data.success) {
-                console.log('read success', data.data[0].youtube_channel_id);
+                console.log('USER CTU', data);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                     $('#text-carousel, .videoHeader').slideDown(1100);
                     toastMsg('Welcome back', 3000);

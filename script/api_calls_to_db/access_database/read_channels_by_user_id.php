@@ -17,7 +17,7 @@ WHERE u.user_link = ?
 ORDER BY c.channel_title");
 $stmt->bind_param('i',$user_id);
 $stmt->execute();
-$result = $stmt->get_result();
+$result =  mysqli_stmt_get_result($stmt);
 if(!empty($result)){
     if(mysqli_num_rows($result)>0){
         $output['success']=true;
