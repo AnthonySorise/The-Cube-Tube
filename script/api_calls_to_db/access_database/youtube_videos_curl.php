@@ -1,9 +1,16 @@
 <?php
-// if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
-//       die("no direct access allowed");
-// }
-// if(empty$_GET['page_token'])
-if(!empty($_POST['last_channel_pull'])){
+if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
+      die("no direct access allowed");
+}
+if(!empty($_POST['page_token'])){
+      $next_page_token = $_POST['page_token'];
+      $youtube_channel_id = $_POST['youtube_channel_id'];
+      $channel_id = $_POST['channel_id' ];
+      $conn = $_POST['conn'];
+      $DEVELOPER_KEY = $_POST['developer_key'];
+      $last_channel_pull = $_POST['last_channel_pull'];
+}
+if(!empty($_POST['last_channel_pull']) && empty($_POST['page_token'])){
       $last_channel_pull = $_POST['last_channel_pull'];
       $last_channel_pull = str_replace(" ","T", $last_channel_pull);
       $last_channel_pull .= ".000Z";
@@ -90,7 +97,14 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                   if(!empty($next_page_token)){//calls file again if there is a next page token
                         curl_setopt($ch,CURLOPT_URL, 'youtube_videos_curl.php');
                         curl_setopt($ch, CURLOPT_POST, 1);
-                        $_POST['page_token'] = $next_page_token;
+                        $_POST = [
+                              'page_token' => $next_page_token,
+                              'youtube_channel_id' => $youtube_channel_id,
+                              'channel_id' => $channel_id,
+                              'conn'=>$conn,
+                              'developer_key'=>$DEVELOPER_KEY,
+                              'last_channel_pull'=>$last_channel_pull
+                        ];
                         curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
                         curl_setopt($ch,CURLOPT_TIMEOUT,0);
                         curl_exec($ch);
@@ -106,5 +120,4 @@ if(empty($_POST['page_token'])){
 }else{
       insert_videos($youtube_channel_id,$channel_id,$_POST['page_token'],$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
 }
- 
 ?>
