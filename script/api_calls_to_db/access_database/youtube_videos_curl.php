@@ -1,7 +1,7 @@
 <?php
-if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
-      die("no direct access allowed");
-}
+// if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
+//       die("no direct access allowed");
+// }
 // if(empty$_GET['page_token'])
 if(!empty($_POST['last_channel_pull'])){
       $last_channel_pull = $_POST['last_channel_pull'];
