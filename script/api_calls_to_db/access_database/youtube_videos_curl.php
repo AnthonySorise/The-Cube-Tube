@@ -66,6 +66,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $output['insert_success'] = 0;
         $maxCount = count($entries);
         for($i = 0; $i<$maxCount; $i++){
+            echo($entries[$i]);
             $youtube_video_id = $entries[$i]['id']['videoId'];
             $description = $entries[$i]['snippet']['description'];
             $video_title = $entries[$i]['snippet']['title'];
@@ -106,7 +107,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 'channel_id' => $channel_id,
                 // 'last_channel_pull'=>$last_channel_pull
             ];
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $POST);
+            curl_setopt($ch,CURLOPT_POSTFIELDS, $POST);
             curl_setopt($ch,CURLOPT_TIMEOUT,0);
             curl_exec($ch);
         }
