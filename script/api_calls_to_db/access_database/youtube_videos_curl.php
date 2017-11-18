@@ -7,8 +7,8 @@ include('mysql_connect.php');
 if(!empty($_POST['page_token'])){
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
-    $channel_id = $_POST['channel_id'];
-    $last_channel_pull = $_POST['last_channel_pull'];
+    // $channel_id = $_POST['channel_id'];
+    // $last_channel_pull = "";
     $output = [];
 }else{
     if(!empty($_POST['last_channel_pull'])){
@@ -104,7 +104,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 'page_token' => $next_page_token,
                 'youtube_channel_id' => $youtube_channel_id,
                 'channel_id' => $channel_id,
-                'last_channel_pull'=>$last_channel_pull
+                // 'last_channel_pull'=>$last_channel_pull
             ];
             curl_setopt($ch, CURLOPT_POSTFIELDS, $POST);
             curl_setopt($ch,CURLOPT_TIMEOUT,0);
