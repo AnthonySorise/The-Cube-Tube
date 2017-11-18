@@ -11,6 +11,7 @@ if(!empty($_POST['last_channel_pull'])){
       $last_channel_pull = "";
 }
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull){
+    global $output;
       if(!empty($last_channel_pull)){
             $last_channel_pull = "&publishedAfter={$last_channel_pull}";
       }else{
