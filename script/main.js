@@ -1257,50 +1257,62 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                             console.log("TESTING" , data)
                             if (data.success) {
                                 console.log('Videos inserted to DB from Youtube', data);
-                                if(!isAdding){
-                                    clientSelectedChannelObjects = [];
-                                    clientSelectedChannelObjects.push(data.data[0])
-                                }
-                                else{
-                                    var isDup = false;
-                                    for(var i = 0; i < clientSubscribedChannelObjects.length; i++){
-                                        if(clientSubscribedChannelObjects[i].youtube_channel_id === data.data[0].youtube_channel_id){
-                                            isDup = true
-                                        }
-                                    }
-                                    if(!isDup){
-                                        clientSubscribedChannelObjects.push(data.data[0]);
-                                        clientSelectedChannelObjects.push(data.data[0]);
-                                    }
-
-                                    $.ajax({
-                                        url:'./script/api_calls_to_db/access_database/access.php',
-                                        method:'post',
-                                        dataType:'JSON',
-                                        data:{
-                                            action:'insert_ctu',
-                                            youtube_channel_id:channelID
-                                        },
-                                        success: function (data) {
-                                            if (data.success) {
-                                                console.log('insert success', data);
-                                                addChannelModal(data.user_link)
-                                                renderChannelSelectionDropdown()
+                                $.ajax({
+                                    url:'./script/api_calls_to_db/access_database/access.php',
+                                    method:'post',
+                                    dataType:'JSON',
+                                    data:{
+                                        youtube_channel_id:youtube_channel_id,
+                                        action:'read_channels_by_youtube_id'
+                                    },
+                                    success:function(data){
+                                        if(data.success){
+                                            console.log('read data success', data);
+                                            if(!isAdding){
+                                                clientSelectedChannelObjects = [];
+                                                clientSelectedChannelObjects.push(data.data[0])
                                             }
-                                        },
-                                        errors: function (data) {
-                                            console.log('insert error', data);
+                                            else{
+                                                var isDup = false;
+                                                for(var i = 0; i < clientSubscribedChannelObjects.length; i++){
+                                                    if(clientSubscribedChannelObjects[i].youtube_channel_id === data.data[0].youtube_channel_id){
+                                                        isDup = true
+                                                    }
+                                                }
+                                                if(!isDup){
+                                                    clientSubscribedChannelObjects.push(data.data[0]);
+                                                    clientSelectedChannelObjects.push(data.data[0]);
+                                                }
+
+                                                $.ajax({
+                                                    url:'./script/api_calls_to_db/access_database/access.php',
+                                                    method:'post',
+                                                    dataType:'JSON',
+                                                    data:{
+                                                        action:'insert_ctu',
+                                                        youtube_channel_id:channelID
+                                                    },
+                                                    success: function (data) {
+                                                        if (data.success) {
+                                                            console.log('insert success', data);
+                                                            addChannelModal(data.user_link)
+                                                            renderChannelSelectionDropdown()
+                                                        }
+                                                    },
+                                                    errors: function (data) {
+                                                        console.log('insert error', data);
+                                                    }
+                                                })
+                                            }
+                                            loadSelectedChannels();
+                                        }else{
+                                            console.log(data);
                                         }
-                                    })
-                                }
-
-
-
-
-
-
-
-                                loadSelectedChannels();
+                                    },
+                                    errors:function(data){
+                                        console.log(data['errors'], data);
+                                    }
+                                })
                             }
                         },
                         errors: function (data) {
