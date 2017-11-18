@@ -143,9 +143,10 @@ consider carousel for the video list area:
 							<!-- <i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
 						</a> -->
 						<!--can take function as content; meaning data only uploads when clicked-->
-						<button class="btn hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"
+						<button class="btn btn-lg hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"
 						 title="Theater Mode">
-							<i class="fa fa-film fa-2x" aria-hidden="true"></i>
+							<!-- <i class="fa fa-film fa-2x" aria-hidden="true"></i> -->
+							<span class="glyphicon glyphicon-sound-stereo" id="theaterArrow" aria-hidden="true"></span>
 						</button>
 					</div>
 				</div>

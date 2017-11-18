@@ -306,13 +306,17 @@ body>.container-fluid {
 	/*color: rgba(255,255,255,1);*/
 	color: rgba(0, 200, 81, 1);
 }
-.lightBoxMode {
+.lightBoxMode{
 	position: absolute;
 	/*right: 20px;*/
 	bottom: 4px;
 	color: rgba(255, 255, 255, 0.5);
 	background: none;
 	border: none;
+	font-size: 30px;
+}
+#theaterArrow{
+	/*color: rgba(255,255,255,0.5);*/
 }
 .lightBoxMode:hover {
 	color: rgba(255, 0, 0, 1);
@@ -750,7 +754,7 @@ div.thRow {
 }
 
 .glyphicon {	/**target a class more specific to the glyphicon controllign carousel**/
-	color: red;
+	/*color: red;*/
 }
 
 /* toggle button */
