@@ -582,7 +582,6 @@ function initiateUser() {
                         errors:function(data){
                             console.log(data['errors'], data);
                         }
-                        }
                     });
                 }
                 // collectVideosToLoad();
