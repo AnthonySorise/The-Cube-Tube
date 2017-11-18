@@ -137,7 +137,6 @@ consider carousel for the video list area:
 				</div>
 			</div>
 			<!--end of videoRow div-->
-			<div id="settingsWrapper">
 			<nav class="navbar navbar-inverse" id="midNav">
 				<!-- <div class="container-fluid" id=""> -->
 					<!--navbar content main div-->
@@ -990,7 +989,6 @@ consider carousel for the video list area:
 					</a>
 				</div>
 				<!--end of listRow div-->
-			</div>
 			</div>
 			<!--end of listRow div-->
 
