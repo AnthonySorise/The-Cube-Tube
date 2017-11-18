@@ -7,8 +7,20 @@ $output = [
     'errors' => [],
 ];
 if(!empty($_SESSION['user_link'])){
-    // include('./read_user.php');
-    $user_link = $_SESSION['user_link'];
+    $stmt = $conn->prepare("SELECT user_id WHERE user_link = ?");
+    $stmt->bind_param('i',$user_link);
+    $stmt->execute();
+    $result = mysqli_stmt_get_result($stmt);
+    if(!empty($result)){
+        if(mysqli_num_rows($result)>0){
+            $row = mysqli_fetch_assoc($result);
+            define('USER_LINK',$row['user_link']);
+        }else{
+            $output['nothing_to_read'] = true;
+        }
+    }else{
+        $output['errors'][] = 'INVALID QUERY READ USER ID IN ACCESS ';
+    }
 }
 if(empty($_POST['action'])){
     $output['errors'][] = 'No action specified';

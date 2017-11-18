@@ -69,7 +69,8 @@ if(empty($channel_id)){
 //     output_and_exit($output);
 // }
 
-$stmt = $conn->prepare("SELECT * FROM channels_to_users WHERE user_id=? AND channel_id=?");
+$stmt = $conn->prepare("SELECT * FROM channels_to_users 
+WHERE user_id=? AND channel_id=?");
 $stmt->bind_param('ii',$user_id,$channel_id);
 $stmt->execute();
 $results = mysqli_stmt_get_result($stmt);
