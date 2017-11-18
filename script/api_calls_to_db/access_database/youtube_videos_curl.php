@@ -2,7 +2,7 @@
 if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
     die("no direct access allowed");
 }
-require('youtube_api_curl.php');
+require('youtube_api_key.php');
 // if(!empty($_POST['page_token'])){
 //     $next_page_token = $_POST['page_token'];
 //     $youtube_channel_id = $_POST['youtube_channel_id'];
