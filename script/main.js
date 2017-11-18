@@ -1232,12 +1232,12 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                         method:'post',
                         dataType:'JSON',
                         data:{
-                            action:'insert_youtube_channel_curl',
+                            action:'insert_youtube_channel_curl',       //NEED TO DO DOUBLE INSERT LATER WITH PAGE TOKEN
                             youtube_channel_id:channelID
                         },
                         success: function (data) {
                             if (data.success) {
-                                console.log('Videos inserted to DP from Youtube', data);
+                                console.log('Videos inserted to DB from Youtube', data);
                                 if(!isAdding){
                                     clientSelectedChannelObjects = [];
                                     clientSelectedChannelObjects.push(data.data[0])
@@ -1274,6 +1274,13 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                                         }
                                     })
                                 }
+
+
+
+
+
+
+
                                 loadSelectedChannels();
                             }
                         },
