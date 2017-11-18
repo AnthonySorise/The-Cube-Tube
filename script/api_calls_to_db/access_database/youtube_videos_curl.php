@@ -3,14 +3,14 @@ if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
     die("no direct access allowed");
 }
 require('youtube_api_key.php');
-// if(!empty($_POST['page_token'])){
-//     $next_page_token = $_POST['page_token'];
-//     $youtube_channel_id = $_POST['youtube_channel_id'];
-//     $channel_id = $_POST['channel_id' ];
-//     $conn = $_POST['conn'];
-//     $last_channel_pull = $_POST['last_channel_pull'];
-// }
-// if(empty($_POST['page_token'])){
+include('mysql_connect.php');
+if(!empty($_POST['page_token'])){
+    $next_page_token = $_POST['page_token'];
+    $youtube_channel_id = $_POST['youtube_channel_id'];
+    $channel_id = $_POST['channel_id' ];
+    $last_channel_pull = $_POST['last_channel_pull'];
+}
+if(empty($_POST['page_token'])){
     if(!empty($_POST['last_channel_pull'])){
         $last_channel_pull = $_POST['last_channel_pull'];
         $last_channel_pull = str_replace(" ","T", $last_channel_pull);
@@ -18,7 +18,7 @@ require('youtube_api_key.php');
     }else{
         $last_channel_pull = "";
     }
-// }
+}
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
     if(!empty($last_channel_pull)){
         $last_channel_pull = "&publishedAfter={$last_channel_pull}";
@@ -99,14 +99,14 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         if(!empty($next_page_token)){//calls file again if there is a next page token
             curl_setopt($ch,CURLOPT_URL, 'youtube_videos_curl.php');
             curl_setopt($ch, CURLOPT_POST, 1);
-            $_POST['page_token'] = $next_page_token;
-            // $_POST = [
-            //     'page_token' => $next_page_token,
-            //     'youtube_channel_id' => $youtube_channel_id,
-            //     'channel_id' => $channel_id,
-            //     'conn'=>$conn,
-            //     'last_channel_pull'=>$last_channel_pull
-            // ];
+            // $_POST['page_token'] = $next_page_token;
+            $_POST = [
+                'page_token' => $next_page_token,
+                'youtube_channel_id' => $youtube_channel_id,
+                'channel_id' => $channel_id,
+                'conn'=>$conn,
+                'last_channel_pull'=>$last_channel_pull
+            ];
             curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST);
             curl_setopt($ch,CURLOPT_TIMEOUT,0);
             curl_exec($ch);
