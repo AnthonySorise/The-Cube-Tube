@@ -47,6 +47,8 @@ body {
 *************************************************************************************/
 .hamburger {
 	display: none !important;
+	color: orange;
+	border: none;
 }
 #mainNav{
 	background-color: black;
@@ -162,6 +164,15 @@ body {
 	border: none;
 	border-radius:0;
 }
+.dropdownLabelA{
+	color: white;
+}
+.dropdownLabelA>.fa-cube{
+	color: orange;
+}
+.dropdownLabelA:hover{
+	color: orange;
+}
 #channelCategoryUl{
 	text-align: center;
 	padding: 5px 10px;
@@ -185,6 +196,9 @@ body {
 }
 .dropdownChannelLiLoad>.fa-refresh, #categoryButton>.fa{
 	color: red;
+}
+.dropdownChannelLiAll>.fa-cubes{
+	color: orange;
 }
 .dropdownChannelLiLoad:hover, #categoryButton:hover{
 	background-color: rgba(40,40,40,0.9);
@@ -315,11 +329,9 @@ body>.container-fluid {
 	border: none;
 	font-size: 30px;
 }
-#theaterArrow{
-	/*color: rgba(255,255,255,0.5);*/
-}
 .lightBoxMode:hover {
-	color: rgba(255, 0, 0, 1);
+	/*color: rgba(255, 0, 0, 1);*/
+	color: orange;
 }
 #infoButtonContainer {
 	position: relative;

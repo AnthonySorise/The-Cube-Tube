@@ -73,7 +73,7 @@ consider carousel for the video list area:
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown channelDropDown">
-						<a href="#" class="dropdown-toggle hidden-xs" role="button" aria-haspopup="true" aria-expanded="false">
+						<a href="#" class="dropdown-toggle hidden-xs dropdownLabelA" role="button" aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-cube" aria-hidden="true"></i>
 							MyCube
 							<span class="caret"></span>
@@ -126,26 +126,9 @@ consider carousel for the video list area:
 					<!--This is where the iframe element will go-->
 					<div id="mainVideo" class="iframeVideo"></div>
 					<div id=infoButtonContainer>
-						<!-- <a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body"
-						 data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
-							<i class="fa fa-comments-o fa-2x" aria-hidden="true"></i>
-						</a>
-						<a tabindex="0" id="videoInfo" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
-						 data-placement="bottom" title="video info" data-content="a section for video info maybe">
-							<i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
-						</a> -->
-						<!-- <a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
-						 data-placement="bottom" title="channel info" data-content="section for channel info">
-							<i class="fa fa-list-alt fa-2x" aria-hidden="true"></i>
-						</a> 
-						<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body"> -->
-						 <!--data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">-->
-							<!-- <i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
-						</a> -->
 						<!--can take function as content; meaning data only uploads when clicked-->
 						<button class="btn btn-lg hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"
 						 title="Theater Mode">
-							<!-- <i class="fa fa-film fa-2x" aria-hidden="true"></i> -->
 							<span class="glyphicon glyphicon-sound-stereo" id="theaterArrow" aria-hidden="true"></span>
 						</button>
 					</div>
@@ -154,6 +137,7 @@ consider carousel for the video list area:
 				</div>
 			</div>
 			<!--end of videoRow div-->
+			<div id="settingsWrapper">
 			<nav class="navbar navbar-inverse" id="midNav">
 				<!-- <div class="container-fluid" id=""> -->
 					<!--navbar content main div-->
@@ -167,7 +151,6 @@ consider carousel for the video list area:
 						</button>
 					</div>
 					<!--end of nav header div-->
-
 					<div class="collapse navbar-collapse text-center" id="midNav-option">
 						<!--div for nav options-->
 						<div class="navbar-nav nav-pills midNavButtonWrap">
@@ -1007,6 +990,7 @@ consider carousel for the video list area:
 					</a>
 				</div>
 				<!--end of listRow div-->
+			</div>
 			</div>
 			<!--end of listRow div-->
 
