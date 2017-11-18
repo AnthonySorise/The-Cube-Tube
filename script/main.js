@@ -1236,6 +1236,7 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                             youtube_channel_id:channelID
                         },
                         success: function (data) {
+                            console.log("TESTING" , data)
                             if (data.success) {
                                 console.log('Videos inserted to DB from Youtube', data);
                                 if(!isAdding){
