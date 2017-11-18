@@ -9,6 +9,7 @@ if(!empty($_POST['page_token'])){
     $youtube_channel_id = $_POST['youtube_channel_id'];
     $channel_id = $_POST['channel_id'];
     $last_channel_pull = $_POST['last_channel_pull'];
+    $output = "";
 }else{
     if(!empty($_POST['last_channel_pull'])){
         $last_channel_pull = $_POST['last_channel_pull'];
@@ -49,7 +50,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             'strlen($json): ' . strlen($json) . "\n" .
             'var_export(curl_getinfo($ch), true): ' . var_export(curl_getinfo($ch), true) . "\n\n" .
             '$json: ' . $json . "\n";
-        //echo $body;
+        echo $body;
     } else {
         $video_array = json_decode($json, true);
         $next_page_token = $video_array['nextPageToken'];
