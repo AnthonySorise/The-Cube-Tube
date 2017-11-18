@@ -564,41 +564,24 @@ function initiateUser() {
                             youtube_channel_id: data.data[i].youtube_channel_id,
                             action: 'read_channels_by_youtube_id'
                         },
-                        success: function (data) {
-                            if (data.success) {
-                                $.ajax({
-                                    url:'./script/api_calls_to_db/access_database/access.php',
-                                    method:'post',
-                                    dataType:'JSON',
-                                    data:{
-                                        youtube_channel_id:youtube_channel_id,
-                                        action:'read_channels_by_youtube_id'
-                                    },
-                                    success:function(data){
-                                        if(data.success){
-                                            console.log('Channel read from DB', data.data);
-                                            // data.data[0].youtube_channel_id = channelId;
-                                            clientSubscribedChannelObjects.push(data.data[0]);
-                                            clientSelectedChannelObjects.push(data.data[0]);
+                        success:function(data){
+                            if(data.success){
+                                console.log('Channel read from DB', data.data);
+                                // data.data[0].youtube_channel_id = channelId;
+                                clientSubscribedChannelObjects.push(data.data[0]);
+                                clientSelectedChannelObjects.push(data.data[0]);
 
-                                            if (numSubscribedChannels === clientSubscribedChannelObjects.length) {
-                                                loadSelectedChannels();
-                                                renderChannelSelectionDropdown();
-                                            }
-                                        }else{
-                                            console.log(data);
-                                        }
-                                    },
-                                    errors:function(data){
-                                        console.log(data['errors'], data);
-                                    }
-                                })
-                            } else {
+                                if (numSubscribedChannels === clientSubscribedChannelObjects.length) {
+                                    loadSelectedChannels();
+                                    renderChannelSelectionDropdown();
+                                }
+                            }else{
                                 console.log(data);
                             }
                         },
-                        errors: function (data) {
+                        errors:function(data){
                             console.log(data['errors'], data);
+                        }
                         }
                     });
                 }
