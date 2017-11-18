@@ -101,5 +101,10 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                   //REALLY SHOULD RETURN $output 
             }
       }    
-insert_videos($youtube_channel_id,$channel_id,"first",$DEVELOPER_KEY,$conn,$last_channel_pull,$output); 
+if(empty($_POST['page_token'])){
+      insert_videos($youtube_channel_id,$channel_id,"first",$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
+}else{
+      insert_videos($youtube_channel_id,$channel_id,$_POST['page_token'],$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
+}
+ 
 ?>
