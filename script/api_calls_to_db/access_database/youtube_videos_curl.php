@@ -10,12 +10,14 @@ if(!empty($_POST['page_token'])){
     $DEVELOPER_KEY = $_POST['developer_key'];
     $last_channel_pull = $_POST['last_channel_pull'];
 }
-if(!empty($_POST['last_channel_pull']) && empty($_POST['page_token'])){
-    $last_channel_pull = $_POST['last_channel_pull'];
-    $last_channel_pull = str_replace(" ","T", $last_channel_pull);
-    $last_channel_pull .= ".000Z";
-}else{
-    $last_channel_pull = "";
+if(empty($_POST['page_token'])){
+    if(!empty($_POST['last_channel_pull'])){
+        $last_channel_pull = $_POST['last_channel_pull'];
+        $last_channel_pull = str_replace(" ","T", $last_channel_pull);
+        $last_channel_pull .= ".000Z";
+    }else{
+        $last_channel_pull = "";
+    }
 }
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
     if(!empty($last_channel_pull)){
