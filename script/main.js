@@ -136,7 +136,7 @@ $(document).ready(function () {
     setTimeout(() => {
         iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
         $('.lightBoxMode').css('left', iframeRight + 'px');
-    }, 200);
+    }, 500);
 
     setTimeout(() => {
         initiateUser();
