@@ -977,6 +977,7 @@ consider carousel for the video list area:
 												</div>
 											</div>
 									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -1026,11 +1027,6 @@ consider carousel for the video list area:
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
 						</button>
-<!--						<div class="modal-title-wrap">-->
-<!--							<h4 class="modal-title" id="channelSearchModalTitle">-->
-<!--								Search Results...-->
-<!--							</h4>-->
-<!--						</div>-->
 					</div>
 					<div class="modal-body" id="channelSearchModalBody">
 						<li id="chSearch-1" class="col-xs-12">
@@ -1209,10 +1205,6 @@ consider carousel for the video list area:
 							<button class="btn btn-success addChannelButton"> Subscribe </button>
 						</li>
 					</div>
-<!--					<div class="modal-footer">-->
-<!--						<span id="channelSearchModalFooter"></span>-->
-<!--						<button type="button" class="btn btn-danger modalClose theaterModalClose" data-dismiss="modal">close</button>-->
-<!--					</div>-->
 				</div>
 			</div>
 		</div>
