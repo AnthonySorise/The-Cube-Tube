@@ -1,15 +1,12 @@
 <?php
-if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
+if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
 if(!empty($_POST['page_token'])){
-    include('mysql_connect.php');
     require('youtube_api_key.php');
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
     $channel_id = $_POST['channel_id'];
-    print_r($_POST);
-    exit();
     // $sqli = "SELECT channel_id
     // FROM channels WHERE youtube_channel_id = ?";
     // $stmt = mysqli_stmt_init($conn);
@@ -114,13 +111,14 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $output['page_token']=$next_page_token;
         }
         if(!empty($next_page_token)){//calls file again if there is a next page token
-            curl_setopt($ch,CURLOPT_URL,'youtube_videos_curl.php');
+            curl_setopt($ch,CURLOPT_URL,'access.php');
             // curl_setopt($ch, CURLOPT_POST, 1);
             // $_POST['page_token'] = $next_page_token;
             $post_data = [
                 'page_token' => $next_page_token,
                 'youtube_channel_id' => $youtube_channel_id,
                 'channel_id' => $channel_id,
+                'action'=>'insert_videos_curl'
             ];
             curl_setopt($ch,CURLOPT_POSTFIELDS, $post_data);
             curl_setopt($ch,CURLOPT_TIMEOUT,0);
@@ -128,11 +126,16 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }
         if($page_token === "first"){
             output_and_exit($output);
-        }elseif(!empty($next_page_token)){
-            insert_videos($youtube_channel_id,$channel_id,$next_page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
         }
+        // }elseif(!empty($next_page_token)){
+        //     insert_videos($youtube_channel_id,$channel_id,$next_page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
+        // }
         //REALLY SHOULD RETURN $output
     }
 }
-insert_videos($youtube_channel_id,$channel_id,"first",$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
+if($first){
+    insert_videos($youtube_channel_id,$channel_id,"first",$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
+}elseif(!empty($next_page_token)){
+    insert_videos($youtube_channel_id,$channel_id,$next_page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
+}
 ?>

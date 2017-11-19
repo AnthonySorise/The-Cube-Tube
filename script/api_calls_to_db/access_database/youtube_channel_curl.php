@@ -55,6 +55,7 @@ if ($error_occurred ){
           if(mysqli_affected_rows($conn)>0){
               $output['messages'][] = "insert channel success";
               $channel_id = mysqli_insert_id($conn);
+              $first = true;
               include("youtube_videos_curl.php");
           }else{
               $output['errors'][]='UNABLE TO INSERT';
