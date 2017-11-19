@@ -20,7 +20,6 @@ if ($decoded_json === NULL ) {
       $error_occurred = true;
 }
 if ($error_occurred ){
-      echo('i failed');
       $body = 'Error occurred in ' . __FILE__ . "\n\n" .
                  'curl_errno: ' . curl_errno($ch) . "\n" .
                  'curl_error: ' . curl_error($ch) . "\n" .
