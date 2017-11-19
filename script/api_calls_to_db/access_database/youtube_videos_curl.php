@@ -6,23 +6,22 @@ if(!empty($_POST['page_token'])){
     require('youtube_api_key.php');
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
-    $channel_id = $_POST['channel_id'];
-    // $sqli = "SELECT channel_id
-    // FROM channels WHERE youtube_channel_id = ?";
-    // $stmt = mysqli_stmt_init($conn);
-    // if(!mysqli_stmt_prepare($stmt,$sqli)){
-    //     echo 'SQL statement failed, read channel id';
-    // }else {
-    //     mysqli_stmt_bind_param($stmt, 's', $youtube_channel_id);
-    //     mysqli_stmt_execute($stmt);
-    //     $result = mysqli_stmt_get_result($stmt);
-    //     if (mysqli_num_rows($result)>0) {
-    //         $row = mysqli_fetch_assoc($result);
-    //         $channel_id = $row['channel_id'];
-    //     } else {
-    //         $output['messages'] = "can't read channel";
-    //     }
-    // }
+    $sqli = "SELECT channel_id
+    FROM channels WHERE youtube_channel_id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt,$sqli)){
+        echo 'SQL statement failed, read channel id';
+    }else {
+        mysqli_stmt_bind_param($stmt, 's', $youtube_channel_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if (mysqli_num_rows($result)>0) {
+            $row = mysqli_fetch_assoc($result);
+            $channel_id = $row['channel_id'];
+        } else {
+            $output['messages'] = "can't read channel";
+        }
+    }
     $last_channel_pull = '';
 }else{
     if(!empty($_POST['last_channel_pull'])){
@@ -108,20 +107,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         if($output['insert_success']>0){
             $output['success']=true;
             $output['page_token']=$next_page_token;
-        }
-        if(!empty($next_page_token) && $page_token==='first'){//calls file again if there is a next page token
-            curl_setopt($ch,CURLOPT_URL,'access.php');
-            // curl_setopt($ch, CURLOPT_POST, 1);
-            // $_POST['page_token'] = $next_page_token;
-            $post_data = [
-                'page_token' => $next_page_token,
-                'youtube_channel_id' => $youtube_channel_id,
-                'channel_id' => $channel_id,
-                'action'=>'insert_videos_curl'
-            ];
-            curl_setopt($ch,CURLOPT_POSTFIELDS, $post_data);
-            curl_setopt($ch,CURLOPT_TIMEOUT,0);
-            curl_exec($ch);
         }
         if($page_token === 'first'){
             output_and_exit($output);
