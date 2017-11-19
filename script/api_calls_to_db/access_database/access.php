@@ -73,7 +73,7 @@ switch($_POST['action']){
         include('update_video_list.php');
         break;
     case 'insert_videos_curl':
-        include('youtube_videos_curl');
+        include('youtube_videos_curl.php');
         break;
     default:
         $output['errors'][] = 'invalid action';
