@@ -110,7 +110,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $output['success']=true;
             $output['page_token']=$next_page_token;
         }
-        if(!empty($next_page_token)){//calls file again if there is a next page token
+        if(!empty($next_page_token) && $first){//calls file again if there is a next page token
             curl_setopt($ch,CURLOPT_URL,'access.php');
             // curl_setopt($ch, CURLOPT_POST, 1);
             // $_POST['page_token'] = $next_page_token;
@@ -127,9 +127,13 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         if($page_token === "first"){
             output_and_exit($output);
         }
+        if(!empty($next_page_token)){
+            insert_videos($youtube_channel_id,$channel_id,$next_page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
+        }
         // }elseif(!empty($next_page_token)){
         //     insert_videos($youtube_channel_id,$channel_id,$next_page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
         // }
+        return $output;
         //REALLY SHOULD RETURN $output
     }
 }
