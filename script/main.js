@@ -991,193 +991,188 @@ function addChannelModal(userLink) {
     $('#userLinkModal').modal('show');
 }
 
-function ytChannelApiToDb(channelId, isAdding = false) {
-    var channelDbObject = {};
-    $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/channels',
-        dataType: 'json',
-        method: 'get',
-        data: {
-            key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-            id: channelId,
-            part: 'snippet, statistics'
-        },
-        success: function (data) {
-            console.log('Youtube success', data);
-            channelDbObject.youtube_channel_id = channelId;
-            channelDbObject.channel_title = data.items[0].snippet.title;
-            channelDbObject.description = data.items[0].snippet.description;
+// function ytChannelApiToDb(channelId, isAdding = false) {
+//     var channelDbObject = {};
+//     $.ajax({
+//         url: 'https://www.googleapis.com/youtube/v3/channels',
+//         dataType: 'json',
+//         method: 'get',
+//         data: {
+//             key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+//             id: channelId,
+//             part: 'snippet, statistics'
+//         },
+//         success: function (data) {
+//             console.log('Youtube success', data);
+//             channelDbObject.youtube_channel_id = channelId;
+//             channelDbObject.channel_title = data.items[0].snippet.title;
+//             channelDbObject.description = data.items[0].snippet.description;
+//
+//             var thumbnail = data.items[0].snippet.thumbnails.medium.url;
+//             thumbnail = thumbnail.replace('https://yt3.ggpht.com/', '');
+//             thumbnail = thumbnail.replace('/photo.jpg', '');
+//             channelDbObject.thumbnail = thumbnail;
+//
+//             // access_database.insert_channel(channelDbObject);
+//             $.ajax({
+//                 url: './script/api_calls_to_db/access_database/access.php',
+//                 method: 'post',
+//                 dataType: 'JSON',
+//                 data: {
+//                     action: 'insert_channel',
+//                     youtube_channel_id: channelDbObject.youtube_channel_id,
+//                     channel_title: channelDbObject.channel_title,
+//                     description: channelDbObject.description,
+//                     thumbnail: channelDbObject.thumbnail
+//                 },
+//                 success: function (data) {
+//                     if (data.success) {
+//                         console.log('insert channel success', data);
+//
+//                         if (!isAdding) {
+//                             clientSelectedChannelObjects = [];
+//                         }
+//                         else {
+//                             var isDup = false;
+//                             for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
+//                                 if (clientSubscribedChannelObjects[i].youtube_channel_id === channelDbObject.youtube_channel_id) {
+//                                     isDup = true
+//                                 }
+//                             }
+//                             if (!isDup) {
+//                                 clientSubscribedChannelObjects.push(channelDbObject);
+//                             }
+//
+//                             $.ajax({
+//                                 url: './script/api_calls_to_db/access_database/access.php',
+//                                 method: 'post',
+//                                 dataType: 'JSON',
+//                                 data: {
+//                                     action: 'insert_ctu',
+//                                     youtube_channel_id: channelId
+//                                 },
+//                                 success: function (data) {
+//                                     if (data.success) {
+//                                         console.log('insert success', data);
+//                                         addChannelModal(data.user_link)
+//                                         renderChannelSelectionDropdown()
+//                                     }
+//                                 },
+//                                 errors: function (data) {
+//                                     console.log('insert error', data);
+//                                 }
+//                             })
+//                         }
+//                         clientSelectedChannelObjects.push(channelDbObject);
+//                     }
+//                 },
+//                 errors: function (data) {
+//                     console.log('insert error');
+//                 }
+//             })
+//         },
+//         error: function (data) {
+//             console.log('something went wrong with YT', data);
+//         }
+//     });
+// }
+//
+// function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = false) {
+//     var packageToSendToDb = [];
+//     $.ajax({
+//         url: 'https://www.googleapis.com/youtube/v3/search',
+//         dataType: 'json',
+//         method: 'get',
+//         data: {
+//             key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+//             channelId: channelId,
+//             type: 'video',
+//             order: 'date',
+//             part: 'snippet',
+//             maxResults: 50,
+//             pageToken: pageToken
+//         },
+//         success: function (data) {
+//             console.log('ytVideoApiToDb success', data);
+//             for (var i = 0; i < data.items.length; i++) {
+//                 var videoObject = {};
+//                 videoObject.video_title = data.items[i].snippet.title;
+//                 videoObject.youtube_video_id = data.items[i].id.videoId;
+//                 videoObject.youtube_channel_id = data.items[i].snippet.channelId;
+//                 videoObject.channel_title = data.items[i].snippet.channelTitle;
+//                 videoObject.description = data.items[i].snippet.description;
+//                 var publishedAt = data.items[i].snippet.publishedAt;
+//                 publishedAt = publishedAt.replace("T", " ");
+//                 publishedAt = publishedAt.replace(".000Z", "");
+//                 videoObject.published_at = publishedAt;
+//
+//                 packageToSendToDb.push(videoObject);
+//
+//             }
+//
+//             if (firstRun) {
+//                 if (!isAdding) {
+//                     var clientPackage = [];
+//                     for (var i = 0; i < 40; i++) {
+//                         clientPackage.push(packageToSendToDb[i])
+//                     }
+//                     videoObjectsToLoad = clientPackage
+//                     // loadClientVideoObjectArray(videoObjectsToLoad)
+//                     renderVideoList(videoObjectsToLoad);
+//                     access_database.insert_video(packageToSendToDb);
+//                 }
+//                 else {
+//                     $.ajax({
+//                         url: './script/api_calls_to_db/access_database/access.php',
+//                         method: 'POST',
+//                         dataType: 'JSON',
+//                         data: {
+//                             action: 'insert_video',
+//                             videoArray: packageToSendToDb
+//                         },
+//                         success: function (data) {
+//                             if (data.success) {
+//                                 console.log('insert video success', data);
+//                                 loadSelectedChannels();
+//                             }
+//                         },
+//                         errors: function (data) {
+//                             console.log('insert error', data);
+//                         }
+//                     })
+//
+//                 }
+//             }
+//             else {
+//                 access_database.insert_video(packageToSendToDb);
+//             }
+//
+//             if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
+//                 ytVideoApiToDb(channelId, data.nextPageToken, false)
+//             }
+//         },
+//         error: function (data) {
+//             console.log('something went wrong with YT', data);
+//         }
+//     });
+// }
 
-            var thumbnail = data.items[0].snippet.thumbnails.medium.url;
-            thumbnail = thumbnail.replace('https://yt3.ggpht.com/', '');
-            thumbnail = thumbnail.replace('/photo.jpg', '');
-            channelDbObject.thumbnail = thumbnail;
-
-            // access_database.insert_channel(channelDbObject);
-            $.ajax({
-                url: './script/api_calls_to_db/access_database/access.php',
-                method: 'post',
-                dataType: 'JSON',
-                data: {
-                    action: 'insert_channel',
-                    youtube_channel_id: channelDbObject.youtube_channel_id,
-                    channel_title: channelDbObject.channel_title,
-                    description: channelDbObject.description,
-                    thumbnail: channelDbObject.thumbnail
-                },
-                success: function (data) {
-                    if (data.success) {
-                        console.log('insert channel success', data);
-
-                        if (!isAdding) {
-                            clientSelectedChannelObjects = [];
-                        }
-                        else {
-                            var isDup = false;
-                            for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
-                                if (clientSubscribedChannelObjects[i].youtube_channel_id === channelDbObject.youtube_channel_id) {
-                                    isDup = true
-                                }
-                            }
-                            if (!isDup) {
-                                clientSubscribedChannelObjects.push(channelDbObject);
-                            }
-
-                            $.ajax({
-                                url: './script/api_calls_to_db/access_database/access.php',
-                                method: 'post',
-                                dataType: 'JSON',
-                                data: {
-                                    action: 'insert_ctu',
-                                    youtube_channel_id: channelId
-                                },
-                                success: function (data) {
-                                    if (data.success) {
-                                        console.log('insert success', data);
-                                        addChannelModal(data.user_link)
-                                        renderChannelSelectionDropdown()
-                                    }
-                                },
-                                errors: function (data) {
-                                    console.log('insert error', data);
-                                }
-                            })
-                        }
-                        clientSelectedChannelObjects.push(channelDbObject);
-                    }
-                },
-                errors: function (data) {
-                    console.log('insert error');
-                }
-            })
-        },
-        error: function (data) {
-            console.log('something went wrong with YT', data);
-        }
-    });
-}
-
-function ytVideoApiToDb(channelId, pageToken = "", firstRun = true, isAdding = false) {
-    var packageToSendToDb = [];
-    $.ajax({
-        url: 'https://www.googleapis.com/youtube/v3/search',
-        dataType: 'json',
-        method: 'get',
-        data: {
-            key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-            channelId: channelId,
-            type: 'video',
-            order: 'date',
-            part: 'snippet',
-            maxResults: 50,
-            pageToken: pageToken
-        },
-        success: function (data) {
-            console.log('ytVideoApiToDb success', data);
-            for (var i = 0; i < data.items.length; i++) {
-                var videoObject = {};
-                videoObject.video_title = data.items[i].snippet.title;
-                videoObject.youtube_video_id = data.items[i].id.videoId;
-                videoObject.youtube_channel_id = data.items[i].snippet.channelId;
-                videoObject.channel_title = data.items[i].snippet.channelTitle;
-                videoObject.description = data.items[i].snippet.description;
-                var publishedAt = data.items[i].snippet.publishedAt;
-                publishedAt = publishedAt.replace("T", " ");
-                publishedAt = publishedAt.replace(".000Z", "");
-                videoObject.published_at = publishedAt;
-
-                packageToSendToDb.push(videoObject);
-
-            }
-
-            if (firstRun) {
-                if (!isAdding) {
-                    var clientPackage = [];
-                    for (var i = 0; i < 40; i++) {
-                        clientPackage.push(packageToSendToDb[i])
-                    }
-                    videoObjectsToLoad = clientPackage
-                    // loadClientVideoObjectArray(videoObjectsToLoad)
-                    renderVideoList(videoObjectsToLoad);
-                    access_database.insert_video(packageToSendToDb);
-                }
-                else {
-                    $.ajax({
-                        url: './script/api_calls_to_db/access_database/access.php',
-                        method: 'POST',
-                        dataType: 'JSON',
-                        data: {
-                            action: 'insert_video',
-                            videoArray: packageToSendToDb
-                        },
-                        success: function (data) {
-                            if (data.success) {
-                                console.log('insert video success', data);
-                                loadSelectedChannels();
-                            }
-                        },
-                        errors: function (data) {
-                            console.log('insert error', data);
-                        }
-                    })
-
-                }
-            }
-            else {
-                access_database.insert_video(packageToSendToDb);
-            }
-
-            if (data.hasOwnProperty('nextPageToken') && data.items.length !== 0) {
-                ytVideoApiToDb(channelId, data.nextPageToken, false)
-            }
-        },
-        error: function (data) {
-            console.log('something went wrong with YT', data);
-        }
-    });
-}
-
-function manageDatabaseWithChannelId(channelID, isAdding = false) {
+function retrieveInfoFromDB(channelID, isAdding = false) {
     videoObjectsToLoad = null;
 
-    if(!isAdding){
-        clientSelectedChannelIds = [];
-    }
-    else{
-        var isDup = false;
-        for(var i = 0; i<clientSubscribedChannelIds.length; i++){
-            if(clientSubscribedChannelIds[i] === channelID){
-                isDup = true
-            }
-        }
-        if(!isDup){
-            clientSubscribedChannelIds.push(channelID);
-            // clientSelectedChannelIds.push(channelID);
+    //Check for duplicate
+    var isDup = false;
+    for(var i = 0; i<clientSubscribedChannelIds.length; i++){
+        if(clientSubscribedChannelIds[i] === channelID){
+            isDup = true
         }
     }
-    clientSelectedChannelIds.push(channelID);
+    if(isDup){
+        return
+    }
 
-    $.ajax({    //CHECK TO SEE IF CHANNEL IS ON DB
+    //Check to see if channel is on DB
+    $.ajax({
         url:'./script/api_calls_to_db/access_database/access.php',
         method:'post',
         dataType:'JSON',
@@ -1186,25 +1181,24 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
             action:'read_channels_by_youtube_id'
         },
         success:function(data){
-
+            //Channel is on DB
             if(data.success){
                 console.log('Channel Found on DB', data);
-                if(!isAdding){
+                if(!isAdding){//Browsing
+                    clientSelectedChannelIds = [];
+                    clientSelectedChannelIds.push(channelID);
+
                     clientSelectedChannelObjects = [];
                     clientSelectedChannelObjects.push(data.data[0])
                 }
-                else{
-                    var isDup = false;
-                    for(var i = 0; i < clientSubscribedChannelObjects.length; i++){
-                        if(clientSubscribedChannelObjects[i].youtube_channel_id === data.data[0].youtube_channel_id){
-                            isDup = true
-                        }
-                    }
-                    if(!isDup){
-                        clientSubscribedChannelObjects.push(data.data[0]);
-                        clientSelectedChannelObjects.push(data.data[0]);
-                    }
+                else{//Adding
+                    clientSelectedChannelIds.push(channelID);
+                    clientSubscribedChannelIds.push(channelID);
 
+                    clientSubscribedChannelObjects.push(data.data[0]);
+                    clientSelectedChannelObjects.push(data.data[0]);
+
+                    //Add channel to user account
                     $.ajax({
                         url:'./script/api_calls_to_db/access_database/access.php',
                         method:'post',
@@ -1215,8 +1209,8 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                         },
                         success: function (data) {
                             if (data.success) {
-                                console.log('insert success', data);
-                                addChannelModal(data.user_link)
+                                console.log('Channel added to user account', data);
+                                addChannelModal(data.user_link);
                                 renderChannelSelectionDropdown()
                             }
                         },
@@ -1225,9 +1219,11 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                         }
                     })
                 }
+                //LOAD CHANNELS
                 loadSelectedChannels();
             }
-            else{   //RETRIEVE VIDEOS FROM YOUTUBE
+            //Channel NOT on DB
+            else{
                 if(data.nothing_to_read){
                     console.log("Must Retrieve Videos From YouTube", data);
                     $.ajax({
@@ -1239,7 +1235,6 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                             youtube_channel_id:channelID
                         },
                         success: function (data) {
-                            console.log("TESTING" , data)
                             if (data.success) {
                                 console.log('Videos inserted to DB from Youtube', data);
                                 $.ajax({
@@ -1285,44 +1280,33 @@ function manageDatabaseWithChannelId(channelID, isAdding = false) {
                                                         }
                                                     },
                                                     errors: function (data) {
-                                                        console.log('insert error', data);
+                                                        console.log("ERROR", data);
                                                     }
                                                 })
                                             }
                                             loadSelectedChannels();
                                         }else{
-                                            console.log(data);
+                                            console.log("ERROR", data);
                                         }
                                     },
                                     errors:function(data){
-                                        console.log(data['errors'], data);
+                                        console.log("ERROR", data);
                                     }
                                 })
                             }
                         },
                         errors: function (data) {
-                            console.log('insert error', data);
+                            console.log("ERROR", data);
                         }
                     })
                 }
             }
         },
         errors:function(data){
-            // promise.reject(data);
-            console.log(data['read errors'], data);
+            console.log("ERROR", data);
         }
     })
 }
-
-// function loadClientVideoObjectArray() {
-//     if (videoObjectsToLoad === null) {
-//         console.log(videoObjectsToLoad === null)
-//         setTimeout(loadClientVideoObjectArray, 50);
-//         return
-//     }
-//     console.log("LOADING VIDEO LIST")
-//     renderVideoList(videoObjectsToLoad);
-// }
 
 function handleBrowseButton() {
     $('.dropdownSettingsPopover').popover('hide');
@@ -1338,7 +1322,7 @@ function handleBrowseButton() {
 
 
     let channelID = $(this).parent().attr("channelId");
-    manageDatabaseWithChannelId(channelID);
+    retrieveInfoFromDB(channelID);
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
@@ -1363,7 +1347,7 @@ function handleAddButton() {
 
 
     let channelID = $(this).parent().attr("channelId");
-    manageDatabaseWithChannelId(channelID, true);
+    retrieveInfoFromDB(channelID, true);
     // toastMsg('loading channel videos',1000);
 
 
