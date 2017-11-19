@@ -3,25 +3,29 @@ if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
     die("no direct access allowed");
 }
 if(!empty($_POST['page_token'])){
+    include('mysql_connect.php');
     require('youtube_api_key.php');
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
-    $sqli = "SELECT channel_id
-    FROM channels WHERE youtube_channel_id = ?";
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sqli)){
-        echo 'SQL statement failed, read channel id';
-    }else {
-        mysqli_stmt_bind_param($stmt, 's', $youtube_channel_id);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        if (mysqli_num_rows($result)>0) {
-            $row = mysqli_fetch_assoc($result);
-            $channel_id = $row['channel_id'];
-        } else {
-            $output['messages'] = "can't read channel";
-        }
-    }
+    $channel_id = $_POST['channel_id'];
+    print_r($_POST);
+    exit();
+    // $sqli = "SELECT channel_id
+    // FROM channels WHERE youtube_channel_id = ?";
+    // $stmt = mysqli_stmt_init($conn);
+    // if(!mysqli_stmt_prepare($stmt,$sqli)){
+    //     echo 'SQL statement failed, read channel id';
+    // }else {
+    //     mysqli_stmt_bind_param($stmt, 's', $youtube_channel_id);
+    //     mysqli_stmt_execute($stmt);
+    //     $result = mysqli_stmt_get_result($stmt);
+    //     if (mysqli_num_rows($result)>0) {
+    //         $row = mysqli_fetch_assoc($result);
+    //         $channel_id = $row['channel_id'];
+    //     } else {
+    //         $output['messages'] = "can't read channel";
+    //     }
+    // }
     $output = [];
     $last_channel_pull = "";
 }else{
@@ -79,7 +83,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $output['insert_success'] = 0;
         $maxCount = count($entries);
         for($i = 0; $i<$maxCount; $i++){
-            print_r($entries[$i]);
             $youtube_video_id = $entries[$i]['id']['videoId'];
             $description = $entries[$i]['snippet']['description'];
             $video_title = $entries[$i]['snippet']['title'];
@@ -112,16 +115,15 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $output['page_token']=$next_page_token;
         }
         if(!empty($next_page_token)){//calls file again if there is a next page token
-            curl_setopt($ch,CURLOPT_URL, 'youtube_videos_curl.php');
+            curl_setopt($ch,CURLOPT_URL,'youtube_videos_curl.php');
             // curl_setopt($ch, CURLOPT_POST, 1);
             // $_POST['page_token'] = $next_page_token;
-            $POST = [
+            $post_data = [
                 'page_token' => $next_page_token,
                 'youtube_channel_id' => $youtube_channel_id,
                 'channel_id' => $channel_id,
             ];
-            print_r($POST);
-            curl_setopt($ch,CURLOPT_POSTFIELDS, $POST);
+            curl_setopt($ch,CURLOPT_POSTFIELDS, $post_data);
             curl_setopt($ch,CURLOPT_TIMEOUT,0);
             curl_exec($ch);
         }
