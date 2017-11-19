@@ -439,6 +439,7 @@ function clickHandler() {
     $('.fastForwardButton').on('click', fastForwardVideo);
     $('.rewindButton').on('click', rewindVideo);
     $('.playButton').on('click', playYtVideo);
+    $('body').on('click', closeTheatreOnClick);
     $(document).on('keyup', function (event) {
         if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
             console.log('Esc was pressed');
@@ -446,14 +447,17 @@ function clickHandler() {
         }
     })
     //Lets user click outside of theatre modal to close and save the state of video
-    $('body').on('click', (event) => {
-        //Have to check if modal footer is being clicked to stop from closing modal
-        if(event.target.classList[0] == "fa" || event.target.classList == "") {
-            return;
-        }
-        checkTheatreModeStatus();
-        $('.modal-content').modal('hide');
-    })
+    function closeTheatreOnClick(event) {
+        event.stopPropagation();
+        if($('body').hasClass('modal-open')) {
+              //Have to check if modal footer is being clicked to stop from closing modal
+              if(event.target.classList[0] == "fa" || event.target.classList == "") {
+                return;
+            }
+            $('.modal-content').modal('hide');
+            checkTheatreModeStatus();            
+       }
+    }
 
     function checkHomePageVideoStatus(event) {
         event.stopPropagation()
@@ -477,7 +481,7 @@ function clickHandler() {
         }
     }
 
-    function checkTheatreModeStatus() {
+    function checkTheatreModeStatus() {     
         if (player2.getPlayerState() === 2) {
             checkIfPlayer2IsMuted();
             player2.pauseVideo();
