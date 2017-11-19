@@ -2,30 +2,26 @@
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
-require('youtube_api_key.php');
-include('mysql_connect.php');
 if(!empty($_POST['page_token'])){
+    require('youtube_api_key.php');
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
     $channel_id = $_POST['channel_id'];
-    $last_channel_pull = "";
-    $output = [];
+    $last_channel_pull = '';
 }else{
     if(!empty($_POST['last_channel_pull'])){
         $last_channel_pull = $_POST['last_channel_pull'];
-        $last_channel_pull = str_replace(" ","T", $last_channel_pull);
-        $last_channel_pull .= ".000Z";
+        $last_channel_pull = str_replace(' ','T', $last_channel_pull);
+        $last_channel_pull .= '.000Z';
     }else{
-        $last_channel_pull = "";
+        $last_channel_pull = '';
     }
 }
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
     if(!empty($last_channel_pull)){
         $last_channel_pull = "&publishedAfter={$last_channel_pull}";
-    }else{
-        $last_channel_pull = "";
     }
-    if($page_token=='first'){
+    if($page_token==='first'){
         $page_query='';
     }else{
         $page_query="&pageToken={$page_token}";
@@ -55,7 +51,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $video_array = json_decode($json, true);
         $next_page_token = $video_array['nextPageToken'];
         $entries = $video_array['items'];
-        $last_updated = date("Y-m-d H-i-s");
+        $last_updated = date('Y-m-d H-i-s');
         // $query = "INSERT INTO videos ('video_title','channel_id','youtube_video_id') ";
         // $bind_str = '';
         // foreach($entries as $key=>$value){
@@ -66,13 +62,12 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $output['insert_success'] = 0;
         $maxCount = count($entries);
         for($i = 0; $i<$maxCount; $i++){
-            print_r($entries[$i]);
             $youtube_video_id = $entries[$i]['id']['videoId'];
             $description = $entries[$i]['snippet']['description'];
             $video_title = $entries[$i]['snippet']['title'];
             $published_at = $entries[$i]['snippet']['publishedAt'];
-            $published_at = str_replace("T"," ",$published_at);
-            $published_at = str_replace(".000Z","",$published_at);
+            $published_at = str_replace('T',' ',$published_at);
+            $published_at = str_replace('.000Z','',$published_at);
             $stmt = $conn->prepare("INSERT INTO videos SET 
                   video_title=?,
                   channel_id=?,
@@ -96,25 +91,29 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }//end for
         if($output['insert_success']>0){
             $output['success']=true;
+            $output['page_token']=$next_page_token;
         }
-        if(!empty($next_page_token)){//calls file again if there is a next page token
+        if(!empty($next_page_token) && $page_token==='first'){//calls file again if there is a next page token
             curl_setopt($ch,CURLOPT_URL,'access.php');
             // curl_setopt($ch, CURLOPT_POST, 1);
             // $_POST['page_token'] = $next_page_token;
-            $POST = [
+            $post_data = [
                 'page_token' => $next_page_token,
-                'action'=>'update_video_list',
                 'youtube_channel_id' => $youtube_channel_id,
                 'channel_id' => $channel_id,
-                // 'last_channel_pull'=>$last_channel_pull
+                'action'=>'insert_videos_curl'
             ];
-            curl_setopt($ch,CURLOPT_POSTFIELDS, $POST);
+            curl_setopt($ch,CURLOPT_POSTFIELDS, $post_data);
             curl_setopt($ch,CURLOPT_TIMEOUT,0);
             curl_exec($ch);
         }
-        if($page_token === "first"){
+        if($page_token === 'first'){
             output_and_exit($output);
         }
+        if(!empty($next_page_token)){
+            insert_videos($youtube_channel_id,$channel_id,$next_page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
+        }
+        return $output;
         //REALLY SHOULD RETURN $output
     }
 }

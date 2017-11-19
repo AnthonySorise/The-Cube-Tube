@@ -23,14 +23,14 @@ if(!empty($_POST['page_token'])){
     //         $output['messages'] = "can't read channel";
     //     }
     // }
-    $last_channel_pull = "";
+    $last_channel_pull = '';
 }else{
     if(!empty($_POST['last_channel_pull'])){
         $last_channel_pull = $_POST['last_channel_pull'];
-        $last_channel_pull = str_replace(" ","T", $last_channel_pull);
-        $last_channel_pull .= ".000Z";
+        $last_channel_pull = str_replace(' ','T', $last_channel_pull);
+        $last_channel_pull .= '.000Z';
     }else{
-        $last_channel_pull = "";
+        $last_channel_pull = '';
     }
 }
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
@@ -67,7 +67,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $video_array = json_decode($json, true);
         $next_page_token = $video_array['nextPageToken'];
         $entries = $video_array['items'];
-        $last_updated = date("Y-m-d H-i-s");
+        $last_updated = date('Y-m-d H-i-s');
         // $query = "INSERT INTO videos ('video_title','channel_id','youtube_video_id') ";
         // $bind_str = '';
         // foreach($entries as $key=>$value){
@@ -82,8 +82,8 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $description = $entries[$i]['snippet']['description'];
             $video_title = $entries[$i]['snippet']['title'];
             $published_at = $entries[$i]['snippet']['publishedAt'];
-            $published_at = str_replace("T"," ",$published_at);
-            $published_at = str_replace(".000Z","",$published_at);
+            $published_at = str_replace('T',' ',$published_at);
+            $published_at = str_replace('.000Z','',$published_at);
             $stmt = $conn->prepare("INSERT INTO videos SET 
                   video_title=?,
                   channel_id=?,
@@ -109,7 +109,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $output['success']=true;
             $output['page_token']=$next_page_token;
         }
-        if(!empty($next_page_token) && $page_token==="first"){//calls file again if there is a next page token
+        if(!empty($next_page_token) && $page_token==='first'){//calls file again if there is a next page token
             curl_setopt($ch,CURLOPT_URL,'access.php');
             // curl_setopt($ch, CURLOPT_POST, 1);
             // $_POST['page_token'] = $next_page_token;
