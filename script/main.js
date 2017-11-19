@@ -1193,10 +1193,10 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                 }
                 else{//Adding
                     clientSelectedChannelIds.push(channelID);
-                    clientSubscribedChannelIds.push(channelID);
-
-                    clientSubscribedChannelObjects.push(data.data[0]);
                     clientSelectedChannelObjects.push(data.data[0]);
+
+                    clientSubscribedChannelIds.push(channelID);
+                    clientSubscribedChannelObjects.push(data.data[0]);
 
                     //Add channel to user account
                     $.ajax({
@@ -1215,7 +1215,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                             }
                         },
                         errors: function (data) {
-                            console.log('insert error', data);
+                            console.log('ERROR', data);
                         }
                     })
                 }
