@@ -433,6 +433,7 @@ div.thRow {
 
 .selectedTd div {
 	background-color: rgba(180,189,193,1.0) !important;
+	color: #020e13; !important;
 }
 
 /* .tdList:hover, .tdRow div.selectedTd {
