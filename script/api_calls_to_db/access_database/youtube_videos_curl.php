@@ -68,6 +68,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $video_array = json_decode($json, true);
         $next_page_token = $video_array['nextPageToken'];
         $entries = $video_array['items'];
+        print_r($entries);
         $last_updated = date("Y-m-d H-i-s");
         // $query = "INSERT INTO videos ('video_title','channel_id','youtube_video_id') ";
         // $bind_str = '';
