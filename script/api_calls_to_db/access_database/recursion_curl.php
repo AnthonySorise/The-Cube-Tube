@@ -1,5 +1,5 @@
 <?php
-if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
+if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
 require('youtube_api_key.php');
@@ -98,11 +98,12 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $output['success']=true;
         }
         if(!empty($next_page_token)){//calls file again if there is a next page token
-            curl_setopt($ch,CURLOPT_URL, 'youtube_videos_curl.php');
+            curl_setopt($ch,CURLOPT_URL,'access.php');
             // curl_setopt($ch, CURLOPT_POST, 1);
             // $_POST['page_token'] = $next_page_token;
             $POST = [
                 'page_token' => $next_page_token,
+                'action'=>'update_video_list',
                 'youtube_channel_id' => $youtube_channel_id,
                 'channel_id' => $channel_id,
                 // 'last_channel_pull'=>$last_channel_pull

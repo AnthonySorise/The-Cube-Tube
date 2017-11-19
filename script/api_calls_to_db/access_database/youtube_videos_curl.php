@@ -4,7 +4,6 @@ if(empty($LOCAL_ACCESS) && empty($_POST['page_token'])){
 }
 if(!empty($_POST['page_token'])){
     require('youtube_api_key.php');
-    require('mysql_connect.php');
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
     $sqli = "SELECT channel_id
@@ -120,8 +119,8 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 'page_token' => $next_page_token,
                 'youtube_channel_id' => $youtube_channel_id,
                 'channel_id' => $channel_id,
-                // 'last_channel_pull'=>$last_channel_pull
             ];
+            print_r($POST);
             curl_setopt($ch,CURLOPT_POSTFIELDS, $POST);
             curl_setopt($ch,CURLOPT_TIMEOUT,0);
             curl_exec($ch);
