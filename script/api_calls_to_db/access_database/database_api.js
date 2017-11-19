@@ -265,7 +265,7 @@
             }
         })
      }
-     this.insert_videos_php = function(youtube_channel_id,page_toke){
+     this.insert_videos_php = function(youtube_channel_id,page_token){
          $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
