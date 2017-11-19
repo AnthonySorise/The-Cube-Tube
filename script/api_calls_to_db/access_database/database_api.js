@@ -271,7 +271,7 @@
             method:'post',
             dataType:'JSON',
             data:{
-                action:'youtube_videos_curl',
+                action:'insert_videos_curl',
                 youtube_channel_id:youtube_channel_id,
                 page_token:page_token
             },
