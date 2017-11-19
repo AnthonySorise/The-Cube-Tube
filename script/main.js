@@ -858,7 +858,7 @@ function updateMidNavText(){
         $('.midNavBrowsing').show();
         $('.midNavWatching').hide()
         $(".browsingLabel").text(clientSelectedChannelObjects[0].channel_title)
-        $(".midNavChannels").attr("channelId", clientSelectedChannelObjects[0].youtube_channel_id)
+        $(".midNavChannels>span").attr("channelId", clientSelectedChannelObjects[0].youtube_channel_id)
         $(".midNavAddButton").hide()
     }
     else{
