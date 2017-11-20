@@ -608,7 +608,7 @@ function initiateUser() {
                                     method: 'post',
                                     dataType: 'JSON',
                                     data: {
-                                        youtube_channel_id: data.youtube_channel_id,
+                                        youtube_channel_id: data.data[i].youtube_channel_id,
                                         action: 'read_channels_by_youtube_id'
                                     },
                                     success:function(data){
