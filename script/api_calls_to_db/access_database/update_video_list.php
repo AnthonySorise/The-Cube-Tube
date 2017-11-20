@@ -31,7 +31,6 @@ if(empty($stmt)){
     if(mysqli_affected_rows($conn)>0){
         $output['messages'][] = "channel updated with last channel pull";
         include('youtube_videos_curl.php');
-
     }else{
         $output['errors'][]='UNABLE TO UPDATE';
     }

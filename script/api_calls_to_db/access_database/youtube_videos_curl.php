@@ -44,6 +44,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $page_query="&pageToken={$page_token}";
     }
     $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=50");
+    echo("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=50");
     // $pageToken
     // publishedAfter = RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -68,6 +69,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $video_array = json_decode($json, true);
         $next_page_token = $video_array['nextPageToken'];
         $entries = $video_array['items'];
+        print_r($entries);
         $last_updated = date('Y-m-d H:i:s');
         // $query = "INSERT INTO videos ('video_title','channel_id','youtube_video_id') ";
         // $bind_str = '';
