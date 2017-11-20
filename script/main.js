@@ -1340,7 +1340,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                                             console.log('insert error', data);
                                         }
                                     })
-                                }, 1000);
+                                }, 2000);
                             }
                         },
                         errors: function (data) {
@@ -1376,6 +1376,9 @@ function handleBrowseButton() {
 
 function handleAddButton() {
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
+
+    clearVideoList();
+
     videoObjectsToLoad = [];
     if (browsingMode) {
         clientSelectedChannelIds = [];
