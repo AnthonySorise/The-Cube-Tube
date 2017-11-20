@@ -47,6 +47,8 @@ body {
 *************************************************************************************/
 .hamburger {
 	display: none !important;
+	color: orange;
+	border: none;
 }
 #mainNav{
 	background-color: black;
@@ -102,6 +104,25 @@ body {
 	position: relative;
 	font-family: 'Roboto', sans-serif;
 }
+.midNavButtonWrap{
+	position: absolute;
+	left: 0;
+	margin-left: 20px;
+}
+.midNavChannels{
+	font-family: 'Arvo', serif;
+	color: white;
+	font-size: 1em;
+	line-height: 3.25em;
+	margin-left: 25px;
+}
+.midNavBrowsing, .midNavWatching{
+	display: none;
+}
+.watchingLabel, .browsingLabel{
+	font-size: 100%;
+	padding: 9px 2.5px;
+}
 #midNav-option form {
 	margin-right: 20px;
 }
@@ -143,6 +164,15 @@ body {
 	border: none;
 	border-radius:0;
 }
+.dropdownLabelA{
+	color: white;
+}
+.dropdownLabelA>.fa-cube{
+	color: orange;
+}
+.dropdownLabelA:hover{
+	color: orange;
+}
 #channelCategoryUl{
 	text-align: center;
 	padding: 5px 10px;
@@ -166,6 +196,9 @@ body {
 }
 .dropdownChannelLiLoad>.fa-refresh, #categoryButton>.fa{
 	color: red;
+}
+.dropdownChannelLiAll>.fa-cubes{
+	color: orange;
 }
 .dropdownChannelLiLoad:hover, #categoryButton:hover{
 	background-color: rgba(40,40,40,0.9);
@@ -287,16 +320,18 @@ body>.container-fluid {
 	/*color: rgba(255,255,255,1);*/
 	color: rgba(0, 200, 81, 1);
 }
-.lightBoxMode {
+.lightBoxMode{
 	position: absolute;
 	/*right: 20px;*/
 	bottom: 4px;
 	color: rgba(255, 255, 255, 0.5);
 	background: none;
 	border: none;
+	font-size: 30px;
 }
 .lightBoxMode:hover {
-	color: rgba(255, 0, 0, 1);
+	/*color: rgba(255, 0, 0, 1);*/
+	color: orange;
 }
 #infoButtonContainer {
 	position: relative;
@@ -398,11 +433,12 @@ div.thRow {
 
 .selectedTd div {
 	background-color: rgba(180,189,193,1.0) !important;
+	color: #020e13; !important;
 }
 
 /* .tdList:hover, .tdRow div.selectedTd {
 	/* background-color: #b4bdc1; */
-	/* background-color: rgba(180, 189, 193, 1.0) !important;} */ */
+	/* background-color: rgba(180, 189, 193, 1.0) !important;} */
 
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
@@ -731,7 +767,7 @@ div.thRow {
 }
 
 .glyphicon {	/**target a class more specific to the glyphicon controllign carousel**/
-	color: red;
+	/*color: red;*/
 }
 
 /* toggle button */
@@ -864,9 +900,7 @@ safer appraoch than to resizing browser to see change
 		margin-right: -15px;
 		margin-left: -15px;
 	}
-	p.navbar-text, ul.navbar-nav{
-		font-size: 10.5px;
-	}
+	
 	p.navbar-text{
 		line-height: 2.2;
 	}
@@ -875,7 +909,7 @@ safer appraoch than to resizing browser to see change
 		margin-right: 0;
 	}
 	.autoPlayArea{
-		margin-left: -15px;
+		/*margin-left: -15px;*/
 	}
 	/*end of hamburger/navbar css*/
 	body>.container-fluid {
@@ -961,7 +995,7 @@ safer appraoch than to resizing browser to see change
 	}
 	.channelSearchFormMobile{
 		display: inline-block !important;
-		width: 214px;
+		width: 208px;
 		padding: 10px 0;
 	}
 	#mainNav-option{
@@ -988,6 +1022,14 @@ safer appraoch than to resizing browser to see change
 	}
 	#midNav-option{
 		background-color: rgb(40,40,40);
+	}
+	.midNavButtonWrap{
+		position: relative;
+		/*margin-left: -15px;*/
+		margin: 0;
+	}
+	.autoPlayArea, .midNavChannels{
+		margin-left: -15px;
 	}
 	#midNav-option form{
 		width: 95%;

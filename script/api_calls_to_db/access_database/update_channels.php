@@ -5,7 +5,7 @@ if(empty($LOCAL_ACCESS)){
 $channel_title = $_POST['channel_title'];
 $description = $_POST['description'];
 $thumbnail = $_POST['thumbnail'];
-$channel_id = $_POST['channel_id'];
+$youtube_channel_id = $_POST['youtube_channel_id'];
 $last_channel_pulled = date("Y-m-d H:i:s");
 if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
@@ -21,7 +21,7 @@ if(empty($description)){
 if(empty($thumbnail)){
     $output['errors'][] = "MISSING THUMBNAILS";
 }
-if(empty($channel_id)){
+if(empty($youtube_channel_id)){
     $output['errors'][] = "MISSING ID";
 }
 //tm87
@@ -34,7 +34,7 @@ channel_title = ?,
 description = ?, 
 thumbnail_file_name = ?, 
 last_channel_pulled = ?
-WHERE channel_id = ?");
+WHERE youtube_channel_id = ?");
 $stmt->bind_param('ssssi',$channel_title,$description,$thumbnail,$last_channel_pulled,$channel_id);
 $stmt->execute();
 if(empty($stmt)){
