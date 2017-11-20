@@ -14,7 +14,7 @@ if(empty($youtube_channel_id)){
     output_and_exit($output);
 }
 $time = date(('Y-m-d H:i:s'));
-$last_pull_time = DateTIME($last_channel_pull);
+$last_pull_time = DateTime($last_channel_pull);
 $diff = $time->diff($last_pull_time);
 $minutes = ($diff->format('%a') * 1440) + // total days converted to minutes
            ($diff->format('%h') * 60) +   // hours converted to minutes
