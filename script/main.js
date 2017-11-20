@@ -224,6 +224,7 @@ function clickHandler() {
         //     })
         //
         // }
+        $('#copyToClipboard').on('click', copy_to_clipboard);
     });
 
     $(".dropdownChannelLiAll").on("click", function () {
@@ -1028,8 +1029,8 @@ function addChannelModal(userLink) {
     var user_id_input = `www.TheCubeTube.com/?user=${userLink}`
     if (userLink) {
         $('.userLinkBody').text("Save this link! ");
-        $('.userLinkBody').append($('<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>').attr('id', 'copyToClipboard');)
-        $('.userLinkBody').append('input').val(user_id_input).attr('id', 'cubetube_user_id');
+        $('.userLinkBody').append('<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>').attr('id', 'copyToClipboard');
+        $('.userLinkBody').append('<input id="cubetube_user_id">').val(user_id_input).attr('id', 'cubetube_user_id');
         console.log(user_id_input);
     }
     else {
