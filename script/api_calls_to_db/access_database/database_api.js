@@ -265,6 +265,26 @@
             }
         })
      }
+     this.insert_videos_php = function(youtube_channel_id,page_token){
+         $.ajax({
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                action:'insert_videos_curl',
+                youtube_channel_id:youtube_channel_id,
+                page_token:page_token
+            },
+            success: function (data) {
+                if (data.success) {
+                    console.log('insert success', data);
+                }
+            },
+            errors: function (data) {
+                console.log('insert error', data);
+            }
+         })
+     }
      this.update_videos_by_youtube_id_php = function(youtube_channel_id,last_channel_pull){//get last channel pull from read channels by youtube id
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',

@@ -28,6 +28,8 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     //creates random string for user and inserts into database as well as show to front end
     define('USER_LINK',$_SESSION['user_link']);
     $output['user_link'] = USER_LINK;
+}else{
+    include('read_user.php');
 }
 // get user id
 // grabbing channel id from db to add to user link
