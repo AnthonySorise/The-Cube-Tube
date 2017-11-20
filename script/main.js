@@ -466,7 +466,7 @@ function clickHandler() {
     $('.fastForwardButton').on('click', fastForwardVideo);
     $('.rewindButton').on('click', rewindVideo);
     $('.playButton').on('click', playYtVideo);
-    $('body').on('click', closeTheatreOnClick);
+    // $('body').on('click', closeTheatreOnClick);
     $(document).on('keyup', function (event) {
         if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
             console.log('Esc was pressed');
@@ -1199,15 +1199,15 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
     videoObjectsToLoad = null;
 
     //Check for duplicate
-    var isDup = false;
-    for(var i = 0; i<clientSubscribedChannelIds.length; i++){
-        if(clientSubscribedChannelIds[i] === channelID){
-            isDup = true
-        }
-    }
-    if(isDup){
-        return
-    }
+    // var isDup = false;
+    // for(var i = 0; i<clientSubscribedChannelIds.length; i++){
+    //     if(clientSubscribedChannelIds[i] === channelID){
+    //         isDup = true
+    //     }
+    // }
+    // if(isDup){
+    //     return
+    // }
     //instantiate handleInfoFromDB to be used later
     function handleInfoFromDB(readResult){
         if(!isAdding){//Browsing
