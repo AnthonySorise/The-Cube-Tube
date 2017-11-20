@@ -954,7 +954,7 @@ function renderVideoList(videoArray) {
     }
     console.log("LOADING VIDEO LIST")
     clearVideoList();
-    removePlaceHolderAnimation();
+    // removePlaceHolderAnimation();
     for (let i = 0; i < videoArray.length; i++) {
         if (videoArray[i] === undefined) {
             return
@@ -1365,7 +1365,7 @@ function handleBrowseButton() {
     videoObjectsToLoad = [];
 
     clearVideoList();
-    createPlaceholderAnimation();
+    // createPlaceholderAnimation();
 
     let channelID = $(this).parent().attr("channelId");
     retrieveInfoFromDB(channelID);
@@ -1379,7 +1379,7 @@ function handleAddButton() {
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
 
     clearVideoList();
-    createPlaceholderAnimation();
+    // createPlaceholderAnimation();
 
     videoObjectsToLoad = [];
     if (browsingMode) {
@@ -1443,20 +1443,20 @@ function getAutoPlayValue() {
 
 //Testing placeholder animation
 
-function createPlaceholderAnimation() {
-    $(".tdList").show();
-
-    var outerDiv = $('<div>').addClass("timeline-wrapper");
-    var nestedDiv1 = $('<div>').addClass("timeline-item");
-    var nestedDiv2 = $('<div>').addClass("animated-background");
-    var nestedDiv3 = $('<div>').addClass("background-masker");
-    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2, nestedDiv3);
-    $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
-}
-
-function removePlaceHolderAnimation() {
-    $('.timeline-wrapper').remove()
-}
+// function createPlaceholderAnimation() {
+//     $(".tdList").show();
+//
+//     var outerDiv = $('<div>').addClass("timeline-wrapper");
+//     var nestedDiv1 = $('<div>').addClass("timeline-item");
+//     var nestedDiv2 = $('<div>').addClass("animated-background");
+//     var nestedDiv3 = $('<div>').addClass("background-masker");
+//     var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2, nestedDiv3);
+//     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
+// }
+//
+// function removePlaceHolderAnimation() {
+//     $('.timeline-wrapper').remove()
+// }
 
 
 function removeUnusedRows() {
