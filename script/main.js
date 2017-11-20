@@ -186,7 +186,7 @@ function tooltipFunctions() {
 function clickHandler() {
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
-        // returnToPageOne();
+        returnToPageOne();
         compileSelectedChannelsFromDropdown();
 
         // var numUpdated = 0;
@@ -224,14 +224,13 @@ function clickHandler() {
         //     })
         //
         // }
-        $('#copyToClipboard').on('click', copy_to_clipboard);
     });
 
     $(".dropdownChannelLiAll").on("click", function () {
         browsingMode = false;
         clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds);
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
-        // returnToPageOne();
+        returnToPageOne();
         renderChannelSelectionDropdown();
         loadSelectedChannels();
         if (window.innerWidth < 500) {
@@ -815,7 +814,6 @@ function renderChannelSelectionDropdown() {
         var settingsContent = $('<div>', {
             'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
         });
-        settingsContent.css("background-color", "black");
 
         var browseButton = $('<button class="btn-primary">Browse</button>').css("display", "block");
         var removeButton = $('<button class="btn-danger">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
@@ -959,7 +957,7 @@ function renderVideoList(videoArray) {
     }
     console.log("LOADING VIDEO LIST")
     clearVideoList();
-    // removePlaceHolderAnimation();
+
     for (let i = 0; i < videoArray.length; i++) {
         if (videoArray[i] === undefined) {
             return
@@ -1026,14 +1024,9 @@ function renderVideoList(videoArray) {
 }
 
 function addChannelModal(userLink) {
-    var user_id_input = `www.TheCubeTube.com/?user=${userLink}`
-    var append_input = $('<input>');
-    var append_span = $('<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>')
     if (userLink) {
-        $('.userLinkBody').text("Save this link! ");
-        $('.userLinkBody').append(append_span).attr('id', 'copyToClipboard');
-        $('.userLinkBody').append(append_input).val(user_id_input).attr('id', 'cubetube_user_id');
-        console.log(user_id_input);
+        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user=" + userLink);
+        
     }
     else {
         $('.userLinkBody').text("Channel added to your subscriptions!")
@@ -1042,8 +1035,7 @@ function addChannelModal(userLink) {
 }
 
 function copy_to_clipboard(){
-    var copy_text = document.getElementById('cubetube_user_id');
-    copy_text.select();
+    $('#cubetube_user_id').select();
     document.execCommand('Copy');
 }
 
@@ -1358,7 +1350,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                                             console.log('insert error', data);
                                         }
                                     })
-                                }, 2000);
+                                }, 1000);
                             }
                         },
                         errors: function (data) {
@@ -1394,10 +1386,6 @@ function handleBrowseButton() {
 
 function handleAddButton() {
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
-
-    clearVideoList();
-    // createPlaceholderAnimation();
-
     videoObjectsToLoad = [];
     if (browsingMode) {
         clientSelectedChannelIds = [];
@@ -1406,6 +1394,11 @@ function handleAddButton() {
     }
 
     browsingMode = false;
+
+    returnToPageOne();
+    // clearVideoList();
+    // createPlaceholderAnimation();
+
 
 
     let channelID = $(this).parent().attr("channelId");
@@ -1460,20 +1453,20 @@ function getAutoPlayValue() {
 
 //Testing placeholder animation
 
-// function createPlaceholderAnimation() {
-//     $(".tdList").show();
-//
-//     var outerDiv = $('<div>').addClass("timeline-wrapper");
-//     var nestedDiv1 = $('<div>').addClass("timeline-item");
-//     var nestedDiv2 = $('<div>').addClass("animated-background");
-//     var nestedDiv3 = $('<div>').addClass("background-masker");
-//     var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2, nestedDiv3);
-//     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
-// }
-//
-// function removePlaceHolderAnimation() {
-//     $('.timeline-wrapper').remove()
-// }
+function createPlaceholderAnimation() {
+    $(".tdList").show();
+
+    var outerDiv = $('<div>').addClass("timeline-wrapper");
+    var nestedDiv1 = $('<div>').addClass("timeline-item");
+    var nestedDiv2 = $('<div>').addClass("animated-background");
+    var nestedDiv3 = $('<div>').addClass("background-masker");
+    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2, nestedDiv3);
+    $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
+}
+
+function removePlaceHolderAnimation() {
+    $('.timeline-wrapper').remove()
+}
 
 
 function removeUnusedRows() {
