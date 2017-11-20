@@ -48,23 +48,23 @@ function channelDropClickHandle(){
 	});
 }
 
-
+$(window).on('click',(e)=>{
+	if(dropOpened){
+		if( !($.contains($('.channelDropDown.open'),e.target)) && !($('#channelCategoryUl').find(e.target).length)) {
+			 $('mainNav-option').removeClass('in')
+                .attr('aria-expanded','false');
+            $('.channelDropDown').removeClass('open');
+            dropOpened = false;
+            $('.dropdownSettingsPopover').popover('hide');
+		}
+	}	
+});
 
 
 $(document).ready(function(){
 	channelDropClickHandle();
 
-	$('body').on('click',(e)=>{
-		if(dropOpened){
-			if( !($.contains($('.channelDropDown.open'),e.target)) && !($('#channelCategoryUl').find(e.target).length)) {
-				 $('mainNav-option').removeClass('in')
-	                .attr('aria-expanded','false');
-	            $('.channelDropDown').removeClass('open');
-	            dropOpened = false;
-	            $('.dropdownSettingsPopover').popover('hide');
-			}
-		}	
-	});
+	
 });
 
 function toastMsg(msgString, time) {

@@ -186,7 +186,7 @@ function tooltipFunctions() {
 function clickHandler() {
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
-        returnToPageOne();
+        // returnToPageOne();
         compileSelectedChannelsFromDropdown();
 
         // var numUpdated = 0;
@@ -230,7 +230,7 @@ function clickHandler() {
         browsingMode = false;
         clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds);
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
-        returnToPageOne();
+        // returnToPageOne();
         renderChannelSelectionDropdown();
         loadSelectedChannels();
         if (window.innerWidth < 500) {
@@ -814,6 +814,7 @@ function renderChannelSelectionDropdown() {
         var settingsContent = $('<div>', {
             'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
         });
+        settingsContent.css("background-color", "black");
 
         var browseButton = $('<button class="btn-primary">Browse</button>').css("display", "block");
         var removeButton = $('<button class="btn-danger">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
@@ -957,7 +958,7 @@ function renderVideoList(videoArray) {
     }
     console.log("LOADING VIDEO LIST")
     clearVideoList();
-
+    // removePlaceHolderAnimation();
     for (let i = 0; i < videoArray.length; i++) {
         if (videoArray[i] === undefined) {
             return
@@ -1354,7 +1355,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                                             console.log('insert error', data);
                                         }
                                     })
-                                }, 1000);
+                                }, 2000);
                             }
                         },
                         errors: function (data) {
@@ -1390,6 +1391,10 @@ function handleBrowseButton() {
 
 function handleAddButton() {
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
+
+    clearVideoList();
+    // createPlaceholderAnimation();
+
     videoObjectsToLoad = [];
     if (browsingMode) {
         clientSelectedChannelIds = [];
@@ -1398,11 +1403,6 @@ function handleAddButton() {
     }
 
     browsingMode = false;
-
-    returnToPageOne();
-    // clearVideoList();
-    // createPlaceholderAnimation();
-
 
 
     let channelID = $(this).parent().attr("channelId");
@@ -1457,20 +1457,20 @@ function getAutoPlayValue() {
 
 //Testing placeholder animation
 
-function createPlaceholderAnimation() {
-    $(".tdList").show();
-
-    var outerDiv = $('<div>').addClass("timeline-wrapper");
-    var nestedDiv1 = $('<div>').addClass("timeline-item");
-    var nestedDiv2 = $('<div>').addClass("animated-background");
-    var nestedDiv3 = $('<div>').addClass("background-masker");
-    var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2, nestedDiv3);
-    $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
-}
-
-function removePlaceHolderAnimation() {
-    $('.timeline-wrapper').remove()
-}
+// function createPlaceholderAnimation() {
+//     $(".tdList").show();
+//
+//     var outerDiv = $('<div>').addClass("timeline-wrapper");
+//     var nestedDiv1 = $('<div>').addClass("timeline-item");
+//     var nestedDiv2 = $('<div>').addClass("animated-background");
+//     var nestedDiv3 = $('<div>').addClass("background-masker");
+//     var completedWrapper = $(outerDiv).append(nestedDiv1, nestedDiv2, nestedDiv3);
+//     $('.tdTitle, .tdChannel, .tdUpdate').append(completedWrapper);
+// }
+//
+// function removePlaceHolderAnimation() {
+//     $('.timeline-wrapper').remove()
+// }
 
 
 function removeUnusedRows() {
