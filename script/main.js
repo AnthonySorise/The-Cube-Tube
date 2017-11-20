@@ -1320,24 +1320,26 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                                     }
                                 })
                                 //update remaining videos
-                                $.ajax({
-                                    url:'./script/api_calls_to_db/access_database/access.php',
-                                    method:'post',
-                                    dataType:'JSON',
-                                    data:{
-                                        action:'insert_videos_curl',
-                                        youtube_channel_id:channelID,
-                                        page_token:data.page_token
-                                    },
-                                    success: function (data) {
-                                        if (data.success) {
-                                            console.log('All videos inserted to DB from YouTube', data);
+                                setTimeout(function(){
+                                    $.ajax({
+                                        url:'./script/api_calls_to_db/access_database/access.php',
+                                        method:'post',
+                                        dataType:'JSON',
+                                        data:{
+                                            action:'insert_videos_curl',
+                                            youtube_channel_id:channelID,
+                                            page_token:data.page_token
+                                        },
+                                        success: function (data) {
+                                            if (data.success) {
+                                                console.log('All videos inserted to DB from YouTube', data);
+                                            }
+                                        },
+                                        errors: function (data) {
+                                            console.log('insert error', data);
                                         }
-                                    },
-                                    errors: function (data) {
-                                        console.log('insert error', data);
-                                    }
-                                })
+                                    })
+                                }, 1000);
                             }
                         },
                         errors: function (data) {
