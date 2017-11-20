@@ -13,9 +13,10 @@ if(empty($youtube_channel_id)){
     $output['errors'][] = "MISSING CHANNEL ID AT UPDATE";
     output_and_exit($output);
 }
-$current_time = strtotime(date('Y-m-d H:i:s'));
+$current_time = date('Y-m-d H:i:s');
+$current_time_for_comparison = strtotime($current_time);
 $last_pull_time = strtotime($last_channel_pull);
-$diff = round(abs($current_time-$last_pull_time)/60);
+$diff = round(($current_time_for_comparison-$last_pull_time)/60);
 if($diff<5){
     $output['messages'] = 'updated recently';
     output_and_exit($output);
@@ -29,9 +30,10 @@ if(empty($stmt)){
 }else{
     if(mysqli_affected_rows($conn)>0){
         $output['messages'][] = "channel updated with last channel pull";
+        include('youtube_videos_curl.php');
+
     }else{
         $output['errors'][]='UNABLE TO UPDATE';
     }
 }
-include('youtube_videos_curl.php');
 ?>
