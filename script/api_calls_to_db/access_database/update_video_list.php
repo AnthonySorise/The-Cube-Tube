@@ -15,7 +15,7 @@ if(empty($youtube_channel_id)){
 }
 $current_time = strtotime(date('Y-m-d H:i:s'));
 $last_pull_time = strtotime($last_channel_pull);
-$diff = round(abs($current_time-$last_pull_time)/60);
+$diff = round(abs($current_time-$last_pull_time)/60000);
 if($diff<5){
     $output['messages'] = 'updated recently';
     output_and_exit();
