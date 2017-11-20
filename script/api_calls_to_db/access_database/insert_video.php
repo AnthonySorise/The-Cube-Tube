@@ -9,7 +9,7 @@ for($i = 0; $i<$max; $i++){
     $youtube_video_id = $video_array[$i]['youtube_video_id'];
     $description = $video_array[$i]['description'];
     $published_at = $video_array[$i]['published_at'];
-    $last_updated = date('Y-m-d H-i-s');
+    $last_updated = date('Y-m-d H:i:s');
     $youtube_channel_id = $video_array[$i]['youtube_channel_id'];
     if(empty($video_title)){
         $output['errors'][] = 'MISSING VIDEO TITLE';
