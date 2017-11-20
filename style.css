@@ -176,6 +176,8 @@ body {
 #channelCategoryUl{
 	text-align: center;
 	padding: 5px 10px;
+	background-color: black;
+	color:white;
 	/*overflow: auto;*/
 }
 #dropdownChannelUl{

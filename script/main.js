@@ -810,6 +810,7 @@ function renderChannelSelectionDropdown() {
         var settingsContent = $('<div>', {
             'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
         });
+        settingsContent.css("background-color", "black");
 
         var browseButton = $('<button class="btn-primary">Browse</button>').css("display", "block");
         var removeButton = $('<button class="btn-danger">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
@@ -953,7 +954,7 @@ function renderVideoList(videoArray) {
     }
     console.log("LOADING VIDEO LIST")
     clearVideoList();
-
+    removePlaceHolderAnimation();
     for (let i = 0; i < videoArray.length; i++) {
         if (videoArray[i] === undefined) {
             return
@@ -1364,7 +1365,7 @@ function handleBrowseButton() {
     videoObjectsToLoad = [];
 
     clearVideoList();
-    // createPlaceholderAnimation();
+    createPlaceholderAnimation();
 
     let channelID = $(this).parent().attr("channelId");
     retrieveInfoFromDB(channelID);
@@ -1378,6 +1379,7 @@ function handleAddButton() {
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
 
     clearVideoList();
+    createPlaceholderAnimation();
 
     videoObjectsToLoad = [];
     if (browsingMode) {
@@ -1387,11 +1389,6 @@ function handleAddButton() {
     }
 
     browsingMode = false;
-
-    // returnToPageOne();
-    // clearVideoList();
-    // createPlaceholderAnimation();
-
 
 
     let channelID = $(this).parent().attr("channelId");
