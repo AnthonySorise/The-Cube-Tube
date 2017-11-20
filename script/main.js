@@ -121,9 +121,10 @@ $(document).ready(function () {
 
     clickHandler();
 
-    $('#text-carousel').on('slide.bs.carousel', function (ev) {
-        console.log(ev)
-        if (ev.direction == 'left') {
+    $('.glyphicon-chevron-right, .glyphicon-chevron-left').on('click', turnCarouselPage) 
+    function turnCarouselPage(event) {
+        event.stopPropagation();
+        if (event.currentTarget.classList[1] == 'glyphicon-chevron-right') {
             currentSlideNumber++
             loadNextPage();
         } else {
@@ -131,7 +132,7 @@ $(document).ready(function () {
             loadPreviousPage();
         }
         displayCurrentPageNumber()
-    });
+    };
     clearVideoList();   //hides list rows until they are needed
     setTimeout(() => {
         iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
@@ -447,8 +448,7 @@ function clickHandler() {
         }
     })
     //Lets user click outside of theatre modal to close and save the state of video
-    function closeTheatreOnClick(event) {
-        event.stopPropagation();
+    function closeTheatreOnClick() {
         if($('body').hasClass('modal-open')) {
               //Have to check if modal footer is being clicked to stop from closing modal
               if(event.target.classList[0] == "fa" || event.target.classList == "") {
