@@ -5,7 +5,7 @@ if(empty($LOCAL_ACCESS)){
 $channel_title = $POST['channel_title'];
 $description = $_POST['description'];
 $video_id = $_POST['video_id'];
-$last_updated = date("Y-m-d H:i:s");
+$last_updated = date("Y-m-d H-i-s");
 if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }

@@ -13,12 +13,13 @@ if(empty($youtube_channel_id)){
     $output['errors'][] = "MISSING CHANNEL ID AT UPDATE";
     output_and_exit($output);
 }
-$current_time = strtotime(date('Y-m-d H:i:s'));
+$current_time = strtotime(date('Y-m-d H-i-s'));
 $last_pull_time = strtotime($last_channel_pull);
 $diff = round(abs($current_time-$last_pull_time)/60000);
+echo($current_time);
 if($diff<5){
     $output['messages'] = 'updated recently';
-    output_and_exit();
+    output_and_exit($output);
 }
 $sqli = "UPDATE channels SET last_channel_pull = ? WHERE youtube_channel_id = ?";
 $stmt = $conn->prepare($sqli);
