@@ -1217,7 +1217,26 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
             //Channel is on DB
             if(data.success){
                 console.log('Channel Found on DB', data);
-                handleInfoFromDB(data);
+                //update Channel
+                $.ajax({
+                    url:'./script/api_calls_to_db/access_database/access.php',
+                    method:'post',
+                    dataType:'JSON',
+                    data:{
+                        action:'update_video_list',
+                        youtube_channel_id:channelID,
+                        last_channel_pull:data.data[0].last_channel_pull
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            console.log('Channel Updated', data);
+                            handleInfoFromDB(data);
+                        }
+                    },
+                    errors: function (data) {
+                        console.log('insert error', data);
+                    }
+                })
             }
             //Channel NOT on DB
             else{
