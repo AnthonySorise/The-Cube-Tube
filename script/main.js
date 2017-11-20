@@ -185,22 +185,22 @@ function clickHandler() {
         // returnToPageOne();
         compileSelectedChannelsFromDropdown();
 
-        // var numUpdated = 0;
-        // for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
-        //     $.ajax({
-        //         url:'./script/api_calls_to_db/access_database/access.php',
-        //         method:'post',
-        //         dataType:'JSON',
-        //         data:{
-        //             action:'update_video_list',
-        //             youtube_channel_id:clientSubscribedChannelObjects[i].youtube_channel_id,
-        //             last_channel_pull:clientSubscribedChannelObjects[i].last_channel_pull
-        //         },
-        //         success: function (data) {
-        //             if (data.success) {
-        //                 console.log('Channel Updated', data);
-        //                 numUpdated++;
-        //                 if(numUpdated === clientSubscribedChannelObjects.length){
+        var numUpdated = 0;
+        for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
+            $.ajax({
+                url:'./script/api_calls_to_db/access_database/access.php',
+                method:'post',
+                dataType:'JSON',
+                data:{
+                    action:'update_video_list',
+                    youtube_channel_id:clientSubscribedChannelObjects[i].youtube_channel_id,
+                    last_channel_pull:clientSubscribedChannelObjects[i].last_channel_pull
+                },
+                success: function (data) {
+                    if (data.success) {
+                        console.log('Channel Updated', data);
+                        numUpdated++;
+                        if(numUpdated === clientSubscribedChannelObjects.length){
 
                                 loadSelectedChannels();
                                 if (window.innerWidth < 500) {
@@ -211,15 +211,15 @@ function clickHandler() {
                                     $('.channelDropDown').removeClass('open');
                                 }
 
-        //                 }
-        //             }
-        //         },
-        //         errors: function (data) {
-        //             console.log('insert error', data);
-        //         }
-        //     })
-        //
-        // }
+                        }
+                    }
+                },
+                errors: function (data) {
+                    console.log('insert error', data);
+                }
+            })
+
+        }
     });
 
     $(".dropdownChannelLiAll").on("click", function () {
@@ -588,20 +588,20 @@ function initiateUser() {
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
 
-                    // update Channel
-                    // $.ajax({
-                    //     url:'./script/api_calls_to_db/access_database/access.php',
-                    //     method:'post',
-                    //     dataType:'JSON',
-                    //     data:{
-                    //         action:'update_video_list',
-                    //         youtube_channel_id: data.data[0].youtube_channel_id,
-                    //         last_channel_pull: data.data[0].last_channel_pull
-                    //     },
-                    //     success: function (data) {
-                    //         if (data.success) {
-                    //             console.log('Channel Updated', data);
-                    //             //read channel data
+                    //update Channel
+                    $.ajax({
+                        url:'./script/api_calls_to_db/access_database/access.php',
+                        method:'post',
+                        dataType:'JSON',
+                        data:{
+                            action:'update_video_list',
+                            youtube_channel_id: data.data[0].youtube_channel_id,
+                            last_channel_pull: data.data[0].last_channel_pull
+                        },
+                        success: function (data) {
+                            if (data.success) {
+                                console.log('Channel Updated', data);
+                                //read channel data
                                 console.log("INITUSER TEST 1", clientSubscribedChannelIds[i]);
                                 $.ajax({
                                     url: './script/api_calls_to_db/access_database/access.php',
@@ -629,12 +629,12 @@ function initiateUser() {
                                         console.log("ERROR", data);
                                     }
                                 });
-                    //         }
-                    //     },
-                    //     errors: function (data) {
-                    //         console.log("ERROR", data);
-                    //     }
-                    // })
+                            }
+                        },
+                        errors: function (data) {
+                            console.log("ERROR", data);
+                        }
+                    })
                 }
             } else {
                 console.log(data);
@@ -1265,25 +1265,25 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                 console.log('Channel Found on DB', data);
                 console.log("last channel pull: ", data.data[0].last_channel_pull)
                 //update Channel
-                // $.ajax({
-                //     url:'./script/api_calls_to_db/access_database/access.php',
-                //     method:'post',
-                //     dataType:'JSON',
-                //     data:{
-                //         action:'update_video_list',
-                //         youtube_channel_id:channelID,
-                //         last_channel_pull:data.data[0].last_channel_pull
-                //     },
-                //     success: function (data) {
-                //         if (data.success) {
-                //             console.log('Channel Updated', data);
+                $.ajax({
+                    url:'./script/api_calls_to_db/access_database/access.php',
+                    method:'post',
+                    dataType:'JSON',
+                    data:{
+                        action:'update_video_list',
+                        youtube_channel_id:channelID,
+                        last_channel_pull:data.data[0].last_channel_pull
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            console.log('Channel Updated', data);
                             handleInfoFromDB(data);
-                //         }
-                //     },
-                //     errors: function (data) {
-                //         console.log('insert error', data);
-                //     }
-                // })
+                        }
+                    },
+                    errors: function (data) {
+                        console.log('insert error', data);
+                    }
+                })
             }
             //Channel NOT on DB
             else{
