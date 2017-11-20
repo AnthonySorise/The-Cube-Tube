@@ -182,7 +182,7 @@ function tooltipFunctions() {
 function clickHandler() {
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
-        returnToPageOne();
+        // returnToPageOne();
         compileSelectedChannelsFromDropdown();
 
         // var numUpdated = 0;
@@ -226,7 +226,7 @@ function clickHandler() {
         browsingMode = false;
         clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds);
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
-        returnToPageOne();
+        // returnToPageOne();
         renderChannelSelectionDropdown();
         loadSelectedChannels();
         if (window.innerWidth < 500) {
@@ -931,7 +931,7 @@ function loadSelectedChannels() {
                 console.log('Videos Found', data);
                 videoObjectsToLoad = [];
                 videoObjectsToLoad = data.data;
-
+                returnToPageOne();
                 renderVideoList(videoObjectsToLoad);
                 updateMidNavText()
             }
@@ -1237,6 +1237,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                     if (data.success) {
                         console.log('Channel added to user account', data);
                         addChannelModal(data.user_link);
+
                         renderChannelSelectionDropdown()
                     }
                 },
@@ -1362,8 +1363,7 @@ function handleBrowseButton() {
     browsingMode = true;
     videoObjectsToLoad = [];
 
-    returnToPageOne();
-    // clearVideoList();
+    clearVideoList();
     // createPlaceholderAnimation();
 
     let channelID = $(this).parent().attr("channelId");
@@ -1385,7 +1385,7 @@ function handleAddButton() {
 
     browsingMode = false;
 
-    returnToPageOne();
+    // returnToPageOne();
     // clearVideoList();
     // createPlaceholderAnimation();
 
