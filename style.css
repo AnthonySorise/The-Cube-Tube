@@ -409,10 +409,10 @@ div.thRow {
 	font-size: 16px;
 	margin-top: 1.75px;
 	margin-bottom: 1.75px;
-	/*height: 3.2vh;*/
-	height: 2.2vh;
-	/*line-height: 3.2vh;*/
-	line-height: 2.2vh;
+	height: 3.2vh;
+	/*height: 2.2vh;*/
+	line-height: 3.2vh;
+	/*line-height: 2.2vh;*/
 	z-index: 1;
 }
 .tdList:nth-child(even) div {
