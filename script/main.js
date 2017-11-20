@@ -185,22 +185,22 @@ function clickHandler() {
         // returnToPageOne();
         compileSelectedChannelsFromDropdown();
 
-        // var numUpdated = 0;
-        // for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
-        //     $.ajax({
-        //         url:'./script/api_calls_to_db/access_database/access.php',
-        //         method:'post',
-        //         dataType:'JSON',
-        //         data:{
-        //             action:'update_video_list',
-        //             youtube_channel_id:clientSubscribedChannelObjects[i].youtube_channel_id,
-        //             last_channel_pull:clientSubscribedChannelObjects[i].last_channel_pull
-        //         },
-        //         success: function (data) {
-        //             if (data.success) {
-        //                 console.log('Channel Updated', data);
-        //                 numUpdated++;
-        //                 if(numUpdated === clientSubscribedChannelObjects.length){
+        var numUpdated = 0;
+        for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
+            $.ajax({
+                url:'./script/api_calls_to_db/access_database/access.php',
+                method:'post',
+                dataType:'JSON',
+                data:{
+                    action:'update_video_list',
+                    youtube_channel_id:clientSubscribedChannelObjects[i].youtube_channel_id,
+                    last_channel_pull:clientSubscribedChannelObjects[i].last_channel_pull
+                },
+                success: function (data) {
+                    if (data.success) {
+                        console.log('Channel Updated', data);
+                        numUpdated++;
+                        if(numUpdated === clientSubscribedChannelObjects.length){
 
                                 loadSelectedChannels();
                                 if (window.innerWidth < 500) {
@@ -211,15 +211,15 @@ function clickHandler() {
                                     $('.channelDropDown').removeClass('open');
                                 }
 
-        //                 }
-        //             }
-        //         },
-        //         errors: function (data) {
-        //             console.log('insert error', data);
-        //         }
-        //     })
-        //
-        // }
+                        }
+                    }
+                },
+                errors: function (data) {
+                    console.log('insert error', data);
+                }
+            })
+
+        }
     });
 
     $(".dropdownChannelLiAll").on("click", function () {
