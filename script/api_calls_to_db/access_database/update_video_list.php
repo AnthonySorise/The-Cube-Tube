@@ -13,7 +13,7 @@ if(empty($youtube_channel_id)){
     $output['errors'][] = "MISSING CHANNEL ID AT UPDATE";
     output_and_exit($output);
 }
-$time = date(('Y-m-d H:i:s'));
+$time = date('Y-m-d H:i:s');
 $last_pull_time = DateTime($last_channel_pull);
 $diff = $time->diff($last_pull_time);
 $minutes = ($diff->format('%a') * 1440) + // total days converted to minutes

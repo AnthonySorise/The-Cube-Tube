@@ -6,6 +6,17 @@ if(!empty($_POST['page_token'])){
     require('youtube_api_key.php');
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
+    $last_channel_pull = '';
+}else{
+    if(!empty($_POST['last_channel_pull'])){
+        $last_channel_pull = $_POST['last_channel_pull'];
+        $last_channel_pull = str_replace(' ','T', $last_channel_pull);
+        $last_channel_pull .= '.000Z';
+    }else{
+        $last_channel_pull = '';
+    }
+}
+if(empty($channel_id)){
     $sqli = "SELECT channel_id
     FROM channels WHERE youtube_channel_id = ?";
     $stmt = mysqli_stmt_init($conn);
@@ -21,15 +32,6 @@ if(!empty($_POST['page_token'])){
         } else {
             $output['messages'] = "can't read channel";
         }
-    }
-    $last_channel_pull = '';
-}else{
-    if(!empty($_POST['last_channel_pull'])){
-        $last_channel_pull = $_POST['last_channel_pull'];
-        $last_channel_pull = str_replace(' ','T', $last_channel_pull);
-        $last_channel_pull .= '.000Z';
-    }else{
-        $last_channel_pull = '';
     }
 }
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
