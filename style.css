@@ -260,8 +260,8 @@ body>.container-fluid {
 * i.e. things inside .videoRowWrapper<div>                         	*
 *********************************************************************/
 .videoRowWrapper {
-	/*height: 47%;*/
-	height: 60%;
+	height: 47%;
+	/*height: 60%;*/
 	background-color: #020e13;
 }
 /*.vidRowVideoCol {*/
@@ -346,8 +346,8 @@ body>.container-fluid {
 	height: 40%;
 }
 .videoListRowWrapper {
-	/*height: 47%;*/
-	height: 84.6%;
+	height: 47%;
+	/*height: 84.6%;*/
 	padding: 0;
 }
 /************ CAROUSEL styles *************/
