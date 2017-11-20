@@ -1027,10 +1027,12 @@ function renderVideoList(videoArray) {
 
 function addChannelModal(userLink) {
     var user_id_input = `www.TheCubeTube.com/?user=${userLink}`
+    var append_input = $('<input>');
+    var append_span = $('<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>')
     if (userLink) {
         $('.userLinkBody').text("Save this link! ");
-        $('.userLinkBody').append('<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>').attr('id', 'copyToClipboard');
-        $('.userLinkBody').append('<input id="cubetube_user_id">').val(user_id_input).attr('id', 'cubetube_user_id');
+        $('.userLinkBody').append(append_span).attr('id', 'copyToClipboard');
+        $('.userLinkBody').append(append_input).val(user_id_input).attr('id', 'cubetube_user_id');
         console.log(user_id_input);
     }
     else {
