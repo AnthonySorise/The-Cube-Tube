@@ -22,10 +22,15 @@ function onYouTubeIframeAPIReady(vidId) {
         videoId: vidId || 'lrzIR8seNXs',
         playerVars: {
             'rel': 0
+        },
+        events: {
+            'onStateChange': onPlayerStateChange
         }
     });
     onYouTubeIframeAPIReady2();
 }
+
+
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
         videoId: 'lrzIR8seNXs',
@@ -33,17 +38,30 @@ function onYouTubeIframeAPIReady2() {
             'rel': 0,
         },
         events: {
-            'onStateChange': onPlayerStateChange
+            'onStateChange': onPlayerStateChange,
           }
     });
 }
 
 function onPlayerStateChange(event) {
+    play_next_video_on_list(event.data)
     if (event.data == YT.PlayerState.PLAYING) {
         $('.playButton').removeClass(play).toggleClass(pause);
 
     } else if (event.data == YT.PlayerState.PAUSED) {
         $('.pauseButton').removeClass(pause).toggleClass(play);        
+    }
+}
+
+function play_next_video_on_list(playerStatus){
+    if(playerStatus == 0){
+        var currentVideo = document.getElementsByClassName('selectedTd');
+        var currentVideoId = $(currentVideo).attr('id');
+        let holdArray = currentVideoId.split('-');
+        let holdNumber = parseInt(holdArray[1]) +1;
+        let newId = '#tdList-' + holdNumber
+        let tableData = $(newId).children();
+        $(tableData).click();
     }
 }
 
