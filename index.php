@@ -137,16 +137,45 @@ consider carousel for the video list area:
 				</div>
 			</div>
 			<!--end of videoRow div-->
-			<!-- <div id="listContentWrap"> -->
-				<nav class="navbar navbar-inverse" id="midNav">
-					<!-- <div class="container-fluid" id=""> -->
-						<!--navbar content main div-->
-						<div class="navbar-header">
-							<!--nav header div; includes hamburger menu and navbrand-->
-							<button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#midNav-option" data-parent="#accordion"
-							 aria-expanded="true">
-								<span class="hamburger-box">
-									<span class="glyphicon glyphicon-menu-hamburger"></span>
+			<div id="listContentWrap">
+			<nav class="navbar navbar-inverse" id="midNav">
+				<!-- <div class="container-fluid" id=""> -->
+					<!--navbar content main div-->
+					<div class="navbar-header">
+						<!--nav header div; includes hamburger menu and navbrand-->
+						<button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#midNav-option" data-parent="#accordion"
+						 aria-expanded="true">
+							<span class="hamburger-box">
+								<span class="glyphicon glyphicon-menu-hamburger"></span>
+							</span>
+						</button>
+					</div>
+					<!--end of nav header div-->
+					<div class="collapse navbar-collapse text-center" id="midNav-option">
+						<!--div for nav options-->
+						<div class="navbar-nav nav-pills midNavButtonWrap">
+							<div class="navbar-nav nav-pills infoButtons hidden-xs">
+								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
+									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Video Info"></i>
+								</a>
+								<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
+									<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Channel Info"></i>
+								</a>
+							</div>
+							<div class="navbar-nav nav-pills autoPlayArea">
+								<label id="autoplayText">Autoplay</label>
+								<label class="switch">
+									<input type="checkbox" id='autoplayCheckBox' checked>
+									<span class="slider round"></span>
+								</label>
+							</div>
+							<div class="navbar-nav nav-pills midNavChannels">
+								<span class="midNavBrowsing">Browsing:</span> 
+								<span class="label label-primary midNavBrowsing browsingLabel">
+									channel name
+								</span>
+								<span class="midNavBrowsing">
+									<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
 								</span>
 							</button>
 						</div>
@@ -993,7 +1022,9 @@ consider carousel for the video list area:
 					<!--end of listRow div-->
 				</div>
 				<!--end of listRow div-->
-			<!-- </div>  end of #listContentWrap -->
+			</div>
+			<!--end of listRow div-->
+			</div>
 		</div>
 		<!--end of main content div-->
 		<!--modal for lightbox-->
