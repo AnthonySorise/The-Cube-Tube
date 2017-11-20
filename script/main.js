@@ -182,7 +182,7 @@ function tooltipFunctions() {
 function clickHandler() {
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
-        returnToPageOne();
+        // returnToPageOne();
         compileSelectedChannelsFromDropdown();
 
         // var numUpdated = 0;
@@ -226,7 +226,7 @@ function clickHandler() {
         browsingMode = false;
         clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds);
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
-        returnToPageOne();
+        // returnToPageOne();
         renderChannelSelectionDropdown();
         loadSelectedChannels();
         if (window.innerWidth < 500) {
@@ -1385,7 +1385,7 @@ function handleAddButton() {
 
     browsingMode = false;
 
-    returnToPageOne();
+    // returnToPageOne();
     // clearVideoList();
     // createPlaceholderAnimation();
 
