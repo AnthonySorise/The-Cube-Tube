@@ -93,7 +93,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             if(empty($stmt)){
                 $output['errors'][] = 'INVALID QUERY';
             }else{
-                if(mysqli_affected_rows($conn)>0){
+                if($conn->affected_rows>0){
                     //if last one is wrong, they will all be wrong
                     $output['insert_success'] += 1;
                 }else{

@@ -28,7 +28,7 @@ $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';
 }else{
-    if(mysqli_affected_rows($conn)>0){
+    if($conn->affected_rows>0){
         $output['messages'][] = "channel updated with last channel pull";
         include('youtube_videos_curl.php');
     }else{

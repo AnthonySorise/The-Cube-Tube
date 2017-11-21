@@ -50,9 +50,9 @@ if ($error_occurred ){
       if(empty($stmt)){
           $output['errors'][]='invalid query';
       }else{
-          if(mysqli_affected_rows($conn)>0){
+          if($conn->affected_rows>0){
               $output['messages'][] = "insert channel success";
-              $channel_id = mysqli_insert_id($conn);
+              $channel_id = $conn->insert_id;
               include("youtube_videos_curl.php");
           }else{
               $output['errors'][]='UNABLE TO INSERT';

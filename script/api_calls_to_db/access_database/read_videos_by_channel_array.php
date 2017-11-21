@@ -32,11 +32,11 @@ ORDER BY v.published_at DESC LIMIT 40 OFFSET ?");
 $param_types = implode('', array_fill(0, count($youtube_array), 's')) . 'i';
 $stmt->bind_param($param_types, ...array_merge($youtube_array, [$offset]));
 $stmt->execute();
-$result = mysqli_stmt_get_result($stmt);
+$result = $stmt->get_result;
 if(!empty($result)) {
-    if (mysqli_num_rows($result) > 0) {
+    if ($result->num_rows > 0) {
         $output['success'] = true;
-        while ($row = mysqli_fetch_assoc($result)) {
+        while ($result->fetch_assoc) {
             $output['data'][] = $row;
         }
     } else {
