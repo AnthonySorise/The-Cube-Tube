@@ -3,7 +3,13 @@ if(empty($LOCAL_ACCESS)){
     die("no direct access allowed, read user");
 }
 $user_link = $_SESSION['user_link'];
-$stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link = ?");
+$sqli = "SELECT
+    user_id
+FROM
+    users
+WHERE
+    user_link = ?";
+$stmt = $conn->prepare($sqli);
 $stmt->bind_param('s',$user_link);
 $stmt->execute();
 $result = $stmt->get_result();

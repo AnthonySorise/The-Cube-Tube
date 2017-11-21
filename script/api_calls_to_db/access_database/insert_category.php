@@ -4,11 +4,13 @@ if(empty($LOCAL_ACCESS)){
 }
 $category_name = $_POST['category_name']; 
 $youtube_channel_id = $_POST['youtube_channel_id'];
-include('read_user');
 if(empty($category_name)){
     $output['errors'][] = 'MISSING NAME OF CATEGORY';
 }
-$sqli = "INSERT INTO categories SET category_name=?";
+$sqli = "INSERT INTO
+  categories
+SET
+  category_name = ?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('s',$category_name);
 $stmt->execute();

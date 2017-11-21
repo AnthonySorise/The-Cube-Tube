@@ -68,11 +68,17 @@ if(empty($youtube_channel_id)){
 //     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
 //     output_and_exit($output);
 // }
-
-$stmt = $conn->prepare("SELECT * FROM channels_to_users AS ctu
-JOIN user_id AS u ON u.user_id = ctu.user_id
-JOIN channels AS c ON c.channel_id = ctu.channel_id
-WHERE u.user_link=? AND c.youtube_channel_id=?");
+$sqli = "SELECT
+    ctu.ctu_id
+FROM
+    channels_to_users AS ctu
+JOIN
+    user_id AS u ON u.user_id = ctu.user_id
+JOIN
+    channels AS c ON c.channel_id = ctu.channel_id
+WHERE
+    u.user_link = ? AND c.youtube_channel_id = ?";
+$stmt = $conn->prepare($sqli);
 $stmt->bind_param('ss',$user_link,$youtube_channel_id);
 $stmt->execute();
 $results = $stmt->get_result();
@@ -81,10 +87,14 @@ if(!empty($results)){
         $output['errors'][] = "DUPLICATE CTU";
         output_and_exit($output);
     }else{
-        $sqli = "INSERT INTO channels_to_users (user_id , channel_id)
-        SELECT u.user_id, c.channel_id
-        FROM users AS u, channels AS c
-        WHERE u.user_link = ? AND c.channel_id = ?";
+        $sqli = "INSERT INTO 
+            channels_to_users (user_id , channel_id)
+        SELECT 
+            u.user_id, c.channel_id
+        FROM 
+            users AS u, channels AS c
+        WHERE 
+            u.user_link = ? AND c.channel_id = ?";
         $stmt = $conn->prepare($sqli);
         $stmt->bind_param('ss',$user_link,$youtube_channel_id);
         $stmt->execute();
@@ -97,6 +107,6 @@ if(!empty($results)){
         }
     }
 }else{
-    $output['errors'][] = "INVALID QUERY";
+    $output['errors'][] = "INVALID QUERY READ CTU";
     output_and_exit($output);
 }

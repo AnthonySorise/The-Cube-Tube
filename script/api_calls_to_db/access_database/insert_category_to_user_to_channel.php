@@ -4,10 +4,20 @@ if(empty($LOCAL_ACCESS)){
 }
 //file called by insert categories
 //inserting the link between user channel and category
-$sqli = "INSERT INTO category_to_user_to_channel (channel_id, user_id, category_id)
-SELECT c.channel_id,u.user_id, ct.category_id 
-FROM channels AS c, users AS u, categories AS ct 
-WHERE c.youtube_channel_id = ? AND u.user_link = ? AND ct.category_id = ?";
+$sqli = "INSERT INTO
+  category_to_user_to_channel(
+    channel_id,
+    user_id,
+    category_id
+  )
+SELECT
+  c.channel_id,
+  u.user_id,
+FROM
+  channels AS c,
+  users AS u,
+WHERE
+  c.youtube_channel_id = ? AND u.user_link = ? AND category_id = ?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('ssi',$youtube_channel_id, $user_id, $category_id);
 $stmt->execute();

@@ -37,13 +37,16 @@ if ($error_occurred ){
       $channel_title = $channel_data['title'];
       $description = $channel_data['description'];
       $date = date('Y-m-d H:i:s');
-      $stmt = $conn->prepare("INSERT INTO channels SET 
-      channel_title = ?, 
-      youtube_channel_id = ?,
-      description = ?, 
-      thumbnail_file_name = ?, 
-      date_created=?,
-      last_channel_pull=?");
+      $sqli = "INSERT INTO
+            channels
+        SET
+            channel_title = ?,
+            youtube_channel_id = ?,
+            description = ?,
+            thumbnail_file_name = ?,
+            date_created = ?,
+            last_channel_pull = ?";
+      $stmt = $conn->prepare($sqli);
       $stmt->bind_param('ssssss',$channel_title,$youtube_channel_id,
       $description,$thumbnail,$date,$date);
       $stmt->execute();
