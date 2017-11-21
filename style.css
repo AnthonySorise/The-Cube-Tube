@@ -437,7 +437,7 @@ div.thRow {
 
 .selectedTd div {
 	background-color: rgba(180,189,193,1.0) !important;
-	color: #020e13; !important;
+	color: lightgreen; !important;
 }
 
 /* .tdList:hover, .tdRow div.selectedTd {
@@ -447,7 +447,7 @@ div.thRow {
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
 }
-.tdTitle:hover{
+.tdList:hover{
 	color: #020e13; !important;
 }
 .row {
