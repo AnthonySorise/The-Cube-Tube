@@ -184,6 +184,9 @@ function tooltipFunctions() {
 
 //Click handler to console log search results
 function clickHandler() {
+    $('.glyphicon-copy').on('click', copy_to_clipboard)
+
+
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
         // returnToPageOne();
@@ -1047,9 +1050,10 @@ function renderVideoList(videoArray) {
 }
 
 function addChannelModal(userLink) {
+    let button = $('<button>')
     if (userLink) {
         $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user=" + userLink);
-
+        $('.userLinkBody').append(button).addClass('glyphicon glyphicon-copy')
     }
     else {
         $('.userLinkBody').text("Channel added to your subscriptions!")
