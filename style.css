@@ -436,8 +436,8 @@ div.thRow {
 }
 
 .selectedTd div {
-	background-color: rgba(180,189,193,1.0) !important;
-	color: lightgreen; !important;
+	background-color: lightgreen !important;
+	color: #020e13; !important;
 }
 
 /* .tdList:hover, .tdRow div.selectedTd {
@@ -447,9 +447,7 @@ div.thRow {
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
 }
-.tdList:hover{
-	color: #020e13; !important;
-}
+
 .row {
 	margin: 0;
 }
@@ -461,6 +459,9 @@ div.thRow {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+}
+.tdList:hover{
+	color: #020e13; !important;
 }
 /*.tdChannel, .tdUpDate{*/
 	/*justify-content: center;*/
