@@ -6,10 +6,10 @@ $user_link = $_SESSION['user_link'];
 $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link = ?");
 $stmt->bind_param('s',$user_link);
 $stmt->execute();
-$result = mysqli_stmt_get_result($stmt);
+$result = $stmt->get_result();
 if(!empty($result)){
-    if(mysqli_num_rows($result)>0){
-        $row = mysqli_fetch_assoc($result);
+    if($result->num_rows>0){
+        $row = $result->fetch_assoc();
         define('USER_ID',$row['user_id']);
     }else{
         $output['nothing_to_read'] = true;
