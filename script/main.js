@@ -147,7 +147,6 @@ $(document).ready(function () {
     function waitForIframe(){
         if(player && player.B){
             console.log("!!IFRAME READY!!", player)
-            console.log("player", player)
             console.log("player.B", player.B)
             console.log("INIT APP")
             iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
@@ -156,7 +155,7 @@ $(document).ready(function () {
             return
         }
         else{
-            console.log("IFRAME NOT READY")
+            console.log("IFRAME NOT READY", player)
             setTimeout(function(){
                 waitForIframe();
             }, 50)
