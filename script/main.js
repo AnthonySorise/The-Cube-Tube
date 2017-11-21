@@ -154,6 +154,7 @@ $(document).ready(function () {
         console.log("TEST", player)
         if(player && player.B){
             initApp();
+            return
         }
         else{
             setTimeout(function(){
