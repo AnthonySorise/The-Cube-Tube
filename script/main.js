@@ -1088,11 +1088,15 @@ function addChannelModal(userLink) {
         }).append(linkSpan);
         // $('.userLinkBody').text("Save this link!!!  ").append(linkSpan);
 
-        let button = $('<button>').addClass("btn").text("Copy Link");
-        let linkSpanIcon = $("<span>").addClass('glyphicon glyphicon-copy');
+        let button = $('<button>').addClass("btn btn-info btn-lg btn-block").text("CopyLink  ");
+        let linkIcon = $('<i>').addClass('fa fa-clipboard fa-lg text-danger');
 
-        button.append(linkSpanIcon).click(copy_to_clipboard);
-        $('.userLinkBody').append(linkDiv, button);
+        button.append(linkIcon).click(()=>{
+            clipBoard('linkSpan');
+        });
+        $('.userLinkBody',{
+            'class': 'text-center'
+        }).append(linkDiv, button);
     }
     else {
         $('.userLinkBody').text("Channel added to your subscriptions!")
@@ -1100,14 +1104,20 @@ function addChannelModal(userLink) {
     $('#userLinkModal').modal('show');
 }
 
-function copy_to_clipboard() {
-    var textArea = document.createElement("textarea");
-    textArea.style.background = 'transparent';
-    textArea.value = $('.userLinkBody').text().slice(17,55);
-    document.body.appendChild(textArea);
-    textArea.select();
-    var successful = document.execCommand('copy');
+function clipBoard(txtClass){
+    let textElmt = document.querySelector(`.${txtClass}`);
+    let range = document.createRange();
+    range.selectNode(textElmt);
+    window.getSelection().addRange(range);
+    try{
+        let success = document.execCommand('copy');
+        let result = success ? 'link copied!' : 'something went wrong';
+        toastMsg(result, 1200);
+    }catch(err){
+        console.log('error with clipBoard:', err);
+    }
 }
+
 
 function retrieveInfoFromDB(channelID, isAdding = false) {
     videoObjectsToLoad = 0;
