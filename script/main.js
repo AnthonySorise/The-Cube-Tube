@@ -1228,6 +1228,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
         },
         success:function(data){
             //Channel is on DB
+            var channelObj = data;
             if(data.success){
                 console.log('Channel Found on DB', data);
                 console.log("last channel pull: ", data.data[0].last_channel_pull)
@@ -1246,7 +1247,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                             console.log('Channel Updated', data);
                         }
                         console.log(data);
-                        handleInfoFromDB(data);
+                        handleInfoFromDB(channelObj);
                     },
                     errors: function (data) {
                         console.log('insert error', data);
