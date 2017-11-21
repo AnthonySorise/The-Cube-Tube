@@ -2,7 +2,6 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$output['data'] = [];
 $youtube_channel_id = $_POST['youtube_channel_id'];
 if(empty($youtube_channel_id)){
     $output['errors'][] = 'MISSING ID';

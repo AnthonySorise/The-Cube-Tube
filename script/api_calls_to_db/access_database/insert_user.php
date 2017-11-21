@@ -34,7 +34,7 @@ $stmt->execute();
 if(!empty($stmt)){
     if($conn->affected_rows>0){
         $output['insert_user_success'] = true;
-        define('USER_ID',mysqli_insert_id($conn));
+        // define('USER_ID',mysqli_insert_id($conn));
     }
     else{
         $output['errors'][] = 'Unable to insert data';
