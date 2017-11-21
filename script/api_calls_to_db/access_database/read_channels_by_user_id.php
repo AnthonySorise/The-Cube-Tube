@@ -23,7 +23,7 @@ $result = $stmt->get_result();
 if(!empty($result)){
     if($result->num_rows>0){
         $output['success']=true;
-        while($row = $result->fetch_assoc){
+        while($row = $result->fetch_assoc()){
             $output['data'][] = $row;
         }
     }else{
