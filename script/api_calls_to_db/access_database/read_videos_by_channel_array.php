@@ -36,7 +36,7 @@ $result = $stmt->get_result();
 if(!empty($result)) {
     if ($result->num_rows > 0) {
         $output['success'] = true;
-        while ($result->fetch_assoc) {
+        while ($result->fetch_assoc()) {
             $output['data'][] = $row;
         }
     } else {
