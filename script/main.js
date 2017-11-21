@@ -214,6 +214,7 @@ function clickHandler() {
                     numUpdated++;
                     if(numUpdated === clientSelectedChannelObjects.length){
                         console.log("UPDATED DONE");
+                        returnToPageOne();
                         loadSelectedChannels();
                     }
                     if (data.success) {
@@ -262,6 +263,7 @@ function clickHandler() {
                     numUpdated++;
                     if(numUpdated === clientSubscribedChannelObjects.length){
                         console.log("UPDATED DONE");
+                        returnToPageOne();
                         loadSelectedChannels();
                     }
                     if (data.success) {
