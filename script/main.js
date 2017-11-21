@@ -151,12 +151,15 @@ $(document).ready(function () {
     }
 
     function waitForIframe(){
-        console.log("TEST", player)
+        console.log("player", player)
+        console.log("player", player.B)
         if(player && player.B){
+            console.log("INIT APP")
             initApp();
             return
         }
         else{
+            console.log("IFRAME NOT READY")
             setTimeout(function(){
                 waitForIframe();
             }, 50)
