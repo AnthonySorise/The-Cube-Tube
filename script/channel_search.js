@@ -111,7 +111,6 @@ function clearChannelResults() {
             "data-original-title": "",
             "data-content": ""
         });
-
         $(channelListData).css("display", 'none')
     }
 }

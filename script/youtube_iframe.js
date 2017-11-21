@@ -14,7 +14,6 @@ function onYouTubeIframeAPIReady(vidId) {
     onYouTubeIframeAPIReady2();
 }
 
-
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
         videoId: 'lrzIR8seNXs',

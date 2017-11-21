@@ -30,7 +30,6 @@ function loadSelectedChannels() {
     })
 }
 
-
 function renderVideoList(videoArray) {
     if (videoObjectsToLoad === null) {
         console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -171,6 +170,7 @@ function loadNextPage() {
         }
     }
 }
+
 function loadPreviousPage() {
     if (!(currentSlideNumber % 2)) {
         var pageToLoad = (currentSlideNumber / 2) - 1;
@@ -241,7 +241,6 @@ function removeUnusedRows() {
 
 function resetSelectedTd() {
     //NEEDS TO ALSO HANDLE FA FA SPINNER
-
     // setTimeout(function(){
     $(".tdList").removeClass('selectedTd');
     $('.fa-circle-o-notch').remove();

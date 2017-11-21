@@ -6,7 +6,6 @@ function handleAddButton() {
         clientSelectedChannelObjects = [];
         compileSelectedChannelsFromDropdown()
     }
-
     browsingMode = false;
 
     returnToPageOne();
@@ -16,9 +15,6 @@ function handleAddButton() {
     retrieveInfoFromDB(channelID, true);
     // toastMsg('loading channel videos',1000);
 
-
-
-
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
     $('#channelSearchModal').modal('hide')
@@ -27,16 +23,16 @@ function handleAddButton() {
 function addChannelModal(userLink) {
     if (userLink) {
         let uLink = 'www.thecubetube.com/?user='+userLink;
-        const secretLinkSpan = $('<span>',{
-            'class': 'linkSpan',
-            'text': uLink
-        }).css({
-            'position': 'absolute',
-            'display': 'none',
-            'top': '-500px',
-            'z-index': '-1'
-        });
-        $('body').prepend(secretLinkSpan);
+        // const secretLinkSpan = $('<span>',{
+        //     'class': 'linkSpan',
+        //     'text': uLink
+        // }).css({
+        //     'position': 'absolute',
+        //     'display': 'none',
+        //     'top': '-500px',
+        //     'z-index': '-1'
+        // });
+        // $('body').prepend(secretLinkSpan);
         const linkSpan = $('<span>',{
             'class':'linkSpan',
             'text': uLink

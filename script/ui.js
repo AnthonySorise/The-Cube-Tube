@@ -60,7 +60,6 @@ $(window).on('click',(e)=>{
 	}	
 });
 
-
 $(document).ready(function(){
 	channelDropClickHandle();
 
@@ -89,7 +88,6 @@ function toastMsg(msgString, time) {
         $('.toast').remove();
     }, time);
 }
-
 
 //Click handler to console log search results
 function clickHandler() {
@@ -134,9 +132,7 @@ function clickHandler() {
                     console.log('insert error', data);
                 }
             })
-
         }
-
     });
 
     $(".dropdownChannelLiAll").on("click", function () {
@@ -183,9 +179,7 @@ function clickHandler() {
                     console.log('insert error', data);
                 }
             })
-
         }
-
     });
 
     $('#channelCategoryUl').on('click touchend', '.channelLiChannel, .dropdownChannelLi input', (e) => {
@@ -375,16 +369,12 @@ function clickHandler() {
                         .css("margin-bottom", '15px');
 
                     var subscriberCount = $('<p><strong>Subscribers: </strong>' + parseInt(data.items[0].statistics.subscriberCount).toLocaleString("en-us") + '</p>');
-
                     const descriptionTitle = $('<p><strong>Description: </strong></p>');
-
                     const descriptionContainer = $('<div></div>');
                     descriptionContainer.css("height", "21.75vh");
                     descriptionContainer.css("overflow-y", "auto")
                     const description = $('<p>' + data.items[0].snippet.description + '</p>');
                     descriptionContainer.append(description);
-
-
                     channelInfoDiv.append(channelThumbnail, subscriberCount, descriptionTitle, descriptionContainer);
 
                     $("#channelInfo").popover('destroy');
@@ -406,7 +396,6 @@ function clickHandler() {
                     console.log('something went wrong with YT', data);
                 }
             })
-
         }
     });
 
@@ -422,7 +411,7 @@ function clickHandler() {
             console.log('Esc was pressed');
             checkTheatreModeStatus();
         }
-    })
+    });
 
     // Lets user click outside of theatre modal to close and save the state of video
     function closeTheatreOnClick(event) {
@@ -487,10 +476,9 @@ function clickHandler() {
             return;
         } else {
             player2.seekTo(add15Seconds);
-
         }
-
     }
+
     function playYtVideo() {
         player2.playVideo();
         if (this.classList.value === play) {
@@ -501,6 +489,7 @@ function clickHandler() {
 
         }
     }
+
     function rewindVideo() {
         var fastForward = player2.getCurrentTime();
         var minus15Seconds = fastForward - 15;
@@ -512,7 +501,6 @@ function clickHandler() {
         } else {
             player2.seekTo(minus15Seconds);
         }
-
     }
 }
 
