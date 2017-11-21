@@ -170,9 +170,9 @@ consider carousel for the video list area:
 							</div>
 							<div class="navbar-nav nav-pills midNavChannels">
 								<span class="midNavBrowsing">
-									<small>
+									<p style="display:inline-block">
 										Browsing:
-									</small>
+									</p>
 								</span> 
 								<span class="label label-primary midNavBrowsing browsingLabel">
 									channel name
@@ -181,7 +181,9 @@ consider carousel for the video list area:
 									<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
 								</span>
 								<span class="midNavWatching">
-									<small>Watching:</small> 
+									<p style="display:inline-block">
+                                        Watching:
+                                    </p>
 								</span>
 								<span class="label label-success midNavWatching watchingLabel" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
 									<i class="fa fa-cubes"></i>
