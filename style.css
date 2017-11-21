@@ -472,13 +472,13 @@ div.thRow {
 
 .tdList:nth-child(even):hover div {
 	/* background-color: #364e5a; */
-	background-color: rgba(180, 189, 193, 1.0) !important;
+	background-color: rgba(180, 189, 193, 1.0);
 	display: inline;
 }
 
 .tdList:nth-child(odd):hover div {
 	/* background-color: #364e5a; */
-	background-color: rgba(180, 189, 193, 1.0) !important;
+	background-color: rgba(180, 189, 193, 1.0);
 	display: inline;
 }
 
@@ -486,16 +486,21 @@ div.thRow {
 	/* background-color: #b4bdc1; */
 /* background-color: rgba(180, 189, 193, 1.0) !important;} */
 
-.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
+.selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
 	font-weight: bold;
 	color: #020e13; !important;
+	background-color: lightgreen !important;
 }
 
-.selectedTd>.tdUpDate:hover{
+.selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
+	font-weight: bold;
 	color: #020e13; !important;
+	background-color: lightgreen !important;
+
 }
 
-.selectedTd>.tdTitle, .selectedTd>.tdChannel, .selectedTd>,.tdUpDate {
+
+.tdList:nth-child(even):hover, .tdList:nth-child(odd):hover {
 	color: #020e13; !important;
 }
 
@@ -508,6 +513,9 @@ div.thRow {
 .selectedTd {
 	background-color: lightgreen !important;
 	/*color: #020e13; !important;*/
+}
+.selectedTd:hover{
+	background-color: lightgreen !important;
 }
 
 /****** initial screen PLACEHOLDER AREA******/
