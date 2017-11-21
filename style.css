@@ -489,7 +489,6 @@ div.thRow {
 /* background-color: rgba(180, 189, 193, 1.0) !important;} */
 
 .selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
-	font-weight: bold;
 	color: #020e13; !important;
 	background-color: lightgreen !important;
 }
