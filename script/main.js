@@ -144,8 +144,19 @@ $(document).ready(function () {
         }, 2000)
     }
 
+    var iFrameLoadTries = 0;
     function waitForIframe(){
-        if(player && player.B){
+        if(iFrameLoadTries > 50){
+            console.log("LOAD IFRAME FAILED - TRY AGAIN")
+            iFrameLoadTries = 0;
+            player = null;
+            onYouTubeIframeAPIReady(videoID);
+            setTimeout(function(){
+                waitForIframe();
+            }, 50)
+        }
+
+        else if(player && player.B){
             console.log("!!IFRAME READY!!", player)
             console.log("player.B", player.B)
             console.log("INIT APP")
@@ -154,11 +165,9 @@ $(document).ready(function () {
             initApp();
             return
         }
-        // else if(player && !player.B){
-        //     console.log("NEED TO RUN onYouTubeIframAPIReady AGAIN!")
-        //     onYouTubeIframeAPIReady(videoID)
-        // }
+
         else{
+            iFrameLoadTries++;
             console.log("IFRAME NOT READY", player)
             setTimeout(function(){
                 waitForIframe();
