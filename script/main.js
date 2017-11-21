@@ -1079,6 +1079,16 @@ function renderVideoList(videoArray) {
 function addChannelModal(userLink) {
     if (userLink) {
         let uLink = 'www.thecubetube.com/?user='+userLink;
+        const secretLinkSpan = $('<span>',{
+            'class': 'linkSpan',
+            'text': 'uLink'
+        }).css({
+            'position': 'absolute',
+            'display': 'none',
+            'top': '-500px',
+            'z-index': '-1'
+        });
+        $('body').prepend(secretLinkSpan);
         const linkSpan = $('<span>',{
             'class':'linkSpan',
             'text': uLink
@@ -1103,17 +1113,21 @@ function addChannelModal(userLink) {
 }
 
 function clipBoard(txtClass){
-    let textElmt = document.querySelector(`.${txtClass}`);
-    let range = document.createRange();
-    range.selectNode(textElmt);
-    window.getSelection().addRange(range);
-    try{
-        let success = document.execCommand('copy');
-        let result = success ? 'link copied!' : 'something went wrong';
-        toastMsg(result, 1200);
-    }catch(err){
-        console.log('error with clipBoard:', err);
-    }
+    if($('span').hasClass('linkSpan')){
+        let textElmt = document.querySelector(`.${txtClass}`);
+        let range = document.createRange();
+        range.selectNode(textElmt);
+        window.getSelection().addRange(range);
+        try{
+            let success = document.execCommand('copy');
+            let result = success ? 'link copied!' : 'something went wrong';
+            toastMsg(result, 1200);
+        }catch(err){
+            console.log('error with clipBoard:', err);
+        }
+    }else{
+        toastMsg('nothing to copy', 1200);
+    }    
 }
 
 
