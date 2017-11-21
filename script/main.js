@@ -188,6 +188,7 @@ function clickHandler() {
         browsingMode = false;
         // returnToPageOne();
         compileSelectedChannelsFromDropdown();
+        clearVideoList();
 
         if (window.innerWidth < 500) {
             closeChannelDrop();
@@ -234,6 +235,7 @@ function clickHandler() {
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
         // returnToPageOne();
         renderChannelSelectionDropdown();
+        clearVideoList();
 
         if (window.innerWidth < 500) {
             closeChannelDrop();
