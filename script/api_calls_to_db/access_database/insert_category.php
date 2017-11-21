@@ -11,8 +11,8 @@ if(empty($category_name)){
 $sqli = "INSERT INTO categories SET category_name=?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('s',$category_name);
-$result = $stmt->get_result();
-if(empty($result)){
+$stmt->execute();
+if(empty($stmt)){
     $output['errors'][] = 'invalid query';
 }else{
     if($result->affected_rows>0){

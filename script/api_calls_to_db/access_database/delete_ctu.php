@@ -14,11 +14,12 @@ WHERE youtube_channel_id = ? AND u.user_link = ?");
 $stmt->bind_param("ss",$youtube_channel_id,$user_link);
 $stmt->execute();
 if(!empty($stmt)){
-    if(mysqli_affected_rows($conn)>0){
+    if($conn->affected_rows>0){
         $output['success'] = true;
+        $output['messages'][] = 'delete ctu success';
     }
     else{
-        $output['error'] = 'Unable to delete data';
+        $output['error'] = 'Unable to delete ctu';
     }
 }else{
     $output['errors'][]= 'invalid query';

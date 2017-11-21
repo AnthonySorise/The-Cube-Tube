@@ -14,9 +14,9 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
         $stmt->bind_param('s',$randomString);
         $stmt->execute();
-        $results = mysqli_stmt_get_result($stmt);
+        $results = $stmt->get_result();
         if(!empty($results)){
-            if(mysqli_num_rows($results)>0){
+            if($results->num_rows>0){
                 return generateRandomString($conn);
             }else{
                 return $randomString;
@@ -75,7 +75,7 @@ $stmt = $conn->prepare("SELECT * FROM channels_to_users
 WHERE user_id=? AND channel_id=?");
 $stmt->bind_param('ii',$user_id,$channel_id);
 $stmt->execute();
-$results = mysqli_stmt_get_result($stmt);
+$results = $stmt->get_results();
 if(!empty($results)){
     if(mysqli_num_rows($results)>0){
         $output['errors'][] = "DUPLICATE CTU";
