@@ -1413,6 +1413,7 @@ function handleBrowseButton() {
 
     let channelID = $(this).parent().attr("channelId");
     retrieveInfoFromDB(channelID);
+    updateMidNavText();
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
