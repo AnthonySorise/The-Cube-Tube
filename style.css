@@ -417,55 +417,7 @@ div.thRow {
 	line-height: 2.1vh;
 	z-index: 1;
 }
-.tdList:nth-child(even) div {
-	/* background-color: #364e5a; */
-	background-color: rgba(54, 78, 90,0.5);
-	display: inline;
-}
 
-.tdList:nth-child(even):hover div {
-	/* background-color: #364e5a; */
-	background-color: rgba(180, 189, 193, 1.0) !important;
-	display: inline;
-}
-
-.tdList:nth-child(odd):hover div {
-	/* background-color: #364e5a; */
-	background-color: rgba(180, 189, 193, 1.0) !important;
-	display: inline;
-}
-
-/* .tdList:hover, .tdRow div.selectedTd {
-	/* background-color: #b4bdc1; */
-	/* background-color: rgba(180, 189, 193, 1.0) !important;} */
-
-.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
-	font-weight: bold;
-	color: #020e13; !important;
-
-}
-
-.selectedTd>.tdUpDate:hover{
-	color: #020e13; !important;
-}
-
-.row {
-	margin: 0;
-}
-.tdTitle, .tdChannel, .tdUpDate{
-	cursor: pointer;
-	/*display: flex;*/
-	/*align-items: center;*/
-	color:white;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.selectedTd>div {
-	background-color: lightgreen !important;
-	/*color: #020e13; !important;*/
-}
 
 /*.tdChannel, .tdUpDate{*/
 	/*justify-content: center;*/
@@ -505,6 +457,55 @@ div.thRow {
 	white-space: nowrap;
 }
 
+.tdList:nth-child(even) div {
+	/* background-color: #364e5a; */
+	background-color: rgba(54, 78, 90,0.5);
+	display: inline;
+}
+
+.tdList:nth-child(even):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0) !important;
+	display: inline;
+}
+
+.tdList:nth-child(odd):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0) !important;
+	display: inline;
+}
+
+/* .tdList:hover, .tdRow div.selectedTd {
+	/* background-color: #b4bdc1; */
+/* background-color: rgba(180, 189, 193, 1.0) !important;} */
+
+.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
+	font-weight: bold;
+	color: #020e13; !important;
+
+}
+
+.selectedTd>.tdUpDate:hover{
+	color: #020e13; !important;
+}
+
+.row {
+	margin: 0;
+}
+.tdTitle, .tdChannel, .tdUpDate{
+	cursor: pointer;
+	/*display: flex;*/
+	/*align-items: center;*/
+	color:white;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.selectedTd>div {
+	background-color: lightgreen !important;
+	/*color: #020e13; !important;*/
+}
 
 /****** initial screen PLACEHOLDER AREA******/
 .contentPlaceholderWrapper{
