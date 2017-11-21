@@ -952,7 +952,8 @@ function loadSelectedChannels() {
                 console.log('Videos Found', data);
                 videoObjectsToLoad = [];
                 videoObjectsToLoad = data.data;
-                returnToPageOne();
+                // returnToPageOne();
+                clearVideoList();
                 renderVideoList(videoObjectsToLoad);
                 updateMidNavText()
             }
@@ -974,6 +975,7 @@ function renderVideoList(videoArray) {
     }
     console.log("LOADING VIDEO LIST")
     clearVideoList();
+    returnToPageOne();
 
     for (let i = 0; i < videoArray.length; i++) {
         if (videoArray[i] === undefined) {
@@ -1392,8 +1394,8 @@ function handleAddButton() {
 
     browsingMode = false;
 
-    returnToPageOne();
-    // clearVideoList();
+    // returnToPageOne();
+    clearVideoList();
     // createPlaceholderAnimation();
 
 
