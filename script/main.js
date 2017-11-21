@@ -201,8 +201,10 @@ function clickHandler() {
                     last_channel_pull:clientSubscribedChannelObjects[i].last_channel_pull
                 },
                 success: function (data) {
+                    console.log("UPDATED", data)
                     numUpdated++;
                     if(numUpdated === clientSubscribedChannelObjects.length){
+                        console.log("UPDATED DONE");
                         loadSelectedChannels();
                         if (window.innerWidth < 500) {
                             closeChannelDrop();
