@@ -32,7 +32,7 @@ ORDER BY v.published_at DESC LIMIT 40 OFFSET ?");
 $param_types = implode('', array_fill(0, count($youtube_array), 's')) . 'i';
 $stmt->bind_param($param_types, ...array_merge($youtube_array, [$offset]));
 $stmt->execute();
-$result = $stmt->get_result;
+$result = $stmt->get_result();
 if(!empty($result)) {
     if ($result->num_rows > 0) {
         $output['success'] = true;
