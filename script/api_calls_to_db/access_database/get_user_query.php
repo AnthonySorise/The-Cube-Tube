@@ -7,7 +7,7 @@ if(isset($_GET['user'])){
     $stmt->bind_param('s',$_GET['user']);
     $stmt->execute();
     $results = $stmt->get_result();
-    if($results>0){
+    if($results->num_rows>0){
         $_SESSION['user_link'] = $_GET['user'];
         header('Location: /');
     }else{

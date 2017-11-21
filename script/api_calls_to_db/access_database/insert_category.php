@@ -15,7 +15,7 @@ $result = $stmt->get_result();
 if(empty($result)){
     $output['errors'][] = 'invalid query';
 }else{
-    if($result->num_rows>0){
+    if($result->affected_rows>0){
         $output['messages'][] = 'insert category success';
         $category_id = $conn->insert_id;
         include('insert_cuc.php');
