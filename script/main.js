@@ -154,10 +154,10 @@ $(document).ready(function () {
             initApp();
             return
         }
-        else if(player && !player.B){
-            console.log("NEED TO RUN onYouTubeIframAPIReady AGAIN!")
-            onYouTubeIframeAPIReady(videoID)
-        }
+        // else if(player && !player.B){
+        //     console.log("NEED TO RUN onYouTubeIframAPIReady AGAIN!")
+        //     onYouTubeIframeAPIReady(videoID)
+        // }
         else{
             console.log("IFRAME NOT READY", player)
             setTimeout(function(){
