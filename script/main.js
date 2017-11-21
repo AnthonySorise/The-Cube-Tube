@@ -150,6 +150,7 @@ $(document).ready(function () {
     }
 
     function waitForIframe(){
+        console.log("TEST", player)
         if(player){
             initApp();
         }
