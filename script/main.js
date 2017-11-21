@@ -21,6 +21,7 @@ var nextVideoIdToLoad = null;
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
+    console.log("onYouTubeIframeAPIReady CALLED", player);
     player = new YT.Player('mainVideo', {
         videoId: vidId || 'lrzIR8seNXs',
         playerVars: {
