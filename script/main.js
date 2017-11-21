@@ -976,7 +976,8 @@ function renderVideoList(videoArray) {
         console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     }
     console.log("LOADING VIDEO LIST")
-    clearVideoList();
+    // clearVideoList();
+
 
     for (let i = 0; i < videoArray.length; i++) {
         if (videoArray[i] === undefined) {
