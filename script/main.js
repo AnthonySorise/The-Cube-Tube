@@ -188,6 +188,7 @@ function clickHandler() {
         browsingMode = false;
         // returnToPageOne();
         compileSelectedChannelsFromDropdown();
+        clearVideoList();
 
         if (window.innerWidth < 500) {
             closeChannelDrop();
@@ -234,6 +235,7 @@ function clickHandler() {
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
         // returnToPageOne();
         renderChannelSelectionDropdown();
+        clearVideoList();
 
         if (window.innerWidth < 500) {
             closeChannelDrop();
@@ -975,7 +977,7 @@ function renderVideoList(videoArray) {
     }
     console.log("LOADING VIDEO LIST")
     clearVideoList();
-    returnToPageOne();
+    // returnToPageOne();
 
     for (let i = 0; i < videoArray.length; i++) {
         if (videoArray[i] === undefined) {
@@ -1053,9 +1055,13 @@ function addChannelModal(userLink) {
     $('#userLinkModal').modal('show');
 }
 
-function copy_to_clipboard(){
-    $('#cubetube_user_id').select();
-    document.execCommand('Copy');
+function copy_to_clipboard() {
+    var textArea = document.createElement("textarea");
+    textArea.style.background = 'transparent';
+    textArea.value = $('.userLinkBody').text().slice(17,55);
+    document.body.appendChild(textArea);
+    textArea.select();
+    var successful = document.execCommand('copy');
 }
 
 // function ytChannelApiToDb(channelId, isAdding = false) {
