@@ -186,7 +186,7 @@ function tooltipFunctions() {
 function clickHandler() {
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
-        // returnToPageOne();
+        returnToPageOne();
         compileSelectedChannelsFromDropdown();
         clearVideoList();
 
@@ -227,13 +227,34 @@ function clickHandler() {
 
         }
 
+<<<<<<< HEAD
+                                loadSelectedChannels();
+                                if (window.innerWidth < 500) {
+                                    closeChannelDrop();
+                                } else {
+                                    $('mainNav-option').removeClass('in')
+                                        .attr('aria-expanded', 'false');
+                                    $('.channelDropDown').removeClass('open');
+                                }
+
+        //                 }
+        //             }
+        //         },
+        //         errors: function (data) {
+        //             console.log('insert error', data);
+        //         }
+        //     })
+        //
+        // }
+=======
+>>>>>>> eaa26f367dbc4ebfc216974b05c554c98aa84147
     });
 
     $(".dropdownChannelLiAll").on("click", function () {
         browsingMode = false;
         clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds);
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
-        // returnToPageOne();
+        returnToPageOne();
         renderChannelSelectionDropdown();
         clearVideoList();
 
@@ -603,6 +624,9 @@ function clickHandler() {
         }
 
     }
+    //TM87
+    $('.glyphicon-copy').on('click', copy_to_clipboard)
+
 }
 
 function initiateUser() {
@@ -1045,9 +1069,17 @@ function renderVideoList(videoArray) {
 }
 
 function addChannelModal(userLink) {
+<<<<<<< HEAD
+    let button = $('<button>')
+    if (userLink) {
+        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user=" + userLink);
+        $('.userLinkBody').append(button).addClass('glyphicon glyphicon-copy')
+
+=======
     if (userLink) {
         $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user=" + userLink);
         
+>>>>>>> eaa26f367dbc4ebfc216974b05c554c98aa84147
     }
     else {
         $('.userLinkBody').text("Channel added to your subscriptions!")
@@ -1055,10 +1087,21 @@ function addChannelModal(userLink) {
     $('#userLinkModal').modal('show');
 }
 
+<<<<<<< HEAD
+function copy_to_clipboard() {
+    var textArea = document.createElement("textarea");
+    textArea.style.background = 'transparent';
+    textArea.value = $('.userLinkBody').text().slice(17,55);
+    document.body.appendChild(textArea);
+    textArea.select();
+    var successful = document.execCommand('copy');
+=======
 function copy_to_clipboard(){
     $('#cubetube_user_id').select();
     document.execCommand('Copy');
+>>>>>>> eaa26f367dbc4ebfc216974b05c554c98aa84147
 }
+
 
 // function ytChannelApiToDb(channelId, isAdding = false) {
 //     var channelDbObject = {};
@@ -1352,6 +1395,30 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                                         console.log("ERROR", data);
                                     }
                                 })
+<<<<<<< HEAD
+                                //update remaining videos
+                                setTimeout(function(){
+                                    $.ajax({
+                                        url:'./script/api_calls_to_db/access_database/access.php',
+                                        method:'post',
+                                        dataType:'JSON',
+                                        data:{
+                                            action:'insert_videos_curl',
+                                            youtube_channel_id:channelID,
+                                            page_token:data.page_token
+                                        },
+                                        success: function (data) {
+                                            if (data.success) {
+                                                console.log('All videos inserted to DB from YouTube', data);
+                                            }
+                                        },
+                                        errors: function (data) {
+                                            console.log('insert error', data);
+                                        }
+                                    })
+                                }, 1000);
+=======
+>>>>>>> eaa26f367dbc4ebfc216974b05c554c98aa84147
                             }
                         },
                         errors: function (data) {
