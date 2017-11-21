@@ -21,6 +21,7 @@ var nextVideoIdToLoad = null;
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
+    console.log("onYouTubeIframeAPIReady CALLED", player);
     player = new YT.Player('mainVideo', {
         videoId: vidId || 'lrzIR8seNXs',
         playerVars: {
@@ -96,55 +97,86 @@ function playNextYTVideo() {
 /*******needed for iframe player*******/
 let iframeRight = 0;
 $(window).resize(function () {
-    let windowWidth = ($(window).width());
-    if (windowWidth <= 768) {
-        // displayTableDataOnMobile()
-    } else {
-        // displayTableDataOnDesktop()
-    }
     iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
     $('.lightBoxMode').css('left', iframeRight + 'px');
-})
+});
 
 
 $(document).ready(function () {
-    $("#text-carousel").hide()
-    $(".videoHeader").hide()
 
-    rendertheatreControls();
-    displayCurrentPageNumber();
-    /**
-     function for preventing page refresh with search button;
-     only did it because page refresh was annoying
-     **/
-    $('#midNav-option form button').click(function (event) {
-        event.preventDefault();
-    });
+    function initApp(){
+        $("#text-carousel").hide()
+        $(".videoHeader").hide()
 
-    tooltipFunctions();
+        rendertheatreControls();
+        displayCurrentPageNumber();
+        /**
+         function for preventing page refresh with search button;
+         only did it because page refresh was annoying
+         **/
+        $('#midNav-option form button').click(function (event) {
+            event.preventDefault();
+        });
 
-    clickHandler();
+        tooltipFunctions();
 
-    $('#text-carousel').on('slide.bs.carousel', function (ev) {
-        console.log(ev)
-        if (ev.direction == 'left') {
-            currentSlideNumber++
-            loadNextPage();
-        } else {
-            currentSlideNumber--
-            loadPreviousPage();
+        clickHandler();
+
+        $('#text-carousel').on('slide.bs.carousel', function (ev) {
+            console.log(ev)
+            if (ev.direction == 'left') {
+                currentSlideNumber++
+                loadNextPage();
+            } else {
+                currentSlideNumber--
+                loadPreviousPage();
+            }
+            displayCurrentPageNumber()
+        });
+        clearVideoList();   //hides list rows until they are needed
+        setTimeout(() => {
+            iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
+            $('.lightBoxMode').css('left', iframeRight + 'px');
+        }, 500);
+
+        setTimeout(() => {
+            initiateUser();
+        }, 2000)
+    }
+
+    var iFrameLoadTries = 0;
+    function waitForIframe(){
+        if(iFrameLoadTries > 50){
+            console.log("LOAD IFRAME FAILED - TRY AGAIN")
+            iFrameLoadTries = 0;
+            player = null;
+            onYouTubeIframeAPIReady(videoID);
+            setTimeout(function(){
+                waitForIframe();
+            }, 50)
         }
-        displayCurrentPageNumber()
-    });
-    clearVideoList();   //hides list rows until they are needed
-    setTimeout(() => {
-        iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
-        $('.lightBoxMode').css('left', iframeRight + 'px');
-    }, 500);
 
-    setTimeout(() => {
-        initiateUser();
-    }, 2000)
+        else if(player && player.B){
+            console.log("!!IFRAME READY!!", player)
+            console.log("player.B", player.B)
+            console.log("INIT APP")
+            iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
+            $('.lightBoxMode').css('left', iframeRight + 'px');
+            initApp();
+            return
+        }
+
+        else{
+            iFrameLoadTries++;
+            console.log("IFRAME NOT READY", player)
+            setTimeout(function(){
+                waitForIframe();
+            }, 50)
+        }
+    }
+
+    waitForIframe();
+
 });
 
 function tooltipFunctions() {
@@ -1055,13 +1087,33 @@ function renderVideoList(videoArray) {
 
 function addChannelModal(userLink) {
     if (userLink) {
-        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user=" + userLink);
+        let uLink = 'www.thecubetube.com/?user='+userLink;
+        const secretLinkSpan = $('<span>',{
+            'class': 'linkSpan',
+            'text': uLink
+        }).css({
+            'position': 'absolute',
+            'display': 'none',
+            'top': '-500px',
+            'z-index': '-1'
+        });
+        $('body').prepend(secretLinkSpan);
+        const linkSpan = $('<span>',{
+            'class':'linkSpan',
+            'text': uLink
+        });
+        const linkDiv = $('<div>',{
+            text: 'Save this link!!!!  '
+        }).append(linkSpan);
+        // $('.userLinkBody').text("Save this link!!!  ").append(linkSpan);
 
-        let button = $('<button>').addClass("btn").text("Copy Link");
-        let linkSpan = $("<span>").addClass('glyphicon glyphicon-copy');
+        let button = $('<button>').addClass("btn btn-info btn-lg btn-block").text("CopyLink  ");
+        let linkIcon = $('<i>').addClass('fa fa-clipboard fa-lg text-danger');
 
-        button.append(linkSpan).click(copy_to_clipboard);
-        $('.userLinkBody').append(button)
+        button.append(linkIcon).click(()=>{
+            clipBoard('linkSpan');
+        });
+        $('.userLinkBody').addClass('text-center').append(linkDiv, button);
     }
     else {
         $('.userLinkBody').text("Channel added to your subscriptions!")
@@ -1069,14 +1121,24 @@ function addChannelModal(userLink) {
     $('#userLinkModal').modal('show');
 }
 
-function copy_to_clipboard() {
-    var textArea = document.createElement("textarea");
-    textArea.style.background = 'transparent';
-    textArea.value = $('.userLinkBody').text().slice(17,55);
-    document.body.appendChild(textArea);
-    textArea.select();
-    var successful = document.execCommand('copy');
+function clipBoard(txtClass){
+    if($('span').hasClass('linkSpan')){
+        let textElmt = document.querySelector(`.${txtClass}`);
+        let range = document.createRange();
+        range.selectNode(textElmt);
+        window.getSelection().addRange(range);
+        try{
+            let success = document.execCommand('copy');
+            let result = success ? 'link copied!' : 'something went wrong';
+            toastMsg(result, 1200);
+        }catch(err){
+            console.log('error with clipBoard:', err);
+        }
+    }else{
+        toastMsg('nothing to copy', 1200);
+    }    
 }
+
 
 function retrieveInfoFromDB(channelID, isAdding = false) {
     videoObjectsToLoad = 0;
