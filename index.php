@@ -1027,7 +1027,7 @@ consider carousel for the video list area:
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
 						</button>
-						<form class="navbar-right navbar-form channelSearchForm hidden-xs form-inline">
+						<form class="channelSearchForm form-inline">
 					<!--form for searching channels-->
 					<div class="form-group">
 						<div class="input-group">
