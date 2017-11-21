@@ -1081,7 +1081,7 @@ function addChannelModal(userLink) {
         let uLink = 'www.thecubetube.com/?user='+userLink;
         const secretLinkSpan = $('<span>',{
             'class': 'linkSpan',
-            'text': 'uLink'
+            'text': uLink
         }).css({
             'position': 'absolute',
             'display': 'none',
