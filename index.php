@@ -31,8 +31,8 @@ consider carousel for the video list area:
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script/api_calls_to_db/access_database/database_api.js"></script>
 
-    <script type="text/javascript" src="script/youtube_iframe.js"></script>
     <script type="text/javascript" src="script/main.js"></script>
+    <script type="text/javascript" src="script/youtube_iframe.js"></script>
     <script type="text/javascript" src="script/channel_search.js"></script>
     <script type="text/javascript" src="script/ui.js"></script>
     <script type="text/javascript" src="script/db.js"></script>
