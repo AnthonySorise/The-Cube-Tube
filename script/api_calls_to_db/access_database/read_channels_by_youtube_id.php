@@ -13,16 +13,16 @@ if(empty($youtube_channel_id)){
 // }
 
 $sqli = 
-"SELECT
-  channel_title,
-  description,
-  thumbnail_file_name,
-  youtube_channel_id,
-  last_channel_pull
-FROM
-  channels
-WHERE
-  youtube_channel_id = ?";
+    "SELECT
+        channel_title,
+        description,
+        thumbnail_file_name,
+        youtube_channel_id,
+        last_channel_pull
+    FROM
+        channels
+    WHERE
+        youtube_channel_id = ?";
 $stmt=$conn->prepare($sqli);
 $stmt->bind_param('s', $youtube_channel_id);
 $stmt->execute();

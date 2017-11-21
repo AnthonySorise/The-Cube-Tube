@@ -4,12 +4,12 @@ if(empty($LOCAL_ACCESS)){
 }
 $user_link = $_SESSION['user_link'];
 $sqli = 
-"SELECT
-    user_id
-FROM
-    users
-WHERE
-    user_link = ?";
+    "SELECT
+        user_id
+    FROM
+        users
+    WHERE
+        user_link = ?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('s',$user_link);
 $stmt->execute();

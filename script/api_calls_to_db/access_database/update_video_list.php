@@ -22,12 +22,12 @@ if($diff<5){
     output_and_exit($output);
 }
 $sqli = 
-"UPDATE
-    channels
-SET
-    last_channel_pull = ?
-WHERE
-    youtube_channel_id = ?";
+    "UPDATE
+        channels
+    SET
+        last_channel_pull = ?
+    WHERE
+        youtube_channel_id = ?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param("ss",$current_time,$youtube_channel_id);
 $stmt->execute();

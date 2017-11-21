@@ -85,15 +85,16 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $published_at = $entries[$i]['snippet']['publishedAt'];
             $published_at = str_replace('T',' ',$published_at);
             $published_at = str_replace('.000Z','',$published_at);
-            $sqli = "INSERT INTO 
-                videos 
-            SET 
-                video_title=?,
-                channel_id=?,
-                youtube_video_id=?, 
-                description=?,
-                published_at=?,
-                last_updated=?";
+            $sqli = 
+                "INSERT INTO 
+                    videos 
+                SET 
+                    video_title=?,
+                    channel_id=?,
+                    youtube_video_id=?, 
+                    description=?,
+                    published_at=?,
+                    last_updated=?";
             $stmt = $conn->prepare($sqli);
             $stmt->bind_param('sissss',$video_title,$channel_id,$youtube_video_id,
                 $description,$published_at,$last_updated);
