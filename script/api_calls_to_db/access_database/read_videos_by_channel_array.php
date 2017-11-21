@@ -12,10 +12,12 @@ if(count($youtube_array)>1){
 $offset = $_POST['offset'];
 if(empty($youtube_array)){
     $output['errors'][] = 'MISSING YOUTUBE ARRAY';
+    output_and_exit($output);
 }
 
 if(!isset($offset)){
     $output['errors'][] = 'MISSING OFFSET';
+    $offset = 0;
 }
 //TM87
 // if(!preg_match('/[0-9]+/', $offset)){
