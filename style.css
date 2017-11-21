@@ -208,8 +208,8 @@ body {
 	cursor: pointer;
 }
 .channelLiChannel:hover, .dropdownChannelLiAll:hover{
-	background-color: rgba(0, 0, 0, 0.5);
-	color: white;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: black;
 }
 .videoToolTip{
 	background: white;
@@ -487,11 +487,8 @@ div.thRow {
 .tdInfo i:hover, .tdInfo i:focus {
 	color: rgba(124, 221, 249, 1);
 }
-.tdButton i {
-	color: rgba(255, 255, 255, 0.5);
-}
-.tdButton i:hover, .tdButton i:focus {
-	color: rgba(255, 255, 255, 1);
+.tdInfo>a{
+	padding: 0 12px;
 }
 
 .tdTitle, .tdChannel, .tdUpDate {
