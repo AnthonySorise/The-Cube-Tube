@@ -26,7 +26,6 @@ if ($error_occurred ){
                  'strlen($json): ' . strlen($json) . "\n" .
                  'var_export(curl_getinfo($ch), true): ' . var_export(curl_getinfo($ch), true) . "\n\n" .
                  '$json: ' . $json . "\n";
-      echo $body;
       //mail('YOUREMAILGOESHERE', 'TheCubeTube.com - YouTube JSON Error', $body);
       $error = json_encode($body);
       print_r($body);
