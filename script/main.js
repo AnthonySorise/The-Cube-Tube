@@ -1050,6 +1050,11 @@ function addChannelModal(userLink) {
     if (userLink) {
         $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user=" + userLink);
 
+        let button = $('<button>').addClass("btn").text("Copy Link");
+        let linkSpan = $("<span>").addClass('glyphicon glyphicon-copy');
+
+        button.append(linkSpan).click(copy_to_clipboard);
+        $('.userLinkBody').append(button)
     }
     else {
         $('.userLinkBody').text("Channel added to your subscriptions!")
@@ -1233,18 +1238,18 @@ function copy_to_clipboard() {
 // }
 
 function retrieveInfoFromDB(channelID, isAdding = false) {
-    videoObjectsToLoad = null;
+    videoObjectsToLoad = 0;
 
-    //Check for duplicate
-    var isDup = false;
-    for(var i = 0; i<clientSubscribedChannelIds.length; i++){
-        if(clientSubscribedChannelIds[i] === channelID){
-            isDup = true
-        }
-    }
-    if(isDup){
-        return
-    }
+    // //Check for duplicate
+    // var isDup = false;
+    // for(var i = 0; i<clientSubscribedChannelIds.length; i++){
+    //     if(clientSubscribedChannelIds[i] === channelID){
+    //         isDup = true
+    //     }
+    // }
+    // if(isDup){
+    //     return
+    // }
     //instantiate handleInfoFromDB to be used later
     function handleInfoFromDB(readResult){
         if(!isAdding){//Browsing
@@ -1402,6 +1407,7 @@ function handleBrowseButton() {
     browsingMode = true;
     videoObjectsToLoad = [];
 
+    returnToPageOne();
     clearVideoList();
     // createPlaceholderAnimation();
 
@@ -1424,7 +1430,7 @@ function handleAddButton() {
 
     browsingMode = false;
 
-    // returnToPageOne();
+    returnToPageOne();
     clearVideoList();
     // createPlaceholderAnimation();
 
