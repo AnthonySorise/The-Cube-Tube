@@ -94,7 +94,7 @@ if(!empty($results)){
         FROM 
             users AS u, channels AS c
         WHERE 
-            u.user_link = ? AND c.channel_id = ?";
+            u.user_link = ? AND c.youtube_channel_id = ?";
         $stmt = $conn->prepare($sqli);
         $stmt->bind_param('ss',$user_link,$youtube_channel_id);
         $stmt->execute();
