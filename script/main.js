@@ -923,7 +923,7 @@ function updateMidNavText(){
         $(".browsingLabel").text(clientSelectedChannelObjects[0].channel_title)
         $(".midNavChannels>span").attr("channelId", clientSelectedChannelObjects[0].youtube_channel_id)
 
-        if(clientSubscribedChannelIds.indexOf(clientSelectedChannelObjects[0].channel_title)!== -1){
+        if(clientSubscribedChannelIds.indexOf(clientSelectedChannelObjects[0].youtube_channel_id)!== -1){
             $(".midNavAddButton").hide();
         }
         else{
