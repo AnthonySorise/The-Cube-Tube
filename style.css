@@ -319,7 +319,7 @@ body>.container-fluid {
 }
 #videoStats:hover {
 	/*color: rgba(255,255,255,1);*/
-	color: rgba(0, 200, 81, 1);
+	color: rgba(255,143,0, 1);
 }
 .lightBoxMode{
 	position: absolute;
@@ -332,7 +332,7 @@ body>.container-fluid {
 }
 .lightBoxMode:hover {
 	/*color: rgba(255, 0, 0, 1);*/
-	color: orange;
+	color: rgba(255,143,0, 1);
 }
 #infoButtonContainer {
 	position: relative;
@@ -489,18 +489,23 @@ div.thRow {
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
 	color: #020e13; !important;
-
 }
 
 .selectedTd>.tdUpDate:hover{
 	color: #020e13; !important;
 }
 
+.selectedTd>.tdTitle, .selectedTd>.tdChannel, .selectedTd>,.tdUpDate {
+	color: #020e13; !important;
+}
+
+
+
 .row {
 	margin: 0;
 }
 
-.selectedTd>div {
+.selectedTd {
 	background-color: lightgreen !important;
 	/*color: #020e13; !important;*/
 }
