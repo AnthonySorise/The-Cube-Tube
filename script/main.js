@@ -919,10 +919,17 @@ function compileSelectedChannelsFromDropdown() {
 function updateMidNavText(){
     if(browsingMode){
         $('.midNavBrowsing').show();
-        $('.midNavWatching').hide()
+        $('.midNavWatching').hide();
         $(".browsingLabel").text(clientSelectedChannelObjects[0].channel_title)
         $(".midNavChannels>span").attr("channelId", clientSelectedChannelObjects[0].youtube_channel_id)
-        $(".midNavAddButton").hide()
+
+        if(clientSubscribedChannelIds.indexOf(clientSelectedChannelObjects[0].channel_title)!== -1){
+            $(".midNavAddButton").hide();
+        }
+        else{
+            $(".midNavAddButton").show();
+        }
+
     }
     else{
         $('.midNavBrowsing').hide();
@@ -934,7 +941,7 @@ function updateMidNavText(){
                 channelsWatching += ", "
             }
         }
-        $(".midNavAddButton").show();
+        $(".midNavAddButton").hide();
         $(".watchingLabel").attr("data-original-title", channelsWatching)
     }
 }
@@ -1413,7 +1420,6 @@ function handleBrowseButton() {
 
     let channelID = $(this).parent().attr("channelId");
     retrieveInfoFromDB(channelID);
-    updateMidNavText();
     // toastMsg('loading channel videos',1000);
     $('.fa-play-circle-o').remove();
     $('.tdList').removeClass('selectedTd');
