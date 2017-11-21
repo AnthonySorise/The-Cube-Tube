@@ -1246,10 +1246,10 @@ consider carousel for the video list area:
 					<div class="modal-body userLinkBody">
 						
 					</div>
-					<div class="modal-footer">
+					<!-- <div class="modal-footer">
 						<span id="userLinkModalFooter"></span>
 						<button type="button" class="btn btn-danger modalClose userLinkModalClose" data-dismiss="modal">close</button>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
