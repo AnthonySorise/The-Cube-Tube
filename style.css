@@ -57,7 +57,7 @@ body {
 }
 #mainNav>.container-fluid{
 	position:relative;
-	font-family: 'Arvo', serif;
+	/*font-family: 'Arvo', serif;*/
 }
 .navbar-toggle {
 	margin: 0;
@@ -110,7 +110,7 @@ body {
 	margin-left: 20px;
 }
 .midNavChannels{
-	font-family: 'Arvo', serif;
+	/*font-family: 'Arvo', serif;*/
 	color: white;
 	font-size: 1em;
 	line-height: 3.25em;
@@ -118,6 +118,8 @@ body {
 }
 .midNavBrowsing, .midNavWatching{
 	display: none;
+	font-size:14px;
+	font-weight: 700
 }
 .watchingLabel, .browsingLabel{
 	font-size: 100%;
