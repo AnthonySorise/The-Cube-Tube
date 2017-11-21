@@ -189,6 +189,14 @@ function clickHandler() {
         // returnToPageOne();
         compileSelectedChannelsFromDropdown();
 
+        if (window.innerWidth < 500) {
+            closeChannelDrop();
+        } else {
+            $('mainNav-option').removeClass('in')
+                .attr('aria-expanded', 'false');
+            $('.channelDropDown').removeClass('open');
+        }
+
         var numUpdated = 0;
         for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
             $.ajax({
@@ -206,13 +214,6 @@ function clickHandler() {
                     if(numUpdated === clientSubscribedChannelObjects.length){
                         console.log("UPDATED DONE");
                         loadSelectedChannels();
-                        if (window.innerWidth < 500) {
-                            closeChannelDrop();
-                        } else {
-                            $('mainNav-option').removeClass('in')
-                                .attr('aria-expanded', 'false');
-                            $('.channelDropDown').removeClass('open');
-                        }
                     }
                     if (data.success) {
                         console.log('Channel Updated', data);
@@ -231,9 +232,9 @@ function clickHandler() {
         browsingMode = false;
         clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds);
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
-        returnToPageOne();
+        // returnToPageOne();
         renderChannelSelectionDropdown();
-        loadSelectedChannels();
+
         if (window.innerWidth < 500) {
             closeChannelDrop();
         } else {
@@ -242,6 +243,36 @@ function clickHandler() {
             $('.channelDropDown').removeClass('open');
             dropOpened = false;
         }
+
+        var numUpdated = 0;
+        for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
+            $.ajax({
+                url:'./script/api_calls_to_db/access_database/access.php',
+                method:'post',
+                dataType:'JSON',
+                data:{
+                    action:'update_video_list',
+                    youtube_channel_id:clientSubscribedChannelObjects[i].youtube_channel_id,
+                    last_channel_pull:clientSubscribedChannelObjects[i].last_channel_pull
+                },
+                success: function (data) {
+                    console.log("UPDATED", data)
+                    numUpdated++;
+                    if(numUpdated === clientSubscribedChannelObjects.length){
+                        console.log("UPDATED DONE");
+                        loadSelectedChannels();
+                    }
+                    if (data.success) {
+                        console.log('Channel Updated', data);
+                    }
+                },
+                errors: function (data) {
+                    console.log('insert error', data);
+                }
+            })
+
+        }
+
     });
 
     $('#channelCategoryUl').on('click touchend', '.channelLiChannel, .dropdownChannelLi input', (e) => {
