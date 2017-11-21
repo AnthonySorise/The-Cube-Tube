@@ -455,6 +455,13 @@ div.thRow {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	cursor: pointer;
+	/*display: flex;*/
+	/*align-items: center;*/
+	color:white;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .tdList:nth-child(even) div {
@@ -491,15 +498,6 @@ div.thRow {
 
 .row {
 	margin: 0;
-}
-.tdTitle, .tdChannel, .tdUpDate{
-	cursor: pointer;
-	/*display: flex;*/
-	/*align-items: center;*/
-	color:white;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 }
 
 .selectedTd>div {
