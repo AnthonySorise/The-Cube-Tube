@@ -1056,8 +1056,8 @@ safer appraoch than to resizing browser to see change
 		height: 55%;
 	}
 	.videoListRowWrapper{
-		height: 45%;
-		/*height: 83%;*/
+		/*height: 45%;*/
+		height: 83%;
 	}
 	.tdList{
 		height: 3.7vh;
