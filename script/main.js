@@ -152,7 +152,7 @@ $(document).ready(function () {
 
     function waitForIframe(){
         if(player && player.B){
-            console.log("IFRAME NOT READY", player)
+            console.log("!!IFRAME READY!!", player)
             console.log("player", player)
             console.log("player.B", player.B)
             console.log("INIT APP")
