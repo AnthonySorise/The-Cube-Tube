@@ -43,6 +43,9 @@ switch($_POST['action']){
     case 'read_videos_by_channel_array':
         include('read_videos_by_channel_array.php');
         break;
+    case 'insert_category':
+        include('insert_category.php');
+        break;
     case 'insert_youtube_channel_curl':
         include('youtube_channel_curl.php');
         break;

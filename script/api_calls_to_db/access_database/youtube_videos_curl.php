@@ -6,7 +6,6 @@ require('youtube_api_key.php');
 if(!empty($_POST['page_token'])){
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
-
 }
 if(!empty($_POST['last_channel_pull'])){
     $last_channel_pull = $_POST['last_channel_pull'];
@@ -19,19 +18,15 @@ if(!empty($_POST['last_channel_pull'])){
 if(empty($channel_id)){
     $sqli = "SELECT channel_id
     FROM channels WHERE youtube_channel_id = ?";
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sqli)){
-        echo 'SQL statement failed, read channel id';
-    }else {
-        mysqli_stmt_bind_param($stmt, 's', $youtube_channel_id);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        if (mysqli_num_rows($result)>0) {
-            $row = mysqli_fetch_assoc($result);
-            $channel_id = $row['channel_id'];
-        } else {
-            $output['messages'] = "can't read channel";
-        }
+    $stmt = $conn->prepare($sqli);
+    $stmt->bind_param('s', $youtube_channel_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_row>0) {
+        $row = $result->fetch_assoc();
+        $channel_id = $row['channel_id'];
+    } else {
+        $output['messages'] = "can't read channel";
     }
 }
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
