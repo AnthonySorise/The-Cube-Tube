@@ -1083,9 +1083,9 @@ function addChannelModal(userLink) {
         $('.userLinkBody').text("Save this link!").append(linkSpan);
 
         let button = $('<button>').addClass("btn").text("Copy Link");
-        let linkSpan = $("<span>").addClass('glyphicon glyphicon-copy');
+        let linkSpanIcon = $("<span>").addClass('glyphicon glyphicon-copy');
 
-        button.append(linkSpan).click(copy_to_clipboard);
+        button.append(linkSpanIcon).click(copy_to_clipboard);
         $('.userLinkBody').append(button)
     }
     else {
