@@ -864,6 +864,33 @@ input:checked+.slider {
 }
 
 
+.popover-title {
+    text-align: center;
+    color: red;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+	
+.popover-content {
+    text-align: center;
+    font-size: 20px
+}
+	
+.btn-group .btn:nth-child(2) {
+    border: 2px solid green;
+    background-color: lightseagreen;
+    color: white;
+}
+	
+.btn-group .btn:nth-child(1) {
+    display: none;
+}
+
+
+
+
+
+
 
 /*testing if placeholder animation will work*/
 
