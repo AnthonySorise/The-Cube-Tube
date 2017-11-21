@@ -1075,7 +1075,12 @@ function renderVideoList(videoArray) {
 
 function addChannelModal(userLink) {
     if (userLink) {
-        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user=" + userLink);
+        let uLink = 'www.thecubetube.com/?user='+userLink;
+        const linkSpan = $('<span>',{
+            'class':'linkSpan',
+            'text': uLink
+        });
+        $('.userLinkBody').text("Save this link!").append(linkSpan);
 
         let button = $('<button>').addClass("btn").text("Copy Link");
         let linkSpan = $("<span>").addClass('glyphicon glyphicon-copy');
