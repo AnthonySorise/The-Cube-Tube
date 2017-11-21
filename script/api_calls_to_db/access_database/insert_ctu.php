@@ -42,13 +42,13 @@ $stmt = $conn->prepare("SELECT channel_id FROM channels
 WHERE youtube_channel_id = ?");
 $stmt->bind_param('s',$youtube_channel_id);
 $stmt->execute();
-$result = mysqli_stmt_get_result($stmt);
+$result = $stmt->get_result();
 if(empty($result)){
     $output['errors'][] = 'INVALID QUERY';
 }
 else{
     if(mysqli_num_rows($result)>0){
-        $row = mysqli_fetch_assoc($result);
+        $row = $result->fetch_assoc();
         define('CHANNEL_ID',$row['channel_id']);
     }else{
         $output['errors'] = 'channel not in database';
@@ -77,24 +77,20 @@ $stmt->bind_param('ii',$user_id,$channel_id);
 $stmt->execute();
 $results = $stmt->get_results();
 if(!empty($results)){
-    if(mysqli_num_rows($results)>0){
+    if($results->num_rows>0){
         $output['errors'][] = "DUPLICATE CTU";
         output_and_exit($output);
     }else{
         $sqli = "INSERT INTO channels_to_users SET user_id = ?, channel_id=?";
-        $stmt = mysqli_stmt_init($conn);
-        if(!mysqli_stmt_prepare($stmt,$sqli)){
-            $output['errors'][] = 'SQL statement failed';
-        }else{
-            mysqli_stmt_bind_param($stmt,'ii',$user_id,$channel_id);
-            mysqli_stmt_execute($stmt);
-            if(mysqli_affected_rows($conn)>0){
-                $output['success'] = true;
-                $output['insert_ctu'] = "success";
-            }
-            else{
-                $output['errors'] = 'UNABLE TO INSERT INTO CTU';
-            }
+        $stmt = $conn->prepare($sqli);
+        $stmt->bind_param('ii',$user_id,$channel_id);
+        $stmt->execute();
+        if($conn->affected_rows>0){
+            $output['success'] = true;
+            $output['insert_ctu'] = "success";
+        }
+        else{
+            $output['errors'] = 'UNABLE TO INSERT INTO CTU';
         }
     }
 }else{

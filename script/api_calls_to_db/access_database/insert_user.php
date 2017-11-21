@@ -32,7 +32,7 @@ ip_address_at_signup=?");
 $stmt->bind_param('sss',$user_link,$date,$ip_address_at_sign_up);
 $stmt->execute();
 if(!empty($stmt)){
-    if(mysqli_affected_rows($conn)>0){
+    if($conn->affected_rows>0){
         $output['insert_user_success'] = true;
         define('USER_ID',mysqli_insert_id($conn));
     }

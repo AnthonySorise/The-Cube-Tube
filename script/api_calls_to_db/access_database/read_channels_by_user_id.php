@@ -21,9 +21,9 @@ $stmt->bind_param('i',$user_id);
 $stmt->execute();
 $result = mysqli_stmt_get_result($stmt);
 if(!empty($result)){
-    if(mysqli_num_rows($result)>0){
+    if($result->num_rows>0){
         $output['success']=true;
-        while($row = mysqli_fetch_assoc($result)){
+        while($row = $result->fetch_assoc){
             $output['data'][] = $row;
         }
     }else{
