@@ -97,15 +97,9 @@ function playNextYTVideo() {
 /*******needed for iframe player*******/
 let iframeRight = 0;
 $(window).resize(function () {
-    let windowWidth = ($(window).width());
-    if (windowWidth <= 768) {
-        // displayTableDataOnMobile()
-    } else {
-        // displayTableDataOnDesktop()
-    }
     iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
     $('.lightBoxMode').css('left', iframeRight + 'px');
-})
+});
 
 
 $(document).ready(function () {
@@ -156,6 +150,8 @@ $(document).ready(function () {
             console.log("player", player)
             console.log("player.B", player.B)
             console.log("INIT APP")
+            iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
+            $('.lightBoxMode').css('left', iframeRight + 'px');
             initApp();
             return
         }
