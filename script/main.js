@@ -32,6 +32,8 @@ function onYouTubeIframeAPIReady(vidId) {
     });
     onYouTubeIframeAPIReady2();
 }
+
+
 function onYouTubeIframeAPIReady2() {
     player2 = new YT.Player('theaterVideo', {
         videoId: 'lrzIR8seNXs',
@@ -41,6 +43,7 @@ function onYouTubeIframeAPIReady2() {
         events: {
             'onStateChange': onPlayerStateChange
         }
+
     });
 }
 
@@ -88,6 +91,7 @@ function playNextYTVideo() {
     $("[videoid='" + videoID + "']").addClass('selectedTd');
 
 }
+
 
 /*******needed for iframe player*******/
 let iframeRight = 0;
@@ -889,7 +893,7 @@ function loadSelectedChannels() {
                 console.log('Videos Found', data);
                 videoObjectsToLoad = [];
                 videoObjectsToLoad = data.data;
-
+                returnToPageOne();
                 renderVideoList(videoObjectsToLoad);
                 updateMidNavText()
             }
@@ -979,12 +983,18 @@ function renderVideoList(videoArray) {
 
 function addChannelModal(userLink) {
     if (userLink) {
-        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user=" + userLink)
+        $('.userLinkBody').text("Save this link!  www.TheCubeTube.com/?user=" + userLink);
+        
     }
     else {
         $('.userLinkBody').text("Channel added to your subscriptions!")
     }
     $('#userLinkModal').modal('show');
+}
+
+function copy_to_clipboard(){
+    $('#cubetube_user_id').select();
+    document.execCommand('Copy');
 }
 
 // function ytChannelApiToDb(channelId, isAdding = false) {
@@ -1195,6 +1205,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                     if (data.success) {
                         console.log('Channel added to user account', data);
                         addChannelModal(data.user_link);
+
                         renderChannelSelectionDropdown()
                     }
                 },
@@ -1298,8 +1309,7 @@ function handleBrowseButton() {
     browsingMode = true;
     videoObjectsToLoad = [];
 
-    returnToPageOne();
-    // clearVideoList();
+    clearVideoList();
     // createPlaceholderAnimation();
 
     let channelID = $(this).parent().attr("channelId");
