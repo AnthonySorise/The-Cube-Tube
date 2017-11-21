@@ -73,7 +73,7 @@ $sqli = "SELECT
 FROM
     channels_to_users AS ctu
 JOIN
-    user_id AS u ON u.user_id = ctu.user_id
+    users AS u ON u.user_id = ctu.user_id
 JOIN
     channels AS c ON c.channel_id = ctu.channel_id
 WHERE
