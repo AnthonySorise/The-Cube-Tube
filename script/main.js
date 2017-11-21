@@ -151,7 +151,7 @@ $(document).ready(function () {
 
     function waitForIframe(){
         console.log("TEST", player)
-        if(player){
+        if(player && player.B){
             initApp();
         }
         else{
