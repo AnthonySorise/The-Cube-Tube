@@ -108,43 +108,60 @@ $(window).resize(function () {
 
 
 $(document).ready(function () {
-    $("#text-carousel").hide()
-    $(".videoHeader").hide()
 
-    rendertheatreControls();
-    displayCurrentPageNumber();
-    /**
-     function for preventing page refresh with search button;
-     only did it because page refresh was annoying
-     **/
-    $('#midNav-option form button').click(function (event) {
-        event.preventDefault();
-    });
+    function initApp(){
+        $("#text-carousel").hide()
+        $(".videoHeader").hide()
 
-    tooltipFunctions();
+        rendertheatreControls();
+        displayCurrentPageNumber();
+        /**
+         function for preventing page refresh with search button;
+         only did it because page refresh was annoying
+         **/
+        $('#midNav-option form button').click(function (event) {
+            event.preventDefault();
+        });
 
-    clickHandler();
+        tooltipFunctions();
 
-    $('#text-carousel').on('slide.bs.carousel', function (ev) {
-        console.log(ev)
-        if (ev.direction == 'left') {
-            currentSlideNumber++
-            loadNextPage();
-        } else {
-            currentSlideNumber--
-            loadPreviousPage();
+        clickHandler();
+
+        $('#text-carousel').on('slide.bs.carousel', function (ev) {
+            console.log(ev)
+            if (ev.direction == 'left') {
+                currentSlideNumber++
+                loadNextPage();
+            } else {
+                currentSlideNumber--
+                loadPreviousPage();
+            }
+            displayCurrentPageNumber()
+        });
+        clearVideoList();   //hides list rows until they are needed
+        setTimeout(() => {
+            iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
+            $('.lightBoxMode').css('left', iframeRight + 'px');
+        }, 500);
+
+        setTimeout(() => {
+            initiateUser();
+        }, 2000)
+    }
+
+    function waitForIframe(){
+        if(player){
+            initApp();
         }
-        displayCurrentPageNumber()
-    });
-    clearVideoList();   //hides list rows until they are needed
-    setTimeout(() => {
-        iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
-        $('.lightBoxMode').css('left', iframeRight + 'px');
-    }, 500);
+        else{
+            setTimeout(function(){
+                waitForIframe();
+            }, 50)
+        }
+    }
 
-    setTimeout(() => {
-        initiateUser();
-    }, 2000)
+    waitForIframe();
+
 });
 
 function tooltipFunctions() {
