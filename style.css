@@ -447,6 +447,9 @@ div.thRow {
 .selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
 	font-weight: bold;
 }
+.tdTitle:hover{
+	color: #020e13; !important;
+}
 .row {
 	margin: 0;
 }
