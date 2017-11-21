@@ -199,20 +199,20 @@ function clickHandler() {
         }
 
         var numUpdated = 0;
-        for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
+        for(var i = 0; i<clientSelectedChannelObjects.length; i++){
             $.ajax({
                 url:'./script/api_calls_to_db/access_database/access.php',
                 method:'post',
                 dataType:'JSON',
                 data:{
                     action:'update_video_list',
-                    youtube_channel_id:clientSubscribedChannelObjects[i].youtube_channel_id,
-                    last_channel_pull:clientSubscribedChannelObjects[i].last_channel_pull
+                    youtube_channel_id:clientSelectedChannelObjects[i].youtube_channel_id,
+                    last_channel_pull:clientSelectedChannelObjects[i].last_channel_pull
                 },
                 success: function (data) {
                     console.log("UPDATED", data)
                     numUpdated++;
-                    if(numUpdated === clientSubscribedChannelObjects.length){
+                    if(numUpdated === clientSelectedChannelObjects.length){
                         console.log("UPDATED DONE");
                         loadSelectedChannels();
                     }
