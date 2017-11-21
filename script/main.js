@@ -1080,13 +1080,16 @@ function addChannelModal(userLink) {
             'class':'linkSpan',
             'text': uLink
         });
-        $('.userLinkBody').text("Save this link!").append(linkSpan);
+        const linkDiv = $('<div>',{
+            text: 'Save this link!!!!  '
+        }).append(linkSpan);
+        // $('.userLinkBody').text("Save this link!!!  ").append(linkSpan);
 
         let button = $('<button>').addClass("btn").text("Copy Link");
         let linkSpanIcon = $("<span>").addClass('glyphicon glyphicon-copy');
 
         button.append(linkSpanIcon).click(copy_to_clipboard);
-        $('.userLinkBody').append(button)
+        $('.userLinkBody').append(linkDiv, button);
     }
     else {
         $('.userLinkBody').text("Channel added to your subscriptions!")
