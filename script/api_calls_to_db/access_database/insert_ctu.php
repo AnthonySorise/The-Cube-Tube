@@ -75,7 +75,7 @@ $stmt = $conn->prepare("SELECT * FROM channels_to_users
 WHERE user_id=? AND channel_id=?");
 $stmt->bind_param('ii',$user_id,$channel_id);
 $stmt->execute();
-$results = $stmt->get_results();
+$results = $stmt->get_result();
 if(!empty($results)){
     if($results->num_rows>0){
         $output['errors'][] = "DUPLICATE CTU";
