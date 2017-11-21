@@ -924,10 +924,10 @@ function updateMidNavText(){
         $(".midNavChannels>span").attr("channelId", clientSelectedChannelObjects[0].youtube_channel_id)
 
         if(clientSubscribedChannelIds.indexOf(clientSelectedChannelObjects[0].youtube_channel_id)!== -1){
-            $(".midNavAddButton").hide();
+            $(".midNavAddBtn").hide();
         }
         else{
-            $(".midNavAddButton").show();
+            $(".midNavAddBtn").show();
         }
 
     }
@@ -941,7 +941,7 @@ function updateMidNavText(){
                 channelsWatching += ", "
             }
         }
-        $(".midNavAddButton").hide();
+        $(".midNavAddBtn").hide();
         $(".watchingLabel").attr("data-original-title", channelsWatching)
     }
 }
