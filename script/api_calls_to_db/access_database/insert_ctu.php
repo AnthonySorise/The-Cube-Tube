@@ -26,8 +26,7 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     $_SESSION['user_link'] = generateRandomString($conn);
     include('./insert_user.php');
     //creates random string for user and inserts into database as well as show to front end
-    define('USER_LINK',$_SESSION['user_link']);
-    $output['user_link'] = USER_LINK;
+    $output['user_link'] = $_SESSION['user_link'];
 }else{
     include('read_user.php');
 }
