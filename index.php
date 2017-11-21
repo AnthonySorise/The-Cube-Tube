@@ -33,7 +33,8 @@ consider carousel for the video list area:
 	<script type="text/javascript" src="script/main.js"></script>
 	<script type="text/javascript" src="script/autoSearch.js"></script>
 	<script type="text/javascript" src="script/uiControl.js"></script>
-    <script type="text/javascript" src="script/utilities.js"></script>
+	<script type="text/javascript" src="script/utilities.js"></script>
+	<script type="text/javascript" src="script/searchBar.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
@@ -73,7 +74,7 @@ consider carousel for the video list area:
 			<div class="collapse navbar-collapse text-center" id="mainNav-option">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown channelDropDown">
-						<a href="#" class="dropdown-toggle hidden-xs" role="button" aria-haspopup="true" aria-expanded="false">
+						<a href="#" class="dropdown-toggle hidden-xs dropdownLabelA" role="button" aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-cube" aria-hidden="true"></i>
 							MyCube
 							<span class="caret"></span>
@@ -106,9 +107,7 @@ consider carousel for the video list area:
 						<div class="input-group">
 							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
 							<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
-							<!-- <button class="channelSearchButton"> -->
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-							<!-- </button> -->
 							</span>
 						</div>
 					</div>
@@ -126,26 +125,10 @@ consider carousel for the video list area:
 					<!--This is where the iframe element will go-->
 					<div id="mainVideo" class="iframeVideo"></div>
 					<div id=infoButtonContainer>
-						<!-- <a tabindex="0" id="videoComments" class="btn btn-primary hidden-xs" role="button" data-trigger="focus" data-container="body"
-						 data-toggle="popover" data-placement="left" title="video comments " data-content="a section for video comments and stuff">
-							<i class="fa fa-comments-o fa-2x" aria-hidden="true"></i>
-						</a>
-						<a tabindex="0" id="videoInfo" class="btn btn-info hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
-						 data-placement="bottom" title="video info" data-content="a section for video info maybe">
-							<i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
-						</a> -->
-						<!-- <a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
-						 data-placement="bottom" title="channel info" data-content="section for channel info">
-							<i class="fa fa-list-alt fa-2x" aria-hidden="true"></i>
-						</a> 
-						<a tabindex="0" id="videoStats" class="btn btn-warning hidden-xs" role="button" data-trigger="focus" data-container="body"> -->
-						 <!--data-toggle="popover" data-placement="right" title="stats" data-content="this would be for showing video stats. https://stackoverflow.com/questions/21459042/can-i-use-dynamic-content-in-a-bootstrap-popover sample ajax call inside said function">-->
-							<!-- <i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
-						</a> -->
 						<!--can take function as content; meaning data only uploads when clicked-->
-						<button class="btn hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"
+						<button class="btn btn-lg hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"
 						 title="Theater Mode">
-							<i class="fa fa-film fa-2x" aria-hidden="true"></i>
+							<span class="glyphicon glyphicon-sound-stereo" id="theaterArrow" aria-hidden="true"></span>
 						</button>
 					</div>
 				</div>
@@ -153,6 +136,7 @@ consider carousel for the video list area:
 				</div>
 			</div>
 			<!--end of videoRow div-->
+			<div id="listContentWrap">
 			<nav class="navbar navbar-inverse" id="midNav">
 				<!-- <div class="container-fluid" id=""> -->
 					<!--navbar content main div-->
@@ -166,7 +150,6 @@ consider carousel for the video list area:
 						</button>
 					</div>
 					<!--end of nav header div-->
-
 					<div class="collapse navbar-collapse text-center" id="midNav-option">
 						<!--div for nav options-->
 						<div class="navbar-nav nav-pills midNavButtonWrap">
@@ -186,14 +169,20 @@ consider carousel for the video list area:
 								</label>
 							</div>
 							<div class="navbar-nav nav-pills midNavChannels">
-								<span class="midNavBrowsing">Browsing:</span> 
+								<span class="midNavBrowsing">
+									<small>
+										Browsing:
+									</small>
+								</span> 
 								<span class="label label-primary midNavBrowsing browsingLabel">
 									channel name
 								</span>
 								<span class="midNavBrowsing">
 									<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
 								</span>
-								<span class="midNavWatching">Watching:</span>
+								<span class="midNavWatching">
+									<small>Watching:</small> 
+								</span>
 								<span class="label label-success midNavWatching watchingLabel" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
 									<i class="fa fa-cubes"></i>
 									Subscribed Channels
@@ -994,6 +983,7 @@ consider carousel for the video list area:
 												</div>
 											</div>
 									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -1008,7 +998,7 @@ consider carousel for the video list area:
 				<!--end of listRow div-->
 			</div>
 			<!--end of listRow div-->
-
+			</div>
 		</div>
 		<!--end of main content div-->
 		<!--modal for lightbox-->
@@ -1043,11 +1033,17 @@ consider carousel for the video list area:
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
 						</button>
-<!--						<div class="modal-title-wrap">-->
-<!--							<h4 class="modal-title" id="channelSearchModalTitle">-->
-<!--								Search Results...-->
-<!--							</h4>-->
-<!--						</div>-->
+						<form class="channelSearchForm modalChSearch form-inline">
+					<!--form for searching channels-->
+							<div class="form-group">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="search channels" name="channelSearch">
+									<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
+										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									</span>
+								</div>
+							</div>
+						</form>
 					</div>
 					<div class="modal-body" id="channelSearchModalBody">
 						<li id="chSearch-1" class="col-xs-12">
@@ -1226,10 +1222,6 @@ consider carousel for the video list area:
 							<button class="btn btn-success addChannelButton"> Subscribe </button>
 						</li>
 					</div>
-<!--					<div class="modal-footer">-->
-<!--						<span id="channelSearchModalFooter"></span>-->
-<!--						<button type="button" class="btn btn-danger modalClose theaterModalClose" data-dismiss="modal">close</button>-->
-<!--					</div>-->
 				</div>
 			</div>
 		</div>
