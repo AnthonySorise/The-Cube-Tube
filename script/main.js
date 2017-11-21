@@ -1045,13 +1045,7 @@ function copy_to_clipboard() {
     textArea.value = $('.userLinkBody').text().slice(17,55);
     document.body.appendChild(textArea);
     textArea.select();
-    try {
-        var successful = document.execCommand('copy');
-        var msg = successful ? 'successful' : 'unsuccessful';
-        console.log('Copying text command was ' + msg);
-    } catch (err) {
-        console.log('Oops, unable to copy');
-    }
+    var successful = document.execCommand('copy');
 }
 
 
