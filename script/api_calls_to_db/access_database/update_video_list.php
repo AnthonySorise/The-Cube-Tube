@@ -21,7 +21,8 @@ if($diff<5){
     $output['messages'] = 'updated recently';
     output_and_exit($output);
 }
-$sqli = "UPDATE
+$sqli = 
+"UPDATE
     channels
 SET
     last_channel_pull = ?

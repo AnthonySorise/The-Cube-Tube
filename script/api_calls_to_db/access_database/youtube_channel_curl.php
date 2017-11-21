@@ -37,7 +37,8 @@ if ($error_occurred ){
       $channel_title = $channel_data['title'];
       $description = $channel_data['description'];
       $date = date('Y-m-d H:i:s');
-      $sqli = "INSERT INTO
+      $sqli = 
+        "INSERT INTO
             channels
         SET
             channel_title = ?,

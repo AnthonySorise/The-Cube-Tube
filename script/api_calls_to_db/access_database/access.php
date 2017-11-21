@@ -19,15 +19,9 @@ switch($_POST['action']){
     case 'delete_ctu':
         include('delete_ctu.php');
         break;
-    // case 'insert_channel': 
-    //     include('insert_channels.php');
-    //     break;
     case 'insert_ctu':
         include('insert_ctu.php');
         break;
-    // case 'insert_video':
-    //     include('insert_video.php');
-    //     break;
     case 'read_channels_by_user_id':
         include('read_channels_by_user_id.php');
         break;

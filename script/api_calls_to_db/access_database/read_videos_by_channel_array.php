@@ -24,7 +24,8 @@ if(!isset($offset)){
 // }
 
 $in_stmt = implode(',', array_fill(0, count($youtube_array), '?'));
-$stmt = $conn->prepare("SELECT
+$stmt = $conn->prepare(
+"SELECT
   v.youtube_video_id,
   v.description,
   v.published_at,

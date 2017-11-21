@@ -16,12 +16,13 @@ if(!empty($_POST['last_channel_pull'])){
 }
 
 if(empty($channel_id)){
-    $sqli = "SELECT 
-        channel_id
-    FROM 
-        channels 
-    WHERE 
-        youtube_channel_id = ?";
+    $sqli = 
+        "SELECT 
+            channel_id
+        FROM 
+            channels 
+        WHERE 
+            youtube_channel_id = ?";
     $stmt = $conn->prepare($sqli);
     $stmt->bind_param('s', $youtube_channel_id);
     $stmt->execute();

@@ -36,48 +36,22 @@ if(empty($youtube_channel_id)){
     $output['errors'][] ='MISSING YOUTUBE CHANNEL ID';
     output_and_exit($output);
 }
-// $stmt = $conn->prepare("SELECT channel_id FROM channels 
-// WHERE youtube_channel_id = ?");
-// $stmt->bind_param('s',$youtube_channel_id);
-// $stmt->execute();
-// $result = $stmt->get_result();
-// if(empty($result)){
-//     $output['errors'][] = 'INVALID QUERY';
-// }
-// else{
-//     if(mysqli_num_rows($result)>0){
-//         $row = $result->fetch_assoc();
-//         define('CHANNEL_ID',$row['channel_id']);
-//     }else{
-//         $output['errors'] = 'channel not in database';
-//         output_and_exit($output);
-//     }
-// }
-// $user_id = USER_ID;
-// $channel_id = CHANNEL_ID;
-// if(empty($user_id)){
-//     $output['errors'][] ='MISSING USER ID';
-//     output_and_exit($output);
-// }
-// if(empty($channel_id)){
-//     $output['errors'][] = 'MISSING CHANNEL ID';
-//     output_and_exit($output);
-// }
 //tm87
 // if(!preg_match('/[a-zA-Z0-9\-\_]{24}/', $channel_id)){
 //     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
 //     output_and_exit($output);
 // }
-$sqli = "SELECT
-    ctu.ctu_id
-FROM
-    channels_to_users AS ctu
-JOIN
-    users AS u ON u.user_id = ctu.user_id
-JOIN
-    channels AS c ON c.channel_id = ctu.channel_id
-WHERE
-    u.user_link = ? AND c.youtube_channel_id = ?";
+$sqli = 
+    "SELECT
+        ctu.ctu_id
+    FROM
+        channels_to_users AS ctu
+    JOIN
+        users AS u ON u.user_id = ctu.user_id
+    JOIN
+        channels AS c ON c.channel_id = ctu.channel_id
+    WHERE
+        u.user_link = ? AND c.youtube_channel_id = ?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('ss',$user_link,$youtube_channel_id);
 $stmt->execute();
@@ -87,14 +61,15 @@ if(!empty($results)){
         $output['errors'][] = "DUPLICATE CTU";
         output_and_exit($output);
     }else{
-        $sqli = "INSERT INTO 
-            channels_to_users (user_id , channel_id)
-        SELECT 
-            u.user_id, c.channel_id
-        FROM 
-            users AS u, channels AS c
-        WHERE 
-            u.user_link = ? AND c.youtube_channel_id = ?";
+        $sqli = 
+            "INSERT INTO 
+                channels_to_users (user_id , channel_id)
+            SELECT 
+                u.user_id, c.channel_id
+            FROM 
+                users AS u, channels AS c
+            WHERE 
+                u.user_link = ? AND c.youtube_channel_id = ?";
         $stmt = $conn->prepare($sqli);
         $stmt->bind_param('ss',$user_link,$youtube_channel_id);
         $stmt->execute();

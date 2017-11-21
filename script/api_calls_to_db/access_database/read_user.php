@@ -3,7 +3,8 @@ if(empty($LOCAL_ACCESS)){
     die("no direct access allowed, read user");
 }
 $user_link = $_SESSION['user_link'];
-$sqli = "SELECT
+$sqli = 
+"SELECT
     user_id
 FROM
     users

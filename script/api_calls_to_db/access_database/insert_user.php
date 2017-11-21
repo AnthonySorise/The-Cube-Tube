@@ -26,12 +26,13 @@ function get_client_ip() {
 if(empty($user_link)){
     $output['errors'] = 'MISSING USERLINK';
 }
-$sqli = "INSERT INTO
-    users
-SET
-    user_link = ?,
-    date_created = ?,
-    ip_address_at_signup = ?";
+$sqli = 
+    "INSERT INTO
+        users
+    SET
+        user_link = ?,
+        date_created = ?,
+        ip_address_at_signup = ?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('sss',$user_link,$date,$ip_address_at_sign_up);
 $stmt->execute();

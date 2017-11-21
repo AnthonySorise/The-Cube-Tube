@@ -7,10 +7,11 @@ $youtube_channel_id = $_POST['youtube_channel_id'];
 if(empty($category_name)){
     $output['errors'][] = 'MISSING NAME OF CATEGORY';
 }
-$sqli = "INSERT INTO
-  categories
-SET
-  category_name = ?";
+$sqli = 
+    "INSERT INTO
+        categories
+    SET
+        category_name = ?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('s',$category_name);
 $stmt->execute();

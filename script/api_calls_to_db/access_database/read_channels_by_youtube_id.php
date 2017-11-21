@@ -12,7 +12,8 @@ if(empty($youtube_channel_id)){
 //     output_and_exit($output);
 // }
 
-$sqli = "SELECT
+$sqli = 
+"SELECT
   channel_title,
   description,
   thumbnail_file_name,
