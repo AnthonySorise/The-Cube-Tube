@@ -385,7 +385,7 @@ li#returnCarouselStart{
 #text-carousel {
 	overflow: auto;
 	height: 95%;
-	background-color:#1b262a
+	background-color:#343e42
 }
 /*********** end of CAROUSEL styles ************/
 div.thRow {
@@ -472,7 +472,7 @@ div.thRow {
 
 .tdList:nth-child(even):hover div {
 	/* background-color: #364e5a; */
-	background-color: #343e42;
+	background-color: rgba(180, 189, 193, 1.0);
 	display: inline;
 	color: #020e13; !important;
 }
