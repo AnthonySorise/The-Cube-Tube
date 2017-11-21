@@ -1064,6 +1064,9 @@ safer appraoch than to resizing browser to see change
 		line-height: 3.7vh;
 	}
 	/* Added these 6 css selectors to make mobile modal fit */
+	.modalChSearch{
+		width: 70%;
+	}
 	small {
 		display: none;
 	}

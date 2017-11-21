@@ -1033,17 +1033,17 @@ consider carousel for the video list area:
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
 						</button>
-						<form class="channelSearchForm form-inline">
+						<form class="channelSearchForm modalChSearch form-inline">
 					<!--form for searching channels-->
-					<div class="form-group">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="search channels" name="channelSearch">
-							<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
-								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-							</span>
-						</div>
-					</div>
-				</form>
+							<div class="form-group">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="search channels" name="channelSearch">
+									<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
+										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									</span>
+								</div>
+							</div>
+						</form>
 					</div>
 					<div class="modal-body" id="channelSearchModalBody">
 						<li id="chSearch-1" class="col-xs-12">
