@@ -28,10 +28,16 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     //creates random string for user and inserts into database as well as show to front end
     define('USER_LINK',$_SESSION['user_link']);
     $output['user_link'] = USER_LINK;
+}else{
+    include('read_user.php');
 }
-//get user id
-//grabbing channel id from db to add to user link
+// get user id
+// grabbing channel id from db to add to user link
 $youtube_channel_id = $_POST['youtube_channel_id'];
+if(empty($youtube_channel_id)){
+    $output['errors'][] ='MISSING YOUTUBE CHANNEL ID';
+    output_and_exit($output);
+}
 $stmt = $conn->prepare("SELECT channel_id FROM channels 
 WHERE youtube_channel_id = ?");
 $stmt->bind_param('s',$youtube_channel_id);
@@ -65,7 +71,8 @@ if(empty($channel_id)){
 //     output_and_exit($output);
 // }
 
-$stmt = $conn->prepare("SELECT * FROM channels_to_users WHERE user_id=? AND channel_id=?");
+$stmt = $conn->prepare("SELECT * FROM channels_to_users 
+WHERE user_id=? AND channel_id=?");
 $stmt->bind_param('ii',$user_id,$channel_id);
 $stmt->execute();
 $results = mysqli_stmt_get_result($stmt);
@@ -83,7 +90,7 @@ if(!empty($results)){
             mysqli_stmt_execute($stmt);
             if(mysqli_affected_rows($conn)>0){
                 $output['success'] = true;
-                $output['insert_etu'] = success;
+                $output['insert_ctu'] = "success";
             }
             else{
                 $output['errors'] = 'UNABLE TO INSERT INTO CTU';

@@ -6,7 +6,7 @@ if(isset($_GET['user'])){
     $stmt = $conn->prepare("SELECT user_id FROM users WHERE user_link=?");
     $stmt->bind_param('s',$_GET['user']);
     $stmt->execute();
-    $results = mysqli_stmt_get_result($stmt);
+    $results = $stmt->get_result();
     if($results>0){
         $_SESSION['user_link'] = $_GET['user'];
         header('Location: /');
