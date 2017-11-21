@@ -582,6 +582,7 @@ function initiateUser() {
                             last_channel_pull: data.data[0].last_channel_pull
                         },
                         success: function (data) {
+                            console.log("INIT CHANNEL UPDATE", data)
                             updatedChannels ++;
                             if(numSubscribedChannels === updatedChannels){
                                 loadSelectedChannels();
