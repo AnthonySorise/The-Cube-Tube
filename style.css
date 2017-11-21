@@ -57,7 +57,7 @@ body {
 }
 #mainNav>.container-fluid{
 	position:relative;
-	font-family: 'Arvo', serif;
+	/*font-family: 'Arvo', serif;*/
 }
 .navbar-toggle {
 	margin: 0;
@@ -110,7 +110,7 @@ body {
 	margin-left: 20px;
 }
 .midNavChannels{
-	font-family: 'Arvo', serif;
+	/*font-family: 'Arvo', serif;*/
 	color: white;
 	font-size: 1em;
 	line-height: 3.25em;
@@ -118,6 +118,8 @@ body {
 }
 .midNavBrowsing, .midNavWatching{
 	display: none;
+	font-size:14px;
+	font-weight: 700
 }
 .watchingLabel, .browsingLabel{
 	font-size: 100%;
@@ -224,6 +226,9 @@ body {
 	/*display: inline-block;*/
 	margin-left: 35px;
 }
+.midNavBrowsing>small, .midNavWatching>small{
+	color: grey;
+}
 .ui-widget-content {
 	/*color: #fff !important;*/
 	color: #000 !important;
@@ -319,7 +324,7 @@ body>.container-fluid {
 }
 #videoStats:hover {
 	/*color: rgba(255,255,255,1);*/
-	color: rgba(0, 200, 81, 1);
+	color: rgba(255,143,0, 1);
 }
 .lightBoxMode{
 	position: absolute;
@@ -332,7 +337,7 @@ body>.container-fluid {
 }
 .lightBoxMode:hover {
 	/*color: rgba(255, 0, 0, 1);*/
-	color: orange;
+	color: rgba(255,143,0, 1);
 }
 #infoButtonContainer {
 	position: relative;
@@ -385,7 +390,7 @@ li#returnCarouselStart{
 #text-carousel {
 	overflow: auto;
 	height: 95%;
-	background-color:#50656e
+	background-color:#343e42
 }
 /*********** end of CAROUSEL styles ************/
 div.thRow {
@@ -408,7 +413,7 @@ div.thRow {
 	border-left: 0.5px solid;
 }
 .tdList {
-	font-size: 14px;
+	font-size: 13px;
 	margin-top: 1.75px;
 	margin-bottom: 1.75px;
 	/*height: 3.2vh;*/
@@ -417,48 +422,8 @@ div.thRow {
 	line-height: 2.1vh;
 	z-index: 1;
 }
-.tdList:nth-child(even) div {
-	/* background-color: #364e5a; */
-	background-color: rgba(54, 78, 90,0.5);
-	display: inline;
-}
 
-.tdList:nth-child(even):hover div {
-	/* background-color: #364e5a; */
-	background-color: rgba(180, 189, 193, 1.0) !important;
-	display: inline;
-}
 
-.tdList:nth-child(odd):hover div {
-	/* background-color: #364e5a; */
-	background-color: rgba(180, 189, 193, 1.0) !important;
-	display: inline;
-}
-
-.selectedTd div {
-	background-color: rgba(180,189,193,1.0) !important;
-	color: #020e13; !important;
-}
-
-/* .tdList:hover, .tdRow div.selectedTd {
-	/* background-color: #b4bdc1; */
-	/* background-color: rgba(180, 189, 193, 1.0) !important;} */
-
-.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
-	font-weight: bold;
-}
-.row {
-	margin: 0;
-}
-.tdTitle, .tdChannel, .tdUpDate{
-	cursor: pointer;
-	/*display: flex;*/
-	/*align-items: center;*/
-	color:white;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
 /*.tdChannel, .tdUpDate{*/
 	/*justify-content: center;*/
 /*}*/
@@ -495,8 +460,69 @@ div.thRow {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	cursor: pointer;
+	/*display: flex;*/
+	/*align-items: center;*/
+	color:white;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
+.tdList:nth-child(even) div {
+	/* background-color: #364e5a; */
+	background-color: #4d5659;
+	display: inline;
+}
+
+.tdList:nth-child(even):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0);
+	display: inline;
+	color: #020e13; !important;
+}
+
+.tdList:nth-child(odd):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0);
+	display: inline;
+	color: #020e13; !important;
+}
+
+/* .tdList:hover, .tdRow div.selectedTd {
+	/* background-color: #b4bdc1; */
+/* background-color: rgba(180, 189, 193, 1.0) !important;} */
+
+.selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
+	color: #020e13; !important;
+	background-color: lightgreen !important;
+}
+
+.selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
+	font-weight: bold;
+	color: #020e13; !important;
+	background-color: lightgreen !important;
+
+}
+
+
+.tdList:nth-child(even):hover, .tdList:nth-child(odd):hover {
+	color: #020e13; !important;
+}
+
+
+
+.row {
+	margin: 0;
+}
+
+/*.selectedTd {*/
+	/*background-color: lightgreen !important;*/
+	/*!*color: #020e13; !important;*!*/
+/*}*/
+/*.selectedTd:hover{*/
+	/*background-color: lightgreen !important;*/
+/*}*/
 
 /****** initial screen PLACEHOLDER AREA******/
 .contentPlaceholderWrapper{
@@ -1067,7 +1093,8 @@ safer appraoch than to resizing browser to see change
 	small {
 		display: none;
 	}
-	h4 {
+	h4 {		/*if this is meant for h4 tag in modal, it should be combined with col-xs-7 as that is the only
+					col-xs-7 in modal. I added a class for the channel h4 tag so target those for these changes*/
 		font-size: .80em;
 	}
 	.browseChannelButton {

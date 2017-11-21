@@ -174,16 +174,18 @@ consider carousel for the video list area:
 										Browsing:
 									</small>
 								</span> 
-								<span class="label label-primary midNavBrowsing browsingLabel">
+								<span class="midNavBrowsing browsingLabel">
 									channel name
 								</span>
 								<span class="midNavBrowsing">
 									<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
 								</span>
 								<span class="midNavWatching">
-									<small>Watching:</small> 
+									<small>
+                                        Watching:
+                                    </small>
 								</span>
-								<span class="label label-success midNavWatching watchingLabel" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
+								<span class="midNavWatching watchingLabel label label-success" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
 									<i class="fa fa-cubes"></i>
 									Subscribed Channels
 								</span>
@@ -1048,7 +1050,7 @@ consider carousel for the video list area:
 					<div class="modal-body" id="channelSearchModalBody">
 						<li id="chSearch-1" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1065,7 +1067,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-2" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1083,7 +1085,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-3" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1101,7 +1103,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-4" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1118,7 +1120,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-5" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 
 								</span>
@@ -1137,7 +1139,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-6" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1154,7 +1156,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-7" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1171,7 +1173,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-8" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1189,7 +1191,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-9" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1206,7 +1208,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-10" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
