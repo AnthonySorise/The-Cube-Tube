@@ -30,11 +30,20 @@ consider carousel for the video list area:
 	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script/api_calls_to_db/access_database/database_api.js"></script>
-	<script type="text/javascript" src="script/main.js"></script>
-	<script type="text/javascript" src="script/autoSearch.js"></script>
-	<script type="text/javascript" src="script/uiControl.js"></script>
-	<script type="text/javascript" src="script/utilities.js"></script>
-	<script type="text/javascript" src="script/searchBar.js"></script>
+
+    <script type="text/javascript" src="script/youtube_iframe.js"></script>
+    <script type="text/javascript" src="script/main.js"></script>
+    <script type="text/javascript" src="script/channel_search.js"></script>
+    <script type="text/javascript" src="script/ui.js"></script>
+    <script type="text/javascript" src="script/db.js"></script>
+    <script type="text/javascript" src="script/video_list.js"></script>
+    <script type="text/javascript" src="script/apple_compatibility.js"></script>
+    <script type="text/javascript" src="script/auto_search.js"></script>
+    <script type="text/javascript" src="script/channel_buttons.js"></script>
+    <script type="text/javascript" src="script/my_cube.js"></script>
+    <script type="text/javascript" src="script/tour.js"></script>
+    <script type="text/javascript" src="script/utilities.js"></script>
+
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
