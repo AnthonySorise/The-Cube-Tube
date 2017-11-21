@@ -33,7 +33,8 @@ consider carousel for the video list area:
 	<script type="text/javascript" src="script/main.js"></script>
 	<script type="text/javascript" src="script/autoSearch.js"></script>
 	<script type="text/javascript" src="script/uiControl.js"></script>
-    <script type="text/javascript" src="script/utilities.js"></script>
+	<script type="text/javascript" src="script/utilities.js"></script>
+	<script type="text/javascript" src="script/searchBar.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
@@ -106,9 +107,7 @@ consider carousel for the video list area:
 						<div class="input-group">
 							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
 							<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
-							<!-- <button class="channelSearchButton"> -->
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-							<!-- </button> -->
 							</span>
 						</div>
 					</div>
@@ -1034,6 +1033,17 @@ consider carousel for the video list area:
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
 						</button>
+						<form class="navbar-right navbar-form channelSearchForm hidden-xs form-inline">
+					<!--form for searching channels-->
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="search channels" name="channelSearch">
+							<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</span>
+						</div>
+					</div>
+				</form>
 					</div>
 					<div class="modal-body" id="channelSearchModalBody">
 						<li id="chSearch-1" class="col-xs-12">
