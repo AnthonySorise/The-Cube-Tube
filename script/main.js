@@ -1094,9 +1094,7 @@ function addChannelModal(userLink) {
         button.append(linkIcon).click(()=>{
             clipBoard('linkSpan');
         });
-        $('.userLinkBody',{
-            'class': 'text-center'
-        }).append(linkDiv, button);
+        $('.userLinkBody').addClass('text-center').append(linkDiv, button);
     }
     else {
         $('.userLinkBody').text("Channel added to your subscriptions!")
