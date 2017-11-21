@@ -1228,29 +1228,31 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
         },
         success:function(data){
             //Channel is on DB
+            var channelObj = data;
             if(data.success){
                 console.log('Channel Found on DB', data);
                 console.log("last channel pull: ", data.data[0].last_channel_pull)
                 //update Channel
-                // $.ajax({
-                //     url:'./script/api_calls_to_db/access_database/access.php',
-                //     method:'post',
-                //     dataType:'JSON',
-                //     data:{
-                //         action:'update_video_list',
-                //         youtube_channel_id:channelID,
-                //         last_channel_pull:data.data[0].last_channel_pull
-                //     },
-                //     success: function (data) {
-                //         if (data.success) {
-                //             console.log('Channel Updated', data);
-                            handleInfoFromDB(data);
-                //         }
-                //     },
-                //     errors: function (data) {
-                //         console.log('insert error', data);
-                //     }
-                // })
+                $.ajax({
+                    url:'./script/api_calls_to_db/access_database/access.php',
+                    method:'post',
+                    dataType:'JSON',
+                    data:{
+                        action:'update_video_list',
+                        youtube_channel_id:channelID,
+                        last_channel_pull:data.data[0].last_channel_pull
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            console.log('Channel Updated', data);
+                        }
+                        console.log(data);
+                        handleInfoFromDB(channelObj);
+                    },
+                    errors: function (data) {
+                        console.log('insert error', data);
+                    }
+                })
             }
             //Channel NOT on DB
             else{
