@@ -546,7 +546,8 @@ function clickHandler() {
 
 function initiateUser() {
     // access_database.read_channels_by_user_id()
-    var numSubscribedChannels = null;
+    var numSubscribedChannels = 0;
+    var updatedChannels = 0;
     $.ajax({
         url: './script/api_calls_to_db/access_database/access.php ',
         method: 'POST',
@@ -567,37 +568,35 @@ function initiateUser() {
                     clientSubscribedChannelIds.push(data.data[i].youtube_channel_id);
                     clientSelectedChannelIds.push(data.data[i].youtube_channel_id);
 
-                    // var channelId = data.data[i].youtube_channel_id;
+                    clientSubscribedChannelObjects.push(data.data[i]);
+                    clientSelectedChannelObjects.push(data.data[i]);
 
+                    // update Channel
                     $.ajax({
-                        url: './script/api_calls_to_db/access_database/access.php',
-                        method: 'post',
-                        dataType: 'JSON',
-                        data: {
-                            youtube_channel_id: data.data[i].youtube_channel_id,
-                            action: 'read_channels_by_youtube_id'
+                        url:'./script/api_calls_to_db/access_database/access.php',
+                        method:'post',
+                        dataType:'JSON',
+                        data:{
+                            action:'update_video_list',
+                            youtube_channel_id: data.data[0].youtube_channel_id,
+                            last_channel_pull: data.data[0].last_channel_pull
                         },
-                        success:function(data){
-                            if(data.success){
-                                console.log('Channel read from DB', data.data);
-                                // data.data[0].youtube_channel_id = channelId;
-                                clientSubscribedChannelObjects.push(data.data[0]);
-                                clientSelectedChannelObjects.push(data.data[0]);
+                        success: function (data) {
+                            updatedChannels ++;
+                            if(numSubscribedChannels === updatedChannels){
+                                loadSelectedChannels();
+                                renderChannelSelectionDropdown();
+                            }
 
-                                if (numSubscribedChannels === clientSubscribedChannelObjects.length) {
-                                    loadSelectedChannels();
-                                    renderChannelSelectionDropdown();
-                                }
-                            }else{
-                                console.log(data);
+                            if (data.success) {
+                                console.log('Channel Updated', data);
                             }
                         },
-                        errors:function(data){
-                            console.log(data['errors'], data);
+                        errors: function (data) {
+                            console.log("ERROR", data);
                         }
-                    });
+                    })
                 }
-                // collectVideosToLoad();
             } else {
                 console.log(data);
             }
