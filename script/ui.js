@@ -127,6 +127,9 @@ function clickHandler() {
     $('.listDropButton').on('click', ()=>{
         videoListDown();
     });
+    $('.myLinkButton').on('click',()=>{
+        clipBoard('mrF');
+    });
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
         // returnToPageOne();
