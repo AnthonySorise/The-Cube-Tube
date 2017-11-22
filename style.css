@@ -1001,13 +1001,10 @@ input:checked+.slider {
 }
 
 .mediaControls {
-	width: 25%;
-	height: 90%;
 	display: inline-block;
-	position: relative;
+	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	/* left: 33.3%; */
 	color: rgba(255, 255, 255, 0.5);
 	margin: 0 auto;
 	/*padding-left: 5%;*/
