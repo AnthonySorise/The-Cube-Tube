@@ -89,12 +89,12 @@ function toastMsg(msgString, time) {
 
 function videoListDown(){
     $('.listDropWrap').hide();
-    $('#text-carousel').slideUp(850, ()=>{
-        $('.videoListRowWrapper').hide();
-    });
-    $('.thRow').fadeOut(900);
+    $('#text-carousel').slideUp(850);
+    $('.thRow').fadeOut(590);
+    $('.videoListRowWrapper').fadeOut(590);
     $('.videoRowWrapper').animate({
-        'height': '93.8%'
+        // 'height': '93.8%'
+        'height':'94.2%'
     }, 600);
     $('#listContentWrap').animate({
         'height': '5.5%'
@@ -102,8 +102,8 @@ function videoListDown(){
         $('.listUpWrap').fadeIn();
     });
     $('#mainVideo').animate({
-        'width': '153vh',
-        'height': '86vh'
+        'width': '152vh',
+        'height': '85vh'
     }, 600);
 }
 function videoListUp(){
@@ -135,7 +135,7 @@ function clickHandler() {
         videoListDown();
     });
     $('#myLinkButton').on('click',()=>{
-        clipBoard('mrF');
+        clipBoard('linkGhost');
     });
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
@@ -444,6 +444,11 @@ function clickHandler() {
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
+    $('.tdPlaylistButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.tdPlaylistButton').tooltip('hide');
+        },1000);
+    });
     $('.browseChannelButton').mouseenter(function () {
         setTimeout(function () {
             $('.browseChannelButton').tooltip('hide');
@@ -477,6 +482,11 @@ function tooltipFunctions() {
     $('.listDropButton').mouseenter(function(){
         setTimeout(function(){
             $('.listDropButton').tooltip('hide');
+        },1000);
+    });
+    $('.listUpButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.listUpButton').tooltip('hide');
         },1000);
     });
 }

@@ -158,8 +158,9 @@ body {
 	/*font-family: 'Arvo', serif;*/
 	color: white;
 	font-size: 1em;
-	line-height: 3.25em;
+	line-height: 2.85em;
 	margin-left: 25px;
+	float:right;
 }
 .midNavBrowsing, .midNavWatching{
 	display: none;
@@ -267,9 +268,11 @@ body {
 	/*line-height: 3.5;*/
 /*}*/
 .autoPlayArea{
+	position: relative;
+	left:6vw;
 	/*float: none;*/
 	/*display: inline-block;*/
-	margin-left: 35px;
+	/*float:right;*/
 }
 .midNavBrowsing>small, .midNavWatching>small{
 	color: grey;
@@ -482,7 +485,7 @@ div.thRow {
 .carouselCol {
 	padding: 0;
 }
-.tdTitle, .tdInfo, .tdChannel, .tdUpDate, .tdButton {
+.tdTitle, .tdInfo, .tdChannel, .tdUpDate{
 	height: 100%;
 }
 .tdInfo a, .tdInfo a:hover, .tdInfo a:focus,
@@ -490,6 +493,9 @@ div.thRow {
 	height: 100%;
 	background: none;
 	border: none;
+}
+.tdInfo{
+	padding: 0;
 }
 .tdInfo i {
 	color: rgba(124, 221, 249, 0.5);
@@ -499,6 +505,15 @@ div.thRow {
 }
 .tdInfo>a{
 	padding: 0 12px;
+}
+.tdPlaylist{
+	padding: 0;
+	height:100%;
+}
+.tdPlaylistButton{
+	padding: 0 5px;
+	font-size: 10px;
+	border: none;
 }
 
 .tdTitle, .tdChannel, .tdUpDate {
@@ -552,12 +567,12 @@ div.thRow {
 	/* background-color: #b4bdc1; */
 /* background-color: rgba(180, 189, 193, 1.0) !important;} */
 
-.selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
+.selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdPlaylist,  .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
 	color: white !important;
 	background-color: #042818 !important;
 }
 
-.selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
+.selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdPlaylist, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
 	font-weight: bold;
 	color: white !important;
 	background-color: #042818 !important;
@@ -834,12 +849,26 @@ div.thRow {
 .modalChSearch{
 	display:inline-block;
 }
+#ui-id-3{
+	max-width: 190px;
+}
 
 .modalControls {
 	font-size: 2em;
 	cursor: pointer;
 	margin: 7px;
 }
+
+.userLinkBody{
+	background-color: #020e13;
+	color:white;
+}
+
+.userLinkHeader{
+	background-color: black;
+	color:white;
+}
+
 
 /* .rewindButton {
 	margin-left: 25%;
@@ -1181,7 +1210,7 @@ safer appraoch than to resizing browser to see change
 		/*margin-left: -15px;*/
 		margin: 0;
 	}
-	.autoPlayArea, .midNavChannels{
+	.autoPlayArea{
 		margin-left: -15px;
 	}
 	#midNav-option form{
