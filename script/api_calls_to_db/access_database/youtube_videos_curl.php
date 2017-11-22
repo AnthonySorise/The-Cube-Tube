@@ -83,18 +83,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                     (video_title, channel_id, youtube_video_id, description, published_at, last_updated) 
             VALUES");
         $refArr = [];
-        
-        echo '------entries array------ <br>';
-        
-        print_r($entries);
-
-        echo '------entries array------ <br>';
-        
         foreach($entries as $key => $value){
-
-            print_r($key);
-            print_r($value);
-            output_and_exit($output);
             $query .= " (?,?,?)";
             $bind_str .=  "sissss";
             $refArr[] = $value['snippet']['title'];
