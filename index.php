@@ -137,7 +137,7 @@ consider carousel for the video list area:
 						
 					</div>
 <!--					<div id=infoButtonContainer>-->
-<!--						<!--can take function as content; meaning data only uploads when clicked-->-->
+<!--						<!--can take function as content; meaning data only uploads when clicked-->
 <!--						<button class="btn btn-lg hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"-->
 <!--						 title="Theater Mode">-->
 <!--							<span class="glyphicon glyphicon-sound-stereo" id="theaterArrow" aria-hidden="true"></span>-->
