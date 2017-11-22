@@ -83,7 +83,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                     (video_title, channel_id, youtube_video_id, description, published_at, last_updated) 
             VALUES");
         $refArr = [];
-        $argmuments = '';
         foreach($entries as $key=>$value){
             $query .= " (?,?,?)";
             $bind_str .=  "sissss";
@@ -98,7 +97,8 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $refArr[] = $last_updated;
         }
         $res = $conn->prepare("{$sqli}{$query}");
-        array_unshift($refArr,$bind_str);
+        $bind_array = ["{$bind_str}"];
+        array_unshift($refArr,$bind_array);
         $ref = new ReflectionClass('mysqli_stmt'); 
         $method = $ref->getMethod("bind_param"); 
         $method->invokeArgs($res,$refArr); 
