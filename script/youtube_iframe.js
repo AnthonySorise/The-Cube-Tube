@@ -127,5 +127,9 @@ function rendertheatreControls() {
         text: "close",
         type: "button"
     });
-    $('#lightBoxModalFooter').append(rewindElement, playElement, fastForwardElement, closeButton);
+    // $('#lightBoxModalFooter').append(rewindElement, playElement, fastForwardElement, closeButton);
+    $('.mediaControls').append(rewindElement, playElement, fastForwardElement);
+    
 }
+
+
