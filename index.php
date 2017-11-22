@@ -231,7 +231,7 @@ consider carousel for the video list area:
 						</div>
 						<div class="col-xs-2 hidden-xs"></div>
 
-						<div class="col-xs-4 col-sm-3 thChannel">
+						<div class="col-xs-4 col-sm-2 thChannel">
 							<strong>Channel</strong>
 						</div>
 						<div class="col-xs-2 thUpDate">
@@ -243,7 +243,7 @@ consider carousel for the video list area:
 							<strong>Title</strong>
 						</div>
 						<div class="col-xs-2"></div>
-						<div class="col-sm-3 thChannel">
+						<div class="col-sm-2 thChannel">
 							<strong>Channel</strong>
 						</div>
 						<div class="col-sm-2 thUpDate">
