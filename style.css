@@ -785,7 +785,7 @@ div.thRow {
 /* .rewindButton {
 	margin-left: 25%;
 } */
-.playButton:hover, .rewindButton:hover, .fastForwardButton:hover, .pauseButton:hover {
+.playButton:hover, .rewindButton:hover, .fastForwardButton:hover, .pauseButton:hover, .nextVideoButton:hover, .lastVideoButton:hover {
 	color: #fff; 
 }
 
@@ -942,7 +942,7 @@ input:checked+.slider {
 }
 
 .mediaControls {
-	width: 10%;
+	width: 20%;
 	height: 90%;
 	display: inline-block;
 	position: relative;
@@ -969,8 +969,8 @@ safer appraoch than to resizing browser to see change
 *************************************************************/
 @media screen and (max-width: 1150px) {
 	.mediaControls {
-		width: 14%;
-		left: 30%;
+		/* width: 14%; */
+		left: 25%;
 	}
 }
 
