@@ -47,7 +47,7 @@ body {
 *          																			*
 *************************************************************************************/
 
-.popover{
+.popover, .popover-title{
 	background-color: black;
 	color:white;
 }
