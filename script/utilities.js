@@ -64,7 +64,9 @@ function clipBoard(txtClass){
         //     document.execCommand("copy");
         //     secretInput.remove();
         // },1000)
-       
+        if(txtClass==="mrF"){
+            $('.mrF').css('display','block');
+        }
         var x = document.querySelector('.'+txtClass);
         var rng = document.createRange();
         rng.selectNode(x);
@@ -76,7 +78,8 @@ function clipBoard(txtClass){
         toastMsg(result, 1200);
         }catch(err){
         console.log('error');
-        } 
+        }
+        $('.mrF').css('display','none'); 
     }else{
         toastMsg('nothing to copy', 1200);
     }
