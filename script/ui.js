@@ -321,7 +321,7 @@ function clickHandler() {
             } else {
                 player.cueVideoById(currentlySelectedVideoID);
             }
-            player2.cueVideoById(currentlySelectedVideoID);
+            // player2.cueVideoById(currentlySelectedVideoID);
 
             //update video stats popover
             updateVideoInfoPopover(currentlySelectedVideoID);
@@ -332,86 +332,86 @@ function clickHandler() {
     });
 
     //Theater mode
-    $('.lightBoxMode').on('click', checkHomePageVideoStatus);
-    $('.theatreModalClose').on('click', checkTheatreModeStatus);
+    // $('.lightBoxMode').on('click', checkHomePageVideoStatus);
+    // $('.theatreModalClose').on('click', checkTheatreModeStatus);
     $('.fastForwardButton').on('click', fastForwardVideo);
     $('.rewindButton').on('click', rewindVideo);
     $('.playButton').on('click', playYtVideo);
     $('.lastVideoButton').on('click',playPrevYTVideo);
     $('.nextVideoButton').on('click', playNextYTVideo); 
     // $('body').on('click', closeTheatreOnClick);
-    $(document).on('keyup', function (event) {
-        if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
-            console.log('Esc was pressed');
-            checkTheatreModeStatus();
-        }
-    });
+    // $(document).on('keyup', function (event) {
+    //     if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
+    //         console.log('Esc was pressed');
+    //         checkTheatreModeStatus();
+    //     }
+    // });
 
     // Lets user click outside of theatre modal to close and save the state of video
-    function closeTheatreOnClick(event) {
-        event.stopPropagation();
-        if($('body').hasClass('modal-open')) {
-            //Have to check if modal footer is being clicked to stop from closing modal
-            if(event.target.classList[0] == "fa" || event.target.classList == "") {
-                return;
-            }
-            $('.modal-content').modal('hide');
-            checkTheatreModeStatus();
-        }
-    }
-
-    function checkHomePageVideoStatus(event) {
-        event.stopPropagation()
-        player.pauseVideo();
-        if (player.getPlayerState() === 2) {
-            checkIfPlayerIsMuted();
-            player.pauseVideo();
-            player2.seekTo(player.getCurrentTime());
-            player2.pauseVideo();
-            $('.pauseButton').removeClass().addClass(play);
-            $('#lightBoxModal').modal('show');
-        } else if (player.getPlayerState() === 1) {
-            checkIfPlayerIsMuted();
-            player.pauseVideo();
-            player2.seekTo(player.getCurrentTime());
-            $('.playButton').removeClass().addClass(pause);
-            player2.playVideo();
-            $('#lightBoxModal').modal('show');
-        } else if (player.getPlayerState() === 5) {
-            $('#lightBoxModal').modal('show');
-        }
-    }
-
-    function checkTheatreModeStatus() {
-        if (player2.getPlayerState() === 2) {
-            checkIfPlayer2IsMuted();
-            player2.pauseVideo();
-            player.seekTo(player2.getCurrentTime());
-            player.pauseVideo();
-            $('#lightBoxModal').modal('hide');
-        } else if (player2.getPlayerState() === 1) {
-            checkIfPlayer2IsMuted();
-            player2.pauseVideo();
-            player.seekTo(player2.getCurrentTime());
-            $('#lightBoxModal').modal('hide');
-            player.playVideo();
-        } else if (player2.getPlayerState() === 5) {
-            $('#lightBoxModal').modal('hide');
-        }
-    }
+    // function closeTheatreOnClick(event) {
+    //     event.stopPropagation();
+    //     if($('body').hasClass('modal-open')) {
+    //         //Have to check if modal footer is being clicked to stop from closing modal
+    //         if(event.target.classList[0] == "fa" || event.target.classList == "") {
+    //             return;
+    //         }
+    //         $('.modal-content').modal('hide');
+    //         checkTheatreModeStatus();
+    //     }
+    // }
+    //
+    // function checkHomePageVideoStatus(event) {
+    //     event.stopPropagation()
+    //     player.pauseVideo();
+    //     if (player.getPlayerState() === 2) {
+    //         checkIfPlayerIsMuted();
+    //         player.pauseVideo();
+    //         player2.seekTo(player.getCurrentTime());
+    //         player2.pauseVideo();
+    //         $('.pauseButton').removeClass().addClass(play);
+    //         $('#lightBoxModal').modal('show');
+    //     } else if (player.getPlayerState() === 1) {
+    //         checkIfPlayerIsMuted();
+    //         player.pauseVideo();
+    //         player2.seekTo(player.getCurrentTime());
+    //         $('.playButton').removeClass().addClass(pause);
+    //         player2.playVideo();
+    //         $('#lightBoxModal').modal('show');
+    //     } else if (player.getPlayerState() === 5) {
+    //         $('#lightBoxModal').modal('show');
+    //     }
+    // }
+    //
+    // function checkTheatreModeStatus() {
+    //     if (player2.getPlayerState() === 2) {
+    //         checkIfPlayer2IsMuted();
+    //         player2.pauseVideo();
+    //         player.seekTo(player2.getCurrentTime());
+    //         player.pauseVideo();
+    //         $('#lightBoxModal').modal('hide');
+    //     } else if (player2.getPlayerState() === 1) {
+    //         checkIfPlayer2IsMuted();
+    //         player2.pauseVideo();
+    //         player.seekTo(player2.getCurrentTime());
+    //         $('#lightBoxModal').modal('hide');
+    //         player.playVideo();
+    //     } else if (player2.getPlayerState() === 5) {
+    //         $('#lightBoxModal').modal('hide');
+    //     }
+    // }
 
 
     function fastForwardVideo() {
         var fastForward = player.getCurrentTime();
         var add15Seconds = fastForward + 15;
-        var player2State = player.getPlayerState();
-        if (player2State === 2) {
+        // var player2State = player.getPlayerState();
+        // if (player2State === 2) {
+        //     player.seekTo(add15Seconds);
+        //     player.pauseVideo();
+        //     return;
+        // } else {
             player.seekTo(add15Seconds);
-            player.pauseVideo();
-            return;
-        } else {
-            player.seekTo(add15Seconds);
-        }
+        // }
     }
 
 
@@ -430,14 +430,14 @@ function clickHandler() {
     function rewindVideo() {
         var fastForward = player.getCurrentTime();
         var minus15Seconds = fastForward - 15;
-        var player2State = player.getPlayerState();
-        if (player2State === 2) {
+        // var player2State = player.getPlayerState();
+        // if (player2State === 2) {
+        //     player.seekTo(minus15Seconds);
+        //     player.pauseVideo();
+        //     return;
+        // } else {
             player.seekTo(minus15Seconds);
-            player.pauseVideo();
-            return;
-        } else {
-            player.seekTo(minus15Seconds);
-        }
+        // }
     }
 }
 
