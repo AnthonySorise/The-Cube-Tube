@@ -504,8 +504,10 @@ div.thRow {
 .tdInfo i {
 	color: rgba(124, 221, 249, 0.5);
 }
-.tdInfo i:hover, .tdInfo i:focus {
-	color: rgba(124, 221, 249, 1);
+.tdInfo i:hover, .tdInfo i:focus, .tdInfo:active {
+	color: rgba(255, 255, 255, 1);
+	background:none;
+	outline: none;
 }
 .tdInfo>a{
 	padding: 0 12px;
