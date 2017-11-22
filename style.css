@@ -779,7 +779,7 @@ div.thRow {
 .modalControls {
 	font-size: 2em;
 	cursor: pointer;
-	margin: 10px;
+	margin: 7px;
 }
 
 /* .rewindButton {
@@ -868,8 +868,9 @@ input:checked+.slider {
 	border-radius: 50%;
 }
 
+/* Custom CSS for BootStrap Tour */
 
-.popover-title {
+/* .popover-title {
     text-align: center;
     color: red;
     font-size: 22px;
@@ -889,7 +890,7 @@ input:checked+.slider {
 	
 .btn-group .btn:nth-child(1) {
     display: none;
-}
+} */
 
 
 
@@ -941,7 +942,7 @@ input:checked+.slider {
 }
 
 .mediaControls {
-	width: 20%;
+	width: 10%;
 	height: 90%;
 	display: inline-block;
 	position: relative;
@@ -966,6 +967,14 @@ input:checked+.slider {
 ******* i think using `toggle device toolbar` in browser is more likely 
 safer appraoch than to resizing browser to see change
 *************************************************************/
+@media screen and (max-width: 1150px) {
+	.mediaControls {
+		width: 14%;
+		left: 30%;
+	}
+}
+
+
 @media screen and (max-width: 1082px) {
 	#mainNav-option{
 		border-top: 1px solid black;
@@ -1043,6 +1052,9 @@ safer appraoch than to resizing browser to see change
 		border-left: none;
 	}
 }
+
+
+
 @media only screen and (min-width: 768px){
 	#mainNav-option{
 		width: auto !important;
