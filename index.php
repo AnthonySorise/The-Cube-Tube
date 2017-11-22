@@ -92,10 +92,10 @@ consider carousel for the video list area:
 							close <i class="fa fa-times" aria-hidden="true"></i>
 						</a>
 						<ul class="dropdown-menu text-center" id="channelCategoryUl">
-							<li id="categoryButton">
-								<i class="fa fa-caret-square-o-left" aria-hidden="true"></i>
-								Category
-							</li>
+<!--							<li id="categoryButton">-->
+<!--								<i class="fa fa-caret-square-o-left" aria-hidden="true"></i>-->
+<!--								Category-->
+<!--							</li>-->
 							<li role="separator" class="divider"></li>
 							<li class="dropdownChannelLiLoad">
 								<i class="fa fa-refresh" aria-hidden="true"></i>
