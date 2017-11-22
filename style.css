@@ -505,6 +505,7 @@ div.thRow {
 }
 .tdPlaylist{
 	padding: 0;
+	line-height: 2.2vh;
 }
 .tdPlaylistButton{
 	padding: 0 5px;
