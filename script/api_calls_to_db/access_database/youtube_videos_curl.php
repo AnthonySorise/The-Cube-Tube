@@ -99,6 +99,8 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $res = $conn->prepare("{$sqli}{$query}");
         $bind_array = ["{$bind_str}"];
         array_unshift($refArr,$bind_array);
+        print_r($bind_array);
+        output_and_exit($output);
         $ref = new ReflectionClass('mysqli_stmt'); 
         $method = $ref->getMethod("bind_param"); 
         $method->invokeArgs($res,$refArr); 
