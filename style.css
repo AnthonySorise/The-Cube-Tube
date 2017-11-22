@@ -519,12 +519,12 @@ div.thRow {
 	/* background-color: #b4bdc1; */
 /* background-color: rgba(180, 189, 193, 1.0) !important;} */
 
-.selectedTd:hover, .selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
+.selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
 	color: white; !important;
 	background-color: #042818 !important;
 }
 
-.selectedTd:hover, .selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
+.selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
 	font-weight: bold;
 	color: white; !important;
 	background-color: #042818 !important;
