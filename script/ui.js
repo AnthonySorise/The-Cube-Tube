@@ -92,7 +92,7 @@ function videoListDown(){
     $('#text-carousel').slideUp(850, ()=>{
         $('.videoListRowWrapper').hide();
     });
-    $('.thRow').fadeOut(900);
+    $('.thRow').fadeOut(850);
     $('.videoRowWrapper').animate({
         // 'height': '93.8%'
         'height':'94.2%'
