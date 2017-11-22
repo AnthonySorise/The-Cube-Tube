@@ -62,7 +62,7 @@ function clipBoard(txtClass){
         let textElmt = document.querySelector('.'+txtClass);
         let range = document.createRange();
         range.selectNode(textElmt);
-        window.getSelection().addRange(range);
+        window.getSelection().addRange(range.endContainer.childNodes[1].innerText);
         try{
         let success = document.execCommand('copy');
         let result = success ? 'link copied!' : 'something went wrong';
