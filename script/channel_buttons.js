@@ -23,16 +23,16 @@ function handleAddButton() {
 function addChannelModal(userLink) {
     if (userLink) {
         let uLink = 'www.thecubetube.com/?user='+userLink;
-        const secretLinkSpan = $('<span>',{
-            'class': 'linkSpanSecret',
-            'text': uLink
-        }).css({
-            'position': 'absolute',
-            'display': 'none',
-            'top': '-500px',
-            'z-index': '-1'
-        });
-        $('body').prepend(secretLinkSpan);
+        // const secretLinkSpan = $('<span>',{
+        //     'class': 'linkSpanSecret',
+        //     'text': uLink
+        // }).css({
+        //     'position': 'absolute',
+        //     'display': 'none',
+        //     'top': '-500px',
+        //     'z-index': '-1'
+        // });
+        // $('body').prepend(secretLinkSpan);
         const linkSpan = $('<span>',{
             'class':'linkSpan',
             'text': uLink
