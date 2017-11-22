@@ -1,4 +1,5 @@
 <?php
+//grab a list of videos based on a array of channels with a limit of 40 and a offset
 if(empty($LOCAL_ACCESS)){
     die("direct access not allowed");
 }

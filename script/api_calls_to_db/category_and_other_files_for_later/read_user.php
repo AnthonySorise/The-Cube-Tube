@@ -1,4 +1,5 @@
 <?php
+//get user id, currently not in use
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed, read user");
 }

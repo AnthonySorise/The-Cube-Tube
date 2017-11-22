@@ -1,4 +1,5 @@
 <?php
+//insert channel info, if it succeeds insert videos for that channel
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }

@@ -1,4 +1,5 @@
  <?php
+ //grab a single channel using youtube channel id
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }

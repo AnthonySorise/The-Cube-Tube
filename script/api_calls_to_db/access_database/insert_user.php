@@ -1,4 +1,5 @@
 <?php
+//being called during insert ctu if session link is empty
 if(empty($LOCAL_ACCESS)){
     die('insert user, direct access not allowed');
 }

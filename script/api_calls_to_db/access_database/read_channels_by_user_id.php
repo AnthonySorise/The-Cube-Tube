@@ -6,6 +6,7 @@ if(empty($_SESSION['user_link'])){
     $output['user'] = false;
     output_and_exit($output);
 }
+//grab all channels for a given user
 $stmt = $conn->prepare(
     "SELECT
         c.channel_title,
@@ -32,6 +33,7 @@ if(!empty($result)){
         while($row = $result->fetch_assoc()){
             $output['data'][] = $row;
         }
+        //provide user link to front end
         $output['user_link'] = $user_link;
     }else{
         $output['nothing_to_read'] = true;
