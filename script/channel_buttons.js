@@ -61,7 +61,7 @@ function clipBoard(txtClass){
         // let range = document.createRange();
         // range.selectNode(textElmt);
         // window.getSelection().addRange(range);
-        $('.linkTextHolder').val().select();
+        $('.linkTextHolder').val($('.linkSpan').text()).select();
         try{
         let success = document.execCommand('copy');
         let result = success ? 'link copied!' : 'something went wrong';
