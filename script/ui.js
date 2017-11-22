@@ -352,43 +352,47 @@ function clickHandler() {
         }
     }
 
+
     function fastForwardVideo() {
-        var fastForward = player2.getCurrentTime();
+        var fastForward = player.getCurrentTime();
         var add15Seconds = fastForward + 15;
-        var player2State = player2.getPlayerState();
+        var player2State = player.getPlayerState();
         if (player2State === 2) {
-            player2.seekTo(add15Seconds);
-            player2.pauseVideo();
+            player.seekTo(add15Seconds);
+            player.pauseVideo();
             return;
         } else {
-            player2.seekTo(add15Seconds);
+            player.seekTo(add15Seconds);
         }
     }
 
-    function playYtVideo() {
-        player2.playVideo();
-        if (this.classList.value === play) {
-            $('.playButton').removeClass(play).toggleClass(pause);
-        } else {
-            $('.pauseButton').removeClass(pause).toggleClass(play);
-            player2.pauseVideo()
 
-        }
-    }
+function playYtVideo() {
+    player.playVideo();
+    if (this.classList.value === play) {
+        $('.playButton').removeClass(play).toggleClass(pause);
+    } else {
+        $('.pauseButton').removeClass(pause).toggleClass(play);
+        player.pauseVideo()
 
-    function rewindVideo() {
-        var fastForward = player2.getCurrentTime();
-        var minus15Seconds = fastForward - 15;
-        var player2State = player2.getPlayerState();
-        if (player2State === 2) {
-            player2.seekTo(minus15Seconds);
-            player2.pauseVideo();
-            return;
-        } else {
-            player2.seekTo(minus15Seconds);
-        }
     }
 }
+
+
+function rewindVideo() {
+    var fastForward = player.getCurrentTime();
+    var minus15Seconds = fastForward - 15;
+    var player2State = player.getPlayerState();
+    if (player2State === 2) {
+        player.seekTo(minus15Seconds);
+        player.pauseVideo();
+        return;
+    } else {
+        player.seekTo(minus15Seconds);
+    }
+}
+}
+
 
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
