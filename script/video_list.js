@@ -307,7 +307,7 @@ function updateVideoInfoPopover(videoID){
             console.log('Youtube success', data);
             let videoStatsDiv = $('<div></div>');
             videoStatsDiv.css("height", '35vh')
-            let videoURL = 'https://i.ytimg.com/vi/' + selectedVideoId + '/mqdefault.jpg';
+            let videoURL = 'https://i.ytimg.com/vi/' + videoID + '/mqdefault.jpg';
             const videoThumbnail = $('<img>').attr('src', videoURL).css({
                 width: '120px',
                 height: '70px',

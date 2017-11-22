@@ -258,7 +258,6 @@ function clickHandler() {
             var videoID = $(this).parent().attr('videoId');
             var channelID = $(this).parent().attr('channelID');
 
-            var selectedVideoId = $(this).parent().attr('videoId');
             // $('.fa-play-circle-o').remove();
             $('.fa-circle-o-notch').remove();
             var playSymbol = $('<i>')
@@ -272,11 +271,11 @@ function clickHandler() {
             $('.tdList').removeClass('selectedTd');
             $(this).parent().addClass("selectedTd");
             if (getAutoPlayValue()) {
-                player.loadVideoById(selectedVideoId);
+                player.loadVideoById(videoID);
             } else {
-                player.cueVideoById(selectedVideoId);
+                player.cueVideoById(videoID);
             }
-            player2.cueVideoById(selectedVideoId);
+            player2.cueVideoById(videoID);
 
             //update video stats popover
             updateVideoInfoPopover(videoID);
