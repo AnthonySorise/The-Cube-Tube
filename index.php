@@ -136,13 +136,6 @@ consider carousel for the video list area:
 					<div id="mainVideo" class="iframeVideo">
 						
 					</div>
-<!--					<div id=infoButtonContainer>-->
-<!--						<!--can take function as content; meaning data only uploads when clicked-->
-<!--						<button class="btn btn-lg hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"-->
-<!--						 title="Theater Mode">-->
-<!--							<span class="glyphicon glyphicon-sound-stereo" id="theaterArrow" aria-hidden="true"></span>-->
-<!--						</button>-->
-<!--					</div>-->
 				</div>
 			</div>
 			<!--end of videoRow div-->
@@ -1254,7 +1247,7 @@ consider carousel for the video list area:
 		<div class="modal fade" id="userLinkModal" tabindex="-1" role="dialog" data-backdrop="static">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header text-center userLinkHeader">
         				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
         					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
         				</button>
