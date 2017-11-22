@@ -935,6 +935,13 @@ input:checked+.slider {
 	width: 100%;
 }
 
+.videoOverlay {
+	width: 100%;
+	background-color: white;
+	height: 40px;
+	z-index: 200000000000000;
+}
+
 
 
 
