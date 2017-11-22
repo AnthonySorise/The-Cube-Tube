@@ -491,14 +491,14 @@ div.thRow {
 	/* background-color: #364e5a; */
 	background-color: rgba(180, 189, 193, 1.0);
 	display: inline;
-	color: #020e13; !important;
+	color: #020e13;
 }
 
 .tdList:nth-child(odd):hover div {
 	/* background-color: #364e5a; */
 	background-color: rgba(180, 189, 193, 1.0);
 	display: inline;
-	color: #020e13; !important;
+	color: #020e13;
 }
 
 /* .tdList:hover, .tdRow div.selectedTd {
