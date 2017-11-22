@@ -95,8 +95,8 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }
         $query = rtrim($query,", ");
         $stmt = $conn->prepare($query);
-        call_user_func_array([$stmt, 'bind_param'],$data);
-        //$stmt->bind_param($bind_str, ...array_merge($data));
+        // call_user_func_array([$stmt, 'bind_param'],$data);
+        $stmt->bind_param($bind_str, ...array_merge($data));
         $stmt->execute();
         if(empty($stmt)){
             $output['errors'][] = 'INVALID QUERY';
