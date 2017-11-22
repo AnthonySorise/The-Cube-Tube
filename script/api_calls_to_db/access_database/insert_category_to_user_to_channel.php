@@ -19,7 +19,7 @@ $sqli =
     WHERE
         c.youtube_channel_id = ? AND u.user_link = ? AND category_id = ?";
 $stmt = $conn->prepare($sqli);
-$stmt->bind_param('ssi',$youtube_channel_id, $user_id, $category_id);
+$stmt->bind_param('ssi',$youtube_channel_id, $user_link, $category_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]= 'invalid query';

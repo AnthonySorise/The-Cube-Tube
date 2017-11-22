@@ -28,7 +28,6 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     //creates random string for user and inserts into database as well as show to front end
     $output['user_link'] = $_SESSION['user_link'];
 }
-$user_link = $_SESSION['user_link'];
 // get user id
 // grabbing channel id from db to add to user link
 $youtube_channel_id = $_POST['youtube_channel_id'];

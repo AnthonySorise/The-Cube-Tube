@@ -6,24 +6,23 @@ if(empty($_SESSION['user_link'])){
     $output['messages'] = 'no user';
     output_and_exit($output);
 }
-$user_link = $_SESSION['user_link'];
 $stmt = $conn->prepare(
     "SELECT
         c.channel_title,
         c.youtube_channel_id,
-        c.description,
-        c.thumbnail_file_name,
-        c.last_channel_pull,
+        ct.category_name
     FROM
         channels AS c
     JOIN
-        channels_to_users AS ctu ON c.channel_id = ctu.channel_id
+        category_to_users_to_channel AS cuc ON c.channel_id = cuc.channel_id
     JOIN
-        users AS u ON u.user_id = ctu.user_id
+        users AS u ON u.user_id = cuc.user_id
+    JOIN
+        categories AS ct ON ct.category_id = cuc.category_id
     WHERE
         u.user_link = ?
     ORDER BY
-        c.channel_title");
+        ct.category_name");
 $stmt->bind_param('s',$user_link);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -33,7 +32,6 @@ if(!empty($result)){
         while($row = $result->fetch_assoc()){
             $output['data'][] = $row;
         }
-        $output['user_link'] = $user_link;
     }else{
         $output['nothing_to_read'] = true;
     }

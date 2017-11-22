@@ -17,7 +17,7 @@ $current_time = date('Y-m-d H:i:s');
 $current_time_for_comparison = strtotime($current_time);
 $last_pull_time = strtotime($last_channel_pull);
 $diff = round(($current_time_for_comparison-$last_pull_time)/60);
-if($diff<5){
+if($diff<10){
     $output['messages'] = 'updated recently';
     output_and_exit($output);
 }

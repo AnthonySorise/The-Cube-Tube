@@ -1,5 +1,25 @@
  function Database(){
-    var self = this;
+    this.delete_categories = function(){
+        $.ajax({
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                youtube_channel_id: youtube_channel_id,
+                action:'delete_ctu'
+            },
+            success:function(data){
+                if(data.success){
+                    console.log('deleted success', data);
+                }else{
+                    console.log(data);
+                }
+            },
+            errors:function(data){
+                console.log(data['errors']);
+            }
+        })
+    }
     this.delete_ctu = function(youtube_channel_id){//delete by specifying ctu id
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
@@ -12,6 +32,8 @@
             success:function(data){
                 if(data.success){
                     console.log('deleted success', data);
+                }else{
+                    console.log(data);
                 }
             },
             errors:function(data){
@@ -72,6 +94,8 @@
             success: function (data) {
                 if (data.success) {
                     console.log('read video success', data);
+                }else{
+                    console.log(data);
                 }
             },
             errors: function (data) {
@@ -92,7 +116,9 @@
              success: function (data) {
                  if (data.success) {
                      console.log('read success', data);
-                 }
+                 }else{
+                    console.log(data);
+                }
              },
              errors: function (data) {
                  console.log('read error', data);
@@ -111,6 +137,8 @@
             success: function (data) {
                 if (data.success) {
                     console.log('insert success', data);
+                }else{
+                    console.log(data);
                 }
             },
             errors: function (data) {
@@ -131,6 +159,8 @@
             success: function (data) {
                 if (data.success) {
                     console.log('insert success', data);
+                }else{
+                    console.log(data);
                 }
             },
             errors: function (data) {
@@ -173,6 +203,8 @@
             success: function (data) {
                 if (data.success) {
                     console.log('insert success', data);
+                }else{
+                    console.log(data);
                 }
             },
             errors: function (data) {

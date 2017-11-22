@@ -6,7 +6,6 @@ if(empty($_SESSION['user_link'])){
     $output['user'] = false;
     output_and_exit($output);
 }
-$user_link = $_SESSION['user_link'];
 $stmt = $conn->prepare(
     "SELECT
         c.channel_title,

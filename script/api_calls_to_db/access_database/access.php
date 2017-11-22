@@ -10,6 +10,9 @@ if(empty($_POST['action'])){
     $output['errors'][] = 'No action specified';
     output_and_exit($output);
 }
+if(!empty($_SESSION['user_link'])){
+    $user_link = $_SESSION['user_link'];
+}
 function output_and_exit($output){
     $json_output = json_encode($output);
     print($json_output);
@@ -42,6 +45,9 @@ switch($_POST['action']){
         break;
     case 'insert_videos_curl':
         include('youtube_videos_curl.php');
+        break;
+    case 'delete_category':
+        include('delete_category.php');
         break;
     default:
         $output['errors'][] = 'invalid action';
