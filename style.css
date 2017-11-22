@@ -482,7 +482,7 @@ div.thRow {
 .carouselCol {
 	padding: 0;
 }
-.tdTitle, .tdInfo, .tdChannel, .tdUpdate, .tdButton {
+.tdTitle, .tdInfo, .tdChannel, .tdUpDate, .tdButton {
 	height: 100%;
 }
 .tdInfo a, .tdInfo a:hover, .tdInfo a:focus,
@@ -553,13 +553,13 @@ div.thRow {
 /* background-color: rgba(180, 189, 193, 1.0) !important;} */
 
 .selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
-	color: white; !important;
+	color: white !important;
 	background-color: #042818 !important;
 }
 
 .selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
 	font-weight: bold;
-	color: white; !important;
+	color: white !important;
 	background-color: #042818 !important;
 
 }

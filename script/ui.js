@@ -332,33 +332,33 @@ function clickHandler() {
     });
 
     //Theater mode
-    $('.lightBoxMode').on('click', checkHomePageVideoStatus);
-    $('.theatreModalClose').on('click', checkTheatreModeStatus);
+    // $('.lightBoxMode').on('click', checkHomePageVideoStatus);
+    // $('.theatreModalClose').on('click', checkTheatreModeStatus);
     $('.fastForwardButton').on('click', fastForwardVideo);
     $('.rewindButton').on('click', rewindVideo);
     $('.playButton').on('click', playYtVideo);
     $('.lastVideoButton').on('click',playPrevYTVideo);
     $('.nextVideoButton').on('click', playNextYTVideo); 
     // $('body').on('click', closeTheatreOnClick);
-    $(document).on('keyup', function (event) {
-        if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
-            console.log('Esc was pressed');
-            checkTheatreModeStatus();
-        }
-    });
+    // $(document).on('keyup', function (event) {
+    //     if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
+    //         console.log('Esc was pressed');
+    //         checkTheatreModeStatus();
+    //     }
+    // });
 
     // Lets user click outside of theatre modal to close and save the state of video
-    function closeTheatreOnClick(event) {
-        event.stopPropagation();
-        if($('body').hasClass('modal-open')) {
-            //Have to check if modal footer is being clicked to stop from closing modal
-            if(event.target.classList[0] == "fa" || event.target.classList == "") {
-                return;
-            }
-            $('.modal-content').modal('hide');
-            checkTheatreModeStatus();
-        }
-    }
+    // function closeTheatreOnClick(event) {
+    //     event.stopPropagation();
+    //     if($('body').hasClass('modal-open')) {
+    //         //Have to check if modal footer is being clicked to stop from closing modal
+    //         if(event.target.classList[0] == "fa" || event.target.classList == "") {
+    //             return;
+    //         }
+    //         $('.modal-content').modal('hide');
+    //         checkTheatreModeStatus();
+    //     }
+    // }
     //
     // function checkHomePageVideoStatus(event) {
     //     event.stopPropagation()
