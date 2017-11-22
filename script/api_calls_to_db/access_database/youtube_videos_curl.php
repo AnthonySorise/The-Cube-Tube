@@ -79,9 +79,10 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         //"INSERT INTO videos (video_title , channel_id) VALUES ('abc',1), ('xyz',2), ('hgf',4)""
         $sqli = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at, last_updated) VALUES";
         $refArr = [''];
+        $bind_str = '';
         foreach($entries as $key => $value){
             if(!empty($value['id']['videoId'])){
-                $query .= " (?,?,?,?,?,?),";
+                $sqli .= " (?,?,?,?,?,?),";
                 $bind_str .= "sissss";
                 $refArr[] = $value['snippet']['title'];
                 $refArr[] = $channel_id;
@@ -94,7 +95,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 $refArr[] = $last_updated;
             }
         }
-        $sqli_statement = "{$sqli}{$query}";
+        // $sqli_statement = "{$sqli}{$query}";
         $sqli_statement = rtrim($sqli_statement,", ");
         $res = $conn->prepare($sqli_statement);
         $refArr[0] = $bind_str;
