@@ -62,8 +62,6 @@ $(window).on('click',(e)=>{
 
 $(document).ready(function(){
 	channelDropClickHandle();
-
-	
 });
 
 function toastMsg(msgString, time) {
@@ -87,6 +85,34 @@ function toastMsg(msgString, time) {
     setTimeout(function () {
         $('.toast').remove();
     }, time);
+}
+
+function videoListDown(){
+    $('.listDropWrap').hide();
+    $('#text-carousel').slideUp(850, ()=>{
+        $('.videoListRowWrapper').hide();
+    });
+    $('.thRow').fadeOut(900);
+    $('.videoRowWrapper').animate({
+        'height': '94.3%'
+    }, 600);
+    $('#listContentWrap').animate({
+        'height': '5.5%'
+    }, 600);
+    
+}
+function videoListUp(){
+    $('.listDropWrap').slideDown();
+    $('.videoRowWrapper').animate({
+        'height': '60%'
+    }, 600);
+    $('#listContentWrap').animate({
+        'height': '40%'
+    }, 600);
+    $('.videoListRowWrapper').fadeIn(500, ()=>{
+        $('#text-carousel').slideDown(800);
+        $('.thRow').fadeIn(700);
+    });
 }
 
 //Click handler to console log search results
@@ -222,7 +248,7 @@ function clickHandler() {
         searchChannelsByName(inputStr).then(worked, failed);
         // $(".contentPlaceholder").hide();
         $('.contentPlaceholderWrapper').fadeOut(1000, function () {
-            $('#text-carousel, .videoHeader').slideDown(1100);
+            $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
         });
         // $("#text-carousel").show()
         // $(".videoHeader").show()
@@ -369,32 +395,31 @@ function clickHandler() {
     }
 
 
-function playYtVideo() {
-    player.playVideo();
-    if (this.classList.value === play) {
-        $('.playButton').removeClass(play).toggleClass(pause);
-    } else {
-        $('.pauseButton').removeClass(pause).toggleClass(play);
-        player.pauseVideo()
+    function playYtVideo() {
+        player.playVideo();
+        if (this.classList.value === play) {
+            $('.playButton').removeClass(play).toggleClass(pause);
+        } else {
+            $('.pauseButton').removeClass(pause).toggleClass(play);
+            player.pauseVideo()
 
+        }
+    }
+
+
+    function rewindVideo() {
+        var fastForward = player.getCurrentTime();
+        var minus15Seconds = fastForward - 15;
+        var player2State = player.getPlayerState();
+        if (player2State === 2) {
+            player.seekTo(minus15Seconds);
+            player.pauseVideo();
+            return;
+        } else {
+            player.seekTo(minus15Seconds);
+        }
     }
 }
-
-
-function rewindVideo() {
-    var fastForward = player.getCurrentTime();
-    var minus15Seconds = fastForward - 15;
-    var player2State = player.getPlayerState();
-    if (player2State === 2) {
-        player.seekTo(minus15Seconds);
-        player.pauseVideo();
-        return;
-    } else {
-        player.seekTo(minus15Seconds);
-    }
-}
-}
-
 
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
@@ -428,5 +453,10 @@ function tooltipFunctions() {
         setTimeout(function () {
             $('#channelInfo .fa-list-alt').tooltip('hide');
         }, 1000);
+    });
+    $('.listDropButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.listDropButton').tooltip('hide');
+        },1000);
     });
 }

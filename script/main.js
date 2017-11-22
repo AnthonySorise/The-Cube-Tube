@@ -21,8 +21,9 @@ var prevVideoIdToLoad = null;
 $(document).ready(function () {
     function initApp(){
         
-        $("#text-carousel").hide()
-        $(".videoHeader").hide()
+        $("#text-carousel, .videoHeader, .listDropWrap").hide();
+        // $(".videoHeader").hide();
+        // $('.listDropWrap').hide();
 
         rendertheatreControls();
         displayCurrentPageNumber();
@@ -108,7 +109,7 @@ function initiateUser() {
             if (data.success) {
                 console.log('USER CTU', data);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function () {
-                    $('#text-carousel, .videoHeader').slideDown(1100);
+                    $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
                     toastMsg('Welcome back', 3000);
                 });
                 numSubscribedChannels = data.data.length;

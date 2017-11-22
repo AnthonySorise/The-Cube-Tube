@@ -116,6 +116,25 @@ body {
 	position: relative;
 	font-family: 'Roboto', sans-serif;
 }
+.listDropWrap{
+	position: absolute;
+	top: 46px;
+	left: 49.25%;
+}
+.listDropButton{
+	padding: 0 15px;
+	background: black;
+	border:none;
+	color: rgba(255,255,255,0.55);
+	height:1.7em;
+	border-radius: 0 0 100% 100%;
+}
+.listDropButton:hover{
+	color: rgba(255,255,255,1);
+}
+.listDropButton:focus{
+	outline:none;
+}
 .midNavButtonWrap{
 	position: absolute;
 	left: 0;

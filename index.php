@@ -92,10 +92,10 @@ consider carousel for the video list area:
 							close <i class="fa fa-times" aria-hidden="true"></i>
 						</a>
 						<ul class="dropdown-menu text-center" id="channelCategoryUl">
-<!--							<li id="categoryButton">-->
-<!--								<i class="fa fa-caret-square-o-left" aria-hidden="true"></i>-->
-<!--								Category-->
-<!--							</li>-->
+							<li id="categoryButton">
+								<i class="fa fa-caret-square-o-left" aria-hidden="true"></i>
+								Category
+							</li>
 							<li role="separator" class="divider"></li>
 							<li class="dropdownChannelLiLoad">
 								<i class="fa fa-refresh" aria-hidden="true"></i>
@@ -144,8 +144,6 @@ consider carousel for the video list area:
 						</button>
 					</div>
 				</div>
-				<div class="hidden-xs col-sm-1 videoRowButtonCol">
-				</div>
 			</div>
 			<!--end of videoRow div-->
 			<div id="listContentWrap">
@@ -164,6 +162,11 @@ consider carousel for the video list area:
 					<!--end of nav header div-->
 					<div class="collapse navbar-collapse text-center" id="midNav-option">
 						<!--div for nav options-->
+						<div class="listDropWrap">
+							<button class="btn listDropButton" data-toggle="tooltip" data-placement="top" data-container='body' data-trigger="hover" title="hide video list">
+								<i class="fa fa-angle-double-down fa-2x" aria-hidden="true"></i>
+							</button>
+						</div>
 						<div class="navbar-nav nav-pills midNavButtonWrap">
 							<div class="navbar-nav nav-pills infoButtons hidden-xs">
 								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
