@@ -66,6 +66,10 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         echo $body;
     } else {
         $video_array = json_decode($json, true);
+        if(empty($video_array)){
+            $output['messages'][] = 'no new videos';
+            output_and_exit($output);
+        }
         if(!empty($video_array['nextPageToken'])){
             $next_page_token = $video_array['nextPageToken'];
         }
