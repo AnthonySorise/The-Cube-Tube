@@ -82,7 +82,8 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $query = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at, last_updated) VALUES";
         $refArr = [''];
         $bind_str = '';
-        foreach($entries as $key => $value){
+        // foreach($entries as $key => $value){
+        for($i = 0; $i<5; $i++){
             if(!empty($value['id']['videoId'])){
                 $query .= " (?,?,?,?,?,?),";
                 $bind_str .= "sissss";
