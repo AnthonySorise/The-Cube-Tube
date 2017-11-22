@@ -29,7 +29,6 @@ function addChannelModal(userLink) {
         }).css({
             position: 'absolute',
             display: 'none'
-            // 'top': '-500px'
         });
         $('body').append(britEyesOnly);
         const linkSpan = $('<span>',{

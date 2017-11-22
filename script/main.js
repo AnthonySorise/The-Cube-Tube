@@ -108,6 +108,15 @@ function initiateUser() {
         success: function (data) {
             if (data.success) {
                 console.log('USER CTU', data);
+                const uLink = 'www.thecubetube.com/?user=' + data.user_link;
+                const britEyesOnly = $('<span>',{
+                    'class': 'mrF',
+                    'text': uLink
+                }).css({
+                    position: 'absolute',
+                    display: 'none'
+                });
+                $('body').append(britEyesOnly);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                     $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
                     toastMsg('Welcome back', 3000);
