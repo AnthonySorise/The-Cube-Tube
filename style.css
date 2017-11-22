@@ -162,6 +162,10 @@ body {
 	margin-left: 25px;
 	float:right;
 }
+.playlistLabel{
+	font-size: 14px;
+	margin-right: 7px;
+}
 .midNavBrowsing, .midNavWatching{
 	display: none;
 	font-size:14px;

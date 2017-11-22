@@ -197,7 +197,7 @@ consider carousel for the video list area:
 <!--						end of form for channel search-->
                         <div class="navbar-nav nav-pills midNavChannels">
                         	<span class="playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="video 1, video 2">
-                        		<i class="fa fa-list-ol fa-lg"></i>
+                        		<i class="fa fa-list-ol fa-2x"></i>
                         		playlist
                         	</span>
 							<span class="midNavBrowsing">
