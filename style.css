@@ -119,12 +119,14 @@ body {
 .listUpWrap{
 	position: absolute;
 	top: -20px;
-	left: 49.25%;
+	left: 50%;
+	transform: translateX(-50%)
 }
 .listDropWrap{
 	position: absolute;
 	top: 46px;
-	left: 49.25%;
+	left: 50%;
+	transform: translateX(-50%)
 }
 .listUpButton{
 	padding: 0 15px;
@@ -999,14 +1001,13 @@ input:checked+.slider {
 }
 
 .mediaControls {
-	width: 25%;
-	height: 90%;
 	display: inline-block;
-	position: relative;
-	/* left: 33.3%; */
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 	color: rgba(255, 255, 255, 0.5);
 	margin: 0 auto;
-	padding-left: 5%;
+	/*padding-left: 5%;*/
 }
 
 
