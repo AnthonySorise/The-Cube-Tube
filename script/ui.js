@@ -94,7 +94,7 @@ function videoListDown(){
     });
     $('.thRow').fadeOut(900);
     $('.videoRowWrapper').animate({
-        'height': '94.3%'
+        'height': '93.8%'
     }, 600);
     $('#listContentWrap').animate({
         'height': '5.5%'
