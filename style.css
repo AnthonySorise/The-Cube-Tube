@@ -507,13 +507,13 @@ div.thRow {
 
 .selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
 	color: #020e13; !important;
-	background-color: lightgreen !important;
+	background-color: #132219 !important;
 }
 
 .selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
 	font-weight: bold;
 	color: #020e13; !important;
-	background-color: lightgreen !important;
+	background-color: #132219 !important;
 
 }
 
