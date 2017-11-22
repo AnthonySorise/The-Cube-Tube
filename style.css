@@ -501,6 +501,9 @@ div.thRow {
 .tdInfo>a{
 	padding: 0 12px;
 }
+.tdPlaylist{
+	padding: 0;
+}
 .tdPlaylistButton{
 	padding: 0 5px;
 	font-size: 10px;
