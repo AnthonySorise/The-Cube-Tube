@@ -162,12 +162,12 @@ consider carousel for the video list area:
 					<!--end of nav header div-->
 					<div class="collapse navbar-collapse text-center" id="midNav-option">
 						<!--div for nav options-->
-						<div class="listUpWrap">
+						<div class="listUpWrap hidden-xs">
 							<button class="btn listUpButton" data-toggle="tooltip" data-placement="bottom" data-container="body" data-trigger="hover" title="show video list">
 								<i class="fa fa-angle-double-up fa-2x" aria-hidden="true"></i>
 							</button>
 						</div>
-						<div class="listDropWrap">
+						<div class="listDropWrap hidden-xs">
 							<button class="btn listDropButton" data-toggle="tooltip" data-placement="top" data-container='body' data-trigger="hover" title="hide video list">
 								<i class="fa fa-angle-double-down fa-2x" aria-hidden="true"></i>
 							</button>
