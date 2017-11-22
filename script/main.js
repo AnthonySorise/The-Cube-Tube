@@ -20,6 +20,7 @@ var prevVideoIdToLoad = null;
 
 $(document).ready(function () {
     function initApp(){
+        
         $("#text-carousel").hide()
         $(".videoHeader").hide()
 

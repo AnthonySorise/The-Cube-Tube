@@ -41,7 +41,7 @@ consider carousel for the video list area:
     <script type="text/javascript" src="script/auto_search.js"></script>
     <script type="text/javascript" src="script/channel_buttons.js"></script>
     <script type="text/javascript" src="script/my_cube.js"></script>
-    <script type="text/javascript" src="script/tour.js"></script>
+    <!-- <script type="text/javascript" src="script/tour.js"></script> -->
     <script type="text/javascript" src="script/utilities.js"></script>
 
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
@@ -131,8 +131,11 @@ consider carousel for the video list area:
 			<div class="row videoRowWrapper text-center">
 				<!-- <div class="col-sm-3"></div> -->
 				<div class="text-center" id="mainVideoContainer">
+					
 					<!--This is where the iframe element will go-->
-					<div id="mainVideo" class="iframeVideo"></div>
+					<div id="mainVideo" class="iframeVideo">
+						
+					</div>
 					<div id=infoButtonContainer>
 						<!--can take function as content; meaning data only uploads when clicked-->
 						<button class="btn btn-lg hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"
@@ -200,6 +203,7 @@ consider carousel for the video list area:
 								</span>
 							</div>
 						</div>
+						<div class="mediaControls"></div>
 						<form class="navbar-right nav-pills form-inline">
 							<!--form for searching channels-->
 							<div class="form-group">

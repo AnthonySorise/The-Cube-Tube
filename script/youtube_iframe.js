@@ -163,6 +163,13 @@ $(window).resize(function () {
 });
 
 function rendertheatreControls() {
+    var lastVideoElement = $('<i>', {
+        class: "fa fa-backward modalControls lastVideoButton",
+        ["data-toggle"]: "tooltip",
+        ["data-placement"]: "left",
+        ["data-container"]: "body",
+        title: "Previous Video"
+    });
     var rewindElement = $('<i>', {
         class: "fa fa-undo modalControls rewindButton",
         ["data-toggle"]: "tooltip",
@@ -180,10 +187,24 @@ function rendertheatreControls() {
         ["data-container"]: "body",
         title: "Fast Forward 15s"
     });
+    var nextVideoElement = $('<i>', {
+        class: "fa fa-forward modalControls nextVideoButton",
+        ["data-toggle"]: "tooltip",
+        ["data-placement"]: "left",
+        ["data-container"]: "body",
+        title: "Next Video"
+    });
+    
+
+
     var closeButton = $('<button>', {
         class: "btn btn-danger modalClose theatreModalClose",
         text: "close",
         type: "button"
     });
-    $('#lightBoxModalFooter').append(rewindElement, playElement, fastForwardElement, closeButton);
+    // $('#lightBoxModalFooter').append(rewindElement, playElement, fastForwardElement, closeButton);
+    $('.mediaControls').append(lastVideoElement, rewindElement, playElement, fastForwardElement, nextVideoElement);
+    
 }
+
+
