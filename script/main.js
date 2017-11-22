@@ -10,12 +10,13 @@ var currentSlideNumber = 1;
 var currentVideoindex = null;
 var browsingMode = false;
 var currentVolumeLevel = null;
-var play = "fa fa-play modalControls playButton";
-var pause = "fa fa-pause modalControls pauseButton";
+const play = "fa fa-play modalControls playButton";
+const pause = "fa fa-pause modalControls pauseButton";
 var player;
 var player2;
-var videoID = null;
+var currentlySelectedVideoID = null;
 var nextVideoIdToLoad = null;
+var prevVideoIdToLoad = null;
 
 $(document).ready(function () {
     function initApp(){
@@ -65,7 +66,7 @@ $(document).ready(function () {
             console.log("LOAD IFRAME FAILED - TRY AGAIN")
             iFrameLoadTries = 0;
             player = null;
-            onYouTubeIframeAPIReady(videoID);
+            onYouTubeIframeAPIReady(currentlySelectedVideoID);
             setTimeout(function(){
                 waitForIframe();
             }, 50)
