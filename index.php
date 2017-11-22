@@ -184,17 +184,17 @@ consider carousel for the video list area:
 						</div>
 						<div class="mediaControls"></div>
 <!--						<form class="navbar-right nav-pills form-inline">-->
-<!--							<!--form for searching channels-->-->
+<!--							<!--form for searching channels-->
 <!--							<div class="form-group">-->
 <!--								<div class="input-group">-->
-<!--<!--									<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">-->-->
-<!--<!--									<span class="input-group-addon videoToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for videos from your channels">-->-->
-<!--<!--										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->-->
-<!--<!--									</span>-->-->
+<!--									<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">-->
+<!--									<span class="input-group-addon videoToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for videos from your channels">-->
+<!--										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->
+<!--									</span>-->
 <!--								</div>-->
 <!--							</div>-->
 <!--						</form>-->
-						<!--end of form for channel search-->
+<!--						end of form for channel search-->
                         <div class="navbar-nav nav-pills midNavChannels">
 								<span class="midNavBrowsing">
 									<p style="display:inline-block">
