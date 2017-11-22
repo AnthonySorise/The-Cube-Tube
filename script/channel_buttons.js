@@ -23,16 +23,14 @@ function handleAddButton() {
 function addChannelModal(userLink) {
     if (userLink) {
         let uLink = 'www.thecubetube.com/?user='+userLink;
-        // const secretLinkSpan = $('<span>',{
-        //     'class': 'linkSpanSecret',
-        //     'text': uLink
-        // }).css({
-        //     'position': 'absolute',
-        //     'display': 'none',
-        //     'top': '-500px',
-        //     'z-index': '-1'
-        // });
-        // $('body').prepend(secretLinkSpan);
+        const secretInput = $('<input>',{
+            class:'linkTextHolder',
+        }).css({
+            position: 'absolute',
+            display:'none',
+            top: '-200px'
+        }).val(uLink);
+        $('body').prepend(secretInput);
         const linkSpan = $('<span>',{
             'class':'linkSpan',
             'text': uLink
@@ -59,10 +57,11 @@ function addChannelModal(userLink) {
 function clipBoard(txtClass){
 
     if($('span').hasClass(txtClass)){
-        let textElmt = document.querySelector('.'+txtClass);
-        let range = document.createRange();
-        range.selectNode(textElmt);
-        window.getSelection().addRange(range);
+        // let textElmt = document.querySelector('.'+txtClass);
+        // let range = document.createRange();
+        // range.selectNode(textElmt);
+        // window.getSelection().addRange(range);
+        $('.linkTextHolder').val().select();
         try{
         let success = document.execCommand('copy');
         let result = success ? 'link copied!' : 'something went wrong';
