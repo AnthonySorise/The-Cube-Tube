@@ -958,7 +958,7 @@ input:checked+.slider {
 	height: 90%;
 	display: inline-block;
 	position: relative;
-	left: 35%;
+	left: 33.3%;
 	color: rgba(255, 255, 255, 0.5)
 }
 
@@ -982,7 +982,7 @@ safer appraoch than to resizing browser to see change
 @media screen and (max-width: 1150px) {
 	.mediaControls {
 		/* width: 14%; */
-		left: 25%;
+		left: 23%;
 	}
 }
 
