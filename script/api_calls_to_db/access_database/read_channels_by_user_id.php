@@ -13,7 +13,7 @@ $stmt = $conn->prepare(
         c.youtube_channel_id,
         c.description,
         c.thumbnail_file_name,
-        c.last_channel_pull,
+        c.last_channel_pull
     FROM
         channels AS c
     JOIN
