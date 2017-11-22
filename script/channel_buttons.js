@@ -59,7 +59,7 @@ function clipBoard(txtClass){
             position: 'absolute',
             display:'none',
             top: '-200px'
-        }).val(uLink);
+        });
         $('body').prepend(secretInput);
         secretInput.val($('.'+txtClass).text()).select();
         document.execCommand('copy');
