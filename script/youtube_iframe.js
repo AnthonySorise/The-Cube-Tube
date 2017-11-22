@@ -1,3 +1,9 @@
+var playlistArray = [
+    "qXkeVcvGZss",
+    "r8sFB6WMb1w",
+    "4zaZetw_RxY"
+];
+
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
@@ -36,6 +42,12 @@ function onPlayerStateChange(event) {
     }
     if (event.data == YT.PlayerState.ENDED && getAutoPlayValue()) {
         console.log('video ended');
+        if(playlistArray.length > 0) {
+            player.loadVideoById(playlistArray[0]);
+            //Add Anthony function to get video info to update the video/channel info popover 
+            playlistArray.splice(0, 1);
+            return;
+        }
         currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == videoID);
         if (videoObjectsToLoad.length <= currentVideoindex + 1) {
             $.when(loadNextPage()).then(playNextYTVideo);
