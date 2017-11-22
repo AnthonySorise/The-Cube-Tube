@@ -83,22 +83,36 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $refArr = [''];
         $bind_str = '';
         // foreach($entries as $key => $value){
+        //     if(!empty($value['id']['videoId'])){
+        //         $query .= " (?,?,?,?,?,?),";
+        //         $bind_str .= "sissss";
+        //         $refArr[] = $value['snippet']['title'];
+        //         $refArr[] = $channel_id;
+        //         $refArr[] = $value['id']['videoId'];
+        //         $refArr[] = $value['snippet']['description'];
+        //         $published_at = $value['snippet']['publishedAt'];
+        //         $published_at = str_replace('T',' ',$published_at);
+        //         $published_at = str_replace('.000Z','',$published_at);
+        //         $refArr[] = $published_at;
+        //         $refArr[] = $last_updated;
+        //     }
+        // }
+        // $sqli_statement = "{$sqli}{$query}";
         for($i = 0; $i<5; $i++){
-            if(!empty($value['id']['videoId'])){
+            if(!empty($entries[$i]['id']['videoId'])){
                 $query .= " (?,?,?,?,?,?),";
                 $bind_str .= "sissss";
-                $refArr[] = $value['snippet']['title'];
+                $refArr[] = $entries[$i]['snippet']['title'];
                 $refArr[] = $channel_id;
-                $refArr[] = $value['id']['videoId'];
-                $refArr[] = $value['snippet']['description'];
-                $published_at = $value['snippet']['publishedAt'];
+                $refArr[] = $entries[$i]['id']['videoId'];
+                $refArr[] = $entries[$i]['snippet']['description'];
+                $published_at = $entries[$i]['snippet']['publishedAt'];
                 $published_at = str_replace('T',' ',$published_at);
                 $published_at = str_replace('.000Z','',$published_at);
                 $refArr[] = $published_at;
                 $refArr[] = $last_updated;
             }
         }
-        // $sqli_statement = "{$sqli}{$query}";
         $query = rtrim($query,", ");
         $res = $conn->prepare($query);
         $refArr[0] = $bind_str;
