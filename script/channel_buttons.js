@@ -23,14 +23,6 @@ function handleAddButton() {
 function addChannelModal(userLink) {
     if (userLink) {
         let uLink = 'www.thecubetube.com/?user='+userLink;
-        const secretInput = $('<input>',{
-            class:'linkTextHolder',
-        }).css({
-            position: 'absolute',
-            display:'none',
-            top: '-200px'
-        }).val(uLink);
-        $('body').prepend(secretInput);
         const linkSpan = $('<span>',{
             'class':'linkSpan',
             'text': uLink
@@ -61,14 +53,18 @@ function clipBoard(txtClass){
         // let range = document.createRange();
         // range.selectNode(textElmt);
         // window.getSelection().addRange(range);
-        $('.linkTextHolder').val($('.linkSpan').text()).select();
-        try{
-        let success = document.execCommand('copy');
-        let result = success ? 'link copied!' : 'something went wrong';
-        toastMsg(result, 1200);
-        }catch(err){
-        console.log('error with clipBoard:', err);
-        }
+        let secretInput = $('<input>');
+        $('body').append(secretInput);
+        secretInput.val($('.'+txtClass).text()).select();
+        document.execCommand("copy");
+        secretInput.remove();
+        // try{
+        // let success = document.execCommand('copy');
+        // let result = success ? 'link copied!' : 'something went wrong';
+        // toastMsg(result, 1200);
+        // }catch(err){
+        // console.log('error with clipBoard:', err);
+        // }
     }else{
         toastMsg('nothing to copy', 1200);
     }
