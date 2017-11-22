@@ -492,11 +492,11 @@ div.thRow {
 .tdTitle, .tdInfo, .tdChannel, .tdUpDate{
 	height: 100%;
 }
-.tdInfo a, .tdInfo a:hover, .tdInfo a:focus,
-.tdButton a, .tdButton a:hover, .tdButton a:focus {
+.tdInfo a{
 	height: 100%;
 	background: none;
 	border: none;
+
 }
 .tdInfo{
 	padding: 0;
@@ -504,7 +504,7 @@ div.thRow {
 .tdInfo i {
 	color: rgba(124, 221, 249, 0.5);
 }
-.tdInfo i:hover, .tdInfo i:focus, .tdInfo:active {
+.tdInfo a:hover, .tdInfo a:focus, .tdInfo a:active {
 	color: rgba(255, 255, 255, 1);
 	background:none;
 	outline: none;
@@ -584,13 +584,6 @@ div.thRow {
 	background-color: #042818 !important;
 
 }
-
-
-/*.tdList:nth-child(even):hover, .tdList:nth-child(odd):hover {*/
-	/*color: #020e13; !important;*/
-/*}*/
-
-
 
 .row {
 	margin: 0;
