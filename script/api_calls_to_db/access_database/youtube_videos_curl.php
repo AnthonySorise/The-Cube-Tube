@@ -27,7 +27,7 @@ if(empty($channel_id)){
     $stmt->bind_param('s', $youtube_channel_id);
     $stmt->execute();
     $result = $stmt->get_result();
-    if ($result->num_row>0) {
+    if ($result->num_rows>0) {
         $row = $result->fetch_assoc();
         $channel_id = $row['channel_id'];
     } else {
