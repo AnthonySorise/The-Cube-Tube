@@ -49,26 +49,25 @@ function addChannelModal(userLink) {
 function clipBoard(txtClass){
 
     if($('span').hasClass(txtClass)){
-        // let textElmt = document.querySelector('.'+txtClass);
-        // let range = document.createRange();
-        // range.selectNode(textElmt);
-        // window.getSelection().addRange(range);
         const linkTxt = $('.'+txtClass).text();
-        let secretInput = $('<input>');
+        let secretInput = $('<input>').val(linkTxt);
         $('body').append(secretInput);
-        secretInput.val(linkTxt).select();
         setTimeout(()=>{
+            secretInput.select();
             document.execCommand("copy");
             secretInput.remove();
         },1000)
        
+        // var x = document.querySelector('.linkSpan');
+        // var rng = document.createRange();
+        // rng.selectNode(x);
+        // window.getSelection().addRange(rng);
         // try{
-        // let success = document.execCommand('copy');
-        // let result = success ? 'link copied!' : 'something went wrong';
-        // toastMsg(result, 1200);
+        // var success = document.execCommand('copy');
+        // var result = success ? 'copied!' : 'something went wrong';
         // }catch(err){
-        // console.log('error with clipBoard:', err);
-        // }
+        // console.log('error');
+        // } 
     }else{
         toastMsg('nothing to copy', 1200);
     }
