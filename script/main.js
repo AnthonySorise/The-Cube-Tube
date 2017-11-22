@@ -17,6 +17,12 @@ var player;
 var player2;
 var videoID = null;
 var nextVideoIdToLoad = null;
+//hard coded playlistarray for testing
+var playlistArray = [
+    "kSgr6tkAFLA",
+    "iWOHzUgCtw4",
+    "ELMot6xawIs"
+]
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -48,6 +54,7 @@ function onYouTubeIframeAPIReady2() {
 }
 
 function onPlayerStateChange(event) {
+
     if (event.data == YT.PlayerState.PLAYING) {
         $('.playButton').removeClass(play).toggleClass(pause);
 
@@ -56,6 +63,13 @@ function onPlayerStateChange(event) {
     }
     if (event.data == YT.PlayerState.ENDED && getAutoPlayValue()) {
         console.log('video ended');
+        //Added check for playlist feature to add certain videos to play instead of playing videos stright from carousel list
+        if(playlistArray.length > 0) {
+            player.loadVideoById(playlistArray[0]);
+            playlistArray.splice(0, 1);
+            return;
+        }
+        
         currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == videoID);
         if (videoObjectsToLoad.length <= currentVideoindex + 1) {
             $.when(loadNextPage()).then(playNextYTVideo);
@@ -345,7 +359,7 @@ function clickHandler() {
             });
 
             //Table List Row Channel that is selected
-            $(".tdChannel").mouseup(function () {
+            $(".tdChannel").mouseup(function () { 
                 if ($(this).parent().hasClass('selectedTd')) {
                     // $("#channelInfo").focus().click()
                     $("#channelInfo").trigger('focus')
