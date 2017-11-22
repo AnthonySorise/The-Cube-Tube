@@ -40,6 +40,18 @@ body {
 	border-radius: 25px;
 	background-color: #3F729B;
 }
+
+/************************************************************************************
+*  																					*
+*  								Bootstrap modifications								*
+*          																			*
+*************************************************************************************/
+
+popover{
+	background-color: black;
+	color:white;
+}
+
 /************************************************************************************
 *  Any and all css for navbar - i.e. anything inside #mainNav<nav> / #midNav<nav>	*
 *  at this moment, the only exception for having it outside of this area 			*
