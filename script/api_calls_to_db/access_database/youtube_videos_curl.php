@@ -84,17 +84,19 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             VALUES");
         $refArr = [''];
         foreach($entries as $key => $value){
-            $query .= " (?,?,?,?,?,?),";
-            $bind_str .= "sissss";
-            $refArr[] = $value['snippet']['title'];
-            $refArr[] = $channel_id;
-            $refArr[] =  $value['id']['videoId'];
-            $refArr[] = $value['snippet']['description'];
-            $published_at = $value['snippet']['publishedAt'];
-            $published_at = str_replace('T',' ',$published_at);
-            $published_at = str_replace('.000Z','',$published_at);
-            $refArr[] = $published_at;
-            $refArr[] = $last_updated;
+            if(!empty($value['id']['videoId'])){
+                $query .= " (?,?,?,?,?,?),";
+                $bind_str .= "sissss";
+                $refArr[] = $value['snippet']['title'];
+                $refArr[] = $channel_id;
+                $refArr[] = $value['id']['videoId'];
+                $refArr[] = $value['snippet']['description'];
+                $published_at = $value['snippet']['publishedAt'];
+                $published_at = str_replace('T',' ',$published_at);
+                $published_at = str_replace('.000Z','',$published_at);
+                $refArr[] = $published_at;
+                $refArr[] = $last_updated;
+            }
         }
         $sqli_statement = "{$sqli}{$query}";
         $sqli_statement = rtrim($sqli_statement,", ");
