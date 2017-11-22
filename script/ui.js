@@ -94,14 +94,17 @@ function videoListDown(){
     });
     $('.thRow').fadeOut(900);
     $('.videoRowWrapper').animate({
-        'height': '94.3%'
+        'height': '93.8%'
     }, 600);
     $('#listContentWrap').animate({
         'height': '5.5%'
     }, 600, ()=>{
         $('.listUpWrap').fadeIn();
     });
-    
+    $('#mainVideo').animate({
+        'width': '153vh',
+        'height': '86vh'
+    }, 600);
 }
 function videoListUp(){
     $('.listUpWrap').hide();
@@ -117,6 +120,10 @@ function videoListUp(){
         $('.thRow').fadeIn(700);
         $('.listDropWrap').slideDown(700);
     });
+    $('#mainVideo').animate({
+        'width': '98vh',
+        'height': '55vh'
+    }, 600);
 }
 
 //Click handler to console log search results
