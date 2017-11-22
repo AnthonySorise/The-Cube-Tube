@@ -30,7 +30,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
             data: {
                 action: 'update_video_list',
                 youtube_channel_id: channelID,
-                last_channel_pull: data.data[0].last_channel_pull
+                last_channel_pull: channelObject.last_channel_pull
             },
             success: function (data) {
                 if (data.success) {
