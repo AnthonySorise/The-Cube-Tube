@@ -518,9 +518,9 @@ div.thRow {
 }
 
 
-.tdList:nth-child(even):hover, .tdList:nth-child(odd):hover {
-	color: #020e13; !important;
-}
+/*.tdList:nth-child(even):hover, .tdList:nth-child(odd):hover {*/
+	/*color: #020e13; !important;*/
+/*}*/
 
 
 
