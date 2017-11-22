@@ -60,7 +60,7 @@ function clipBoard(txtClass){
         setTimeout(()=>{
             document.execCommand("copy");
             secretInput.remove();
-        },10)
+        },500)
        
         // try{
         // let success = document.execCommand('copy');
