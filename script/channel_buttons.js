@@ -37,7 +37,7 @@ function addChannelModal(userLink) {
             'text': uLink
         });
         const linkDiv = $('<div>',{
-            text: 'Save this link!!!!  '
+            text: 'Save this link!  Use it to get access to your subscribed channels.  '
         }).append(linkSpan);
         // $('.userLinkBody').text("Save this link!!!  ").append(linkSpan);
 

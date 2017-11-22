@@ -841,6 +841,17 @@ div.thRow {
 	margin: 7px;
 }
 
+.userLinkBody{
+	background-color: #020e13;
+	color:white;
+}
+
+.userLinkHeader{
+	background-color: black;
+	color:white;
+}
+
+
 /* .rewindButton {
 	margin-left: 25%;
 } */
