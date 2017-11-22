@@ -1,9 +1,9 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('direct access not allowed');
+    die('direct access allowed');
 }
 if(empty($_SESSION['user_link'])){
-    $output['user'] = false;
+    $output['messages'] = 'no user';
     output_and_exit($output);
 }
 $user_link = $_SESSION['user_link'];

@@ -21,14 +21,20 @@ if($diff<5){
     $output['messages'] = 'updated recently';
     output_and_exit($output);
 }
-$sqli = "UPDATE channels SET last_channel_pull = ? WHERE youtube_channel_id = ?";
+$sqli = 
+    "UPDATE
+        channels
+    SET
+        last_channel_pull = ?
+    WHERE
+        youtube_channel_id = ?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param("ss",$current_time,$youtube_channel_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';
 }else{
-    if(mysqli_affected_rows($conn)>0){
+    if($conn->affected_rows>0){
         $output['messages'][] = "channel updated with last channel pull";
         include('youtube_videos_curl.php');
     }else{

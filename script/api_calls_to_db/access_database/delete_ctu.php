@@ -7,18 +7,27 @@ if(empty($_POST['youtube_channel_id'])){
 }
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $user_link = $_SESSION['user_link'];
-$stmt = $conn->prepare("DELETE ctu FROM channels_to_users ctu 
-JOIN channels c ON ctu.channel_id = c.channel_id 
-JOIN users u ON ctu.user_id = u.user_id
-WHERE youtube_channel_id = ? AND u.user_link = ?");
+$sqli = 
+    "DELETE
+        ctu
+    FROM
+        channels_to_users ctu
+    JOIN
+        channels c ON ctu.channel_id = c.channel_id
+    JOIN
+        users u ON ctu.user_id = u.user_id
+    WHERE
+        c.youtube_channel_id = ? AND u.user_link = ?";
+$stmt = $conn->prepare($sqli);
 $stmt->bind_param("ss",$youtube_channel_id,$user_link);
 $stmt->execute();
 if(!empty($stmt)){
-    if(mysqli_affected_rows($conn)>0){
+    if($conn->affected_rows>0){
         $output['success'] = true;
+        $output['messages'][] = 'delete ctu success';
     }
     else{
-        $output['error'] = 'Unable to delete data';
+        $output['error'] = 'Unable to delete ctu';
     }
 }else{
     $output['errors'][]= 'invalid query';

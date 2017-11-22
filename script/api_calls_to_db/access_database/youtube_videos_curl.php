@@ -6,7 +6,6 @@ require('youtube_api_key.php');
 if(!empty($_POST['page_token'])){
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
-
 }
 if(!empty($_POST['last_channel_pull'])){
     $last_channel_pull = $_POST['last_channel_pull'];
@@ -17,21 +16,22 @@ if(!empty($_POST['last_channel_pull'])){
 }
 
 if(empty($channel_id)){
-    $sqli = "SELECT channel_id
-    FROM channels WHERE youtube_channel_id = ?";
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sqli)){
-        echo 'SQL statement failed, read channel id';
-    }else {
-        mysqli_stmt_bind_param($stmt, 's', $youtube_channel_id);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        if (mysqli_num_rows($result)>0) {
-            $row = mysqli_fetch_assoc($result);
-            $channel_id = $row['channel_id'];
-        } else {
-            $output['messages'] = "can't read channel";
-        }
+    $sqli = 
+        "SELECT 
+            channel_id
+        FROM 
+            channels 
+        WHERE 
+            youtube_channel_id = ?";
+    $stmt = $conn->prepare($sqli);
+    $stmt->bind_param('s', $youtube_channel_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows>0) {
+        $row = $result->fetch_assoc();
+        $channel_id = $row['channel_id'];
+    } else {
+        $output['messages'] = "can't read channel";
     }
 }
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
@@ -66,49 +66,49 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         echo $body;
     } else {
         $video_array = json_decode($json, true);
-        $next_page_token = $video_array['nextPageToken'];
+        if(empty($video_array['items'])){
+            $output['messages'][] = 'no new videos';
+            output_and_exit($output);
+        }
+        if(!empty($video_array['nextPageToken'])){
+            $next_page_token = $video_array['nextPageToken'];
+        }
         $entries = $video_array['items'];
         $last_updated = date('Y-m-d H:i:s');
-        // $query = "INSERT INTO videos ('video_title','channel_id','youtube_video_id') ";
-        // $bind_str = '';
-        // foreach($entries as $key=>$value){
-        //       $query.= "(?,?,?),";
-        //       $bind_str  .='sis';
-        // }
-        //"INSERT INTO videos (video_title , channel_id) VALUES ('abc',1), ('xyz',2), ('hgf',4)""
-        $output['insert_success'] = 0;
-        $maxCount = count($entries);
-        for($i = 0; $i<$maxCount; $i++){
-            $youtube_video_id = $entries[$i]['id']['videoId'];
-            $description = $entries[$i]['snippet']['description'];
-            $video_title = $entries[$i]['snippet']['title'];
-            $published_at = $entries[$i]['snippet']['publishedAt'];
-            $published_at = str_replace('T',' ',$published_at);
-            $published_at = str_replace('.000Z','',$published_at);
-            $stmt = $conn->prepare("INSERT INTO videos SET 
-                  video_title=?,
-                  channel_id=?,
-                  youtube_video_id=?, 
-                  description=?,
-                  published_at=?,
-                  last_updated=?");
-            $stmt->bind_param('sissss',$video_title,$channel_id,$youtube_video_id,
-                $description,$published_at,$last_updated);
-            $stmt->execute();
-            if(empty($stmt)){
-                $output['errors'][] = 'INVALID QUERY';
-            }else{
-                if(mysqli_affected_rows($conn)>0){
-                    //if last one is wrong, they will all be wrong
-                    $output['insert_success'] += 1;
-                }else{
-                    $output['errors'][] = 'unable to insert video';
-                }
+        $query = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at, last_updated) VALUES";
+        $data = [];
+        $bind_str = '';
+        foreach($entries as $key => $value){
+            if(!empty($value['id']['videoId'])){
+                $query .= " (?,?,?,?,?,?),";
+                $bind_str .= "sissss";
+                $data[] = $value['snippet']['title'];
+                $data[] = $channel_id;
+                $data[] = $value['id']['videoId'];
+                $data[] = $value['snippet']['description'];
+                $published_at = $value['snippet']['publishedAt'];
+                $published_at = str_replace('T',' ',$published_at);
+                $published_at = str_replace('.000Z','',$published_at);
+                $data[] = $published_at;
+                $data[] = $last_updated;
             }
-        }//end for
-        if($output['insert_success']>0){
-            $output['success']=true;
-            $output['page_token']=$next_page_token;
+        }
+        $query = rtrim($query,", ");
+        $stmt = $conn->prepare($query);
+        // call_user_func_array([$stmt, 'bind_param'],$data);
+        $stmt->bind_param($bind_str, ...array_merge($data));
+        $stmt->execute();
+        if(empty($stmt)){
+            $output['errors'][] = 'INVALID QUERY';
+            output_and_exit();
+        }else{
+            if($conn->affected_rows>0){
+                $output['success']=true;
+                $output['messages'][] = 'insert video success';
+                $output['page_token']=$next_page_token;
+            }else{
+                $output['errors'][] = 'unable to insert video';
+            }
         }
         if($page_token === 'first'){
             output_and_exit($output);
