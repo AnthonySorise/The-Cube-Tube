@@ -98,7 +98,9 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }
         $sqli_statement = "{$sqli}{$query}";
         $query = rtrim($query,", ");
+        print($query);
         $stmt = $conn->prepare($query);
+        print_r($data);
         $stmt->bind_param($bind_str, ...array_merge($data));
         $stmt->execute();
         // $ref = new ReflectionClass('mysqli_stmt'); 
