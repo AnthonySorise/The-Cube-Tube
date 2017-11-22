@@ -16,6 +16,7 @@ var player;
 var player2;
 var videoID = null;
 var nextVideoIdToLoad = null;
+var prevVideoIdToLoad = null;
 
 $(document).ready(function () {
     function initApp(){

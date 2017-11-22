@@ -1,7 +1,5 @@
 var playlistArray = [
-    "qXkeVcvGZss",
-    "r8sFB6WMb1w",
-    "4zaZetw_RxY"
+    
 ];
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -40,11 +38,21 @@ function onPlayerStateChange(event) {
     } else if (event.data == YT.PlayerState.PAUSED) {
         $('.pauseButton').removeClass(pause).toggleClass(play);
     }
+   
     if (event.data == YT.PlayerState.ENDED && getAutoPlayValue()) {
-        console.log('video ended');
         if(playlistArray.length > 0) {
-            player.loadVideoById(playlistArray[0]);
-            //Add Anthony function to get video info to update the video/channel info popover 
+            var playlistVideoId = playlistArray[0];
+            var videoObjArray = videoObjectsToLoad.length;
+            player.loadVideoById(playlistVideoId);
+           while(videoObjArray--) {
+               if(videoObjectsToLoad[videoObjArray].youtube_video_id === playlistVideoId) {
+                   console.log('Found channel id');
+                   var playlistChannelId = videoObjectsToLoad[videoObjArray].youtube_channel_id;
+               }
+           }
+            //Added Anthony function to get video info to update the video/channel info popover 
+            updateVideoInfoPopover(playlistVideoId);
+            updateChannelInfoPopover (playlistChannelId)
             playlistArray.splice(0, 1);
             return;
         }
@@ -83,6 +91,27 @@ function playNextYTVideo() {
     });
     $("[videoid='" + videoID + "']").addClass('selectedTd');
 
+}
+
+function playPrevYTViddeo() {
+    currentVideoindex = videoObjectsToLoad.findIndex(() => videoObjectsToLoad.youtube_video_id == videoID);
+    prevVideoIdToLoad = videoObjectsToLoad[currentVideoindex - 1].youtube_video_id
+
+    if (getAutoPlayValue()) {
+        player.loadVideoById(prevVideoIdToLoad);
+    } else {
+        player.cueVideoById(prevVideoIdToLoad);
+    }
+    player2.cueVideoById(prevVideoIdToLoad);
+    videoID = prevVideoIdToLoad;
+    $(".tdList").removeClass('selectedTd');
+    $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
+    $("[videoid='" + videoID + "'] span:first").before('<i>');
+    $("[videoid='" + videoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
+        "margin-right": '5px',
+        'color': 'green'
+    });
+    $("[videoid='" + videoID + "']").addClass('selectedTd');
 }
 
 function getAutoPlayValue() {
