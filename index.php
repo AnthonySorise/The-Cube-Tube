@@ -93,7 +93,7 @@ consider carousel for the video list area:
 						</a>
 						<ul class="dropdown-menu text-center" id="channelCategoryUl">
 							<li id="myLinkButton">
-								<i class="fa fa-floppy-o" aria-hidden="true"></i>
+								<i class="fa fa-floppy-o" aria-hidden="true" style='color:lightblue'></i>
 								Copy Link
 							</li>
 							<li role="separator" class="divider"></li>
