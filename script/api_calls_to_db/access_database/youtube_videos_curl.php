@@ -83,8 +83,11 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                     (video_title, channel_id, youtube_video_id, description, published_at, last_updated) 
             VALUES");
         $refArr = [];
+        print_r($entries);
+        
         foreach($entries as $key => $value){
-            print_r($entries);
+
+            print_r($key);
             print_r($value);
             output_and_exit($output);
             $query .= " (?,?,?)";
