@@ -61,6 +61,7 @@ function clipBoard(txtClass){
         var x = document.querySelector('.linkSpan');
         var rng = document.createRange();
         rng.selectNode(x);
+        window.getSelection().removeAllRanges();
         window.getSelection().addRange(rng);
         try{
         var success = document.execCommand('copy');
