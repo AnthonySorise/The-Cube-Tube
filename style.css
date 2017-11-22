@@ -772,6 +772,10 @@ div.thRow {
     justify-content: space-between;
 }
 
+.modalChSearch{
+	display:inline-block;
+}
+
 .modalControls {
 	font-size: 2em;
 	cursor: pointer;

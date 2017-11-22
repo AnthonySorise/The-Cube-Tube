@@ -1,16 +1,19 @@
 function retrieveInfoFromDB(channelID, isAdding = false) {
     videoObjectsToLoad = 0;
 
-    // //Check for duplicate
-    // var isDup = false;
-    // for(var i = 0; i<clientSubscribedChannelIds.length; i++){
-    //     if(clientSubscribedChannelIds[i] === channelID){
-    //         isDup = true
-    //     }
-    // }
-    // if(isDup){
-    //     return
-    // }
+    //Check for duplicate if adding
+    if(isAdding){
+        var isDup = false;
+        for(var i = 0; i<clientSubscribedChannelIds.length; i++){
+            if(clientSubscribedChannelIds[i] === channelID){
+                isDup = true
+            }
+        }
+        if(isDup){
+            return
+        }
+    }
+
     //instantiate handleInfoFromDB to be used later
     function handleInfoFromDB(readResult){
         if(!isAdding){//Browsing
@@ -52,6 +55,12 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
         loadSelectedChannels();
     }
 
+
+    //Check to see if channel is in local array
+    for(var i = 0; i<clientSubscribedChannelObjects.length; i++){
+        // if(clientSubscribedChannelObjects[i].)
+    }
+
     //Check to see if channel is on DB
     $.ajax({
         url:'./script/api_calls_to_db/access_database/access.php',
@@ -63,7 +72,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
         },
         success:function(data){
             //Channel is on DB
-            var channelObj = data;
+            var readResult = data;
             if(data.success){
                 console.log('Channel Found on DB', data);
                 console.log("last channel pull: ", data.data[0].last_channel_pull)
@@ -82,7 +91,7 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                             console.log('Channel Updated', data);
                         }
                         console.log(data);
-                        handleInfoFromDB(channelObj);
+                        handleInfoFromDB(readResult);
                     },
                     errors: function (data) {
                         console.log('insert error', data);

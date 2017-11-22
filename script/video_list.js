@@ -263,6 +263,10 @@ function resetSelectedTd() {
     }
 }
 
+function resetPlaylistTD(){
+
+}
+
 function updateMidNavText(){
     if(browsingMode){
         $('.midNavBrowsing').show();
