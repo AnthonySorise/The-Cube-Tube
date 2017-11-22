@@ -62,7 +62,7 @@ function clipBoard(txtClass){
         });
         $('body').prepend(secretInput);
         secretInput.val($('.'+txtClass).text()).select();
-        document.execCommand('copy');
+        document.execCommand("copy");
         secretInput.remove();
         // try{
         // let success = document.execCommand('copy');
