@@ -203,6 +203,7 @@ consider carousel for the video list area:
 								</span>
 							</div>
 						</div>
+						<div class="mediaControls"></div>
 						<form class="navbar-right nav-pills form-inline">
 							<!--form for searching channels-->
 							<div class="form-group">

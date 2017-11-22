@@ -128,15 +128,8 @@ function rendertheatreControls() {
         type: "button"
     });
     // $('#lightBoxModalFooter').append(rewindElement, playElement, fastForwardElement, closeButton);
-    $('.videoOverlay').append(rewindElement, playElement, fastForwardElement);
+    $('.mediaControls').append(rewindElement, playElement, fastForwardElement);
     
 }
 
-function showMediaControls(){
-    $("iframe").mouseenter(function(){
-        $(".videoOverlay").show();
-    })
-    $("iframe").mouseleave(function(){
-        $(".videoOverlay").hide();
-    })
-}
+
