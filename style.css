@@ -501,6 +501,11 @@ div.thRow {
 .tdInfo>a{
 	padding: 0 12px;
 }
+.tdPlaylistButton{
+	padding: 0 5px;
+	font-size: 10px;
+	border: none;
+}
 
 .tdTitle, .tdChannel, .tdUpDate {
 	overflow: hidden;
