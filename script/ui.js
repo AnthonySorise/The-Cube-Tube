@@ -94,7 +94,8 @@ function videoListDown(){
     });
     $('.thRow').fadeOut(900);
     $('.videoRowWrapper').animate({
-        'height': '93.8%'
+        // 'height': '93.8%'
+        'height':'94.2%'
     }, 600);
     $('#listContentWrap').animate({
         'height': '5.5%'
@@ -102,8 +103,8 @@ function videoListDown(){
         $('.listUpWrap').fadeIn();
     });
     $('#mainVideo').animate({
-        'width': '153vh',
-        'height': '86vh'
+        'width': '152vh',
+        'height': '85vh'
     }, 600);
 }
 function videoListUp(){
@@ -451,6 +452,11 @@ function clickHandler() {
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
+    $('.tdPlaylistButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.tdPlaylistButton').tooltip('hide');
+        },1000);
+    });
     $('.browseChannelButton').mouseenter(function () {
         setTimeout(function () {
             $('.browseChannelButton').tooltip('hide');
@@ -514,6 +520,9 @@ function tooltipFunctions() {
     $('.pauseButton').mouseenter(function(){
         setTimeout(function(){
             $('.pauseButton').tooltip('hide');
+    $('.listUpButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.listUpButton').tooltip('hide');
         },1000);
     });
 }
