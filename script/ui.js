@@ -134,7 +134,7 @@ function clickHandler() {
     $('.listDropButton').on('click', ()=>{
         videoListDown();
     });
-    $('.myLinkButton').on('click',()=>{
+    $('#myLinkButton').on('click',()=>{
         clipBoard('mrF');
     });
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
