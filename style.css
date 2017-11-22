@@ -501,6 +501,20 @@ div.thRow {
 	color: #020e13;
 }
 
+.selectedTd.tdList:nth-child(even):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0);
+	display: inline;
+	color: white;
+}
+
+.selectedTd.tdList:nth-child(odd):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0);
+	display: inline;
+	color: white;
+}
+
 /* .tdList:hover, .tdRow div.selectedTd {
 	/* background-color: #b4bdc1; */
 /* background-color: rgba(180, 189, 193, 1.0) !important;} */
