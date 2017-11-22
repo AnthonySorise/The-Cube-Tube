@@ -66,8 +66,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         echo $body;
     } else {
         $video_array = json_decode($json, true);
-        print_r($video_array);
-        if(empty($video_array)){
+        if(empty($video_array['items'])){
             $output['messages'][] = 'no new videos';
             output_and_exit($output);
         }
@@ -95,10 +94,9 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             }
         }
         $query = rtrim($query,", ");
-        print($query);
         $stmt = $conn->prepare($query);
-        print_r($data);
-        $stmt->bind_param($bind_str, ...array_merge($data));
+        call_user_func_array([$stmt, 'bind_param'],$data);
+        //$stmt->bind_param($bind_str, ...array_merge($data));
         $stmt->execute();
         if(empty($stmt)){
             $output['errors'][] = 'INVALID QUERY';
