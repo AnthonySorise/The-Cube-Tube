@@ -93,6 +93,7 @@ function videoListDown(){
         $('.videoListRowWrapper').hide();
     });
     $('.thRow').fadeOut(590);
+    $('.videoListRowWrapper').fadeOut(590);
     $('.videoRowWrapper').animate({
         // 'height': '93.8%'
         'height':'94.2%'
