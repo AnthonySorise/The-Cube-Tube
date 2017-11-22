@@ -1,4 +1,8 @@
     <?php
+    //included in delete ctu
+    if(empty($LOCAL_ACCESS)){
+        die('delete ctu, direct access not allowed');
+    }
     $sqli = 
         "DELETE
             cuc

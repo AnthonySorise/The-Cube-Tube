@@ -1,4 +1,5 @@
 <?php
+//called by access
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
@@ -18,6 +19,7 @@ $stmt->execute();
 if(empty($stmt)){
     $output['errors'][] = 'invalid query';
 }else{
+    //if category is inserted, insert the category to user to channel link
     if($result->affected_rows>0){
         $output['messages'][] = 'insert category success';
         $category_id = $conn->insert_id;

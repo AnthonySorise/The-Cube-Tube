@@ -1,4 +1,5 @@
 <?php
+//runs from access.php
 if(empty($LOCAL_ACCESS)){
     die('delete ctu, direct access not allowed');
 }
