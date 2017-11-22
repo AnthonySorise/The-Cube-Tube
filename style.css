@@ -160,6 +160,7 @@ body {
 	font-size: 1em;
 	line-height: 3.25em;
 	margin-left: 25px;
+	float:right;
 }
 .midNavBrowsing, .midNavWatching{
 	display: none;
@@ -1195,7 +1196,7 @@ safer appraoch than to resizing browser to see change
 		/*margin-left: -15px;*/
 		margin: 0;
 	}
-	.autoPlayArea, .midNavChannels{
+	.autoPlayArea{
 		margin-left: -15px;
 	}
 	#midNav-option form{
