@@ -24,12 +24,11 @@ function addChannelModal(userLink) {
     if (userLink) {
         let uLink = 'www.thecubetube.com/?user='+userLink;
         const britEyesOnly = $('<span>',{
-            'class': 'mrF',
+            'class': 'linkGhost',
             'text': uLink
         }).css({
             position: 'absolute',
             display: 'none'
-            // 'top': '-500px'
         });
         $('body').append(britEyesOnly);
         const linkSpan = $('<span>',{
