@@ -1121,6 +1121,7 @@ safer appraoch than to resizing browser to see change
 	/* Added these 6 css selectors to make mobile modal fit */
 	.modalChSearch{
 		width: 70%;
+		display:inline-block;
 	}
 	small {
 		display: none;
