@@ -84,8 +84,8 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             VALUES");
         $refArr = [''];
         foreach($entries as $key => $value){
-            $query .= " (?,?,?)";
-            $bind_str .=  "sissss";
+            $query .= " (?,?,?),";
+            $bind_str .= "sissss";
             $refArr[] = $value['snippet']['title'];
             $refArr[] = $channel_id;
             $refArr[] =  $value['id']['videoID'];
@@ -96,14 +96,19 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $refArr[] = $published_at;
             $refArr[] = $last_updated;
         }
-        $res = $conn->prepare("{$sqli}{$query}");
+        $sqli_statement = "{$sqli}{$query}";
+        $sqli_statement = rtrim($sqli_statement,", ");
+        $res = $conn->prepare($sqli_statement);
         $refArr[0] = $bind_str;
+        print($sqli_statement);
+        print_r($refArr);
         $ref = new ReflectionClass('mysqli_stmt'); 
         $method = $ref->getMethod("bind_param"); 
         $method->invokeArgs($res,$refArr); 
         $res->execute(); 
         if(empty($res)){
             $output['errors'][] = 'INVALID QUERY';
+            output_and_exit();
         }else{
             if($conn->affected_rows>0){
                 $output['success']=true;
