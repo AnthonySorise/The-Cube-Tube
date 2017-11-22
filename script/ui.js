@@ -445,6 +445,11 @@ function clickHandler() {
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
+    $('.tdPlaylistButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.tdPlaylistButton').tooltip('hide');
+        },1000);
+    });
     $('.browseChannelButton').mouseenter(function () {
         setTimeout(function () {
             $('.browseChannelButton').tooltip('hide');
@@ -478,6 +483,11 @@ function tooltipFunctions() {
     $('.listDropButton').mouseenter(function(){
         setTimeout(function(){
             $('.listDropButton').tooltip('hide');
+        },1000);
+    });
+    $('.listUpButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.listUpButton').tooltip('hide');
         },1000);
     });
 }
