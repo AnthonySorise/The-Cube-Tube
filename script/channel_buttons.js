@@ -49,26 +49,25 @@ function addChannelModal(userLink) {
 function clipBoard(txtClass){
 
     if($('span').hasClass(txtClass)){
-        // let textElmt = document.querySelector('.'+txtClass);
-        // let range = document.createRange();
-        // range.selectNode(textElmt);
-        // window.getSelection().addRange(range);
-        const linkTxt = $('.'+txtClass).text();
-        let secretInput = $('<input>');
-        $('body').append(secretInput);
-        secretInput.val(linkTxt).select();
-        setTimeout(()=>{
-            document.execCommand("copy");
-            secretInput.remove();
-        },1000)
+        // const linkTxt = $('.'+txtClass).text();
+        // let secretInput = $('<input>');
+        // $('body').append(secretInput);
+        // secretInput.val(linkTxt).select();
+        // setTimeout(()=>{
+        //     document.execCommand("copy");
+        //     secretInput.remove();
+        // },1000)
        
-        // try{
-        // let success = document.execCommand('copy');
-        // let result = success ? 'link copied!' : 'something went wrong';
-        // toastMsg(result, 1200);
-        // }catch(err){
-        // console.log('error with clipBoard:', err);
-        // }
+        var x = document.querySelector('.linkSpan');
+        var rng = document.createRange();
+        rng.selectNode(x);
+        window.getSelection().addRange(rng);
+        try{
+        var success = document.execCommand('copy');
+        var result = success ? 'copied!' : 'something went wrong';
+        }catch(err){
+        console.log('error');
+        } 
     }else{
         toastMsg('nothing to copy', 1200);
     }
