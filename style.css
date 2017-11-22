@@ -775,11 +775,12 @@ div.thRow {
 .modalControls {
 	font-size: 2em;
 	cursor: pointer;
+	margin: 10px;
 }
 
-.rewindButton {
+/* .rewindButton {
 	margin-left: 25%;
-}
+} */
 .playButton:hover, .rewindButton:hover, .fastForwardButton:hover, .pauseButton:hover {
 	color: #fff; 
 }
@@ -936,10 +937,15 @@ input:checked+.slider {
 }
 
 .videoOverlay {
-	width: 100%;
+	width: 40%;
 	background-color: white;
 	height: 40px;
 	z-index: 200000000000000;
+	margin: 0 auto;
+	position: absolute;
+	top: 60%;
+	left: 30%;
+	display: none;
 }
 
 

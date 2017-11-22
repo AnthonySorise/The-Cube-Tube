@@ -131,9 +131,10 @@ consider carousel for the video list area:
 			<div class="row videoRowWrapper text-center">
 				<!-- <div class="col-sm-3"></div> -->
 				<div class="text-center" id="mainVideoContainer">
+					
 					<!--This is where the iframe element will go-->
 					<div id="mainVideo" class="iframeVideo">
-						<div class="videoOverlay"></div>
+						
 					</div>
 					<div id=infoButtonContainer>
 						<!--can take function as content; meaning data only uploads when clicked-->
