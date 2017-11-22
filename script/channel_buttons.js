@@ -53,15 +53,10 @@ function clipBoard(txtClass){
         // let range = document.createRange();
         // range.selectNode(textElmt);
         // window.getSelection().addRange(range);
-        const secretInput = $('<input>',{
-            class:'linkTextHolder',
-        }).css({
-            position: 'absolute',
-            display:'none',
-            top: '-200px'
-        });
-        $('body').prepend(secretInput);
-        secretInput.val($('.'+txtClass).text()).select();
+        const linkTxt = $('.'+txtClass).text();
+        let secretInput = $('<input>');
+        $('body').append(secretInput);
+        secretInput.val(linkTxt).select();
         document.execCommand("copy");
         secretInput.remove();
         // try{
