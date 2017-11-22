@@ -102,8 +102,8 @@ function videoListDown(){
         $('.listUpWrap').fadeIn();
     });
     $('#mainVideo').animate({
-        'width': '153vh',
-        'height': '86vh'
+        'width': '152vh',
+        'height': '85vh'
     }, 600);
 }
 function videoListUp(){
