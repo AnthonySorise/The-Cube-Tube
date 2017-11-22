@@ -255,7 +255,7 @@ function clickHandler() {
                 }
             });
         
-            currentlySelectedVideoID = $(this).parent().attr('videoId');
+            currentlySelectedVideoID = $(this).parent().attr('videoID');
             var channelID = $(this).parent().attr('channelID');
 
             // $('.fa-play-circle-o').remove();
