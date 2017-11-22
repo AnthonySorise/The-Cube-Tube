@@ -291,6 +291,8 @@ function clickHandler() {
     $('.fastForwardButton').on('click', fastForwardVideo);
     $('.rewindButton').on('click', rewindVideo);
     $('.playButton').on('click', playYtVideo);
+    $('.lastVideoButton').on('click',playNextYTVideo);
+    // $('.nextVideoButton').on('click', ) *** awaiting on nexVideo function ***
     // $('body').on('click', closeTheatreOnClick);
     $(document).on('keyup', function (event) {
         if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
