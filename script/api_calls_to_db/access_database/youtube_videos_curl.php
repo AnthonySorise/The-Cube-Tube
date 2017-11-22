@@ -97,7 +97,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $refArr[] = $last_updated;
         }
         $res = $conn->prepare("{$sqli}{$query}");
-        $bind_array = ["{$bind_str}"];
+        $bind_array = "{$bind_str}";
         array_unshift($refArr,$bind_array);
         print_r($refArr);
         output_and_exit($output);
