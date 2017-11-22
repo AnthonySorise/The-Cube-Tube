@@ -194,7 +194,7 @@ consider carousel for the video list area:
 										Browsing:
 									</p>
 								</span> 
-								<span class="midNavBrowsing browsingLabel">
+								<span class="midNavBrowsing browsingLabel label label-info">
 									channel name
 								</span>
 								<span class="midNavBrowsing">
