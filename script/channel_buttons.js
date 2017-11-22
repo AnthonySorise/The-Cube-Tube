@@ -28,10 +28,10 @@ function addChannelModal(userLink) {
             'text': uLink
         }).css({
             position: 'absolute',
-            display: 'none',
-            'top': '-500px'
+            // display: 'none',
+            // 'top': '-500px'
         });
-        $('body').prepend(britEyesOnly);
+        $('body').append(britEyesOnly);
         const linkSpan = $('<span>',{
             'class':'linkSpan',
             'text': uLink
