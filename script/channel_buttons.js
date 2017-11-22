@@ -54,11 +54,11 @@ function clipBoard(txtClass){
         // range.selectNode(textElmt);
         // window.getSelection().addRange(range);
         const linkTxt = $('.'+txtClass).text();
-        let secretInput = $('<input>');
-        $('body').append(secretInput);
-        secretInput.val(linkTxt).select();
+        let secretInput = $('<input>').val(linkTxt).select();
+        // $('body').append(secretInput);
+        // secretInput.val(linkTxt).select();
         document.execCommand("copy");
-        secretInput.remove();
+        // secretInput.remove();
         // try{
         // let success = document.execCommand('copy');
         // let result = success ? 'link copied!' : 'something went wrong';
