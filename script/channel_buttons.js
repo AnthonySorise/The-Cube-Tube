@@ -49,14 +49,14 @@ function addChannelModal(userLink) {
 function clipBoard(txtClass){
 
     if($('span').hasClass(txtClass)){
-        const linkTxt = $('.'+txtClass).text().toString();
-        let secretInput = $('<input>');
+        const linkTxt = $('.'+txtClass).text();
+        let secretInput = $('<input>').val(linkTxt);
         $('body').append(secretInput);
-        secretInput.val(linkTxt).select();
-        // setTimeout(()=>{
+        setTimeout(()=>{
+            secretInput.select();
             document.execCommand("copy");
             secretInput.remove();
-        // },1000)
+        },1000)
        
         // var x = document.querySelector('.linkSpan');
         // var rng = document.createRange();
