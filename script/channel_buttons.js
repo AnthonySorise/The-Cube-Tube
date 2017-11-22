@@ -57,15 +57,15 @@ function clipBoard(txtClass){
         let secretInput = $('<input>');
         $('body').append(secretInput);
         secretInput.val(linkTxt).select();
-        document.execCommand("copy");
+        // document.execCommand("copy");
         secretInput.remove();
-        // try{
-        // let success = document.execCommand('copy');
-        // let result = success ? 'link copied!' : 'something went wrong';
-        // toastMsg(result, 1200);
-        // }catch(err){
-        // console.log('error with clipBoard:', err);
-        // }
+        try{
+        let success = document.execCommand('copy');
+        let result = success ? 'link copied!' : 'something went wrong';
+        toastMsg(result, 1200);
+        }catch(err){
+        console.log('error with clipBoard:', err);
+        }
     }else{
         toastMsg('nothing to copy', 1200);
     }
