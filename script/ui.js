@@ -416,11 +416,18 @@ function clickHandler() {
 
 
     function playYtVideo() {
+        debugger
         player.playVideo();
         if (this.classList.value === play) {
+            $('.playButton').tooltip('hide')
             $('.playButton').removeClass(play).toggleClass(pause);
+            $(this).attr('data-original-title','Pause')
+            
+
         } else {
+            $('.pauseButton').tooltip('hide');
             $('.pauseButton').removeClass(pause).toggleClass(play);
+            $(this).attr('data-original-title','Play')
             player.pauseVideo()
 
         }
@@ -484,6 +491,34 @@ function tooltipFunctions() {
             $('.listDropButton').tooltip('hide');
         },1000);
     });
+    $('.lastVideoButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.lastVideoButton').tooltip('hide');
+        },1000);
+    });
+    $('.rewindButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.rewindButton').tooltip('hide');
+        },1000);
+    });
+    $('.fastForwardButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.fastForwardButton').tooltip('hide');
+        },1000);
+    });
+    $('.nextVideoButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.nextVideoButton').tooltip('hide');
+        },1000);
+    });
+    $('.playButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.playButton').tooltip('hide');
+        },1000);
+    });
+    $('.pauseButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.pauseButton').tooltip('hide');
     $('.listUpButton').mouseenter(function(){
         setTimeout(function(){
             $('.listUpButton').tooltip('hide');
