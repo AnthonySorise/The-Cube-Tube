@@ -30,11 +30,20 @@ consider carousel for the video list area:
 	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script/api_calls_to_db/access_database/database_api.js"></script>
-	<script type="text/javascript" src="script/main.js"></script>
-	<script type="text/javascript" src="script/autoSearch.js"></script>
-	<script type="text/javascript" src="script/uiControl.js"></script>
-	<script type="text/javascript" src="script/utilities.js"></script>
-	<script type="text/javascript" src="script/searchBar.js"></script>
+
+    <script type="text/javascript" src="script/main.js"></script>
+    <script type="text/javascript" src="script/youtube_iframe.js"></script>
+    <script type="text/javascript" src="script/channel_search.js"></script>
+    <script type="text/javascript" src="script/ui.js"></script>
+    <script type="text/javascript" src="script/db.js"></script>
+    <script type="text/javascript" src="script/video_list.js"></script>
+    <script type="text/javascript" src="script/apple_compatibility.js"></script>
+    <script type="text/javascript" src="script/auto_search.js"></script>
+    <script type="text/javascript" src="script/channel_buttons.js"></script>
+    <script type="text/javascript" src="script/my_cube.js"></script>
+    <!-- <script type="text/javascript" src="script/tour.js"></script> -->
+    <script type="text/javascript" src="script/utilities.js"></script>
+
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
@@ -83,10 +92,10 @@ consider carousel for the video list area:
 							close <i class="fa fa-times" aria-hidden="true"></i>
 						</a>
 						<ul class="dropdown-menu text-center" id="channelCategoryUl">
-							<li id="categoryButton">
-								<i class="fa fa-caret-square-o-left" aria-hidden="true"></i>
-								Category
-							</li>
+<!--							<li id="categoryButton">-->
+<!--								<i class="fa fa-caret-square-o-left" aria-hidden="true"></i>-->
+<!--								Category-->
+<!--							</li>-->
 							<li role="separator" class="divider"></li>
 							<li class="dropdownChannelLiLoad">
 								<i class="fa fa-refresh" aria-hidden="true"></i>
@@ -122,8 +131,11 @@ consider carousel for the video list area:
 			<div class="row videoRowWrapper text-center">
 				<!-- <div class="col-sm-3"></div> -->
 				<div class="text-center" id="mainVideoContainer">
+					
 					<!--This is where the iframe element will go-->
-					<div id="mainVideo" class="iframeVideo"></div>
+					<div id="mainVideo" class="iframeVideo">
+						
+					</div>
 					<div id=infoButtonContainer>
 						<!--can take function as content; meaning data only uploads when clicked-->
 						<button class="btn btn-lg hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"
@@ -170,25 +182,28 @@ consider carousel for the video list area:
 							</div>
 							<div class="navbar-nav nav-pills midNavChannels">
 								<span class="midNavBrowsing">
-									<small>
+									<p style="display:inline-block">
 										Browsing:
-									</small>
+									</p>
 								</span> 
-								<span class="label label-primary midNavBrowsing browsingLabel">
+								<span class="midNavBrowsing browsingLabel">
 									channel name
 								</span>
 								<span class="midNavBrowsing">
 									<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
 								</span>
 								<span class="midNavWatching">
-									<small>Watching:</small> 
+									<p style="display:inline-block">
+                                        Watching:
+                                    </p>
 								</span>
-								<span class="label label-success midNavWatching watchingLabel" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
+								<span class="midNavWatching watchingLabel label label-success" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
 									<i class="fa fa-cubes"></i>
 									Subscribed Channels
 								</span>
 							</div>
 						</div>
+						<div class="mediaControls"></div>
 						<form class="navbar-right nav-pills form-inline">
 							<!--form for searching channels-->
 							<div class="form-group">
@@ -1048,7 +1063,7 @@ consider carousel for the video list area:
 					<div class="modal-body" id="channelSearchModalBody">
 						<li id="chSearch-1" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1065,7 +1080,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-2" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1083,7 +1098,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-3" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1101,7 +1116,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-4" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1118,7 +1133,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-5" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 
 								</span>
@@ -1137,7 +1152,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-6" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1154,7 +1169,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-7" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1171,7 +1186,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-8" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1189,7 +1204,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-9" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1206,7 +1221,7 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-10" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7">
+							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
 								<small class="col-xs-5">subs:
@@ -1244,10 +1259,10 @@ consider carousel for the video list area:
 					<div class="modal-body userLinkBody">
 						
 					</div>
-					<div class="modal-footer">
+					<!-- <div class="modal-footer">
 						<span id="userLinkModalFooter"></span>
 						<button type="button" class="btn btn-danger modalClose userLinkModalClose" data-dismiss="modal">close</button>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

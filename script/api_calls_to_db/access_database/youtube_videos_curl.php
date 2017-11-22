@@ -71,7 +71,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }
         $entries = $video_array['items'];
         $last_updated = date('Y-m-d H:i:s');
-
         // $query = "INSERT INTO videos ('video_title','channel_id','youtube_video_id') ";
         // $bind_str = '';
         // foreach($entries as $key=>$value){
@@ -80,52 +79,32 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         // }
         // "INSERT INTO videos (video_title , channel_id) VALUES ('abc',1), ('xyz',2), ('hgf',4)";
         $query = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at, last_updated) VALUES";
-        $refArr = [''];
+        $data = [''];
         $bind_str = '';
-        // foreach($entries as $key => $value){
-        //     if(!empty($value['id']['videoId'])){
-        //         $query .= " (?,?,?,?,?,?),";
-        //         $bind_str .= "sissss";
-        //         $refArr[] = $value['snippet']['title'];
-        //         $refArr[] = $channel_id;
-        //         $refArr[] = $value['id']['videoId'];
-        //         $refArr[] = $value['snippet']['description'];
-        //         $published_at = $value['snippet']['publishedAt'];
-        //         $published_at = str_replace('T',' ',$published_at);
-        //         $published_at = str_replace('.000Z','',$published_at);
-        //         $refArr[] = $published_at;
-        //         $refArr[] = $last_updated;
-        //     }
-        // }
-        // $sqli_statement = "{$sqli}{$query}";
-        for($i = 0; $i<5; $i++){
-            if(!empty($entries[$i]['id']['videoId'])){
+        foreach($entries as $key => $value){
+            if(!empty($value['id']['videoId'])){
                 $query .= " (?,?,?,?,?,?),";
                 $bind_str .= "sissss";
-                $refArr[] = $entries[$i]['snippet']['title'];
-                $refArr[] = $channel_id;
-                $refArr[] = $entries[$i]['id']['videoId'];
-                $refArr[] = $entries[$i]['snippet']['description'];
-                $published_at = $entries[$i]['snippet']['publishedAt'];
+                $data[] = $value['snippet']['title'];
+                $data[] = $channel_id;
+                $data[] = $value['id']['videoId'];
+                $data[] = $value['snippet']['description'];
+                $published_at = $value['snippet']['publishedAt'];
                 $published_at = str_replace('T',' ',$published_at);
                 $published_at = str_replace('.000Z','',$published_at);
-                $refArr[] = $published_at;
-                $refArr[] = $last_updated;
+                $data[] = $published_at;
+                $data[] = $last_updated;
             }
         }
+        $sqli_statement = "{$sqli}{$query}";
         $query = rtrim($query,", ");
-        $res = $conn->prepare($query);
-        $refArr[0] = $bind_str;
-        print($query);
-        print_r($refArr);
-        print_r($res);
-
-        call_user_func_array([$res, 'bind_param'], $refArr);
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param($bind_str, ...array_merge($data));
+        $stmt->execute();
         // $ref = new ReflectionClass('mysqli_stmt'); 
         // $method = $ref->getMethod("bind_param"); 
-        // $method->invokeArgs($res,$refArr); 
-        $res->execute(); 
-        if(empty($res)){
+        // $method->invokeArgs($res,$data);  
+        if(empty($stmt)){
             $output['errors'][] = 'INVALID QUERY';
             output_and_exit();
         }else{
