@@ -393,6 +393,7 @@ function updateChannelInfoPopover(channelID){
             const descriptionTitle = $('<p><strong>Description: </strong></p>');
             const descriptionContainer = $('<div></div>');
             descriptionContainer.css("height", "21.75vh");
+
             descriptionContainer.css("overflow-y", "auto")
             const description = $('<p>' + data.items[0].snippet.description + '</p>');
             descriptionContainer.append(description);
