@@ -14,7 +14,7 @@ const play = "fa fa-play modalControls playButton";
 const pause = "fa fa-pause modalControls pauseButton";
 var player;
 var player2;
-var videoID = null;
+var currentlySelectedVideoID = null;
 var nextVideoIdToLoad = null;
 var prevVideoIdToLoad = null;
 
@@ -65,7 +65,7 @@ $(document).ready(function () {
             console.log("LOAD IFRAME FAILED - TRY AGAIN")
             iFrameLoadTries = 0;
             player = null;
-            onYouTubeIframeAPIReady(videoID);
+            onYouTubeIframeAPIReady(currentlySelectedVideoID);
             setTimeout(function(){
                 waitForIframe();
             }, 50)

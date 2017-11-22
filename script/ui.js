@@ -254,8 +254,8 @@ function clickHandler() {
                     $("#channelInfo").trigger('focus')
                 }
             });
-
-            var videoID = $(this).parent().attr('videoId');
+        
+            currentlySelectedVideoID = $(this).parent().attr('videoId');
             var channelID = $(this).parent().attr('channelID');
 
             // $('.fa-play-circle-o').remove();
@@ -271,14 +271,14 @@ function clickHandler() {
             $('.tdList').removeClass('selectedTd');
             $(this).parent().addClass("selectedTd");
             if (getAutoPlayValue()) {
-                player.loadVideoById(videoID);
+                player.loadVideoById(currentlySelectedVideoID);
             } else {
-                player.cueVideoById(videoID);
+                player.cueVideoById(currentlySelectedVideoID);
             }
-            player2.cueVideoById(videoID);
+            player2.cueVideoById(currentlySelectedVideoID);
 
             //update video stats popover
-            updateVideoInfoPopover(videoID);
+            updateVideoInfoPopover(currentlySelectedVideoID);
 
             //update channel stats popover
             updateChannelInfoPopover(channelID);

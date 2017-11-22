@@ -38,6 +38,24 @@ function onPlayerStateChange(event) {
     } else if (event.data == YT.PlayerState.PAUSED) {
         $('.pauseButton').removeClass(pause).toggleClass(play);
     }
+
+     //Testing to get auto play to reverse order but using autoplay off to test but will implement button later to reverse auto play
+     if (event.data == YT.PlayerState.ENDED && !getAutoPlayValue()) {
+        console.log('autoplay is off');
+        currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
+        if (videoObjectsToLoad.length <= currentVideoindex - 1) {
+            $.when(loadPrevPage()).then(playPrevYTVideo);
+            $('.carousel').carousel('prev');
+        }
+        else if (videoObjectsToLoad.length % 20 === 0 && (currentVideoindex - 1) % 20 === 0) {
+            $('.carousel').carousel('prev');
+            playPrevYTVideo();
+        } else {
+            playPrevYTVideo();
+        }
+        
+    }
+
    
     if (event.data == YT.PlayerState.ENDED && getAutoPlayValue()) {
         if(playlistArray.length > 0) {
@@ -56,7 +74,7 @@ function onPlayerStateChange(event) {
             playlistArray.splice(0, 1);
             return;
         }
-        currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == videoID);
+        currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
         if (videoObjectsToLoad.length <= currentVideoindex + 1) {
             $.when(loadNextPage()).then(playNextYTVideo);
             $('.carousel').carousel('next');
@@ -72,7 +90,7 @@ function onPlayerStateChange(event) {
 
 //Function to play next video and change spinner icon to current video playing
 function playNextYTVideo() {
-    currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == videoID);
+    currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
     nextVideoIdToLoad = videoObjectsToLoad[currentVideoindex + 1].youtube_video_id
 
     if (getAutoPlayValue()) {
@@ -81,20 +99,19 @@ function playNextYTVideo() {
         player.cueVideoById(nextVideoIdToLoad);
     }
     player2.cueVideoById(nextVideoIdToLoad);
-    videoID = nextVideoIdToLoad;
+    currentlySelectedVideoID = nextVideoIdToLoad;
     $(".tdList").removeClass('selectedTd');
     $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
-    $("[videoid='" + videoID + "'] span:first").before('<i>');
-    $("[videoid='" + videoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
+    $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
+    $("[videoid='" + currentlySelectedVideoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
         "margin-right": '5px',
         'color': 'green'
     });
-    $("[videoid='" + videoID + "']").addClass('selectedTd');
+    $("[videoid='" + currentlySelectedVideoID + "']").addClass('selectedTd');
 
 }
 
-function playPrevYTViddeo() {
-    currentVideoindex = videoObjectsToLoad.findIndex(() => videoObjectsToLoad.youtube_video_id == videoID);
+function playPrevYTVideo() {
     prevVideoIdToLoad = videoObjectsToLoad[currentVideoindex - 1].youtube_video_id
 
     if (getAutoPlayValue()) {
@@ -103,15 +120,15 @@ function playPrevYTViddeo() {
         player.cueVideoById(prevVideoIdToLoad);
     }
     player2.cueVideoById(prevVideoIdToLoad);
-    videoID = prevVideoIdToLoad;
+    currentlySelectedVideoID = prevVideoIdToLoad;
     $(".tdList").removeClass('selectedTd');
     $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
-    $("[videoid='" + videoID + "'] span:first").before('<i>');
-    $("[videoid='" + videoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
+    $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
+    $("[videoid='" + currentlySelectedVideoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
         "margin-right": '5px',
         'color': 'green'
     });
-    $("[videoid='" + videoID + "']").addClass('selectedTd');
+    $("[videoid='" + currentlySelectedVideoID + "']").addClass('selectedTd');
 }
 
 function getAutoPlayValue() {
