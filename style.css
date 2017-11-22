@@ -834,6 +834,9 @@ div.thRow {
 .modalChSearch{
 	display:inline-block;
 }
+#ui-id-3{
+	max-width: 190px;
+}
 
 .modalControls {
 	font-size: 2em;

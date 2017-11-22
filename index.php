@@ -1053,7 +1053,7 @@ consider carousel for the video list area:
 					<!--form for searching channels-->
 							<div class="form-group">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="search channels" name="channelSearch">
+									<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
 									<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
 										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 									</span>
