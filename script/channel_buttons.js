@@ -58,11 +58,11 @@ function addChannelModal(userLink) {
 
 function clipBoard(txtClass){
 
-    if($('span').hasClass('linkSpan')){
+    if($('span').hasClass(txtClass)){
         let textElmt = document.querySelector('.'+txtClass);
         let range = document.createRange();
         range.selectNode(textElmt);
-        window.getSelection().addRange(range.endContainer.childNodes[1].innerText);
+        window.getSelection().addRange(range);
         try{
         let success = document.execCommand('copy');
         let result = success ? 'link copied!' : 'something went wrong';
