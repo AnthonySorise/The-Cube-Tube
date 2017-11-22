@@ -23,16 +23,6 @@ function handleAddButton() {
 function addChannelModal(userLink) {
     if (userLink) {
         let uLink = 'www.thecubetube.com/?user='+userLink;
-        // const secretLinkSpan = $('<span>',{
-        //     'class': 'linkSpanSecret',
-        //     'text': uLink
-        // }).css({
-        //     'position': 'absolute',
-        //     'display': 'none',
-        //     'top': '-500px',
-        //     'z-index': '-1'
-        // });
-        // $('body').prepend(secretLinkSpan);
         const linkSpan = $('<span>',{
             'class':'linkSpan',
             'text': uLink
@@ -59,17 +49,28 @@ function addChannelModal(userLink) {
 function clipBoard(txtClass){
 
     if($('span').hasClass(txtClass)){
-        let textElmt = document.querySelector('.'+txtClass);
-        let range = document.createRange();
-        range.selectNode(textElmt);
-        window.getSelection().addRange(range);
-        try{
-        let success = document.execCommand('copy');
-        let result = success ? 'link copied!' : 'something went wrong';
-        toastMsg(result, 1200);
-        }catch(err){
-        console.log('error with clipBoard:', err);
-        }
+        // let textElmt = document.querySelector('.'+txtClass);
+        // let range = document.createRange();
+        // range.selectNode(textElmt);
+        // window.getSelection().addRange(range);
+        const secretInput = $('<input>',{
+            class:'linkTextHolder',
+        }).css({
+            position: 'absolute',
+            display:'none',
+            top: '-200px'
+        });
+        $('body').prepend(secretInput);
+        secretInput.val($('.'+txtClass).text()).select();
+        document.execCommand("copy");
+        secretInput.remove();
+        // try{
+        // let success = document.execCommand('copy');
+        // let result = success ? 'link copied!' : 'something went wrong';
+        // toastMsg(result, 1200);
+        // }catch(err){
+        // console.log('error with clipBoard:', err);
+        // }
     }else{
         toastMsg('nothing to copy', 1200);
     }

@@ -779,11 +779,12 @@ div.thRow {
 .modalControls {
 	font-size: 2em;
 	cursor: pointer;
+	margin: 10px;
 }
 
-.rewindButton {
+/* .rewindButton {
 	margin-left: 25%;
-}
+} */
 .playButton:hover, .rewindButton:hover, .fastForwardButton:hover, .pauseButton:hover {
 	color: #fff; 
 }
@@ -937,6 +938,15 @@ input:checked+.slider {
 	top: 100%;
 	left: 0px;
 	width: 100%;
+}
+
+.mediaControls {
+	width: 20%;
+	height: 90%;
+	display: inline-block;
+	position: relative;
+	left: 35%;
+	color: rgba(255, 255, 255, 0.5)
 }
 
 
