@@ -269,7 +269,7 @@ body {
 .autoPlayArea{
 	/*float: none;*/
 	/*display: inline-block;*/
-	margin-left: 35px;
+	/*float:right;*/
 }
 .midNavBrowsing>small, .midNavWatching>small{
 	color: grey;
