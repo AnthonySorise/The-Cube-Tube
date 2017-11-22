@@ -1,0 +1,294 @@
+function loadSelectedChannels() {
+    $.ajax({    //RETRIEVE VIDEOS FROM DB
+        url: './script/api_calls_to_db/access_database/access.php',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+            action: 'read_videos_by_channel_array',
+            channel_id_array: clientSelectedChannelIds,
+            offset: 0
+        },
+        success: function (data) {
+            if (data.success) {
+                // promise.resolve(data);
+                console.log('Videos Found', data);
+                videoObjectsToLoad = [];
+                videoObjectsToLoad = data.data;
+                // returnToPageOne();
+                clearVideoList();
+                renderVideoList(videoObjectsToLoad);
+                updateMidNavText()
+            }
+            else {
+                console.log('Channel Found Without Videos', data)
+            }
+        },
+        errors: function (data) {
+            console.log(data['read errors'], data);
+            // promise.reject(data);
+        }
+    })
+}
+
+function renderVideoList(videoArray) {
+    if (videoObjectsToLoad === null) {
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    }
+    console.log("LOADING VIDEO LIST")
+    clearVideoList();
+    // returnToPageOne();
+
+    for (let i = 0; i < videoArray.length; i++) {
+        if (videoArray[i] === undefined) {
+            return
+        }
+
+        let row = "#tdList-" + (i + 1);
+        let title = row + " .tdTitle>span";
+        let channel = row + " .tdChannel";
+        let upDate = row + " .tdUpDate";
+
+        let dateString = videoArray[i].published_at;
+
+        if (checkIfAppleDevice()) {
+            // let date = "2017-11-03 09:34:14" //testing only - sample data
+            let newDate = dateString.split(" ");
+            let removeTime = newDate[0].split("-")
+            let newDateString = removeTime[1] + '/' + removeTime[2] + '/' + removeTime[0]
+            dateString = newDateString
+        } else {
+            const d = new Date(dateString);
+            dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
+        }
+        // const d = new Date(dateString);
+        // dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
+
+        $(row).show();
+
+        $(row).attr("videoID", videoArray[i].youtube_video_id);
+        $(row).attr("channelID", videoArray[i].youtube_channel_id);
+        $(title).text(videoArray[i].video_title);
+        $(channel).text(videoArray[i].channel_title);
+        $(upDate).text(dateString);
+
+    }
+    resetSelectedTd();
+    //update thumbnail hover popover
+    setTimeout(function () {
+        for (let i = 0; i < videoArray.length; i++) {
+            let row = "#tdList-" + (i + 1);
+            let videoData = row + " .tdInfo a";
+            let videoURL = 'https://i.ytimg.com/vi/' + videoArray[i].youtube_video_id + '/mqdefault.jpg';
+
+            const videoDataImg = $('<img>').attr('src', videoURL).css({
+                width: '240px',
+                height: '135px',
+            });
+            // var videoDataImg = "<img src="+videoURL+" />";
+            $(videoData).attr({
+                'data-content': videoArray[i].description,
+                'data-original-title': videoArray[i].video_title
+            });
+            $(row).popover({
+                trigger: "hover",
+                html: true,
+                content: videoDataImg,
+                placement: 'auto',
+                container: 'body'
+            })
+                .attr({
+                    'data-original-title': videoArray[i].video_title
+                });
+        }
+    }, 750);
+}
+
+function clearVideoList() {
+    $(".tdList").popover('destroy');
+
+    $('.tdList').attr("videoID", "");
+    $('.tdTitle>span').text("");
+    $('.tdChannel').text("");
+    $('.tdUpDate').text("");
+    $('.tdInfo a').attr({
+        'data-content': "",
+        'data-original-title': ""
+    });
+    $('.tdList').hide();
+}
+
+function loadNextPage() {
+    if (currentSlideNumber % 2) {
+        var pageToLoad = (currentSlideNumber - 1) / 2;
+        var indexToStartOn = (pageToLoad) * 40;
+        var videosToLoad = [];
+        if (videoObjectsToLoad.length < indexToStartOn + 40) {
+            $.ajax({
+                url: './script/api_calls_to_db/access_database/access.php',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    action: 'read_videos_by_channel_array',
+                    channel_id_array: clientSelectedChannelIds,
+                    offset: indexToStartOn
+                },
+                success: function (data) {
+                    if (data.success) {
+                        // promise.resolve(data);
+                        console.log('read success', data);
+                        for (var i = 0; i < data.data.length; i++) {
+                            videoObjectsToLoad.push(data.data[i])
+                        }
+                        for (var i = indexToStartOn; i < indexToStartOn + 40; i++) {
+                            videosToLoad.push(videoObjectsToLoad[i])
+                        }
+                        console.log("VIDEOS TO LOAD", videosToLoad)
+                        setTimeout(function () {
+                            // clearVideoList();
+                            renderVideoList(videosToLoad)
+                            removeUnusedRows();
+                        }, 250)
+
+                    }
+                },
+                errors: function (data) {
+                    console.log('read error', data);
+                    // promise.reject(data);
+                }
+            })
+        }
+        else {
+            for (var i = indexToStartOn; i < indexToStartOn + 40; i++) {
+                videosToLoad.push(videoObjectsToLoad[i])
+            }
+            console.log("VIDEOS TO LOAD", videosToLoad)
+            setTimeout(function () {
+                // clearVideoList();
+                renderVideoList(videosToLoad)
+                removeUnusedRows();
+            }, 250)
+        }
+    }
+}
+
+function loadPreviousPage() {
+    if (!(currentSlideNumber % 2)) {
+        var pageToLoad = (currentSlideNumber / 2) - 1;
+        var indexToStartOn = (pageToLoad) * 40;
+        var videosToLoad = [];
+
+
+        for (var i = indexToStartOn; i < indexToStartOn + 40; i++) {
+            videosToLoad.push(videoObjectsToLoad[i])
+        }
+        console.log("VIDEOS TO LOAD", videosToLoad);
+        setTimeout(function () {
+            // clearVideoList();
+            renderVideoList(videosToLoad)
+        }, 250)
+    }
+}
+
+function fadeToFirstSlideEffect() {
+    $(".tdRow").hide();
+    $(".tdRow").fadeIn(2000)
+}
+
+function returnToPageOne() {
+    $(".carousel").removeClass('slide')
+    $(".carousel").carousel(0);
+    if (currentSlideNumber !== 1) {
+        clearVideoList();
+        currentSlideNumber = 1; //redundant?
+        if (videoObjectsToLoad.length !== 0) {
+            var videosToLoad = [];
+            for (var i = 0; i < 40; i++) {
+                videosToLoad.push(videoObjectsToLoad[i])
+            }
+            console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
+            // setTimeout(function(){
+            // clearVideoList();
+            renderVideoList(videosToLoad)
+            // }, 250)
+        }
+    }
+    $(".carousel").addClass('slide')
+    fadeToFirstSlideEffect();
+    displayCurrentPageNumber();
+}
+
+function displayCurrentPageNumber() {
+    $("#currentSlideNumberArea").text(currentSlideNumber);
+    if (currentSlideNumber == 1) {
+        $(".leftControl").hide()
+        $("#returnCarouselStart").hide();
+    } else {
+        $(".leftControl").show();
+        $("#returnCarouselStart").show();
+    }
+}
+
+function removeUnusedRows() {
+    for (var i = 0; i < 40; i++) {
+        let row = "#tdList-" + (i + 1);
+        let title = row + " .tdTitle>span";
+
+        if ($(title).text() === "") {
+            $(row).hide();
+        }
+    }
+}
+
+function resetSelectedTd() {
+    //NEEDS TO ALSO HANDLE FA FA SPINNER
+    // setTimeout(function(){
+    $(".tdList").removeClass('selectedTd');
+    $('.fa-circle-o-notch').remove();
+    // }, 50);
+    for (let i = 0; i < 40; i++) {
+        let row = "#tdList-" + (i + 1);
+
+        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
+            // setTimeout(function(){
+            $(row).addClass("selectedTd")
+            var playSymbol = $('<i>')
+                .addClass('fa fa-circle-o-notch fa-spin fa-fw')
+                .css({
+                    "margin-right": '5px',
+                    'color': 'green'
+                });
+            $(row).find(".tdTitle>span").prepend(playSymbol);
+            // }, 500)
+        }
+    }
+}
+
+function updateMidNavText(){
+    if(browsingMode){
+        $('.midNavBrowsing').show();
+        $('.midNavWatching').hide();
+        $(".browsingLabel").text(clientSelectedChannelObjects[0].channel_title)
+        $(".midNavChannels>span").attr("channelId", clientSelectedChannelObjects[0].youtube_channel_id)
+
+        if(clientSubscribedChannelIds.indexOf(clientSelectedChannelObjects[0].youtube_channel_id)!== -1){
+            $(".midNavAddBtn").hide();
+        }
+        else{
+            $(".midNavAddBtn").show();
+        }
+
+    }
+    else{
+        $('.midNavBrowsing').hide();
+        $('.midNavWatching').show();
+        var channelsWatching = "";
+        for(var i = 0; i < clientSelectedChannelObjects.length; i++){
+            channelsWatching += clientSelectedChannelObjects[i].channel_title;
+            if(i !== clientSelectedChannelObjects.length-1 && clientSelectedChannelObjects.length !== 1){
+                channelsWatching += ", "
+            }
+        }
+        $(".midNavAddBtn").hide();
+        $(".watchingLabel").attr("data-original-title", channelsWatching)
+    }
+}

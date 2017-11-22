@@ -30,11 +30,20 @@ consider carousel for the video list area:
 	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script/api_calls_to_db/access_database/database_api.js"></script>
-	<script type="text/javascript" src="script/main.js"></script>
-	<script type="text/javascript" src="script/autoSearch.js"></script>
-	<script type="text/javascript" src="script/uiControl.js"></script>
-	<script type="text/javascript" src="script/utilities.js"></script>
-	<script type="text/javascript" src="script/searchBar.js"></script>
+
+    <script type="text/javascript" src="script/main.js"></script>
+    <script type="text/javascript" src="script/youtube_iframe.js"></script>
+    <script type="text/javascript" src="script/channel_search.js"></script>
+    <script type="text/javascript" src="script/ui.js"></script>
+    <script type="text/javascript" src="script/db.js"></script>
+    <script type="text/javascript" src="script/video_list.js"></script>
+    <script type="text/javascript" src="script/apple_compatibility.js"></script>
+    <script type="text/javascript" src="script/auto_search.js"></script>
+    <script type="text/javascript" src="script/channel_buttons.js"></script>
+    <script type="text/javascript" src="script/my_cube.js"></script>
+    <script type="text/javascript" src="script/tour.js"></script>
+    <script type="text/javascript" src="script/utilities.js"></script>
+
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
@@ -170,9 +179,9 @@ consider carousel for the video list area:
 							</div>
 							<div class="navbar-nav nav-pills midNavChannels">
 								<span class="midNavBrowsing">
-									<small>
+									<p style="display:inline-block">
 										Browsing:
-									</small>
+									</p>
 								</span> 
 								<span class="midNavBrowsing browsingLabel">
 									channel name
@@ -181,9 +190,9 @@ consider carousel for the video list area:
 									<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
 								</span>
 								<span class="midNavWatching">
-									<small>
+									<p style="display:inline-block">
                                         Watching:
-                                    </small>
+                                    </p>
 								</span>
 								<span class="midNavWatching watchingLabel label label-success" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
 									<i class="fa fa-cubes"></i>
@@ -1246,10 +1255,10 @@ consider carousel for the video list area:
 					<div class="modal-body userLinkBody">
 						
 					</div>
-					<div class="modal-footer">
+					<!-- <div class="modal-footer">
 						<span id="userLinkModalFooter"></span>
 						<button type="button" class="btn btn-danger modalClose userLinkModalClose" data-dismiss="modal">close</button>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
