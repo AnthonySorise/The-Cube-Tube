@@ -772,6 +772,10 @@ div.thRow {
     justify-content: space-between;
 }
 
+.modalChSearch{
+	display:inline-block;
+}
+
 .modalControls {
 	font-size: 2em;
 	cursor: pointer;
@@ -1121,7 +1125,6 @@ safer appraoch than to resizing browser to see change
 	/* Added these 6 css selectors to make mobile modal fit */
 	.modalChSearch{
 		width: 70%;
-		display:inline-block;
 	}
 	small {
 		display: none;
