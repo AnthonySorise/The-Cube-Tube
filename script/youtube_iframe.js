@@ -15,21 +15,21 @@ function onYouTubeIframeAPIReady(vidId) {
             'onStateChange': onPlayerStateChange
         }
     });
-    onYouTubeIframeAPIReady2();
+    // onYouTubeIframeAPIReady2();
 }
 
-function onYouTubeIframeAPIReady2() {
-    player2 = new YT.Player('theaterVideo', {
-        videoId: 'lrzIR8seNXs',
-        playerVars: {
-            'rel': 0,
-        },
-        events: {
-            'onStateChange': onPlayerStateChange
-        }
-
-    });
-}
+// function onYouTubeIframeAPIReady2() {
+//     player2 = new YT.Player('theaterVideo', {
+//         videoId: 'lrzIR8seNXs',
+//         playerVars: {
+//             'rel': 0,
+//         },
+//         events: {
+//             'onStateChange': onPlayerStateChange
+//         }
+//
+//     });
+// }
 
 function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.PLAYING) {
@@ -99,7 +99,7 @@ function playNextYTVideo() {
     } else {
         player.cueVideoById(nextVideoIdToLoad);
     }
-    player2.cueVideoById(nextVideoIdToLoad);
+    // player2.cueVideoById(nextVideoIdToLoad);
     currentlySelectedVideoID = nextVideoIdToLoad;
     $(".tdList").removeClass('selectedTd');
     $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
@@ -122,7 +122,7 @@ function playPrevYTVideo() {
     } else {
         player.cueVideoById(prevVideoIdToLoad);
     }
-    player2.cueVideoById(prevVideoIdToLoad);
+    // player2.cueVideoById(prevVideoIdToLoad);
     currentlySelectedVideoID = prevVideoIdToLoad;
     $(".tdList").removeClass('selectedTd');
     $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
@@ -138,25 +138,25 @@ function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
 }
 
-function checkIfPlayerIsMuted() {
-    if (player.isMuted()) {
-        player2.mute();
-    } else {
-        player2.unMute();
-        currentVolumeLevel = player.getVolume();
-        player2.setVolume(currentVolumeLevel);
-    }
-}
-
-function checkIfPlayer2IsMuted() {
-    if (player2.isMuted()) {
-        player.mute();
-    } else {
-        player.unMute();
-        currentVolumeLevel = player2.getVolume();
-        player.setVolume(currentVolumeLevel);
-    }
-}
+// function checkIfPlayerIsMuted() {
+//     if (player.isMuted()) {
+//         player2.mute();
+//     } else {
+//         player2.unMute();
+//         currentVolumeLevel = player.getVolume();
+//         player2.setVolume(currentVolumeLevel);
+//     }
+// }
+//
+// function checkIfPlayer2IsMuted() {
+//     if (player2.isMuted()) {
+//         player.mute();
+//     } else {
+//         player.unMute();
+//         currentVolumeLevel = player2.getVolume();
+//         player.setVolume(currentVolumeLevel);
+//     }
+// }
 
 /*******needed for iframe player*******/
 let iframeRight = 0;

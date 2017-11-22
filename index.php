@@ -136,13 +136,13 @@ consider carousel for the video list area:
 					<div id="mainVideo" class="iframeVideo">
 						
 					</div>
-					<div id=infoButtonContainer>
-						<!--can take function as content; meaning data only uploads when clicked-->
-						<button class="btn btn-lg hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"
-						 title="Theater Mode">
-							<span class="glyphicon glyphicon-sound-stereo" id="theaterArrow" aria-hidden="true"></span>
-						</button>
-					</div>
+<!--					<div id=infoButtonContainer>-->
+<!--						<!--can take function as content; meaning data only uploads when clicked-->-->
+<!--						<button class="btn btn-lg hidden-xs lightBoxMode" type="button" data-toggle="tooltip" data-placement="right" data-trigger="hover"-->
+<!--						 title="Theater Mode">-->
+<!--							<span class="glyphicon glyphicon-sound-stereo" id="theaterArrow" aria-hidden="true"></span>-->
+<!--						</button>-->
+<!--					</div>-->
 				</div>
 			</div>
 			<!--end of videoRow div-->
