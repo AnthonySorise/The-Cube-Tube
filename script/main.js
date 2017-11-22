@@ -110,7 +110,7 @@ function initiateUser() {
                 console.log('USER CTU', data);
                 const uLink = 'www.thecubetube.com/?user=' + data.user_link;
                 const britEyesOnly = $('<span>',{
-                    'class': 'mrF',
+                    'class': 'linkGhost',
                     'text': uLink
                 }).css({
                     position: 'absolute',
