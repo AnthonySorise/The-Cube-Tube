@@ -954,12 +954,14 @@ input:checked+.slider {
 }
 
 .mediaControls {
-	width: 20%;
+	width: 25%;
 	height: 90%;
 	display: inline-block;
 	position: relative;
-	left: 33.3%;
-	color: rgba(255, 255, 255, 0.5)
+	/* left: 33.3%; */
+	color: rgba(255, 255, 255, 0.5);
+	margin: 0 auto;
+	padding-left: 5%;
 }
 
 
@@ -979,13 +981,13 @@ input:checked+.slider {
 ******* i think using `toggle device toolbar` in browser is more likely 
 safer appraoch than to resizing browser to see change
 *************************************************************/
-@media screen and (max-width: 1150px) {
+/* @media screen and (max-width: 1150px) {
 	.mediaControls {
 		/* width: 14%; */
-		left: 23%;
-	}
-}
-
+		/* left: 23%; */
+	/* } */
+/* } */
+ /* */ 
 
 @media screen and (max-width: 1082px) {
 	#mainNav-option{
