@@ -90,6 +90,7 @@ function onPlayerStateChange(event) {
 
 //Function to play next video and change spinner icon to current video playing
 function playNextYTVideo() {
+    
     currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
     nextVideoIdToLoad = videoObjectsToLoad[currentVideoindex + 1].youtube_video_id
 
@@ -112,6 +113,8 @@ function playNextYTVideo() {
 }
 
 function playPrevYTVideo() {
+    currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
+    
     prevVideoIdToLoad = videoObjectsToLoad[currentVideoindex - 1].youtube_video_id
 
     if (getAutoPlayValue()) {
