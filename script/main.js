@@ -21,7 +21,7 @@ var prevVideoIdToLoad = null;
 $(document).ready(function () {
     function initApp(){
         
-        $("#text-carousel, .videoHeader, .listDropWrap").hide();
+        $("#text-carousel, .videoHeader, .listDropWrap, .listUpWrap").hide();
         // $(".videoHeader").hide();
         // $('.listDropWrap').hide();
 
