@@ -14,7 +14,6 @@ $stmt = $conn->prepare(
         c.description,
         c.thumbnail_file_name,
         c.last_channel_pull,
-        u.user_link
     FROM
         channels AS c
     JOIN
@@ -34,6 +33,7 @@ if(!empty($result)){
         while($row = $result->fetch_assoc()){
             $output['data'][] = $row;
         }
+        $output['user_link'] = $user_link;
     }else{
         $output['nothing_to_read'] = true;
     }

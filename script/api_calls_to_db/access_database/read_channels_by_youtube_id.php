@@ -11,7 +11,6 @@ if(empty($youtube_channel_id)){
 //     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
 //     output_and_exit($output);
 // }
-
 $sqli = 
     "SELECT
         channel_title,
