@@ -65,7 +65,7 @@ function clipBoard(txtClass){
         //     secretInput.remove();
         // },1000)
        
-        var x = document.querySelector('.'+txtClass);
+        var x = document.querySelector('.mrF');
         var rng = document.createRange();
         rng.selectNode(x);
         window.getSelection().removeAllRanges();
