@@ -28,12 +28,6 @@ switch($_POST['action']){
     case 'read_channels_by_youtube_id':
         include('read_channels_by_youtube_id.php');
         break;
-    // case 'update_channel':
-    //     include('update_channels.php');
-    //     break;
-    // case 'update_video':
-    //     include('update_video.php');
-    //     break;
     case 'read_videos_by_channel_array':
         include('read_videos_by_channel_array.php');
         break;
