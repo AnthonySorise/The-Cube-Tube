@@ -78,7 +78,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         //       $query.= "(?,?,?),";
         //       $bind_str  .='sis';
         // }
-        //"INSERT INTO videos (video_title , channel_id) VALUES ('abc',1), ('xyz',2), ('hgf',4)""
+        // "INSERT INTO videos (video_title , channel_id) VALUES ('abc',1), ('xyz',2), ('hgf',4)";
         $query = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at, last_updated) VALUES";
         $refArr = [''];
         $bind_str = '';
@@ -104,9 +104,11 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         print($query);
         print_r($refArr);
         print_r($res);
-        $ref = new ReflectionClass('mysqli_stmt'); 
-        $method = $ref->getMethod("bind_param"); 
-        $method->invokeArgs($res,$refArr); 
+
+        call_user_func_array([$res, 'bind_param'], $refArr);
+        // $ref = new ReflectionClass('mysqli_stmt'); 
+        // $method = $ref->getMethod("bind_param"); 
+        // $method->invokeArgs($res,$refArr); 
         $res->execute(); 
         if(empty($res)){
             $output['errors'][] = 'INVALID QUERY';
