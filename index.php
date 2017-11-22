@@ -181,42 +181,42 @@ consider carousel for the video list area:
 									<span class="slider round"></span>
 								</label>
 							</div>
-							<div class="navbar-nav nav-pills midNavChannels">
+						</div>
+						<div class="mediaControls"></div>
+<!--						<form class="navbar-right nav-pills form-inline">-->
+<!--							<!--form for searching channels-->
+<!--							<div class="form-group">-->
+<!--								<div class="input-group">-->
+<!--									<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">-->
+<!--									<span class="input-group-addon videoToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for videos from your channels">-->
+<!--										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->
+<!--									</span>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</form>-->
+<!--						end of form for channel search-->
+                        <div class="navbar-nav nav-pills midNavChannels">
 								<span class="midNavBrowsing">
 									<p style="display:inline-block">
 										Browsing:
 									</p>
-								</span> 
-								<span class="midNavBrowsing browsingLabel label label-info">
+								</span>
+                            <span class="midNavBrowsing browsingLabel label label-info">
 									channel name
 								</span>
-								<span class="midNavBrowsing">
+                            <span class="midNavBrowsing">
 									<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
 								</span>
-								<span class="midNavWatching">
+                            <span class="midNavWatching">
 									<p style="display:inline-block">
                                         Watching:
                                     </p>
 								</span>
-								<span class="midNavWatching watchingLabel label label-success" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3"> 
+                            <span class="midNavWatching watchingLabel label label-success" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3">
 									<i class="fa fa-cubes"></i>
 									Subscribed Channels
 								</span>
-							</div>
-						</div>
-						<div class="mediaControls"></div>
-						<form class="navbar-right nav-pills form-inline">
-							<!--form for searching channels-->
-							<div class="form-group">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="search videos" name="videoSearch" id="videoSearchInput">
-									<span class="input-group-addon videoToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="search for videos from your channels">
-										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-									</span>
-								</div>
-							</div>
-						</form>
-						<!--end of form for channel search-->
+                        </div>
 					</div>
 					<!--end of nav options div-->
 				<!-- </div> -->
