@@ -23,16 +23,16 @@ function handleAddButton() {
 function addChannelModal(userLink) {
     if (userLink) {
         let uLink = 'www.thecubetube.com/?user='+userLink;
-        const secretLinkSpan = $('<span>',{
-            'class': 'linkSpanSecret',
-            'text': uLink
-        }).css({
-            'position': 'absolute',
-            'display': 'none',
-            'top': '-500px',
-            'z-index': '-1'
-        });
-        $('body').prepend(secretLinkSpan);
+        // const secretLinkSpan = $('<span>',{
+        //     'class': 'linkSpanSecret',
+        //     'text': uLink
+        // }).css({
+        //     'position': 'absolute',
+        //     'display': 'none',
+        //     'top': '-500px',
+        //     'z-index': '-1'
+        // });
+        // $('body').prepend(secretLinkSpan);
         const linkSpan = $('<span>',{
             'class':'linkSpan',
             'text': uLink
@@ -58,7 +58,7 @@ function addChannelModal(userLink) {
 
 function clipBoard(txtClass){
 
-    if($('span').hasClass('linkSpan')){
+    if($('span').hasClass(txtClass)){
         let textElmt = document.querySelector('.'+txtClass);
         let range = document.createRange();
         range.selectNode(textElmt);
