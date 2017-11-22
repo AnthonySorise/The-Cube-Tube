@@ -58,7 +58,7 @@ function addChannelModal(userLink) {
 
 function clipBoard(txtClass){
 
-    if($('span').hasClass('linkSpan')){
+    if($('span').hasClass(txtClass)){
         let textElmt = document.querySelector('.'+txtClass);
         let range = document.createRange();
         range.selectNode(textElmt);
