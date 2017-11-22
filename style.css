@@ -986,10 +986,10 @@ safer appraoch than to resizing browser to see change
 	p.navbar-text{
 		line-height: 2.2;
 	}
-	#mainNav-option form,
-	#midNav-option form {
-		margin-right: 0;
-	}
+	/*#mainNav-option form,*/
+	/*#midNav-option form {*/
+		/*margin-right: 0;*/
+	/*}*/
 	.autoPlayArea{
 		/*margin-left: -15px;*/
 	}
@@ -1001,7 +1001,7 @@ safer appraoch than to resizing browser to see change
 	}
 	.main-content {
 		/*height: 90vh;*/
-		height:96.3vh;
+		height:94vh;
 	}
 	/*.videoRowWrapper{*/
 		/*height: 49%;*/
