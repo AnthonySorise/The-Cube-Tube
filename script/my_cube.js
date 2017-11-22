@@ -23,7 +23,6 @@ function renderChannelSelectionDropdown() {
         var settingsContent = $('<div>', {
             'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
         });
-        settingsContent.css("background-color", "black")
 
         var browseButton = $('<button class="btn-primary">Browse</button>').css("display", "block");
         var removeButton = $('<button class="btn-danger">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
