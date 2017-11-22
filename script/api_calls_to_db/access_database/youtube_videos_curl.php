@@ -88,7 +88,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $bind_str .= "sissss";
             $refArr[] = $value['snippet']['title'];
             $refArr[] = $channel_id;
-            $refArr[] =  $value['id']['videoID'];
+            $refArr[] =  $value['id']['videoId'];
             $refArr[] = $value['snippet']['description'];
             $published_at = $value['snippet']['publishedAt'];
             $published_at = str_replace('T',' ',$published_at);
@@ -102,7 +102,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $refArr[0] = $bind_str;
         print($sqli_statement);
         print_r($refArr);
-        output_and_exit($output);
         $ref = new ReflectionClass('mysqli_stmt'); 
         $method = $ref->getMethod("bind_param"); 
         $method->invokeArgs($res,$refArr); 
