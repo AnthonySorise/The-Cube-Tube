@@ -100,29 +100,41 @@ function onPlayerStateChange(event) {
 function playNextYTVideo() {
     var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
 
-    // if(currentVideoIndex === 40 && )
 
-    var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex + 1].youtube_video_id;
-
-    updateVideoInfoPopover(nextVideoIdToLoad);
-    updateChannelInfoPopover (videoObjectsToLoad[currentVideoIndex+1].youtube_channel_id);
-
-    if (getAutoPlayValue()) {
-        player.loadVideoById(nextVideoIdToLoad);
-    } else {
-        player.cueVideoById(nextVideoIdToLoad);
+    if(currentVideoIndex % 40 === 0 && videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
+        loadNextPage();
+        setTimeout(function(){
+            next();
+        }, 250)
     }
-    // player2.cueVideoById(nextVideoIdToLoad);
-    currentlySelectedVideoID = nextVideoIdToLoad;
+    else if(currentVideoIndex % 20 === 0){
+        $('.carousel').carousel('next');
+        next();
+    }
 
-    $(".tdList").removeClass('selectedTd');
-    $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
-    $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
-    $("[videoid='" + currentlySelectedVideoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
-        "margin-right": '5px',
-        'color': 'green'
-    });
-    $("[videoid='" + currentlySelectedVideoID + "']").addClass('selectedTd');
+    function next() {
+        var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex + 1].youtube_video_id;
+
+        updateVideoInfoPopover(nextVideoIdToLoad);
+        updateChannelInfoPopover(videoObjectsToLoad[currentVideoIndex + 1].youtube_channel_id);
+
+        if (getAutoPlayValue()) {
+            player.loadVideoById(nextVideoIdToLoad);
+        } else {
+            player.cueVideoById(nextVideoIdToLoad);
+        }
+        // player2.cueVideoById(nextVideoIdToLoad);
+        currentlySelectedVideoID = nextVideoIdToLoad;
+
+        $(".tdList").removeClass('selectedTd');
+        $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
+        $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
+        $("[videoid='" + currentlySelectedVideoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
+            "margin-right": '5px',
+            'color': 'green'
+        });
+        $("[videoid='" + currentlySelectedVideoID + "']").addClass('selectedTd');
+    }
 }
 
 function playPrevYTVideo() {
