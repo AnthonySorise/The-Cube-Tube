@@ -89,6 +89,15 @@ function toastMsg(msgString, time) {
 
 function videoListDown(){
     $('.listDropWrap').hide();
+    let timeInt = 200;
+    $('.tdList').each((idx,item)=>{
+        if($(item).css('display')!=='none'){
+            setTimeout(()=>{
+                $(item).toggle('puff');
+            }, timeInt);
+            timeInt+=50;
+        }
+    });
     $('#text-carousel').slideUp(850);
     $('.thRow').fadeOut(590);
     $('.videoListRowWrapper').fadeOut(590);
@@ -100,7 +109,7 @@ function videoListDown(){
         'height': '5.5%'
     }, 600, ()=>{
         $('.listUpWrap').fadeIn();
-        $('.tdList').hide();
+        // $('.tdList').hide();
     });
     $('#mainVideo').animate({
         'width': '152vh',
