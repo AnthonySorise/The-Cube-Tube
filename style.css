@@ -847,23 +847,28 @@ div.thRow {
 #ui-id-3{
 	max-width: 190px;
 }
-
 .modalControls {
 	font-size: 2em;
 	cursor: pointer;
 	margin: 7px;
 }
-
 .userLinkBody{
 	background-color: #020e13;
 	color:white;
+	height: 70vh;
+	
 }
-
 .userLinkHeader{
 	background-color: black;
 	color:white;
 }
-
+.userLinkHeader>button{
+	opacity: 0.7;
+	color: white;
+}
+.userLinkHeader>button:hover{
+	opacity: 1;
+}
 .playButton:hover, .rewindButton:hover, .fastForwardButton:hover, .pauseButton:hover, .nextVideoButton:hover, .lastVideoButton:hover {
 	color: #fff; 
 }
