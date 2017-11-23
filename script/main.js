@@ -10,17 +10,20 @@ var currentSlideNumber = 1;
 var currentVideoindex = null;
 var browsingMode = false;
 var currentVolumeLevel = null;
-var play = "fa fa-play modalControls playButton";
-var pause = "fa fa-pause modalControls pauseButton";
+const play = "fa fa-play modalControls playButton";
+const pause = "fa fa-pause modalControls pauseButton";
 var player;
-var player2;
-var videoID = null;
-var nextVideoIdToLoad = null;
+// var player2;
+var currentlySelectedVideoID = null;
+// var nextVideoIdToLoad = null;
+// var prevVideoIdToLoad = null;
 
 $(document).ready(function () {
     function initApp(){
-        $("#text-carousel").hide()
-        $(".videoHeader").hide()
+        
+        $("#text-carousel, .videoHeader, .listDropWrap, .listUpWrap").hide();
+        // $(".videoHeader").hide();
+        // $('.listDropWrap').hide();
 
         rendertheatreControls();
         displayCurrentPageNumber();
@@ -64,7 +67,7 @@ $(document).ready(function () {
             console.log("LOAD IFRAME FAILED - TRY AGAIN")
             iFrameLoadTries = 0;
             player = null;
-            onYouTubeIframeAPIReady(videoID);
+            onYouTubeIframeAPIReady(currentlySelectedVideoID);
             setTimeout(function(){
                 waitForIframe();
             }, 50)
@@ -105,8 +108,17 @@ function initiateUser() {
         success: function (data) {
             if (data.success) {
                 console.log('USER CTU', data);
+                const uLink = 'www.thecubetube.com/?user=' + data.user_link;
+                const britEyesOnly = $('<span>',{
+                    'class': 'linkGhost',
+                    'text': uLink
+                }).css({
+                    position: 'absolute',
+                    display: 'none'
+                });
+                $('body').append(britEyesOnly);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function () {
-                    $('#text-carousel, .videoHeader').slideDown(1100);
+                    $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
                     toastMsg('Welcome back', 3000);
                 });
                 numSubscribedChannels = data.data.length;

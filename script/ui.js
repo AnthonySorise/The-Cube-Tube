@@ -62,8 +62,6 @@ $(window).on('click',(e)=>{
 
 $(document).ready(function(){
 	channelDropClickHandle();
-
-	
 });
 
 function toastMsg(msgString, time) {
@@ -89,8 +87,66 @@ function toastMsg(msgString, time) {
     }, time);
 }
 
+function videoListDown(){
+    $('.listDropWrap').hide();
+    $('#text-carousel').slideUp(850);
+    $('.thRow').fadeOut(590);
+    $('.videoListRowWrapper').fadeOut(590);
+    $('.videoRowWrapper').animate({
+        // 'height': '93.8%'
+        'height':'94.2%'
+    }, 600);
+    $('#listContentWrap').animate({
+        'height': '5.5%'
+    }, 600, ()=>{
+        $('.listUpWrap').fadeIn();
+    });
+    $('#mainVideo').animate({
+        'width': '152vh',
+        'height': '85vh'
+    }, 600);
+    // $('.tdList').toggle('scale');
+}
+function videoListUp(){
+    $('.listUpWrap').hide();
+    $('.listDropWrap').slideDown();
+    $('.videoRowWrapper').animate({
+        'height': '60%'
+    }, 600);
+    $('#listContentWrap').animate({
+        'height': '40%'
+    }, 600);
+    $('.videoListRowWrapper').fadeIn(500, ()=>{
+        $('#text-carousel').slideDown(800);
+        $('.thRow').fadeIn(700);
+        $('.listDropWrap').slideDown(700);
+    });
+    $('#mainVideo').animate({
+        'width': '98vh',
+        'height': '55vh'
+    }, 600);
+    // let idx = 1;
+    // let listInterval=null;
+    // while(idx<41){
+    //     listInterval = setInterval(function(){
+    //         $('#tdList-'+[idx]).toggle('scale');
+    //         idx++;
+    //     },50);
+    // }
+    // clearInterval(listInterval);
+}
+
 //Click handler to console log search results
 function clickHandler() {
+    $('.listUpButton').on('click', ()=>{
+        videoListUp();
+    });
+    $('.listDropButton').on('click', ()=>{
+        videoListDown();
+    });
+    $('#myLinkButton').on('click',()=>{
+        clipBoard('linkGhost');
+    });
     $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
         // returnToPageOne();
@@ -222,7 +278,7 @@ function clickHandler() {
         searchChannelsByName(inputStr).then(worked, failed);
         // $(".contentPlaceholder").hide();
         $('.contentPlaceholderWrapper').fadeOut(1000, function () {
-            $('#text-carousel, .videoHeader').slideDown(1100);
+            $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
         });
         // $("#text-carousel").show()
         // $(".videoHeader").show()
@@ -254,11 +310,10 @@ function clickHandler() {
                     $("#channelInfo").trigger('focus')
                 }
             });
-
-            videoID = $(this).parent().attr('videoId');
+        
+            currentlySelectedVideoID = $(this).parent().attr('videoID');
             var channelID = $(this).parent().attr('channelID');
 
-            var selectedVideoId = $(this).parent().attr('videoId');
             // $('.fa-play-circle-o').remove();
             $('.fa-circle-o-notch').remove();
             var playSymbol = $('<i>')
@@ -272,241 +327,141 @@ function clickHandler() {
             $('.tdList').removeClass('selectedTd');
             $(this).parent().addClass("selectedTd");
             if (getAutoPlayValue()) {
-                player.loadVideoById(selectedVideoId);
+                player.loadVideoById(currentlySelectedVideoID);
             } else {
-                player.cueVideoById(selectedVideoId);
+                player.cueVideoById(currentlySelectedVideoID);
             }
-            player2.cueVideoById(selectedVideoId);
+            // player2.cueVideoById(currentlySelectedVideoID);
 
             //update video stats popover
-            $.ajax({
-                url: 'https://www.googleapis.com/youtube/v3/videos',
-                dataType: 'json',
-                method: 'get',
-                data: {
-                    key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-                    id: videoID,
-                    part: 'snippet, statistics'
-                },
-                success: function (data) {
-                    console.log('Youtube success', data);
-                    let videoStatsDiv = $('<div></div>');
-                    videoStatsDiv.css("height", '35vh')
-                    let videoURL = 'https://i.ytimg.com/vi/' + selectedVideoId + '/mqdefault.jpg';
-                    const videoThumbnail = $('<img>').attr('src', videoURL).css({
-                        width: '120px',
-                        height: '70px',
-                    });
-                    videoThumbnail.css("position", "relative")
-                        .css("left", "50%")
-                        .css("transform", "translateX(-50%)")
-                        .css("margin-bottom", '15px');
+            updateVideoInfoPopover(currentlySelectedVideoID);
 
-                    const views = $('<p><strong>Views: </strong>' + parseInt(data.items[0].statistics.viewCount).toLocaleString("en-us") + '</p>');
-
-                    const likes = parseInt(data.items[0].statistics.likeCount);
-                    const dislikes = parseInt(data.items[0].statistics.dislikeCount);
-
-                    const perecentLikes = likes / (likes + dislikes) * 100;
-                    const percentDislikes = 100 - perecentLikes;
-
-                    const likesTitle = $('<p><strong>Likes and Dislikes:</strong></p>');
-                    let likesBar = null;
-
-                    if (likes > dislikes) {
-                        likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:' + perecentLikes + '%">' + likes.toLocaleString("en-us") + ' Likes</div><div class="progress-bar progress-bar-danger" style="width:' + percentDislikes + '%"></div>');
-                    }
-                    else {
-                        likesBar = $('<div class="progress"><div class="progress-bar progress-bar-success" style="width:' + perecentLikes + '%"></div><div class="progress-bar progress-bar-danger" style="width:' + percentDislikes + '%">' + dislikes.toLocaleString("en-us") + ' Dislikes</div>');
-                    }
-
-                    const descriptionTitle = $('<p><strong>Description: </strong></p>');
-
-                    const descriptionContainer = $('<div></div>');
-                    descriptionContainer.css("height", "13vh");
-                    descriptionContainer.css("overflow-y", "auto")
-                    const description = $('<p>' + data.items[0].snippet.description + '</p>');
-                    descriptionContainer.append(description);
-                    videoStatsDiv.append(videoThumbnail, views, likesTitle, likesBar, descriptionTitle, descriptionContainer);
-                    $("#videoStats").popover('destroy');
-                    setTimeout(function () {
-                        $("#videoStats").popover({
-                            html: true,
-                            content: videoStatsDiv,
-                            placement: 'top',
-                            container: 'body'
-                        });
-                    }, 350);
-                    $("#videoStats").attr({
-                        'data-original-title': data.items[0].snippet.title
-                    });
-                },
-                error: function (data) {
-                    console.log('something went wrong with YT', data);
-                }
-            });
             //update channel stats popover
-            $.ajax({
-                url: 'https://www.googleapis.com/youtube/v3/channels',
-                dataType: 'json',
-                method: 'get',
-                data: {
-                    key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
-                    id: channelID,
-                    part: 'snippet, statistics'
-                },
-                success: function (data) {
-                    console.log('Youtube success', data);
-                    let channelInfoDiv = $("<div></div>");
-
-                    const channelThumbnail = $('<img>').attr('src', data.items[0].snippet.thumbnails.medium.url).css({
-                        width: '70px',
-                        height: '70px',
-                    });
-                    channelThumbnail.css("position", "relative")
-                        .css("left", "50%")
-                        .css("transform", "translateX(-50%)")
-                        .css("margin-bottom", '15px');
-
-                    var subscriberCount = $('<p><strong>Subscribers: </strong>' + parseInt(data.items[0].statistics.subscriberCount).toLocaleString("en-us") + '</p>');
-                    const descriptionTitle = $('<p><strong>Description: </strong></p>');
-                    const descriptionContainer = $('<div></div>');
-                    descriptionContainer.css("height", "21.75vh");
-                    descriptionContainer.css("overflow-y", "auto")
-                    const description = $('<p>' + data.items[0].snippet.description + '</p>');
-                    descriptionContainer.append(description);
-                    channelInfoDiv.append(channelThumbnail, subscriberCount, descriptionTitle, descriptionContainer);
-
-                    $("#channelInfo").popover('destroy');
-                    setTimeout(function () {
-                        $("#channelInfo").popover({
-                            html: true,
-                            content: channelInfoDiv,
-                            placement: 'top',
-                            container: 'body'
-                        });
-                    }, 250);
-                    $("#channelInfo").attr({
-                        'data-original-title': data.items[0].snippet.title
-                    });
-
-
-                },
-                error: function (data) {
-                    console.log('something went wrong with YT', data);
-                }
-            })
+            updateChannelInfoPopover(channelID);
         }
     });
 
     //Theater mode
-    $('.lightBoxMode').on('click', checkHomePageVideoStatus);
-    $('.theatreModalClose').on('click', checkTheatreModeStatus);
+    // $('.lightBoxMode').on('click', checkHomePageVideoStatus);
+    // $('.theatreModalClose').on('click', checkTheatreModeStatus);
     $('.fastForwardButton').on('click', fastForwardVideo);
     $('.rewindButton').on('click', rewindVideo);
     $('.playButton').on('click', playYtVideo);
+    $('.lastVideoButton').on('click',playPrevYTVideo);
+    $('.nextVideoButton').on('click', playNextYTVideo); 
     // $('body').on('click', closeTheatreOnClick);
-    $(document).on('keyup', function (event) {
-        if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
-            console.log('Esc was pressed');
-            checkTheatreModeStatus();
-        }
-    });
+    // $(document).on('keyup', function (event) {
+    //     if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
+    //         console.log('Esc was pressed');
+    //         checkTheatreModeStatus();
+    //     }
+    // });
 
     // Lets user click outside of theatre modal to close and save the state of video
-    function closeTheatreOnClick(event) {
-        event.stopPropagation();
-        if($('body').hasClass('modal-open')) {
-            //Have to check if modal footer is being clicked to stop from closing modal
-            if(event.target.classList[0] == "fa" || event.target.classList == "") {
-                return;
-            }
-            $('.modal-content').modal('hide');
-            checkTheatreModeStatus();
-        }
-    }
+    // function closeTheatreOnClick(event) {
+    //     event.stopPropagation();
+    //     if($('body').hasClass('modal-open')) {
+    //         //Have to check if modal footer is being clicked to stop from closing modal
+    //         if(event.target.classList[0] == "fa" || event.target.classList == "") {
+    //             return;
+    //         }
+    //         $('.modal-content').modal('hide');
+    //         checkTheatreModeStatus();
+    //     }
+    // }
+    //
+    // function checkHomePageVideoStatus(event) {
+    //     event.stopPropagation()
+    //     player.pauseVideo();
+    //     if (player.getPlayerState() === 2) {
+    //         checkIfPlayerIsMuted();
+    //         player.pauseVideo();
+    //         player2.seekTo(player.getCurrentTime());
+    //         player2.pauseVideo();
+    //         $('.pauseButton').removeClass().addClass(play);
+    //         $('#lightBoxModal').modal('show');
+    //     } else if (player.getPlayerState() === 1) {
+    //         checkIfPlayerIsMuted();
+    //         player.pauseVideo();
+    //         player2.seekTo(player.getCurrentTime());
+    //         $('.playButton').removeClass().addClass(pause);
+    //         player2.playVideo();
+    //         $('#lightBoxModal').modal('show');
+    //     } else if (player.getPlayerState() === 5) {
+    //         $('#lightBoxModal').modal('show');
+    //     }
+    // }
+    //
+    // function checkTheatreModeStatus() {
+    //     if (player2.getPlayerState() === 2) {
+    //         checkIfPlayer2IsMuted();
+    //         player2.pauseVideo();
+    //         player.seekTo(player2.getCurrentTime());
+    //         player.pauseVideo();
+    //         $('#lightBoxModal').modal('hide');
+    //     } else if (player2.getPlayerState() === 1) {
+    //         checkIfPlayer2IsMuted();
+    //         player2.pauseVideo();
+    //         player.seekTo(player2.getCurrentTime());
+    //         $('#lightBoxModal').modal('hide');
+    //         player.playVideo();
+    //     } else if (player2.getPlayerState() === 5) {
+    //         $('#lightBoxModal').modal('hide');
+    //     }
+    // }
 
-    function checkHomePageVideoStatus(event) {
-        event.stopPropagation()
-        player.pauseVideo();
-        if (player.getPlayerState() === 2) {
-            checkIfPlayerIsMuted();
-            player.pauseVideo();
-            player2.seekTo(player.getCurrentTime());
-            player2.pauseVideo();
-            $('.pauseButton').removeClass().addClass(play);
-            $('#lightBoxModal').modal('show');
-        } else if (player.getPlayerState() === 1) {
-            checkIfPlayerIsMuted();
-            player.pauseVideo();
-            player2.seekTo(player.getCurrentTime());
-            $('.playButton').removeClass().addClass(pause);
-            player2.playVideo();
-            $('#lightBoxModal').modal('show');
-        } else if (player.getPlayerState() === 5) {
-            $('#lightBoxModal').modal('show');
-        }
-    }
-
-    function checkTheatreModeStatus() {
-        if (player2.getPlayerState() === 2) {
-            checkIfPlayer2IsMuted();
-            player2.pauseVideo();
-            player.seekTo(player2.getCurrentTime());
-            player.pauseVideo();
-            $('#lightBoxModal').modal('hide');
-        } else if (player2.getPlayerState() === 1) {
-            checkIfPlayer2IsMuted();
-            player2.pauseVideo();
-            player.seekTo(player2.getCurrentTime());
-            $('#lightBoxModal').modal('hide');
-            player.playVideo();
-        } else if (player2.getPlayerState() === 5) {
-            $('#lightBoxModal').modal('hide');
-        }
-    }
 
     function fastForwardVideo() {
-        var fastForward = player2.getCurrentTime();
+        var fastForward = player.getCurrentTime();
         var add15Seconds = fastForward + 15;
-        var player2State = player2.getPlayerState();
-        if (player2State === 2) {
-            player2.seekTo(add15Seconds);
-            player2.pauseVideo();
-            return;
-        } else {
-            player2.seekTo(add15Seconds);
-        }
+        // var player2State = player.getPlayerState();
+        // if (player2State === 2) {
+        //     player.seekTo(add15Seconds);
+        //     player.pauseVideo();
+        //     return;
+        // } else {
+            player.seekTo(add15Seconds);
+        // }
     }
+
 
     function playYtVideo() {
-        player2.playVideo();
+        player.playVideo();
         if (this.classList.value === play) {
+            $('.playButton').tooltip('hide')
             $('.playButton').removeClass(play).toggleClass(pause);
+            $(this).attr('data-original-title','Pause')
         } else {
+            $('.pauseButton').tooltip('hide');
             $('.pauseButton').removeClass(pause).toggleClass(play);
-            player2.pauseVideo()
-
+            $(this).attr('data-original-title','Play')
+            player.pauseVideo()
         }
     }
 
+
     function rewindVideo() {
-        var fastForward = player2.getCurrentTime();
+        var fastForward = player.getCurrentTime();
         var minus15Seconds = fastForward - 15;
-        var player2State = player2.getPlayerState();
-        if (player2State === 2) {
-            player2.seekTo(minus15Seconds);
-            player2.pauseVideo();
-            return;
-        } else {
-            player2.seekTo(minus15Seconds);
-        }
+        // var player2State = player.getPlayerState();
+        // if (player2State === 2) {
+        //     player.seekTo(minus15Seconds);
+        //     player.pauseVideo();
+        //     return;
+        // } else {
+            player.seekTo(minus15Seconds);
+        // }
     }
 }
 
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
+    $('.tdPlaylistButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.tdPlaylistButton').tooltip('hide');
+        },1000);
+    });
     $('.browseChannelButton').mouseenter(function () {
         setTimeout(function () {
             $('.browseChannelButton').tooltip('hide');
@@ -536,5 +491,45 @@ function tooltipFunctions() {
         setTimeout(function () {
             $('#channelInfo .fa-list-alt').tooltip('hide');
         }, 1000);
+    });
+    $('.listDropButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.listDropButton').tooltip('hide');
+        },1000);
+    });
+    $('.lastVideoButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.lastVideoButton').tooltip('hide');
+        },1000);
+    });
+    $('.rewindButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.rewindButton').tooltip('hide');
+        },1000);
+    });
+    $('.fastForwardButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.fastForwardButton').tooltip('hide');
+        },1000);
+    });
+    $('.nextVideoButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.nextVideoButton').tooltip('hide');
+        },1000);
+    });
+    $('.playButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.playButton').tooltip('hide');
+        },1000);
+    });
+    $('.pauseButton').mouseenter(function(){
+        setTimeout(function() {
+            $('.pauseButton').tooltip('hide');
+        }, 1000);
+    });
+    $('.listUpButton').mouseenter(function(){
+        setTimeout(function(){
+            $('.listUpButton').tooltip('hide');
+        },1000);
     });
 }

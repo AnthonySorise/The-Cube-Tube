@@ -43,7 +43,7 @@ $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';
 }else{
-    if(mysqli_affected_rows($conn)>0){
+    if($conn->affected_rows>0){
         $output['success'] = true;
     }else{
         $output['errors'][]='UNABLE TO INSERT';

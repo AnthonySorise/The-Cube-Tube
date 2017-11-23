@@ -23,22 +23,20 @@ function handleAddButton() {
 function addChannelModal(userLink) {
     if (userLink) {
         let uLink = 'www.thecubetube.com/?user='+userLink;
-        // const secretLinkSpan = $('<span>',{
-        //     'class': 'linkSpan',
-        //     'text': uLink
-        // }).css({
-        //     'position': 'absolute',
-        //     'display': 'none',
-        //     'top': '-500px',
-        //     'z-index': '-1'
-        // });
-        // $('body').prepend(secretLinkSpan);
+        const britEyesOnly = $('<span>',{
+            'class': 'linkGhost',
+            'text': uLink
+        }).css({
+            position: 'absolute',
+            display: 'none'
+        });
+        $('body').append(britEyesOnly);
         const linkSpan = $('<span>',{
             'class':'linkSpan',
             'text': uLink
         });
         const linkDiv = $('<div>',{
-            text: 'Save this link!!!!  '
+            text: 'Save this link!  Use it to get access to your subscribed channels.  '
         }).append(linkSpan);
         // $('.userLinkBody').text("Save this link!!!  ").append(linkSpan);
 
@@ -48,31 +46,11 @@ function addChannelModal(userLink) {
         button.append(linkIcon).click(()=>{
             clipBoard('linkSpan');
         });
-        $('.userLinkBody').addClass('text-center').append(linkDiv, button);
-    }
-    else {
-        $('.userLinkBody').text("Channel added to your subscriptions!")
+        $('.linkCopyArea').append(linkDiv, button);
     }
     $('#userLinkModal').modal('show');
 }
 
-function clipBoard(txtClass){
-    if($('span').hasClass('linkSpan')){
-        let textElmt = document.querySelector(`.${txtClass}`);
-        let range = document.createRange();
-        range.selectNode(textElmt);
-        window.getSelection().addRange(range);
-        try{
-            let success = document.execCommand('copy');
-            let result = success ? 'link copied!' : 'something went wrong';
-            toastMsg(result, 1200);
-        }catch(err){
-            console.log('error with clipBoard:', err);
-        }
-    }else{
-        toastMsg('nothing to copy', 1200);
-    }
-}
 
 function handleBrowseButton() {
     $('.dropdownSettingsPopover').popover('hide');

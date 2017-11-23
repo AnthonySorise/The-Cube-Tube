@@ -26,15 +26,20 @@ function get_client_ip() {
 if(empty($user_link)){
     $output['errors'] = 'MISSING USERLINK';
 }
-
-$stmt = $conn->prepare("INSERT INTO users SET user_link=?, date_created=?, 
-ip_address_at_signup=?");
+$sqli = 
+    "INSERT INTO
+        users
+    SET
+        user_link = ?,
+        date_created = ?,
+        ip_address_at_signup = ?";
+$stmt = $conn->prepare($sqli);
 $stmt->bind_param('sss',$user_link,$date,$ip_address_at_sign_up);
 $stmt->execute();
 if(!empty($stmt)){
-    if(mysqli_affected_rows($conn)>0){
+    if($conn->affected_rows>0){
         $output['insert_user_success'] = true;
-        define('USER_ID',mysqli_insert_id($conn));
+        // define('USER_ID',mysqli_insert_id($conn));
     }
     else{
         $output['errors'][] = 'Unable to insert data';
