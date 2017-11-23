@@ -141,10 +141,15 @@ function playNextYTVideo() {
 }
 
 function playPrevYTVideo() {
-    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
-
+    //escape function if on first video
     if(currentVideoIndex === 0 && videoObjectsToLoad.length === 40){
         return
+    }
+
+    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
+
+    if(currentVideoIndex % 20 === 0){
+        $(".left").click();
     }
 
     var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex - 1].youtube_video_id;
