@@ -41,7 +41,7 @@ function onPlayerStateChange(event) {
     }
 
      //Testing to get auto play to reverse order but using autoplay off to test but will implement button later to reverse auto play
-     if (event.data == YT.PlayerState.ENDED && !getAutoPlayValue()) {
+     if (event.data == YT.PlayerState.ENDED && !getAutoPlayDirectionValue()) {
         console.log('autoplay is off');
         currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
         if (videoObjectsToLoad.length <= currentVideoindex - 1) {
@@ -58,7 +58,7 @@ function onPlayerStateChange(event) {
     }
 
    
-    if (event.data == YT.PlayerState.ENDED && getAutoPlayValue()) {
+    if (event.data == YT.PlayerState.ENDED && getAutoPlayDirectionValue()) {
         if(playlistArray.length > 0) {
             var playlistVideoId = playlistArray[0];
             var videoObjArray = videoObjectsToLoad.length;
@@ -94,6 +94,9 @@ function playNextYTVideo() {
     
     currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
     nextVideoIdToLoad = videoObjectsToLoad[currentVideoindex + 1].youtube_video_id
+
+    updateVideoInfoPopover(videoObjectsToLoad[currentVideoindex]);
+    // updateChannelInfoPopover (playlistChannelId)
 
     if (getAutoPlayValue()) {
         player.loadVideoById(nextVideoIdToLoad);
@@ -137,6 +140,10 @@ function playPrevYTVideo() {
 
 function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
+}
+
+function getAutoPlayDirectionValue(){
+    return $("#autoplayOrderCheckBox")
 }
 
 // function checkIfPlayerIsMuted() {
