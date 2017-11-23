@@ -54,7 +54,7 @@ function onPlayerStateChange(event) {
         } else {
             playPrevYTVideo();
         }
-        
+
     }
 
    
@@ -91,14 +91,9 @@ function onPlayerStateChange(event) {
 
 //Function to play next video and change spinner icon to current video playing
 function playNextYTVideo() {
-    var currentVideoIndex = null;
-    for (let i = 0; i < 40; i++) {
-        let row = "#tdList-" + (i + 1);
+    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === player.getVideoUrl());
 
-        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            currentVideoIndex = i;
-        }
-    }
+    // if(currentVideoIndex === 40 && )
 
     var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex + 1].youtube_video_id;
 
@@ -124,13 +119,10 @@ function playNextYTVideo() {
 }
 
 function playPrevYTVideo() {
-    var currentVideoIndex = null;
-    for (let i = 0; i < 40; i++) {
-        let row = "#tdList-" + (i + 1);
+    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === player.getVideoUrl());
 
-        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            currentVideoIndex = i;
-        }
+    if(currentVideoIndex === 0 && videoObjectsToLoad.length === 40){
+        return
     }
 
     var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex - 1].youtube_video_id;
