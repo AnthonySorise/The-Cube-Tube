@@ -132,10 +132,14 @@ function videoListUp(){
     }, 600);
     let timeInt = 200;
     $('.tdList').each((idx,item)=>{
-        setTimeout(()=>{
-            $(item).toggle('scale');
-        }, timeInt);
-        timeInt +=50;
+        if($(item).attr('videoid')!==''){
+            setTimeout(()=>{
+                $(item).toggle('scale');
+            }, timeInt);
+            timeInt +=50;
+        }else{
+            return;
+        }
     });
 }
 
