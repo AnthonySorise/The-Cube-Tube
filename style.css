@@ -869,6 +869,19 @@ div.thRow {
 .userLinkHeader>button:hover{
 	opacity: 1;
 }
+.channelCategoryInput{
+	border-radius:0;
+	border:none;
+}
+.channelCategoryButton{
+	background-color: rgba(20,149,20, 0.6);
+	color: rgba(255,255,255,0.6);
+	cursor: pointer;
+}
+.channelCategoryButton:hover{
+	background-color: rgba(20,149,20,1);
+	color: rgba(255,255,255,1);
+}
 .playButton:hover, .rewindButton:hover, .fastForwardButton:hover, .pauseButton:hover, .nextVideoButton:hover, .lastVideoButton:hover {
 	color: #fff; 
 }

@@ -1685,7 +1685,7 @@ consider carousel for the video list area:
 									<div class="input-group">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
 										<span type="button" class="input-group-addon channelCategoryButton">
-											<span class="glyphicon glyphicon-ok" style="color:rgba(255,0,0,0.6);"></span>
+											<span class="glyphicon glyphicon-ok"></span>
 										</span>
 									</div>
 								</div>	
