@@ -1255,6 +1255,9 @@ safer appraoch than to resizing browser to see change
 					col-xs-7 in modal. I added a class for the channel h4 tag so target those for these changes
 		font-size: .80em;
 	}*/
+	.modalChHeader{
+		font-size: .80em;
+	}
 	.browseChannelButton {
 		width:18%;
 		font-size: .70em;   
@@ -1263,9 +1266,6 @@ safer appraoch than to resizing browser to see change
 		width:15%;
 		font-size: .70em;
 	}
-	/*.col-xs-7 {
-		width: 50% !important;
-	}*/
 	.chName {
 		width: 85%;
 	}
