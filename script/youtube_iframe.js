@@ -121,23 +121,31 @@ function playNextYTVideo() {
         'color': 'green'
     });
     $("[videoid='" + currentlySelectedVideoID + "']").addClass('selectedTd');
-
 }
 
 function playPrevYTVideo() {
-    var currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
-    var prevVideoIdToLoad = videoObjectsToLoad[currentVideoindex - 1].youtube_video_id;
+    var currentVideoIndex = null;
+    for (let i = 0; i < 40; i++) {
+        let row = "#tdList-" + (i + 1);
 
-    updateVideoInfoPopover(videoObjectsToLoad[currentVideoindex-1].youtube_video_id);
+        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
+            currentVideoIndex = i;
+        }
+    }
+
+    var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex - 1].youtube_video_id;
+
+    updateVideoInfoPopover(nextVideoIdToLoad);
     updateChannelInfoPopover (videoObjectsToLoad[currentVideoindex-1].youtube_channel_id);
 
     if (getAutoPlayValue()) {
-        player.loadVideoById(prevVideoIdToLoad);
+        player.loadVideoById(nextVideoIdToLoad);
     } else {
-        player.cueVideoById(prevVideoIdToLoad);
+        player.cueVideoById(nextVideoIdToLoad);
     }
-    // player2.cueVideoById(prevVideoIdToLoad);
-    currentlySelectedVideoID = prevVideoIdToLoad;
+    // player2.cueVideoById(nextVideoIdToLoad);
+    currentlySelectedVideoID = nextVideoIdToLoad;
+
     $(".tdList").removeClass('selectedTd');
     $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
     $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
@@ -153,7 +161,7 @@ function getAutoPlayValue() {
 }
 
 function getAutoPlayDirectionValue(){
-    return $("#autoplayOrderCheckBox")
+    return $("#autoplayOrderCheckBox").is("checked")
 }
 
 // function checkIfPlayerIsMuted() {
