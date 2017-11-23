@@ -41,24 +41,24 @@ function onPlayerStateChange(event) {
     }
 
      //Testing to get auto play to reverse order but using autoplay off to test but will implement button later to reverse auto play
-     if (event.data == YT.PlayerState.ENDED && !getAutoPlayDirectionValue()) {
-        console.log('autoplay is off');
-        currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
-        if (videoObjectsToLoad.length <= currentVideoindex - 1) {
-            $.when(loadPrevPage()).then(playPrevYTVideo);
-            $('.carousel').carousel('prev');
-        }
-        else if (videoObjectsToLoad.length % 20 === 0 && (currentVideoindex - 1) % 20 === 0) {
-            $('.carousel').carousel('prev');
-            playPrevYTVideo();
-        } else {
-            playPrevYTVideo();
-        }
-
-    }
+    //  if (event.data == YT.PlayerState.ENDED && !getAutoPlayDirectionValue()) {
+    //     console.log('autoplay is off');
+    //     currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
+    //     if (videoObjectsToLoad.length <= currentVideoindex - 1) {
+    //         $.when(loadPrevPage()).then(playPrevYTVideo);
+    //         $('.carousel').carousel('prev');
+    //     }
+    //     else if (videoObjectsToLoad.length % 20 === 0 && (currentVideoindex - 1) % 20 === 0) {
+    //         $('.carousel').carousel('prev');
+    //         playPrevYTVideo();
+    //     } else {
+    //         playPrevYTVideo();
+    //     }
+    //
+    // }
 
    
-    if (event.data == YT.PlayerState.ENDED && getAutoPlayDirectionValue()) {
+    if (event.data == YT.PlayerState.ENDED) {
         if(playlistArray.length > 0) {
             var playlistVideoId = playlistArray[0];
             var videoObjArray = videoObjectsToLoad.length;
@@ -75,17 +75,24 @@ function onPlayerStateChange(event) {
             playlistArray.splice(0, 1);
             return;
         }
-        currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
-        if (videoObjectsToLoad.length <= currentVideoindex + 1) {
-            $.when(loadNextPage()).then(playNextYTVideo);
-            $('.carousel').carousel('next');
-        }
-        else if (videoObjectsToLoad.length % 20 === 0 && (currentVideoindex + 1) % 20 === 0) {
-            $('.carousel').carousel('next');
-            playNextYTVideo();
-        } else {
+        if(getAutoPlayDirectionValue()){
             playNextYTVideo();
         }
+        else{
+            playPrevYTVideo();
+        }
+
+        // currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
+        // if (videoObjectsToLoad.length <= currentVideoindex + 1) {
+        //     $.when(loadNextPage()).then(playNextYTVideo);
+        //     $('.carousel').carousel('next');
+        // }
+        // else if (videoObjectsToLoad.length % 20 === 0 && (currentVideoindex + 1) % 20 === 0) {
+        //     $('.carousel').carousel('next');
+        //     playNextYTVideo();
+        // } else {
+        //     playNextYTVideo();
+        // }
     }
 }
 
