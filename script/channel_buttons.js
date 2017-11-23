@@ -46,54 +46,7 @@ function addChannelModal(userLink) {
         button.append(linkIcon).click(()=>{
             clipBoard('linkSpan');
         });
-        $('.userLinkBody').addClass('text-center').append(linkDiv, button);
-    }
-    else {
-        // $('.userLinkBody').text("Channel added to your subscriptions!")
-        $('.userLinkBody').text('');
-
-        let catFormWrap = $('<form>',{
-            'class':'form-inline col-xs-12 col-sm-6 col-sm-offset-3'
-        });
-        let catFormDiv1= $('<div>',{
-            'class':'form-group'
-        });
-        let catFormDiv2= $('<div>',{
-            'class':'input-group'
-        });
-        const catFormInput = $('<input>',{
-            'type':'text',
-            'class':'form-control channelCategoryInput',
-            'placeholder': 'enter channel category',
-            'name' : 'channelCategory'
-        });
-        let catFormBtn = $('<span>',{
-            'type':'button',
-            'class':'input-group-addon channelCategoryButton'
-        });
-        const catFormBtnIcon=$('<span>',{
-            'class':'glyphicon glyphicon-ok'
-        }).css({
-            'color':'rgba(255,0,0,0.6)'
-        }).appendTo(catFormBtn);
-        catFormDiv2.append(catFormInput, catFormBtn);
-        catFormDiv1.append(catFormDiv2);
-        catFormWrap.append(catFormDiv1);
-
-        let chCatDescWrap = $('<dl>');
-        const chCatDescDt = $('<dt>',{
-            'text': 'Categorize your channels:'
-        }).css({
-            'color':'grey'
-        });
-        const chCatDescDd= $('<dd>',{
-            'text': 'add a custom channel category for the channel you added'
-        }).css({
-            'color':'white'
-        });
-        chCatDescWrap.append(chCatDescDt, chCatDescDd);
-
-        $('.userLinkBody').append(chCatDescWrap, catFormWrap);
+        $('.linkCopyArea').append(linkDiv, button);
     }
     $('#userLinkModal').modal('show');
 }
