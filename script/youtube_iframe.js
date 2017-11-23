@@ -161,7 +161,7 @@ function getAutoPlayValue() {
 }
 
 function getAutoPlayDirectionValue(){
-    return $("#autoplayOrderCheckBox").is("checked")
+    return $("#autoplayOrderCheckBox").is(":checked")
 }
 
 // function checkIfPlayerIsMuted() {
