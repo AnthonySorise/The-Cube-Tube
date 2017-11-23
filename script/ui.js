@@ -89,9 +89,9 @@ function toastMsg(msgString, time) {
 
 function videoListDown(){
     $('.listDropWrap').hide();
-    let timeInt = 200;
+    let timeInt = 500;
     $('.tdList').each((idx,item)=>{
-        if($(item).css('display')!=='none'){
+        if($(item).attr('videoid')!==''){
             setTimeout(()=>{
                 $(item).toggle('puff');
             }, timeInt);
