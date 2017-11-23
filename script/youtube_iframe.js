@@ -139,6 +139,10 @@ function getAutoPlayValue() {
     return $("#autoplayCheckBox").is(":checked")
 }
 
+function getAutoplayOrderValue(){
+    return $("#autoplayOrderCheckbox").is(":checked")
+}
+
 // function checkIfPlayerIsMuted() {
 //     if (player.isMuted()) {
 //         player2.mute();

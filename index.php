@@ -181,6 +181,13 @@ consider carousel for the video list area:
 									<span class="slider round"></span>
 								</label>
 							</div>
+							<div class="navbar-nav nav-pills autoPlayArea vertSlide">
+								<label id="autoplayOrderText">Direction</label>
+								<label class="switch vertSwitch">
+									<input type="checkbox" id='autoplayOrderCheckBox' checked>
+									<span class="slider round vert"></span>
+								</label>
+							</div>
 						</div>
 						<div class="mediaControls"></div>
 <!--						<form class="navbar-right nav-pills form-inline">-->
