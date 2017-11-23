@@ -105,7 +105,7 @@ function videoListDown(){
         'width': '152vh',
         'height': '85vh'
     }, 600);
-    $('.tdList').toggle('scale');
+    // $('.tdList').toggle('scale');
 }
 function videoListUp(){
     $('.listUpWrap').hide();
@@ -125,15 +125,15 @@ function videoListUp(){
         'width': '98vh',
         'height': '55vh'
     }, 600);
-    let idx = 1;
-    let listInterval=null;
-    while(idx<41){
-        listInterval = setInterval(function(){
-            $('#tdList-'+[idx]).toggle('scale');
-            idx++;
-        },50);
-    }
-    clearInterval(listInterval);
+    // let idx = 1;
+    // let listInterval=null;
+    // while(idx<41){
+    //     listInterval = setInterval(function(){
+    //         $('#tdList-'+[idx]).toggle('scale');
+    //         idx++;
+    //     },50);
+    // }
+    // clearInterval(listInterval);
 }
 
 //Click handler to console log search results
