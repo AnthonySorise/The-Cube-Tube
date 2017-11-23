@@ -1672,12 +1672,26 @@ consider carousel for the video list area:
         				</div>
       				</div>
 					<div class="modal-body userLinkBody">
-						
+						<div class="linkCopyArea text-center"></div>
+						<div class="channelCategoryArea text-center">
+							<dl>
+								<dt style="color: grey;">Categorize your channel:</dt>
+								<dd style="color:white;">
+									add a custom channel category for the channel you subscribed to
+								</dd>
+							</dl>
+							<form class="form-inline col-xs-12 col-sm-6 col-sm-offset-3">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
+										<span type="button" class="input-group-addon channelCategoryButton">
+											<span class="glyphicon glyphicon-ok" style="color:rgba(255,0,0,0.6);"></span>
+										</span>
+									</div>
+								</div>	
+							</form>
+						</div>
 					</div>
-					<!-- <div class="modal-footer">
-						<span id="userLinkModalFooter"></span>
-						<button type="button" class="btn btn-danger modalClose userLinkModalClose" data-dismiss="modal">close</button>
-					</div> -->
 				</div>
 			</div>
 		</div>
