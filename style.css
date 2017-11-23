@@ -520,6 +520,10 @@ div.thRow {
 	padding: 0 5px;
 	font-size: 10px;
 	border: none;
+	color: rgba(0, 0, 0, 0.5);
+}
+.tdPlaylistButton:hover{
+	color: rgba(0, 0, 0, 1);
 }
 
 .tdTitle, .tdChannel, .tdUpDate {
