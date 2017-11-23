@@ -14,9 +14,9 @@ const play = "fa fa-play modalControls playButton";
 const pause = "fa fa-pause modalControls pauseButton";
 var player;
 // var player2;
-var currentlySelectedVideoID = null;
-var nextVideoIdToLoad = null;
-var prevVideoIdToLoad = null;
+// var currentlySelectedVideoID = null;
+// var nextVideoIdToLoad = null;
+// var prevVideoIdToLoad = null;
 
 $(document).ready(function () {
     function initApp(){
