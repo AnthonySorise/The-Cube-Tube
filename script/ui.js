@@ -517,8 +517,10 @@ function tooltipFunctions() {
         },1000);
     });
     $('.pauseButton').mouseenter(function(){
-        setTimeout(function(){
+        setTimeout(function() {
             $('.pauseButton').tooltip('hide');
+        }, 1000);
+    });
     $('.listUpButton').mouseenter(function(){
         setTimeout(function(){
             $('.listUpButton').tooltip('hide');
