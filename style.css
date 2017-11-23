@@ -868,6 +868,7 @@ div.thRow {
 }
 .userLinkHeader>button:hover{
 	opacity: 1;
+	color: white;
 }
 .channelCategoryInput{
 	border-radius:0;
