@@ -97,7 +97,7 @@ function videoListDown(){
             }, timeInt);
             timeInt+=20;
         }
-        if(idx==40){
+        if(idx==39){    //39 instead of 40 because of 0 index
             $('#text-carousel').slideUp(850);
             $('.thRow').fadeOut(590);
             $('.videoListRowWrapper').fadeOut(590);
