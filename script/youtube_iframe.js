@@ -91,7 +91,7 @@ function onPlayerStateChange(event) {
 
 //Function to play next video and change spinner icon to current video playing
 function playNextYTVideo() {
-    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === player.getVideoUrl());
+    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
 
     // if(currentVideoIndex === 40 && )
 
@@ -119,7 +119,7 @@ function playNextYTVideo() {
 }
 
 function playPrevYTVideo() {
-    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === player.getVideoUrl());
+    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
 
     if(currentVideoIndex === 0 && videoObjectsToLoad.length === 40){
         return
