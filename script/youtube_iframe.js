@@ -107,15 +107,13 @@ function playNextYTVideo() {
             next();
         }, 250)
     }
-    // else if(currentVideoIndex % 19 === 0){
-    //     $('.carousel').carousel('next');
-    //     next();
-    // }
-    // else{
-    //     next();
-    // }
+    else{
+        next();
+    }
 
     function next() {
+        console.log("RUNNING NEXT")
+
         var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex + 1].youtube_video_id;
 
         updateVideoInfoPopover(nextVideoIdToLoad);
