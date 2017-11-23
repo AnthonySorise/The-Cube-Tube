@@ -593,14 +593,6 @@ div.thRow {
 	margin: 0;
 }
 
-/*.selectedTd {*/
-	/*background-color: lightgreen !important;*/
-	/*!*color: #020e13; !important;*!*/
-/*}*/
-/*.selectedTd:hover{*/
-	/*background-color: lightgreen !important;*/
-/*}*/
-
 /****** initial screen PLACEHOLDER AREA******/
 .contentPlaceholderWrapper{
 	height: 100%;
@@ -872,10 +864,6 @@ div.thRow {
 	color:white;
 }
 
-
-/* .rewindButton {
-	margin-left: 25%;
-} */
 .playButton:hover, .rewindButton:hover, .fastForwardButton:hover, .pauseButton:hover, .nextVideoButton:hover, .lastVideoButton:hover {
 	color: #fff; 
 }
@@ -888,11 +876,6 @@ div.thRow {
 .carousel-control {
 	width: 30px;
 }
-
-.glyphicon {	/**target a class more specific to the glyphicon controllign carousel**/
-	/*color: red;*/
-}
-
 /* toggle button */
 
 #autoplayText {
@@ -1043,11 +1026,6 @@ input:checked+.slider {
 }
 
 
-
-
-
-
-
 /************************************************************
 * anything added below this should be for @MEDIA RULES ONLY	*
 * in DESCENDING ORDER of screen WIDTH 					    *
@@ -1074,16 +1052,8 @@ safer appraoch than to resizing browser to see change
 		margin-right: -15px;
 		margin-left: -15px;
 	}
-	
 	p.navbar-text{
 		line-height: 2.2;
-	}
-	/*#mainNav-option form,*/
-	/*#midNav-option form {*/
-		/*margin-right: 0;*/
-	/*}*/
-	.autoPlayArea{
-		/*margin-left: -15px;*/
 	}
 	/*end of hamburger/navbar css*/
 	body>.container-fluid {
@@ -1095,27 +1065,6 @@ safer appraoch than to resizing browser to see change
 		/*height: 90vh;*/
 		height:94vh;
 	}
-	/*.videoRowWrapper{*/
-		/*height: 49%;*/
-	/*}*/
-/*	.vidRowVideoCol{
-		margin-left:0;
-		padding: 0;
-	}*/
-
-	/*.thUpDate{*/
-		/*font-size: 14px;*/
-		/*padding: 0;*/
-	/*}*/
-	/*.tdUpDate {*/
-		/*font-size: 9px;*/
-		/*padding: 0;*/
-	/*}*/
-	/*.tdList {*/
-		/*font-size: 10px;*/
-		/*margin-top: 1px;*/
-		/*margin-bottom: 1px;*/
-	/*}*/
 }
 @media screen and (max-width: 1024px) {
 	#channelSearchModal .modal-dialog {
@@ -1124,10 +1073,6 @@ safer appraoch than to resizing browser to see change
 	#channelSearchModalBody {
 		height: 55vh;
 	}
-/*	.vidRowVideoCol{
-		margin-left:0;
-		padding: 0;
-	}*/
 }
 @media only screen and (max-width: 991px) {
 	.main-content{
@@ -1144,8 +1089,6 @@ safer appraoch than to resizing browser to see change
 		border-left: none;
 	}
 }
-
-
 
 @media only screen and (min-width: 768px){
 	#mainNav-option{
@@ -1171,12 +1114,6 @@ safer appraoch than to resizing browser to see change
 	.hamburger {
 		display: inline-block !important;
 		/*margin-right:8px;*/
-	}
-	.navbar-collapse.collapse{
-		/*display: none !important;*/
-	}
-	.collapse.in{
-		/*display: block !important;*/
 	}
 	.channelSearchFormMobile{
 		display: inline-block !important;
@@ -1224,11 +1161,6 @@ safer appraoch than to resizing browser to see change
 		height: 90.6vh;
 		/*height: 92vh;*/
 	}
-	body>.container-fluid {
-		/*padding-top: 56px;*/
-		/*padding-top: 51.4px;*/
-		/*padding-top:51px;*/
-	}
 	.videoRowWrapper{
 		/*height: 47%;*/
 		height:45%;
@@ -1248,13 +1180,6 @@ safer appraoch than to resizing browser to see change
 	.modalChSearch{
 		width: 70%;
 	}
-	/*small {
-		display: none;
-	}
-	h4 {		if this is meant for h4 tag in modal, it should be combined with col-xs-7 as that is the only
-					col-xs-7 in modal. I added a class for the channel h4 tag so target those for these changes
-		font-size: .80em;
-	}*/
 	.modalChHeader{
 		font-size: .80em;
 	}
@@ -1276,10 +1201,6 @@ safer appraoch than to resizing browser to see change
 		margin: 10px !important;
 	}
 	/* End of css for mobile modal */
-
-	/*.navbar-brand>span {
-		display: none;
-	}*/
 }
 
 
