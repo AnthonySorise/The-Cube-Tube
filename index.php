@@ -1471,10 +1471,10 @@ consider carousel for the video list area:
 					<div class="modal-body" id="channelSearchModalBody">
 						<li id="chSearch-1" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1491,7 +1491,7 @@ consider carousel for the video list area:
 							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1509,7 +1509,7 @@ consider carousel for the video list area:
 							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1527,7 +1527,7 @@ consider carousel for the video list area:
 							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1545,7 +1545,7 @@ consider carousel for the video list area:
 								<span class="chName col-xs-6">
 
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1563,7 +1563,7 @@ consider carousel for the video list area:
 							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1580,7 +1580,7 @@ consider carousel for the video list area:
 							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1597,7 +1597,7 @@ consider carousel for the video list area:
 							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1615,7 +1615,7 @@ consider carousel for the video list area:
 							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1632,7 +1632,7 @@ consider carousel for the video list area:
 							<h4 class="col-xs-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
