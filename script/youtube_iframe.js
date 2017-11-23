@@ -101,14 +101,17 @@ function playNextYTVideo() {
     var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
 
 
-    if(currentVideoIndex % 40 === 0 && videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
+    if(currentVideoIndex % 39 === 0 && videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
         loadNextPage();
         setTimeout(function(){
             next();
         }, 250)
     }
-    else if(currentVideoIndex % 20 === 0){
+    else if(currentVideoIndex % 19 === 0){
         $('.carousel').carousel('next');
+        next();
+    }
+    else{
         next();
     }
 
