@@ -100,15 +100,16 @@ function videoListDown(){
         'height': '5.5%'
     }, 600, ()=>{
         $('.listUpWrap').fadeIn();
+        $('.tdList').each((idx,item)=>{
+            $(item).toggle('scale');
+        });
     });
     $('#mainVideo').animate({
         'width': '152vh',
         'height': '85vh'
     }, 600);
     // $('.tdList').toggle('scale');
-    $('.tdList').each((idx,item)=>{
-        $(item).toggle('scale');
-    });
+    
 }
 function videoListUp(){
     $('.listUpWrap').hide();
@@ -128,7 +129,7 @@ function videoListUp(){
         'width': '98vh',
         'height': '55vh'
     }, 600);
-    let timeInt = 100;
+    let timeInt = 200;
     $('.tdList').each((idx,item)=>{
         setTimeout(()=>{
             $(item).toggle('scale');
