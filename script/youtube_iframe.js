@@ -113,15 +113,14 @@ function playNextYTVideo() {
     // player2.cueVideoById(nextVideoIdToLoad);
     currentlySelectedVideoID = nextVideoIdToLoad;
 
-    resetSelectedTd();
-    // $(".tdList").removeClass('selectedTd');
-    // $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
-    // $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
-    // $("[videoid='" + currentlySelectedVideoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
-    //     "margin-right": '5px',
-    //     'color': 'green'
-    // });
-    // $("[videoid='" + currentlySelectedVideoID + "']").addClass('selectedTd');
+    $(".tdList").removeClass('selectedTd');
+    $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
+    $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
+    $("[videoid='" + currentlySelectedVideoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
+        "margin-right": '5px',
+        'color': 'green'
+    });
+    $("[videoid='" + currentlySelectedVideoID + "']").addClass('selectedTd');
 
 }
 
