@@ -196,26 +196,30 @@ consider carousel for the video list area:
 <!--						</form>-->
 <!--						end of form for channel search-->
                         <div class="navbar-nav nav-pills midNavChannels">
-								<span class="midNavBrowsing">
-									<p style="display:inline-block">
-										Browsing:
-									</p>
-								</span>
+                        	<span class="playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="all">
+                        		<i class="fa fa-list-ol fa-lg"></i>
+                        		playlist
+                        	</span>
+							<span class="midNavBrowsing">
+								<p style="display:inline-block">
+									Browsing:
+								</p>
+							</span>
                             <span class="midNavBrowsing browsingLabel label label-info">
-									channel name
-								</span>
+								channel name
+							</span>
                             <span class="midNavBrowsing">
-									<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
-								</span>
+								<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
+							</span>
                             <span class="midNavWatching">
-									<p style="display:inline-block">
-                                        Watching:
-                                    </p>
-								</span>
+								<p style="display:inline-block">
+                                    Watching:
+                                </p>
+							</span>
                             <span class="midNavWatching watchingLabel label label-success" data-toggle="tooltip" data-placement="auto" data-container='body' data-trigger="hover focus" title="channel 1, channel 2, channel 3">
-									<i class="fa fa-cubes"></i>
-									Subscribed Channels
-								</span>
+								<i class="fa fa-cubes"></i>
+								Subscribed Channels
+							</span>
                         </div>
 					</div>
 					<!--end of nav options div-->
@@ -302,13 +306,13 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<!-- when added to playlist target and toggle:
-															$('#tdList-'+[i]+' .tdPlaylistBadgeSign i').toggleClass('fa-plus fa-check')
+															$('#tdList-'+[i]+' .tdPlaylistBadgeSign i').toggleClass('fa-plus-square fa-check-square-o')
 															$('#tdList-'+[i]+' .tdPlaylistNum').text('') -->
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -332,10 +336,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -359,10 +363,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -386,10 +390,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -413,10 +417,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -440,10 +444,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -467,10 +471,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -494,10 +498,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -521,10 +525,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -548,10 +552,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -577,10 +581,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -604,10 +608,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -631,10 +635,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -658,10 +662,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -685,10 +689,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -712,10 +716,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -739,10 +743,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -766,10 +770,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -793,10 +797,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -820,10 +824,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -859,10 +863,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -886,10 +890,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -913,10 +917,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -940,10 +944,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -967,10 +971,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -994,10 +998,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1021,10 +1025,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1048,10 +1052,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1075,10 +1079,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1102,10 +1106,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1131,10 +1135,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1158,10 +1162,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1185,10 +1189,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1212,10 +1216,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1239,10 +1243,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1266,10 +1270,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1293,10 +1297,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1320,10 +1324,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1347,10 +1351,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
@@ -1374,10 +1378,10 @@ consider carousel for the video list area:
 													</div>
 													<div class="col-sm-1 hidden-xs tdPlaylist text-center">
 														<button class="btn btn-xs tdPlaylistButton" data-toggle="tooltip" data-trigger="hover" data-container="body" data-placement="auto" title="add to playlist">
-															<i class="fa fa-list-ol fa-lg" aria-hidden="true"></i>
-															<span class="badge tdPlaylistBadgeSign">
-																<i class="fa fa-plus"></i>
-															</span>
+															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
+															<!-- <span class="tdPlaylistBadgeSign"> -->
+																<i class="fa fa-plus-square fa-lg"></i>
+															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>

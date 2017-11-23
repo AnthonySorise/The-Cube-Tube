@@ -34,6 +34,7 @@ function onYouTubeIframeAPIReady(vidId) {
 function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.PLAYING) {
         $('.playButton').removeClass(play).toggleClass(pause);
+        
 
     } else if (event.data == YT.PlayerState.PAUSED) {
         $('.pauseButton').removeClass(pause).toggleClass(play);
@@ -176,24 +177,28 @@ function rendertheatreControls() {
     var rewindElement = $('<i>', {
         class: "fa fa-undo modalControls rewindButton",
         ["data-toggle"]: "tooltip",
-        ["data-placement"]: "left",
+        ["data-placement"]: "bottom",
         ["data-container"]: "body",
         title: "Rewind 15s"
     });
     var playElement = $('<i>', {
         class: "fa fa-play modalControls playButton",
+        ["data-toggle"]: "tooltip",
+        ["data-placement"]: "bottom",
+        ["data-container"]: "body",
+        title: "Play"
     });
     var fastForwardElement = $('<i>', {
         class: "fa fa-repeat modalControls fastForwardButton",
         ["data-toggle"]: "tooltip",
-        ["data-placement"]: "right",
+        ["data-placement"]: "bottom",
         ["data-container"]: "body",
         title: "Fast Forward 15s"
     });
     var nextVideoElement = $('<i>', {
         class: "fa fa-forward modalControls nextVideoButton",
         ["data-toggle"]: "tooltip",
-        ["data-placement"]: "left",
+        ["data-placement"]: "right",
         ["data-container"]: "body",
         title: "Next Video"
     });
