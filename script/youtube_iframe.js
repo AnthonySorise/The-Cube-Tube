@@ -101,21 +101,21 @@ function playNextYTVideo() {
     var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
 
 
-    if(currentVideoIndex+1 % 20 === 0 && videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
+
+    if((currentVideoIndex+1) % 20 === 0 && videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
+        console.log("ON LAST VID")
         $(".right").click();
         setTimeout(function(){
             next();
         }, 250)
     }
-    // else if(currentVideoIndex % 19 === 0){
-    //     $('.carousel').carousel('next');
-    //     next();
-    // }
-    // else{
-    //     next();
-    // }
+    else{
+        next();
+    }
 
     function next() {
+        console.log("RUNNING NEXT")
+
         var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex + 1].youtube_video_id;
 
         updateVideoInfoPopover(nextVideoIdToLoad);
@@ -141,10 +141,15 @@ function playNextYTVideo() {
 }
 
 function playPrevYTVideo() {
-    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
-
+    //escape function if on first video
     if(currentVideoIndex === 0 && videoObjectsToLoad.length === 40){
         return
+    }
+
+    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
+
+    if(currentVideoIndex % 20 === 0){
+        $(".left").click();
     }
 
     var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex - 1].youtube_video_id;
