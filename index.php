@@ -238,7 +238,7 @@ consider carousel for the video list area:
 						<div class="col-xs-5 col-sm-2 thChannel">
 							<strong>Channel</strong>
 						</div>
-						<div class="col-xs-2 thUpDate">
+						<div class="col-xs-2 hidden-xs thUpDate">
 							<strong>Date</strong>
 						</div>
 					</div>
