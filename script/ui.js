@@ -116,13 +116,9 @@ function videoListDown(){
                     'width': '152vh',
                     'height': '85vh'
                 }, 600);  
-            },500);
-            
+            },700);
         }
     });
-    // (()=>{
-        
-    // })();
 }
 
 function videoListUp(){
