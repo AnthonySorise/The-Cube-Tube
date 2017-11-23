@@ -96,7 +96,7 @@ function playNextYTVideo() {
     nextVideoIdToLoad = videoObjectsToLoad[currentVideoindex + 1].youtube_video_id
 
     updateVideoInfoPopover(videoObjectsToLoad[currentVideoindex+1].youtube_video_id);
-    updateChannelInfoPopover (videoObjectsToLoad[currentVideoindex+1].youtube_channel_id)
+    updateChannelInfoPopover (videoObjectsToLoad[currentVideoindex+1].youtube_channel_id);
 
     if (getAutoPlayValue()) {
         player.loadVideoById(nextVideoIdToLoad);
@@ -118,8 +118,10 @@ function playNextYTVideo() {
 
 function playPrevYTVideo() {
     currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
-    
-    prevVideoIdToLoad = videoObjectsToLoad[currentVideoindex - 1].youtube_video_id
+    prevVideoIdToLoad = videoObjectsToLoad[currentVideoindex - 1].youtube_video_id;
+
+    updateVideoInfoPopover(videoObjectsToLoad[currentVideoindex+1].youtube_video_id);
+    updateChannelInfoPopover (videoObjectsToLoad[currentVideoindex+1].youtube_channel_id);
 
     if (getAutoPlayValue()) {
         player.loadVideoById(prevVideoIdToLoad);
