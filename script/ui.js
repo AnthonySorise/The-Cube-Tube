@@ -95,7 +95,7 @@ function videoListDown(){
             setTimeout(()=>{
                 $(item).toggle('puff');
             }, timeInt);
-            timeInt+=17;
+            timeInt+=20;
         }
         if(idx==39){    //39 instead of 40 because of 0 index
             setTimeout(()=>{
