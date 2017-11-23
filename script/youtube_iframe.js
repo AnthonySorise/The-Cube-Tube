@@ -101,7 +101,9 @@ function playNextYTVideo() {
     var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
 
 
-    if(currentVideoIndex+1 % 20 === 0 && videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
+
+    if((currentVideoIndex+1) % 20 === 0 && videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
+        console.log("ON LAST VID")
         $(".right").click();
         setTimeout(function(){
             next();
