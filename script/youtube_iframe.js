@@ -103,7 +103,7 @@ function playNextYTVideo() {
     var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex + 1].youtube_video_id;
 
     updateVideoInfoPopover(nextVideoIdToLoad);
-    updateChannelInfoPopover (videoObjectsToLoad[currentVideoindex+1].youtube_channel_id);
+    updateChannelInfoPopover (videoObjectsToLoad[currentVideoIndex+1].youtube_channel_id);
 
     if (getAutoPlayValue()) {
         player.loadVideoById(nextVideoIdToLoad);
@@ -136,7 +136,7 @@ function playPrevYTVideo() {
     var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex - 1].youtube_video_id;
 
     updateVideoInfoPopover(nextVideoIdToLoad);
-    updateChannelInfoPopover (videoObjectsToLoad[currentVideoindex-1].youtube_channel_id);
+    updateChannelInfoPopover (videoObjectsToLoad[currentVideoIndex-1].youtube_channel_id);
 
     if (getAutoPlayValue()) {
         player.loadVideoById(nextVideoIdToLoad);
