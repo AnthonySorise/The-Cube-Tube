@@ -100,9 +100,10 @@ function videoListDown(){
         'height': '5.5%'
     }, 600, ()=>{
         $('.listUpWrap').fadeIn();
-        $('.tdList').each((idx,item)=>{
-            $(item).toggle('scale');
-        });
+        // $('.tdList').each((idx,item)=>{
+        //     $(item).toggle('scale');
+        // });
+        $('.tdList').hide();
     });
     $('#mainVideo').animate({
         'width': '152vh',
