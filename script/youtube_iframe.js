@@ -95,8 +95,8 @@ function playNextYTVideo() {
     currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
     nextVideoIdToLoad = videoObjectsToLoad[currentVideoindex + 1].youtube_video_id
 
-    updateVideoInfoPopover(videoObjectsToLoad[currentVideoindex].youtube_video_id);
-    updateChannelInfoPopover (videoObjectsToLoad[currentVideoindex].youtube_channel_id)
+    updateVideoInfoPopover(videoObjectsToLoad[currentVideoindex+1].youtube_video_id);
+    updateChannelInfoPopover (videoObjectsToLoad[currentVideoindex+1].youtube_channel_id)
 
     if (getAutoPlayValue()) {
         player.loadVideoById(nextVideoIdToLoad);
