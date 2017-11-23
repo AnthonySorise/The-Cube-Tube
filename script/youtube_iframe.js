@@ -102,12 +102,17 @@ function playNextYTVideo() {
 
 
 
-    if((currentVideoIndex+1) % 20 === 0 && videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
-        console.log("ON LAST VID")
-        $(".right").click();
-        setTimeout(function(){
+    if((currentVideoIndex+1) % 20 === 0){
+        if (videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
+            $(".right").click();
+            setTimeout(function(){
+                next();
+            }, 250)
+        }
+        else{
+            $('.carousel').carousel('next')
             next();
-        }, 250)
+        }
     }
     else{
         next();
