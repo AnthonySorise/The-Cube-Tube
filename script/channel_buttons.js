@@ -75,7 +75,7 @@ function addChannelModal(userLink) {
             'class':'glyphicon glyphicon-ok'
         }).css({
             'color':'rgba(255,0,0,0.6)'
-        })appendTo(catFormBtn);
+        }).appendTo(catFormBtn);
         catFormDiv2.append(catFormInput, catFormBtn);
         catFormDiv1.append(catFormDiv2);
         catFormWrap.append(catFormDiv1);
