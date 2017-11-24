@@ -2,15 +2,14 @@ var playlistVideoObjectArray = [
 
 ];
 
-var TESTBUTTON;
 
 function handleAddToPlaylist(){
-    TESTBUTTON = this;
-    console.log(this)
-    console.log($(this).parent().youtube_video_id)
-    console.log($(this).parent().youtube_video_id)
+    var videoToAdd = $(TESTBUTTON).parent().parent().attr("videoID")
+    playlistVideoObjectArray.push(videoToAdd)
+    var row = $(this).parent().parent()
 
-
+    $(this).find("i").toggleClass('fa-plus-square fa-check-square-o')
+    $(this).find(".tdPlaylistNum").text(playlistVideoObjectArray[playlistVideoObjectArray.length-1])
 }
 
 
