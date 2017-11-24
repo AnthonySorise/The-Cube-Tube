@@ -9,7 +9,7 @@ function handleAddToPlaylist(){
     var row = $(this).parent().parent()
 
     $(this).find("i").toggleClass('fa-plus-square fa-check-square-o')
-    $(this).find(".tdPlaylistNum").text(playlistVideoObjectArray.length+1)
+    $(this).find(".tdPlaylistNum").text(playlistVideoObjectArray.length)
 }
 
 
@@ -18,9 +18,10 @@ function playNextPlaylistVideo(){
     if(playlistVideoObjectArray.length){
 
         var nextVideoIdToLoad = playlistVideoObjectArray[0].youtube_video_id;
+        var nextChannelToLoad = playlistVideoObjectArray[0].youtube_channel_id
 
         updateVideoInfoPopover(nextVideoIdToLoad);
-        updateChannelInfoPopover (nextVideoIdToLoad);
+        updateChannelInfoPopover (nextChannelToLoad);
 
         if (getAutoPlayValue()) {
             player.loadVideoById(nextVideoIdToLoad);
