@@ -54,6 +54,8 @@ function onPlayerStateChange(event) {
 
 //Function to play next video and change spinner icon to current video playing
 function playNextYTVideo() {
+    updateMidNavText();
+
     if(playlistVideoObjectArray.length > 0){
         playNextPlaylistVideo();
     }   //TEMP  SHOULD HAVE BUTTON THAT DOES THIS INSTEAD
@@ -101,6 +103,8 @@ function playNextYTVideo() {
 }
 
 function playPrevYTVideo() {
+    updateMidNavText();
+
     //escape function if on first video
     if(currentVideoIndex === 0 && videoObjectsToLoad.length === 40){
         return

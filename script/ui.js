@@ -349,7 +349,8 @@ function clickHandler() {
             } else {
                 player.cueVideoById(currentlySelectedVideoID);
             }
-            // player2.cueVideoById(currentlySelectedVideoID);
+
+            updateMidNavText();
 
             //update video stats popover
             updateVideoInfoPopover(currentlySelectedVideoID);
