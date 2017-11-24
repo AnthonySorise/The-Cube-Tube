@@ -89,24 +89,38 @@ function toastMsg(msgString, time) {
 
 function videoListDown(){
     $('.listDropWrap').hide();
-    $('#text-carousel').slideUp(850);
-    $('.thRow').fadeOut(590);
-    $('.videoListRowWrapper').fadeOut(590);
-    $('.videoRowWrapper').animate({
-        // 'height': '93.8%'
-        'height':'94.2%'
-    }, 600);
-    $('#listContentWrap').animate({
-        'height': '5.5%'
-    }, 600, ()=>{
-        $('.listUpWrap').fadeIn();
+    let timeInt = 0;
+    $('.tdList').each((idx,item)=>{
+        if($(item).attr('videoid')!==''){
+            setTimeout(()=>{
+                $(item).toggle('puff');
+            }, timeInt);
+            timeInt+=20;
+        }
+        if(idx==39){    //39 instead of 40 because of 0 index
+            setTimeout(()=>{
+                $('#text-carousel').slideUp(850);
+                $('.thRow').fadeOut(590);
+                $('.videoListRowWrapper').fadeOut(590);
+                $('.videoRowWrapper').animate({
+                    // 'height': '93.8%'
+                    'height':'94.2%'
+                }, 600);
+                $('#listContentWrap').animate({
+                    'height': '5.5%'
+                }, 600, ()=>{
+                    $('.listUpWrap').fadeIn();
+                    // $('.tdList').hide();
+                });
+                $('#mainVideo').animate({
+                    'width': '152vh',
+                    'height': '85vh'
+                }, 600);  
+            },850);
+        }
     });
-    $('#mainVideo').animate({
-        'width': '152vh',
-        'height': '85vh'
-    }, 600);
-    // $('.tdList').toggle('scale');
 }
+
 function videoListUp(){
     $('.listUpWrap').hide();
     $('.listDropWrap').slideDown();
@@ -125,15 +139,17 @@ function videoListUp(){
         'width': '98vh',
         'height': '55vh'
     }, 600);
-    // let idx = 1;
-    // let listInterval=null;
-    // while(idx<41){
-    //     listInterval = setInterval(function(){
-    //         $('#tdList-'+[idx]).toggle('scale');
-    //         idx++;
-    //     },50);
-    // }
-    // clearInterval(listInterval);
+    let timeInt = 500;
+    $('.tdList').each((idx,item)=>{
+        if($(item).attr('videoid')!==''){
+            setTimeout(()=>{
+                $(item).toggle('scale');
+            }, timeInt);
+            timeInt +=50;
+        }else{
+            return;
+        }
+    });
 }
 
 //Click handler to console log search results
