@@ -240,15 +240,12 @@ function removeUnusedRows() {
 }
 
 function resetSelectedTd() {
-    // setTimeout(function(){
     $(".tdList").removeClass('selectedTd');
     $('.fa-circle-o-notch').remove();
-    // }, 50);
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            // setTimeout(function(){
             $(row).addClass("selectedTd")
             var playSymbol = $('<i>')
                 .addClass('fa fa-circle-o-notch fa-spin fa-fw')
@@ -269,14 +266,18 @@ function resetPlaylistTd() {
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
-        if (player.getVideoUrl().indexOf($(row).attr('videoID')) !== -1) {
-            playlistVideoObjectArray.splice(j, 1)
+        for(var j = 0; j < playlistVideoObjectArray.length; j++){
+            if (player.getVideoUrl() === playlistVideoObjectArray[j].youtube_video_id) {
+                playlistVideoObjectArray.splice(j, 1)
+            }
         }
 
-        if (playlistVideoObjectArray[i].youtube_video_id === $(row).attr("videoID")) {
-            $(row).addClass(".playlistTd");
-            $(row + " .tdPlayList i").removeClass("fa-plus-square").addClass('fa-check-square-o');
-            $(row + " .tdPlaylistNum").text(j + 'test')
+        for(var j = 0; j < playlistVideoObjectArray.length; j++){
+            if (playlistVideoObjectArray[i].youtube_video_id === $(row).attr("videoID")) {
+                $(row).addClass(".playlistTd");
+                $(row + " .tdPlayList i").removeClass("fa-plus-square").addClass('fa-check-square-o');
+                $(row + " .tdPlaylistNum").text(j + 'test')
+            }
         }
     }
 }
