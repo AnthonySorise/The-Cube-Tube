@@ -1,6 +1,4 @@
-var playlistVideoObjectArray = [
-
-];
+var playlistVideoObjectArray = [];
 
 
 function handleAddToPlaylist(){
@@ -19,13 +17,22 @@ function handleAddToPlaylist(){
     $(this).find(".tdPlaylistNum").text(playlistVideoObjectArray.length)
 }
 
-
-
 function playNextPlaylistVideo(){
     if(playlistVideoObjectArray.length){
+        if (currentlySelectedVideoID === playlistVideoObjectArray.youtube_video_id){
+            playlistVideoObjectArray.splice(0, 1);
+            if(playlistVideoObjectArray.length ===0){
+                if(getAutoPlayDirectionValue()){
+                    playNextYTVideo();
+                }
+                else{
+                    playPrevYTVideo();
+                }
+            }
+        }
 
         var nextVideoIdToLoad = playlistVideoObjectArray[0].youtube_video_id;
-        var nextChannelToLoad = playlistVideoObjectArray[0].youtube_channel_id
+        var nextChannelToLoad = playlistVideoObjectArray[0].youtube_channel_id;
 
         updateVideoInfoPopover(nextVideoIdToLoad);
         updateChannelInfoPopover (nextChannelToLoad);
@@ -47,10 +54,8 @@ function playNextPlaylistVideo(){
         $("[videoid='" + currentlySelectedVideoID + "'] .tdPlaylistButton>i").toggleClass('fa-plus-square fa-check-square-o');
         $("[videoid='" + currentlySelectedVideoID + "'] .tdPlaylistNum").text('');
 
-        $("[videoid='" + currentlySelectedVideoID + "']").removeClass('playlistT').addClass('selectedTd');
+        $("[videoid='" + currentlySelectedVideoID + "']").removeClass('playlistTd').addClass('selectedTd');
 
         playlistVideoObjectArray.splice(0, 1);
-
-
     }
 }

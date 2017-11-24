@@ -240,25 +240,17 @@ function removeUnusedRows() {
 }
 
 function resetSelectedTd() {
-    // setTimeout(function(){
-    $(".tdList").removeClass('selectedTd');
-    $('.fa-circle-o-notch').remove();
-    // }, 50);
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            // setTimeout(function(){
-            $(row).addClass("selectedTd")
-            var playSymbol = $('<i>')
-                .addClass('fa fa-circle-o-notch fa-spin fa-fw')
-                .css({
-                    "margin-right": '5px',
-                    'color': 'green'
-                });
-            $(row).find(".tdTitle>span").prepend(playSymbol);
-            // }, 500)
+            $(row).removeClass("playlistTd")
         }
+
+        let playlistRow = "#tdList-" + (i + 1) + " .playlistTd"
+
+        $(playlistRow + " .tdPlayList i").toggleClass('fa-plus-square fa-check-square-o')
+        $(playlistRow + " .tdPlaylistNum").text("TEST")
     }
 }
 
