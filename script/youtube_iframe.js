@@ -39,7 +39,7 @@ function onPlayerStateChange(event) {
            //  updateVideoInfoPopover(playlistVideoId);
            //  updateChannelInfoPopover (playlistChannelId)
            //  playlistArray.splice(0, 1);
-            loadNextPlaylistVideo();
+            playNextPlaylistVideo();
         }
         else if(getAutoPlayDirectionValue()){
             playNextYTVideo();

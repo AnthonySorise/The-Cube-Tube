@@ -305,6 +305,8 @@ function clickHandler() {
     //Add Buttons
     $('.addChannelButton').on("click touchend", handleAddButton);
 
+    $(".tdplaylistbutton").on("click", handleAddToPlaylist);
+
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click touchend", function () {
 
@@ -356,6 +358,9 @@ function clickHandler() {
             updateChannelInfoPopover(channelID);
         }
     });
+
+
+
 
     //Theater mode
     // $('.lightBoxMode').on('click', checkHomePageVideoStatus);
