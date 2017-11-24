@@ -267,7 +267,7 @@ function resetPlaylistTd() {
         let row = "#tdList-" + (i + 1);
 
         for(var j = 0; j < playlistVideoObjectArray.length; j++){
-            if (player.getVideoUrl() === playlistVideoObjectArray[j].youtube_video_id) {
+            if (player.getVideoUrl().indexOf(playlistVideoObjectArray[j].youtube_video_id) !== -1) {
                 playlistVideoObjectArray.splice(j, 1)
             }
         }
@@ -275,8 +275,8 @@ function resetPlaylistTd() {
         for(var j = 0; j < playlistVideoObjectArray.length; j++){
             if (playlistVideoObjectArray[j].youtube_video_id === $(row).attr("videoID")) {
                 $(row).addClass(".playlistTd");
-                $(row + " .tdPlayList i").removeClass("fa-plus-square").addClass('fa-check-square-o');
-                $(row + " .tdPlaylistNum").text(j + 'test')
+                $(row + " .tdPlaylistButton>i").removeClass("fa-plus-square").addClass('fa-check-square-o');
+                $(row + " .tdPlaylistNum").text(j + 1)
             }
         }
     }
