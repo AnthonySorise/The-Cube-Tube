@@ -3,6 +3,8 @@ var playlistVideoObjectArray = [];
 
 function handleAddToPlaylist(){
     if($(this).parent().parent().hasClass("playlistTd")){
+        var indexToRemove = playlistVideoObjectArray.indexOf($(this).parent().parent().attr("videoID"))
+        playlistVideoObjectArray.splice(indexToRemove, 1)
         return
     }
 
