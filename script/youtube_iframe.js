@@ -58,6 +58,7 @@ function playNextYTVideo() {
 
     if(playlistVideoObjectArray.length > 0){
         playNextPlaylistVideo();
+        return
     }   //TEMP  SHOULD HAVE BUTTON THAT DOES THIS INSTEAD
 
     var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);

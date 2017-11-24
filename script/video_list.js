@@ -17,7 +17,6 @@ function loadSelectedChannels() {
                 // returnToPageOne();
                 clearVideoList();
                 renderVideoList(videoObjectsToLoad);
-                updateMidNavText()
             }
             else {
                 console.log('Channel Found Without Videos', data)

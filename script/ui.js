@@ -350,8 +350,6 @@ function clickHandler() {
                 player.cueVideoById(currentlySelectedVideoID);
             }
 
-            updateMidNavText();
-
             //update video stats popover
             updateVideoInfoPopover(currentlySelectedVideoID);
 
