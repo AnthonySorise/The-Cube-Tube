@@ -4,7 +4,7 @@ var playlistVideoObjectArray = [
 
 
 function handleAddToPlaylist(){
-    var videoToAdd = $(TESTBUTTON).parent().parent().attr("videoID")
+    var videoToAdd = $(this).parent().parent().attr("videoID")
     playlistVideoObjectArray.push(videoToAdd)
     var row = $(this).parent().parent()
 
