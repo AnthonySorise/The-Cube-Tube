@@ -44,7 +44,7 @@ function playNextPlaylistVideo(){
             "margin-right": '5px',
             'color': 'green'
         });
-        $("[videoid='" + currentlySelectedVideoID + "'] i:second").toggleClass('fa-plus-square fa-check-square-o');
+        $("[videoid='" + currentlySelectedVideoID + "'] .tdPlaylistButton>i").toggleClass('fa-plus-square fa-check-square-o');
         $("[videoid='" + currentlySelectedVideoID + "'] .tdPlaylistNum").text('');
 
         $("[videoid='" + currentlySelectedVideoID + "']").removeClass('playlistT').addClass('selectedTd');
