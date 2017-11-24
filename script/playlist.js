@@ -26,17 +26,23 @@ function handleAddToPlaylist(){
 
 function playNextPlaylistVideo(){
     if(playlistVideoObjectArray.length){
-        if (currentlySelectedVideoID === playlistVideoObjectArray.youtube_video_id){
-            playlistVideoObjectArray.splice(0, 1);
-            if(playlistVideoObjectArray.length ===0){
-                if(getAutoPlayDirectionValue()){
-                    playNextYTVideo();
-                }
-                else{
-                    playPrevYTVideo();
-                }
-            }
-        }
+        // if (currentlySelectedVideoID === playlistVideoObjectArray.youtube_video_id){
+        //     playlistVideoObjectArray.splice(0, 1);
+        //     if(playlistVideoObjectArray.length ===0){
+        //         if(getAutoPlayDirectionValue()){
+        //             playNextYTVideo();
+        //         }
+        //         else{
+        //             playPrevYTVideo();
+        //         }
+        //     }
+        // }
+        $('.midNavWatching').hide();
+        $('.midNavBrowsing').hide();
+        $(".midNavAddBtn").hide();
+
+        $(".midNavPlaylist").show();
+
 
         var nextVideoIdToLoad = playlistVideoObjectArray[0].youtube_video_id;
         var nextChannelToLoad = playlistVideoObjectArray[0].youtube_channel_id;

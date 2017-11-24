@@ -285,6 +285,18 @@ function resetPlaylistTd() {
 }
 
 function updateMidNavText(){
+    if(playlistVideoObjectArray.length){
+        for(var j = 0; j < playlistVideoObjectArray.length; j++){
+            if (player.getVideoUrl().indexOf(playlistVideoObjectArray[j].youtube_video_id) !== -1) {
+                $(".midNavPlaylist").show();
+                return
+            }
+        }
+    }
+    else{
+        $(".midNavPlaylist").hide();
+    }
+
     if(browsingMode){
         $('.midNavBrowsing').show();
         $('.midNavWatching').hide();

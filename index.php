@@ -204,10 +204,6 @@ consider carousel for the video list area:
 <!--						</form>-->
 <!--						end of form for channel search-->
                         <div class="navbar-nav nav-pills midNavChannels">
-                        	<span class="playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="all">
-                        		<i class="fa fa-list-ol fa-lg"></i>
-                        		playlist
-                        	</span>
 							<span class="midNavBrowsing">
 								<p style="display:inline-block">
 									Browsing:
@@ -228,6 +224,15 @@ consider carousel for the video list area:
 								<i class="fa fa-cubes"></i>
 								Subscribed Channels
 							</span>
+                            <span class="midNavPlaylist">
+								<p style="display:inline-block">
+                                    Watching:
+                                </p>
+							</span>
+                            <span class="midNavPlaylist playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="all">
+                        		<i class="fa fa-list-ol fa-lg"></i>
+                        		Playlist
+                        	</span>
                         </div>
 					</div>
 					<!--end of nav options div-->
