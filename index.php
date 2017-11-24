@@ -37,6 +37,7 @@ consider carousel for the video list area:
     <script type="text/javascript" src="script/ui.js"></script>
     <script type="text/javascript" src="script/db.js"></script>
     <script type="text/javascript" src="script/video_list.js"></script>
+    <script type="text/javascript" src="script/playlist.js"></script>
     <script type="text/javascript" src="script/apple_compatibility.js"></script>
     <script type="text/javascript" src="script/auto_search.js"></script>
     <script type="text/javascript" src="script/channel_buttons.js"></script>
