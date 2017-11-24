@@ -4,9 +4,16 @@ var playlistVideoObjectArray = [
 
 
 function handleAddToPlaylist(){
-    var videoToAdd = $(this).parent().parent().attr("videoID")
-    playlistVideoObjectArray.push(videoToAdd)
-    var row = $(this).parent().parent()
+    var videoIDToAdd = $(this).parent().parent().attr("videoID")
+    var channelIDToAdd = $(this).parent().parent().attr("channelID")
+
+    var videoObject = {};
+    videoObject.youtube_video_id = videoIDToAdd;
+    videoObject.youtube_channel_id = channelIDToAdd;
+
+    playlistVideoObjectArray.push(videoObject);
+    $(this).parent().parent().addClass("playlistTD");
+
 
     $(this).find("i").toggleClass('fa-plus-square fa-check-square-o')
     $(this).find(".tdPlaylistNum").text(playlistVideoObjectArray.length)
