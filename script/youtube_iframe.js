@@ -54,6 +54,10 @@ function onPlayerStateChange(event) {
 
 //Function to play next video and change spinner icon to current video playing
 function playNextYTVideo() {
+    if(playlistVideoObjectArray.length > 0){
+        playNextPlaylistVideo();
+    }   //TEMP  SHOULD HAVE BUTTON THAT DOES THIS INSTEAD
+
     var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
     if((currentVideoIndex+1) % 20 === 0){
         if (videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
