@@ -251,7 +251,7 @@ function clickHandler() {
         }
     });
     //Search Button
-    $('.channelSearchForm').on('click touchend', '.channelSearchButton', (e) => {
+    $('.channelSearchForm').on('click tap', '.channelSearchButton', (e) => {
         e.preventDefault();
         $('.channelSearchForm').submit();
     });

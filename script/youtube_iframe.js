@@ -71,7 +71,7 @@ function onPlayerStateChange(event) {
            }
             //Added Anthony function to get video info to update the video/channel info popover 
             updateVideoInfoPopover(playlistVideoId);
-            updateChannelInfoPopover (playlistChannelId)
+            updateChannelInfoPopover (clientSelectedChannelIds);
             playlistArray.splice(0, 1);
             return;
         }
