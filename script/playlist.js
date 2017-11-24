@@ -9,7 +9,7 @@ function handleAddToPlaylist(){
     var row = $(this).parent().parent()
 
     $(this).find("i").toggleClass('fa-plus-square fa-check-square-o')
-    $(this).find(".tdPlaylistNum").text(playlistVideoObjectArray[playlistVideoObjectArray.length-1])
+    $(this).find(".tdPlaylistNum").text(playlistVideoObjectArray.length+1)
 }
 
 

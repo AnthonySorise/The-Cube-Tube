@@ -25,7 +25,7 @@ function onPlayerStateChange(event) {
 
    
     if (event.data == YT.PlayerState.ENDED) {
-        if(playlistArray.length > 0) {
+        if(playlistVideoObjectArray.length > 0) {
            //  var playlistVideoId = playlistArray[0];
            //  var videoObjArray = videoObjectsToLoad.length;
            //  player.loadVideoById(playlistVideoId);
