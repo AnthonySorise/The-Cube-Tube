@@ -266,14 +266,21 @@ function resetPlaylistTd(){
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
-        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
+        if (player.getVideoUrl().indexOf($(row).attr('videoID')) !== -1) {
             $(row).removeClass("playlistTd")
         }
 
         let playlistRow = "#tdList-" + (i + 1) + ".playlistTd"
 
-        $(playlistRow + " .tdPlayList i").toggleClass('fa-plus-square fa-check-square-o')
-        $(playlistRow + " .tdPlaylistNum").text("TEST")
+        $(playlistRow + " .tdPlayList i").removeClass('fa-check-square-o').addClass("fa-plus-square ");
+
+        for (var j = 0; j < playlistVideoObjectArray.length; j++){
+            if(playlistVideoObjectArray[j].youtube_video_id === $(playlistRow).attr("videoID")){
+                $(playlistRow + " .tdPlaylistNum").text(j + 'test')
+            }
+        }
+
+
     }
 
 }
