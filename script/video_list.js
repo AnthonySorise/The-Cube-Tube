@@ -269,7 +269,7 @@ function resetPlaylistTd() {
 
         for(var j = 0; j < playlistVideoObjectArray.length; j++){
             if (player.getVideoUrl().indexOf(playlistVideoObjectArray[j].youtube_video_id) !== -1) {
-                playlistVideoObjectArray.splice(j, 1)
+                playlistVideoObjectArray.splice(j, 1);
                 $(row).removeClass("playlistTd")
             }
         }

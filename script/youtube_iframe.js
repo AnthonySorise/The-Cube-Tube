@@ -15,6 +15,8 @@ function onYouTubeIframeAPIReady(vidId) {
 }
 
 function onPlayerStateChange(event) {
+    resetPlaylistTd();
+
     if (event.data == YT.PlayerState.PLAYING) {
         $('.playButton').removeClass(play).toggleClass(pause);
         
@@ -70,8 +72,6 @@ function playNextYTVideo() {
     }
 
     function next() {
-        console.log("RUNNING NEXT")
-
         var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex + 1].youtube_video_id;
 
         updateVideoInfoPopover(nextVideoIdToLoad);
