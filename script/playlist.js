@@ -2,10 +2,13 @@ var playlistVideoObjectArray = [
 
 ];
 
+var TESTBUTTON;
+
 function handleAddToPlaylist(){
+    TESTBUTTON = this;
     console.log(this)
-    console.log($(this).parent().parent().youtube_video_id)
-    console.log($(this).parent().parent().youtube_video_id)
+    console.log($(this).parent().youtube_video_id)
+    console.log($(this).parent().youtube_video_id)
 
 
 }
