@@ -3,6 +3,7 @@ var playlistVideoObjectArray = [
 ];
 
 function handleAddToPlaylist(){
+    console.log(this)
     console.log($(this).parent().parent().youtube_video_id)
     console.log($(this).parent().parent().youtube_video_id)
 
