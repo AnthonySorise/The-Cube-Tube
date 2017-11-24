@@ -199,7 +199,7 @@ function returnToPageOne() {
     $(".carousel").removeClass('slide')
     $(".carousel").carousel(0);
     if (currentSlideNumber !== 1) {
-        clearVideoList();
+        // clearVideoList();
         currentSlideNumber = 1; //redundant?
         if (videoObjectsToLoad.length !== 0) {
             var videosToLoad = [];
