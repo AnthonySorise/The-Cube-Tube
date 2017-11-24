@@ -73,6 +73,7 @@ function renderVideoList(videoArray) {
 
     }
     resetSelectedTd();
+    resetPlaylistTd();
     //update thumbnail hover popover
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
@@ -269,12 +270,13 @@ function resetPlaylistTd() {
         for(var j = 0; j < playlistVideoObjectArray.length; j++){
             if (player.getVideoUrl().indexOf(playlistVideoObjectArray[j].youtube_video_id) !== -1) {
                 playlistVideoObjectArray.splice(j, 1)
+                $(row).removeClass("playlistTd")
             }
         }
 
         for(var j = 0; j < playlistVideoObjectArray.length; j++){
             if (playlistVideoObjectArray[j].youtube_video_id === $(row).attr("videoID")) {
-                $(row).addClass(".playlistTd");
+                $(row).addClass("playlistTd");
                 $(row + " .tdPlaylistButton>i").removeClass("fa-plus-square").addClass('fa-check-square-o');
                 $(row + " .tdPlaylistNum").text(j + 1)
             }

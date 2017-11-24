@@ -2,6 +2,10 @@ var playlistVideoObjectArray = [];
 
 
 function handleAddToPlaylist(){
+    if($(this).parent().parent().hasClass("playlistTd")){
+        return
+    }
+
     var videoIDToAdd = $(this).parent().parent().attr("videoID")
     var channelIDToAdd = $(this).parent().parent().attr("channelID")
 
