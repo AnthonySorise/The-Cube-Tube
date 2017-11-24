@@ -273,7 +273,7 @@ function resetPlaylistTd() {
             playlistVideoObjectArray.splice(j, 1)
         }
 
-        if (playlistVideoObjectArray[j].youtube_video_id === $(row).attr("videoID")) {
+        if (playlistVideoObjectArray[i].youtube_video_id === $(row).attr("videoID")) {
             $(row).addClass(".playlistTd");
             $(row + " .tdPlayList i").removeClass("fa-plus-square").addClass('fa-check-square-o');
             $(row + " .tdPlaylistNum").text(j + 'test')
