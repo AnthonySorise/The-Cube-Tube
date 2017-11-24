@@ -305,7 +305,7 @@ function clickHandler() {
     //Add Buttons
     $('.addChannelButton').on("click touchend", handleAddButton);
 
-    $(".tdplaylistbutton").on("click", handleAddToPlaylist);
+    $(".tdPlaylistButton").on("click", handleAddToPlaylist);
 
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click touchend", function () {
