@@ -262,7 +262,7 @@ function resetSelectedTd() {
     }
 }
 
-function resetPlaylistTD(){
+function resetPlaylistTd(){
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
@@ -270,7 +270,7 @@ function resetPlaylistTD(){
             $(row).removeClass("playlistTd")
         }
 
-        let playlistRow = "#tdList-" + (i + 1) + " .playlistTd"
+        let playlistRow = "#tdList-" + (i + 1) + ".playlistTd"
 
         $(playlistRow + " .tdPlayList i").toggleClass('fa-plus-square fa-check-square-o')
         $(playlistRow + " .tdPlaylistNum").text("TEST")
