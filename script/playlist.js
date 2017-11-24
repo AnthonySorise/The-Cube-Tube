@@ -12,7 +12,7 @@ function handleAddToPlaylist(){
     videoObject.youtube_channel_id = channelIDToAdd;
 
     playlistVideoObjectArray.push(videoObject);
-    $(this).parent().parent().addClass("playlistTD");
+    $(this).parent().parent().addClass("playlistTd");
 
 
     $(this).find("i").toggleClass('fa-plus-square fa-check-square-o')
@@ -44,8 +44,13 @@ function playNextPlaylistVideo(){
             "margin-right": '5px',
             'color': 'green'
         });
-        $("[videoid='" + currentlySelectedVideoID + "']").addClass('selectedTd');
+        $("[videoid='" + currentlySelectedVideoID + "'] i:second").toggleClass('fa-plus-square fa-check-square-o');
+        $("[videoid='" + currentlySelectedVideoID + "'] .tdPlaylistNum").text('');
+
+        $("[videoid='" + currentlySelectedVideoID + "']").removeClass('playlistT').addClass('selectedTd');
 
         playlistVideoObjectArray.splice(0, 1);
+
+
     }
 }

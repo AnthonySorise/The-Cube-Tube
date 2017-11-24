@@ -559,9 +559,37 @@ div.thRow {
 	color: #020e13;
 }
 
-.playlistTD{
-	background-color:orangered;
+
+.playlistTd.tdList:nth-child(even):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0);
+	display: inline;
+	color: white;
 }
+
+.playlistTd.tdList:nth-child(odd):hover div {
+	/* background-color: #364e5a; */
+	background-color: rgba(180, 189, 193, 1.0);
+	display: inline;
+	color: white;
+}
+
+/* .tdList:hover, .tdRow div.playlistTD {
+	/* background-color: #b4bdc1; */
+/* background-color: rgba(180, 189, 193, 1.0) !important;} */
+
+.playlistTd>.tdTitle, .playlistTD>.tdInfo, .playlistTD>.tdPlaylist,  .playlistTD>.tdChannel, .playlistTD>.tdUpDate{
+	color: white !important;
+	background-color: rgba(255,143,0, 1) !important;
+}
+
+.playlistTd>.tdTitle:hover, .playlistTD>.tdInfo, .playlistTD>.tdPlaylist, .playlistTD>.tdChannel:hover, .playlistTD>.tdUpDate:hover{
+	font-weight: bold;
+	color: white !important;
+	background-color: rgba(255,143,0, 1) !important;
+
+}
+
 
 .selectedTd.tdList:nth-child(even):hover div {
 	/* background-color: #364e5a; */

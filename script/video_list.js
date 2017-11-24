@@ -264,6 +264,7 @@ function resetSelectedTd() {
 
 function resetPlaylistTD(){
 
+
 }
 
 function updateMidNavText(){
