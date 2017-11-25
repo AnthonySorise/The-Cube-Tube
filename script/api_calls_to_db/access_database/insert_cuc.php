@@ -6,6 +6,18 @@ if(empty($LOCAL_ACCESS)){
 //inserting the link between user channel and category
 $category_name = $_POST['category_name']; 
 $youtube_channel_id = $_POST['youtube_channel_id'];
+$query = 
+    "SELECT
+        category_id
+    FROM 
+        categories AS ct
+    JOIN 
+        category_to_user_to_channel AS cuc ON cuc.channel_id = ct.channel_id
+    JOIN
+        users AS u ON u.user_id = cuc.user_id
+    WHERE u.user_link = ? AND ct.category_name = ?";
+$getting_category_id = $conn->prepare($query);
+$getting_category_id->bind_param('ss',$user_link,$category_name);
 $sqli = 
     "INSERT INTO
         category_to_user_to_channel
@@ -23,7 +35,7 @@ $sqli =
     WHERE
         c.youtube_channel_id = ? AND u.user_link = ? AND ct.category_name = ?";
 $stmt = $conn->prepare($sqli);
-$stmt->bind_param('sss',$youtube_channel_id, $user_link, $category_name);
+$stmt->bind_param('sss',$youtube_channel_id, $user_link, $category_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]= 'invalid query';

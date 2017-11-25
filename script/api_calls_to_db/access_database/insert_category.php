@@ -11,10 +11,16 @@ if(empty($category_name)){
 $sqli = 
     "INSERT INTO
         categories
-    SET
-        category_name = ?";
+        (category_name,
+        user_id)
+    SELECT 
+        u.user_id,
+    FROM
+        users as u
+    WHERE
+        u.user_link = ? AND category_name = ?";
 $stmt = $conn->prepare($sqli);
-$stmt->bind_param('s',$category_name);
+$stmt->bind_param('ss',$user_link,$category_name);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][] = 'invalid query';
