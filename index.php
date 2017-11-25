@@ -42,7 +42,6 @@ consider carousel for the video list area:
     <script type="text/javascript" src="script/auto_search.js"></script>
     <script type="text/javascript" src="script/channel_buttons.js"></script>
     <script type="text/javascript" src="script/my_cube.js"></script>
-    <script type="text/javascript" src="script/categories.js"></script>
     <!-- <script type="text/javascript" src="script/tour.js"></script> -->
     <script type="text/javascript" src="script/utilities.js"></script>
 

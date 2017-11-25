@@ -1,3 +1,24 @@
+var clientCategories = {};
+var channelCategoryToSet = "";
+
+function handleChangeCategory(){
+    let channelID = $(this).parent().attr("channelId");
+    channelCategoryToSet = channelID;
+
+    //update categoryEditModal
+
+    $("#categoryEditModal").modal("show")
+}
+
+function changeCategory(category){
+    //ajax calls to remove category
+
+    //ajax calls to insert category
+
+    //front end changes to clientCategories and call renderChannelSelectionDropdown()
+
+}
+
 function handleAddButton() {
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
     videoObjectsToLoad = [];
@@ -12,6 +33,7 @@ function handleAddButton() {
     clearVideoList();
 
     let channelID = $(this).parent().attr("channelId");
+    channelCategoryToSet = channelID;
     retrieveInfoFromDB(channelID, true);
     // toastMsg('loading channel videos',1000);
 
