@@ -1680,29 +1680,21 @@ consider carousel for the video list area:
 					<div class="modal-body userLinkBody">
 						<div class="linkCopyArea text-center"></div>
 						<div class="channelCategoryArea text-center">
-                            <dl>
-								<dt style="color: grey;">Categorize your channel:</dt>
-								<dd style="color:white;">
-									Add a custom channel category for the channel you just subscribed to!
-								</dd>
-							</dl>
+								<h5>Categorize your channel:</h5>
 							<div class="userCategoryExists">
-
 								<label>Add to existing categories</label>
-								<select name="initialCategorySelect" class="channelCategorySelect form-control">
+								<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%; margin-left:20%; margin-bottom:20px;">
 									<option value="cat1">cat1</option>
 									<option value="cat2">cat2</option>
 								</select>
-								<dl class="col-xs-12 text-center">
-									<dt> ------or------ </dt>
-									<dd style="color:white;">
-										add a custom channel category for the channel you subscribed to
-									</dd>
+								<dl class="col-xs-12 text-center" style="margin-bottom:20px;">
+									<dd> ------or------ </dd>
 								</dl>
 							</div>
+							<label>add a custome channel category for the channel you subscribed to</label>
 							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2">
-								<div class="form-group">
-									<div class="input-group">
+								<div class="form-group" style="width:100%;">
+									<div class="input-group" style="width:100%;">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>
