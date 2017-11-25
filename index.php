@@ -1688,6 +1688,7 @@ consider carousel for the video list area:
 									<option value="cat1">cat1</option>
 									<option value="cat2">cat2</option>
 								</select>
+								<button class="btn btn-success pull-right">add</button>
 								<dl class="col-xs-12 text-center" style="margin-bottom:20px;">
 									<dd> ------or------ </dd>
 								</dl>
