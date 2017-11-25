@@ -1680,7 +1680,8 @@ consider carousel for the video list area:
 					<div class="modal-body userLinkBody">
 						<div class="linkCopyArea text-center"></div>
 						<div class="channelCategoryArea text-center">
-								<h5>Categorize your channel:</h5>
+								<h3 class="hidden-xs">Categorize your channel:</h3>
+								<h5 class="visible-xs">Categorize your channel:</h5>
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
 								<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%; margin-left:20%; margin-bottom:20px;">
