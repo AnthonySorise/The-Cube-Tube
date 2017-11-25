@@ -1691,7 +1691,7 @@ consider carousel for the video list area:
 									<dd> ------or------ </dd>
 								</dl>
 							</div>
-							<label>add a custome channel category for the channel you subscribed to</label>
+							<label>Create a a  new category for this channel.</label>
 							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2">
 								<div class="form-group" style="width:100%;">
 									<div class="input-group" style="width:100%;">
