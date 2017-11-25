@@ -19,6 +19,9 @@ function output_and_exit($output){
     exit();
 }
 switch($_POST['action']){
+    case 'change_category_name':
+        include('change_category_name.php');
+        break;
     case 'delete_ctu':
         include('delete_ctu.php');
         break;
@@ -30,6 +33,9 @@ switch($_POST['action']){
         break;
     case 'read_channels_by_youtube_id':
         include('read_channels_by_youtube_id.php');
+        break;
+    case 'read_video':
+        include('read_video.php');
         break;
     case 'read_videos_by_channel_array':
         include('read_videos_by_channel_array.php');
