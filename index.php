@@ -1685,11 +1685,11 @@ consider carousel for the video list area:
 							</dl>
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
-								<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%; margin-left:20%">
+								<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%; margin-left:20%; margin-bottom:20px;">
 									<option value="cat1">cat1</option>
 									<option value="cat2">cat2</option>
 								</select>
-								<dl class="col-xs-12 text-center">
+								<dl class="col-xs-12 text-center" style="margin-bottom:20px;">
 									<dd> ------or------ </dd>
 								</dl>
 							</div>
