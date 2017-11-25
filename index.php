@@ -1696,10 +1696,11 @@ consider carousel for the video list area:
 									</div>
 								</div>	
 							</form>
-							<dl>
+							<dl class="col-xs-12 text-center">
 								<dt> ------or------ </dt>
 							</dl>
-							<select class="channelCategorySelect">
+							<label>Your Categories</label>
+							<select name="initialCategorySelect" class="channelCategorySelect col-xs-12 col-sm-6 col-sm-offset-3 form-control">
 								<option value="cat1">cat1</option>
 								<option value="cat2">cat2</option>
 							</select>
