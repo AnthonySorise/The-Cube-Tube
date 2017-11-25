@@ -23,7 +23,7 @@ if(empty($stmt)){
     if($conn->affected_rows>0){
         $output['messages'][] = 'insert category success';
         $category_id = $conn->insert_id;
-        include('insert_category_to_user_to_channel.php');
+        include('insert_cuc_from_insert_ct.php');
     }else{
         $output['errors'][] = "failed to add category";
     }
