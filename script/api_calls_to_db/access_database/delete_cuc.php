@@ -1,8 +1,9 @@
     <?php
-    //included in delete ctu
+    //included in delete ctu or called directly
     if(empty($LOCAL_ACCESS)){
         die('delete ctu, direct access not allowed');
     }
+    $youtube_channel_id = $_POST['youtube_channel_id'];
     $sqli = 
         "DELETE
             cuc

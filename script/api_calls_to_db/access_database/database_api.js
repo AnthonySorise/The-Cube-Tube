@@ -41,6 +41,27 @@
             }
         })
     }
+    this.delete_cuc = function(youtube_channel_id){
+        $.ajax({
+            url: './script/api_calls_to_db/access_database/access.php ',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                action: 'delete_cuc',
+                youtube_channel_id:youtube_channel_id
+            },
+            success: function (data) {
+                if (data.success){
+                    console.log('delete success', data);
+                }else{
+                   console.log(data);
+                }
+            },
+            errors: function (data) {
+                console.log('read error', data);
+            }
+        })
+    }
      this.read_channels_by_user_id = function(){//itll read channel based on user, just pass in user id
          $.ajax({
              url: './script/api_calls_to_db/access_database/access.php ',
@@ -124,6 +145,28 @@
                  console.log('read error', data);
              }
          })
+     }
+     this.insert_category = function(youtube_channel_id,category_name){
+        $.ajax({
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                action:'insert_category',
+                youtube_channel_id:youtube_channel_id,
+                category_name:category_name
+            },
+            success: function (data) {
+                if (data.success) {
+                    console.log('insert success', data);
+                }else{
+                    console.log(data);
+                }
+            },
+            errors: function (data) {
+                console.log('insert error', data);
+            }
+        })
      }
      this.insert_channels_by_youtube_id_php = function(youtube_channel_id){
         $.ajax({

@@ -2,8 +2,8 @@
 if(empty($LOCAL_ACCESS)){
     die('insert cuc, direct access not allowed');
 }
-//file called by insert categories
-//inserting the link between user channel and category
+//called from access php
+//insert cuc into existing category
 $category_name = $_POST['category_name']; 
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $query = 
@@ -15,9 +15,21 @@ $query =
         category_to_user_to_channel AS cuc ON cuc.channel_id = ct.channel_id
     JOIN
         users AS u ON u.user_id = cuc.user_id
-    WHERE u.user_link = ? AND ct.category_name = ?";
+    WHERE 
+        u.user_link = ? AND ct.category_name = ?";
 $getting_category_id = $conn->prepare($query);
-$getting_category_id->bind_param('ss',$user_link,$category_name);
+if(!$getting_category_id->bind_param('ss',$user_link,$category_name)){
+    $output['errors'][] = 'query failed at get category id';
+}
+$getting_category_id->execute();
+$result = $getting_category_id->get_result();
+if($result->num_rows>0){
+    $row = $result->fetch_assoc();
+    $channel_id = $row['channel_id'];
+}else{
+    $output['errors'][] = 'could not find category id';
+    output_and_exit($output);
+}
 $sqli = 
     "INSERT INTO
         category_to_user_to_channel
@@ -27,15 +39,13 @@ $sqli =
     SELECT
         c.channel_id,
         u.user_id,
-        ct.category_id
     FROM
         channels AS c,
         users AS u,
-        categories AS ct
     WHERE
-        c.youtube_channel_id = ? AND u.user_link = ? AND ct.category_name = ?";
+        c.youtube_channel_id = ? AND u.user_link = ? AND category_id = ?";
 $stmt = $conn->prepare($sqli);
-$stmt->bind_param('sss',$youtube_channel_id, $user_link, $category_id);
+$stmt->bind_param('ssi',$youtube_channel_id, $user_link, $category_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]= 'invalid query';
