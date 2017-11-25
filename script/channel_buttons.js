@@ -1,9 +1,9 @@
 var clientCategories = {};
-var channelCategoryToSet = "";
+var channelIDofCategorySet = "";
 
 function handleChangeCategory(){
     let channelID = $(this).parent().attr("channelId");
-    channelCategoryToSet = channelID;
+    channelIDofCategorySet = channelID;
 
     //update categoryEditModal
 
@@ -33,7 +33,7 @@ function handleAddButton() {
     clearVideoList();
 
     let channelID = $(this).parent().attr("channelId");
-    channelCategoryToSet = channelID;
+    channelIDofCategorySet = channelID;
     retrieveInfoFromDB(channelID, true);
     // toastMsg('loading channel videos',1000);
 
