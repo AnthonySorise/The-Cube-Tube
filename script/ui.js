@@ -366,6 +366,8 @@ function clickHandler() {
             currentlySelectedVideoID = $(this).parent().attr('videoID');
             var channelID = $(this).parent().attr('channelID');
 
+            updateMidNavText();
+
             // $('.fa-play-circle-o').remove();
             $('.fa-circle-o-notch').remove();
             var playSymbol = $('<i>')

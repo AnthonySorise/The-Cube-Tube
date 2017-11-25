@@ -3,10 +3,15 @@ var playlistVideoObjectArray = [];
 
 function handleAddToPlaylist(){
     if($(this).parent().parent().hasClass("playlistTd")){
-        var indexToRemove = playlistVideoObjectArray.indexOf($(this).parent().parent().attr("videoID"))
-        playlistVideoObjectArray.splice(indexToRemove, 1)
-        resetPlaylistTd();
-        return
+        var videoIdToRemove = $(this).parent().parent().attr("videoID");
+
+        for(var i = 0; i<playlistVideoObjectArray.length; i++){
+            if(playlistVideoObjectArray[i].youtube_video_id === videoIdToRemove){
+                playlistVideoObjectArray.splice(i, 1)
+                resetPlaylistTd();
+                return
+            }
+        }
     }
 
     var videoIDToAdd = $(this).parent().parent().attr("videoID")
