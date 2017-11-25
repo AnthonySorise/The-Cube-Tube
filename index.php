@@ -1681,12 +1681,23 @@ consider carousel for the video list area:
 						<div class="linkCopyArea text-center"></div>
 						<div class="channelCategoryArea text-center">
 							<dl>
-								<dt style="color: grey;">Categorize your channel:</dt>
-								<dd style="color:white;">
-									add a custom channel category for the channel you subscribed to
-								</dd>
+								<dt style="color: grey;">Categorize your channel:</dt>	
 							</dl>
-							<form class="form-inline col-xs-12 col-sm-6 col-sm-offset-3">
+							<div class="userCategoryExists">
+
+								<label>Add to existing categories</label>
+								<select name="initialCategorySelect" class="channelCategorySelect form-control">
+									<option value="cat1">cat1</option>
+									<option value="cat2">cat2</option>
+								</select>
+								<dl class="col-xs-12 text-center">
+									<dt> ------or------ </dt>
+									<dd style="color:white;">
+										add a custom channel category for the channel you subscribed to
+									</dd>
+								</dl>
+							</div>
+							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2">
 								<div class="form-group">
 									<div class="input-group">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
@@ -1696,14 +1707,8 @@ consider carousel for the video list area:
 									</div>
 								</div>	
 							</form>
-							<dl class="col-xs-12 text-center">
-								<dt> ------or------ </dt>
-							</dl>
-							<label>Your Categories</label>
-							<select name="initialCategorySelect" class="channelCategorySelect col-xs-12 col-sm-6 col-sm-offset-3 form-control">
-								<option value="cat1">cat1</option>
-								<option value="cat2">cat2</option>
-							</select>
+							
+							
 						</div>
 					</div>
 				</div>
