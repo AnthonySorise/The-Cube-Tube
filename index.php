@@ -1685,11 +1685,13 @@ consider carousel for the video list area:
 								<h5 class="visible-xs">Categorize your channel:</h5>
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
-								<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%; margin-left:20%; margin-bottom:20px;">
-									<option value="cat1">cat1</option>
-									<option value="cat2">cat2</option>
-								</select>
-								<button class="btn btn-success pull-right">add</button>
+								<div>
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%; margin-left:20%; margin-bottom:20px;">
+										<option value="cat1">cat1</option>
+										<option value="cat2">cat2</option>
+									</select>
+									<button class="btn btn-success pull-right">add</button>
+								</div>
 								<dl class="col-xs-12 text-center" style="margin-bottom:20px;">
 									<dd> ------or------ </dd>
 								</dl>
