@@ -291,6 +291,9 @@ function updateMidNavText(){
                 $(".midNavPlaylist").show();
                 return
             }
+            else{
+                $(".midNavPlaylist").hide();
+            }
         }
     }
     else{

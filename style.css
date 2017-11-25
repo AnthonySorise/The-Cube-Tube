@@ -616,10 +616,13 @@ div.thRow {
 }
 
 .selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdPlaylist, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
-	font-weight: bold;
 	color: white !important;
 	background-color: #042818 !important;
 
+}
+
+.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
+    font-weight: bold;
 }
 
 .row {
