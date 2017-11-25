@@ -1437,30 +1437,6 @@ consider carousel for the video list area:
 			</div>
 		</div>
 		<!--end of main content div-->
-		<!--modal for lightbox-->
-		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<!-- <div class="modal-header">
-        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
-        				</button>
-        				<div class="modal-title-wrap">
-        					<h5 class="modal-title" id="gameInfoModalTitle">
-        						Modal title
-        					</h5>
-        				</div>
-      				</div> -->
-					<div class="modal-body">
-						<div id="theaterVideo"></div>
-						<div class="modal-footer">
-						<span id="lightBoxModalFooter"></span>
-					</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--modal end for lightbox-->
 		<!--modal for channel search result-->
 		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
@@ -1672,7 +1648,10 @@ consider carousel for the video list area:
         					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
         				</button>
         				<div class="modal-title-wrap">
-        					<h5 class="modal-title" id="userLinkModalTitle">
+        					<h3 class="hidden-xs modal-title userLinkModalTitle">
+        						Channel Added!
+        					</h3>
+        					<h5 class="visible-xs modal-title userLinkModalTitle">
         						Channel Added!
         					</h5>
         				</div>
@@ -1680,15 +1659,19 @@ consider carousel for the video list area:
 					<div class="modal-body userLinkBody">
 						<div class="linkCopyArea text-center"></div>
 						<div class="channelCategoryArea text-center">
-								<h3 class="hidden-xs">Categorize your channel:</h3>
-								<h5 class="visible-xs">Categorize your channel:</h5>
+							<h3 class="hidden-xs">Categorize your channel:</h3>
+							<h5 class="visible-xs">Categorize your channel:</h5>
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
-								<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%; margin-left:20%; margin-bottom:20px;">
-									<option value="cat1">cat1</option>
-									<option value="cat2">cat2</option>
-								</select>
-								<button class="btn btn-success pull-right">add</button>
+								<div class="form-group form-inline">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%;">
+										<option value="cat1">cat1</option>
+										<option value="cat2">cat2</option>
+									</select>
+									<button class="btn btn-success">
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+								</div>
 								<dl class="col-xs-12 text-center" style="margin-bottom:20px;">
 									<dd> ------or------ </dd>
 								</dl>
@@ -1712,6 +1695,59 @@ consider carousel for the video list area:
 			</div>
 		</div>
 		<!--modal end for user link-->
+		<div class="modal fade" id="categoryEditModal" tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header text-center categoryEditHeader">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
+        				</button>
+        				<div class="modal-title-wrap">
+        					<h3 class="hidden-xs modal-title categoryEditModalTitle">
+        						Edit Category
+        					</h3>
+        					<h5 class="visible-xs modal-title categoryEditModalTitle">
+        						Edit Category
+        					</h5>
+        				</div>
+      				</div>
+					<div class="modal-body categoryEditBody">
+						<div class="channelCategoryArea text-center">
+							<h3 class="hidden-xs">Categorize your channel:</h3>
+							<h5 class="visible-xs">Categorize your channel:</h5>
+							<div class="userCategoryExists">
+								<label>Add to existing categories</label>
+								<div class="form-group form-inline">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%;">
+										<option value="cat1">cat1</option>
+										<option value="cat2">cat2</option>
+									</select>
+									<button class="btn btn-success">
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+								</div>
+								<dl class="col-xs-12 text-center" style="margin-bottom:20px;">
+									<dd> ------or------ </dd>
+								</dl>
+							</div>
+							<label>Create a a  new category for this channel.</label>
+							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2">
+								<div class="form-group" style="width:100%;">
+									<div class="input-group" style="width:100%;">
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
+										<span type="button" class="input-group-addon channelCategoryButton">
+											<span class="glyphicon glyphicon-ok"></span>
+										</span>
+									</div>
+								</div>	
+							</form>
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 
