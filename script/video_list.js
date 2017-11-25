@@ -286,13 +286,19 @@ function resetPlaylistTd() {
 
 function updateMidNavText(){
     if(playlistVideoObjectArray.length){
-        for(var j = 0; j < playlistVideoObjectArray.length; j++){
-            if (player.getVideoUrl().indexOf(playlistVideoObjectArray[j].youtube_video_id) !== -1) {
+        for(var i = 0; i < playlistVideoObjectArray.length; i++){
+            if (currentlySelectedVideoID === playlistVideoObjectArray[i].youtube_video_id){
+                $('.midNavWatching').hide();
+                $('.midNavBrowsing').hide();
+                $(".midNavAddBtn").hide();
                 $(".midNavPlaylist").show();
                 return
             }
             else{
-                $(".midNavPlaylist").hide();
+                $('.midNavWatching').hide();
+                $('.midNavBrowsing').hide();
+                $(".midNavAddBtn").hide();
+                $(".midNavPlaylist").show();
             }
         }
     }
