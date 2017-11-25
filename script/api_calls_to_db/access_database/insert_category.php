@@ -1,5 +1,5 @@
 <?php
-//called by access
+//called by access, insert to categories table then insert into cuc link
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
@@ -20,7 +20,7 @@ if(empty($stmt)){
     $output['errors'][] = 'invalid query';
 }else{
     //if category is inserted, insert the category to user to channel link
-    if($result->affected_rows>0){
+    if($conn->affected_rows>0){
         $output['messages'][] = 'insert category success';
         $category_id = $conn->insert_id;
         include('insert_category_to_user_to_channel.php');
