@@ -30,7 +30,7 @@ function renderChannelSelectionDropdown() {
 
         browseButton.on("click touchend", handleBrowseButton);
         removeButton.on("click touchend", handleRemoveButton);
-        removeButton.on("click touchend", handleChangeCategory);
+        changeCategoryButton.on("click touchend", handleChangeCategory);
 
         settingsContent.append(browseButton, removeButton, changeCategoryButton);
 
