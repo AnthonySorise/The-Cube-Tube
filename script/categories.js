@@ -1,0 +1,5 @@
+var clientCategories = {};
+
+function handleChangeCategory(){
+
+}
