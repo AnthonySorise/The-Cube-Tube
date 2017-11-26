@@ -17,7 +17,9 @@ $sqli =
         channels AS c,
         users AS u
     WHERE
-        c.youtube_channel_id = ? AND u.user_link = ? AND category_id = ?";
+        c.youtube_channel_id = ? AND u.user_link = ? 
+    SET
+        category_id = ?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('ssi',$youtube_channel_id, $user_link, $category_id);
 $stmt->execute();
