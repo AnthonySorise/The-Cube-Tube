@@ -16,7 +16,7 @@ $sqli =
         ?
     FROM
         channels AS c,
-        users AS u,
+        users AS u
     WHERE
         c.youtube_channel_id = ? AND u.user_link = ?";
 if(!$stmt = $conn->prepare($sqli)){
