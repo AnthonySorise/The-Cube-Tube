@@ -11,7 +11,7 @@
             },
             success:function(data){
                 if(data.success){
-                    console.log('deleted success', data);
+                    console.log('change category name success', data);
                 }else{
                     console.log(data);
                 }
