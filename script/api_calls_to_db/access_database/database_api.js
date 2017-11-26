@@ -1,4 +1,25 @@
  function Database(){
+    this.change_category_name = function(category_name){
+        $.ajax({
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                category_name:category_name,
+                action:'change_category_name'
+            },
+            success:function(data){
+                if(data.success){
+                    console.log('deleted success', data);
+                }else{
+                    console.log(data);
+                }
+            },
+            errors:function(data){
+                console.log(data['errors']);
+            }
+        })
+    }
     this.delete_categories = function(category_name){
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
