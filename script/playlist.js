@@ -42,11 +42,12 @@ function playNextPlaylistVideo(){
         //         }
         //     }
         // }
-        $('.midNavWatching').hide();
-        $('.midNavBrowsing').hide();
-        $(".midNavAddBtn").hide();
-
-        $(".midNavPlaylist").show();
+        // $('.midNavWatching').hide();
+        // $('.midNavBrowsing').hide();
+        // $(".midNavAddBtn").hide();
+        //
+        // $(".midNavPlaylist").show();
+        updateMidNavText();
 
 
         var nextVideoIdToLoad = playlistVideoObjectArray[0].youtube_video_id;
