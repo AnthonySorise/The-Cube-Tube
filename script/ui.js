@@ -310,6 +310,30 @@ function clickHandler() {
             }, 300);
         }
     });
+    //category submit button
+    $('.channelCategoryButton').on('click touchend', (e)=>{
+        e.preventDefault();
+        $('.channelCategoryForm').submit();
+    });
+    $('.channelCategoryForm').submit((e)=>{
+        e.preventDefault();
+        let categoryStr = '';
+        categoryStr = $(e.target).find('input').val().toLowerCase();
+        changeCategory(categoryStr);
+
+        $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
+            toastMsg('channel added', 1100);
+        });
+    });
+    $('.existingCategoryButton').on('click touchend', (e)=>{
+        let categoryStr = '';
+        categoryStr = $(e.target).closest('.existingCategorySelect').find('select option:selected').val();
+        changeCategory(categoryStr);
+
+        $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
+            toastMsg('channel added', 1100);
+        });
+    });
     //Search Button
     $('.channelSearchForm').on('click touchend', '.channelSearchButton', (e) => {
         e.preventDefault();
