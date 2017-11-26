@@ -34,6 +34,9 @@ switch($_POST['action']){
     case 'insert_ctu':
         include('insert_ctu.php');
         break;
+    case 'read_categories_by_user':
+        include('read_categories_by_user.php');
+        break;
     case 'read_channels_by_user_id':
         include('read_channels_by_user_id.php');
         break;
