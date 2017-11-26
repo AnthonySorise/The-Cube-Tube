@@ -15,7 +15,7 @@ $sqli =
     SET
         category_name = ?";
 $stmt = $conn->prepare($sqli);
-$stmt->bind_param('ss',$user_link,$category_name);
+$stmt->bind_param('s',$category_name);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][] = 'invalid query';
