@@ -5,10 +5,10 @@
     }
     $youtube_channel_id = $_POST['youtube_channel_id'];
     $sqli = 
-        "DELETE
+        "DELETE 
             cuc
         FROM 
-            category_to_user_to_channel AS cuc
+            category_to_user_to_channel cuc
         JOIN 
             users u ON u.user_id = cuc.user_id
         JOIN 
@@ -16,7 +16,7 @@
         WHERE 
             u.user_link = ? AND c.youtube_channel_id = ?";
     if(!$stmt = $conn->prepare($sqli)){
-        $output['errors'][] = 'delete cuc';
+        $output['errors'][] = 'delete cuc fail';
         output_and_exit($output);
     }
     $stmt->bind_param('ss',$user_link,$youtube_channel_id);
