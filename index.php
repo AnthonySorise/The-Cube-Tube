@@ -1662,7 +1662,7 @@ consider carousel for the video list area:
 							<h5 class="visible-xs">Categorize your channel:</h5>
 							<!-- $('.userCategoryExists').hide()/show() to toggle the dropdown showing depending on category availability -->
 							<div class="userCategoryExists">
-								<label>Add to existing categories</label>
+								<label>Add to an existing category</label>
 								<div class="form-group form-inline existingCategorySelect">
 									<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%;">
 										<option value="" hidden disabled selected>select a category</option>
