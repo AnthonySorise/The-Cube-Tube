@@ -4,10 +4,17 @@
         die('delete ctu, direct access not allowed');
     }
     $youtube_channel_id = $_POST['youtube_channel_id'];
-    $query = "DELETE cuc FROM category_to_user_to_channel cuc
-        JOIN users u ON u.user_id = cuc.user_id
-        JOIN channels c ON c.channel_id = cuc.channel_id
-        WHERE u.user_link = ? AND c.youtube_channel_id = ?";
+    $query = 
+        "DELETE 
+            cuc 
+        FROM 
+            category_to_user_to_channel cuc
+        JOIN 
+            users u ON u.user_id = cuc.user_id
+        JOIN 
+            channels c ON c.channel_id = cuc.channel_id
+        WHERE 
+            u.user_link = ? AND c.youtube_channel_id = ?";
     if(!($stmt = $conn->prepare($query))){
         $output['errors'][] = 'delete cuc query fail';
         output_and_exit($output);
