@@ -26,7 +26,7 @@ if(empty($category_id)){
     $result = $getting_category_id->get_result();
     if($result->num_rows>0){
         $row = $result->fetch_assoc();
-        $channel_id = $row['channel_id'];
+        $category_id = $row['category_id'];
     }else{
         $output['errors'][] = 'could not find category id';
         output_and_exit($output);
