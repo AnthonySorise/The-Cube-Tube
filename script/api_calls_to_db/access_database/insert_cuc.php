@@ -8,14 +8,14 @@ $category_name = $_POST['category_name'];
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $query = 
     "SELECT
-        category_id
-    FROM 
-        categories AS ct
-    JOIN 
-        category_to_user_to_channel AS cuc ON cuc.channel_id = ct.channel_id
+        cuc.category_id
+    FROM
+        category_to_user_to_channel AS cuc
+    JOIN
+        categories AS ct ON cuc.category_id = ct.category_id
     JOIN
         users AS u ON u.user_id = cuc.user_id
-    WHERE 
+    WHERE
         u.user_link = ? AND ct.category_name = ?";
 $getting_category_id = $conn->prepare($query);
 if(!$getting_category_id->bind_param('ss',$user_link,$category_name)){
@@ -39,19 +39,10 @@ $sqli =
     SELECT
         c.channel_id,
         u.user_id,
-        ct.category_id
+        ?
     FROM
         channels AS c,
-        users AS u,
-        categories AS ct
-    JOIN 
-        category_to_user_to_channel AS cuc
-    ON
-        cuc.user_id = u.user_id
-    JOIN
-        cuc
-    ON
-        cuc.category_id = ct.category_id
+        users AS u
     WHERE
         c.youtube_channel_id = ? AND u.user_link = ? AND category_id = ?";
 $stmt = $conn->prepare($sqli);
