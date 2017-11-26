@@ -11,7 +11,6 @@ if(empty($category_name)){
 $sqli = 
     "INSERT INTO
         categories
-        (category_name)
     SET
         category_name = ?";
 $stmt = $conn->prepare($sqli);
