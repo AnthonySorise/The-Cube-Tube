@@ -1,12 +1,12 @@
  function Database(){
-    this.delete_categories = function(){
+    this.delete_categories = function(category_name){
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
-                youtube_channel_id: youtube_channel_id,
-                action:'delete_ctu'
+                category_name:category_name,
+                action:'delete_category'
             },
             success:function(data){
                 if(data.success){
