@@ -43,7 +43,15 @@ $sqli =
     FROM
         channels AS c,
         users AS u,
-        categ
+        categories AS ct
+    JOIN 
+        category_to_user_to_channel AS cuc
+    ON
+        cuc.user_id = u.user_id
+    JOIN
+        cuc
+    ON
+        cuc.category_id = ct.category_id
     WHERE
         c.youtube_channel_id = ? AND u.user_link = ? AND category_id = ?";
 $stmt = $conn->prepare($sqli);
