@@ -19,7 +19,7 @@
         $output['errors'][] = 'delete cuc query fail';
         output_and_exit($output);
     }
-    $stmt->bind_param('ss',$user_link,$youtube_channel_id);
+    $stmt->bind_param('ss',$youtube_channel_id,$user_link);
     $stmt->execute();
     if($conn->affected_rows>0){
         $output['messages'][] = 'deleted cucs';
