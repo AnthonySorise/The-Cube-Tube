@@ -14,7 +14,7 @@
     JOIN
         users u ON ctu.user_id = u.user_id
     WHERE
-        c.youtube_channel_id = ? AND u.user_link = ??";
+        c.youtube_channel_id = ? AND u.user_link = ?";
     if(!($stmt = $conn->prepare($query))){
         $output['errors'][] = 'delete cuc query fail';
         output_and_exit($output);
