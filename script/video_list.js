@@ -286,23 +286,26 @@ function resetPlaylistTd() {
 
 function updateMidNavText(){
     if(playlistVideoObjectArray.length){
-        for(var i = 0; i < playlistVideoObjectArray.length; i++){
-            if (currentlySelectedVideoID === playlistVideoObjectArray[i].youtube_video_id){
-                $('.midNavWatching').hide();
-                $('.midNavBrowsing').hide();
-                $(".midNavAddBtn").hide();
-                $(".midNavPlaylist").show();
-                return
-            }
-            else{
-                $('.midNavWatching').hide();
-                $('.midNavBrowsing').hide();
-                $(".midNavAddBtn").hide();
-                $(".midNavPlaylist").show();
-            }
-        }
+        // for(var i = 0; i < playlistVideoObjectArray.length; i++){
+        //     if (currentlySelectedVideoID === playlistVideoObjectArray[i].youtube_video_id){
+        //         $('.midNavWatching').hide();
+        //         $('.midNavBrowsing').hide();
+        //         $(".midNavAddBtn").hide();
+        //         $(".midNavPlaylist").show();
+        //         return
+        //     }
+        //     else{
+        //         $('.midNavWatching').hide();
+        //         $('.midNavBrowsing').hide();
+        //         $(".midNavAddBtn").hide();
+        //         $(".midNavPlaylist").show();
+        //     }
+        // }
+        $(".midNavPlaylistText").show();
+        $(".midNavPlaylist").show();
     }
     else{
+        $(".midNavPlaylistText").hide();
         $(".midNavPlaylist").hide();
     }
 
@@ -322,6 +325,7 @@ function updateMidNavText(){
     }
     else{
         $('.midNavBrowsing').hide();
+        $(".midNavPlaylistText").hide();
         $('.midNavWatching').show();
         var channelsWatching = "";
         for(var i = 0; i < clientSelectedChannelObjects.length; i++){

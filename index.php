@@ -224,8 +224,8 @@ consider carousel for the video list area:
 								<i class="fa fa-cubes"></i>
 								Subscribed Channels
 							</span>
-                            <span class="midNavPlaylist">
-								<p style="display:inline-block">
+                            <span class="midNavPlaylistText">
+								<p style="display:inline-block; margin-left: 5px">
                                     Watching:
                                 </p>
 							</span>
