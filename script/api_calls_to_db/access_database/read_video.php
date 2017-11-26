@@ -7,6 +7,7 @@ if(empty($video_title)){
     $output['errors'][] = 'missing video title';
     output_and_exit($output);
 }
+$like = "%{$video_title}%";
 $query = 
     "SELECT 
         youtube_video_id,
@@ -17,11 +18,11 @@ $query =
         videos
     WHERE 
         video_title LIKE ?";
-$stmt = $conn->prepare($query);
-if(!$stmt->prepare('s',"%{$video_title}%")){
-    $output['errors'][] = 'query failed';
+if(!$stmt = $conn->prepare($query)){
+    $output['errors'][] = 'find video query failed';
     output_and_exit($output);
-};
+}
+$stmt->prepare('s',$like);
 $stmt->execute();
 $results = $stmt->get_result();
 if($results->num_rows>0){
