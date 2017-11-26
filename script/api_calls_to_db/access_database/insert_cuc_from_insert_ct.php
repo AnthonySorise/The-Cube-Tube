@@ -12,27 +12,25 @@ $sqli =
             category_id)
     SELECT
         c.channel_id,
-        u.user_id
+        u.user_id,
+        ct.category_id
     FROM
         channels AS c,
-        users AS u
+        users AS u,
+        categories AS ct
     WHERE
-        c.youtube_channel_id = ? AND u.user_link = ? 
-    SET
-        category_id = ?";
+        c.youtube_channel_id = ? AND u.user_link = ? AND ct.category_name = ?";
 $stmt = $conn->prepare($sqli);
-$stmt->bind_param('ssi',$youtube_channel_id, $user_link, $category_id);
-$stmt->execute();
-if(empty($stmt)){
+if(!$stmt->bind_param('sss',$youtube_channel_id, $user_link, $category_name)){
     $output['errors'][]= 'invalid query';
     output_and_exit($output);
+};
+$stmt->execute();
+if($conn->affected_rows>0){
+    $output['messages'][] = 'insert cuc success';
+    $output['success'] = true;
 }else{
-    if($conn->affected_rows>0){
-        $output['messages'][] = 'insert cuc success';
-        $output['success'] = true;
-    }else{
-        $output['errors'][] = "could not insert cuc";
-        output_and_exit($output);
-    }
+    $output['errors'][] = "could not insert cuc";
+    output_and_exit($output);
 }
 ?>
