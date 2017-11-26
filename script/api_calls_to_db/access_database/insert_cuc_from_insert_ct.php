@@ -19,11 +19,11 @@ $sqli =
         users AS u,
     WHERE
         c.youtube_channel_id = ? AND u.user_link = ?";
-$stmt = $conn->prepare($sqli);
-if(!$stmt->bind_param('iss',$category_id,$youtube_channel_id, $user_link)){
+if(!$stmt = $conn->prepare($sqli)){
     $output['errors'][]= 'invalid query';
     output_and_exit($output);
 };
+$stmt->bind_param('iss',$category_id,$youtube_channel_id, $user_link);
 $stmt->execute();
 if($conn->affected_rows>0){
     $output['messages'][] = 'insert cuc success';
