@@ -4,6 +4,7 @@ if(empty($LOCAL_ACCESS)){
 }
 //file called by insert categories
 //inserting the link between user channel and category
+echo($channel_id);
 $sqli = 
     "INSERT INTO
         category_to_user_to_channel
