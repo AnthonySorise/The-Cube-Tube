@@ -84,9 +84,29 @@
             }
         })
     }
+    this.read_categories_by_user = function(){
+        $.ajax({
+            url: './script/api_calls_to_db/access_database/access.php',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                action: 'read_categories_by_user',
+            },
+            success: function (data) {
+                if (data.success){
+                    console.log('read success', data);
+                }else{
+                   console.log(data);
+                }
+            },
+            errors: function (data) {
+                console.log('read error', data);
+            }
+        })
+    }
      this.read_channels_by_user_id = function(){//itll read channel based on user, just pass in user id
          $.ajax({
-             url: './script/api_calls_to_db/access_database/access.php ',
+             url: './script/api_calls_to_db/access_database/access.php',
              method: 'POST',
              dataType: 'JSON',
              data: {
