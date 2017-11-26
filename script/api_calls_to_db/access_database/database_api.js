@@ -125,24 +125,24 @@
             }
         })
     }
-    this.read_videos_by_user = function(offset){//read videos with limit 40, can give an offset to read more.
+    this.read_video = function(video_title){
         $.ajax({
-            url: './script/api_calls_to_db/access_database/access.php',
-            method: 'POST',
-            dataType: 'JSON',
-            data: {
-                action: 'read_videos_by_user',
-                offset: offset,
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                video_title:video_title,
+                action:'read_video'
             },
-            success: function (data) {
-                if (data.success) {
+            success:function(data){
+                if(data.success){
                     console.log('read video success', data);
                 }else{
-                    console.log(data);
+                    console.log('no video',data);
                 }
             },
-            errors: function (data) {
-                console.log('read error', data);
+            errors:function(data){
+                console.log(data['errors']);
             }
         })
     }
