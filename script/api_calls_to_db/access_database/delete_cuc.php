@@ -8,7 +8,7 @@
         "DELETE
             cuc
         FROM
-            category_to_user_to_channel
+            category_to_user_to_channel cuc
         JOIN
             channels c ON cuc.channel_id = c.channel_id
         JOIN
