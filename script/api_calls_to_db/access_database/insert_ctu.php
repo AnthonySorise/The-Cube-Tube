@@ -54,32 +54,28 @@ $stmt = $conn->prepare($sqli);
 $stmt->bind_param('ss',$user_link,$youtube_channel_id);
 $stmt->execute();
 $results = $stmt->get_result();
-if(!empty($results)){
-    if($results->num_rows>0){
-        $output['errors'][] = "DUPLICATE CTU";
-        output_and_exit($output);
-    }else{
-        $sqli = 
-            "INSERT INTO 
-                channels_to_users (user_id , channel_id)
-            SELECT 
-                u.user_id, c.channel_id
-            FROM 
-                users AS u, channels AS c
-            WHERE 
-                u.user_link = ? AND c.youtube_channel_id = ?";
-        $stmt = $conn->prepare($sqli);
-        $stmt->bind_param('ss',$user_link,$youtube_channel_id);
-        $stmt->execute();
-        if($conn->affected_rows>0){
-            $output['success'] = true;
-            $output['insert_ctu'] = "success";
-        }
-        else{
-            $output['errors'] = 'UNABLE TO INSERT INTO CTU';
-        }
-    }
-}else{
-    $output['errors'][] = "INVALID QUERY READ CTU";
+if($results->num_rows>0){
+    $output['errors'][] = "DUPLICATE CTU";
     output_and_exit($output);
+}else{
+    $sqli = 
+        "INSERT INTO 
+            channels_to_users (user_id , channel_id)
+        SELECT 
+            u.user_id, c.channel_id
+        FROM 
+            users AS u, channels AS c
+        WHERE 
+            u.user_link = ? AND c.youtube_channel_id = ?";
+    $stmt = $conn->prepare($sqli);
+    $stmt->bind_param('ss',$user_link,$youtube_channel_id);
+    $stmt->execute();
+    if($conn->affected_rows>0){
+        $output['success'] = true;
+        $output['insert_ctu'] = "success";
+    }
+    else{
+        $output['errors'] = 'UNABLE TO INSERT INTO CTU';
+    }
 }
+

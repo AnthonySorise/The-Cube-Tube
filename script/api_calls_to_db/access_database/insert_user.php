@@ -37,17 +37,12 @@ $sqli =
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('sss',$user_link,$date,$ip_address_at_sign_up);
 $stmt->execute();
-if(!empty($stmt)){
-    if($conn->affected_rows>0){
-        $output['insert_user_success'] = true;
-        // define('USER_ID',mysqli_insert_id($conn));
-    }
-    else{
-        $output['errors'][] = 'Unable to insert data';
-        output_and_exit($output);
-    }
-}else{
-    $output['errors'][]= 'invalid query';
+if($conn->affected_rows>0){
+    $output['insert_user_success'] = true;
+    // define('USER_ID',mysqli_insert_id($conn));
+}
+else{
+    $output['errors'][] = 'Unable to insert data';
     output_and_exit($output);
 }
 ?>

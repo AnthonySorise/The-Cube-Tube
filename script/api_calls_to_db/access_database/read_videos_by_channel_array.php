@@ -48,18 +48,12 @@ $param_types = implode('', array_fill(0, count($youtube_array), 's')) . 'i';
 $stmt->bind_param($param_types, ...array_merge($youtube_array, [$offset]));
 $stmt->execute();
 $result = $stmt->get_result();
-if(!empty($result)) {
-    if ($result->num_rows > 0) {
-        $output['success'] = true;
-        while ($row = $result->fetch_assoc()) {
-            $output['data'][] = $row;
-        }
-    } else {
-        $output['errors'][] = 'no results';
-        $output['channels'] = $channels;
-        $output['offset'] = $offset;
+if ($result->num_rows > 0) {
+    $output['success'] = true;
+    while ($row = $result->fetch_assoc()) {
+        $output['data'][] = $row;
     }
-}else{
-    $output['errors'][] = 'INVALID QUERY';
+} else {
+    $output['errors'][] = 'no results';
 }
 ?>

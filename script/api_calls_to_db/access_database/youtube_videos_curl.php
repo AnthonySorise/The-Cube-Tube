@@ -98,17 +98,12 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $stmt = $conn->prepare($query);
         $stmt->bind_param($bind_str, ...array_merge($data));
         $stmt->execute();
-        if(empty($stmt)){
-            $output['errors'][] = 'INVALID QUERY';
-            output_and_exit();
+        if($conn->affected_rows>0){
+            $output['success']=true;
+            $output['messages'][] = 'insert video success';
+            $output['page_token']=$next_page_token;
         }else{
-            if($conn->affected_rows>0){
-                $output['success']=true;
-                $output['messages'][] = 'insert video success';
-                $output['page_token']=$next_page_token;
-            }else{
-                $output['errors'][] = 'unable to insert video';
-            }
+            $output['errors'][] = 'unable to insert video';
         }
         //let client know that first 50 has been inserted so they can search
         if($page_token === 'first'){

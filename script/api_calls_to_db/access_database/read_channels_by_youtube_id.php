@@ -27,16 +27,13 @@ $stmt=$conn->prepare($sqli);
 $stmt->bind_param('s', $youtube_channel_id);
 $stmt->execute();
 $result = $stmt->get_result();
-if(empty($stmt)){
-    $output['errors'][] = 'invalid query';
+if($result->num_rows>0){
+    $output['success'] = true;
+    $row = $result->fetch_assoc();
+    $output['data'][] = $row;
 }else{
-    if ($result->num_rows>0) {
-        $output['success'] = true;
-        $row = $result->fetch_assoc();
-        $output['data'][] = $row;
-    } else {
-        $output['errors'][] = 'no channel to read';
-        $output['nothing_to_read'] = true;
-    }
+    $output['errors'][] = 'no channel to read';
+    $output['nothing_to_read'] = true;
 }
+
 ?>

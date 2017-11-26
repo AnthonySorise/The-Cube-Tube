@@ -33,14 +33,11 @@ $sqli =
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param("ss",$current_time,$youtube_channel_id);
 $stmt->execute();
-if(empty($stmt)){
-    $output['errors'][]='invalid query';
+if($conn->affected_rows>0){
+    $output['messages'][] = "channel updated with last channel pull";
+    include('youtube_videos_curl.php');
 }else{
-    if($conn->affected_rows>0){
-        $output['messages'][] = "channel updated with last channel pull";
-        include('youtube_videos_curl.php');
-    }else{
-        $output['errors'][]='UNABLE TO UPDATE';
-    }
+    $output['errors'][]='UNABLE TO UPDATE';
 }
+
 ?>
