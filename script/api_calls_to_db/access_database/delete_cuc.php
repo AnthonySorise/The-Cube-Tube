@@ -10,13 +10,13 @@
         FROM 
             category_to_user_to_channel AS cuc
         JOIN 
-            users AS u ON u.user_id = cuc.user_id
+            users u ON u.user_id = cuc.user_id
         JOIN 
-            channels AS c ON c.channel_id = cuc.channel_id
+            channels c ON c.channel_id = cuc.channel_id
         WHERE 
             u.user_link = ? AND c.youtube_channel_id = ?";
     if(!$stmt = $conn->prepare($sqli)){
-        $output['errors'][] = 'delete cuc statement failed after delete ctu';
+        $output['errors'][] = 'delete cuc';
         output_and_exit($output);
     }
     $stmt->bind_param('ss',$user_link,$youtube_channel_id);
