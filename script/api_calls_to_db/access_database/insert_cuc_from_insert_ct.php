@@ -2,6 +2,7 @@
 if(empty($LOCAL_ACCESS)){
     die('insert ctu, direct access not allowed');
 }
+$youtube_channel_id = $_POST['youtube_channel_id'];
 //file called by insert categories
 //inserting the link between user channel and category
 $sqli = 
@@ -24,7 +25,6 @@ if(!($stmt = $conn->prepare($sqli))){
     output_and_exit($output);
 };
 $stmt->bind_param('iss',$category_id, $youtube_channel_id, $user_link);
-print_r($stmt);
 $stmt->execute();
 if($conn->affected_rows>0){
     $output['messages'][] = 'insert cuc success';
