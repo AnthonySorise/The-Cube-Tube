@@ -6,7 +6,7 @@ if(empty($_SESSION['user_link'])){
     $output['messages'] = 'no user';
     output_and_exit($output);
 }
-$stmt = $conn->prepare(
+$query = 
     "SELECT
         c.channel_title,
         c.youtube_channel_id,
@@ -14,7 +14,7 @@ $stmt = $conn->prepare(
     FROM
         channels AS c
     JOIN
-        category_to_users_to_channel AS cuc ON c.channel_id = cuc.channel_id
+        category_to_user_to_channel AS cuc ON c.channel_id = cuc.channel_id
     JOIN
         users AS u ON u.user_id = cuc.user_id
     JOIN
@@ -22,7 +22,11 @@ $stmt = $conn->prepare(
     WHERE
         u.user_link = ?
     ORDER BY
-        ct.category_name");
+        ct.category_name";
+if(!($stmt = $conn->prepare($query))){
+    $output['errors'][] = 'invalid query at read categories';
+    output_and_exit($output);
+};
 $stmt->bind_param('s',$user_link);
 $stmt->execute();
 $result = $stmt->get_result();
