@@ -4,7 +4,7 @@
         die('delete ctu, direct access not allowed');
     }
     $youtube_channel_id = $_POST['youtube_channel_id'];
-    $sqli = 
+    $query = 
         "DELETE 
             cuc
         FROM 
@@ -14,8 +14,8 @@
         JOIN 
             channels c ON c.channel_id = cuc.channel_id
         WHERE 
-            u.user_link = ? AND c.youtube_channel_id = ?";
-    if(!$stmt = $conn->prepare($sqli)){
+            user_link = ? AND youtube_channel_id = ?";
+    if(!$stmt = $conn->prepare($query)){
         $output['errors'][] = 'delete cuc fail';
         output_and_exit($output);
     }

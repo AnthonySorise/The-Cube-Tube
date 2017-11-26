@@ -43,7 +43,7 @@
     }
     this.delete_cuc = function(youtube_channel_id){
         $.ajax({
-            url: './script/api_calls_to_db/access_database/access.php ',
+            url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
