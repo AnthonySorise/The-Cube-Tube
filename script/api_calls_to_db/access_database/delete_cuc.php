@@ -5,16 +5,16 @@
     }
     $youtube_channel_id = $_POST['youtube_channel_id'];
     $query = 
-        "DELETE 
-            cuc 
-        FROM 
-            category_to_user_to_channel cuc
-        JOIN 
-            users u ON u.user_id = cuc.user_id
-        JOIN 
-            channels c ON c.channel_id = cuc.channel_id
-        WHERE 
-            u.user_link = ? AND c.youtube_channel_id = ?";
+        "DELETE
+            ctu
+        FROM
+            channels_to_users ctu
+        JOIN
+            channels c ON ctu.channel_id = c.channel_id
+        JOIN
+            users u ON ctu.user_id = u.user_id
+        WHERE
+            c.youtube_channel_id = ? AND u.user_link = ?";
     if(!($stmt = $conn->prepare($query))){
         $output['errors'][] = 'delete cuc query fail';
         output_and_exit($output);
