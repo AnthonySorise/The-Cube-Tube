@@ -105,7 +105,39 @@ function videoListDown(){
         'width': '152vh',
         'height': '85vh'
     }, 600);
+    // $('.listDropWrap').hide();
+    // let timeInt = 0;
+    // $('.tdList').each((idx,item)=>{
+    //     if($(item).attr('videoid')!==''){
+    //         setTimeout(()=>{
+    //             $(item).toggle('puff');
+    //         }, timeInt);
+    //         timeInt+=20;
+    //     }
+    //     if(idx==39){    //39 instead of 40 because of 0 index
+    //         setTimeout(()=>{
+    //             $('#text-carousel').slideUp(850);
+    //             $('.thRow').fadeOut(590);
+    //             $('.videoListRowWrapper').fadeOut(590);
+    //             $('.videoRowWrapper').animate({
+    //                 // 'height': '93.8%'
+    //                 'height':'94.2%'
+    //             }, 600);
+    //             $('#listContentWrap').animate({
+    //                 'height': '5.5%'
+    //             }, 600, ()=>{
+    //                 $('.listUpWrap').fadeIn();
+    //                 // $('.tdList').hide();
+    //             });
+    //             $('#mainVideo').animate({
+    //                 'width': '152vh',
+    //                 'height': '85vh'
+    //             }, 600);
+    //         },850);
+    //     }
+    // });
 }
+
 function videoListUp(){
     $('.listUpWrap').hide();
     $('.listDropWrap').slideDown();
@@ -124,6 +156,34 @@ function videoListUp(){
         'width': '98vh',
         'height': '55vh'
     }, 600);
+    // $('.listUpWrap').hide();
+    // $('.listDropWrap').slideDown();
+    // $('.videoRowWrapper').animate({
+    //     'height': '60%'
+    // }, 600);
+    // $('#listContentWrap').animate({
+    //     'height': '40%'
+    // }, 600);
+    // $('.videoListRowWrapper').fadeIn(500, ()=>{
+    //     $('#text-carousel').slideDown(800);
+    //     $('.thRow').fadeIn(700);
+    //     $('.listDropWrap').slideDown(700);
+    // });
+    // $('#mainVideo').animate({
+    //     'width': '98vh',
+    //     'height': '55vh'
+    // }, 600);
+    // let timeInt = 500;
+    // $('.tdList').each((idx,item)=>{
+    //     if($(item).attr('videoid')!==''){
+    //         setTimeout(()=>{
+    //             $(item).toggle('scale');
+    //         }, timeInt);
+    //         timeInt +=50;
+    //     }else{
+    //         return;
+    //     }
+    // });
 }
 
 //Click handler to console log search results
@@ -279,6 +339,8 @@ function clickHandler() {
     //Add Buttons
     $('.addChannelButton').on("click touchend", handleAddButton);
 
+    $(".tdPlaylistButton").on("click", handleAddToPlaylist);
+
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click touchend", function () {
 
@@ -304,6 +366,8 @@ function clickHandler() {
             currentlySelectedVideoID = $(this).parent().attr('videoID');
             var channelID = $(this).parent().attr('channelID');
 
+            updateMidNavText();
+
             // $('.fa-play-circle-o').remove();
             $('.fa-circle-o-notch').remove();
             var playSymbol = $('<i>')
@@ -321,7 +385,6 @@ function clickHandler() {
             } else {
                 player.cueVideoById(currentlySelectedVideoID);
             }
-            // player2.cueVideoById(currentlySelectedVideoID);
 
             //update video stats popover
             updateVideoInfoPopover(currentlySelectedVideoID);
@@ -330,6 +393,9 @@ function clickHandler() {
             updateChannelInfoPopover(channelID);
         }
     });
+
+
+
 
     //Theater mode
     // $('.lightBoxMode').on('click', checkHomePageVideoStatus);
@@ -416,20 +482,16 @@ function clickHandler() {
 
 
     function playYtVideo() {
-        debugger
         player.playVideo();
         if (this.classList.value === play) {
             $('.playButton').tooltip('hide')
             $('.playButton').removeClass(play).toggleClass(pause);
             $(this).attr('data-original-title','Pause')
-            
-
         } else {
             $('.pauseButton').tooltip('hide');
             $('.pauseButton').removeClass(pause).toggleClass(play);
             $(this).attr('data-original-title','Play')
             player.pauseVideo()
-
         }
     }
 
