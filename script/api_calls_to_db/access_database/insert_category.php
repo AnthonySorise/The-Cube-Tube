@@ -4,7 +4,6 @@ if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
 $category_name = $_POST['category_name']; 
-$youtube_channel_id = $_POST['youtube_channel_id'];
 if(empty($category_name)){
     $output['errors'][] = 'MISSING NAME OF CATEGORY';
 }

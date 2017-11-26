@@ -25,7 +25,7 @@ switch($_POST['action']){
     case 'delete_ctu':
         include('delete_ctu.php');
         break;
-    case 'delete.cuc':
+    case 'delete_cuc':
         include('delete_cuc.php');
         break;
     case 'insert_ctu':
