@@ -30,7 +30,6 @@ consider carousel for the video list area:
 	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script/api_calls_to_db/access_database/database_api.js"></script>
-
     <script type="text/javascript" src="script/main.js"></script>
     <script type="text/javascript" src="script/youtube_iframe.js"></script>
     <script type="text/javascript" src="script/channel_search.js"></script>
@@ -1661,14 +1660,16 @@ consider carousel for the video list area:
 						<div class="channelCategoryArea text-center">
 							<h3 class="hidden-xs">Categorize your channel:</h3>
 							<h5 class="visible-xs">Categorize your channel:</h5>
+							<!-- $('.userCategoryExists').hide()/show() to toggle the dropdown showing depending on category availability -->
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
-								<div class="form-group form-inline">
+								<div class="form-group form-inline existingCategorySelect">
 									<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%;">
+										<option value="" hidden disabled selected>select a category</option>
 										<option value="cat1">cat1</option>
 										<option value="cat2">cat2</option>
 									</select>
-									<button class="btn btn-success">
+									<button class="btn btn-success existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>
 									</button>
 								</div>
@@ -1677,7 +1678,7 @@ consider carousel for the video list area:
 								</dl>
 							</div>
 							<label>Create a a  new category for this channel.</label>
-							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2">
+							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
 								<div class="form-group" style="width:100%;">
 									<div class="input-group" style="width:100%;">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
@@ -1687,8 +1688,6 @@ consider carousel for the video list area:
 									</div>
 								</div>	
 							</form>
-							
-							
 						</div>
 					</div>
 				</div>
@@ -1717,12 +1716,13 @@ consider carousel for the video list area:
 							<h5 class="visible-xs">Categorize your channel:</h5>
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
-								<div class="form-group form-inline">
+								<div class="form-group form-inline existingCategorySelect">
 									<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%;">
+										<option value="" hidden disabled selected>select a category</option>
 										<option value="cat1">cat1</option>
 										<option value="cat2">cat2</option>
 									</select>
-									<button class="btn btn-success">
+									<button class="btn btn-success existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>
 									</button>
 								</div>
@@ -1731,7 +1731,7 @@ consider carousel for the video list area:
 								</dl>
 							</div>
 							<label>Create a a  new category for this channel.</label>
-							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2">
+							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
 								<div class="form-group" style="width:100%;">
 									<div class="input-group" style="width:100%;">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
