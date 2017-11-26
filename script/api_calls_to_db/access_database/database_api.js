@@ -1,11 +1,12 @@
  function Database(){
-    this.change_category_name = function(category_name){
+    this.change_category_name = function(category_name,new_name){
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
                 category_name:category_name,
+                new_name:new_name,
                 action:'change_category_name'
             },
             success:function(data){
