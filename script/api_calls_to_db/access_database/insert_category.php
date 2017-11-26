@@ -22,7 +22,7 @@ $stmt->execute();
 //if category is inserted, insert the category to user to channel link
 if($conn->affected_rows>0){
     $output['messages'][] = 'insert category success';
-    // $category_id = $conn->insert_id;
+    $category_id = $conn->insert_id;
     include('insert_cuc_from_insert_ct.php');
 }else{
     $output['errors'][] = "failed to add category";

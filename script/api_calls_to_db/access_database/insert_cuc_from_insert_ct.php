@@ -13,15 +13,14 @@ $sqli =
     SELECT
         c.channel_id,
         u.user_id,
-        ct.category_id
+        ?
     FROM
         channels AS c,
         users AS u,
-        categories AS ct
     WHERE
-        c.youtube_channel_id = ? AND u.user_link = ? AND ct.category_name = ?";
+        c.youtube_channel_id = ? AND u.user_link = ?";
 $stmt = $conn->prepare($sqli);
-if(!$stmt->bind_param('sss',$youtube_channel_id, $user_link, $category_name)){
+if(!$stmt->bind_param('iss',$category_id,$youtube_channel_id, $user_link)){
     $output['errors'][]= 'invalid query';
     output_and_exit($output);
 };
