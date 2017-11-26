@@ -62,7 +62,7 @@ function addChannelModal(userLink) {
         const linkHeaderVisibleXs = $('<h3>').text("Save this link!").addClass("visible-xs");
         const linkDiv = $('<div>',{
             text: 'Use it to get access to your subscribed channels.'
-        }).append(linkSpan);
+        });
 
         let button = $('<button>').addClass("btn btn-info btn-lg btn-block").text("CopyLink  ");
         let linkIcon = $('<i>').addClass('fa fa-clipboard fa-lg text-danger');
@@ -70,7 +70,7 @@ function addChannelModal(userLink) {
         button.append(linkIcon).click(()=>{
             clipBoard('linkSpan');
         });
-        $('.linkCopyArea').append(linkHeaderHiddenXs, linkHeaderVisibleXs, linkDiv, button);
+        $('.linkCopyArea').append(linkHeaderHiddenXs, linkHeaderVisibleXs, linkSpan, linkDiv, button);
     }
     $('#userLinkModal').modal('show');
 }
