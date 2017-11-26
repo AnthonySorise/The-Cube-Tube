@@ -22,6 +22,9 @@ switch($_POST['action']){
     case 'change_category_name':
         include('change_category_name.php');
         break;
+    case 'delete_category':
+        include('delete_category.php');
+        break;
     case 'delete_ctu':
         include('delete_ctu.php');
         break;
@@ -57,9 +60,6 @@ switch($_POST['action']){
         break;
     case 'insert_videos_curl':
         include('youtube_videos_curl.php');
-        break;
-    case 'delete_category':
-        include('delete_category.php');
         break;
     default:
         $output['errors'][] = 'invalid action';
