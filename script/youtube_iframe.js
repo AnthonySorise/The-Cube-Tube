@@ -15,37 +15,17 @@ function onYouTubeIframeAPIReady(vidId) {
 }
 
 function onPlayerStateChange(event) {
-    const faSpinCircle = 'fa-circle-o-notch fa-fw fa-spin';
-    const faPauseIcon = 'fa-pause-circle-o fa-lg';
     resetPlaylistTd();
 
     if (event.data == YT.PlayerState.PLAYING) {
         $('.playButton').removeClass(playFaClass).toggleClass(pauseFaClass);
-        $('.circleSpinner').removeClass(faPauseIcon).addClass(faSpinCircle);
-        
+        $('.tdTitle i.fa').removeClass(faPauseIcon + ' ' + faSpinCircle).addClass(faSpinCircle);
 
     } else if (event.data == YT.PlayerState.PAUSED) {
         $('.pauseButton').removeClass(pauseFaClass).toggleClass(playFaClass);
-        $('.circleSpinner').removeClass(faSpinCircle).addClass(faPauseIcon);
-
-    }
-
-   
-    if (event.data == YT.PlayerState.ENDED) {
+        $('.tdTitle i.fa').removeClass(faPauseIcon + ' ' + faSpinCircle).addClass(faPauseIcon);
+    } else if (event.data == YT.PlayerState.ENDED) {
         if(playlistVideoObjectArray.length > 0) {
-           //  var playlistVideoId = playlistArray[0];
-           //  var videoObjArray = videoObjectsToLoad.length;
-           //  player.loadVideoById(playlistVideoId);
-           // while(videoObjArray--) {
-           //     if(videoObjectsToLoad[videoObjArray].youtube_video_id === playlistVideoId) {
-           //         console.log('Found channel id');
-           //         var playlistChannelId = videoObjectsToLoad[videoObjArray].youtube_channel_id;
-           //     }
-           // }
-           //  //Added Anthony function to get video info to update the video/channel info popover
-           //  updateVideoInfoPopover(playlistVideoId);
-           //  updateChannelInfoPopover (playlistChannelId)
-           //  playlistArray.splice(0, 1);
             playNextPlaylistVideo();
         }
         else if(getAutoPlayDirectionValue()){
@@ -97,8 +77,8 @@ function playNextYTVideo() {
         // player2.cueVideoById(nextVideoIdToLoad);
         currentlySelectedVideoID = nextVideoIdToLoad;
 
-        $(".tdList").removeClass('selectedTd');
-        $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
+        $('.tdTitle i.fa').remove();
+        $(".tdList").removeClass('selectedTd');        
         $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
         $("[videoid='" + currentlySelectedVideoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
             "margin-right": '5px',
@@ -135,8 +115,8 @@ function playPrevYTVideo() {
     // player2.cueVideoById(nextVideoIdToLoad);
     currentlySelectedVideoID = nextVideoIdToLoad;
 
+    $('.tdTitle i.fa').remove();    
     $(".tdList").removeClass('selectedTd');
-    $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
     $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
     $("[videoid='" + currentlySelectedVideoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
         "margin-right": '5px',

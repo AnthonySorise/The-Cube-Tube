@@ -28,9 +28,9 @@ function renderChannelSelectionDropdown() {
         var removeButton = $('<button class="btn-danger btn-block">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
         var changeCategoryButton = $('<button class="btn-success btn-block">Change Category</button>').css("display", "block").css("margin-top", "5px");
 
-        browseButton.on("click touchend", handleBrowseButton);
-        removeButton.on("click touchend", handleRemoveButton);
-        changeCategoryButton.on("click touchend", handleChangeCategory);
+        browseButton.on("click tap", handleBrowseButton);
+        removeButton.on("click tap", handleRemoveButton);
+        changeCategoryButton.on("click tap", handleChangeCategory);
 
         settingsContent.append(browseButton, removeButton, changeCategoryButton);
 

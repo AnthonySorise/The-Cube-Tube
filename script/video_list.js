@@ -242,7 +242,7 @@ function removeUnusedRows() {
 
 function resetSelectedTd() {
     $(".tdList").removeClass('selectedTd');
-    $('.fa-circle-o-notch').remove();
+    $('.tdTitle i.fa').remove();
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
