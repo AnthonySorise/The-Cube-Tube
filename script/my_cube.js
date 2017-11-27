@@ -136,7 +136,7 @@ function renderChannelSelectionDropdown() {
 
                 $(".dropdownChannelCheckBox").attr("checked", false)
                 $(".dropdownChannelCheckBox").each(function(index, value){
-                    if(categoryCh.indexOf($(value).attr("channel_id"))!== -1){
+                    if(categoryCh.indexOf($(value).attr("channel_id")!== -1)){
                         $(value).attr("checked", true)
                     }
                 });
