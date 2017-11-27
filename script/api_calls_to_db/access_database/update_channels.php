@@ -23,7 +23,7 @@ $query =
     "UPDATE 
         channels 
     SET 
-        thumbnail = ?, 
+        thumbnail_file_name = ?, 
         channel_title = ?,
         description = ? 
     WHERE 
