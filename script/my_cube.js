@@ -1,5 +1,7 @@
 function renderChannelSelectionDropdown() {
     $(".dropdownChannelLi").remove();
+    //ALSO REMOVE CATEGORY LIS
+
     //sort by name
     clientSubscribedChannelObjects.sort(function (a, b) {
         if (a.channel_title.toLowerCase() < b.channel_title.toLowerCase()) {
@@ -30,37 +32,41 @@ function renderChannelSelectionDropdown() {
 
     for(var cat = 0; cat <= categories.length; cat++){
         //Category Label
-        if(cat === categories.length){
+        if(cat === categories.length && clientSubsClone.length){
             //uncategorized label
             let unCatLi = $('<li>', {
                 'class': 'dropdownChannelLi row'
             });
-            let unCatLiMain = $('<div>', {
-                class: 'channelLiChannel col-xs-10'
-            }).css({
-                padding: '0',
-                'overflow': 'hidden',
-                'text-overflow': 'ellipsis',
-                'white-space': 'nowrap',
-                'line-height': '200%'
-            }).text("uncategorized");
-            unCatLi.append(unCatLiMain);
+            const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true);
+
+            // let unCatLiMain = $('<div>', {
+            //     class: 'channelLiChannel col-xs-10'
+            // }).css({
+            //     padding: '0',
+            //     'overflow': 'hidden',
+            //     'text-overflow': 'ellipsis',
+            //     'white-space': 'nowrap',
+            //     'line-height': '200%'
+            // }).text("uncategorized");
+            unCatLi.append(icon).text("uncategorized");
             $('#dropdownChannelUl').append(unCatLi);
         }
         else{
             let catLi = $('<li>', {
                 'class': 'dropdownChannelLi row'
             });
-            let catLiMain = $('<div>', {
-                class: 'channelLiChannel col-xs-10'
-            }).css({
-                padding: '0',
-                'overflow': 'hidden',
-                'text-overflow': 'ellipsis',
-                'white-space': 'nowrap',
-                'line-height': '200%'
-            }).text(categories[cat]);
-            catLi.append(catLiMain);
+            const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true);
+
+            // let catLiMain = $('<div>', {
+            //     class: 'channelLiChannel col-xs-10'
+            // }).css({
+            //     padding: '0',
+            //     'overflow': 'hidden',
+            //     'text-overflow': 'ellipsis',
+            //     'white-space': 'nowrap',
+            //     'line-height': '200%'
+            // }).text(categories[cat]);
+            catLi.append(icon).text(categories[cat]);
             $('#dropdownChannelUl').append(catLi);
         }
         for (var i = 0; i < clientSubsClone.length; i++) {
