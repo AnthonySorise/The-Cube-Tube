@@ -1,6 +1,6 @@
 function renderChannelSelectionDropdown() {
     $(".dropdownChannelLi").remove();
-    //ALSO REMOVE CATEGORY LIS
+    $(".dropdownCatLi").remove();
 
     //sort by name
     clientSubscribedChannelObjects.sort(function (a, b) {
@@ -35,42 +35,26 @@ function renderChannelSelectionDropdown() {
         if(cat === categories.length && clientSubsClone.length){
             //uncategorized label
             let unCatLi = $('<li>', {
-                'class': 'dropdownChannelLi row'
+                'class': 'row dropdownCatLi dropdownCatLi' + "_"+cat
             });
-            const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true);
+            const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true).css("color", "orange");
 
-            // let unCatLiMain = $('<div>', {
-            //     class: 'channelLiChannel col-xs-10'
-            // }).css({
-            //     padding: '0',
-            //     'overflow': 'hidden',
-            //     'text-overflow': 'ellipsis',
-            //     'white-space': 'nowrap',
-            //     'line-height': '200%'
-            // }).text("uncategorized");
             unCatLi.text("uncategorized").prepend(icon);
             $('#dropdownChannelUl').append(unCatLi);
         }
-        else{
+        else if(clientSubsClone.length){
             let catLi = $('<li>', {
-                'class': 'dropdownChannelLi row'
+                'class': 'row dropdownCatLi' + "_"+cat
             });
-            const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true);
+            const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true).css("color", "orange");
 
-            // let catLiMain = $('<div>', {
-            //     class: 'channelLiChannel col-xs-10'
-            // }).css({
-            //     padding: '0',
-            //     'overflow': 'hidden',
-            //     'text-overflow': 'ellipsis',
-            //     'white-space': 'nowrap',
-            //     'line-height': '200%'
-            // }).text(categories[cat]);
             catLi.text(categories[cat]).prepend(icon);
             $('#dropdownChannelUl').append(catLi);
         }
+        var correspondingChannels = [];
         for (var i = 0; i < clientSubsClone.length; i++) {
             if(cat === categories.length || clientCategories[categories[cat]].indexOf(clientSubsClone[i].youtube_channel_id) !== -1){
+                correspondingChannels.push(clientSubsClone[i].youtube_channel_id);
                 let channelLi = $('<li>', {
                     'class': 'dropdownChannelLi row'
                 });
@@ -145,6 +129,8 @@ function renderChannelSelectionDropdown() {
                 clientSubsClone.splice(i, 1)
             }
         }
+        //category click handler
+
     }
 }
 
