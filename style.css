@@ -241,7 +241,7 @@ body {
 #channelCategoryUl li{
 	cursor: pointer;
 }
-.dropdownChannelLi, .dropdownChannelLiAll{
+.dropdownChannelLi, .dropdownChannelLiAll, .dropdownCatLi{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
