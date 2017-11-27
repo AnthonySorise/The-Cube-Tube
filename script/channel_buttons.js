@@ -69,7 +69,7 @@ function handleAddButton() {
     clearVideoList();
 
     let channelID = $(this).parent().attr("channelId");
-    channelIDofCategorySet = channelID;
+    channelIdOfCategorySet = channelID;
     retrieveInfoFromDB(channelID, true);
     // toastMsg('loading channel videos',1000);
 
