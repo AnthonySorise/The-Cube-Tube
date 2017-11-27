@@ -329,7 +329,8 @@ function clickHandler() {
         let categoryStr = '';
         categoryStr = $(e.target).closest('.existingCategorySelect').find('select option:selected').val();
         changeCategory(categoryStr);
-
+        $(e.target).closest('.existingCategorySelect').find('select option:selected').prop('selected', false);
+        $(e.target).closest('.existingCategorySelect').find('select option:disabled').prop('selected', true);
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
             toastMsg('channel added', 1100);
         });
