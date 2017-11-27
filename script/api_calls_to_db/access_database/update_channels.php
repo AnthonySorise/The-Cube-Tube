@@ -19,8 +19,6 @@ if($results->num_rows>0){
 }else{
     $output['messages'][] = 'no channels to read';
 }
-print_r($channel_array);
-output_and_exit($output);
 $query = 
     "UPDATE 
         channels 
