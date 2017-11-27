@@ -1,5 +1,5 @@
 var clientCategories = {};
-var channelIDofCategorySet = "";
+var channelIdOfCategorySet = "";
 
 function handleChangeCategory(){
     let channelID = $(this).parent().attr("channelId");
@@ -12,11 +12,48 @@ function handleChangeCategory(){
 
 function changeCategory(category){
     //ajax calls to remove category
+    $.ajax({
+        url: './script/api_calls_to_db/access_database/access.php',
+        method: 'POST',
+        dataType: 'JSON',
+        data: {
+            action: 'delete_cuc',
+            youtube_channel_id:channelIdOfCategorySet
+        },
+        success: function (data) {
+            if (data.success){
+                console.log('delete success', data);
+            }else{
+                console.log(data);
+            }
+            //ajax calls to insert category
+            $.ajax({
+                url:'./script/api_calls_to_db/access_database/access.php',
+                method:'post',
+                dataType:'JSON',
+                data:{
+                    action:'insert_category',
+                    youtube_channel_id:channelIdOfCategorySet,
+                    category_name:category
+                },
+                success: function (data) {
+                    if (data.success) {
+                        console.log('insert success', data);
+                        //front end changes to clientCategories and call renderChannelSelectionDropdown()
 
-    //ajax calls to insert category
-
-    //front end changes to clientCategories and call renderChannelSelectionDropdown()
-
+                    }else{
+                        console.log(data);
+                    }
+                },
+                errors: function (data) {
+                    console.log('insert error', data);
+                }
+            })
+        },
+        errors: function (data) {
+            console.log('read error', data);
+        }
+    })
 }
 
 function handleAddButton() {
