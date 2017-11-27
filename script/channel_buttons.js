@@ -26,28 +26,55 @@ function changeCategory(category){
                 console.log(data);
             }
             //ajax calls to insert category
-            $.ajax({
-                url:'./script/api_calls_to_db/access_database/access.php',
-                method:'post',
-                dataType:'JSON',
-                data:{
-                    action:'insert_category',
-                    youtube_channel_id:channelIdOfCategorySet,
-                    category_name:category
-                },
-                success: function (data) {
-                    if (data.success) {
-                        console.log('insert success', data);
-                        //front end changes to clientCategories and call renderChannelSelectionDropdown()
 
-                    }else{
-                        console.log(data);
+            if(clientCategories.hasOwnProperty(category.toLowerCase())){
+                $.ajax({
+                    url:'./script/api_calls_to_db/access_database/access.php',
+                    method:'post',
+                    dataType:'JSON',
+                    data:{
+                        action:'insert_cuc',
+                        youtube_channel_id:channelIdOfCategorySet,
+                        category_name:category
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            console.log('insert success', data);
+                        }else{
+                            console.log(data);
+                        }
+                    },
+                    errors: function (data) {
+                        console.log('insert error', data);
                     }
-                },
-                errors: function (data) {
-                    console.log('insert error', data);
-                }
-            })
+                })
+
+
+            }
+            else{
+                $.ajax({
+                    url:'./script/api_calls_to_db/access_database/access.php',
+                    method:'post',
+                    dataType:'JSON',
+                    data:{
+                        action:'insert_category',
+                        youtube_channel_id:channelIdOfCategorySet,
+                        category_name:category
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            console.log('insert success', data);
+                            //front end changes to clientCategories and call renderChannelSelectionDropdown()
+
+                        }else{
+                            console.log(data);
+                        }
+                    },
+                    errors: function (data) {
+                        console.log('insert error', data);
+                    }
+                })
+            }
         },
         errors: function (data) {
             console.log('read error', data);
