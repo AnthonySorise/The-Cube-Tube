@@ -759,27 +759,6 @@ div.thRow {
 .modal-open {
 	background-color: rgba(0, 0, 0, 0.5);
 }
-		/********LIGHTBOX modal*********/
-#lightBoxModal .modal-dialog {
-	/*height: 80vh;*/
-	width: 80vw;
-	/*padding: 0;*/
-}
-#lightBoxModal .modal-content {
-	background: transparent;
-}
-#lightBoxModal .modal-body {
-	height: 80vh;
-	padding: 0;
-}
-#lightBoxModal .modal-footer {
-	background-color: black;
-}
-#lightBoxModal iframe {
-	height: 100%;
-	width: 100%;
-}
-		/*******END of LIGHTBOX modal*********/
 		/***********CHANNEL SEARCH modal************/
 #channelSearchModal .modal-dialog {
 	width: 60vw;
@@ -872,11 +851,6 @@ div.thRow {
 	float: right;
 }
 
-#lightBoxModalFooter {
-	display: flex;
-    justify-content: space-between;
-}
-
 .modalChSearch{
 	display:inline-block;
 }
@@ -888,13 +862,13 @@ div.thRow {
 	cursor: pointer;
 	margin: 7px;
 }
-.userLinkBody{
+.userLinkBody, .categoryEditBody{
 	background-color: #020e13;
 	color:white;
-	height: 70vh;
+	height: 50vh;
 	
 }
-.userLinkHeader{
+.userLinkHeader, .categoryEditHeader{
 	background-color: black;
 	color:white;
 }
@@ -910,12 +884,22 @@ div.thRow {
 	border-radius:0;
 	border:none;
 }
-.channelCategoryButton{
+.existingCategorySelect select.channelCategorySelect{
+	width: 54%;
+}
+.userCategoryExists dl{
+	margin-bottom: 20px;
+}
+.channelCategoryForm div{
+	width: 100%;
+}
+.channelCategoryButton, .existingCategoryButton{
 	background-color: rgba(20,149,20, 0.6);
 	color: rgba(255,255,255,0.6);
 	cursor: pointer;
+	border: none;
 }
-.channelCategoryButton:hover{
+.channelCategoryButton:hover, .existingCategoryButton:hover{
 	background-color: rgba(20,149,20,1);
 	color: rgba(255,255,255,1);
 }

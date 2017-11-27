@@ -1664,23 +1664,23 @@ consider carousel for the video list area:
 							<div class="userCategoryExists">
 								<label>Add to an existing category.</label>
 								<div class="form-group form-inline existingCategorySelect">
-									<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%;">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control">
 										<option value="" hidden disabled selected>select a category</option>
 										<option value="cat1">cat1</option>
 										<option value="cat2">cat2</option>
 									</select>
-									<button class="btn btn-success existingCategoryButton">
+									<button class="btn existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>
 									</button>
 								</div>
-								<dl class="col-xs-12 text-center" style="margin-bottom:20px;">
+								<dl class="col-xs-12 text-center">
 									<dd> ------or------ </dd>
 								</dl>
 							</div>
 							<label>Create a a  new category for this channel.</label>
 							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
-								<div class="form-group" style="width:100%;">
-									<div class="input-group" style="width:100%;">
+								<div class="form-group">
+									<div class="input-group">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>
@@ -1717,23 +1717,23 @@ consider carousel for the video list area:
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
 								<div class="form-group form-inline existingCategorySelect">
-									<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%;">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control">
 										<option value="" hidden disabled selected>select a category</option>
 										<option value="cat1">cat1</option>
 										<option value="cat2">cat2</option>
 									</select>
-									<button class="btn btn-success existingCategoryButton">
+									<button class="btn existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>
 									</button>
 								</div>
-								<dl class="col-xs-12 text-center" style="margin-bottom:20px;">
+								<dl class="col-xs-12 text-center">
 									<dd> ------or------ </dd>
 								</dl>
 							</div>
 							<label>Create a a  new category for this channel.</label>
 							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
-								<div class="form-group" style="width:100%;">
-									<div class="input-group" style="width:100%;">
+								<div class="form-group">
+									<div class="input-group">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>
