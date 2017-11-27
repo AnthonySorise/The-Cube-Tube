@@ -56,10 +56,12 @@ function changeCategory(category){
                                 for(var i = 0; i < clientCategories[key].length; i++){
                                     if(clientCategories[key][i] === channelIdOfCategorySet){
                                         clientCategories[key].splice(i, 1)
-                                        if(clientCategories[key].length === 0){
-                                            delete clientCategories[key]
-                                        }
                                     }
+                                }
+                            }
+                            for(var key in clientCategories) {
+                                if (clientCategories[key].length === 0) {
+                                    delete clientCategories[key]
                                 }
                             }
 
@@ -97,13 +99,14 @@ function changeCategory(category){
                                 for(var i = 0; i < clientCategories[key].length; i++){
                                     if(clientCategories[key][i] === channelIdOfCategorySet){
                                         clientCategories[key].splice(i, 1)
-                                        if(clientCategories[key].length === 0){
-                                            delete clientCategories[key]
-                                        }
                                     }
                                 }
                             }
-
+                            for(var key in clientCategories) {
+                                if (clientCategories[key].length === 0) {
+                                    delete clientCategories[key]
+                                }
+                            }
                             if(!clientCategories.hasOwnProperty(category)){
                                 clientCategories[category] = [];
                             }
