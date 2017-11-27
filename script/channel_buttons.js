@@ -2,8 +2,7 @@ var clientCategories = {};
 var channelIdOfCategorySet = "";
 
 function handleChangeCategory(){
-    let channelID = $(this).parent().attr("channelId");
-    channelIDofCategorySet = channelID;
+    channelIdOfCategorySet = $(this).parent().attr("channelId");
 
     //update categoryEditModal
 
