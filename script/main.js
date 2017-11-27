@@ -155,12 +155,13 @@ function initiateUser() {
                                     success: function (data) {
                                         if (data.success){
                                             console.log('category read success', data);
-                                            for (var i = 0; i < data.length; i++){
-                                                console.log("CATEGORY - ", data[i].category_name)
-                                                if(!clientCategories.hasOwnProperty(data[i].category_name)){
-                                                    clientCategories.data[i].category_name = [];
+                                            for (var i = 0; i < data.data.length; i++){
+                                                console.log("CATEGORY - ", data.data[i].category_name)
+                                                var catName = data.data[i].category_name;
+                                                if(!clientCategories.hasOwnProperty(catName)){
+                                                    clientCategories.catName = [];
                                                 }
-                                                clientCategories.data[i].category_name.push(data[i].youtube_channel_id)
+                                                clientCategories.catName.push(data[i].youtube_channel_id)
                                             }
                                         }else{
                                             console.log(data);
