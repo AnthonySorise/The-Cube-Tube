@@ -29,7 +29,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 if($result->num_rows>0){
     $output['messages'][] = 'duplicate found!';
-    output_and_exit();
+    output_and_exit($output);
 }
 if(empty($category_id)){
     $query = 
