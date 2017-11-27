@@ -28,23 +28,23 @@ function renderChannelSelectionDropdown() {
         }
     });
 
-    for(var cat = 0; cat < categories.length; cat++){
+    for(var cat = 0; cat <= categories.length; cat++){
         //Category Label
-        let catLi = $('<li>', {
-            'class': 'dropdownChannelLi row'
-        }).text(categories[cat]);
-        $('#dropdownChannelUl').append(catLi);
-
-        for (var i = 0; i <= clientSubscribedChannelObjects.length; i++) {
+        if(cat === clientSubscribedChannelObjects.length){
+            //uncategorized label
+            let unCatLi = $('<li>', {
+                'class': 'dropdownChannelLi row'
+            }).text("uncategorized");
+            $('#dropdownChannelUl').append(unCatLi);
+        }
+        else{
+            let catLi = $('<li>', {
+                'class': 'dropdownChannelLi row'
+            }).text(categories[cat]);
+            $('#dropdownChannelUl').append(catLi);
+        }
+        for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
             if(i === clientSubscribedChannelObjects.length || clientCategories[categories[cat]].indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1){
-                if(i === clientSubscribedChannelObjects.length){
-                    //uncategorized label
-                    let unCatLi = $('<li>', {
-                        'class': 'dropdownChannelLi row'
-                    }).text("uncategorized");
-                    $('#dropdownChannelUl').append(unCatLi);
-                }
-
                 let channelLi = $('<li>', {
                     'class': 'dropdownChannelLi row'
                 });
