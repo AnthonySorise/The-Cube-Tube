@@ -1666,8 +1666,6 @@ consider carousel for the video list area:
 								<div class="form-group form-inline existingCategorySelect">
 									<select name="initialCategorySelect" class="channelCategorySelect form-control">
 										<option value="" hidden disabled selected>select a category</option>
-										<option value="cat1">cat1</option>
-										<option value="cat2">cat2</option>
 									</select>
 									<button class="btn existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>
@@ -1719,8 +1717,6 @@ consider carousel for the video list area:
 								<div class="form-group form-inline existingCategorySelect">
 									<select name="initialCategorySelect" class="channelCategorySelect form-control">
 										<option value="" hidden disabled selected>select a category</option>
-										<option value="cat1">cat1</option>
-										<option value="cat2">cat2</option>
 									</select>
 									<button class="btn existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>
