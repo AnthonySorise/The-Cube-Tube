@@ -1664,7 +1664,7 @@ consider carousel for the video list area:
 							<div class="userCategoryExists">
 								<label>Add to an existing category.</label>
 								<div class="form-group form-inline existingCategorySelect">
-									<select name="initialCategorySelect" class="channelCategorySelect form-control">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" id="channelCategorySelectUlink">
 										<option value="" hidden disabled selected>select a category</option>
 									</select>
 									<button class="btn existingCategoryButton">
@@ -1715,7 +1715,7 @@ consider carousel for the video list area:
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
 								<div class="form-group form-inline existingCategorySelect">
-									<select name="initialCategorySelect" class="channelCategorySelect form-control">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" id="channelCategorySelectEdit">
 										<option value="" hidden disabled selected>select a category</option>
 									</select>
 									<button class="btn existingCategoryButton">

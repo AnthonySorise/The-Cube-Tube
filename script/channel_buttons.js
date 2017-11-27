@@ -7,12 +7,13 @@ function handleChangeCategory(){
     //update categoryEditModal
     if(Object.keys(clientCategories).length){
         const catArr = Object.keys(clientCategories);
+        $('#channelCategorySelectEdit option:not(:disabled)').remove();
         for(var idx in catArr){
             const catOpt = $('<option>',{
                 'value' : catArr[idx],
                 'text': catArr[idx]
             });
-            $('.channelCategorySelect').append(catOpt);
+            $('#channelCategorySelectEdit').append(catOpt);
         }
         $('.userCategoryExists').show();
     }
@@ -185,12 +186,13 @@ function addChannelModal(userLink) {
     }
     if(Object.keys(clientCategories).length){
         const catArr = Object.keys(clientCategories);
+        $('#channelCategorySelectUlink option:not(:disabled)').remove();
         for(var idx in catArr){
             const catOpt = $('<option>',{
                 'value' : catArr[idx],
                 'text': catArr[idx]
             });
-            $('.channelCategorySelect').append(catOpt);
+            $('#channelCategorySelectUlink').append(catOpt);
         }
         $('.userCategoryExists').show();
     }
