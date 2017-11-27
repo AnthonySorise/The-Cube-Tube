@@ -52,6 +52,10 @@ body {
 	color:white;
 }
 
+.form-control {
+	height: 33.7px !important;
+}
+
 /************************************************************************************
 *  Any and all css for navbar - i.e. anything inside #mainNav<nav> / #midNav<nav>	*
 *  at this moment, the only exception for having it outside of this area 			*
@@ -202,7 +206,7 @@ body {
 	border-bottom: 1px solid;
 }
 .channelSearchButton{
-	background-color: rgba(255, 0, 0, 0.3);
+	background-color: orange;
 	border-radius: 0;
 	border:none;
 	cursor: pointer;
@@ -211,7 +215,7 @@ body {
 	color: white;
 }
 .channelSearchButton:hover{
-	background-color: rgba(255, 0, 0, 1);
+	background-color: #f47c04;
 }
 .channelSearchForm input, #videoSearchInput{
 	border: none;
@@ -1289,5 +1293,3 @@ safer appraoch than to resizing browser to see change
 	}
 	/* End of css for mobile modal */
 }
-
-

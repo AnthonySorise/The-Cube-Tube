@@ -30,6 +30,7 @@ function handleAddToPlaylist(){
 }
 
 function playNextPlaylistVideo(){
+    $('.tdTitle i.fa').remove();    
     if(playlistVideoObjectArray.length){
         // if (currentlySelectedVideoID === playlistVideoObjectArray.youtube_video_id){
         //     playlistVideoObjectArray.splice(0, 1);
