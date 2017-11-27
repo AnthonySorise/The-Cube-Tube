@@ -133,8 +133,8 @@ function renderChannelSelectionDropdown() {
         $(".dropdownCatLi" + "_"+cat).on("click", function(){
             $(".dropdownChannelCheckBox").attr("checked", false)
             $(".dropdownChannelCheckBox").each(function(index, value){
-                if(correspondingChannels.indexOf(value.attr("channel_id"))!== -1){
-                    value.attr("checked", true)
+                if(correspondingChannels.indexOf($(value).attr("channel_id"))!== -1){
+                    $(value).attr("checked", true)
                 }
             })
         })
