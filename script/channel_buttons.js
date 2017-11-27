@@ -40,6 +40,7 @@ function changeCategory(category){
                     success: function (data) {
                         if (data.success) {
                             console.log('insert success', data);
+                            renderChannelSelectionDropdown();
                         }else{
                             console.log(data);
                         }
@@ -64,7 +65,7 @@ function changeCategory(category){
                     success: function (data) {
                         if (data.success) {
                             console.log('insert success', data);
-                            //front end changes to clientCategories and call renderChannelSelectionDropdown()
+                            renderChannelSelectionDropdown();
 
                         }else{
                             console.log(data);

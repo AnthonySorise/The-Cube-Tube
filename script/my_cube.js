@@ -132,16 +132,21 @@ function renderChannelSelectionDropdown() {
         // category click handler
         var categoryChannels = deepCopy(correspondingChannels);
 
-        $(".dropdownCatLi" + "_"+cat).on("click", function(){
+        ((categoryCh)=>{
+            $(".dropdownCatLi" + "_"+cat).on("click", function(){
 
-            $(".dropdownChannelCheckBox").attr("checked", false)
-            $(".dropdownChannelCheckBox").each(function(index, value){
-                if(categoryChannels.indexOf($(value).attr("channel_id"))!== -1){
-                    $(value).attr("checked", true)
-                }
-            })
-            compileSelectedChannelsFromDropdown()
-        })
+                // $(".dropdownChannelCheckBox").attr("checked", false)
+                $('.dropdownChannelCheckBox').each((idx, val)=>{
+                    $(val).prop('checked',false);
+                })
+                $(".dropdownChannelCheckBox").each(function(index, value){
+                    if(categoryCh.indexOf($(value).attr("channel_id"))!== -1){
+                        $(value).prop("checked", true)
+                    }
+                });
+                compileSelectedChannelsFromDropdown();
+            });
+        })(categoryChannels)
     }
 }
 
