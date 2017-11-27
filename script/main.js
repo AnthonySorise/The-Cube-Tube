@@ -156,6 +156,7 @@ function initiateUser() {
                                         if (data.success){
                                             console.log('category read success', data);
                                             for (var i = 0; i < data.length; i++){
+                                                console.log("CATEGORY - ", data[i].category_name)
                                                 if(!clientCategories.hasOwnProperty(data[i].category_name)){
                                                     clientCategories.data[i].category_name = [];
                                                 }
