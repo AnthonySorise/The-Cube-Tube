@@ -131,12 +131,15 @@ function renderChannelSelectionDropdown() {
         }
         //category click handler
         $(".dropdownCatLi" + "_"+cat).on("click", function(){
+            var categoryChannels = deepCopy(correspondingChannels);
+
             $(".dropdownChannelCheckBox").attr("checked", false)
             $(".dropdownChannelCheckBox").each(function(index, value){
-                if(correspondingChannels.indexOf($(value).attr("channel_id"))!== -1){
+                if(categoryChannels.indexOf($(value).attr("channel_id"))!== -1){
                     $(value).attr("checked", true)
                 }
             })
+            compileSelectedChannelsFromDropdown()
         })
     }
 }
