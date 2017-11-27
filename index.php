@@ -30,13 +30,13 @@ consider carousel for the video list area:
 	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script/api_calls_to_db/access_database/database_api.js"></script>
-
     <script type="text/javascript" src="script/main.js"></script>
     <script type="text/javascript" src="script/youtube_iframe.js"></script>
     <script type="text/javascript" src="script/channel_search.js"></script>
     <script type="text/javascript" src="script/ui.js"></script>
     <script type="text/javascript" src="script/db.js"></script>
     <script type="text/javascript" src="script/video_list.js"></script>
+    <script type="text/javascript" src="script/playlist.js"></script>
     <script type="text/javascript" src="script/apple_compatibility.js"></script>
     <script type="text/javascript" src="script/auto_search.js"></script>
     <script type="text/javascript" src="script/channel_buttons.js"></script>
@@ -181,6 +181,13 @@ consider carousel for the video list area:
 									<span class="slider round"></span>
 								</label>
 							</div>
+							<div class="navbar-nav nav-pills autoPlayArea vertSlide">
+								<label id="autoplayOrderText">Direction</label>
+								<label class="switch vertSwitch">
+									<input type="checkbox" id='autoplayOrderCheckBox' checked>
+									<span class="slider round vert"></span>
+								</label>
+							</div>
 						</div>
 						<div class="mediaControls"></div>
 <!--						<form class="navbar-right nav-pills form-inline">-->
@@ -196,10 +203,6 @@ consider carousel for the video list area:
 <!--						</form>-->
 <!--						end of form for channel search-->
                         <div class="navbar-nav nav-pills midNavChannels">
-                        	<span class="playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="all">
-                        		<i class="fa fa-list-ol fa-lg"></i>
-                        		playlist
-                        	</span>
 							<span class="midNavBrowsing">
 								<p style="display:inline-block">
 									Browsing:
@@ -220,6 +223,15 @@ consider carousel for the video list area:
 								<i class="fa fa-cubes"></i>
 								Subscribed Channels
 							</span>
+                            <span class="midNavPlaylistText">
+								<p style="display:inline-block; margin-left: 5px">
+                                    Watching:
+                                </p>
+							</span>
+                            <span class="midNavPlaylist playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="all">
+                        		<i class="fa fa-list-ol fa-lg"></i>
+                        		Playlist
+                        	</span>
                         </div>
 					</div>
 					<!--end of nav options div-->
@@ -230,15 +242,15 @@ consider carousel for the video list area:
 				<!--videoListRow for listing channel videos-->
 				<div class="row thRow videoHeader">
 					<div class="col-sm-12 col-md-6 thLabel text-center">
-						<div class="col-xs-6 thTitle">
+						<div class="col-xs-7 col-md-6 thTitle">
 							<strong>Title</strong>
 						</div>
 						<div class="col-xs-2 hidden-xs"></div>
 
-						<div class="col-xs-4 col-sm-2 thChannel">
+						<div class="col-xs-5 col-sm-2 thChannel">
 							<strong>Channel</strong>
 						</div>
-						<div class="col-xs-2 thUpDate">
+						<div class="col-xs-2 hidden-xs thUpDate">
 							<strong>Date</strong>
 						</div>
 					</div>
@@ -295,7 +307,7 @@ consider carousel for the video list area:
                                             -->
 											<div class="col-xs-12 col-md-6 tdListLeft text-left">
 												<div class="col-xs-12 tdList" id="tdList-1">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -317,15 +329,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-2">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -344,15 +356,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-3">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -371,15 +383,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-4">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -398,15 +410,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-5">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -425,15 +437,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-6">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -452,15 +464,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-7">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -479,15 +491,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-8">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -506,15 +518,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-9">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -533,15 +545,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-10">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -560,17 +572,17 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-12 col-md-6 tdListRight text-left">
 												<div class="col-xs-12 tdList" id="tdList-11">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -589,15 +601,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-12">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -616,15 +628,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-13">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -643,15 +655,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-14">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -670,15 +682,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-15">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -697,15 +709,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-16">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -724,15 +736,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-17">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -751,15 +763,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-18">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -778,15 +790,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-19">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -805,15 +817,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-20">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -832,10 +844,10 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
@@ -852,7 +864,7 @@ consider carousel for the video list area:
                                             -->
 											<div class="col-xs-12 col-md-6 tdListLeft text-left">
 												<div class="col-xs-12 tdList" id="tdList-21">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -871,15 +883,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-22">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -898,15 +910,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-23">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -925,15 +937,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-24">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -952,15 +964,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-25">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -979,15 +991,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-26">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1006,15 +1018,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-27">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1033,15 +1045,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-28">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1060,15 +1072,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-29">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1087,15 +1099,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-30">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1114,17 +1126,17 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 											</div>
 											<div class="col-xs-12 col-md-6 tdListRight text-left">
 												<div class="col-xs-12 tdList" id="tdList-31">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1143,15 +1155,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-32">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1170,15 +1182,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-33">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1197,15 +1209,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-34">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1224,15 +1236,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-35">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1251,15 +1263,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-36">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1278,15 +1290,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-37">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1305,15 +1317,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-38">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1332,15 +1344,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-39">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1359,15 +1371,15 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-40">
-													<div class="col-xs-6 col-md-6 tdTitle">
+													<div class="col-xs-7 col-md-6 tdTitle">
 														<span></span>
 													</div>
 													<div class="col-xs-1 tdInfo hidden-xs text-center">
@@ -1386,10 +1398,10 @@ consider carousel for the video list area:
 															</span>
 														</button>
 													</div>
-													<div class="col-xs-4 col-sm-2 tdChannel text-center">
+													<div class="col-xs-5 col-sm-2 tdChannel text-center">
 
 													</div>
-													<div class="col-xs-2 tdUpDate text-center">
+													<div class="col-xs-2 hidden-xs tdUpDate text-center">
 
 													</div>
 												</div>
@@ -1424,30 +1436,6 @@ consider carousel for the video list area:
 			</div>
 		</div>
 		<!--end of main content div-->
-		<!--modal for lightbox-->
-		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<!-- <div class="modal-header">
-        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
-        				</button>
-        				<div class="modal-title-wrap">
-        					<h5 class="modal-title" id="gameInfoModalTitle">
-        						Modal title
-        					</h5>
-        				</div>
-      				</div> -->
-					<div class="modal-body">
-						<div id="theaterVideo"></div>
-						<div class="modal-footer">
-						<span id="lightBoxModalFooter"></span>
-					</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--modal end for lightbox-->
 		<!--modal for channel search result-->
 		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
@@ -1471,10 +1459,10 @@ consider carousel for the video list area:
 					<div class="modal-body" id="channelSearchModalBody">
 						<li id="chSearch-1" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1488,10 +1476,10 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-2" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1506,10 +1494,10 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-3" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1524,10 +1512,10 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-4" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1541,11 +1529,11 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-5" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1560,10 +1548,10 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-6" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1577,10 +1565,10 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-7" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1594,10 +1582,10 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-8" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1612,10 +1600,10 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-9" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1629,10 +1617,10 @@ consider carousel for the video list area:
 						</li>
 						<li id="chSearch-10" class="col-xs-12">
 							<img class="col-xs-4" />
-							<h4 class="col-xs-7 modalChHeader">
+							<h4 class="col-xs-6 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5">subs:
+								<small class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
 								</small>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
@@ -1659,22 +1647,107 @@ consider carousel for the video list area:
         					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
         				</button>
         				<div class="modal-title-wrap">
-        					<h5 class="modal-title" id="userLinkModalTitle">
+        					<h3 class="hidden-xs modal-title userLinkModalTitle">
+        						Channel Added!
+        					</h3>
+        					<h5 class="visible-xs modal-title userLinkModalTitle">
         						Channel Added!
         					</h5>
         				</div>
       				</div>
 					<div class="modal-body userLinkBody">
-						
+						<div class="linkCopyArea text-center"></div>
+						<div class="channelCategoryArea text-center">
+							<h3 class="hidden-xs">Categorize your channel:</h3>
+							<h5 class="visible-xs">Categorize your channel:</h5>
+							<!-- $('.userCategoryExists').hide()/show() to toggle the dropdown showing depending on category availability -->
+							<div class="userCategoryExists">
+								<label>Add to an existing category.</label>
+								<div class="form-group form-inline existingCategorySelect">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control">
+										<option value="" hidden disabled selected>select a category</option>
+										<option value="cat1">cat1</option>
+										<option value="cat2">cat2</option>
+									</select>
+									<button class="btn existingCategoryButton">
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+								</div>
+								<dl class="col-xs-12 text-center">
+									<dd> ------or------ </dd>
+								</dl>
+							</div>
+							<label>Create a a  new category for this channel.</label>
+							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
+										<span type="button" class="input-group-addon channelCategoryButton">
+											<span class="glyphicon glyphicon-ok"></span>
+										</span>
+									</div>
+								</div>	
+							</form>
+						</div>
 					</div>
-					<!-- <div class="modal-footer">
-						<span id="userLinkModalFooter"></span>
-						<button type="button" class="btn btn-danger modalClose userLinkModalClose" data-dismiss="modal">close</button>
-					</div> -->
 				</div>
 			</div>
 		</div>
 		<!--modal end for user link-->
+		<div class="modal fade" id="categoryEditModal" tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header text-center categoryEditHeader">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
+        				</button>
+        				<div class="modal-title-wrap">
+        					<h3 class="hidden-xs modal-title categoryEditModalTitle">
+        						Edit Category
+        					</h3>
+        					<h5 class="visible-xs modal-title categoryEditModalTitle">
+        						Edit Category
+        					</h5>
+        				</div>
+      				</div>
+					<div class="modal-body categoryEditBody">
+						<div class="channelCategoryArea text-center">
+							<h3 class="hidden-xs">Categorize your channel:</h3>
+							<h5 class="visible-xs">Categorize your channel:</h5>
+							<div class="userCategoryExists">
+								<label>Add to existing categories</label>
+								<div class="form-group form-inline existingCategorySelect">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control">
+										<option value="" hidden disabled selected>select a category</option>
+										<option value="cat1">cat1</option>
+										<option value="cat2">cat2</option>
+									</select>
+									<button class="btn existingCategoryButton">
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+								</div>
+								<dl class="col-xs-12 text-center">
+									<dd> ------or------ </dd>
+								</dl>
+							</div>
+							<label>Create a a  new category for this channel.</label>
+							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
+										<span type="button" class="input-group-addon channelCategoryButton">
+											<span class="glyphicon glyphicon-ok"></span>
+										</span>
+									</div>
+								</div>	
+							</form>
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 

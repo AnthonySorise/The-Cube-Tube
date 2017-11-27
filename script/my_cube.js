@@ -24,12 +24,15 @@ function renderChannelSelectionDropdown() {
             'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
         });
 
-        var browseButton = $('<button class="btn-primary">Browse</button>').css("display", "block");
-        var removeButton = $('<button class="btn-danger">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
+        var browseButton = $('<button class="btn-primary btn-block">Browse</button>').css("display", "block");
+        var removeButton = $('<button class="btn-danger btn-block">Unsubscribe</button>').css("display", "block").css("margin-top", "5px");
+        var changeCategoryButton = $('<button class="btn-success btn-block">Change Category</button>').css("display", "block").css("margin-top", "5px");
 
-        browseButton.on("click touchend", handleBrowseButton)
-        removeButton.on("click touchend", handleRemoveButton)
-        settingsContent.append(browseButton, removeButton);
+        browseButton.on("click touchend", handleBrowseButton);
+        removeButton.on("click touchend", handleRemoveButton);
+        changeCategoryButton.on("click touchend", handleChangeCategory);
+
+        settingsContent.append(browseButton, removeButton, changeCategoryButton);
 
         let channelSettingsButton = $('<a>').attr({
             'role': 'button',
