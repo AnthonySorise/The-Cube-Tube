@@ -101,7 +101,7 @@ function renderChannelSelectionDropdown() {
                     'type': 'checkbox',
                     'name': clientSubsClone[i].channel_title,
                     'channel_id': clientSubsClone[i].youtube_channel_id,
-                    'class': 'dropdownChannel'
+                    'class': 'dropdownChannelCheckBox'
                 });
                 //check if channel is selected
                 if (clientSelectedChannelIds.indexOf(clientSubsClone[i].youtube_channel_id) !== -1) {
@@ -130,12 +130,19 @@ function renderChannelSelectionDropdown() {
             }
         }
         //category click handler
-
+        $(".dropdownCatLi" + "_"+cat).on("click", function(){
+            $(".dropdownChannelCheckBox").attr("checked", false)
+            $(".dropdownChannelCheckBox").each(function(index, value){
+                if(correspondingChannels.indexOf(value.attr("channel_id"))!== -1){
+                    value.attr("checked", true)
+                }
+            })
+        })
     }
 }
 
 function compileSelectedChannelsFromDropdown() {
-    var selectedInputs = $(".dropdownChannel:checked")
+    var selectedInputs = $(".dropdownChannelCheckBox:checked")
     clientSelectedChannelIds = [];
     for (var i = 0; i < selectedInputs.length; i++) {
         clientSelectedChannelIds.push($(selectedInputs[i]).attr("channel_id"))
