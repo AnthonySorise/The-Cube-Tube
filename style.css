@@ -1232,6 +1232,10 @@ safer appraoch than to resizing browser to see change
 	}
 	.autoPlayArea{
 		margin-left: -15px;
+		left: 0;
+	}
+	.midNavChannels{
+		float: none;
 	}
 	#midNav-option form{
 		width: 95%;
