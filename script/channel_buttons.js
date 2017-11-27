@@ -5,7 +5,17 @@ function handleChangeCategory(){
     channelIdOfCategorySet = $(this).parent().attr("channelId");
 
     //update categoryEditModal
-
+    if(Object.keys(clientCategories).length){
+        const catArr = Object.keys(clientCategories);
+        for(var idx in catArr){
+            const catOpt = $('<option>',{
+                'value' : catArr[idx],
+                'text': catArr[idx]
+            });
+            $('.channelCategorySelect').append(catOpt);
+        }
+        $('.userCategoryExists').show();
+    }
     $("#categoryEditModal").modal("show")
 }
 
@@ -155,7 +165,7 @@ function addChannelModal(userLink) {
         });
 
         const linkHeaderHiddenXs = $('<h3>').text("Save this link!").addClass("hidden-xs");
-        const linkHeaderVisibleXs = $('<h3>').text("Save this link!").addClass("visible-xs");
+        const linkHeaderVisibleXs = $('<h5>').text("Save this link!").addClass("visible-xs");
         const linkDiv = $('<div>',{
             text: 'Use it to get access to your subscribed channels.'
         });
@@ -167,7 +177,21 @@ function addChannelModal(userLink) {
             clipBoard('linkSpan');
         });
         $('.linkCopyArea').append(linkHeaderHiddenXs, linkHeaderVisibleXs, linkSpan, linkDiv, button);
+    }else{
+        $('.linkCopyArea').hide();
     }
+    if(Object.keys(clientCategories).length){
+        const catArr = Object.keys(clientCategories);
+        for(var idx in catArr){
+            const catOpt = $('<option>',{
+                'value' : catArr[idx],
+                'text': catArr[idx]
+            });
+            $('.channelCategorySelect').append(catOpt);
+        }
+        $('.userCategoryExists').show();
+    }
+
     $('#userLinkModal').modal('show');
 }
 

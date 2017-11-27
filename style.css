@@ -887,6 +887,9 @@ div.thRow {
 .existingCategorySelect select.channelCategorySelect{
 	width: 54%;
 }
+.userCategoryExits{
+	display: none;
+}
 .userCategoryExists dl{
 	margin-bottom: 20px;
 }
