@@ -43,7 +43,7 @@ foreach($channel_array as $youtube_channel_id){
         $output['errors'][] = 'statement failed';
         output_and_exit($output);
     }
-    echo("{$thumbnail}{$channel_title}{$description});
+    echo "{$thumbnail}{$channel_title}{$description}";
     output_and_exit($output);
     $stmt->bind_param('ssss',$thumbnail,$channel_title,$description,$youtube_channel_id);
     $stmt->execute();
