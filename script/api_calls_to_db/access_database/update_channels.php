@@ -14,7 +14,7 @@ $results = $stmt->get_result();
 if($results->num_rows>0){
     $output['messages'][] = 'channels found';
     while($row = $results->fetch_assoc()){
-        $channel_array[] = $row['youtube_channel_array'];
+        $channel_array[] = $row['youtube_channel_id'];
     }
 }else{
     $output['messages'][] = 'no channels to read';
@@ -28,7 +28,6 @@ $query =
         description = ? 
     WHERE 
         youtube_channel_id = ?";
-$channel_data_array = [];
 $output['update_success'] = 0;
 foreach($channel_array as $youtube_channel_id){
     $ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
