@@ -38,8 +38,8 @@ foreach($channel_array as $youtube_channel_id){
     $ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $json = curl_exec($ch);
-    print_r($channel_data);
     $channel_data = json_decode($json, true)['items'][0]['snippet'];
+    print_r($channel_data);
     $thumbnail = $channel_data['thumbnails']['medium']['url'];
     $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
     $thumbnail = str_replace('/photo.jpg','',$thumbnail);
