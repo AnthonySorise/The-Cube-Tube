@@ -19,6 +19,8 @@ if($results->num_rows>0){
 }else{
     $output['messages'][] = 'no channels to read';
 }
+print_r($channel_array);
+output_and_exit($output);
 $query = 
     "UPDATE 
         channels 
@@ -43,8 +45,6 @@ foreach($channel_array as $youtube_channel_id){
         $output['errors'][] = 'statement failed';
         output_and_exit($output);
     }
-    echo "{$thumbnail}{$channel_title}{$description}";
-    output_and_exit($output);
     $stmt->bind_param('ssss',$thumbnail,$channel_title,$description,$youtube_channel_id);
     $stmt->execute();
     if($conn->affected_rows>0){
