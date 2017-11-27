@@ -10,6 +10,7 @@ function searchChannelsByName(inputStr) {
     //     string='';
     // }
     $('.channelSearchInput').val('');
+    $('#channelModalSearchBar').val('');
     // var string = $('.channelSearchInput').val();
     var promise = {
         then: function (resolve, reject) {
