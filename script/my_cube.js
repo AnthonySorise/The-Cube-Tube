@@ -126,7 +126,8 @@ function renderChannelSelectionDropdown() {
                 // $('#channelCategoryUl').append(channelLi)
                 $('#dropdownChannelUl').append(channelLi);
 
-                clientSubsClone.splice(i, 1)
+                clientSubsClone.splice(i, 1);
+                i--
             }
         }
         // category click handler
