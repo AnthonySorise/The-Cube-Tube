@@ -129,8 +129,9 @@ function renderChannelSelectionDropdown() {
                 clientSubsClone.splice(i, 1)
             }
         }
-        //category click handler
+        // category click handler
         var categoryChannels = deepCopy(correspondingChannels);
+
         $(".dropdownCatLi" + "_"+cat).on("click", function(){
 
             $(".dropdownChannelCheckBox").attr("checked", false)
