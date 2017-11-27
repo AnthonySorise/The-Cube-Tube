@@ -61,6 +61,9 @@ switch($_POST['action']){
     case 'update_video_list':
         include('update_video_list.php');
         break;
+    case 'update_channels':
+        include('update_channels.php');
+        break;
     case 'insert_videos_curl':
         include('youtube_videos_curl.php');
         break;

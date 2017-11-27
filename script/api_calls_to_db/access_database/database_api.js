@@ -297,6 +297,26 @@
             }
         })
      }
+     this.update_channels = function(){//get last channel pull from read channels by youtube id
+        $.ajax({
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                action:'update_channels',
+            },
+            success: function (data) {
+                if (data.success) {
+                    console.log('insert success', data);
+                }else{
+                    console.log(data);
+                }
+            },
+            errors: function (data) {
+                console.log('insert error', data);
+            }
+        })
+     }
      //read user based on user link get user id, read ctu(user_id) read channels, read videos
      this.insert_ctu = function(youtube_channel_id){
          $.ajax({
