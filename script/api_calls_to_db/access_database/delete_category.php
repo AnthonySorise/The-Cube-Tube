@@ -1,5 +1,5 @@
 <?php
-//called from access
+//called from access, will delete all categories and related channel to category to user links
 if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }

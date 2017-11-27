@@ -1,5 +1,5 @@
 <?php
-//runs from access.php
+//runs from access.php will delete a single ctu and all related cucs
 if(empty($LOCAL_ACCESS)){
     die('delete ctu, direct access not allowed');
 }
