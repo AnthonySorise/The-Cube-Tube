@@ -15,15 +15,18 @@ function onYouTubeIframeAPIReady(vidId) {
 }
 
 function onPlayerStateChange(event) {
+    const faSpinCircle = 'fa-circle-o-notch fa-fw fa-spin';
+    const faPauseIcon = 'fa-pause-circle-o fa-lg';
     resetPlaylistTd();
 
     if (event.data == YT.PlayerState.PLAYING) {
-        $('.playButton').removeClass(play).toggleClass(pause);
+        $('.playButton').removeClass(playFaClass).toggleClass(pauseFaClass);
+        $('.circleSpinner').removeClass(faPauseIcon).addClass(faSpinCircle);
         
 
     } else if (event.data == YT.PlayerState.PAUSED) {
-        $('.pauseButton').removeClass(pause).toggleClass(play);
-        $('.circleSpinner').removeClass('fa-spin')
+        $('.pauseButton').removeClass(pauseFaClass).toggleClass(playFaClass);
+        $('.circleSpinner').removeClass(faSpinCircle).addClass(faPauseIcon);
 
     }
 
@@ -188,21 +191,21 @@ function rendertheatreControls() {
     var rewindElement = $('<i>', {
         class: "fa fa-undo modalControls rewindButton",
         ["data-toggle"]: "tooltip",
-        ["data-placement"]: "bottom",
+        ["data-placement"]: "top",
         ["data-container"]: "body",
         title: "Rewind 15s"
     });
     var playElement = $('<i>', {
         class: "fa fa-play modalControls playButton",
         ["data-toggle"]: "tooltip",
-        ["data-placement"]: "bottom",
+        ["data-placement"]: "top",
         ["data-container"]: "body",
         title: "Play"
     });
     var fastForwardElement = $('<i>', {
         class: "fa fa-repeat modalControls fastForwardButton",
         ["data-toggle"]: "tooltip",
-        ["data-placement"]: "bottom",
+        ["data-placement"]: "top",
         ["data-container"]: "body",
         title: "Fast Forward 15s"
     });

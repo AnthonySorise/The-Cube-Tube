@@ -396,7 +396,7 @@ function clickHandler() {
             $('.fa-circle-o-notch').remove();
             var playSymbol = $('<i>')
             // .addClass("fa fa-play-circle-o")
-                .addClass('fa fa-circle-o-notch fa-spin fa-fw')
+                .addClass('fa fa-circle-o-notch fa-spin fa-fw circleSpinner')
                 .css({
                     "margin-right": '5px',
                     'color': 'green'
@@ -507,13 +507,13 @@ function clickHandler() {
 
     function playYtVideo() {
         player.playVideo();
-        if (this.classList.value === play) {
+        if (this.classList.value === playFaClass) {
             $('.playButton').tooltip('hide')
-            $('.playButton').removeClass(play).toggleClass(pause);
+            $('.playButton').removeClass(playFaClass).toggleClass(pauseFaClass);
             $(this).attr('data-original-title','Pause')
         } else {
             $('.pauseButton').tooltip('hide');
-            $('.pauseButton').removeClass(pause).toggleClass(play);
+            $('.pauseButton').removeClass(pauseFaClass).toggleClass(playFaClass);
             $(this).attr('data-original-title','Play')
             player.pauseVideo()
         }
