@@ -49,7 +49,7 @@ for($i = 0; $i<$max; $i++){
     if(empty($stmt)){
         $output['errors'][] = 'INVALID QUERY';
     }else{
-        if(mysqli_affected_rows($conn)>0){
+        if($conn->affected_rows>0){
             $output['success'] = true;
         }else{
             $output['errors'][] = 'unable to insert video';

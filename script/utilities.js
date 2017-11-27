@@ -53,9 +53,37 @@ function deepCopy(toCopy){
     }
 }
 
+function clipBoard(txtClass){
 
-
-
+    if($('span').hasClass(txtClass)){
+        // const linkTxt = $('.'+txtClass).text();
+        // let secretInput = $('<input>').val(linkTxt);
+        // $('body').append(secretInput);
+        // setTimeout(()=>{
+        //     secretInput.select();
+        //     document.execCommand("copy");
+        //     secretInput.remove();
+        // },1000)
+        if(txtClass==="linkGhost"){
+            $('.linkGhost').css('display','block');
+        }
+        var x = document.querySelector('.'+txtClass);
+        var rng = document.createRange();
+        rng.selectNode(x);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(rng);
+        try{
+        var success = document.execCommand('copy');
+        var result = success ? 'link copied!' : 'something went wrong';
+        toastMsg(result, 1200);
+        }catch(err){
+        console.log('error');
+        }
+        $('.linkGhost').css('display','none'); 
+    }else{
+        toastMsg('nothing to copy', 1200);
+    }
+}
 
 var content = {
     array:[2,3,4,5],
