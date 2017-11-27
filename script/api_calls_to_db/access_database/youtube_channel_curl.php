@@ -1,4 +1,5 @@
 <?php
+//insert channel info, if it succeeds insert videos for that channel
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
@@ -37,26 +38,26 @@ if ($error_occurred ){
       $channel_title = $channel_data['title'];
       $description = $channel_data['description'];
       $date = date('Y-m-d H:i:s');
-      $stmt = $conn->prepare("INSERT INTO channels SET 
-      channel_title = ?, 
-      youtube_channel_id = ?,
-      description = ?, 
-      thumbnail_file_name = ?, 
-      date_created=?,
-      last_channel_pull=?");
+      $sqli = 
+        "INSERT INTO
+            channels
+        SET
+            channel_title = ?,
+            youtube_channel_id = ?,
+            description = ?,
+            thumbnail_file_name = ?,
+            date_created = ?,
+            last_channel_pull = ?";
+      $stmt = $conn->prepare($sqli);
       $stmt->bind_param('ssssss',$channel_title,$youtube_channel_id,
       $description,$thumbnail,$date,$date);
       $stmt->execute();
-      if(empty($stmt)){
-          $output['errors'][]='invalid query';
-      }else{
-          if(mysqli_affected_rows($conn)>0){
-              $output['messages'][] = "insert channel success";
-              $channel_id = mysqli_insert_id($conn);
-              include("youtube_videos_curl.php");
-          }else{
-              $output['errors'][]='UNABLE TO INSERT';
-          }
-      }
+      if($conn->affected_rows>0){
+          $output['messages'][] = "insert channel success";
+          $channel_id = $conn->insert_id;
+          include("youtube_videos_curl.php");
+        }else{
+            $output['errors'][]='UNABLE TO INSERT';
+        }
 }
 ?>

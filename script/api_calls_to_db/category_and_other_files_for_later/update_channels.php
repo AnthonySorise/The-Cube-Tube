@@ -6,7 +6,6 @@ $channel_title = $_POST['channel_title'];
 $description = $_POST['description'];
 $thumbnail = $_POST['thumbnail'];
 $youtube_channel_id = $_POST['youtube_channel_id'];
-$last_channel_pulled = date("Y-m-d H:i:s");
 if(empty($channel_title)){
     $output['errors'][]='MISSING CHANNEL TITLE';
 }
@@ -29,18 +28,22 @@ if(empty($youtube_channel_id)){
 //     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
 //     output_and_exit($output);
 // }
-$stmt=$conn->prepare("UPDATE channels SET 
-channel_title = ?,  
-description = ?, 
-thumbnail_file_name = ?, 
-last_channel_pulled = ?
-WHERE youtube_channel_id = ?");
-$stmt->bind_param('ssssi',$channel_title,$description,$thumbnail,$last_channel_pulled,$channel_id);
+$query = 
+    "UPDATE 
+        channels 
+    SET 
+        channel_title = ?,  
+        description = ?, 
+        thumbnail_file_name = ?
+    WHERE 
+        youtube_channel_id = ?";
+$stmt=$conn->prepare($query);
+$stmt->bind_param('sssss',$channel_title,$description,$thumbnail,$last_channel_pulled,$youtube_channel_id);
 $stmt->execute();
 if(empty($stmt)){
     $output['errors'][]='invalid query';
 }else{
-    if(mysqli_affected_rows($conn)>0){
+    if($conn->affected_rows>0){
         $output['success'] = true;
     }else{
         $output['errors'][]='UNABLE TO UPDATE';
