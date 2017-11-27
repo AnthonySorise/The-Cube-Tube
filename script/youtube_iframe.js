@@ -90,7 +90,9 @@ function playNextYTVideo() {
 
 function playPrevYTVideo() {
 
-    if(currentSlideNumber === 1) {
+    currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
+
+    if(currentSlideNumber === 1 && currentVideoIndex === 0) {
         return;
     }
     updateMidNavText();
@@ -100,7 +102,7 @@ function playPrevYTVideo() {
         return;
     }
 
-    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
+        currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
 
     if(currentVideoIndex % 20 === 0){
         $(".left").click();
