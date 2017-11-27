@@ -89,11 +89,15 @@ function playNextYTVideo() {
 }
 
 function playPrevYTVideo() {
+
+    if(currentSlideNumber === 1) {
+        return;
+    }
     updateMidNavText();
 
     //escape function if on first video
     if(currentVideoIndex === 0 && videoObjectsToLoad.length === 40){
-        return
+        return;
     }
 
     var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
