@@ -50,6 +50,22 @@ function changeCategory(category){
                     success: function (data) {
                         if (data.success) {
                             console.log('insert success', data);
+
+                            for(var key in clientCategories){
+                                for(var i = 0; i < clientCategories[key]; i++){
+                                    if(clientCategories[key][i] === channelIdOfCategorySet){
+                                        clientCategories[key].splice(i, 1)
+                                        if(clientCategories[key].length === 0){
+                                            delete clientCategories[key]
+                                        }
+                                    }
+                                }
+                            }
+
+                            if(!clientCategories.hasOwnProperty(category)){
+                                clientCategories[category] = [];
+                            }
+                            clientCategories[category].push(channelIdOfCategorySet);
                             renderChannelSelectionDropdown();
                         }else{
                             console.log(data);
@@ -75,6 +91,22 @@ function changeCategory(category){
                     success: function (data) {
                         if (data.success) {
                             console.log('insert success', data);
+
+                            for(var key in clientCategories){
+                                for(var i = 0; i < clientCategories[key]; i++){
+                                    if(clientCategories[key][i] === channelIdOfCategorySet){
+                                        clientCategories[key].splice(i, 1)
+                                        if(clientCategories[key].length === 0){
+                                            delete clientCategories[key]
+                                        }
+                                    }
+                                }
+                            }
+
+                            if(!clientCategories.hasOwnProperty(category)){
+                                clientCategories[category] = [];
+                            }
+                            clientCategories[category].push(channelIdOfCategorySet);
                             renderChannelSelectionDropdown();
 
                         }else{
