@@ -130,8 +130,8 @@ function renderChannelSelectionDropdown() {
             }
         }
         //category click handler
+        var categoryChannels = deepCopy(correspondingChannels);
         $(".dropdownCatLi" + "_"+cat).on("click", function(){
-            var categoryChannels = deepCopy(correspondingChannels);
 
             $(".dropdownChannelCheckBox").attr("checked", false)
             $(".dropdownChannelCheckBox").each(function(index, value){
