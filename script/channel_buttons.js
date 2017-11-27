@@ -52,7 +52,7 @@ function changeCategory(category){
                             console.log('insert success', data);
 
                             for(var key in clientCategories){
-                                for(var i = 0; i < clientCategories[key]; i++){
+                                for(var i = 0; i < clientCategories[key].length; i++){
                                     if(clientCategories[key][i] === channelIdOfCategorySet){
                                         clientCategories[key].splice(i, 1)
                                         if(clientCategories[key].length === 0){
@@ -93,7 +93,7 @@ function changeCategory(category){
                             console.log('insert success', data);
 
                             for(var key in clientCategories){
-                                for(var i = 0; i < clientCategories[key]; i++){
+                                for(var i = 0; i < clientCategories[key].length; i++){
                                     if(clientCategories[key][i] === channelIdOfCategorySet){
                                         clientCategories[key].splice(i, 1)
                                         if(clientCategories[key].length === 0){
