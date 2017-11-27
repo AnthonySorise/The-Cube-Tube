@@ -44,7 +44,7 @@ function renderChannelSelectionDropdown() {
         }
         else if(clientSubsClone.length){
             let catLi = $('<li>', {
-                'class': 'row dropdownCatLi' + "_"+cat
+                'class': 'row dropdownCatLi dropdownCatLi' + "_"+cat
             });
             const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true).css("color", "orange");
 
