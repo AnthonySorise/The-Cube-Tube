@@ -10,6 +10,17 @@ function renderChannelSelectionDropdown() {
         }
     });
 
+
+    var clientSubsClone = deepCopy(clientSubscribedChannelObjects);
+    var categories = [];
+    for (var cat in clientCategories){
+        if(categories.indexOf(cat) === -1) {
+            categories.push(cat)
+        }
+    }
+    console.log ("TESTING RENDERCHANNELSELECTIONDROPDOWN", categories);
+
+
     //render to dropdown
     for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
         let channelLi = $('<li>', {
