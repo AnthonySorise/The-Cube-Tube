@@ -33,7 +33,7 @@ foreach($channel_array as $youtube_channel_id){
     $ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $json = curl_exec($ch);
-    $channel_data= json_decode($json, true)['items'][0]['snippet'];
+    $channel_data = json_decode($json, true)['items'][0]['snippet'];
     $thumbnail = $channel_data['thumbnails']['medium']['url'];
     $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
     $thumbnail = str_replace('/photo.jpg','',$thumbnail);
@@ -43,6 +43,8 @@ foreach($channel_array as $youtube_channel_id){
         $output['errors'][] = 'statement failed';
         output_and_exit($output);
     }
+    echo("{$thumbnail}{$channel_title}{$description});
+    output_and_exit($output);
     $stmt->bind_param('ssss',$thumbnail,$channel_title,$description,$youtube_channel_id);
     $stmt->execute();
     if($conn->affected_rows>0){
