@@ -30,7 +30,7 @@ function renderChannelSelectionDropdown() {
 
     for(var cat = 0; cat <= categories.length; cat++){
         //Category Label
-        if(cat === clientSubscribedChannelObjects.length){
+        if(cat === categories.length){
             //uncategorized label
             let unCatLi = $('<li>', {
                 'class': 'dropdownChannelLi row'
@@ -44,7 +44,7 @@ function renderChannelSelectionDropdown() {
             $('#dropdownChannelUl').append(catLi);
         }
         for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
-            if(i === clientSubscribedChannelObjects.length || clientCategories[categories[cat]].indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1){
+            if(cat === categories.length || clientCategories[categories[cat]].indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1){
                 let channelLi = $('<li>', {
                     'class': 'dropdownChannelLi row'
                 });
