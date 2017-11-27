@@ -134,7 +134,10 @@ function renderChannelSelectionDropdown() {
         ((categoryCh)=>{
             $(".dropdownCatLi" + "_"+cat).on("click", function(){
 
-                $(".dropdownChannelCheckBox").attr("checked", false)
+                // $(".dropdownChannelCheckBox").attr("checked", false)
+                $('.dropdownChannelCheckBox').each((idx, val)=>{
+                    $(val).attr('checked',false);
+                })
                 $(".dropdownChannelCheckBox").each(function(index, value){
                     if(categoryCh.indexOf($(value).attr("channel_id")!== -1)){
                         $(value).attr("checked", true)
