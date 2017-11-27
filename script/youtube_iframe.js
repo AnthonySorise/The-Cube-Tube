@@ -38,6 +38,8 @@ function onPlayerStateChange(event) {
 
     } else if (event.data == YT.PlayerState.PAUSED) {
         $('.pauseButton').removeClass(pause).toggleClass(play);
+        $('.circleSpinner').removeClass('fa-spin')
+
     }
 
      //Testing to get auto play to reverse order but using autoplay off to test but will implement button later to reverse auto play
