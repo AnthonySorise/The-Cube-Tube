@@ -161,7 +161,7 @@ function initiateUser() {
                                                 if(!clientCategories.hasOwnProperty(catName)){
                                                     clientCategories.catName = [];
                                                 }
-                                                clientCategories.catName.push(data[i].youtube_channel_id)
+                                                clientCategories.catName.push(data.data[i].youtube_channel_id)
                                             }
                                         }else{
                                             console.log(data);
