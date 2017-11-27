@@ -86,7 +86,7 @@ function renderChannelSelectionDropdown() {
                 }).popover({
                     html: true,
                     'content': settingsContent,
-                    'placement': 'left',
+                    'placement': 'auto',
                     'container': 'body',
                     'toggle': 'focus'
                 }).append(cog);
