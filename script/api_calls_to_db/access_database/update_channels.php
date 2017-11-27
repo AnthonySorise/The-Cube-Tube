@@ -29,6 +29,11 @@ $query =
     WHERE 
         youtube_channel_id = ?";
 $output['update_success'] = 0;
+if(!($stmt = $conn->prepare($query))){
+    $output['errors'][] = 'statement failed';
+    output_and_exit($output);
+}
+$stmt->bind_param('ssss',$thumbnail,$channel_title,$description,$youtube_channel_id);
 foreach($channel_array as $youtube_channel_id){
     $ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -40,11 +45,6 @@ foreach($channel_array as $youtube_channel_id){
     $thumbnail = str_replace('/photo.jpg','',$thumbnail);
     $channel_title = $channel_data['title'];
     $description = $channel_data['description'];
-    if(!($stmt = $conn->prepare($query))){
-        $output['errors'][] = 'statement failed';
-        output_and_exit($output);
-    }
-    $stmt->bind_param('ssss',$thumbnail,$channel_title,$description,$youtube_channel_id);
     $stmt->execute();
     if($conn->affected_rows>0){
         $output['update_success'] += 1;
