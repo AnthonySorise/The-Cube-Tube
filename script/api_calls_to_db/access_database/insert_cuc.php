@@ -9,7 +9,7 @@ $category_name = $_POST['category_name'];
 //check for duplicates
 $query = 
     "SELECT
-        *
+        cuc.cuc_id
     FROM
         category_to_user_to_channel AS cuc
     JOIN
