@@ -320,7 +320,7 @@ function clickHandler() {
         let categoryStr = '';
         categoryStr = $(e.target).find('input').val().toLowerCase();
         changeCategory(categoryStr);
-
+        $(e.target).find('input').val('');
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
             toastMsg('channel added', 1100);
         });
