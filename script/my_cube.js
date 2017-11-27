@@ -34,17 +34,37 @@ function renderChannelSelectionDropdown() {
             //uncategorized label
             let unCatLi = $('<li>', {
                 'class': 'dropdownChannelLi row'
+            });
+            let unCatLiMain = $('<div>', {
+                class: 'channelLiChannel col-xs-10'
+            }).css({
+                padding: '0',
+                'overflow': 'hidden',
+                'text-overflow': 'ellipsis',
+                'white-space': 'nowrap',
+                'line-height': '200%'
             }).text("uncategorized");
+            unCatLi.append(unCatLiMain);
             $('#dropdownChannelUl').append(unCatLi);
         }
         else{
             let catLi = $('<li>', {
                 'class': 'dropdownChannelLi row'
+            });
+            let catLiMain = $('<div>', {
+                class: 'channelLiChannel col-xs-10'
+            }).css({
+                padding: '0',
+                'overflow': 'hidden',
+                'text-overflow': 'ellipsis',
+                'white-space': 'nowrap',
+                'line-height': '200%'
             }).text(categories[cat]);
+            catLi.append(catLiMain);
             $('#dropdownChannelUl').append(catLi);
         }
-        for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
-            if(cat === categories.length || clientCategories[categories[cat]].indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1){
+        for (var i = 0; i < clientSubsClone.length; i++) {
+            if(cat === categories.length || clientCategories[categories[cat]].indexOf(clientSubsClone[i].youtube_channel_id) !== -1){
                 let channelLi = $('<li>', {
                     'class': 'dropdownChannelLi row'
                 });
@@ -52,9 +72,9 @@ function renderChannelSelectionDropdown() {
                 const cog = $('<i>', {
                     class: 'fa fa-cog'
                 });
-                // var settingsContent = $('<div channelId='+clientSubscribedChannelObjects[i].youtube_channel_id+'>');
+                // var settingsContent = $('<div channelId='+clientSubsClone[i].youtube_channel_id+'>');
                 var settingsContent = $('<div>', {
-                    'channelId': clientSubscribedChannelObjects[i].youtube_channel_id
+                    'channelId': clientSubsClone[i].youtube_channel_id
                 });
 
                 var browseButton = $('<button class="btn-primary btn-block">Browse</button>').css("display", "block");
@@ -89,12 +109,12 @@ function renderChannelSelectionDropdown() {
 
                 let channelCheckbox = $('<input>').attr({
                     'type': 'checkbox',
-                    'name': clientSubscribedChannelObjects[i].channel_title,
-                    'channel_id': clientSubscribedChannelObjects[i].youtube_channel_id,
+                    'name': clientSubsClone[i].channel_title,
+                    'channel_id': clientSubsClone[i].youtube_channel_id,
                     'class': 'dropdownChannel'
                 });
                 //check if channel is selected
-                if (clientSelectedChannelIds.indexOf(clientSubscribedChannelObjects[i].youtube_channel_id) !== -1) {
+                if (clientSelectedChannelIds.indexOf(clientSubsClone[i].youtube_channel_id) !== -1) {
                     channelCheckbox.attr("checked", "checked")
                 }
                 let channelLiMain = $('<div>', {
@@ -105,9 +125,9 @@ function renderChannelSelectionDropdown() {
                     'text-overflow': 'ellipsis',
                     'white-space': 'nowrap',
                     'line-height': '200%'
-                }).text(clientSubscribedChannelObjects[i].channel_title);
+                }).text(clientSubsClone[i].channel_title);
                 channelLiMain.prepend(channelCheckbox);
-                // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubscribedChannelObjects[i].channel_title);
+                // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubsClone[i].channel_title);
 
                 channelLi.append(channelLiMain, channelSettingsSpan);
                 $('#channelCategoryUl').append(channelLi);
@@ -115,6 +135,8 @@ function renderChannelSelectionDropdown() {
 
                 // $('#channelCategoryUl').append(channelLi)
                 $('#dropdownChannelUl').append(channelLi);
+
+                clientSubsClone.splice(i, 1)
             }
         }
     }
