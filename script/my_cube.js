@@ -138,9 +138,9 @@ function renderChannelSelectionDropdown() {
                 if(categoryChannels.indexOf($(value).attr("channel_id"))!== -1){
                     $(value).attr("checked", true)
                 }
-            })
-            compileSelectedChannelsFromDropdown()
-        })
+            });
+            compileSelectedChannelsFromDropdown();
+        }).bind(categoryChannels);
     }
 }
 
