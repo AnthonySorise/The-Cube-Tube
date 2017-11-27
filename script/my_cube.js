@@ -48,7 +48,7 @@ function renderChannelSelectionDropdown() {
             //     'white-space': 'nowrap',
             //     'line-height': '200%'
             // }).text("uncategorized");
-            unCatLi.append(icon).text("uncategorized");
+            unCatLi.text("uncategorized").prepend(icon);
             $('#dropdownChannelUl').append(unCatLi);
         }
         else{
@@ -66,7 +66,7 @@ function renderChannelSelectionDropdown() {
             //     'white-space': 'nowrap',
             //     'line-height': '200%'
             // }).text(categories[cat]);
-            catLi.append(icon).text(categories[cat]);
+            catLi.text(categories[cat]).prepend(icon);
             $('#dropdownChannelUl').append(catLi);
         }
         for (var i = 0; i < clientSubsClone.length; i++) {
