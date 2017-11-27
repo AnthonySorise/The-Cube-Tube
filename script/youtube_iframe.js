@@ -1,8 +1,4 @@
-var playlistArray = [
-    
-];
-
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);//what is this?
 
 function onYouTubeIframeAPIReady(vidId) {
     console.log("onYouTubeIframeAPIReady CALLED", player);
@@ -18,20 +14,9 @@ function onYouTubeIframeAPIReady(vidId) {
     // onYouTubeIframeAPIReady2();
 }
 
-// function onYouTubeIframeAPIReady2() {
-//     player2 = new YT.Player('theaterVideo', {
-//         videoId: 'lrzIR8seNXs',
-//         playerVars: {
-//             'rel': 0,
-//         },
-//         events: {
-//             'onStateChange': onPlayerStateChange
-//         }
-//
-//     });
-// }
-
 function onPlayerStateChange(event) {
+    resetPlaylistTd();
+
     if (event.data == YT.PlayerState.PLAYING) {
         $('.playButton').removeClass(play).toggleClass(pause);
         
@@ -40,97 +25,96 @@ function onPlayerStateChange(event) {
         $('.pauseButton').removeClass(pause).toggleClass(play);
     }
 
-     //Testing to get auto play to reverse order but using autoplay off to test but will implement button later to reverse auto play
-     if (event.data == YT.PlayerState.ENDED && !getAutoPlayDirectionValue()) {
-        console.log('autoplay is off');
-        currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
-        if (videoObjectsToLoad.length <= currentVideoindex - 1) {
-            $.when(loadPrevPage()).then(playPrevYTVideo);
-            $('.carousel').carousel('prev');
-        }
-        else if (videoObjectsToLoad.length % 20 === 0 && (currentVideoindex - 1) % 20 === 0) {
-            $('.carousel').carousel('prev');
-            playPrevYTVideo();
-        } else {
-            playPrevYTVideo();
-        }
-        
-    }
-
    
-    if (event.data == YT.PlayerState.ENDED && getAutoPlayDirectionValue()) {
-        if(playlistArray.length > 0) {
-            var playlistVideoId = playlistArray[0];
-            var videoObjArray = videoObjectsToLoad.length;
-            player.loadVideoById(playlistVideoId);
-           while(videoObjArray--) {
-               if(videoObjectsToLoad[videoObjArray].youtube_video_id === playlistVideoId) {
-                   console.log('Found channel id');
-                   var playlistChannelId = videoObjectsToLoad[videoObjArray].youtube_channel_id;
-               }
-           }
-            //Added Anthony function to get video info to update the video/channel info popover 
-            updateVideoInfoPopover(playlistVideoId);
-            updateChannelInfoPopover (playlistChannelId)
-            playlistArray.splice(0, 1);
-            return;
+    if (event.data == YT.PlayerState.ENDED) {
+        if(playlistVideoObjectArray.length > 0) {
+           //  var playlistVideoId = playlistArray[0];
+           //  var videoObjArray = videoObjectsToLoad.length;
+           //  player.loadVideoById(playlistVideoId);
+           // while(videoObjArray--) {
+           //     if(videoObjectsToLoad[videoObjArray].youtube_video_id === playlistVideoId) {
+           //         console.log('Found channel id');
+           //         var playlistChannelId = videoObjectsToLoad[videoObjArray].youtube_channel_id;
+           //     }
+           // }
+           //  //Added Anthony function to get video info to update the video/channel info popover
+           //  updateVideoInfoPopover(playlistVideoId);
+           //  updateChannelInfoPopover (playlistChannelId)
+           //  playlistArray.splice(0, 1);
+            playNextPlaylistVideo();
         }
-        currentVideoindex = videoObjectsToLoad.findIndex(x => x.youtube_video_id == currentlySelectedVideoID);
-        if (videoObjectsToLoad.length <= currentVideoindex + 1) {
-            $.when(loadNextPage()).then(playNextYTVideo);
-            $('.carousel').carousel('next');
+        else if(getAutoPlayDirectionValue()){
+            playNextYTVideo();
         }
-        else if (videoObjectsToLoad.length % 20 === 0 && (currentVideoindex + 1) % 20 === 0) {
-            $('.carousel').carousel('next');
-            playNextYTVideo();
-        } else {
-            playNextYTVideo();
+        else{
+            playPrevYTVideo();
         }
     }
 }
 
 //Function to play next video and change spinner icon to current video playing
 function playNextYTVideo() {
-    var currentVideoIndex = null;
-    for (let i = 0; i < 40; i++) {
-        let row = "#tdList-" + (i + 1);
+    updateMidNavText();
 
-        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            currentVideoIndex = i;
+    if(playlistVideoObjectArray.length > 0){
+        playNextPlaylistVideo();
+        return
+    }   //TEMP  SHOULD HAVE BUTTON THAT DOES THIS INSTEAD
+
+    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
+    if((currentVideoIndex+1) % 20 === 0){
+        if (videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
+            $(".right").click();
+            setTimeout(function(){
+                next();
+            }, 250)
+        }
+        else{
+            $('.carousel').carousel('next')
+            next();
         }
     }
-
-    var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex + 1].youtube_video_id;
-
-    updateVideoInfoPopover(nextVideoIdToLoad);
-    updateChannelInfoPopover (videoObjectsToLoad[currentVideoIndex+1].youtube_channel_id);
-
-    if (getAutoPlayValue()) {
-        player.loadVideoById(nextVideoIdToLoad);
-    } else {
-        player.cueVideoById(nextVideoIdToLoad);
+    else{
+        next();
     }
-    // player2.cueVideoById(nextVideoIdToLoad);
-    currentlySelectedVideoID = nextVideoIdToLoad;
 
-    $(".tdList").removeClass('selectedTd');
-    $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
-    $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
-    $("[videoid='" + currentlySelectedVideoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
-        "margin-right": '5px',
-        'color': 'green'
-    });
-    $("[videoid='" + currentlySelectedVideoID + "']").addClass('selectedTd');
+    function next() {
+        var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex + 1].youtube_video_id;
+
+        updateVideoInfoPopover(nextVideoIdToLoad);
+        updateChannelInfoPopover(videoObjectsToLoad[currentVideoIndex + 1].youtube_channel_id);
+
+        if (getAutoPlayValue()) {
+            player.loadVideoById(nextVideoIdToLoad);
+        } else {
+            player.cueVideoById(nextVideoIdToLoad);
+        }
+        // player2.cueVideoById(nextVideoIdToLoad);
+        currentlySelectedVideoID = nextVideoIdToLoad;
+
+        $(".tdList").removeClass('selectedTd');
+        $('i').removeClass('fa-circle-o-notch fa-spin fa-fw');
+        $("[videoid='" + currentlySelectedVideoID + "'] span:first").before('<i>');
+        $("[videoid='" + currentlySelectedVideoID + "'] i:first").addClass('fa fa-circle-o-notch fa-spin fa-fw').css({
+            "margin-right": '5px',
+            'color': 'green'
+        });
+        $("[videoid='" + currentlySelectedVideoID + "']").addClass('selectedTd');
+    }
 }
 
 function playPrevYTVideo() {
-    var currentVideoIndex = null;
-    for (let i = 0; i < 40; i++) {
-        let row = "#tdList-" + (i + 1);
+    updateMidNavText();
 
-        if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            currentVideoIndex = i;
-        }
+    //escape function if on first video
+    if(currentVideoIndex === 0 && videoObjectsToLoad.length === 40){
+        return
+    }
+
+    var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
+
+    if(currentVideoIndex % 20 === 0){
+        $(".left").click();
     }
 
     var nextVideoIdToLoad = videoObjectsToLoad[currentVideoIndex - 1].youtube_video_id;
@@ -161,7 +145,7 @@ function getAutoPlayValue() {
 }
 
 function getAutoPlayDirectionValue(){
-    return $("#autoplayOrderCheckBox").is("checked")
+    return $("#autoplayOrderCheckBox").is(":checked")
 }
 
 // function checkIfPlayerIsMuted() {

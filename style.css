@@ -165,8 +165,9 @@ body {
 .playlistLabel{
 	font-size: 14px;
 	margin-right: 7px;
+	display:none;
 }
-.midNavBrowsing, .midNavWatching{
+.midNavBrowsing, .midNavWatching, .midNavPlaylist{
 	display: none;
 	font-size:14px;
 	font-weight: 700
@@ -559,6 +560,38 @@ div.thRow {
 	color: #020e13;
 }
 
+
+/*.playlistTd.tdList:nth-child(even):hover div {*/
+	/*!* background-color: #364e5a; *!*/
+	/*background-color: rgba(180, 189, 193, 1.0);*/
+	/*display: inline;*/
+	/*color: white;*/
+/*}*/
+
+/*.playlistTd.tdList:nth-child(odd):hover div {*/
+	/*!* background-color: #364e5a; *!*/
+	/*background-color: rgba(180, 189, 193, 1.0);*/
+	/*display: inline;*/
+	/*color: white;*/
+/*}*/
+
+/*!* .tdList:hover, .tdRow div.playlistTD {*/
+	/*!* background-color: #b4bdc1; *!*/
+/*!* background-color: rgba(180, 189, 193, 1.0) !important;} *!*/
+
+/*.playlistTd>.tdTitle, .playlistTD>.tdInfo, .playlistTD>.tdPlaylist,  .playlistTD>.tdChannel, .playlistTD>.tdUpDate{*/
+	/*color: white !important;*/
+	/*background-color: rgba(255,143,0, 1) !important;*/
+/*}*/
+
+/*.playlistTd>.tdTitle:hover, .playlistTD>.tdInfo, .playlistTD>.tdPlaylist, .playlistTD>.tdChannel:hover, .playlistTD>.tdUpDate:hover{*/
+	/*font-weight: bold;*/
+	/*color: white !important;*/
+	/*background-color: rgba(255,143,0, 1) !important;*/
+
+/*}*/
+
+
 .selectedTd.tdList:nth-child(even):hover div {
 	/* background-color: #364e5a; */
 	background-color: rgba(180, 189, 193, 1.0);
@@ -583,10 +616,13 @@ div.thRow {
 }
 
 .selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdPlaylist, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
-	font-weight: bold;
 	color: white !important;
 	background-color: #042818 !important;
 
+}
+
+.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
+    font-weight: bold;
 }
 
 .row {
@@ -825,27 +861,6 @@ div.thRow {
 .modal-open {
 	background-color: rgba(0, 0, 0, 0.5);
 }
-		/********LIGHTBOX modal*********/
-#lightBoxModal .modal-dialog {
-	/*height: 80vh;*/
-	width: 80vw;
-	/*padding: 0;*/
-}
-#lightBoxModal .modal-content {
-	background: transparent;
-}
-#lightBoxModal .modal-body {
-	height: 80vh;
-	padding: 0;
-}
-#lightBoxModal .modal-footer {
-	background-color: black;
-}
-#lightBoxModal iframe {
-	height: 100%;
-	width: 100%;
-}
-		/*******END of LIGHTBOX modal*********/
 		/***********CHANNEL SEARCH modal************/
 #channelSearchModal .modal-dialog {
 	width: 60vw;
@@ -938,34 +953,58 @@ div.thRow {
 	float: right;
 }
 
-#lightBoxModalFooter {
-	display: flex;
-    justify-content: space-between;
-}
-
 .modalChSearch{
 	display:inline-block;
 }
 #ui-id-3{
 	max-width: 190px;
 }
-
 .modalControls {
 	font-size: 2em;
 	cursor: pointer;
 	margin: 7px;
 }
-
-.userLinkBody{
+.userLinkBody, .categoryEditBody{
 	background-color: #020e13;
 	color:white;
+	height: 45vh;
+	
 }
-
-.userLinkHeader{
+.userLinkHeader, .categoryEditHeader{
 	background-color: black;
 	color:white;
 }
-
+.userLinkHeader>button{
+	opacity: 0.7;
+	color: white;
+}
+.userLinkHeader>button:hover{
+	opacity: 1;
+	color: white;
+}
+.channelCategoryInput{
+	border-radius:0;
+	border:none;
+}
+.existingCategorySelect select.channelCategorySelect{
+	width: 54%;
+}
+.userCategoryExists dl{
+	margin-bottom: 20px;
+}
+.channelCategoryForm div{
+	width: 100%;
+}
+.channelCategoryButton, .existingCategoryButton{
+	background-color: rgba(20,149,20, 0.6);
+	color: rgba(255,255,255,0.6);
+	cursor: pointer;
+	border: none;
+}
+.channelCategoryButton:hover, .existingCategoryButton:hover{
+	background-color: rgba(20,149,20,1);
+	color: rgba(255,255,255,1);
+}
 .playButton:hover, .rewindButton:hover, .fastForwardButton:hover, .pauseButton:hover, .nextVideoButton:hover, .lastVideoButton:hover {
 	color: #fff; 
 }

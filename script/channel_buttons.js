@@ -1,3 +1,24 @@
+var clientCategories = {};
+var channelIDofCategorySet = "";
+
+function handleChangeCategory(){
+    let channelID = $(this).parent().attr("channelId");
+    channelIDofCategorySet = channelID;
+
+    //update categoryEditModal
+
+    $("#categoryEditModal").modal("show")
+}
+
+function changeCategory(category){
+    //ajax calls to remove category
+
+    //ajax calls to insert category
+
+    //front end changes to clientCategories and call renderChannelSelectionDropdown()
+
+}
+
 function handleAddButton() {
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
     videoObjectsToLoad = [];
@@ -12,6 +33,7 @@ function handleAddButton() {
     clearVideoList();
 
     let channelID = $(this).parent().attr("channelId");
+    channelIDofCategorySet = channelID;
     retrieveInfoFromDB(channelID, true);
     // toastMsg('loading channel videos',1000);
 
@@ -35,10 +57,12 @@ function addChannelModal(userLink) {
             'class':'linkSpan',
             'text': uLink
         });
+
+        const linkHeaderHiddenXs = $('<h3>').text("Save this link!").addClass("hidden-xs");
+        const linkHeaderVisibleXs = $('<h3>').text("Save this link!").addClass("visible-xs");
         const linkDiv = $('<div>',{
-            text: 'Save this link!  Use it to get access to your subscribed channels.  '
-        }).append(linkSpan);
-        // $('.userLinkBody').text("Save this link!!!  ").append(linkSpan);
+            text: 'Use it to get access to your subscribed channels.'
+        });
 
         let button = $('<button>').addClass("btn btn-info btn-lg btn-block").text("CopyLink  ");
         let linkIcon = $('<i>').addClass('fa fa-clipboard fa-lg text-danger');
@@ -46,10 +70,7 @@ function addChannelModal(userLink) {
         button.append(linkIcon).click(()=>{
             clipBoard('linkSpan');
         });
-        $('.userLinkBody').addClass('text-center').append(linkDiv, button);
-    }
-    else {
-        $('.userLinkBody').text("Channel added to your subscriptions!")
+        $('.linkCopyArea').append(linkHeaderHiddenXs, linkHeaderVisibleXs, linkSpan, linkDiv, button);
     }
     $('#userLinkModal').modal('show');
 }

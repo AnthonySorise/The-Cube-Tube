@@ -30,13 +30,13 @@ consider carousel for the video list area:
 	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script/api_calls_to_db/access_database/database_api.js"></script>
-
     <script type="text/javascript" src="script/main.js"></script>
     <script type="text/javascript" src="script/youtube_iframe.js"></script>
     <script type="text/javascript" src="script/channel_search.js"></script>
     <script type="text/javascript" src="script/ui.js"></script>
     <script type="text/javascript" src="script/db.js"></script>
     <script type="text/javascript" src="script/video_list.js"></script>
+    <script type="text/javascript" src="script/playlist.js"></script>
     <script type="text/javascript" src="script/apple_compatibility.js"></script>
     <script type="text/javascript" src="script/auto_search.js"></script>
     <script type="text/javascript" src="script/channel_buttons.js"></script>
@@ -189,7 +189,7 @@ consider carousel for the video list area:
 								</label>
 							</div>
 						</div>
-						<div class="mediaControls"></div>
+						<div class="mediaControls hidden-xs"></div>
 <!--						<form class="navbar-right nav-pills form-inline">-->
 <!--							<!--form for searching channels-->
 <!--							<div class="form-group">-->
@@ -203,10 +203,6 @@ consider carousel for the video list area:
 <!--						</form>-->
 <!--						end of form for channel search-->
                         <div class="navbar-nav nav-pills midNavChannels">
-                        	<span class="playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="all">
-                        		<i class="fa fa-list-ol fa-lg"></i>
-                        		playlist
-                        	</span>
 							<span class="midNavBrowsing">
 								<p style="display:inline-block">
 									Browsing:
@@ -227,6 +223,15 @@ consider carousel for the video list area:
 								<i class="fa fa-cubes"></i>
 								Subscribed Channels
 							</span>
+                            <span class="midNavPlaylistText">
+								<p style="display:inline-block; margin-left: 5px">
+                                    Watching:
+                                </p>
+							</span>
+                            <span class="midNavPlaylist playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="all">
+                        		<i class="fa fa-list-ol fa-lg"></i>
+                        		Playlist
+                        	</span>
                         </div>
 					</div>
 					<!--end of nav options div-->
@@ -1431,30 +1436,6 @@ consider carousel for the video list area:
 			</div>
 		</div>
 		<!--end of main content div-->
-		<!--modal for lightbox-->
-		<div class="modal fade" id="lightBoxModal" tabindex="-1" role="dialog" data-backdrop="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<!-- <div class="modal-header">
-        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
-        				</button>
-        				<div class="modal-title-wrap">
-        					<h5 class="modal-title" id="gameInfoModalTitle">
-        						Modal title
-        					</h5>
-        				</div>
-      				</div> -->
-					<div class="modal-body">
-						<div id="theaterVideo"></div>
-						<div class="modal-footer">
-						<span id="lightBoxModalFooter"></span>
-					</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--modal end for lightbox-->
 		<!--modal for channel search result-->
 		<div class="modal fade" id="channelSearchModal" tabindex="-1" role="dialog" data-backdrop="true">
 			<div class="modal-dialog" role="document">
@@ -1666,22 +1647,107 @@ consider carousel for the video list area:
         					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
         				</button>
         				<div class="modal-title-wrap">
-        					<h5 class="modal-title" id="userLinkModalTitle">
+        					<h3 class="hidden-xs modal-title userLinkModalTitle">
+        						Channel Added!
+        					</h3>
+        					<h5 class="visible-xs modal-title userLinkModalTitle">
         						Channel Added!
         					</h5>
         				</div>
       				</div>
 					<div class="modal-body userLinkBody">
-						
+						<div class="linkCopyArea text-center"></div>
+						<div class="channelCategoryArea text-center">
+							<h3 class="hidden-xs">Categorize your channel:</h3>
+							<h5 class="visible-xs">Categorize your channel:</h5>
+							<!-- $('.userCategoryExists').hide()/show() to toggle the dropdown showing depending on category availability -->
+							<div class="userCategoryExists">
+								<label>Add to an existing category.</label>
+								<div class="form-group form-inline existingCategorySelect">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control">
+										<option value="" hidden disabled selected>select a category</option>
+										<option value="cat1">cat1</option>
+										<option value="cat2">cat2</option>
+									</select>
+									<button class="btn existingCategoryButton">
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+								</div>
+								<dl class="col-xs-12 text-center">
+									<dd> ------or------ </dd>
+								</dl>
+							</div>
+							<label>Create a a  new category for this channel.</label>
+							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
+										<span type="button" class="input-group-addon channelCategoryButton">
+											<span class="glyphicon glyphicon-ok"></span>
+										</span>
+									</div>
+								</div>	
+							</form>
+						</div>
 					</div>
-					<!-- <div class="modal-footer">
-						<span id="userLinkModalFooter"></span>
-						<button type="button" class="btn btn-danger modalClose userLinkModalClose" data-dismiss="modal">close</button>
-					</div> -->
 				</div>
 			</div>
 		</div>
 		<!--modal end for user link-->
+		<div class="modal fade" id="categoryEditModal" tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header text-center categoryEditHeader">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        					<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
+        				</button>
+        				<div class="modal-title-wrap">
+        					<h3 class="hidden-xs modal-title categoryEditModalTitle">
+        						Edit Category
+        					</h3>
+        					<h5 class="visible-xs modal-title categoryEditModalTitle">
+        						Edit Category
+        					</h5>
+        				</div>
+      				</div>
+					<div class="modal-body categoryEditBody">
+						<div class="channelCategoryArea text-center">
+							<h3 class="hidden-xs">Categorize your channel:</h3>
+							<h5 class="visible-xs">Categorize your channel:</h5>
+							<div class="userCategoryExists">
+								<label>Add to existing categories</label>
+								<div class="form-group form-inline existingCategorySelect">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control">
+										<option value="" hidden disabled selected>select a category</option>
+										<option value="cat1">cat1</option>
+										<option value="cat2">cat2</option>
+									</select>
+									<button class="btn existingCategoryButton">
+										<span class="glyphicon glyphicon-ok"></span>
+									</button>
+								</div>
+								<dl class="col-xs-12 text-center">
+									<dd> ------or------ </dd>
+								</dl>
+							</div>
+							<label>Create a a  new category for this channel.</label>
+							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
+										<span type="button" class="input-group-addon channelCategoryButton">
+											<span class="glyphicon glyphicon-ok"></span>
+										</span>
+									</div>
+								</div>	
+							</form>
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 
