@@ -1253,6 +1253,9 @@ safer appraoch than to resizing browser to see change
 		max-height: 40vh;
 		max-width: 15vw;
 	}
+
+	
+
 }
 @media only screen and (max-width : 767px){
 	#mainVideo {
@@ -1360,4 +1363,9 @@ safer appraoch than to resizing browser to see change
 		margin: 10px !important;
 	}
 	/* End of css for mobile modal */
+
+
+	.carousel-indicators {
+		top: 546px;
+	}
 }
