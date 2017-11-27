@@ -29,6 +29,7 @@ $query =
     WHERE 
         youtube_channel_id = ?";
 $channel_data_array = [];
+$output['update_success'] = 0;
 foreach($channel_array as $youtube_channel_id){
     $ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -46,10 +47,13 @@ foreach($channel_array as $youtube_channel_id){
     $stmt->bind_param('ssss',$thumbnail,$channel_title,$description,$youtube_channel_id);
     $stmt->execute();
     if($conn->affected_rows>0){
-        $output['messages'][] = 'update success';
+        $output['update_success'] += 1;
         $output['success'] = true;
     }else{
         $output['errors'][] = "update fail at {$youtube_channel_id}";
+    }
+    if($output['update_success']>0){
+        $output['success'] = true;
     }
 }
 //TM87
