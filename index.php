@@ -288,7 +288,7 @@ consider carousel for the video list area:
 					
 					<!-- Indicators -->
 					<!-- <ol class="carousel-indicators hidden-xs hidden-sm"></ol> -->
-					<ol class="carousel-indicators"></ol>
+					<ol class="carousel-indicators">
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
 						<li id="returnCarouselStart" class="glyphicon glyphicon-fast-backward" onclick=returnToPageOne()></li>
