@@ -159,9 +159,9 @@ function initiateUser() {
                                                 console.log("CATEGORY - ", data.data[i].category_name)
                                                 var catName = data.data[i].category_name;
                                                 if(!clientCategories.hasOwnProperty(catName)){
-                                                    clientCategories.catName = [];
+                                                    clientCategories[catName] = [];
                                                 }
-                                                clientCategories.catName.push(data.data[i].youtube_channel_id)
+                                                clientCategories[catName].push(data.data[i].youtube_channel_id)
                                             }
                                         }else{
                                             console.log(data);
