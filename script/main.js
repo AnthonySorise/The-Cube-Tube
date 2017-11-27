@@ -111,14 +111,14 @@ function initiateUser() {
             if (data.success) {
                 console.log('USER CTU', data);
                 const uLink = 'www.thecubetube.com/?user=' + data.user_link;
-                const britEyesOnly = $('<span>',{
+                const uLinkForCopy = $('<span>',{
                     'class': 'linkGhost',
                     'text': uLink
                 }).css({
                     position: 'absolute',
                     display: 'none'
                 });
-                $('body').append(britEyesOnly);
+                $('body').append(uLinkForCopy);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                     $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
                     toastMsg('Welcome back', 3000);
@@ -146,8 +146,35 @@ function initiateUser() {
                             console.log("INIT CHANNEL UPDATE", data)
                             updatedChannels ++;
                             if(numSubscribedChannels === updatedChannels){
-                                loadSelectedChannels();
-                                renderChannelSelectionDropdown();
+                                //read categories
+                                $.ajax({
+                                    url: './script/api_calls_to_db/access_database/access.php',
+                                    method: 'POST',
+                                    dataType: 'JSON',
+                                    data: {
+                                        action: 'read_categories_by_user',
+                                    },
+                                    success: function (data) {
+                                        if (data.success){
+                                            console.log('category read success', data);
+                                            for (var i = 0; i < data.data.length; i++){
+                                                console.log("CATEGORY - ", data.data[i].category_name)
+                                                var catName = data.data[i].category_name;
+                                                if(!clientCategories.hasOwnProperty(catName)){
+                                                    clientCategories[catName] = [];
+                                                }
+                                                clientCategories[catName].push(data.data[i].youtube_channel_id)
+                                            }
+                                        }else{
+                                            console.log(data);
+                                        }
+                                        loadSelectedChannels();
+                                        renderChannelSelectionDropdown();
+                                    },
+                                    errors: function (data) {
+                                        console.log('read error', data);
+                                    }
+                                })
                             }
 
                             if (data.success) {
