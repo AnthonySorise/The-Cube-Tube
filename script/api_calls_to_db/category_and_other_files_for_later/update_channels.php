@@ -37,16 +37,17 @@ $query =
         thumbnail_file_name = ?
     WHERE 
         youtube_channel_id = ?";
-$stmt=$conn->prepare($query);
-$stmt->bind_param('sssss',$channel_title,$description,$thumbnail,$last_channel_pulled,$youtube_channel_id);
-$stmt->execute();
-if(empty($stmt)){
-    $output['errors'][]='invalid query';
-}else{
-    if($conn->affected_rows>0){
-        $output['success'] = true;
-    }else{
-        $output['errors'][]='UNABLE TO UPDATE';
-    }
+if(!($stmt=$conn->prepare($query))){
+    $output['errors'][] = 'invalid query';
+    output_and_exit($output);
 }
+$stmt->bind_param('ssss',$channel_title,$description,$thumbnail,$youtube_channel_id);
+$stmt->execute();
+if($conn->affected_rows>0){
+    $output['success'] = true;
+    $output['messages'][] = 'update success';
+}else{
+    $output['errors'][]='UNABLE TO UPDATE';
+}
+
 ?>

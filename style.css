@@ -241,7 +241,7 @@ body {
 #channelCategoryUl li{
 	cursor: pointer;
 }
-.dropdownChannelLi, .dropdownChannelLiAll{
+.dropdownChannelLi, .dropdownChannelLiAll, .dropdownCatLi{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -260,7 +260,7 @@ body {
 	color: white;
 	cursor: pointer;
 }
-.channelLiChannel:hover, .dropdownChannelLiAll:hover{
+.channelLiChannel:hover, .dropdownChannelLiAll:hover, .dropdownCatLi:hover{
 	background-color: rgba(255, 255, 255, 0.5);
 	color: black;
 }
@@ -1289,6 +1289,10 @@ safer appraoch than to resizing browser to see change
 	}
 	.autoPlayArea{
 		margin-left: -15px;
+		left: 0;
+	}
+	.midNavChannels{
+		float: none;
 	}
 	#midNav-option form{
 		width: 95%;

@@ -188,16 +188,16 @@ function videoListUp(){
 
 //Click handler to console log search results
 function clickHandler() {
-    $('.listUpButton').on('click', ()=>{
+    $('.listUpButton').on('click tap', ()=>{
         videoListUp();
     });
-    $('.listDropButton').on('click', ()=>{
+    $('.listDropButton').on('click tap', ()=>{
         videoListDown();
     });
-    $('#myLinkButton').on('click',()=>{
+    $('#myLinkButton').on('click tap',()=>{
         clipBoard('linkGhost');
     });
-    $('.channelDropDown').on('click touchend', '.dropdownChannelLiLoad', () => {
+    $('.channelDropDown').on('click tap', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
         // returnToPageOne();
         compileSelectedChannelsFromDropdown();
@@ -241,7 +241,7 @@ function clickHandler() {
         }
     });
 
-    $(".dropdownChannelLiAll").on("click", function () {
+    $(".dropdownChannelLiAll").on("click tap", function () {
         browsingMode = false;
         clientSelectedChannelIds = deepCopy(clientSubscribedChannelIds);
         clientSelectedChannelObjects = deepCopy(clientSubscribedChannelObjects);
@@ -288,7 +288,7 @@ function clickHandler() {
         }
     });
 
-    $('#channelCategoryUl').on('click touchend', '.channelLiChannel, .dropdownChannelLi input', (e) => {
+    $('#channelCategoryUl').on('click tap', '.channelLiChannel, .dropdownChannelLi input', (e) => {
         if ($(e.target).is('input')) {
             return;
         } else {
@@ -300,7 +300,7 @@ function clickHandler() {
             }
         }
     });
-    $('a.dropdown-toggle').on('click touchend', () => {
+    $('a.dropdown-toggle').on('click tap', () => {
         $('.channelDropDown').toggleClass('open');
         if (dropOpened) {
             dropOpened = false;
@@ -311,7 +311,7 @@ function clickHandler() {
         }
     });
     //category submit button
-    $('.channelCategoryButton').on('click touchend', (e)=>{
+    $('.channelCategoryButton').on('click tap', (e)=>{
         e.preventDefault();
         $('.channelCategoryForm').submit();
     });
@@ -325,7 +325,7 @@ function clickHandler() {
             toastMsg('channel added', 1100);
         });
     });
-    $('.existingCategoryButton').on('click touchend', (e)=>{
+    $('.existingCategoryButton').on('click tap', (e)=>{
         let categoryStr = '';
         categoryStr = $(e.target).closest('.existingCategorySelect').find('select option:selected').val();
         changeCategory(categoryStr);
@@ -335,7 +335,7 @@ function clickHandler() {
         });
     });
     //Search Button
-    $('.channelSearchForm').on('click touchend', '.channelSearchButton', (e) => {
+    $('.channelSearchForm').on('click tap', '.channelSearchButton', (e) => {
         e.preventDefault();
         $('.channelSearchForm').submit();
     });
@@ -358,17 +358,17 @@ function clickHandler() {
         // $(".videoHeader").show()
     });
     //Browse Button
-    $('.browseChannelButton').on("click touchend", handleBrowseButton);
+    $('.browseChannelButton').on("click tap", handleBrowseButton);
 
     //Add Buttons
-    $('.addChannelButton').on("click touchend", handleAddButton);
+    $('.addChannelButton').on("click tap", handleAddButton);
 
-    $(".tdPlaylistButton").on("click", handleAddToPlaylist);
+    $(".tdPlaylistButton").on("click tap", handleAddToPlaylist);
 
     //Table List Rows that are unselected
-    $(".tdTitle, .tdChannel, .tdUpDate").on("click touchend", function () {
+    $(".tdTitle, .tdChannel, .tdUpDate").on("click tap", function () {
 
-
+        $('.tdTitle i.fa').remove();
         if (!$(this).parent().hasClass('selectedTd')) {
             $(".tdTitle, .tdChannel").unbind("mouseup");
             //Table List Row Title that is selected
@@ -396,7 +396,7 @@ function clickHandler() {
             $('.fa-circle-o-notch').remove();
             var playSymbol = $('<i>')
             // .addClass("fa fa-play-circle-o")
-                .addClass('fa fa-circle-o-notch fa-spin fa-fw')
+                .addClass('fa fa-circle-o-notch fa-spin fa-fw circleSpinner')
                 .css({
                     "margin-right": '5px',
                     'color': 'green'
@@ -424,11 +424,11 @@ function clickHandler() {
     //Theater mode
     // $('.lightBoxMode').on('click', checkHomePageVideoStatus);
     // $('.theatreModalClose').on('click', checkTheatreModeStatus);
-    $('.fastForwardButton').on('click', fastForwardVideo);
-    $('.rewindButton').on('click', rewindVideo);
-    $('.playButton').on('click', playYtVideo);
-    $('.lastVideoButton').on('click',playPrevYTVideo);
-    $('.nextVideoButton').on('click', playNextYTVideo); 
+    $('.fastForwardButton').on('click tap', fastForwardVideo);
+    $('.rewindButton').on('click tap', rewindVideo);
+    $('.playButton').on('click tap', playYtVideo);
+    $('.lastVideoButton').on('click tap',playPrevYTVideo);
+    $('.nextVideoButton').on('click tap', playNextYTVideo); 
     // $('body').on('click', closeTheatreOnClick);
     // $(document).on('keyup', function (event) {
     //     if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
@@ -507,13 +507,13 @@ function clickHandler() {
 
     function playYtVideo() {
         player.playVideo();
-        if (this.classList.value === play) {
+        if (this.classList.value === playFaClass) {
             $('.playButton').tooltip('hide')
-            $('.playButton').removeClass(play).toggleClass(pause);
+            $('.playButton').removeClass(playFaClass).toggleClass(pauseFaClass);
             $(this).attr('data-original-title','Pause')
         } else {
             $('.pauseButton').tooltip('hide');
-            $('.pauseButton').removeClass(pause).toggleClass(play);
+            $('.pauseButton').removeClass(pauseFaClass).toggleClass(playFaClass);
             $(this).attr('data-original-title','Play')
             player.pauseVideo()
         }
