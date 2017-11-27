@@ -6,32 +6,33 @@ if(empty($LOCAL_ACCESS)){
 //insert cuc into existing category when called directly
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $category_name = $_POST['category_name']; 
-//check for duplicate
-// $query = 
-//     "SELECT
-//         *
-//     FROM
-//         category_to_user_to_channel AS cuc
-//     JOIN
-//         channels AS c ON cuc.channel_id = c.channel_id
-//     JOIN	
-//         users AS u ON cuc.user_id = u.user_id
-//     JOIN
-//         categories AS ct ON ct.category_id = ct.category_id
-//     WHERE
-//         u.user_link = ? AND ct.category_name = ? AND c.youtube_channel_id = ?";
-// if(!($stmt = $conn->prepare($query))){
-//     $output['errors'][] = 'query failed read cuc';
-//     output_and_exit($output);
-// }
-// $stmt->bind_param('sss',$user_link,$category_name,$youtube_channel_id);
-// $stmt->execute();
-// $result = $stmt->get_result();
-// if($result->num_rows>0){
-//     $output['messages'][] = 'duplicate found!';
-//     output_and_exit($output);
-// }
+//check for duplicates
+$query = 
+    "SELECT
+        *
+    FROM
+        category_to_user_to_channel AS cuc
+    JOIN
+        channels AS c ON cuc.channel_id = c.channel_id
+    JOIN	
+        users AS u ON cuc.user_id = u.user_id
+    JOIN
+        categories AS ct ON ct.category_id = ct.category_id
+    WHERE
+        u.user_link = ? AND ct.category_name = ? AND c.youtube_channel_id = ?";
+if(!($stmt = $conn->prepare($query))){
+    $output['errors'][] = 'query failed read cuc';
+    output_and_exit($output);
+}
+$stmt->bind_param('sss',$user_link,$category_name,$youtube_channel_id);
+$stmt->execute();
+$result = $stmt->get_result();
+if($result->num_rows>0){
+    $output['messages'][] = 'duplicate found!';
+    output_and_exit($output);
+}
 if(empty($category_id)){
+    $category_name = $_POST['category_name']; 
     $query = 
         "SELECT
             cuc.category_id
