@@ -19,7 +19,7 @@ $query =
         categories AS ct ON ct.category_id = ct.category_id
     WHERE
         u.user_link = ? AND ct.category_name = ?";
-if(!($stmt->prepare($query))){
+if(!($stmt = $conn->prepare($query))){
     $output['errors'][] = 'query failed';
     output_and_exit($output);
 }
