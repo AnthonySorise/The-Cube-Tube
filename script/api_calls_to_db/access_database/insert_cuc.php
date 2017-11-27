@@ -32,7 +32,6 @@ if($result->num_rows>0){
     output_and_exit($output);
 }
 if(empty($category_id)){
-    $category_name = $_POST['category_name']; 
     $query = 
         "SELECT
             cuc.category_id
@@ -58,7 +57,6 @@ if(empty($category_id)){
         output_and_exit($output);
     }
 }
-echo($category_id);
 $sqli = 
     "INSERT INTO
         category_to_user_to_channel
