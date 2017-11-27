@@ -10,8 +10,8 @@ var currentSlideNumber = 1;
 var currentVideoindex = null;
 var browsingMode = false;
 var currentVolumeLevel = null;
-const play = "fa fa-play modalControls playButton";
-const pause = "fa fa-pause modalControls pauseButton";
+const playFaClass = "fa fa-play modalControls playButton";
+const pauseFaClass = "fa fa-pause modalControls pauseButton";
 var player;
 <<<<<<< HEAD
 var player2;
