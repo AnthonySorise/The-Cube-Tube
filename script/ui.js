@@ -4,7 +4,7 @@ function showChannelDrop(){
 		.attr('aria-expanded','true')
 		.css('display','block')
 		.velocity({
-			'right': '0',
+			'right': '0px',
 			'width': '95vw',
 			// 'height': '+=3px',
 			'min-height': '97vh'
@@ -38,7 +38,7 @@ function channelDropClickHandle(){
 		// 	$('.channelDropDown').removeClass('open');
 		// });
 	});
-	$('#channelCategoryHamburger').on('click, tap', (event)=>{
+	$('#channelCategoryHamburger').on('click tap', (event)=>{
 		event.stopPropagation();
 		showChannelDrop();
 		// $('#mainNav-option').slideDown(1000,()=>{
