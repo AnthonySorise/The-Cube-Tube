@@ -1,18 +1,8 @@
 <?php
-// if(empty($LOCAL_ACCESS)){
-//     die('direct access not allowed');
-// }
-require_once('mysql_connect.php');
+ if(empty($LOCAL_ACCESS)){
+     die('direct access not allowed');
+ }
 require_once('youtube_api_key.php');
-$output = [
-    'success' => false,
-    'errors' => [],
-];
-function output_and_exit($output){
-    $json_output = json_encode($output);
-    print($json_output);
-    exit();
-}
 $query = 
     "SELECT 
         youtube_channel_id 
