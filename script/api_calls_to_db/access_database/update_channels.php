@@ -64,5 +64,6 @@ foreach($channel_array as $youtube_channel_id){
     }else{
         $output['messages'][] = 'nothing to update';
     }
+    output_and_exit($output);
 }
 ?>
