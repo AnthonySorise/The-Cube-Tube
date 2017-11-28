@@ -7,13 +7,8 @@ function showChannelDrop(){
 			'right': '0',
 			'width': '95vw',
 			// 'height': '+=3px',
-<<<<<<< HEAD
-			'min-height': '100vh'
-		},200,'linear',()=>{
-=======
 			'min-height': '97vh'
 		},450,'swing',()=>{
->>>>>>> d7536164a04b8c31068e027f7076e451aa5d80b1
 			$('mainNav-option').css('width','95vw !important');
 			dropOpened = true;
 		});
