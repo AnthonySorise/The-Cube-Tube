@@ -57,7 +57,8 @@ body {
 }
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-    background-color: #fff !important;
+	background-color: #fff !important;
+	color: orange !important;
 }
 
 /************************************************************************************
