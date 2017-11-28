@@ -7,7 +7,7 @@ function showChannelDrop(){
 			right: '0',
 			'width': '95vw',
 			// 'height': '+=3px',
-			'min-height': '100vh'
+			'min-height': '97vh'
 		},450,'swing',()=>{
 			$('mainNav-option').css('width','95vw !important');
 			dropOpened = true;
