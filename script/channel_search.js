@@ -43,7 +43,7 @@ function searchChannelsByName(inputStr) {
                 $(img).attr("src", data.items[i].snippet.thumbnails.medium.url);
 
                 if (clientSubscribedChannelIds.includes(data.items[i].snippet.channelId)) {
-                    $(channelListData + " .addChannelButton").addClass("disabled").text("Sub");
+                    $(channelListData + " .addChannelButton").addClass("disabled").text("Subscribe");
                 }
             }
             promise.resolve(data);

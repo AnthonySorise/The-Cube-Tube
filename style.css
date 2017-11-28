@@ -1216,12 +1216,6 @@ safer appraoch than to resizing browser to see change
 		max-height: 40vh;
 		max-width: 15vw;
 	}
-	.channelCategoryForm {
-		width: 115%;
-	}
-
-	
-
 }
 @media only screen and (max-width : 767px){
 	#mainVideo {
