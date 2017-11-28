@@ -90,7 +90,7 @@ function toastMsg(msgString, time) {
 function videoListDown(){
     $('.listDropWrap').hide();
     $('#text-carousel').slideUp(590);
-    $('.thRow').fadeOut(590);
+    $('.thRow').fadeOut(200);
     $('.videoListRowWrapper').fadeOut(590);
     $('.videoRowWrapper').velocity({
         // 'height': '93.8%'
