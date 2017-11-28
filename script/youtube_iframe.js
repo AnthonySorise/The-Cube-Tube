@@ -53,8 +53,12 @@ function playNextYTVideo() {
             setTimeout(function(){
                 next();
             }, 250)
+        }else if(currentVideoIndex == -1){
+            next()
         }
+
         else{
+            debugger
             $('.carousel').carousel('next')
             next();
         }
