@@ -97,8 +97,8 @@ function videoListDown(){
         'height':'94.2%'
     }, 600);
     $('#listContentWrap').velocity({
-        'height': '5.5%'
-    }, 600, ()=>{
+        'height': '0%'
+    }, 200, ()=>{
         $('.listUpWrap').fadeIn();
     });
     $('#mainVideo').velocity({
