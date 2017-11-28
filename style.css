@@ -130,13 +130,16 @@ body {
 	position: absolute;
 	top: -20px;
 	left: 50%;
-	transform: translateX(-50%)
+	transform: translateX(-50%);
+	display: none;
 }
 .listDropWrap{
 	position: absolute;
 	top: 46px;
 	left: 50%;
-	transform: translateX(-50%)
+	transform: translateX(-50%);
+	display: none;
+	
 }
 .listUpButton{
 	padding: 0 15px;
