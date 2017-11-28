@@ -89,16 +89,16 @@ function toastMsg(msgString, time) {
 
 function videoListDown(){
     $('.listDropWrap').hide();
-    $('#text-carousel').slideUp(590);
-    $('.thRow').fadeOut(590);
-    $('.videoListRowWrapper').fadeOut(590);
+    $('#text-carousel').slideUp(350);
+    $('.thRow').fadeOut(350);
+    $('.videoListRowWrapper').fadeOut(350);
     $('.videoRowWrapper').velocity({
         // 'height': '93.8%'
         'height':'94.2%'
     }, 600);
     $('#listContentWrap').velocity({
         'height': '0%'
-    }, 200, ()=>{
+    }, 350, ()=>{
         $('.listUpWrap').fadeIn();
     });
     $('#mainVideo').velocity({
@@ -537,6 +537,7 @@ function clickHandler() {
         // }
     }
 }
+
 
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip

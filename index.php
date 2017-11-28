@@ -1676,7 +1676,7 @@ consider carousel for the video list area:
 								</dl>
 							</div>
 							<label>Create a a  new category for this channel.</label>
-							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
+							<form class="form-group form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
 								<div class="form-group">
 									<div class="input-group">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
