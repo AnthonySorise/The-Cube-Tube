@@ -139,6 +139,19 @@ function getAutoPlayDirectionValue(){
     return $("#autoplayOrderCheckBox").is(":checked")
 }
 
+function pausePlaywithSpacebar(){
+    $(window).keypress(function(e) {
+        let videoSize = $(".videoHeader").css("display")
+        if(videoSize == 'none')
+        if (e.which == 32) {
+          if (player.getPlayerState() == 2)
+            player.playVideo();
+          else
+            player.pauseVideo();
+        }
+      });
+}
+
 // function checkIfPlayerIsMuted() {
 //     if (player.isMuted()) {
 //         player2.mute();
