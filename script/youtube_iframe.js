@@ -144,6 +144,7 @@ function pausePlaywithSpacebar(){
     $(window).keypress(function(e) {
         let inputFocus = $(".channelSearchInput").is(':focus');
         if(inputFocus == false){
+            event.preventDefault();
             if (e.which == 32) {
                 if (player.getPlayerState() == 2)
                   player.playVideo();
