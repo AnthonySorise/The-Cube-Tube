@@ -30,7 +30,7 @@ function closeChannelDrop(){
 }
 
 function channelDropClickHandle(){
-	$('.closeChannelDropXs').click((event)=>{
+	$('.closeChannelDropXs').on('click tap', (event)=>{
 		event.stopPropagation();
 		closeChannelDrop();
 		// $('#mainNav-option').slideDown(1000,()=>{
@@ -38,7 +38,7 @@ function channelDropClickHandle(){
 		// 	$('.channelDropDown').removeClass('open');
 		// });
 	});
-	$('#channelCategoryHamburger').click((event)=>{
+	$('#channelCategoryHamburger').on('click, tap', (event)=>{
 		event.stopPropagation();
 		showChannelDrop();
 		// $('#mainNav-option').slideDown(1000,()=>{
@@ -48,7 +48,7 @@ function channelDropClickHandle(){
 	});
 }
 
-$(window).on('click',(e)=>{
+$(window).on('click tap',(e)=>{
 	if(dropOpened){
 		if( !($.contains($('.channelDropDown.open'),e.target)) && !($('#channelCategoryUl').find(e.target).length) &&($(e.target).attr('id')!=='channelCategoryUl')) {
 			 $('mainNav-option').removeClass('in')
