@@ -58,7 +58,6 @@ function playNextYTVideo() {
         }
 
         else{
-            debugger
             $('.carousel').carousel('next')
             next();
         }
