@@ -50,7 +50,7 @@ function channelDropClickHandle(){
 
 $(window).on('click',(e)=>{
 	if(dropOpened){
-		if( !($.contains($('.channelDropDown.open'),e.target)) && !($('#channelCategoryUl').find(e.target).length) &&!($(e.target).attr('id')!=='#channelCategoryUl')) {
+		if( !($.contains($('.channelDropDown.open'),e.target)) && !($('#channelCategoryUl').find(e.target).length) &&($(e.target).attr('id')!=='#channelCategoryUl')) {
 			 $('mainNav-option').removeClass('in')
                 .attr('aria-expanded','false');
             $('.channelDropDown').removeClass('open');
