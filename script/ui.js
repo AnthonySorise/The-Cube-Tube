@@ -38,7 +38,7 @@ function channelDropClickHandle(){
 		// 	$('.channelDropDown').removeClass('open');
 		// });
 	});
-	$('#channelCategoryHamburger').on('click, tap', (event)=>{
+	$('#channelCategoryHamburger').on('click tap', (event)=>{
 		event.stopPropagation();
 		showChannelDrop();
 		// $('#mainNav-option').slideDown(1000,()=>{
