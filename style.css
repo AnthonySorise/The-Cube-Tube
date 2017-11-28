@@ -52,10 +52,6 @@ body {
 	color:white;
 }
 
-.form-control {
-	height: 33.7px !important;
-}
-
 /************************************************************************************
 *  Any and all css for navbar - i.e. anything inside #mainNav<nav> / #midNav<nav>	*
 *  at this moment, the only exception for having it outside of this area 			*
@@ -102,7 +98,6 @@ body {
 }
 .logoText{
 	vertical-align: 55%;
-	user-select: none;
 }
 #mainNav-option{
 	z-index: 1;
@@ -177,11 +172,6 @@ body {
 	font-size:14px;
 	font-weight: 700
 }
-
-.midNavPlaylistText{
-	user-select: none;
-}
-
 .watchingLabel, .browsingLabel{
 	font-size: 100%;
 	/*padding: 9px 2.5px;*/
@@ -212,7 +202,7 @@ body {
 	border-bottom: 1px solid;
 }
 .channelSearchButton{
-	background-color: orange;
+	background-color: rgba(255, 0, 0, 0.3);
 	border-radius: 0;
 	border:none;
 	cursor: pointer;
@@ -221,7 +211,7 @@ body {
 	color: white;
 }
 .channelSearchButton:hover{
-	background-color: #f47c04;
+	background-color: rgba(255, 0, 0, 1);
 }
 .channelSearchForm input, #videoSearchInput{
 	border: none;
@@ -279,11 +269,9 @@ body {
 	border: none;
 	border-left: 1px solid !important;
 }
-
-.infoButtons{
-	user-select: none;
-}
-
+/*.infoButtons{*/
+	/*line-height: 3.5;*/
+/*}*/
 .autoPlayArea{
 	position: relative;
 	left:6vw;
@@ -421,7 +409,6 @@ body>.container-fluid {
 	/*height: 47%;*/
 	height: 84.6%;
 	padding: 0;
-	user-select: none;
 }
 /************ CAROUSEL styles *************/
 .carousel-indicators li {
@@ -655,69 +642,16 @@ div.thRow {
 	height: 100%;
 	/*z-index: -1;*/
 	/*background-color: lightblue;*/
-	background-image: url('assets/images/img_01.jpg');
+	background-image: url("assets/images/img_01.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 100% auto;
 	opacity: 0;
 	animation: backgroundChange 100s linear infinite;
-	-moz-animation: backgroundChange 100s linear infinite;
-	animation-timing-function: linear;
-	
-	
 }
 @keyframes backgroundChange{
 	10%{
-		background-image: url('assets/images/img_02.jpg');
-		opacity: 0 
-	}
-	5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%{
-		opacity: 0.6 
-	}
-	3%, 7%,13%, 17%,23%, 27%,33%, 37%,43%, 47%,53%, 57%,63%, 67%,73%, 77%,83%, 87%,93%, 97%{
-		opacity: 0.3 
-	}
-	20%{
-		background-image: url('assets/images/img_03.jpg');
-		opacity: 0 
-	}
-	30%{
-		background-image: url('assets/images/img_04.jpg');
-		opacity: 0 
-	}
-	40%{
-		background-image: url('assets/images/img_05.jpg');
-		opacity: 0 
-	}
-	50%{
-		background-image: url('assets/images/img_06.jpg');
-		opacity: 0 
-	}
-	60%{
-		background-image: url('assets/images/img_07.jpg');
-		opacity: 0 
-	}
-	70%{
-		background-image: url('assets/images/img_08.jpg');
-		opacity: 0 
-	}
-	80%{
-		background-image: url('assets/images/img_09.jpg');
-		opacity: 0 
-	}
-	90%{
-		background-image: url('assets/images/img_10.jpg');
-		opacity: 0 
-	}
-	100%{
-		background-image: url('assets/images/img_01.jpg');
-		opacity: 0 
-	}
-}
-
-/* @-moz-keyframes backgroundChange{
-	10%{
-		background-image: url('assets/images/img_02.jpg');
+		background-image: url("assets/images/img_02.jpg");
 		opacity: 0;
 	}
 	5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%{
@@ -762,9 +696,7 @@ div.thRow {
 		background-image: url('assets/images/img_01.jpg');
 		opacity: 0;
 	}
-} */
-
-
+}
 .contentPlaceholder{
 	margin-top: 30px;
 	text-shadow:
@@ -985,8 +917,6 @@ div.thRow {
 
 .carousel-control {
 	width: 30px;
-	position: fixed;
-	top: 70%;
 }
 /* toggle button */
 
@@ -995,7 +925,6 @@ div.thRow {
 	position: relative;
 	top: 2px;
 	margin: 5px;
-	user-select: none;
 	/* margin: 5px; */
 }
 
@@ -1090,7 +1019,6 @@ input:checked + .vert:before {
 	position: relative;
 	top: 8px;
 	margin: 5px;
-	user-select: none;
 	/* margin: 5px; */
 }
 
@@ -1369,3 +1297,5 @@ safer appraoch than to resizing browser to see change
 		top: 546px;
 	}
 }
+
+

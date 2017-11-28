@@ -224,6 +224,7 @@ function handleBrowseButton() {
 function handleRemoveButton() {
     $('.dropdownSettingsPopover').popover('hide');
     let channelId = $(this).parent().attr("channelId");
+    channelIdOfCategorySet = channelId;
     console.log("REMOVING " + channelId);
     access_database.delete_ctu(channelId);
     for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
