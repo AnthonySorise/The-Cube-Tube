@@ -130,13 +130,16 @@ body {
 	position: absolute;
 	top: -20px;
 	left: 50%;
-	transform: translateX(-50%)
+	transform: translateX(-50%);
+	display: none;
 }
 .listDropWrap{
 	position: absolute;
 	top: 46px;
 	left: 50%;
-	transform: translateX(-50%)
+	transform: translateX(-50%);
+	display: none;
+	
 }
 .listUpButton{
 	padding: 0 15px;
@@ -469,7 +472,8 @@ li#returnCarouselStart{
 #text-carousel {
 	overflow: auto;
 	height: 95%;
-	background-color:#343e42
+	background-color:#343e42;
+	display: none;
 }
 /*********** end of CAROUSEL styles ************/
 div.thRow {
