@@ -22,6 +22,7 @@ var currentlySelectedVideoID = null;
 
 $(document).ready(function () {
     function initApp(){
+        
         pausePlaywithSpacebar()
         $("#text-carousel, .videoHeader, .listDropWrap, .listUpWrap").hide();
         // $(".videoHeader").hide();

@@ -140,15 +140,19 @@ function getAutoPlayDirectionValue(){
 }
 
 function pausePlaywithSpacebar(){
+   
     $(window).keypress(function(e) {
-        let videoSize = $(".videoHeader").css("display")
-        if(videoSize == 'none')
-        if (e.which == 32) {
-          if (player.getPlayerState() == 2)
-            player.playVideo();
-          else
-            player.pauseVideo();
+        let inputFocus = $(".channelSearchInput").is(':focus');
+        if(inputFocus == false){
+            event.preventDefault();
+            if (e.which == 32) {
+                if (player.getPlayerState() == 2)
+                  player.playVideo();
+                else
+                  player.pauseVideo();
+              }
         }
+
       });
 }
 
