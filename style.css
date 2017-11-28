@@ -172,7 +172,7 @@ body {
 	margin-right: 7px;
 	display:none;
 }
-.midNavBrowsing, .midNavWatching, .midNavPlaylist{
+.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
 	display: none;
 	font-size:14px;
 	font-weight: 700
