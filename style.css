@@ -940,11 +940,11 @@ div.thRow {
 	background-color: black;
 	color:white;
 }
-.userLinkHeader>button{
+.userLinkHeader>button, .categoryEditHeader>button{
 	opacity: 0.7;
 	color: white;
 }
-.userLinkHeader>button:hover{
+.userLinkHeader>button:hover, .categoryEditHeader>button:hover{
 	opacity: 1;
 	color: white;
 }
