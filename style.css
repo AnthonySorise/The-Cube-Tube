@@ -52,6 +52,15 @@ body {
 	color:white;
 }
 
+.form-control {
+	height: 33.7px !important;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+	background-color: #fff !important;
+	color: orange !important;
+}
+
 /************************************************************************************
 *  Any and all css for navbar - i.e. anything inside #mainNav<nav> / #midNav<nav>	*
 *  at this moment, the only exception for having it outside of this area 			*
@@ -98,6 +107,7 @@ body {
 }
 .logoText{
 	vertical-align: 55%;
+	user-select: none;
 }
 #mainNav-option{
 	z-index: 1;
@@ -120,13 +130,16 @@ body {
 	position: absolute;
 	top: -20px;
 	left: 50%;
-	transform: translateX(-50%)
+	transform: translateX(-50%);
+	display: none;
 }
 .listDropWrap{
 	position: absolute;
 	top: 46px;
 	left: 50%;
-	transform: translateX(-50%)
+	transform: translateX(-50%);
+	display: none;
+	
 }
 .listUpButton{
 	padding: 0 15px;
@@ -167,7 +180,7 @@ body {
 	margin-right: 7px;
 	display:none;
 }
-.midNavBrowsing, .midNavWatching, .midNavPlaylist{
+.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
 	display: none;
 	font-size:14px;
 	font-weight: 700
@@ -202,7 +215,7 @@ body {
 	border-bottom: 1px solid;
 }
 .channelSearchButton{
-	background-color: rgba(255, 0, 0, 0.3);
+	background-color: orange;
 	border-radius: 0;
 	border:none;
 	cursor: pointer;
@@ -211,7 +224,7 @@ body {
 	color: white;
 }
 .channelSearchButton:hover{
-	background-color: rgba(255, 0, 0, 1);
+	background-color: #f48642;
 }
 .channelSearchForm input, #videoSearchInput{
 	border: none;
@@ -240,8 +253,9 @@ body {
 }
 #channelCategoryUl li{
 	cursor: pointer;
+	user-select: none;
 }
-.dropdownChannelLi, .dropdownChannelLiAll{
+.dropdownChannelLi, .dropdownChannelLiAll, .dropdownCatLi{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -260,7 +274,7 @@ body {
 	color: white;
 	cursor: pointer;
 }
-.channelLiChannel:hover, .dropdownChannelLiAll:hover{
+.channelLiChannel:hover, .dropdownChannelLiAll:hover, .dropdownCatLi:hover{
 	background-color: rgba(255, 255, 255, 0.5);
 	color: black;
 }
@@ -269,12 +283,14 @@ body {
 	border: none;
 	border-left: 1px solid !important;
 }
-/*.infoButtons{*/
+.infoButtons{
 	/*line-height: 3.5;*/
-/*}*/
+	user-select: none;
+}
 .autoPlayArea{
 	position: relative;
 	left:6vw;
+	user-select: none;
 	/*float: none;*/
 	/*display: inline-block;*/
 	/*float:right;*/
@@ -338,6 +354,7 @@ body>.container-fluid {
 	width: 98vh;
 	max-width:100vw;
 	justify-self: center;
+	user-select: none;
 }
 /************************************
 * END of .videoRowWrapper<div> area *
@@ -409,6 +426,7 @@ body>.container-fluid {
 	/*height: 47%;*/
 	height: 84.6%;
 	padding: 0;
+	user-select: none;
 }
 /************ CAROUSEL styles *************/
 .carousel-indicators li {
@@ -435,15 +453,27 @@ li#returnCarouselStart{
 .carousel-control.right {
 	height: 100%;
 	background: none !important;
+	position: fixed;
+	top: 70%
 }
 .carousel-control.left {
 	height: 100%;
 	background: none !important;
+	position: fixed;
+	top: 70%
 }
+.carousel-control.right >span {
+	top: 15% !important;
+}
+.carousel-control.left >span {
+	top: 15% !important;
+}
+
 #text-carousel {
 	overflow: auto;
 	height: 95%;
-	background-color:#343e42
+	background-color:#343e42;
+	display: none;
 }
 /*********** end of CAROUSEL styles ************/
 div.thRow {
@@ -702,6 +732,7 @@ div.thRow {
 	text-shadow:
 		-0.5px -0.5px 0 #fff,
 		0.5px 0.5px 0 #fff;
+	user-select: none;	
 }
 .contentPlaceholder>image{
 	margin: 0 auto; 
@@ -759,27 +790,6 @@ div.thRow {
 .modal-open {
 	background-color: rgba(0, 0, 0, 0.5);
 }
-		/********LIGHTBOX modal*********/
-#lightBoxModal .modal-dialog {
-	/*height: 80vh;*/
-	width: 80vw;
-	/*padding: 0;*/
-}
-#lightBoxModal .modal-content {
-	background: transparent;
-}
-#lightBoxModal .modal-body {
-	height: 80vh;
-	padding: 0;
-}
-#lightBoxModal .modal-footer {
-	background-color: black;
-}
-#lightBoxModal iframe {
-	height: 100%;
-	width: 100%;
-}
-		/*******END of LIGHTBOX modal*********/
 		/***********CHANNEL SEARCH modal************/
 #channelSearchModal .modal-dialog {
 	width: 60vw;
@@ -872,11 +882,6 @@ div.thRow {
 	float: right;
 }
 
-#lightBoxModalFooter {
-	display: flex;
-    justify-content: space-between;
-}
-
 .modalChSearch{
 	display:inline-block;
 }
@@ -888,21 +893,21 @@ div.thRow {
 	cursor: pointer;
 	margin: 7px;
 }
-.userLinkBody{
+.userLinkBody, .categoryEditBody{
 	background-color: #020e13;
 	color:white;
-	height: 70vh;
+	height: 45vh;
 	
 }
-.userLinkHeader{
+.userLinkHeader, .categoryEditHeader{
 	background-color: black;
 	color:white;
 }
-.userLinkHeader>button{
+.userLinkHeader>button, .categoryEditHeader>button{
 	opacity: 0.7;
 	color: white;
 }
-.userLinkHeader>button:hover{
+.userLinkHeader>button:hover, .categoryEditHeader>button:hover{
 	opacity: 1;
 	color: white;
 }
@@ -910,12 +915,33 @@ div.thRow {
 	border-radius:0;
 	border:none;
 }
-.channelCategoryButton{
+.channelCategoryForm {
+	display: flex;
+    justify-content: center;
+}
+.existingCategorySelect select.channelCategorySelect{
+	width: 54%;
+}
+.existingCategorySelect {
+	display: flex;
+    justify-content: center;
+}
+.userCategoryExists{
+	display: none;
+}
+.userCategoryExists dl{
+	margin-bottom: 20px;
+}
+.channelCategoryForm div{
+	width: 100%;
+}
+.channelCategoryButton, .existingCategoryButton{
 	background-color: rgba(20,149,20, 0.6);
 	color: rgba(255,255,255,0.6);
 	cursor: pointer;
+	border: none;
 }
-.channelCategoryButton:hover{
+.channelCategoryButton:hover, .existingCategoryButton:hover{
 	background-color: rgba(20,149,20,1);
 	color: rgba(255,255,255,1);
 }
@@ -1248,6 +1274,10 @@ safer appraoch than to resizing browser to see change
 	}
 	.autoPlayArea{
 		margin-left: -15px;
+		left: 0;
+	}
+	.midNavChannels{
+		float: none;
 	}
 	#midNav-option form{
 		width: 95%;
@@ -1280,12 +1310,16 @@ safer appraoch than to resizing browser to see change
 		font-size: .80em;
 	}
 	.browseChannelButton {
-		width:18%;
-		font-size: .70em;   
+		width: 15%;
+		font-size: .70em;
+		white-space: normal;
+		padding: 6px 0;  
 	}
 	.addChannelButton {
-		width:15%;
+		width:18%;
 		font-size: .70em;
+		white-space: nowrap;
+		padding: 6px 0;
 	}
 	.chName {
 		width: 85%;
@@ -1297,6 +1331,18 @@ safer appraoch than to resizing browser to see change
 		margin: 10px !important;
 	}
 	/* End of css for mobile modal */
+
+	.carousel-control.right >span {
+		top: 8% !important;
+	}
+	.carousel-control.left >span {
+		top: 8% !important;
+	}
+
+
+	.carousel-indicators {
+		top: 546px;
+	}
 }
 
 

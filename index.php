@@ -17,7 +17,6 @@ consider carousel for the video list area:
 		gtag('js', new Date());
 		gtag('config', 'UA-109199068-1');
 	</script>
-	
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Audiowide|Arvo" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	 crossorigin="anonymous">
@@ -43,7 +42,7 @@ consider carousel for the video list area:
     <script type="text/javascript" src="script/my_cube.js"></script>
     <!-- <script type="text/javascript" src="script/tour.js"></script> -->
     <script type="text/javascript" src="script/utilities.js"></script>
-
+	<script src="//cdn.jsdelivr.net/velocity/1.5/velocity.min.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
@@ -189,7 +188,7 @@ consider carousel for the video list area:
 								</label>
 							</div>
 						</div>
-						<div class="mediaControls"></div>
+						<div class="mediaControls hidden-xs"></div>
 <!--						<form class="navbar-right nav-pills form-inline">-->
 <!--							<!--form for searching channels-->
 <!--							<div class="form-group">-->
@@ -223,12 +222,12 @@ consider carousel for the video list area:
 								<i class="fa fa-cubes"></i>
 								Subscribed Channels
 							</span>
-                            <span class="midNavPlaylist">
-								<p style="display:inline-block">
+                            <span class="midNavPlaylistText">
+								<p style="display:inline-block; margin-left: 5px">
                                     Watching:
                                 </p>
 							</span>
-                            <span class="midNavPlaylist playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="all">
+                            <span class="midNavPlaylist playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover">
                         		<i class="fa fa-list-ol fa-lg"></i>
                         		Playlist
                         	</span>
@@ -287,7 +286,8 @@ consider carousel for the video list area:
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
 					
 					<!-- Indicators -->
-					<ol class="carousel-indicators hidden-xs hidden-sm">
+					<!-- <ol class="carousel-indicators hidden-xs hidden-sm"></ol> -->
+					<ol class="carousel-indicators">
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
 						<li id="returnCarouselStart" class="glyphicon glyphicon-fast-backward" onclick=returnToPageOne()></li>
@@ -1445,10 +1445,10 @@ consider carousel for the video list area:
 							<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
 						</button>
 						<form class="channelSearchForm modalChSearch form-inline">
-					<!--form for searching channels-->
+					<!--form for searching channels on channel modal-->
 							<div class="form-group">
 								<div class="input-group">
-									<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
+									<input type="text" class="form-control" id="channelModalSearchBar" placeholder="search channels" name="channelSearch">
 									<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
 										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 									</span>
@@ -1662,25 +1662,23 @@ consider carousel for the video list area:
 							<h5 class="visible-xs">Categorize your channel:</h5>
 							<!-- $('.userCategoryExists').hide()/show() to toggle the dropdown showing depending on category availability -->
 							<div class="userCategoryExists">
-								<label>Add to existing categories</label>
+								<label>Add to an existing category.</label>
 								<div class="form-group form-inline existingCategorySelect">
-									<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%;">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" id="channelCategorySelectUlink">
 										<option value="" hidden disabled selected>select a category</option>
-										<option value="cat1">cat1</option>
-										<option value="cat2">cat2</option>
 									</select>
-									<button class="btn btn-success existingCategoryButton">
+									<button class="btn existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>
 									</button>
 								</div>
-								<dl class="col-xs-12 text-center" style="margin-bottom:20px;">
+								<dl class="col-xs-12 text-center">
 									<dd> ------or------ </dd>
 								</dl>
 							</div>
 							<label>Create a a  new category for this channel.</label>
-							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
-								<div class="form-group" style="width:100%;">
-									<div class="input-group" style="width:100%;">
+							<form class="form-group form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
+								<div class="form-group">
+									<div class="input-group">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>
@@ -1717,23 +1715,21 @@ consider carousel for the video list area:
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
 								<div class="form-group form-inline existingCategorySelect">
-									<select name="initialCategorySelect" class="channelCategorySelect form-control" style="width:60%;">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" id="channelCategorySelectEdit">
 										<option value="" hidden disabled selected>select a category</option>
-										<option value="cat1">cat1</option>
-										<option value="cat2">cat2</option>
 									</select>
-									<button class="btn btn-success existingCategoryButton">
+									<button class="btn existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>
 									</button>
 								</div>
-								<dl class="col-xs-12 text-center" style="margin-bottom:20px;">
+								<dl class="col-xs-12 text-center">
 									<dd> ------or------ </dd>
 								</dl>
 							</div>
 							<label>Create a a  new category for this channel.</label>
 							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
-								<div class="form-group" style="width:100%;">
-									<div class="input-group" style="width:100%;">
+								<div class="form-group">
+									<div class="input-group">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>

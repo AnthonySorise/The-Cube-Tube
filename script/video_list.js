@@ -242,7 +242,7 @@ function removeUnusedRows() {
 
 function resetSelectedTd() {
     $(".tdList").removeClass('selectedTd');
-    $('.fa-circle-o-notch').remove();
+    $('.tdTitle i.fa').remove();
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
@@ -286,23 +286,26 @@ function resetPlaylistTd() {
 
 function updateMidNavText(){
     if(playlistVideoObjectArray.length){
-        for(var i = 0; i < playlistVideoObjectArray.length; i++){
-            if (currentlySelectedVideoID === playlistVideoObjectArray[i].youtube_video_id){
-                $('.midNavWatching').hide();
-                $('.midNavBrowsing').hide();
-                $(".midNavAddBtn").hide();
-                $(".midNavPlaylist").show();
-                return
-            }
-            else{
-                $('.midNavWatching').hide();
-                $('.midNavBrowsing').hide();
-                $(".midNavAddBtn").hide();
-                $(".midNavPlaylist").show();
-            }
-        }
+        // for(var i = 0; i < playlistVideoObjectArray.length; i++){
+        //     if (currentlySelectedVideoID === playlistVideoObjectArray[i].youtube_video_id){
+        //         $('.midNavWatching').hide();
+        //         $('.midNavBrowsing').hide();
+        //         $(".midNavAddBtn").hide();
+        //         $(".midNavPlaylist").show();
+        //         return
+        //     }
+        //     else{
+        //         $('.midNavWatching').hide();
+        //         $('.midNavBrowsing').hide();
+        //         $(".midNavAddBtn").hide();
+        //         $(".midNavPlaylist").show();
+        //     }
+        // }
+        $(".midNavPlaylistText").show();
+        $(".midNavPlaylist").show();
     }
     else{
+        $(".midNavPlaylistText").hide();
         $(".midNavPlaylist").hide();
     }
 
@@ -322,6 +325,7 @@ function updateMidNavText(){
     }
     else{
         $('.midNavBrowsing').hide();
+        $(".midNavPlaylistText").hide();
         $('.midNavWatching').show();
         var channelsWatching = "";
         for(var i = 0; i < clientSelectedChannelObjects.length; i++){
@@ -449,8 +453,6 @@ function updateChannelInfoPopover(channelID){
             $("#channelInfo").attr({
                 'data-original-title': data.items[0].snippet.title
             });
-
-
         },
         error: function (data) {
             console.log('something went wrong with YT', data);

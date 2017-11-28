@@ -30,6 +30,7 @@ function handleAddToPlaylist(){
 }
 
 function playNextPlaylistVideo(){
+    $('.tdTitle i.fa').remove();    
     if(playlistVideoObjectArray.length){
         // if (currentlySelectedVideoID === playlistVideoObjectArray.youtube_video_id){
         //     playlistVideoObjectArray.splice(0, 1);
@@ -42,11 +43,12 @@ function playNextPlaylistVideo(){
         //         }
         //     }
         // }
-        $('.midNavWatching').hide();
-        $('.midNavBrowsing').hide();
-        $(".midNavAddBtn").hide();
-
-        $(".midNavPlaylist").show();
+        // $('.midNavWatching').hide();
+        // $('.midNavBrowsing').hide();
+        // $(".midNavAddBtn").hide();
+        //
+        // $(".midNavPlaylist").show();
+        updateMidNavText();
 
 
         var nextVideoIdToLoad = playlistVideoObjectArray[0].youtube_video_id;

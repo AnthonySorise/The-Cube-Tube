@@ -10,8 +10,10 @@ var currentSlideNumber = 1;
 var currentVideoindex = null;
 var browsingMode = false;
 var currentVolumeLevel = null;
-const play = "fa fa-play modalControls playButton";
-const pause = "fa fa-pause modalControls pauseButton";
+const playFaClass = "fa fa-play modalControls playButton";
+const pauseFaClass = "fa fa-pause modalControls pauseButton";
+const faSpinCircle = 'fa-circle-o-notch fa-fw fa-spin';
+const faPauseIcon = 'fa-pause-circle-o fa-lg';
 var player;
 // var player2;
 var currentlySelectedVideoID = null;
@@ -21,6 +23,7 @@ var currentlySelectedVideoID = null;
 $(document).ready(function () {
     function initApp(){
         
+        pausePlaywithSpacebar()
         $("#text-carousel, .videoHeader, .listDropWrap, .listUpWrap").hide();
         // $(".videoHeader").hide();
         // $('.listDropWrap').hide();
@@ -31,7 +34,7 @@ $(document).ready(function () {
          function for preventing page refresh with search button;
          only did it because page refresh was annoying
          **/
-        $('#midNav-option form button').click(function (event) {
+        $('#midNav-option form button').on('click, tap', function (event) {
             event.preventDefault();
         });
 
@@ -109,14 +112,14 @@ function initiateUser() {
             if (data.success) {
                 console.log('USER CTU', data);
                 const uLink = 'www.thecubetube.com/?user=' + data.user_link;
-                const britEyesOnly = $('<span>',{
+                const uLinkForCopy = $('<span>',{
                     'class': 'linkGhost',
                     'text': uLink
                 }).css({
                     position: 'absolute',
                     display: 'none'
                 });
-                $('body').append(britEyesOnly);
+                $('body').append(uLinkForCopy);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                     $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
                     toastMsg('Welcome back', 3000);
@@ -144,8 +147,35 @@ function initiateUser() {
                             console.log("INIT CHANNEL UPDATE", data)
                             updatedChannels ++;
                             if(numSubscribedChannels === updatedChannels){
-                                loadSelectedChannels();
-                                renderChannelSelectionDropdown();
+                                //read categories
+                                $.ajax({
+                                    url: './script/api_calls_to_db/access_database/access.php',
+                                    method: 'POST',
+                                    dataType: 'JSON',
+                                    data: {
+                                        action: 'read_categories_by_user',
+                                    },
+                                    success: function (data) {
+                                        if (data.success){
+                                            console.log('category read success', data);
+                                            for (var i = 0; i < data.data.length; i++){
+                                                console.log("CATEGORY - ", data.data[i].category_name)
+                                                var catName = data.data[i].category_name;
+                                                if(!clientCategories.hasOwnProperty(catName)){
+                                                    clientCategories[catName] = [];
+                                                }
+                                                clientCategories[catName].push(data.data[i].youtube_channel_id)
+                                            }
+                                        }else{
+                                            console.log(data);
+                                        }
+                                        loadSelectedChannels();
+                                        renderChannelSelectionDropdown();
+                                    },
+                                    errors: function (data) {
+                                        console.log('read error', data);
+                                    }
+                                })
                             }
 
                             if (data.success) {
