@@ -189,7 +189,7 @@ consider carousel for the video list area:
 								</label>
 							</div>
 						</div>
-						<div class="mediaControls"></div>
+						<div class="mediaControls hidden-xs"></div>
 <!--						<form class="navbar-right nav-pills form-inline">-->
 <!--							<!--form for searching channels-->
 <!--							<div class="form-group">-->
@@ -287,7 +287,8 @@ consider carousel for the video list area:
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
 					
 					<!-- Indicators -->
-					<ol class="carousel-indicators hidden-xs hidden-sm">
+					<!-- <ol class="carousel-indicators hidden-xs hidden-sm"></ol> -->
+					<ol class="carousel-indicators">
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
 						<li id="returnCarouselStart" class="glyphicon glyphicon-fast-backward" onclick=returnToPageOne()></li>
@@ -1445,10 +1446,10 @@ consider carousel for the video list area:
 							<i class="fa fa-window-close fa-lg" aria-hidden="true"></i>
 						</button>
 						<form class="channelSearchForm modalChSearch form-inline">
-					<!--form for searching channels-->
+					<!--form for searching channels on channel modal-->
 							<div class="form-group">
 								<div class="input-group">
-									<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
+									<input type="text" class="form-control" id="channelModalSearchBar" placeholder="search channels" name="channelSearch">
 									<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
 										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 									</span>
@@ -1664,10 +1665,8 @@ consider carousel for the video list area:
 							<div class="userCategoryExists">
 								<label>Add to an existing category.</label>
 								<div class="form-group form-inline existingCategorySelect">
-									<select name="initialCategorySelect" class="channelCategorySelect form-control">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" id="channelCategorySelectUlink">
 										<option value="" hidden disabled selected>select a category</option>
-										<option value="cat1">cat1</option>
-										<option value="cat2">cat2</option>
 									</select>
 									<button class="btn existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>
@@ -1717,10 +1716,8 @@ consider carousel for the video list area:
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
 								<div class="form-group form-inline existingCategorySelect">
-									<select name="initialCategorySelect" class="channelCategorySelect form-control">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" id="channelCategorySelectEdit">
 										<option value="" hidden disabled selected>select a category</option>
-										<option value="cat1">cat1</option>
-										<option value="cat2">cat2</option>
 									</select>
 									<button class="btn existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>

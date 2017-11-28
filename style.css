@@ -167,7 +167,7 @@ body {
 	margin-right: 7px;
 	display:none;
 }
-.midNavBrowsing, .midNavWatching, .midNavPlaylist{
+.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
 	display: none;
 	font-size:14px;
 	font-weight: 700
@@ -241,7 +241,7 @@ body {
 #channelCategoryUl li{
 	cursor: pointer;
 }
-.dropdownChannelLi, .dropdownChannelLiAll{
+.dropdownChannelLi, .dropdownChannelLiAll, .dropdownCatLi{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -260,7 +260,7 @@ body {
 	color: white;
 	cursor: pointer;
 }
-.channelLiChannel:hover, .dropdownChannelLiAll:hover{
+.channelLiChannel:hover, .dropdownChannelLiAll:hover, .dropdownCatLi:hover{
 	background-color: rgba(255, 255, 255, 0.5);
 	color: black;
 }
@@ -865,18 +865,18 @@ div.thRow {
 .userLinkBody, .categoryEditBody{
 	background-color: #020e13;
 	color:white;
-	height: 50vh;
+	height: 45vh;
 	
 }
 .userLinkHeader, .categoryEditHeader{
 	background-color: black;
 	color:white;
 }
-.userLinkHeader>button{
+.userLinkHeader>button, .categoryEditHeader>button{
 	opacity: 0.7;
 	color: white;
 }
-.userLinkHeader>button:hover{
+.userLinkHeader>button:hover, .categoryEditHeader>button:hover{
 	opacity: 1;
 	color: white;
 }
@@ -886,6 +886,9 @@ div.thRow {
 }
 .existingCategorySelect select.channelCategorySelect{
 	width: 54%;
+}
+.userCategoryExists{
+	display: none;
 }
 .userCategoryExists dl{
 	margin-bottom: 20px;
@@ -1178,6 +1181,9 @@ safer appraoch than to resizing browser to see change
 		max-height: 40vh;
 		max-width: 15vw;
 	}
+
+	
+
 }
 @media only screen and (max-width : 767px){
 	#mainVideo {
@@ -1232,6 +1238,10 @@ safer appraoch than to resizing browser to see change
 	}
 	.autoPlayArea{
 		margin-left: -15px;
+		left: 0;
+	}
+	.midNavChannels{
+		float: none;
 	}
 	#midNav-option form{
 		width: 95%;
@@ -1281,6 +1291,11 @@ safer appraoch than to resizing browser to see change
 		margin: 10px !important;
 	}
 	/* End of css for mobile modal */
+
+
+	.carousel-indicators {
+		top: 546px;
+	}
 }
 
 
