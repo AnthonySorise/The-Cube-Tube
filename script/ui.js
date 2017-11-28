@@ -4,7 +4,7 @@ function showChannelDrop(){
 		.attr('aria-expanded','true')
 		.css('display','block')
 		.velocity({
-			'right': '0',
+			'right': '0px',
 			'width': '95vw',
 			// 'height': '+=3px',
 			'min-height': '97vh'
