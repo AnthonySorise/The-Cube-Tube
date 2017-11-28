@@ -227,7 +227,7 @@ consider carousel for the video list area:
                                     Watching:
                                 </p>
 							</span>
-                            <span class="midNavPlaylist playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="all">
+                            <span class="midNavPlaylist playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover">
                         		<i class="fa fa-list-ol fa-lg"></i>
                         		Playlist
                         	</span>
@@ -1676,7 +1676,7 @@ consider carousel for the video list area:
 								</dl>
 							</div>
 							<label>Create a a  new category for this channel.</label>
-							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
+							<form class="form-group form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
 								<div class="form-group">
 									<div class="input-group">
 										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">

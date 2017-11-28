@@ -453,8 +453,6 @@ function updateChannelInfoPopover(channelID){
             $("#channelInfo").attr({
                 'data-original-title': data.items[0].snippet.title
             });
-
-
         },
         error: function (data) {
             console.log('something went wrong with YT', data);
