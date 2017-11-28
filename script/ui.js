@@ -352,7 +352,7 @@ function clickHandler() {
         $(".navbar-collapse").collapse('hide');
         searchChannelsByName(inputStr).then(worked, failed);
         // $(".contentPlaceholder").hide();
-        if($('.contentPlaceholder').css('display')!=='none'){
+        if($('.contentPlaceholderWrapper').css('display')!=='none'){
             $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                 $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
             });
