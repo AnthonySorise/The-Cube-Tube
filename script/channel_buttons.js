@@ -52,14 +52,8 @@ function changeCategory(category){
                         if (data.success) {
                             console.log('insert success', data);
 
-                            for(var key in clientCategories){
-                                for(var i = 0; i < clientCategories[key].length; i++){
-                                    if(clientCategories[key][i] === channelIdOfCategorySet){
-                                        clientCategories[key].splice(i, 1)
-                                    }
-                                }
-                            }
                             removeUnusedCategories();
+
                             if(!clientCategories.hasOwnProperty(category)){
                                 clientCategories[category] = [];
                             }
@@ -122,6 +116,13 @@ function changeCategory(category){
 
 
 function removeUnusedCategories(){
+    for(var key in clientCategories){
+        for(var i = 0; i < clientCategories[key].length; i++){
+            if(clientCategories[key][i] === channelIdOfCategorySet){
+                clientCategories[key].splice(i, 1)
+            }
+        }
+    }
     for(var key in clientCategories) {
         if (clientCategories[key].length === 0) {
             access_database.delete_categories(key)
