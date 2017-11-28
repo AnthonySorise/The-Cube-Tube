@@ -59,12 +59,7 @@ function changeCategory(category){
                                     }
                                 }
                             }
-                            for(var key in clientCategories) {
-                                if (clientCategories[key].length === 0) {
-                                    delete clientCategories[key]
-                                }
-                            }
-
+                            removeUnusedCategories();
                             if(!clientCategories.hasOwnProperty(category)){
                                 clientCategories[category] = [];
                             }
@@ -102,11 +97,7 @@ function changeCategory(category){
                                     }
                                 }
                             }
-                            for(var key in clientCategories) {
-                                if (clientCategories[key].length === 0) {
-                                    delete clientCategories[key]
-                                }
-                            }
+                            removeUnusedCategories();
                             if(!clientCategories.hasOwnProperty(category)){
                                 clientCategories[category] = [];
                             }
@@ -128,6 +119,17 @@ function changeCategory(category){
         }
     })
 }
+
+
+function removeUnusedCategories(){
+    for(var key in clientCategories) {
+        if (clientCategories[key].length === 0) {
+            access_database.delete_categories(key)
+            delete clientCategories[key]
+        }
+    }
+}
+
 
 function handleAddButton() {
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
@@ -237,6 +239,7 @@ function handleRemoveButton() {
             clientSelectedChannelIds.splice(i, 1)
         }
     }
+    removeUnusedCategories();
     renderChannelSelectionDropdown();
     loadSelectedChannels();
 }
