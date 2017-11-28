@@ -48,11 +48,11 @@ foreach($channel_array as $youtube_channel_id){
     if($conn->affected_rows>0){
         $output['update_success'] += 1;
         $output['success'] = true;
-    }else{
-        $output['errors'][] = "update fail at {$youtube_channel_id}";
     }
     if($output['update_success']>0){
         $output['success'] = true;
+    }else{
+        $output['messages'][] = 'nothing to update';
     }
 }
 ?>
