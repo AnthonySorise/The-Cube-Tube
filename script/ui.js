@@ -352,11 +352,14 @@ function clickHandler() {
         $(".navbar-collapse").collapse('hide');
         searchChannelsByName(inputStr).then(worked, failed);
         // $(".contentPlaceholder").hide();
-        $('.contentPlaceholderWrapper').fadeOut(1000, function () {
-            $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
-        });
-        // $("#text-carousel").show()
-        // $(".videoHeader").show()
+        if($('.contentPlaceholder').css('display')!=='none'){
+            $('.contentPlaceholderWrapper').fadeOut(1000, function () {
+                $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
+            });
+            return;
+        }
+        
+
     });
     //Browse Button
     $('.browseChannelButton').on("click tap", handleBrowseButton);
