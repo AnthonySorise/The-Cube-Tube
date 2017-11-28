@@ -180,7 +180,7 @@ function addChannelModal(userLink) {
         let button = $('<button>').addClass("btn btn-info btn-lg btn-block").text("CopyLink  ");
         let linkIcon = $('<i>').addClass('fa fa-clipboard fa-lg text-danger');
 
-        button.append(linkIcon).click(()=>{
+        button.append(linkIcon).on('click tap', ()=>{
             clipBoard('linkSpan');
         });
         $('.linkCopyArea').append(linkHeaderHiddenXs, linkHeaderVisibleXs, linkSpan, linkDiv, button);

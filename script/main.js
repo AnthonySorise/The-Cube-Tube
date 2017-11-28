@@ -33,7 +33,7 @@ $(document).ready(function () {
          function for preventing page refresh with search button;
          only did it because page refresh was annoying
          **/
-        $('#midNav-option form button').click(function (event) {
+        $('#midNav-option form button').on('click, tap', function (event) {
             event.preventDefault();
         });
 
