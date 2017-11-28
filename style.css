@@ -443,11 +443,22 @@ li#returnCarouselStart{
 .carousel-control.right {
 	height: 100%;
 	background: none !important;
+	position: fixed;
+	top: 70%
 }
 .carousel-control.left {
 	height: 100%;
 	background: none !important;
+	position: fixed;
+	top: 70%
 }
+.carousel-control.right >span {
+	top: 15% !important;
+}
+.carousel-control.left >span {
+	top: 15% !important;
+}
+
 #text-carousel {
 	overflow: auto;
 	height: 95%;
@@ -1299,6 +1310,13 @@ safer appraoch than to resizing browser to see change
 		margin: 10px !important;
 	}
 	/* End of css for mobile modal */
+
+	.carousel-control.right >span {
+		top: 8% !important;
+	}
+	.carousel-control.left >span {
+		top: 8% !important;
+	}
 
 
 	.carousel-indicators {
