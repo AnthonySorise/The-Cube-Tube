@@ -17,7 +17,6 @@ consider carousel for the video list area:
 		gtag('js', new Date());
 		gtag('config', 'UA-109199068-1');
 	</script>
-	
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Audiowide|Arvo" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	 crossorigin="anonymous">
@@ -43,7 +42,7 @@ consider carousel for the video list area:
     <script type="text/javascript" src="script/my_cube.js"></script>
     <!-- <script type="text/javascript" src="script/tour.js"></script> -->
     <script type="text/javascript" src="script/utilities.js"></script>
-
+	<script src="//cdn.jsdelivr.net/velocity/1.5/velocity.min.js"></script>
 	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">

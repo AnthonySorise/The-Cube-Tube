@@ -56,6 +56,10 @@ body {
 	height: 33.7px !important;
 }
 
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: #fff !important;
+}
+
 /************************************************************************************
 *  Any and all css for navbar - i.e. anything inside #mainNav<nav> / #midNav<nav>	*
 *  at this moment, the only exception for having it outside of this area 			*
@@ -1221,7 +1225,7 @@ safer appraoch than to resizing browser to see change
 
 	#channelCategoryUl{
 		font-size:20px;
-		min-height: 90vh;
+		min-height: 94vh;
 	}
 	#dropdownChannelUl{
 		max-height: 85vh;
