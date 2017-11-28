@@ -911,8 +911,16 @@ div.thRow {
 	border-radius:0;
 	border:none;
 }
+.channelCategoryForm {
+	display: flex;
+    justify-content: center;
+}
 .existingCategorySelect select.channelCategorySelect{
 	width: 54%;
+}
+.existingCategorySelect {
+	display: flex;
+    justify-content: center;
 }
 .userCategoryExists{
 	display: none;
@@ -1208,6 +1216,9 @@ safer appraoch than to resizing browser to see change
 		max-height: 40vh;
 		max-width: 15vw;
 	}
+	.channelCategoryForm {
+		width: 115%;
+	}
 
 	
 
@@ -1305,8 +1316,10 @@ safer appraoch than to resizing browser to see change
 		font-size: .70em;   
 	}
 	.addChannelButton {
-		width:15%;
+		width:18%;
 		font-size: .70em;
+		white-space: nowrap;
+		padding: 6px 0;
 	}
 	.chName {
 		width: 85%;
