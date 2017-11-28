@@ -227,7 +227,7 @@ consider carousel for the video list area:
                                     Watching:
                                 </p>
 							</span>
-                            <span class="midNavPlaylist playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover" title="all">
+                            <span class="midNavPlaylist playlistLabel label label-info" data-toggle="tooltip" data-placement="auto" data-container="body" data-trigger="hover">
                         		<i class="fa fa-list-ol fa-lg"></i>
                         		Playlist
                         	</span>
