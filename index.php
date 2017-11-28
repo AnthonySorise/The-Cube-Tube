@@ -286,7 +286,8 @@ consider carousel for the video list area:
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
 					
 					<!-- Indicators -->
-					<ol class="carousel-indicators hidden-xs hidden-sm">
+					<!-- <ol class="carousel-indicators hidden-xs hidden-sm"></ol> -->
+					<ol class="carousel-indicators">
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
 						<li id="returnCarouselStart" class="glyphicon glyphicon-fast-backward" onclick=returnToPageOne()></li>
@@ -1663,10 +1664,8 @@ consider carousel for the video list area:
 							<div class="userCategoryExists">
 								<label>Add to an existing category.</label>
 								<div class="form-group form-inline existingCategorySelect">
-									<select name="initialCategorySelect" class="channelCategorySelect form-control">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" id="channelCategorySelectUlink">
 										<option value="" hidden disabled selected>select a category</option>
-										<option value="cat1">cat1</option>
-										<option value="cat2">cat2</option>
 									</select>
 									<button class="btn existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>
@@ -1716,10 +1715,8 @@ consider carousel for the video list area:
 							<div class="userCategoryExists">
 								<label>Add to existing categories</label>
 								<div class="form-group form-inline existingCategorySelect">
-									<select name="initialCategorySelect" class="channelCategorySelect form-control">
+									<select name="initialCategorySelect" class="channelCategorySelect form-control" id="channelCategorySelectEdit">
 										<option value="" hidden disabled selected>select a category</option>
-										<option value="cat1">cat1</option>
-										<option value="cat2">cat2</option>
 									</select>
 									<button class="btn existingCategoryButton">
 										<span class="glyphicon glyphicon-ok"></span>

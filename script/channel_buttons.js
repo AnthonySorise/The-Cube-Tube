@@ -5,7 +5,18 @@ function handleChangeCategory(){
     channelIdOfCategorySet = $(this).parent().attr("channelId");
 
     //update categoryEditModal
-
+    if(Object.keys(clientCategories).length){
+        const catArr = Object.keys(clientCategories);
+        $('#channelCategorySelectEdit option:not(:disabled)').remove();
+        for(var idx in catArr){
+            const catOpt = $('<option>',{
+                'value' : catArr[idx],
+                'text': catArr[idx]
+            });
+            $('#channelCategorySelectEdit').append(catOpt);
+        }
+        $('.userCategoryExists').show();
+    }
     $("#categoryEditModal").modal("show")
 }
 
@@ -40,6 +51,14 @@ function changeCategory(category){
                     success: function (data) {
                         if (data.success) {
                             console.log('insert success', data);
+
+                            removeUnusedCategories();
+
+                            if(!clientCategories.hasOwnProperty(category)){
+                                clientCategories[category] = [];
+                            }
+                            clientCategories[category].push(channelIdOfCategorySet);
+                            renderChannelSelectionDropdown();
                         }else{
                             console.log(data);
                         }
@@ -64,7 +83,20 @@ function changeCategory(category){
                     success: function (data) {
                         if (data.success) {
                             console.log('insert success', data);
-                            //front end changes to clientCategories and call renderChannelSelectionDropdown()
+
+                            for(var key in clientCategories){
+                                for(var i = 0; i < clientCategories[key].length; i++){
+                                    if(clientCategories[key][i] === channelIdOfCategorySet){
+                                        clientCategories[key].splice(i, 1)
+                                    }
+                                }
+                            }
+                            removeUnusedCategories();
+                            if(!clientCategories.hasOwnProperty(category)){
+                                clientCategories[category] = [];
+                            }
+                            clientCategories[category].push(channelIdOfCategorySet);
+                            renderChannelSelectionDropdown();
 
                         }else{
                             console.log(data);
@@ -81,6 +113,24 @@ function changeCategory(category){
         }
     })
 }
+
+
+function removeUnusedCategories(){
+    for(var key in clientCategories){
+        for(var i = 0; i < clientCategories[key].length; i++){
+            if(clientCategories[key][i] === channelIdOfCategorySet){
+                clientCategories[key].splice(i, 1)
+            }
+        }
+    }
+    for(var key in clientCategories) {
+        if (clientCategories[key].length === 0) {
+            access_database.delete_categories(key)
+            delete clientCategories[key]
+        }
+    }
+}
+
 
 function handleAddButton() {
     //CALL FUNCTION THAT LOOKS SELECTION LIST AND UPDATES clientSelectedChannelIds and and clientSelectedChannelObjects
@@ -122,7 +172,7 @@ function addChannelModal(userLink) {
         });
 
         const linkHeaderHiddenXs = $('<h3>').text("Save this link!").addClass("hidden-xs");
-        const linkHeaderVisibleXs = $('<h3>').text("Save this link!").addClass("visible-xs");
+        const linkHeaderVisibleXs = $('<h5>').text("Save this link!").addClass("visible-xs");
         const linkDiv = $('<div>',{
             text: 'Use it to get access to your subscribed channels.'
         });
@@ -134,7 +184,22 @@ function addChannelModal(userLink) {
             clipBoard('linkSpan');
         });
         $('.linkCopyArea').append(linkHeaderHiddenXs, linkHeaderVisibleXs, linkSpan, linkDiv, button);
+    }else{
+        $('.linkCopyArea').hide();
     }
+    if(Object.keys(clientCategories).length){
+        const catArr = Object.keys(clientCategories);
+        $('#channelCategorySelectUlink option:not(:disabled)').remove();
+        for(var idx in catArr){
+            const catOpt = $('<option>',{
+                'value' : catArr[idx],
+                'text': catArr[idx]
+            });
+            $('#channelCategorySelectUlink').append(catOpt);
+        }
+        $('.userCategoryExists').show();
+    }
+
     $('#userLinkModal').modal('show');
 }
 
@@ -159,6 +224,7 @@ function handleBrowseButton() {
 function handleRemoveButton() {
     $('.dropdownSettingsPopover').popover('hide');
     let channelId = $(this).parent().attr("channelId");
+    channelIdOfCategorySet = channelId;
     console.log("REMOVING " + channelId);
     access_database.delete_ctu(channelId);
     for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
@@ -175,6 +241,7 @@ function handleRemoveButton() {
             clientSelectedChannelIds.splice(i, 1)
         }
     }
+    removeUnusedCategories();
     renderChannelSelectionDropdown();
     loadSelectedChannels();
 }
