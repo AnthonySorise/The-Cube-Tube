@@ -1259,7 +1259,7 @@ safer appraoch than to resizing browser to see change
 
 	#channelCategoryUl{
 		font-size:20px;
-		min-height: 94vh;
+		min-height: 90vh;
 	}
 	#dropdownChannelUl{
 		max-height: 85vh;
