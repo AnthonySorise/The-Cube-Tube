@@ -17,7 +17,7 @@ $query =
     JOIN	
         users AS u ON cuc.user_id = u.user_id
     JOIN
-        categories AS ct ON ct.category_id = ct.category_id
+        categories AS ct ON cuc.category_id = ct.category_id
     WHERE
         u.user_link = ? AND ct.category_name = ? AND c.youtube_channel_id = ?";
 if(!($stmt = $conn->prepare($query))){
