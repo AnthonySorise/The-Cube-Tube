@@ -57,7 +57,8 @@ body {
 }
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-    background-color: #fff !important;
+	background-color: #fff !important;
+	color: orange !important;
 }
 
 /************************************************************************************
@@ -129,13 +130,16 @@ body {
 	position: absolute;
 	top: -20px;
 	left: 50%;
-	transform: translateX(-50%)
+	transform: translateX(-50%);
+	display: none;
 }
 .listDropWrap{
 	position: absolute;
 	top: 46px;
 	left: 50%;
-	transform: translateX(-50%)
+	transform: translateX(-50%);
+	display: none;
+	
 }
 .listUpButton{
 	padding: 0 15px;
@@ -910,8 +914,16 @@ div.thRow {
 	border-radius:0;
 	border:none;
 }
+.channelCategoryForm {
+	display: flex;
+    justify-content: center;
+}
 .existingCategorySelect select.channelCategorySelect{
 	width: 54%;
+}
+.existingCategorySelect {
+	display: flex;
+    justify-content: center;
 }
 .userCategoryExists{
 	display: none;
@@ -1207,9 +1219,6 @@ safer appraoch than to resizing browser to see change
 		max-height: 40vh;
 		max-width: 15vw;
 	}
-
-	
-
 }
 @media only screen and (max-width : 767px){
 	#mainVideo {
@@ -1304,8 +1313,10 @@ safer appraoch than to resizing browser to see change
 		font-size: .70em;   
 	}
 	.addChannelButton {
-		width:15%;
+		width:18%;
 		font-size: .70em;
+		white-space: nowrap;
+		padding: 6px 0;
 	}
 	.chName {
 		width: 85%;
