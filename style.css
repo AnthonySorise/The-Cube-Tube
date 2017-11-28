@@ -249,6 +249,7 @@ body {
 }
 #channelCategoryUl li{
 	cursor: pointer;
+	user-select: none;
 }
 .dropdownChannelLi, .dropdownChannelLiAll, .dropdownCatLi{
 	overflow: hidden;
