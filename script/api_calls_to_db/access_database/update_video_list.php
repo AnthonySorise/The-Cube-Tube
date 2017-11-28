@@ -1,4 +1,5 @@
 <?php
+//get the most recent videos based on the last time the channel was updated
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
@@ -17,7 +18,8 @@ $current_time = date('Y-m-d H:i:s');
 $current_time_for_comparison = strtotime($current_time);
 $last_pull_time = strtotime($last_channel_pull);
 $diff = round(($current_time_for_comparison-$last_pull_time)/60);
-if($diff<5){
+//exit if an update atttempt was within the past 10 minutes
+if($diff<10){
     $output['messages'] = 'updated recently';
     output_and_exit($output);
 }
@@ -31,14 +33,11 @@ $sqli =
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param("ss",$current_time,$youtube_channel_id);
 $stmt->execute();
-if(empty($stmt)){
-    $output['errors'][]='invalid query';
+if($conn->affected_rows>0){
+    $output['messages'][] = "channel updated with last channel pull";
+    include('youtube_videos_curl.php');
 }else{
-    if($conn->affected_rows>0){
-        $output['messages'][] = "channel updated with last channel pull";
-        include('youtube_videos_curl.php');
-    }else{
-        $output['errors'][]='UNABLE TO UPDATE';
-    }
+    $output['errors'][]='UNABLE TO UPDATE';
 }
+
 ?>

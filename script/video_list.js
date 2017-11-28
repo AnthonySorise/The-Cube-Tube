@@ -17,7 +17,7 @@ function loadSelectedChannels() {
                 // returnToPageOne();
                 clearVideoList();
                 renderVideoList(videoObjectsToLoad);
-                updateMidNavText()
+                updateMidNavText();
             }
             else {
                 console.log('Channel Found Without Videos', data)
@@ -73,6 +73,7 @@ function renderVideoList(videoArray) {
 
     }
     resetSelectedTd();
+    resetPlaylistTd();
     //update thumbnail hover popover
     setTimeout(function () {
         for (let i = 0; i < videoArray.length; i++) {
@@ -198,7 +199,7 @@ function returnToPageOne() {
     $(".carousel").removeClass('slide')
     $(".carousel").carousel(0);
     if (currentSlideNumber !== 1) {
-        clearVideoList();
+        // clearVideoList();
         currentSlideNumber = 1; //redundant?
         if (videoObjectsToLoad.length !== 0) {
             var videosToLoad = [];
@@ -240,15 +241,12 @@ function removeUnusedRows() {
 }
 
 function resetSelectedTd() {
-    // setTimeout(function(){
     $(".tdList").removeClass('selectedTd');
-    $('.fa-circle-o-notch').remove();
-    // }, 50);
+    $('.tdTitle i.fa').remove();
     for (let i = 0; i < 40; i++) {
         let row = "#tdList-" + (i + 1);
 
         if (player.getVideoUrl().indexOf($(row).attr('videoid')) !== -1) {
-            // setTimeout(function(){
             $(row).addClass("selectedTd")
             var playSymbol = $('<i>')
                 .addClass('fa fa-circle-o-notch fa-spin fa-fw')
@@ -257,16 +255,60 @@ function resetSelectedTd() {
                     'color': 'green'
                 });
             $(row).find(".tdTitle>span").prepend(playSymbol);
-            // }, 500)
         }
     }
 }
 
-function resetPlaylistTD(){
+function resetPlaylistTd() {
+    $(".tdList").removeClass('playlistTd');
+    $(".tdList .tdPlaylistButton>i").removeClass('fa-check-square-o').addClass("fa-plus-square ");
+    $(".tdList .tdPlaylistNum").text("");
 
+    for (let i = 0; i < 40; i++) {
+        let row = "#tdList-" + (i + 1);
+
+        for(var j = 0; j < playlistVideoObjectArray.length; j++){
+            if (player.getVideoUrl().indexOf(playlistVideoObjectArray[j].youtube_video_id) !== -1) {
+                playlistVideoObjectArray.splice(j, 1);
+                $(row).removeClass("playlistTd")
+            }
+        }
+
+        for(var j = 0; j < playlistVideoObjectArray.length; j++){
+            if (playlistVideoObjectArray[j].youtube_video_id === $(row).attr("videoID")) {
+                $(row).addClass("playlistTd");
+                $(row + " .tdPlaylistButton>i").removeClass("fa-plus-square").addClass('fa-check-square-o');
+                $(row + " .tdPlaylistNum").text(j + 1)
+            }
+        }
+    }
 }
 
 function updateMidNavText(){
+    if(playlistVideoObjectArray.length){
+        // for(var i = 0; i < playlistVideoObjectArray.length; i++){
+        //     if (currentlySelectedVideoID === playlistVideoObjectArray[i].youtube_video_id){
+        //         $('.midNavWatching').hide();
+        //         $('.midNavBrowsing').hide();
+        //         $(".midNavAddBtn").hide();
+        //         $(".midNavPlaylist").show();
+        //         return
+        //     }
+        //     else{
+        //         $('.midNavWatching').hide();
+        //         $('.midNavBrowsing').hide();
+        //         $(".midNavAddBtn").hide();
+        //         $(".midNavPlaylist").show();
+        //     }
+        // }
+        $(".midNavPlaylistText").show();
+        $(".midNavPlaylist").show();
+    }
+    else{
+        $(".midNavPlaylistText").hide();
+        $(".midNavPlaylist").hide();
+    }
+
     if(browsingMode){
         $('.midNavBrowsing').show();
         $('.midNavWatching').hide();
@@ -283,6 +325,7 @@ function updateMidNavText(){
     }
     else{
         $('.midNavBrowsing').hide();
+        $(".midNavPlaylistText").hide();
         $('.midNavWatching').show();
         var channelsWatching = "";
         for(var i = 0; i < clientSelectedChannelObjects.length; i++){

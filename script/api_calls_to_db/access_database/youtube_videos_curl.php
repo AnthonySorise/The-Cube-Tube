@@ -14,7 +14,7 @@ if(!empty($_POST['last_channel_pull'])){
 }else{
     $last_channel_pull = '';
 }
-
+//grab channel id if not given
 if(empty($channel_id)){
     $sqli = 
         "SELECT 
@@ -44,8 +44,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $page_query="&pageToken={$page_token}";
     }
     $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=50");
-    // $pageToken
-    // publishedAfter = RFC 3339 formatted date-time value (1970-01-01T00:00:00Z).
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $json = curl_exec($ch);
     $error_occurred = false;
@@ -78,6 +76,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $query = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at, last_updated) VALUES";
         $data = [];
         $bind_str = '';
+        //break the data to insert into database
         foreach($entries as $key => $value){
             if(!empty($value['id']['videoId'])){
                 $query .= " (?,?,?,?,?,?),";
@@ -95,29 +94,23 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }
         $query = rtrim($query,", ");
         $stmt = $conn->prepare($query);
-        // call_user_func_array([$stmt, 'bind_param'],$data);
         $stmt->bind_param($bind_str, ...array_merge($data));
         $stmt->execute();
-        if(empty($stmt)){
-            $output['errors'][] = 'INVALID QUERY';
-            output_and_exit();
+        if($conn->affected_rows>0){
+            $output['success']=true;
+            $output['messages'][] = 'insert video success';
+            $output['page_token']=$next_page_token;
         }else{
-            if($conn->affected_rows>0){
-                $output['success']=true;
-                $output['messages'][] = 'insert video success';
-                $output['page_token']=$next_page_token;
-            }else{
-                $output['errors'][] = 'unable to insert video';
-            }
+            $output['errors'][] = 'unable to insert video';
         }
+        //let client know that first 50 has been inserted so they can search
         if($page_token === 'first'){
             output_and_exit($output);
         }
+        //recursively call this function till there are no more page tokens
         if(!empty($next_page_token)){
             insert_videos($youtube_channel_id,$channel_id,$next_page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output);
         }
-        return $output;
-        //REALLY SHOULD RETURN $output
     }
 }
 if(empty($_POST['page_token'])){
