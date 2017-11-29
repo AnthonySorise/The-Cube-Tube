@@ -62,7 +62,8 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $bind_str = '';
         //break the data to insert into database
         foreach($entries as $key => $value){
-            if(!empty($value['id']['videoId'])&&!empty($value['snippet']['title'])&&!empty($value['snippet']['description'])&&!empty($published_at = $value['snippet']['publishedAt'])){
+            //&&!empty($value['snippet']['title'])&&!empty($value['snippet']['description'])&&!empty($published_at = $value['snippet']['publishedAt'])
+            if(!empty($value['id']['videoId'])){
                 $query .= " (?,?,?,?,?,?),";
                 $bind_str .= "sissss";
                 $data[] = $value['snippet']['title'];
