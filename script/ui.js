@@ -477,14 +477,13 @@ function clickHandler() {
 
     // direction of play - arrow icon
     $("#playOrderArrow").on('click', function(){
-        debugger
+        reversePlayDirection = !reversePlayDirection;
         if(reversePlayDirection === false){
           $("i").removeClass('up')
         }else{
           $("i").addClass('up')
         }
-        reversePlayDirection = !reversePlayDirection;
-      })
+      });
     
 
 
