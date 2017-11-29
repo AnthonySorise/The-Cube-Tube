@@ -157,6 +157,7 @@ function handleAddButton() {
 
 function addChannelModal(userLink) {
     if (userLink) {
+        alert("Save this link and use it to access your account!");
         let uLink = 'www.thecubetube.com/?user='+userLink;
         const britEyesOnly = $('<span>',{
             'class': 'linkGhost',
