@@ -145,7 +145,6 @@ function getAutoPlayDirectionValue(){
 }
 
 function pausePlaywithSpacebar(){
-   
     $(window).keypress(function(e) {
         let inputFocus = $("input").is(':focus');
         if(inputFocus == false){
@@ -159,6 +158,8 @@ function pausePlaywithSpacebar(){
 
     });
 }
+
+
 
 // function checkIfPlayerIsMuted() {
 //     if (player.isMuted()) {
