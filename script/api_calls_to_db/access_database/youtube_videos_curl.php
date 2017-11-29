@@ -78,7 +78,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }
         $query = rtrim($query,", ");
         $stmt = $conn->prepare($query);
-        $stmt->bind_param($bind_str, ...($data));
+        $stmt->bind_param($bind_str, ...array_merge($data));
         $stmt->execute();
         if($conn->affected_rows>0){
             $output['success']=true;
