@@ -42,13 +42,14 @@
             }
         })
     }
-    this.delete_ctu = function(youtube_channel_id){//delete by specifying ctu id
+    this.delete_ctu = function(youtube_channel_id,category_name){//delete by specifying ctu id
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
                 youtube_channel_id: youtube_channel_id,
+                category_name: category_name,
                 action:'delete_ctu'
             },
             success:function(data){
@@ -259,7 +260,7 @@
             method:'post',
             dataType:'JSON',
             data:{
-                action:'insert_cuc',
+                action:'insert_ctc',
                 youtube_channel_id:youtube_channel_id,
                 category_name:category_name
             },
