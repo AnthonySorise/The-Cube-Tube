@@ -385,6 +385,17 @@ function clickHandler() {
         $('.channelSearchForm').submit();
     });
 
+    function channelSearchWorked() {
+        console.log("CHANNEL SEARCH WORKED")
+        for (var i = 0; i < 10; i++) {
+            renderChannelSearchStats(i)
+        }
+    }
+
+    function channelSearchFailed(message) {
+        console.log('console.log("CHANNEL SEARCH FAILED")', message);
+    }
+
     $(".channelSearchForm").submit(function (event) {
         event.preventDefault();
         let inputStr = '';
@@ -394,7 +405,7 @@ function clickHandler() {
             inputStr = $(event.target).find('input').val();
         }
         $(".navbar-collapse").collapse('hide');
-        searchChannelsByName(inputStr).then(worked, failed);
+        searchChannelsByName(inputStr).then(channelSearchWorked, channelSearchFailed);
         // $(".contentPlaceholder").hide();
         if($('.contentPlaceholderWrapper').css('display')!=='none'){
             $('.contentPlaceholderWrapper').fadeOut(1000, function () {
@@ -415,7 +426,7 @@ function clickHandler() {
 
     $('.ui-autocomplete').on('click tap','.ui-menu-item-wrapper', function (event){
         let autocompleteValue = $(event.target).text();
-        searchChannelsByName(autocompleteValue).then(worked, failed);
+        searchChannelsByName(autocompleteValue).then(channelSearchWorked, channelSearchFailed);
     });
 
     //Table List Rows that are unselected
