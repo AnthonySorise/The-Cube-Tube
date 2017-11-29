@@ -74,14 +74,14 @@ function clipBoard(txtClass){
         window.getSelection().addRange(rng);
         try{
         var success = document.execCommand('copy');
-        var result = success ? 'link copied!' : 'something went wrong';
-        toastMsg(result, 1200);
+        var result = success ? 'Link Copied!' : 'Something Went Wrong';
+        toastMsg(result, 2000);
         }catch(err){
         console.log('error');
         }
         $('.linkGhost').css('display','none'); 
     }else{
-        toastMsg('nothing to copy', 1200);
+        toastMsg('nothing to copy', 2000);
     }
 }
 

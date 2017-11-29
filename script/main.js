@@ -123,7 +123,7 @@ function initiateUser() {
                 $('body').append(uLinkForCopy);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                     $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
-                    toastMsg('Welcome Back', 3000);
+                    toastMsg('Welcome Back', 2000);
                 });
                 numSubscribedChannels = data.data.length;
                 for (var i = 0; i < data.data.length; i++) {
