@@ -2,6 +2,7 @@ var clientCategories = {};
 var channelIdOfCategorySet = "";
 
 function handleChangeCategory(){
+    console.log("HANDLE CHANGE CATEGORY CALLED")
     channelIdOfCategorySet = $(this).parent().attr("channelId");
 
     //update categoryEditModal
@@ -23,6 +24,7 @@ function handleChangeCategory(){
 function changeCategory(category, isChangingCategory = false){
     //ajax calls to remove category
     if(isChangingCategory){
+        console.log("CHANGE CATEGORY - delete_cuc")
         $.ajax({
             url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
@@ -61,6 +63,7 @@ function changeCategory(category, isChangingCategory = false){
                     category_name:category
                 },
                 success: function (data) {
+                    console.log("CHANGE CATEGORY - insert_cuc - category already exists")
                     if (data.success) {
                         console.log('insert success', data);
 
@@ -91,6 +94,7 @@ function changeCategory(category, isChangingCategory = false){
                     category_name:category
                 },
                 success: function (data) {
+                    console.log("CHANGE CATEGORY - insert_category - category doesn't exist")
                     if (data.success) {
                         console.log('insert success', data);
 
@@ -122,6 +126,7 @@ function changeCategory(category, isChangingCategory = false){
 
 
 function removeUnusedCategories(){
+    console.log("REMOVE UNUSED CATEGORIES")
     for(var key in clientCategories){
         for(var i = 0; i < clientCategories[key].length; i++){
             if(clientCategories[key][i] === channelIdOfCategorySet){
