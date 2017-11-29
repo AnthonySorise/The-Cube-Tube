@@ -56,15 +56,7 @@ function searchChannelsByName(inputStr) {
     return promise;
 }
 
-function worked() {
-    for (var i = 0; i < 10; i++) {
-        renderChannelSearchStats(i)
-    }
-}
 
-function failed(message) {
-    console.log('nope', message);
-}
 
 function renderChannelSearchStats(i) {
     if ($("#chSearch-" + (i + 1) + ">h4>span").text() !== "") {
