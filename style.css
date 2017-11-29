@@ -175,6 +175,11 @@ body {
 	margin-left: 25px;
 	float:right;
 }
+
+label{
+	color: #020e13
+}
+
 .playlistLabel{
 	font-size: 14px;
 	margin-right: 7px;
@@ -537,7 +542,7 @@ div.thRow {
 	padding: 0;
 }
 .tdInfo i {
-	color: rgba(124, 221, 249, 0.5);
+	color: #337ab7;
 }
 .tdInfo a:hover, .tdInfo a:focus, .tdInfo a:active {
 	color: rgba(255, 255, 255, 1);
