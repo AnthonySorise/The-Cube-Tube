@@ -13,7 +13,7 @@ var currentVolumeLevel = null;
 const playFaClass = "fa fa-play modalControls playButton";
 const pauseFaClass = "fa fa-pause modalControls pauseButton";
 const faSpinCircle = 'fa-circle-o-notch fa-fw fa-spin';
-const faPauseIcon = 'fa-pause-circle-o fa-lg';
+const faPauseIcon = 'fa-pause-circle-o fa-fw';
 var player;
 // var player2;
 var currentlySelectedVideoID = null;
