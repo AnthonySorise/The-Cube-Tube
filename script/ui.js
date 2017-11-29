@@ -490,7 +490,6 @@ function clickHandler() {
     // carousel slides
     $('#rightArrowIcon').on('click tap',carouselRightArrow);
     $('#leftArrowIcon').on('click tap',carouselLeftArrow);
-
     // direction of play - arrow icon
     $("#playOrderArrow").on('click', function(){
         reversePlayDirection = !reversePlayDirection;
@@ -624,6 +623,9 @@ function carouselLeftArrow(){
 }
 
 function carouselRightArrow(){
+    if(videoObjectsToLoad.length < 40) {
+        return;
+    }
     $(".carousel").carousel('next');
 }
 

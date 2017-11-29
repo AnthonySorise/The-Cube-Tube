@@ -58,7 +58,7 @@ body {
 
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
 	background-color: #fff !important;
-	color: orange !important;
+	color: #FF8E2F !important;
 }
 
 /************************************************************************************
@@ -68,7 +68,7 @@ body {
 *************************************************************************************/
 .hamburger {
 	display: none !important;
-	color: orange;
+	color: #FF8E2F;
 	border: none;
 }
 #mainNav{
@@ -220,7 +220,7 @@ body {
 	border-bottom: 1px solid;
 }
 .channelSearchButton{
-	background-color: orange;
+	background-color: #FF8E2F;
 	border-radius: 0;
 	border:none;
 	cursor: pointer;
@@ -239,10 +239,10 @@ body {
 	color: white;
 }
 .dropdownLabelA>.fa-cube{
-	color: orange;
+	color: #FF8E2F;
 }
 .dropdownLabelA:hover{
-	color: orange;
+	color: #FF8E2F;
 }
 #channelCategoryUl{
 	text-align: center;
@@ -272,7 +272,7 @@ body {
 	color: red;
 }
 .dropdownChannelLiAll>.fa-cubes{
-	color: orange;
+	color: #FF8E2F;
 }
 
 .channelLiChannel:hover, .dropdownChannelLiAll:hover, .dropdownCatLi:hover, .dropdownChannelLiLoad:hover, #myLinkButton:hover{
@@ -663,7 +663,7 @@ div.thRow {
 
 .selectedTd>.tdTitle>span:hover, .selectedTd>.tdChannel:hover{
     text-decoration: underline;
-	color:orange !important;
+	color:#FF8E2F !important;
 }
 
 .row {
@@ -1081,7 +1081,7 @@ input:checked + .vert:before {
 	font-size: 30px;
 	top: 6px;
     right: 5px;
-	color: #FF8E2F;
+	color: oran;
 	transform: rotate(0deg);
 	transition: transform 1s linear;
 	cursor: pointer;
