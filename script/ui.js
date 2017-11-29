@@ -323,7 +323,27 @@ function clickHandler() {
         e.preventDefault();
         let categoryStr = '';
         categoryStr = $(e.target).find('input').val().toLowerCase();
-        changeCategory(categoryStr);
+
+        if($(e.target).closest('.modal').attr('id') === "userLinkModal"){
+            changeCategory(categoryStr);
+        }
+        else{
+            var isUncategorized = true;
+            for(var cat in clientCategories){
+                if(clientCategories[cat].indexOf(channelIdOfCategorySet) !== -1){
+                    isUncategorized = false;
+                }
+            }
+            console.log("IS UNCATEGORIZED IS ", isUncategorized)
+
+            if(isUncategorized){
+                changeCategory(categoryStr);
+            }
+            else{
+                changeCategory(categoryStr, true);
+            }
+        }
+
         $(e.target).find('input').val('');
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
             toastMsg('channel added', 1100);
@@ -332,7 +352,27 @@ function clickHandler() {
     $('.existingCategoryButton').on('click tap', (e)=>{
         let categoryStr = '';
         categoryStr = $(e.target).closest('.existingCategorySelect').find('select option:selected').val();
-        changeCategory(categoryStr);
+
+        if($(e.target).closest('.modal').attr('id') === "userLinkModal"){
+            changeCategory(categoryStr);
+        }
+        else{
+            var isUncategorized = true;
+            for(var cat in clientCategories){
+                if(clientCategories[cat].indexOf(channelIdOfCategorySet) !== -1){
+                    isUncategorized = false;
+                }
+            }
+            console.log("IS UNCATEGORIZED IS ", isUncategorized)
+
+            if(isUncategorized){
+                changeCategory(categoryStr);
+            }
+            else{
+                changeCategory(categoryStr, true);
+            }
+        }
+
         $(e.target).closest('.existingCategorySelect').find('select option:selected').prop('selected', false);
         $(e.target).closest('.existingCategorySelect').find('select option:disabled').prop('selected', true);
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
