@@ -427,8 +427,11 @@ function clickHandler() {
     $(".tdPlaylistButton").on("click tap", handleAddToPlaylist);
 
     $('.ui-autocomplete').on('click tap','.ui-menu-item-wrapper', function (event){
+        event.stopPropagation();
         let autocompleteValue = $(event.target).text();
-        searchChannelsByName(autocompleteValue).then(channelSearchWorked, channelSearchFailed);
+        $('.channelSearchInput').val(autocompleteValue);
+        $('.channelSearchButton').click()
+        // searchChannelsByName(autocompleteValue).then(channelSearchWorked, channelSearchFailed);
     });
 
     //Table List Rows that are unselected
