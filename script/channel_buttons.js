@@ -24,13 +24,13 @@ function handleChangeCategory(){
 function changeCategory(category, isChangingCategory = false){
     //ajax calls to remove category
     if(isChangingCategory){
-        console.log("CHANGE CATEGORY - delete_cuc")
+        console.log("CHANGE CATEGORY - delete_ctc")
         $.ajax({
             url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
-                action: 'delete_cuc',
+                action: 'delete_ctc',
                 youtube_channel_id:channelIdOfCategorySet
             },
             success: function (data) {
@@ -58,12 +58,12 @@ function changeCategory(category, isChangingCategory = false){
                 method:'post',
                 dataType:'JSON',
                 data:{
-                    action:'insert_cuc',
+                    action:'insert_ctc',
                     youtube_channel_id:channelIdOfCategorySet,
                     category_name:category
                 },
                 success: function (data) {
-                    console.log("CHANGE CATEGORY - insert_cuc - category already exists")
+                    console.log("CHANGE CATEGORY - insert_ctc - category already exists")
                     if (data.success) {
                         console.log('insert success', data);
 
