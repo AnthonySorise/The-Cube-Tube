@@ -83,7 +83,9 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         if($conn->affected_rows>0){
             $output['success']=true;
             $output['messages'][] = 'insert video success';
-            $output['page_token']=$next_page_token;
+            if(!empty($next_page_token)){
+                $output['page_token']=$next_page_token;
+            }  
         }else{
             $output['errors'][] = 'unable to insert video';
         }

@@ -51,6 +51,5 @@ if($conn->affected_rows>0){
 }
 else{
     $output['error'] = 'Unable to delete ctu';
-    error_log();
 }
 ?>
