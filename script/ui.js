@@ -462,7 +462,7 @@ function clickHandler() {
             updateMidNavText();
 
             // $('.fa-play-circle-o').remove();
-            $(faSpinCircle).remove();
+            $("." + faSpinCircle).remove();
             var playSymbol = $('<i>')
             // .addClass("fa fa-play-circle-o")
                 .addClass(faSpinCircle)
