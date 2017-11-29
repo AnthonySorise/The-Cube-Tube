@@ -20,13 +20,11 @@ include('read_channel_id.php');
 if(empty($category_id)){
     $query = 
         "SELECT
-            cuc.category_id
+            category_id
         FROM
-            category_to_user_to_channel AS cuc
-        JOIN
-            categories AS ct ON cuc.category_id = ct.category_id
+            categories
         WHERE
-            u.user_id = ? AND ct.category_name = ?";
+            user_id = ? AND category_name = ?";
     $stmt = $conn->prepare($query);
     if(!$stmt->bind_param('is',$user_id,$category_name)){
         $output['errors'][] = 'query failed at get category id';
@@ -44,9 +42,9 @@ if(empty($category_id)){
 //check for duplicates
 $query = 
     "SELECT
-        cuc_id
+        ctc_id
     FROM
-        category_to_user_to_channel 
+        categories_to_channels
     WHERE
         user_id = ? AND category_id = ? AND channel_id = ?";
 if(!($stmt = $conn->prepare($query))){

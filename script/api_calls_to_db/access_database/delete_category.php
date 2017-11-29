@@ -7,12 +7,11 @@ if(empty($_POST['category_name'])){
     $output['errors'][] = 'missing category name';
     output_and_exit($output); 
 }
-
 $category_name = $_POST['category_name'];
 $sqli = 
     "DELETE
         ct,
-        cuc
+        ctc
     FROM
         categories AS ct
     JOIN
