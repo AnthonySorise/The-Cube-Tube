@@ -324,19 +324,24 @@ function clickHandler() {
         let categoryStr = '';
         categoryStr = $(e.target).find('input').val().toLowerCase();
 
-        var isUncategorized = true;
-        for(var cat in clientCategories){
-            if(clientCategories[cat].contains(channelIdOfCategorySet)){
-                isUncategorized = false;
-            }
-        }
-        console.log("IS UNCATEGORIZED IS ", isUncategorized)
-
-        if(isUncategorized){
+        if($(e.target).closest('.modal').attr('id') === "userLinkModal"){
             changeCategory(categoryStr);
         }
         else{
-            changeCategory(categoryStr, true);
+            var isUncategorized = true;
+            for(var cat in clientCategories){
+                if(clientCategories[cat].contains(channelIdOfCategorySet)){
+                    isUncategorized = false;
+                }
+            }
+            console.log("IS UNCATEGORIZED IS ", isUncategorized)
+
+            if(isUncategorized){
+                changeCategory(categoryStr);
+            }
+            else{
+                changeCategory(categoryStr, true);
+            }
         }
 
         $(e.target).find('input').val('');
@@ -348,19 +353,24 @@ function clickHandler() {
         let categoryStr = '';
         categoryStr = $(e.target).closest('.existingCategorySelect').find('select option:selected').val();
 
-        var isUncategorized = true;
-        for(var cat in clientCategories){
-            if(clientCategories[cat].contains(channelIdOfCategorySet)){
-                isUncategorized = false;
-            }
-        }
-        console.log("IS UNCATEGORIZED IS ", isUncategorized)
-
-        if(isUncategorized){
+        if($(e.target).closest('.modal').attr('id') === "userLinkModal"){
             changeCategory(categoryStr);
         }
         else{
-            changeCategory(categoryStr, true);
+            var isUncategorized = true;
+            for(var cat in clientCategories){
+                if(clientCategories[cat].contains(channelIdOfCategorySet)){
+                    isUncategorized = false;
+                }
+            }
+            console.log("IS UNCATEGORIZED IS ", isUncategorized)
+
+            if(isUncategorized){
+                changeCategory(categoryStr);
+            }
+            else{
+                changeCategory(categoryStr, true);
+            }
         }
 
         $(e.target).closest('.existingCategorySelect').find('select option:selected').prop('selected', false);
