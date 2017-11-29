@@ -25,7 +25,7 @@ $stmt->execute();
 if($conn->affected_rows>0){
     $output['success'] = true;
     $output['messages'][] = 'delete ctu success';
-    include('delete_cuc.php');
+    include('delete_ctc.php');
 }
 else{
     $output['error'] = 'Unable to delete ctu';

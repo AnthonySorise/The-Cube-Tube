@@ -27,11 +27,11 @@ switch($_POST['action']){
     case 'delete_category':
         include('delete_category.php');
         break;
-    case 'delete_ctu':
+    case 'delete_ctu'://ctu is category to user
         include('delete_ctu.php');
         break;
-    case 'delete_cuc':
-        include('delete_cuc.php');
+    case 'delete_ctc'://ctc is category to channel
+        include('delete_ctc.php');
         break;
     case 'insert_ctu':
         include('insert_ctu.php');

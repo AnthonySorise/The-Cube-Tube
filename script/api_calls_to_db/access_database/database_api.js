@@ -69,7 +69,7 @@
             method: 'POST',
             dataType: 'JSON',
             data: {
-                action: 'delete_cuc',
+                action: 'delete_ctc',
                 youtube_channel_id:youtube_channel_id
             },
             success: function (data) {

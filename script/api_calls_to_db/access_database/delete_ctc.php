@@ -4,30 +4,30 @@
         die('delete ctu, direct access not allowed');
     }
     if(empty($_POST['youtube_channel_id'])){
-        $output['errors'] = 'missing youtube channel id at delete cuc';
+        $output['errors'] = 'missing youtube channel id at delete ctc';
         output_and_exit($output);
     }
     $youtube_channel_id = $_POST['youtube_channel_id'];
     $query = 
         "DELETE
-            cuc
+            ctc
         FROM
-            category_to_user_to_channel cuc
+            categories_to_channels cuc
         JOIN
-            channels c ON cuc.channel_id = c.channel_id
+            channels c ON ctc.channel_id = c.channel_id
         WHERE
-            c.youtube_channel_id = ? AND cuc.user_id = ?";
+            c.youtube_channel_id = ? AND ctc.user_id = ?";
     if(!($stmt = $conn->prepare($query))){
-        $output['errors'][] = 'delete cuc query fail';
+        $output['errors'][] = 'delete ctc query fail';
         output_and_exit($output);
     }
-    $stmt->bind_param('ss',$youtube_channel_id,$user_id);
+    $stmt->bind_param('si',$youtube_channel_id,$user_id);
     $stmt->execute();
     if($conn->affected_rows>0){
-        $output['messages'][] = 'deleted cucs';
+        $output['messages'][] = 'deleted ctcs';
         $output['success'] = true;
     }else{
-        $output['messages'][] = 'no cucs to remove';
+        $output['messages'][] = 'no ctcs to remove';
     }
     
 ?>

@@ -15,13 +15,11 @@ $category_name = $_POST['category_name'];
 $new_name = $_POST['new_name'];
 $query = 
     "UPDATE
-        categories AS ct
-    JOIN
-        category_to_user_to_channel AS cuc ON cuc.category_id = ct.category_id
+        categories 
     SET
-        ct.category_name = ?
+        category_name = ?
     WHERE
-        ct.category_name = ? AND cuc.user_id = ?";
+        category_name = ? AND user_id = ?";
 if(!($stmt = $conn->prepare($query))){
     $output['errors'][] = 'query failed';
     output_and_exit($output);

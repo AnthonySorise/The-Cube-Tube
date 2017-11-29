@@ -7,6 +7,7 @@ if(empty($_POST['category_name'])){
     $output['errors'][] = 'missing category name';
     output_and_exit($output); 
 }
+
 $category_name = $_POST['category_name'];
 $sqli = 
     "DELETE
@@ -15,9 +16,9 @@ $sqli =
     FROM
         categories AS ct
     JOIN
-        category_to_user_to_channel AS cuc ON cuc.category_id = ct.category_id
+        categories_to_channels AS ctc ON ctc.category_id = ct.category_id
     WHERE
-        ct.category_name = ? AND cuc.user_id = ?";
+        ct.category_name = ? AND ct.user_id = ?";
 if(!($stmt = $conn->prepare($sqli))){
     $output['errors'][] = 'delete category statement failed';
     output_and_exit($output);
