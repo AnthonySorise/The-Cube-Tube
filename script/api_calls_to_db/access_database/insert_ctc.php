@@ -50,7 +50,7 @@ if(!($stmt = $conn->prepare($sqli))){
     $output['errors'][]= 'invalid query';
     output_and_exit($output);
 };
-$stmt->bind_param('ii',$category_id, $channel_id);
+$stmt->bind_param('ii',$channel_id,$category_id);
 $stmt->execute();
 if($conn->affected_rows>0){
     $output['messages'][] = 'insert ctc success';
