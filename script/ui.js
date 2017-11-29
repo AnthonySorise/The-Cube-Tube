@@ -4,7 +4,7 @@ function showChannelDrop(){
 		.attr('aria-expanded','true')
 		.css('display','block')
 		.velocity({
-			'right': '0',
+			'right': '0px',
 			'width': '95vw',
 			// 'height': '+=3px',
 			'min-height': '97vh'
@@ -371,10 +371,10 @@ function clickHandler() {
 
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click tap", function () {
-
-        $('.tdTitle i.fa').remove();
+        
         if (!$(this).parent().hasClass('selectedTd')) {
             $(".tdTitle, .tdChannel").unbind("mouseup");
+            $('.tdTitle i.fa').remove();
             //Table List Row Title that is selected
             $(".tdTitle").mouseup(function () {
                 if ($(this).parent().hasClass('selectedTd')) {
