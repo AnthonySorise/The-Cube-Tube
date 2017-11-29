@@ -20,98 +20,104 @@ function handleChangeCategory(){
     $("#categoryEditModal").modal("show")
 }
 
-function changeCategory(category){
+function changeCategory(category, isChangingCategory = false){
     //ajax calls to remove category
-    $.ajax({
-        url: './script/api_calls_to_db/access_database/access.php',
-        method: 'POST',
-        dataType: 'JSON',
-        data: {
-            action: 'delete_cuc',
-            youtube_channel_id:channelIdOfCategorySet
-        },
-        success: function (data) {
-            if (data.success){
-                console.log('delete success', data);
-            }else{
-                console.log(data);
+    if(isChangingCategory){
+        $.ajax({
+            url: './script/api_calls_to_db/access_database/access.php',
+            method: 'POST',
+            dataType: 'JSON',
+            data: {
+                action: 'delete_cuc',
+                youtube_channel_id:channelIdOfCategorySet
+            },
+            success: function (data) {
+                if (data.success){
+                    console.log('delete success', data);
+                }else{
+                    console.log(data);
+                }
+                //ajax calls to insert category
+                insertCategory();
+            },
+            errors: function (data) {
+                console.log('read error', data);
             }
-            //ajax calls to insert category
+        });
+    }
+    else{
+        insertCategory();
+    }
 
-            if(clientCategories.hasOwnProperty(category.toLowerCase())){
-                $.ajax({
-                    url:'./script/api_calls_to_db/access_database/access.php',
-                    method:'post',
-                    dataType:'JSON',
-                    data:{
-                        action:'insert_cuc',
-                        youtube_channel_id:channelIdOfCategorySet,
-                        category_name:category
-                    },
-                    success: function (data) {
-                        if (data.success) {
-                            console.log('insert success', data);
+    function insertCategory(){
+        if(clientCategories.hasOwnProperty(category.toLowerCase())){
+            $.ajax({
+                url:'./script/api_calls_to_db/access_database/access.php',
+                method:'post',
+                dataType:'JSON',
+                data:{
+                    action:'insert_cuc',
+                    youtube_channel_id:channelIdOfCategorySet,
+                    category_name:category
+                },
+                success: function (data) {
+                    if (data.success) {
+                        console.log('insert success', data);
 
-                            removeUnusedCategories();
+                        removeUnusedCategories();
 
-                            if(!clientCategories.hasOwnProperty(category)){
-                                clientCategories[category] = [];
-                            }
-                            clientCategories[category].push(channelIdOfCategorySet);
-                            renderChannelSelectionDropdown();
-                        }else{
-                            console.log(data);
+                        if(!clientCategories.hasOwnProperty(category)){
+                            clientCategories[category] = [];
                         }
-                    },
-                    errors: function (data) {
-                        console.log('insert error', data);
+                        clientCategories[category].push(channelIdOfCategorySet);
+                        renderChannelSelectionDropdown();
+                    }else{
+                        console.log(data);
                     }
-                })
+                },
+                errors: function (data) {
+                    console.log('insert error', data);
+                }
+            })
+        }
+        else{
+            $.ajax({
+                url:'./script/api_calls_to_db/access_database/access.php',
+                method:'post',
+                dataType:'JSON',
+                data:{
+                    action:'insert_category',
+                    youtube_channel_id:channelIdOfCategorySet,
+                    category_name:category
+                },
+                success: function (data) {
+                    if (data.success) {
+                        console.log('insert success', data);
 
-
-            }
-            else{
-                $.ajax({
-                    url:'./script/api_calls_to_db/access_database/access.php',
-                    method:'post',
-                    dataType:'JSON',
-                    data:{
-                        action:'insert_category',
-                        youtube_channel_id:channelIdOfCategorySet,
-                        category_name:category
-                    },
-                    success: function (data) {
-                        if (data.success) {
-                            console.log('insert success', data);
-
-                            for(var key in clientCategories){
-                                for(var i = 0; i < clientCategories[key].length; i++){
-                                    if(clientCategories[key][i] === channelIdOfCategorySet){
-                                        clientCategories[key].splice(i, 1)
-                                    }
+                        for(var key in clientCategories){
+                            for(var i = 0; i < clientCategories[key].length; i++){
+                                if(clientCategories[key][i] === channelIdOfCategorySet){
+                                    clientCategories[key].splice(i, 1)
                                 }
                             }
-                            removeUnusedCategories();
-                            if(!clientCategories.hasOwnProperty(category)){
-                                clientCategories[category] = [];
-                            }
-                            clientCategories[category].push(channelIdOfCategorySet);
-                            renderChannelSelectionDropdown();
-
-                        }else{
-                            console.log(data);
                         }
-                    },
-                    errors: function (data) {
-                        console.log('insert error', data);
+                        removeUnusedCategories();
+                        if(!clientCategories.hasOwnProperty(category)){
+                            clientCategories[category] = [];
+                        }
+                        clientCategories[category].push(channelIdOfCategorySet);
+                        renderChannelSelectionDropdown();
+
+                    }else{
+                        console.log(data);
                     }
-                })
-            }
-        },
-        errors: function (data) {
-            console.log('read error', data);
+                },
+                errors: function (data) {
+                    console.log('insert error', data);
+                }
+            })
         }
-    })
+    }
 }
 
 
