@@ -175,6 +175,11 @@ body {
 	margin-left: 25px;
 	float:right;
 }
+
+label{
+	color: #020e13
+}
+
 .playlistLabel{
 	font-size: 14px;
 	margin-right: 7px;
@@ -284,16 +289,10 @@ body {
 	border-left: 1px solid !important;
 }
 .infoButtons{
-	/*line-height: 3.5;*/
 	user-select: none;
 }
 .autoPlayArea{
-	position: relative;
-	left:6vw;
 	user-select: none;
-	/*float: none;*/
-	/*display: inline-block;*/
-	/*float:right;*/
 }
 .midNavBrowsing>small, .midNavWatching>small{
 	color: grey;
@@ -543,7 +542,7 @@ div.thRow {
 	padding: 0;
 }
 .tdInfo i {
-	color: rgba(124, 221, 249, 0.5);
+	color: #337ab7;
 }
 .tdInfo a:hover, .tdInfo a:focus, .tdInfo a:active {
 	color: rgba(255, 255, 255, 1);
@@ -655,18 +654,19 @@ div.thRow {
 /* background-color: rgba(180, 189, 193, 1.0) !important;} */
 
 .selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdPlaylist,  .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
-	color: white !important;
+	color: white;
 	background-color: #042818 !important;
 }
 
 .selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdPlaylist, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
-	color: white !important;
+	color: white;
 	background-color: #042818 !important;
 
 }
 
-.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
-    font-weight: bold;
+.selectedTd>.tdTitle>span:hover, .selectedTd>.tdChannel:hover{
+    text-decoration: underline;
+	color:orange !important;
 }
 
 .row {
@@ -1062,7 +1062,7 @@ input:checked + .vert:before {
 }
 
 .vertSlide {
-	margin-left: 20px;
+	margin-left: 10px;
 }
 
 .vertSwitch {
