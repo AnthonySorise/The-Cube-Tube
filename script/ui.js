@@ -330,7 +330,7 @@ function clickHandler() {
         else{
             var isUncategorized = true;
             for(var cat in clientCategories){
-                if(clientCategories[cat].contains(channelIdOfCategorySet)){
+                if(clientCategories[cat].indexOf(channelIdOfCategorySet) !== -1){
                     isUncategorized = false;
                 }
             }
@@ -359,7 +359,7 @@ function clickHandler() {
         else{
             var isUncategorized = true;
             for(var cat in clientCategories){
-                if(clientCategories[cat].contains(channelIdOfCategorySet)){
+                if(clientCategories[cat].indexOf(channelIdOfCategorySet) !== -1){
                     isUncategorized = false;
                 }
             }
