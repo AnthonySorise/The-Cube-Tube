@@ -18,17 +18,15 @@ $query =
         categories AS ct
     JOIN
         category_to_user_to_channel AS cuc ON cuc.category_id = ct.category_id
-    JOIN
-        users AS u ON cuc.user_id = u.user_id
     SET
-        category_name = ?
+        ct.category_name = ?
     WHERE
-        category_name = ? AND user_link = ?";
+        ct.category_name = ? AND cuc.user_id = ?";
 if(!($stmt = $conn->prepare($query))){
     $output['errors'][] = 'query failed';
     output_and_exit($output);
 }
-$stmt->bind_param('sss',$new_name,$category_name,$user_link);
+$stmt->bind_param('ssi',$new_name,$category_name,$user_id);
 $stmt->execute();
 if($conn->affected_rows>0){
     $output['messages'][] = 'change name success';

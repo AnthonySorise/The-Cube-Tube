@@ -14,17 +14,15 @@ $query =
         cuc.cuc_id
     FROM
         category_to_user_to_channel AS cuc
-    JOIN	
-        users AS u ON cuc.user_id = u.user_id
     JOIN
         categories AS ct ON cuc.category_id = ct.category_id
     WHERE
-        u.user_link = ? AND ct.category_name = ?";
+        cuc.user_id = ? AND ct.category_name = ?";
 if(!($stmt = $conn->prepare($query))){
     $output['errors'][] = 'query failed';
     output_and_exit($output);
 }
-$stmt->bind_param('ss',$user_link,$category_name);
+$stmt->bind_param('is',$user_id,$category_name);
 $stmt->execute();
 $results = $stmt->get_result();
 if($results->num_rows>0){

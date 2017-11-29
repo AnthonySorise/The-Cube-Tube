@@ -36,7 +36,7 @@ $stmt->bind_param('sss',$user_link,$date,$ip_address_at_sign_up);
 $stmt->execute();
 if($conn->affected_rows>0){
     $output['insert_user_success'] = true;
-    // define('USER_ID',mysqli_insert_id($conn));
+    $user_id = mysqli_insert_id($conn);
 }
 else{
     $output['errors'][] = 'Unable to insert data';

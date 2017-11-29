@@ -14,15 +14,13 @@ $sqli =
         channels_to_users ctu
     JOIN
         channels c ON ctu.channel_id = c.channel_id
-    JOIN
-        users u ON ctu.user_id = u.user_id
     WHERE
-        c.youtube_channel_id = ? AND u.user_link = ?";
+        c.youtube_channel_id = ? AND ctu.user_id = ?";
 if(!($stmt = $conn->prepare($sqli))){
     $output['errors'][]= 'invalid query';
     output_and_exit($output);
 }   
-$stmt->bind_param("ss",$youtube_channel_id,$user_link);
+$stmt->bind_param("si",$youtube_channel_id,$user_id);
 $stmt->execute();
 if($conn->affected_rows>0){
     $output['success'] = true;

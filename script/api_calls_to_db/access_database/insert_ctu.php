@@ -33,20 +33,17 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     //creates random string for user and inserts into database as well as show to front end
     $output['user_link'] = $_SESSION['user_link'];
 }
+include('read_channel_id.php');
 //check for duplicate link
 $sqli = 
     "SELECT
-        ctu.ctu_id
+        ctu_id
     FROM
-        channels_to_users AS ctu
-    JOIN
-        users AS u ON u.user_id = ctu.user_id
-    JOIN
-        channels AS c ON c.channel_id = ctu.channel_id
+        channels_to_users 
     WHERE
-        u.user_link = ? AND c.youtube_channel_id = ?";
+        user_id = ? AND channel_id = ?";
 $stmt = $conn->prepare($sqli);
-$stmt->bind_param('ss',$user_link,$youtube_channel_id);
+$stmt->bind_param('ii',$user_id,$channel_id);
 $stmt->execute();
 $results = $stmt->get_result();
 if($results->num_rows>0){
@@ -55,15 +52,12 @@ if($results->num_rows>0){
 }else{
     $sqli = 
         "INSERT INTO 
-            channels_to_users (user_id , channel_id)
-        SELECT 
-            u.user_id, c.channel_id
-        FROM 
-            users AS u, channels AS c
-        WHERE 
-            u.user_link = ? AND c.youtube_channel_id = ?";
+            channels_to_users 
+        SET
+            user_id = ?,
+            channel_id =?";
     $stmt = $conn->prepare($sqli);
-    $stmt->bind_param('ss',$user_link,$youtube_channel_id);
+    $stmt->bind_param('ii',$user_id,$channel_id);
     $stmt->execute();
     if($conn->affected_rows>0){
         $output['success'] = true;

@@ -21,10 +21,10 @@ $stmt = $conn->prepare(
     JOIN
         users AS u ON u.user_id = ctu.user_id
     WHERE
-        u.user_link = ?
+        u.user_id = ?
     ORDER BY
         c.channel_title");
-$stmt->bind_param('s',$user_link);
+$stmt->bind_param('i',$user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 if($result->num_rows>0){

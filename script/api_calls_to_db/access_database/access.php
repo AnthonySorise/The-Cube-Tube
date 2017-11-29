@@ -11,6 +11,7 @@ if(empty($_POST['action'])){
     output_and_exit($output);
 }
 if(!empty($_SESSION['user_link'])){
+    include('read_user.php');
     $user_link = $_SESSION['user_link'];
 }
 function output_and_exit($output){
