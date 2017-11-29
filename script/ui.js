@@ -346,7 +346,7 @@ function clickHandler() {
 
         $(e.target).find('input').val('');
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
-            toastMsg('channel added', 1100);
+            toastMsg('Channel Added', 1100);
         });
     });
     $('.existingCategoryButton').on('click tap', (e)=>{
@@ -376,7 +376,7 @@ function clickHandler() {
         $(e.target).closest('.existingCategorySelect').find('select option:selected').prop('selected', false);
         $(e.target).closest('.existingCategorySelect').find('select option:disabled').prop('selected', true);
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
-            toastMsg('channel added', 1100);
+            toastMsg('Channel Added', 1100);
         });
     });
     //Search Button
