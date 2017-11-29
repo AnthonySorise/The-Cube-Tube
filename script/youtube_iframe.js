@@ -144,7 +144,8 @@ function getAutoPlayDirectionValue(){
     return $("#autoplayOrderCheckBox").is(":checked")
 }
 
-function pausePlaywithSpacebar(){
+function pausePlayWithSpacebar(){
+   
     $(window).keypress(function(e) {
         let inputFocus = $("input").is(':focus');
         if(inputFocus == false){
