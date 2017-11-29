@@ -407,7 +407,9 @@ function clickHandler() {
         $(".navbar-collapse").collapse('hide');
         searchChannelsByName(inputStr).then(channelSearchWorked, channelSearchFailed);
         // $(".contentPlaceholder").hide();
+        console.log("LIST PLACEHOLDER SHOULD GO DOWN", $('.contentPlaceholderWrapper').css('display')!=='none')
         if($('.contentPlaceholderWrapper').css('display')!=='none'){
+            console.log("LIST PLACEHOLDER IS GOING DOWN", $('.contentPlaceholderWrapper').css('display')!=='none')
             $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                 $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
             });
