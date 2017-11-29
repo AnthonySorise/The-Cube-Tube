@@ -12,13 +12,6 @@ if(!isset($_POST['offset'])||!is_numeric($_POST['offset'])){
     $_POST['offset'] = 0;
 }
 $offset = $_POST['offset'];
-
-//TM87
-// if(!preg_match('/[0-9]+/', $offset)){
-//     $output['errors'][] = 'INVALID OFFSET';
-//     output_and_exit($output);
-// }
-
 $in_stmt = implode(',', array_fill(0, count($youtube_array), '?'));
 $stmt = $conn->prepare(
     "SELECT

@@ -18,26 +18,7 @@ $category_name = $_POST['category_name'];
 include('read_channel_id.php');
 //grab category id
 if(empty($category_id)){
-    $query = 
-        "SELECT
-            category_id
-        FROM
-            categories
-        WHERE
-            user_id = ? AND category_name = ?";
-    $stmt = $conn->prepare($query);
-    if(!$stmt->bind_param('is',$user_id,$category_name)){
-        $output['errors'][] = 'query failed at get category id';
-    }
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if($result->num_rows>0){
-        $row = $result->fetch_assoc();
-        $category_id = $row['category_id'];
-    }else{
-        $output['errors'][] = 'could not find category id';
-        output_and_exit($output);
-    }
+    include('read_category_id');
 }
 //check for duplicates
 $query = 
@@ -46,12 +27,12 @@ $query =
     FROM
         categories_to_channels
     WHERE
-        user_id = ? AND category_id = ? AND channel_id = ?";
+        category_id = ? AND channel_id = ?";
 if(!($stmt = $conn->prepare($query))){
     $output['errors'][] = 'query failed read cuc';
     output_and_exit($output);
 }
-$stmt->bind_param('iii',$user_id,$category_id,$channel_id);
+$stmt->bind_param('ii',$category_id,$channel_id);
 $stmt->execute();
 $result = $stmt->get_result();
 if($result->num_rows>0){
@@ -61,22 +42,21 @@ if($result->num_rows>0){
 //insert if no dubs are found
 $sqli = 
     "INSERT INTO
-        category_to_user_to_channel
+        categories_to_channels
     SET 
         channel_id = ?,
-        category_id =?,
-        user_id = ?";
+        category_id =?";
 if(!($stmt = $conn->prepare($sqli))){
     $output['errors'][]= 'invalid query';
     output_and_exit($output);
 };
-$stmt->bind_param('iii',$category_id, $channel_id, $user_id);
+$stmt->bind_param('ii',$category_id, $channel_id);
 $stmt->execute();
 if($conn->affected_rows>0){
-    $output['messages'][] = 'insert cuc success';
+    $output['messages'][] = 'insert ctc success';
     $output['success'] = true;
 }else{
-    $output['errors'][] = "could not insert cuc";
+    $output['errors'][] = "could not insert ctc";
     output_and_exit($output);
 }
 ?>

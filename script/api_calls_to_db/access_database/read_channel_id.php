@@ -3,12 +3,12 @@ if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }
 $sqli = 
-"SELECT 
-    channel_id
-FROM 
-    channels 
-WHERE 
-    youtube_channel_id = ?";
+    "SELECT 
+        channel_id
+    FROM 
+        channels 
+    WHERE 
+        youtube_channel_id = ?";
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('s', $youtube_channel_id);
 $stmt->execute();

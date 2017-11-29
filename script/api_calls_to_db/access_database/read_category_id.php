@@ -3,12 +3,12 @@ if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }
 $query = 
-"SELECT
-    category_id
-FROM
-    categories 
-WHERE
-    user_id = ? AND category_name = ?";
+    "SELECT
+        category_id
+    FROM
+        categories 
+    WHERE
+        user_id = ? AND category_name = ?";
 $stmt = $conn->prepare($query);
 if(!$stmt->bind_param('is',$user_id,$category_name)){
     $output['errors'][] = 'query failed at get category id';
