@@ -187,7 +187,7 @@ $(window).resize(function () {
 
 function rendertheatreControls() {
     var lastVideoElement = $('<i>', {
-        class: "fa fa-backward modalControls lastVideoButton",
+        class: "fa fa-fast-backward modalControls lastVideoButton",
         ["data-toggle"]: "tooltip",
         ["data-placement"]: "left",
         ["data-container"]: "body",
@@ -215,7 +215,7 @@ function rendertheatreControls() {
         title: "Fast Forward 15s"
     });
     var nextVideoElement = $('<i>', {
-        class: "fa fa-forward modalControls nextVideoButton",
+        class: "fa fa-fast-forward modalControls nextVideoButton",
         ["data-toggle"]: "tooltip",
         ["data-placement"]: "right",
         ["data-container"]: "body",
