@@ -13,16 +13,18 @@ if(empty($_POST['youtube_channel_array'])){
 $youtube_array = $_POST['youtube_channel_array'];
 $video_title = $_POST['video_title'];
 $like = "%{$video_title}%";
-$question_marks = implode(' OR ', array_fill(0, count($youtube_array), '?'));
+$question_marks = implode(' OR ', array_fill(0, count($youtube_array), 'c.youtube_channel_id = ?'));
 $param_types = implode('', array_fill(0, count($youtube_array), 's'));
 $query = 
     "SELECT 
-        youtube_video_id,
-        description,
-        published_at,
-        video_title
+        v.youtube_video_id,
+        v.description,
+        v.published_at,
+        v.video_title
     FROM 
-        videos
+        videos v
+    JOIN 
+        channels c ON c.channel_id = v.channel_id
     WHERE 
         video_title LIKE ? AND ({$question_marks})";
 if(!$stmt = $conn->prepare($query)){
