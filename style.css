@@ -1229,7 +1229,7 @@ safer appraoch than to resizing browser to see change
 		width: 75vw;
 	}
 	#channelSearchModalBody {
-		height: 55vh;
+		height: 80vh;
 	}
 }
 @media only screen and (max-width: 991px) {
@@ -1359,6 +1359,10 @@ safer appraoch than to resizing browser to see change
 	}
 	.chName {
 		width: 85%;
+	}
+	#channelSearchModalBody li img{
+		width: 25px;
+		height: 25px;
 	}
 	.modal-content {
 		width: 96vw;
