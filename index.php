@@ -291,7 +291,9 @@ consider carousel for the video list area:
 						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
 						<li data-target="#text-carousel" data-slide-to="1"></li> -->
 						<li id="returnCarouselStart" class="glyphicon glyphicon-fast-backward" onclick=returnToPageOne()></li>
+						<li><i class="fa fa-arrow-left" aria-hidden="true" id="leftArrowIcon"></i></li>
 						<li id="currentSlideNumberArea"></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true" id="rightArrowIcon"></i></li>
 					</ol>
 
 					<!-- Wrapper for slides -->

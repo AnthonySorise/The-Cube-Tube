@@ -223,9 +223,11 @@ function displayCurrentPageNumber() {
     if (currentSlideNumber == 1) {
         $(".leftControl").hide()
         $("#returnCarouselStart").hide();
+        $("#leftArrowIcon").hide()
     } else {
         $(".leftControl").show();
         $("#returnCarouselStart").show();
+        $("#leftArrowIcon").show()
     }
 }
 

@@ -160,6 +160,8 @@ function pausePlayWithSpacebar(){
     });
 }
 
+
+
 // function checkIfPlayerIsMuted() {
 //     if (player.isMuted()) {
 //         player2.mute();
