@@ -40,25 +40,27 @@ function onPlayerStateChange(event) {
 //Function to play next video and change spinner icon to current video playing
 function playNextYTVideo() {
     updateMidNavText();
-
     if(playlistVideoObjectArray.length > 0){
         playNextPlaylistVideo();
         return
     }   //TEMP  SHOULD HAVE BUTTON THAT DOES THIS INSTEAD
 
     var currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
+    //if on the last video of the carousel page
     if((currentVideoIndex+1) % 20 === 0){
         if (videoObjectsToLoad[videoObjectsToLoad.length-1].youtube_video_id === currentlySelectedVideoID){
+            //On the very last video in the local video array
             $(".right").click();
             setTimeout(function(){
                 next();
             }, 250)
-        }else if(currentVideoIndex == -1){
+        }else if(currentVideoIndex === -1){
+            //in the negative zone
             next()
         }
-
         else{
-            $('.carousel').carousel('next')
+            //videos are already loaded on the second page
+            $('.carousel').carousel('next');
             next();
         }
     }
@@ -92,7 +94,7 @@ function playNextYTVideo() {
 }
 
 function playPrevYTVideo() {
-
+    //Does a check to see if on first video and if back button is pressed it prevents it 
     currentVideoIndex = videoObjectsToLoad.findIndex(x => x.youtube_video_id === currentlySelectedVideoID);
 
     if(currentSlideNumber === 1 && currentVideoIndex === 0) {
@@ -142,12 +144,11 @@ function getAutoPlayDirectionValue(){
     return $("#autoplayOrderCheckBox").is(":checked")
 }
 
-function pausePlaywithSpacebar(){
+function pausePlayWithSpacebar(){
    
     $(window).keypress(function(e) {
-        let inputFocus = $(".channelSearchInput").is(':focus');
+        let inputFocus = $("input").is(':focus');
         if(inputFocus == false){
-            event.preventDefault();
             if (e.which == 32) {
                 if (player.getPlayerState() == 2)
                   player.playVideo();
@@ -156,8 +157,10 @@ function pausePlaywithSpacebar(){
               }
         }
 
-      });
+    });
 }
+
+
 
 // function checkIfPlayerIsMuted() {
 //     if (player.isMuted()) {
@@ -188,7 +191,7 @@ $(window).resize(function () {
 
 function rendertheatreControls() {
     var lastVideoElement = $('<i>', {
-        class: "fa fa-backward modalControls lastVideoButton",
+        class: "fa fa-fast-backward modalControls lastVideoButton",
         ["data-toggle"]: "tooltip",
         ["data-placement"]: "left",
         ["data-container"]: "body",
@@ -216,7 +219,7 @@ function rendertheatreControls() {
         title: "Fast Forward 15s"
     });
     var nextVideoElement = $('<i>', {
-        class: "fa fa-forward modalControls nextVideoButton",
+        class: "fa fa-fast-forward modalControls nextVideoButton",
         ["data-toggle"]: "tooltip",
         ["data-placement"]: "right",
         ["data-container"]: "body",

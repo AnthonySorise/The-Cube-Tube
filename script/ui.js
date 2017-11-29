@@ -49,6 +49,10 @@ function channelDropClickHandle(){
 }
 
 $(window).on('click tap',(e)=>{
+    // Cleared form because when clicking on autocomplete text the form would clear
+    // but get readded on this function 
+    $('.channelSearchInput').val('');
+    $('#channelModalSearchBar').val('');
 	if(dropOpened){
 		if( !($.contains($('.channelDropDown.open'),e.target)) && !($('#channelCategoryUl').find(e.target).length) &&($(e.target).attr('id')!=='channelCategoryUl')) {
 			 $('mainNav-option').removeClass('in')
@@ -369,12 +373,17 @@ function clickHandler() {
 
     $(".tdPlaylistButton").on("click tap", handleAddToPlaylist);
 
+    $('.ui-autocomplete').on('click tap','.ui-menu-item-wrapper', function (event){
+        let autocompleteValue = $(event.target).text();
+        searchChannelsByName(autocompleteValue).then(worked, failed);
+    });
+
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click tap", function () {
-
-        $('.tdTitle i.fa').remove();
+        
         if (!$(this).parent().hasClass('selectedTd')) {
             $(".tdTitle, .tdChannel").unbind("mouseup");
+            $('.tdTitle i.fa').remove();
             //Table List Row Title that is selected
             $(".tdTitle").mouseup(function () {
                 if ($(this).parent().hasClass('selectedTd')) {
@@ -421,6 +430,11 @@ function clickHandler() {
             updateChannelInfoPopover(channelID);
         }
     });
+
+    // carousel slides
+    $('#rightArrowIcon').on('click tap',carouselRightArrow);
+    $('#leftArrowIcon').on('click tap',carouselLeftArrow);
+    
 
 
 
@@ -536,6 +550,15 @@ function clickHandler() {
             player.seekTo(minus15Seconds);
         // }
     }
+}
+
+// functions to toggle carousel slides
+function carouselLeftArrow(){
+    $(".carousel").carousel('prev');
+}
+
+function carouselRightArrow(){
+    $(".carousel").carousel('next');
 }
 
 
