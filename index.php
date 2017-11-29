@@ -276,8 +276,8 @@ consider carousel for the video list area:
 										<h3 class="text-center visible-xs">Welcome to TheCubeTube!</h3>
 										<h3 class="hidden-xs">Start by searching for your favorite YouTube channel</h3>
 										<h5 class="visible-xs">Start by searching for your favorite YouTube channel</h5>
-										<h3 class="hidden-xs">Add channels by clicking the 'add' button, or simply browse content with 'browse'</h3>
-										<p class="visible-xs">Add channels by clicking the 'add' button, or simply browse content with 'browse'</p>
+										<h3 class="hidden-xs">Add channels by clicking the 'Subscribe' button, or simply browse content with 'Browse'</h3>
+										<p class="visible-xs">Add channels by clicking the 'Subscribe' button, or simply browse content with 'Browse'</p>
 										<!--<img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png">-->
 									</div>
 								</div>
