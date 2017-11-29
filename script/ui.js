@@ -374,6 +374,7 @@ function clickHandler() {
     $(".tdPlaylistButton").on("click tap", handleAddToPlaylist);
 
     $('.ui-autocomplete').on('click tap','.ui-menu-item-wrapper', function (event){
+        event.stopPropagation();
         let autocompleteValue = $(event.target).text();
         searchChannelsByName(autocompleteValue).then(worked, failed);
     });
