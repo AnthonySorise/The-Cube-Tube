@@ -176,7 +176,7 @@ function addChannelModal(userLink) {
         const linkHeaderVisibleXs = $('<h5>').text("Save this link!").addClass("visible-xs");
         const linkDiv = $('<div>',{
             text: 'Use it to get access to your subscribed channels.'
-        }).css("text-weight", "700");
+        }).css("font-weight", "700");
         let button = $('<button>').addClass("btn btn-info btn-lg btn-block").text("CopyLink  ");
         let linkIcon = $('<i>').addClass('fa fa-clipboard fa-lg text-danger');
 
