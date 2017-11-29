@@ -434,6 +434,17 @@ function clickHandler() {
     // carousel slides
     $('#rightArrowIcon').on('click tap',carouselRightArrow);
     $('#leftArrowIcon').on('click tap',carouselLeftArrow);
+
+    // direction of play - arrow icon
+    $("#playOrderArrow").on('click', function(){
+        debugger
+        if(reversePlayDirection === false){
+          $("i").removeClass('up')
+        }else{
+          $("i").addClass('up')
+        }
+        reversePlayDirection = !reversePlayDirection;
+      })
     
 
 

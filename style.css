@@ -1070,10 +1070,31 @@ input:checked + .vert:before {
 #autoplayOrderText {
 	color: white;
 	position: relative;
-	top: 8px;
+	top: 2px;
 	margin: 5px;
 	/* margin: 5px; */
 }
+
+.fa-long-arrow-down{
+	position: relative;
+	font-size: 30px;
+	top: 6px;
+    right: 5px;
+	color: orange;
+	transform: rotate(0deg);
+	transition: transform 1s linear;
+	cursor: pointer;
+  }
+  
+.fa-long-arrow-down.up{
+	font-size: 30px;
+	color: orange;
+	top: 6px;
+    right: 5px;
+	transform: rotate(180deg);
+	transition: transform 1s linear;
+	cursor: pointer;
+  }
 
 
 
