@@ -1,6 +1,6 @@
 <?php
 //called from access, will change category name for specific user
-if(empty(LOCAL_ACCESS)){
+if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }
 if(empty($_POST['category_name'])){

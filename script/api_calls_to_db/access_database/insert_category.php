@@ -3,10 +3,11 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$category_name = $_POST['category_name']; 
-if(empty($category_name)){
+if($_POST['category_name']){
     $output['errors'][] = 'MISSING NAME OF CATEGORY';
+    output_and_exit($output);
 }
+$category_name = $_POST['category_name']; 
 //check for duplicate
 $query =  
     "SELECT
@@ -30,7 +31,7 @@ if($results->num_rows>0){
     $output['errors'][] = 'duplcate found';
     output_and_exit($output);
 }
-
+//insert category if no duplicate is found
 $sqli = 
     "INSERT INTO
         categories

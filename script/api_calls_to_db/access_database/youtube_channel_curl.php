@@ -3,11 +3,11 @@
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
+$youtube_channel_id = $_POST['youtube_channel_id'];
 if(empty($_POST['youtube_channel_id'])){
-    $output['errors'][] = "MISSING CHANNEL ID";
+    $output['errors'][] = "MISSING CHANNEL ID at youtube channel curl";
     output_and_exit($output);
 }
-$youtube_channel_id = $_POST['youtube_channel_id'];
 require_once('youtube_api_key.php');
 $ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

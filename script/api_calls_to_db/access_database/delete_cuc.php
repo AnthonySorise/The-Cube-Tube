@@ -3,6 +3,10 @@
     if(empty($LOCAL_ACCESS)){
         die('delete ctu, direct access not allowed');
     }
+    if(empty($_POST['youtube_channel_id'])){
+        $output['errors'] = 'missing youtube channel id at delete cuc';
+        output_and_exit($output);
+    }
     $youtube_channel_id = $_POST['youtube_channel_id'];
     $query = 
         "DELETE

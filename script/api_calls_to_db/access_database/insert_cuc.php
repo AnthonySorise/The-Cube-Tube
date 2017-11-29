@@ -4,6 +4,14 @@ if(empty($LOCAL_ACCESS)){
 }
 //called from access php or insert category
 //insert cuc into existing category when called directly
+if(empty($_POST['youtube_channel_id'])){
+    $output['errors'][] = 'missing youtube channel id at insert cuc';
+    output_and_exit($output);
+}
+if(empty($_POST['category_name'])){
+    $output['errors'][] = 'missing category name at insert cuc';
+    output_and_exit($output);
+}
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $category_name = $_POST['category_name']; 
 //check for duplicates
