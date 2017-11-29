@@ -29,7 +29,6 @@ function onPlayerStateChange(event) {
             playNextPlaylistVideo();
         }
         else if(getAutoPlayDirectionValue()){
-            debugger
             playPrevYTVideo();            
         }
         else{

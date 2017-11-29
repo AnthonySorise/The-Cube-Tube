@@ -1,3 +1,3 @@
 <?php
-    $DEVELOPER_KEY = "AIzaSyA3lcZqz6CQh5ad493anmmMFRYOmNaO-Tw";
+    $DEVELOPER_KEY = "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s";
 ?>

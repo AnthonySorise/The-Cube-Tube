@@ -11,13 +11,11 @@ $category_name = $_POST['category_name'];
 //check for duplicate
 $query =  
     "SELECT
-        cuc.cuc_id
+        category_id
     FROM
-        category_to_user_to_channel AS cuc
-    JOIN
-        categories AS ct ON cuc.category_id = ct.category_id
+        categories
     WHERE
-        cuc.user_id = ? AND ct.category_name = ?";
+        user_id = ? AND category_name = ?";
 if(!($stmt = $conn->prepare($query))){
     $output['errors'][] = 'query failed';
     output_and_exit($output);
@@ -34,9 +32,10 @@ $sqli =
     "INSERT INTO
         categories
     SET
-        category_name = ?";
+        category_name = ?,
+        user_id = ?";
 $stmt = $conn->prepare($sqli);
-if(!$stmt->bind_param('s',$category_name)){
+if(!($stmt->bind_param('si',$category_name,$user_id))){
     $output['errors'][] = 'bind param failed at insert category';
     output_and_exit($output);
 };
@@ -45,7 +44,7 @@ $stmt->execute();
 if($conn->affected_rows>0){
     $output['messages'][] = 'insert category success';
     $category_id = $conn->insert_id;
-    include('insert_cuc.php');
+    include('insert_ctc.php');
 }else{
     $output['errors'][] = 'failed to add category';
 }

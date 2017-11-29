@@ -36,5 +36,4 @@ if($result->num_rows>0){
     $output['errors'][] = 'no channel to read';
     $output['nothing_to_read'] = true;
 }
-
 ?>

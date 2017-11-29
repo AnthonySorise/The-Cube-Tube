@@ -14,11 +14,11 @@ $query =
     FROM
         channels AS c
     JOIN
-        category_to_user_to_channel AS cuc ON c.channel_id = cuc.channel_id
+        categories_to_channels AS ctc ON c.channel_id = ctc.channel_id
     JOIN
-        categories AS ct ON ct.category_id = cuc.category_id
+        categories AS ct ON ct.category_id = ctc.category_id
     WHERE
-        cuc.user_id = ?
+        ct.user_id = ?
     ORDER BY
         ct.category_name";
 if(!($stmt = $conn->prepare($query))){
