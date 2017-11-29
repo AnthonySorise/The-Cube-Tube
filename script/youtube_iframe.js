@@ -29,10 +29,11 @@ function onPlayerStateChange(event) {
             playNextPlaylistVideo();
         }
         else if(getAutoPlayDirectionValue()){
-            playNextYTVideo();
+            debugger
+            playPrevYTVideo();            
         }
         else{
-            playPrevYTVideo();
+            playNextYTVideo();
         }
     }
 }
@@ -141,7 +142,13 @@ function getAutoPlayValue() {
 }
 
 function getAutoPlayDirectionValue(){
-    return $("#autoplayOrderCheckBox").is(":checked")
+    // return $("#autoplayOrderCheckBox").is(":checked")
+    if(reversePlayDirection == true){
+        return true;
+    }else{
+        return false;
+    }
+
 }
 
 function pausePlayWithSpacebar(){

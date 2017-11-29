@@ -1018,7 +1018,9 @@ div.thRow {
 }
 
 input:checked+.slider {
-	background-color: #d8364e;
+	/* background-color: #d8364e; */
+	background-color: #FF8E2F
+	
 	/* opacity: 0.6; */
 }
 /* input:focus + .slider {
@@ -1070,10 +1072,31 @@ input:checked + .vert:before {
 #autoplayOrderText {
 	color: white;
 	position: relative;
-	top: 8px;
+	top: 2px;
 	margin: 5px;
 	/* margin: 5px; */
 }
+
+.fa-long-arrow-down{
+	position: relative;
+	font-size: 30px;
+	top: 6px;
+    right: 5px;
+	color: #FF8E2F;
+	transform: rotate(0deg);
+	transition: transform 1s linear;
+	cursor: pointer;
+  }
+  
+.fa-long-arrow-down.up{
+	font-size: 30px;
+	color: #FF8E2F;
+	top: 6px;
+    right: 5px;
+	transform: rotate(180deg);
+	transition: transform 1s linear;
+	cursor: pointer;
+  }
 
 
 
