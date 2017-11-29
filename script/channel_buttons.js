@@ -168,7 +168,7 @@ function handleAddButton() {
 
 function addChannelModal(userLink) {
     if (userLink) {
-        // alert("Save the following link and use it to access your account!");
+        alert("Save the following link and use it to access your account!");
         let uLink = 'www.thecubetube.com/?user='+userLink;
         const userAddress = $('<span>',{
             'class': 'linkGhost',
