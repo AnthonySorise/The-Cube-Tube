@@ -462,10 +462,10 @@ function clickHandler() {
             updateMidNavText();
 
             // $('.fa-play-circle-o').remove();
-            $('.fa-circle-o-notch').remove();
+            $(faSpinCircle).remove();
             var playSymbol = $('<i>')
             // .addClass("fa fa-play-circle-o")
-                .addClass('fa fa-circle-o-notch fa-spin fa-fw circleSpinner')
+                .addClass(faSpinCircle)
                 .css({
                     "margin-right": '5px',
                     'color': 'green'
