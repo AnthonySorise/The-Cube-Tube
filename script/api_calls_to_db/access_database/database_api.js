@@ -146,13 +146,14 @@
             }
         })
     }
-    this.read_video = function(video_title){
+    this.read_video = function(video_title,youtube_channel_array){
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
                 video_title:video_title,
+                youtube_channel_array:youtube_channel_array,
                 action:'read_video'
             },
             success:function(data){
