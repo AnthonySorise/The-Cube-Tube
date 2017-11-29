@@ -1063,18 +1063,20 @@ input:checked + .vert:before {
 
 .vertSlide {
 	margin-left: 10px;
+	height: 50px;
 }
 
 .vertSwitch {
 	margin: 0;
+	top: -10px;
 }
 
 #autoplayOrderText {
 	color: white;
 	position: relative;
-	top: 2px;
+	/*top: 2px;*/
+	height: 80%;
 	margin: 5px;
-	/* margin: 5px; */
 }
 
 .fa-long-arrow-down{
