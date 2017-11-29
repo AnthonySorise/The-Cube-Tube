@@ -26,13 +26,13 @@ if(empty($category_id)){
         JOIN
             categories AS ct ON cuc.category_id = ct.category_id
         WHERE
-            u.user_id = ? AND ct.category_name = ?";
-    $getting_category_id = $conn->prepare($query);
-    if(!$getting_category_id->bind_param('is',$user_id,$category_name)){
+            cuc.user_id = ? AND ct.category_name = ?";
+    $stmt = $conn->prepare($query);
+    if(!($stmt->bind_param('is',$user_id,$category_name))){
         $output['errors'][] = 'query failed at get category id';
     }
-    $getting_category_id->execute();
-    $result = $getting_category_id->get_result();
+    $stmt->execute();
+    $result = $stmt->get_result();
     if($result->num_rows>0){
         $row = $result->fetch_assoc();
         $category_id = $row['category_id'];
