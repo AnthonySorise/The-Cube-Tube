@@ -18,7 +18,7 @@ $category_name = $_POST['category_name'];
 include('read_channel_id.php');
 //grab category id
 if(empty($category_id)){
-    include('read_category_id');
+    include('read_category_id.php');
 }
 //check for duplicates
 $query = 

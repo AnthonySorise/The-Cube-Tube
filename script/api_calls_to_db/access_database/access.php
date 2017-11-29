@@ -55,7 +55,7 @@ switch($_POST['action']){
         include('insert_category.php');
         break;
     case 'insert_cuc':
-        include('insert_cuc.php');
+        include('insert_ctc.php');
         break;
     case 'insert_youtube_channel_curl':
         include('youtube_channel_curl.php');

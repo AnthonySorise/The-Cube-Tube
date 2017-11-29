@@ -32,10 +32,10 @@ $sqli =
     "INSERT INTO
         categories
     SET
-        category_name = ?
+        category_name = ?,
         user_id = ?";
 $stmt = $conn->prepare($sqli);
-if(!$stmt->bind_param('si',$category_name,$user_id)){
+if(!($stmt->bind_param('si',$category_name,$user_id))){
     $output['errors'][] = 'bind param failed at insert category';
     output_and_exit($output);
 };
