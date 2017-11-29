@@ -431,6 +431,11 @@ function clickHandler() {
         }
     });
 
+    // carousel slides
+    $('#rightArrowIcon').on('click tap',carouselRightArrow);
+    $('#leftArrowIcon').on('click tap',carouselLeftArrow);
+    
+
 
 
 
@@ -545,6 +550,15 @@ function clickHandler() {
             player.seekTo(minus15Seconds);
         // }
     }
+}
+
+// functions to toggle carousel slides
+function carouselLeftArrow(){
+    $(".carousel").carousel('prev');
+}
+
+function carouselRightArrow(){
+    $(".carousel").carousel('next');
 }
 
 

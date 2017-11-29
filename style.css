@@ -444,6 +444,7 @@ body>.container-fluid {
 }
 .carousel-indicators {
 	/* background-color: white; */
+	/* padding-right: 13px; */
 }
 li#returnCarouselStart{
 	position: relative;
@@ -469,11 +470,20 @@ li#returnCarouselStart{
 	top: 15% !important;
 }
 
+#currentSlideNumberArea {
+	margin: 5px;
+}
+
 #text-carousel {
 	overflow: auto;
 	height: 95%;
 	background-color:#343e42;
 	display: none;
+}
+#rightArrowIcon, #leftArrowIcon{
+	font-size: small;
+	position: relative;
+	bottom: 2px;
 }
 /*********** end of CAROUSEL styles ************/
 div.thRow {
