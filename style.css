@@ -599,6 +599,10 @@ div.thRow {
 	display: inline;
 	color: #020e13;
 }
+/*center info button in row */
+.fa-info-circle{ 
+	vertical-align: 0%;
+}
 
 
 /*.playlistTd.tdList:nth-child(even):hover div {*/
