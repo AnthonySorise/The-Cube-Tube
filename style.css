@@ -655,17 +655,17 @@ div.thRow {
 /* background-color: rgba(180, 189, 193, 1.0) !important;} */
 
 .selectedTd>.tdTitle, .selectedTd>.tdInfo, .selectedTd>.tdPlaylist,  .selectedTd>.tdChannel, .selectedTd>.tdUpDate{
-	color: white !important;
+	color: white;
 	background-color: #042818 !important;
 }
 
 .selectedTd>.tdTitle:hover, .selectedTd>.tdInfo, .selectedTd>.tdPlaylist, .selectedTd>.tdChannel:hover, .selectedTd>.tdUpDate:hover{
-	color: white !important;
+	color: white;
 	background-color: #042818 !important;
 
 }
 
-.selectedTd>.tdTitle:hover, .selectedTd>.tdChannel:hover{
+.selectedTd>.tdTitle>span:hover, .selectedTd>.tdChannel:hover{
     text-decoration: underline;
 	color:orange;
 }
