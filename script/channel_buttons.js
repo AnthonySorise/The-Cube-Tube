@@ -157,26 +157,26 @@ function handleAddButton() {
 
 function addChannelModal(userLink) {
     if (userLink) {
+        alert("Save the following link and use it to access your account!");
         let uLink = 'www.thecubetube.com/?user='+userLink;
-        const britEyesOnly = $('<span>',{
+        const userAddress = $('<span>',{
             'class': 'linkGhost',
             'text': uLink
         }).css({
             position: 'absolute',
             display: 'none'
         });
-        $('body').append(britEyesOnly);
+        $('body').append(userAddress);
         const linkSpan = $('<span>',{
             'class':'linkSpan',
             'text': uLink
-        });
+        }).css("color", "orange").css("font-weight", "700");
 
         const linkHeaderHiddenXs = $('<h3>').text("Save this link!").addClass("hidden-xs");
         const linkHeaderVisibleXs = $('<h5>').text("Save this link!").addClass("visible-xs");
         const linkDiv = $('<div>',{
             text: 'Use it to get access to your subscribed channels.'
-        });
-
+        }).css("font-weight", "700");
         let button = $('<button>').addClass("btn btn-info btn-lg btn-block").text("CopyLink  ");
         let linkIcon = $('<i>').addClass('fa fa-clipboard fa-lg text-danger');
 
