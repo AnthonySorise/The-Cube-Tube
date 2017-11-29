@@ -667,7 +667,7 @@ div.thRow {
 
 .selectedTd>.tdTitle>span:hover, .selectedTd>.tdChannel:hover{
     text-decoration: underline;
-	color:orange;
+	color:orange !important;
 }
 
 .row {
