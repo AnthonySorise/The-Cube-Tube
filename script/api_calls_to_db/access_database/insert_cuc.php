@@ -72,7 +72,7 @@ if(!($stmt = $conn->prepare($sqli))){
     $output['errors'][]= 'invalid query';
     output_and_exit($output);
 };
-$stmt->bind_param('iii',$category_id, $channel_id, $user_id);
+$stmt->bind_param('iii',$channel_id, $category_id, $user_id);
 $stmt->execute();
 if($conn->affected_rows>0){
     $output['messages'][] = 'insert cuc success';
