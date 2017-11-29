@@ -27,7 +27,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
     }else{
         $page_query="&pageToken={$page_token}";
     }
-    $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=50");
+    $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=10");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $json = curl_exec($ch);
     $error_occurred = false;
@@ -62,7 +62,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $bind_str = '';
         //break the data to insert into database
         foreach($entries as $key => $value){
-            if(!empty($value['id']['videoId'])&&!empty($value['snippet']['title'])&&!empty($value['snippet']['description'])&&!empty($published_at = $value['snippet']['publishedAt'])){
+            if(!empty($value['id']['videoId'])&&!empty($value['snippet']['title'])&&!empty($value['snippet']['description'])&&!empty($value['snippet']['publishedAt'])){
                 $query .= " (?,?,?,?,?,?),";
                 $bind_str .= "sissss";
                 $data[] = $value['snippet']['title'];
