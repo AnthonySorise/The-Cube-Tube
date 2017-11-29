@@ -371,10 +371,10 @@ function clickHandler() {
 
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click tap", function () {
-
-        $('.tdTitle i.fa').remove();
+        
         if (!$(this).parent().hasClass('selectedTd')) {
             $(".tdTitle, .tdChannel").unbind("mouseup");
+            $('.tdTitle i.fa').remove();
             //Table List Row Title that is selected
             $(".tdTitle").mouseup(function () {
                 if ($(this).parent().hasClass('selectedTd')) {
