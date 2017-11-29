@@ -21,7 +21,7 @@ $sqli =
 if(!($stmt = $conn->prepare($sqli))){
     $output['errors'][]= 'invalid query';
     output_and_exit($output);
-}
+}   
 $stmt->bind_param("ss",$youtube_channel_id,$user_link);
 $stmt->execute();
 if($conn->affected_rows>0){
@@ -31,5 +31,6 @@ if($conn->affected_rows>0){
 }
 else{
     $output['error'] = 'Unable to delete ctu';
+    error_log();
 }
 ?>

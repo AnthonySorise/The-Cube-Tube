@@ -16,6 +16,7 @@ if(!empty($_SESSION['user_link'])){
 function output_and_exit($output){
     $json_output = json_encode($output);
     print($json_output);
+    date('Y-m-s H:i:s');
     exit();
 }
 switch($_POST['action']){

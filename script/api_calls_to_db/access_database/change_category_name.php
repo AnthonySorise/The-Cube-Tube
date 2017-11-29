@@ -3,12 +3,16 @@
 if(empty(LOCAL_ACCESS)){
     die('no direct access allowed');
 }
-$category_name = $_POST['category_name'];
-$new_name = $_POST['new_name'];
-if(empty($category_name)){
+if(empty($_POST['category_name'])){
     $output['errors'][] = 'missing category name';
     output_and_exit($output);
 }
+if(empty($_POST['new_name'])){
+    $output['errors'][] = 'missing category name';
+    output_and_exit($output);
+}
+$category_name = $_POST['category_name'];
+$new_name = $_POST['new_name'];
 $query = 
     "UPDATE
         categories AS ct

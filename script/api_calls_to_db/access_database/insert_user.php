@@ -24,9 +24,6 @@ function get_client_ip() {
         $ipaddress = 'UNKNOWN';
     return $ipaddress;
 }
-if(empty($user_link)){
-    $output['errors'] = 'MISSING USERLINK';
-}
 $sqli = 
     "INSERT INTO
         users

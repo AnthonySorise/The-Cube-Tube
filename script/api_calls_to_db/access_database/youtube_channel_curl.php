@@ -3,11 +3,11 @@
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
-$youtube_channel_id = $_POST['youtube_channel_id'];
-if(empty($youtube_channel_id)){
+if(empty($_POST['youtube_channel_id'])){
     $output['errors'][] = "MISSING CHANNEL ID";
     output_and_exit($output);
 }
+$youtube_channel_id = $_POST['youtube_channel_id'];
 require_once('youtube_api_key.php');
 $ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -15,10 +15,11 @@ $json = curl_exec($ch);
 $error_occurred = false;
 if ($json === false || curl_errno($ch)) {
       $error_occurred = true;
-}
-$decoded_json = json_decode($json);
-if ($decoded_json === NULL ) {
-      $error_occurred = true;
+}else{
+    $decoded_json = json_decode($json);
+    if ($decoded_json === NULL ) {
+          $error_occurred = true;
+    }
 }
 if ($error_occurred ){
       $body = 'Error occurred in ' . __FILE__ . "\n\n" .
@@ -27,9 +28,8 @@ if ($error_occurred ){
                  'strlen($json): ' . strlen($json) . "\n" .
                  'var_export(curl_getinfo($ch), true): ' . var_export(curl_getinfo($ch), true) . "\n\n" .
                  '$json: ' . $json . "\n";
-      //mail('YOUREMAILGOESHERE', 'TheCubeTube.com - YouTube JSON Error', $body);
       $error = json_encode($body);
-      print_r($body);
+      print($error);
 } else {
       $channel_data = json_decode($json, true)['items'][0]['snippet'];
       $thumbnail = $channel_data['thumbnails']['medium']['url'];
