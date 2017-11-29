@@ -80,9 +80,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $stmt = $conn->prepare($query);
         $stmt->bind_param($bind_str, ...($data));
         $stmt->execute();
-        print_r($data);
-        print_r($query);
-        print_r($bind_str);
         if($conn->affected_rows>0){
             $output['success']=true;
             $output['messages'][] = 'insert video success';
