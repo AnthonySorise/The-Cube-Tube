@@ -284,16 +284,10 @@ body {
 	border-left: 1px solid !important;
 }
 .infoButtons{
-	/*line-height: 3.5;*/
 	user-select: none;
 }
 .autoPlayArea{
-	position: relative;
-	left:6vw;
 	user-select: none;
-	/*float: none;*/
-	/*display: inline-block;*/
-	/*float:right;*/
 }
 .midNavBrowsing>small, .midNavWatching>small{
 	color: grey;
@@ -1063,7 +1057,7 @@ input:checked + .vert:before {
 }
 
 .vertSlide {
-	margin-left: 20px;
+	margin-left: 10px;
 }
 
 .vertSwitch {
