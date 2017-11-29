@@ -1346,13 +1346,13 @@ safer appraoch than to resizing browser to see change
 		font-size: .80em;
 	}
 	.browseChannelButton {
-		width: 15%;
+		/*width: 15%;*/
 		font-size: .70em;
 		white-space: normal;
 		padding: 6px 0;  
 	}
 	.addChannelButton {
-		width:18%;
+		/*width:18%;*/
 		font-size: .70em;
 		white-space: nowrap;
 		padding: 6px 0;
