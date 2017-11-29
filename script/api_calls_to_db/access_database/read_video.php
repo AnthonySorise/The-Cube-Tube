@@ -2,11 +2,11 @@
 if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }
-$video_title = $_POST['video_title'];
-if(empty($video_title)){
+if(empty($_POST['video_title'])){
     $output['errors'][] = 'missing video title';
     output_and_exit($output);
 }
+$video_title = $_POST['video_title'];
 $like = "%{$video_title}%";
 $query = 
     "SELECT 

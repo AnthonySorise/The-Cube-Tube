@@ -16,23 +16,7 @@ if(!empty($_POST['last_channel_pull'])){
 }
 //grab channel id if not given
 if(empty($channel_id)){
-    $sqli = 
-        "SELECT 
-            channel_id
-        FROM 
-            channels 
-        WHERE 
-            youtube_channel_id = ?";
-    $stmt = $conn->prepare($sqli);
-    $stmt->bind_param('s', $youtube_channel_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows>0) {
-        $row = $result->fetch_assoc();
-        $channel_id = $row['channel_id'];
-    } else {
-        $output['messages'] = "can't read channel";
-    }
+    include('read_channel_id.php');
 }
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
     if(!empty($last_channel_pull)){

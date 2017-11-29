@@ -11,11 +11,12 @@ if(empty($_POST['action'])){
     output_and_exit($output);
 }
 if(!empty($_SESSION['user_link'])){
-    $user_link = $_SESSION['user_link'];
+    include('read_user.php');
 }
 function output_and_exit($output){
     $json_output = json_encode($output);
     print($json_output);
+    date('Y-m-s H:i:s');
     exit();
 }
 switch($_POST['action']){

@@ -3,34 +3,33 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
-$category_name = $_POST['category_name']; 
-if(empty($category_name)){
+if(empty($_POST['category_name'])){
     $output['errors'][] = 'MISSING NAME OF CATEGORY';
+    output_and_exit($output);
 }
+$category_name = $_POST['category_name']; 
 //check for duplicate
 $query =  
     "SELECT
         cuc.cuc_id
     FROM
         category_to_user_to_channel AS cuc
-    JOIN	
-        users AS u ON cuc.user_id = u.user_id
     JOIN
         categories AS ct ON cuc.category_id = ct.category_id
     WHERE
-        u.user_link = ? AND ct.category_name = ?";
+        cuc.user_id = ? AND ct.category_name = ?";
 if(!($stmt = $conn->prepare($query))){
     $output['errors'][] = 'query failed';
     output_and_exit($output);
 }
-$stmt->bind_param('ss',$user_link,$category_name);
+$stmt->bind_param('is',$user_id,$category_name);
 $stmt->execute();
 $results = $stmt->get_result();
 if($results->num_rows>0){
     $output['errors'][] = 'duplcate found';
     output_and_exit($output);
 }
-
+//insert category if no duplicate is found
 $sqli = 
     "INSERT INTO
         categories

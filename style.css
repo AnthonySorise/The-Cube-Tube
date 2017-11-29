@@ -444,6 +444,7 @@ body>.container-fluid {
 }
 .carousel-indicators {
 	/* background-color: white; */
+	/* padding-right: 13px; */
 }
 li#returnCarouselStart{
 	position: relative;
@@ -469,11 +470,20 @@ li#returnCarouselStart{
 	top: 15% !important;
 }
 
+#currentSlideNumberArea {
+	margin: 5px;
+}
+
 #text-carousel {
 	overflow: auto;
 	height: 95%;
 	background-color:#343e42;
 	display: none;
+}
+#rightArrowIcon, #leftArrowIcon{
+	font-size: small;
+	position: relative;
+	bottom: 2px;
 }
 /*********** end of CAROUSEL styles ************/
 div.thRow {
@@ -588,6 +598,10 @@ div.thRow {
 	background-color: rgba(180, 189, 193, 1.0);
 	display: inline;
 	color: #020e13;
+}
+/*center info button in row */
+.fa-info-circle{ 
+	vertical-align: 0%;
 }
 
 
@@ -1004,7 +1018,9 @@ div.thRow {
 }
 
 input:checked+.slider {
-	background-color: #d8364e;
+	/* background-color: #d8364e; */
+	background-color: #FF8E2F
+	
 	/* opacity: 0.6; */
 }
 /* input:focus + .slider {
@@ -1056,10 +1072,31 @@ input:checked + .vert:before {
 #autoplayOrderText {
 	color: white;
 	position: relative;
-	top: 8px;
+	top: 2px;
 	margin: 5px;
 	/* margin: 5px; */
 }
+
+.fa-long-arrow-down{
+	position: relative;
+	font-size: 30px;
+	top: 6px;
+    right: 5px;
+	color: #FF8E2F;
+	transform: rotate(0deg);
+	transition: transform 1s linear;
+	cursor: pointer;
+  }
+  
+.fa-long-arrow-down.up{
+	font-size: 30px;
+	color: #FF8E2F;
+	top: 6px;
+    right: 5px;
+	transform: rotate(180deg);
+	transition: transform 1s linear;
+	cursor: pointer;
+  }
 
 
 

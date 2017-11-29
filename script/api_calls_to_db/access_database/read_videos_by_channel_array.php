@@ -3,23 +3,16 @@
 if(empty($LOCAL_ACCESS)){
     die("direct access not allowed");
 }
-$youtube_array = $_POST['channel_id_array'];
-$channels = "'{$youtube_array[0]}'";
-if(count($youtube_array)>1){
-    for($i=1; $i<count($youtube_array); $i++){
-        $channels = $channels.','."'{$youtube_array[$i]}'";
-    }
-};
-$offset = $_POST['offset'];
-if(empty($youtube_array)){
+if(empty($_POST['channel_id_array'])){
     $output['errors'][] = 'MISSING YOUTUBE ARRAY';
     output_and_exit($output);
 }
-
-if(!isset($offset)){
-    $output['errors'][] = 'MISSING OFFSET';
-    $offset = 0;
+$youtube_array = $_POST['channel_id_array'];
+if(!isset($_POST['offset'])||!is_numeric($_POST['offset'])){
+    $_POST['offset'] = 0;
 }
+$offset = $_POST['offset'];
+
 //TM87
 // if(!preg_match('/[0-9]+/', $offset)){
 //     $output['errors'][] = 'INVALID OFFSET';
