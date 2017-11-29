@@ -181,7 +181,10 @@ consider carousel for the video list area:
 								</label>
 							</div>
 							<div class="navbar-nav nav-pills autoPlayArea vertSlide">
-								<label id="autoplayOrderText">Watch Order</label>
+								<label id="autoplayOrderText">
+									<span class="row">Watch</span>
+									<span class="row">Order</span>
+								</label>
 								<label class="switch vertSwitch">
 									<!-- <input type="checkbox" id='autoplayOrderCheckBox' checked> -->
 									<span id="playOrderArrow"><i class="fa fa-long-arrow-down" aria-hidden="true"></i></span>

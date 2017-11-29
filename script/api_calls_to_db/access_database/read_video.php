@@ -6,6 +6,10 @@ if(empty($_POST['video_title'])){
     $output['errors'][] = 'missing video title';
     output_and_exit($output);
 }
+if(empty($_POST['youtube_channel_array'])){
+    $output['errors'][] = 'missing channel array';
+    output_and_exit($output);
+}
 $video_title = $_POST['video_title'];
 $like = "%{$video_title}%";
 $query = 
@@ -17,7 +21,7 @@ $query =
     FROM 
         videos
     WHERE 
-        video_title LIKE ?";
+        video_title LIKE ? AND ({$fill})";
 if(!$stmt = $conn->prepare($query)){
     $output['errors'][] = 'find video query failed';
     output_and_exit($output);
