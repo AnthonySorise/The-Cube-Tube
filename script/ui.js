@@ -328,7 +328,22 @@ function clickHandler() {
     $('.existingCategoryButton').on('click tap', (e)=>{
         let categoryStr = '';
         categoryStr = $(e.target).closest('.existingCategorySelect').find('select option:selected').val();
-        changeCategory(categoryStr);
+
+        var isUncategorized = true;
+        for(var cat in clientCategories){
+            if(clientCategories[key].contains(channelIdOfCategorySet)){
+                isUncategorized = false;
+            }
+        }
+        console.log("IS UNCATEGORIZED IS ", isUncategorized)
+
+        if(isUncategorized){
+            changeCategory(categoryStr);
+        }
+        else{
+            changeCategory(categoryStr, true);
+        }
+
         $(e.target).closest('.existingCategorySelect').find('select option:selected').prop('selected', false);
         $(e.target).closest('.existingCategorySelect').find('select option:disabled').prop('selected', true);
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
