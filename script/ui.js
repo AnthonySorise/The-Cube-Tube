@@ -204,7 +204,7 @@ function clickHandler() {
     $('.channelDropDown').on('click tap', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
         dropOpened = false;
-        // returnToPageOne();
+        returnToPageOne();
         compileSelectedChannelsFromDropdown();
         clearVideoList();
 
