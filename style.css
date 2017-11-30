@@ -14,7 +14,7 @@ body {
 }
 
 .popover{
-	max-width: 400px;
+	max-width: 450px;
 }
 
 @keyframes typing {
@@ -309,7 +309,7 @@ body {
 	-moz-user-select: none;
 }
 #channelInfo .popover{
-	max-width: 450px;
+	max-width: 400px;
 }
 .autoPlayArea{
 	user-select: none;
