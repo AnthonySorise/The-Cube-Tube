@@ -703,7 +703,6 @@ div.thRow {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 100% auto;
-	opacity: .5;
 }
 	/* animation: backgroundChange 100s linear infinite;
 }
@@ -757,6 +756,7 @@ div.thRow {
 } */
 .contentPlaceholder{
 	color:white;
+	height: 100%;
 	background-color: rgba(2,14,19,0.5);
 	font-weight:900;
 	text-shadow:
