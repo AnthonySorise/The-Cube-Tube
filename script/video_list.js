@@ -385,8 +385,8 @@ function updateVideoInfoPopover(videoID){
             const descriptionTitle = $('<p><strong>Description: </strong></p>');
 
             const descriptionContainer = $('<div></div>');
-            descriptionContainer.css("height", "33%");
-            descriptionContainer.css("overflow-y", "auto")
+            descriptionContainer.css("height", "33%").css("overflow-y", "auto");
+
             const description = $('<p>' + data.items[0].snippet.description + '</p>');
             descriptionContainer.append(description);
             videoStatsDiv.append(videoThumbnail, views, likesTitle, likesBar, descriptionTitle, descriptionContainer);

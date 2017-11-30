@@ -166,7 +166,7 @@ consider carousel for the video list area:
 						</div>
 						<div class="navbar-nav nav-pills midNavButtonWrap">
 							<div class="navbar-nav nav-pills infoButtons hidden-xs">
-								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
+								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus click" data-container="body" data-placement="top">
 									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Video Info"></i>
 								</a>
 								<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
