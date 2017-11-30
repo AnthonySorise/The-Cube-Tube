@@ -7,6 +7,10 @@ if(empty($_POST['youtube_channel_id'])){
     output_and_exit($output);
 }
 $youtube_channel_id = $_POST['youtube_channel_id'];
+if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
+    $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
+    output_and_exit($output);
+}
 //makes user link if session and get is empty
 if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     function generateRandomString($conn){
@@ -33,6 +37,7 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     //creates random string for user and inserts into database as well as show to front end
     $output['user_link'] = $_SESSION['user_link'];
 }
+//grab channel id
 include('read_channel_id.php');
 //check for duplicate link
 $sqli = 

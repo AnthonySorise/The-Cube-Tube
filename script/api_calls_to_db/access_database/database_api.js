@@ -64,7 +64,7 @@
             }
         })
     }
-    this.delete_cuc = function(youtube_channel_id){
+    this.delete_ctc = function(youtube_channel_id){
         $.ajax({
             url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
@@ -255,7 +255,7 @@
             }
          })
      }
-     this.insert_cuc = function(youtube_channel_id,category_name){
+     this.insert_ctc = function(youtube_channel_id,category_name){
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',

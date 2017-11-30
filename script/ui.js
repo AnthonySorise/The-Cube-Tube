@@ -323,7 +323,7 @@ function clickHandler() {
     $('.channelCategoryForm').submit((e)=>{
         e.preventDefault();
         let categoryStr = '';
-        categoryStr = $(e.target).find('input').val().toLowerCase();
+        categoryStr = $(e.target).find('input').val();
 
         if($(e.target).closest('.modal').attr('id') === "userLinkModal"){
             changeCategory(categoryStr);

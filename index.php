@@ -1684,7 +1684,7 @@ consider carousel for the video list area:
 							<form class="form-group form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory" autofocus>
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>
 										</span>
@@ -1735,7 +1735,7 @@ consider carousel for the video list area:
 							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory" autofocus>
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>
 										</span>
