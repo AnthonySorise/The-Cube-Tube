@@ -859,12 +859,13 @@ div.thRow {
 }
 
 #channelSearchModalBody .chInfoButton {
-	color: rgba(49, 176, 213, 0.3);
+	color: #337ab7;
+	opacity: 0.75;
 	padding: 0;
 }
 
 #channelSearchModalBody .chInfoButton:hover {
-	color: rgba(49, 176, 213, 1);
+	opacity: 1;
 }
 
 #channelSearchModalBody .chInfoButton:focus {
