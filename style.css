@@ -1056,6 +1056,7 @@ input:checked + .vert:before {
 .fa-long-arrow-down{
 	position: relative;
 	font-size: 30px;
+	color: #FF8E2F;	
 	top: 6px;
     right: 5px;
 	color: oran;
@@ -1232,6 +1233,8 @@ safer appraoch than to resizing browser to see change
 	#channelCategoryUl{
 		max-height: 40vh;
 		max-width: 15vw;
+		min-width:210px;
+		font-size: 20px;
 	}
 }
 @media only screen and (max-width : 767px){
