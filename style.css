@@ -855,7 +855,7 @@ div.thRow {
 	padding: 0;
 }
 
-#channelSearchModalBody li h4, #channelSearchModalBody li span{
+#channelSearchModalBody li h4{
 	margin: 0;
 	display: inline-block;
 	line-height: 2.4;
