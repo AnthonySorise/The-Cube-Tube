@@ -169,12 +169,12 @@ function removeUnusedCategories(){
             }
         }
     }
-    // for(var key in clientCategories) {
-    //     if (clientCategories[key].length === 0) {
-    //         access_database.delete_categories(key)
-    //         delete clientCategories[key]
-    //     }
-    // }
+    for(var key in clientCategories) {
+        if (clientCategories[key].length === 0) {
+            // access_database.delete_categories(key)
+            delete clientCategories[key]
+        }
+    }
 }
 
 
