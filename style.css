@@ -845,11 +845,11 @@ div.thRow {
 	white-space: nowrap;
 }
 
-#channelSearchModalBody li{
+#channelSearchModalBody li, #channelSearchModalBody li small{
 	color:white;
 }
 
-#channelSearchModalBody li:hover{
+#channelSearchModalBody li:hover, #channelSearchModalBody li small:hover{
 	background-color: rgba(180, 189, 193, 1.0);
 	color:#020e13 !important;
 }
