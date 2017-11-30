@@ -21,7 +21,7 @@ var currentlySelectedVideoID = null;
 // var nextVideoIdToLoad = null;
 // var prevVideoIdToLoad = null;
 
-window.onload(function () {
+$(window).onload(function () {
     function initApp(){
         
         pausePlayWithSpacebar();
