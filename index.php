@@ -169,7 +169,7 @@ consider carousel for the video list area:
 								<a tabindex="0" id="videoStats" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-placement="top">
 									<i class="fa fa-bar-chart fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Video Info"></i>
 								</a>
-								<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus click" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
+								<a tabindex="0" id="channelInfo" class="btn hidden-xs" role="button" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" title="" data-content="">
 									<i class="fa fa-list-alt fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Channel Info"></i>
 								</a>
 							</div>
@@ -1467,9 +1467,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1484,9 +1484,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1502,9 +1502,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1520,9 +1520,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1538,9 +1538,9 @@ consider carousel for the video list area:
 								<span class="chName col-xs-6">
 
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1556,9 +1556,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1573,9 +1573,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1590,9 +1590,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Dhannel Cescription" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1608,9 +1608,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1625,9 +1625,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1684,7 +1684,7 @@ consider carousel for the video list area:
 							<form class="form-group form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory" autofocus>
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>
 										</span>
@@ -1735,7 +1735,7 @@ consider carousel for the video list area:
 							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory" autofocus>
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>
 										</span>
