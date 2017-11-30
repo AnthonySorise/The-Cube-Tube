@@ -33,14 +33,9 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                 last_channel_pull: channelObject.last_channel_pull
             },
             success: function (data) {
-                if (data.success) {
-                    console.log('Channel Updated', data);
-                }
-                console.log(data);
                 handleInfoFromDB(channelObject);
             },
             errors: function (data) {
-                console.log('insert error', data);
             }
         });
     }
@@ -59,8 +54,6 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                 //Channel is on DB
                 var readResult = data;
                 if (data.success) {
-                    console.log('Channel Found on DB', data);
-                    console.log("last channel pull: ", data.data[0].last_channel_pull)
                     //update Channel
                     $.ajax({
                         url: './script/api_calls_to_db/access_database/access.php',
@@ -72,21 +65,15 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                             last_channel_pull: data.data[0].last_channel_pull
                         },
                         success: function (data) {
-                            if (data.success) {
-                                console.log('Channel Updated', data);
-                            }
-                            console.log(data);
                             handleInfoFromDB(readResult.data[0]);
                         },
                         errors: function (data) {
-                            console.log('insert error', data);
                         }
                     })
                 }
                 //Channel NOT on DB
                 else {
                     if (data.nothing_to_read) {
-                        console.log("Must Retrieve Videos From YouTube", data);
                         $.ajax({
                             url: './script/api_calls_to_db/access_database/access.php',
                             method: 'post',
@@ -97,7 +84,6 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                             },
                             success: function (data) {
                                 if (data.success) {
-                                    console.log('Videos inserted to DB from Youtube', data);
                                     $.ajax({
                                         url: './script/api_calls_to_db/access_database/access.php',
                                         method: 'post',
@@ -108,16 +94,12 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                                         },
                                         success: function (data) {
                                             if (data.success) {
-                                                console.log('Channel Found on DB', data);
                                                 handleInfoFromDB(data.data[0]);
-                                            } else {
-                                                console.log("ERROR", data);
                                             }
                                         },
                                         errors: function (data) {
-                                            console.log("ERROR", data);
                                         }
-                                    })
+                                    });
                                     //update remaining videos
                                     setTimeout(function () {
                                         $.ajax({
@@ -130,12 +112,8 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                                                 page_token: data.page_token
                                             },
                                             success: function (data) {
-                                                if (data.success) {
-                                                    console.log('All videos inserted to DB from YouTube', data);
-                                                }
                                             },
                                             errors: function (data) {
-                                                console.log('insert error', data);
                                             }
                                         })
                                     }, 2000);
@@ -143,14 +121,12 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                                 }
                             },
                             errors: function (data) {
-                                console.log("ERROR", data);
                             }
                         })
                     }
                 }
             },
             errors: function (data) {
-                console.log("ERROR", data);
             }
         });
     }
@@ -182,14 +158,11 @@ function retrieveInfoFromDB(channelID, isAdding = false) {
                 },
                 success: function (data) {
                     if (data.success) {
-                        console.log('Channel added to user account', data);
                         addChannelModal(data.user_link);
-
                         renderChannelSelectionDropdown()
                     }
                 },
                 errors: function (data) {
-                    console.log('ERROR', data);
                 }
             })
         }

@@ -30,7 +30,6 @@ function searchChannelsByName(inputStr) {
             maxResults: 10
         },
         success: function (data) {
-            console.log('searchChannelsByName success', data);
             $('#channelSearchModal').modal('show');
             clearChannelResults();
             for (var i = 0; i < data.items.length; i++) {
@@ -49,14 +48,11 @@ function searchChannelsByName(inputStr) {
             promise.resolve(data);
         },
         error: function (data) {
-            console.log('something went wrong with YT', data);
-            promise.reject('oops');
+            promise.reject('searchChannel by name promise rejected');
         }
     });
     return promise;
 }
-
-
 
 function renderChannelSearchStats(i) {
     if ($("#chSearch-" + (i + 1) + ">h4>span").text() !== "") {
@@ -73,7 +69,6 @@ function renderChannelSearchStats(i) {
                 part: 'snippet, statistics'
             },
             success: function (data) {
-                console.log('renderChannelSearchStats success', data);
                 const subNumber = parseInt(data.items[0].statistics.subscriberCount);
                 const numWithCommas = subNumber.toLocaleString("en-us");
                 $(chSub).text(numWithCommas);
@@ -83,7 +78,6 @@ function renderChannelSearchStats(i) {
                 });
             },
             error: function (data) {
-                console.log('something went wrong with YT', data);
             }
         });
     }

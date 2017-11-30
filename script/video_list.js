@@ -10,33 +10,20 @@ function loadSelectedChannels() {
         },
         success: function (data) {
             if (data.success) {
-                // promise.resolve(data);
-                console.log('Videos Found', data);
                 videoObjectsToLoad = [];
                 videoObjectsToLoad = data.data;
-                // returnToPageOne();
                 clearVideoList();
                 renderVideoList(videoObjectsToLoad);
                 updateMidNavText();
             }
-            else {
-                console.log('Channel Found Without Videos', data)
-            }
         },
         errors: function (data) {
-            console.log(data['read errors'], data);
-            // promise.reject(data);
         }
     })
 }
 
 function renderVideoList(videoArray) {
-    if (videoObjectsToLoad === null) {
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    }
-    console.log("LOADING VIDEO LIST")
     clearVideoList();
-    // returnToPageOne();
 
     for (let i = 0; i < videoArray.length; i++) {
         if (videoArray[i] === undefined) {
@@ -135,15 +122,12 @@ function loadNextPage() {
                 },
                 success: function (data) {
                     if (data.success) {
-                        // promise.resolve(data);
-                        console.log('read success', data);
                         for (var i = 0; i < data.data.length; i++) {
                             videoObjectsToLoad.push(data.data[i])
                         }
                         for (var i = indexToStartOn; i < indexToStartOn + 40; i++) {
                             videosToLoad.push(videoObjectsToLoad[i])
                         }
-                        console.log("VIDEOS TO LOAD", videosToLoad)
                         setTimeout(function () {
                             // clearVideoList();
                             renderVideoList(videosToLoad)
@@ -153,8 +137,6 @@ function loadNextPage() {
                     }
                 },
                 errors: function (data) {
-                    console.log('read error', data);
-                    // promise.reject(data);
                 }
             })
         }
@@ -162,9 +144,7 @@ function loadNextPage() {
             for (var i = indexToStartOn; i < indexToStartOn + 40; i++) {
                 videosToLoad.push(videoObjectsToLoad[i])
             }
-            console.log("VIDEOS TO LOAD", videosToLoad)
             setTimeout(function () {
-                // clearVideoList();
                 renderVideoList(videosToLoad)
                 removeUnusedRows();
             }, 250)
@@ -182,7 +162,6 @@ function loadPreviousPage() {
         for (var i = indexToStartOn; i < indexToStartOn + 40; i++) {
             videosToLoad.push(videoObjectsToLoad[i])
         }
-        console.log("VIDEOS TO LOAD", videosToLoad);
         setTimeout(function () {
             // clearVideoList();
             renderVideoList(videosToLoad)
@@ -206,11 +185,7 @@ function returnToPageOne() {
             for (var i = 0; i < 40; i++) {
                 videosToLoad.push(videoObjectsToLoad[i])
             }
-            console.log("VIDEOS TO LOAD", videosToLoad);    //load list data while carousel is moving
-            // setTimeout(function(){
-            // clearVideoList();
             renderVideoList(videosToLoad)
-            // }, 250)
         }
     }
     $(".carousel").addClass('slide')
@@ -352,7 +327,6 @@ function updateVideoInfoPopover(videoID){
             part: 'snippet, statistics'
         },
         success: function (data) {
-            console.log('Youtube success', data);
             let videoStatsDiv = $('<div></div>').css("width", "385px").css("max-height", "450px");
             let videoURL = 'https://i.ytimg.com/vi/' + videoID + '/mqdefault.jpg';
             const videoThumbnail = $('<img>').attr('src', videoURL).css({
@@ -404,7 +378,6 @@ function updateVideoInfoPopover(videoID){
             });
         },
         error: function (data) {
-            console.log('something went wrong with YT', data);
         }
     });
 }
@@ -420,7 +393,6 @@ function updateChannelInfoPopover(channelID){
             part: 'snippet, statistics'
         },
         success: function (data) {
-            console.log('Youtube success', data);
             let channelInfoDiv = $("<div></div>").css("width", "385").css("max-height", "450px");;
             const channelThumbnail = $('<img>').attr('src', data.items[0].snippet.thumbnails.medium.url).css({
                 width: '105px',
@@ -455,7 +427,6 @@ function updateChannelInfoPopover(channelID){
             });
         },
         error: function (data) {
-            console.log('something went wrong with YT', data);
         }
     })
 }
