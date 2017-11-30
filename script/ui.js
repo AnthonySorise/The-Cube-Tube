@@ -203,6 +203,7 @@ function clickHandler() {
     });
     $('.channelDropDown').on('click tap', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
+        dropOpened = false;
         // returnToPageOne();
         compileSelectedChannelsFromDropdown();
         clearVideoList();
@@ -490,7 +491,6 @@ function clickHandler() {
     // carousel slides
     $('#rightArrowIcon').on('click tap',carouselRightArrow);
     $('#leftArrowIcon').on('click tap',carouselLeftArrow);
-
     // direction of play - arrow icon
     $("#playOrderArrow").on('click', function(){
         reversePlayDirection = !reversePlayDirection;
@@ -624,6 +624,9 @@ function carouselLeftArrow(){
 }
 
 function carouselRightArrow(){
+    if(videoObjectsToLoad.length < 20) {
+        return;
+    }
     $(".carousel").carousel('next');
 }
 
