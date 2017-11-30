@@ -353,8 +353,7 @@ function updateVideoInfoPopover(videoID){
         },
         success: function (data) {
             console.log('Youtube success', data);
-            let videoStatsDiv = $('<div></div>').css("width", "400px");
-            videoStatsDiv.css("height", '35vh')
+            let videoStatsDiv = $('<div></div>').css("width", "400px").css("height", "450px");
             let videoURL = 'https://i.ytimg.com/vi/' + videoID + '/mqdefault.jpg';
             const videoThumbnail = $('<img>').attr('src', videoURL).css({
                 width: '180px',
@@ -422,8 +421,7 @@ function updateChannelInfoPopover(channelID){
         },
         success: function (data) {
             console.log('Youtube success', data);
-            let channelInfoDiv = $("<div></div>").css("width", "400px");
-
+            let channelInfoDiv = $("<div></div>").css("width", "400px").css("height", "450px");;
             const channelThumbnail = $('<img>').attr('src', data.items[0].snippet.thumbnails.medium.url).css({
                 width: '105px',
                 height: '105px',
