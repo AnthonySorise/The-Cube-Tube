@@ -46,7 +46,10 @@ $(document).ready(function () {
         $('#text-carousel').on('slide.bs.carousel', function (ev) {
             console.log(ev)
             //Checks if there is not enough videos to fill up to a second page to not turn page
-            if(videoObjectsToLoad.length < 20) {
+            if($('#tdList-20').attr('videoID') === '') {
+                ev.preventDefault();
+                return;
+            } else if ($('#tdList-40').attr('videoID') === '' && currentSlideNumber % 2 === 0 && ev.direction === 'left') {
                 ev.preventDefault();
                 return;
             }
