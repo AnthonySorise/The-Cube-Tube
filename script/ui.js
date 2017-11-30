@@ -203,6 +203,7 @@ function clickHandler() {
     });
     $('.channelDropDown').on('click tap', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
+        dropOpened = false;
         // returnToPageOne();
         compileSelectedChannelsFromDropdown();
         clearVideoList();
