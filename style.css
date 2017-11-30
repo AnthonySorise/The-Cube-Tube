@@ -756,6 +756,8 @@ div.thRow {
 	}
 } */
 .contentPlaceholder{
+	color:darkblue;
+	font-weight:900;
 	margin-top: 30px;
 	text-shadow:
 		-0.5px -0.5px 0 #fff,
