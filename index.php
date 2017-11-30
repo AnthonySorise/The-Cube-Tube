@@ -1467,9 +1467,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1484,9 +1484,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1502,9 +1502,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1520,9 +1520,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1538,9 +1538,9 @@ consider carousel for the video list area:
 								<span class="chName col-xs-6">
 
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1556,9 +1556,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1573,9 +1573,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1590,9 +1590,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Dhannel Cescription" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1608,9 +1608,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
@@ -1625,9 +1625,9 @@ consider carousel for the video list area:
 							<h4 class="col-xs-9 col-sm-7 modalChHeader">
 								<span class="chName col-xs-6">
 								</span>
-								<small class="col-xs-5 hidden-xs">subs:
+								<span class="col-xs-5 hidden-xs">subs:
 									<span class="chSub"></span>
-								</small>
+								</span>
 								<a tabindex="0" class="chInfoButton text-center col-xs-1" role="button" data-trigger="focus" data-container="body" data-toggle="popover"
 								 data-placement="right" title="Channel Description" data-content="">
 									<i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>

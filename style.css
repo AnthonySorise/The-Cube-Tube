@@ -12,6 +12,11 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	background-color: #020e13;
 }
+
+.popover{
+	max-width: 400px;
+}
+
 @keyframes typing {
 	from {
 		width: 0
@@ -75,6 +80,9 @@ body {
 	background-color: black;
 	height: 3.5%;
 	margin-bottom: 0;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
 }
 #mainNav>.container-fluid{
 	position:relative;
@@ -104,10 +112,15 @@ body {
 	background-position: center;
 	background-size: 36px 40px;
 	margin-top:7px;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
 }
 .logoText{
 	vertical-align: 55%;
 	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 #mainNav-option{
 	z-index: 1;
@@ -174,6 +187,9 @@ body {
 	line-height: 2.85em;
 	margin-left: 25px;
 	float:right;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
 }
 
 .label{
@@ -259,6 +275,8 @@ body {
 #channelCategoryUl li{
 	cursor: pointer;
 	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 .dropdownChannelLi, .dropdownChannelLiAll, .dropdownCatLi{
 	overflow: hidden;
@@ -287,12 +305,16 @@ body {
 }
 .infoButtons{
 	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+#channelInfo .popover{
+	width: 250px;
 }
 .autoPlayArea{
 	user-select: none;
-}
-.midNavBrowsing>small, .midNavWatching>small{
-	color: grey;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 .ui-widget-content {
 	/*color: #fff !important;*/
@@ -351,6 +373,8 @@ body>.container-fluid {
 	max-width:100vw;
 	justify-self: center;
 	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 /************************************
 * END of .videoRowWrapper<div> area *
@@ -423,6 +447,8 @@ body>.container-fluid {
 	height: 84.6%;
 	padding: 0;
 	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 /************ CAROUSEL styles *************/
 .carousel-indicators li {
@@ -530,7 +556,7 @@ div.thRow {
 	height: 100%;
 }
 .tdInfo a{
-	height: 100%;
+	/* height: 100%; */
 	background: none;
 	border: none;
 
@@ -604,6 +630,9 @@ div.thRow {
 .fa-info-circle{ 
 	vertical-align: 0%;
 }
+.fa-check-square-o{
+	color: orange;
+}
 
 
 .selectedTd.tdList:nth-child(even):hover div {
@@ -657,12 +686,13 @@ div.thRow {
 	height: 100%;
 	/*z-index: -1;*/
 	/*background-color: lightblue;*/
-	background-image: url("assets/images/img_01.jpg");
+	background-image: url("assets/images/orangecube.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 100% auto;
-	opacity: 0;
-	animation: backgroundChange 100s linear infinite;
+	opacity: .5;
+}
+	/* animation: backgroundChange 100s linear infinite;
 }
 @keyframes backgroundChange{
 	10%{
@@ -711,13 +741,15 @@ div.thRow {
 		background-image: url('assets/images/img_01.jpg');
 		opacity: 0;
 	}
-}
+} */
 .contentPlaceholder{
 	margin-top: 30px;
 	text-shadow:
 		-0.5px -0.5px 0 #fff,
 		0.5px 0.5px 0 #fff;
 	user-select: none;	
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 .contentPlaceholder>image{
 	margin: 0 auto; 
@@ -813,15 +845,14 @@ div.thRow {
 	height: 55vh;
 	background-color: #020e13;
 	overflow: auto;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 
 #channelSearchModalBody li {
 	margin: 5.5px 0;
 	padding: 0 7px;
-}
-
-#channelSearchModalBody li:hover {
-	background-color: #1c2a48;
 }
 
 #channelSearchModalBody li img {
@@ -830,32 +861,44 @@ div.thRow {
 	padding: 0;
 }
 
-#channelSearchModalBody li h4 {
+#channelSearchModalBody li h4{
 	margin: 0;
 	display: inline-block;
 	line-height: 2.4;
-	color: rgb(207, 216, 220);
 }
 
 .chName,
-#channelSearchModalBody li h4 small {
+#channelSearchModalBody li h4, #channelSearchModalBody li span {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	color: white;
 }
 
-#channelSearchModalBody li h4 small {
+#channelSearchModalBody li{
+	color:white;
+}
+
+.chSub{
+	line-height: 0.8;
+}
+
+#channelSearchModalBody li:hover{
+	background-color: rgba(180, 189, 193, 1.0);
+	color:#020e13 !important;
+}
+
+#channelSearchModalBody li h4 h5 {
 	line-height: 3.4;
 }
 
 #channelSearchModalBody .chInfoButton {
-	color: rgba(49, 176, 213, 0.3);
+	color: #337ab7;
+	opacity: 0.75;
 	padding: 0;
 }
 
 #channelSearchModalBody .chInfoButton:hover {
-	color: rgba(49, 176, 213, 1);
+	opacity: 1;
 }
 
 #channelSearchModalBody .chInfoButton:focus {
@@ -1230,6 +1273,8 @@ safer appraoch than to resizing browser to see change
 	#channelCategoryUl{
 		max-height: 40vh;
 		max-width: 15vw;
+		min-width:210px;
+		font-size: 20px;
 	}
 }
 @media only screen and (max-width : 767px){
@@ -1243,6 +1288,9 @@ safer appraoch than to resizing browser to see change
 
 	.navbar-header{
 		width: auto;
+		user-select: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
 	}
 	.hamburger {
 		display: inline-block !important;
