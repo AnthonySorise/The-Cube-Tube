@@ -7,7 +7,7 @@ if(!empty($_POST['page_token'])){
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
 }
-if(!empty($_POST['last_channel_pull'])){
+if(!empty($_POST['last_channel_pull'])){//change datetime to youtube standard format
     $last_channel_pull = $_POST['last_channel_pull'];
     $last_channel_pull = str_replace(' ','T', $last_channel_pull);
     $last_channel_pull .= '.000Z';
