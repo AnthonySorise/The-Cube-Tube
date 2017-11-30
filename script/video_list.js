@@ -385,7 +385,7 @@ function updateVideoInfoPopover(videoID){
             const descriptionTitle = $('<p><strong>Description: </strong></p>');
 
             const descriptionContainer = $('<div></div>');
-            descriptionContainer.css("height", "150px").css("overflow-y", "auto")
+            descriptionContainer.css("max-height", "150px").css("overflow-y", "auto")
 
             const description = $('<p>' + data.items[0].snippet.description + '</p>');
             descriptionContainer.append(description);
@@ -434,7 +434,7 @@ function updateChannelInfoPopover(channelID){
             var subscriberCount = $('<p><strong>Subscribers: </strong>' + parseInt(data.items[0].statistics.subscriberCount).toLocaleString("en-us") + '</p>');
             const descriptionTitle = $('<p><strong>Description: </strong></p>');
             const descriptionContainer = $('<div></div>');
-            descriptionContainer.css("height", "150px");
+            descriptionContainer.css("max-height", "150px");
 
             descriptionContainer.css("overflow-y", "auto")
             const description = $('<p>' + data.items[0].snippet.description + '</p>');
