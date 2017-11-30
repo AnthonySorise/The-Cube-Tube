@@ -273,7 +273,22 @@ function handleRemoveButton() {
     let channelId = $(this).parent().attr("channelId");
     channelIdOfCategorySet = channelId;
     console.log("REMOVING " + channelId);
-    access_database.delete_ctu(channelId);
+
+    var categoryBeingChanged = null;
+    for(var cat in clientCategories){
+        if(clientCategories[cat].indexOf(channelIdOfCategorySet)!== -1){
+            categoryBeingChanged = cat;
+        }
+    }
+    //if this is the last channel of a category, delete the category
+    if(clientCategories[categoryBeingChanged].length === 1){
+        access_database.delete_categories(categoryBeingChanged)
+    }
+    //otherwise, just delete the category link
+    else{
+        access_database.delete_ctu(channelId);//redundant?
+    }
+
     for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
         if (clientSubscribedChannelObjects[i].youtube_channel_id === channelId) {
             clientSubscribedChannelObjects.splice(i, 1)
