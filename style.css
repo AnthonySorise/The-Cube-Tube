@@ -311,9 +311,6 @@ body {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 }
-.midNavBrowsing>small, .midNavWatching>small{
-	color: grey;
-}
 .ui-widget-content {
 	/*color: #fff !important;*/
 	color: #000 !important;
@@ -865,7 +862,7 @@ div.thRow {
 }
 
 .chName,
-#channelSearchModalBody li h4 small {
+#channelSearchModalBody li h4 h5 {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -875,17 +872,13 @@ div.thRow {
 	color:white;
 }
 
-small.col-xs-5{
-	color:white;
-}
 
-
-#channelSearchModalBody li:hover, #channelSearchModalBody li small:hover{
+#channelSearchModalBody li:hover{
 	background-color: rgba(180, 189, 193, 1.0);
 	color:#020e13 !important;
 }
 
-#channelSearchModalBody li h4 small {
+#channelSearchModalBody li h4 h5 {
 	line-height: 3.4;
 }
 
