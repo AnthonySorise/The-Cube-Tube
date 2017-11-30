@@ -22,36 +22,63 @@ function handleChangeCategory(){
 }
 
 function changeCategory(category, isChangingCategory = false){
-    //ajax calls to remove category
+    //if changing channel from one category to another
     if(isChangingCategory){
-        console.log("CHANGE CATEGORY - delete_ctc")
-        $.ajax({
-            url: './script/api_calls_to_db/access_database/access.php',
-            method: 'POST',
-            dataType: 'JSON',
-            data: {
-                action: 'delete_ctc',
-                youtube_channel_id:channelIdOfCategorySet
-            },
-            success: function (data) {
-                if (data.success){
-                    console.log('delete success', data);
-                }else{
-                    console.log(data);
+        //if it's the last channel in that category, delete category before inserting
+        if(clientCategories[category].length===1){
+            $.ajax({
+                url:'./script/api_calls_to_db/access_database/access.php',
+                method:'post',
+                dataType:'JSON',
+                data:{
+                    category_name:category,
+                    action:'delete_category'
+                },
+                success:function(data){
+                    if(data.success){
+                        console.log('deleted success', data);
+                    }else{
+                        console.log(data);
+                    }
+                    insertCategory();
+                },
+                errors:function(data){
+                    console.log(data['errors']);
                 }
-                //ajax calls to insert category
-                insertCategory();
-            },
-            errors: function (data) {
-                console.log('read error', data);
-            }
-        });
+            })
+        }
+        //if it's not the last channel in the category, delete ctc before inserting
+        else{
+            console.log("CHANGE CATEGORY - delete_ctc")
+            $.ajax({
+                url: './script/api_calls_to_db/access_database/access.php',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    action: 'delete_ctc',
+                    youtube_channel_id:channelIdOfCategorySet
+                },
+                success: function (data) {
+                    if (data.success){
+                        console.log('delete success', data);
+                    }else{
+                        console.log(data);
+                    }
+                    insertCategory();
+                },
+                errors: function (data) {
+                    console.log('read error', data);
+                }
+            });
+        }
     }
+    //if creating a category for a new subscription, just insert
     else{
         insertCategory();
     }
 
     function insertCategory(){
+        //if category already exists, insert ctc
         if(clientCategories.hasOwnProperty(category.toLowerCase())){
             $.ajax({
                 url:'./script/api_calls_to_db/access_database/access.php',
@@ -83,6 +110,7 @@ function changeCategory(category, isChangingCategory = false){
                 }
             })
         }
+        //if new category doesn't exist, insert category
         else{
             $.ajax({
                 url:'./script/api_calls_to_db/access_database/access.php',
@@ -134,12 +162,12 @@ function removeUnusedCategories(){
             }
         }
     }
-    for(var key in clientCategories) {
-        if (clientCategories[key].length === 0) {
-            access_database.delete_categories(key)
-            delete clientCategories[key]
-        }
-    }
+    // for(var key in clientCategories) {
+    //     if (clientCategories[key].length === 0) {
+    //         access_database.delete_categories(key)
+    //         delete clientCategories[key]
+    //     }
+    // }
 }
 
 
