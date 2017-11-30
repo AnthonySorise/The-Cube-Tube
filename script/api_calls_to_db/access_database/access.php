@@ -55,10 +55,10 @@ switch($_POST['action']){
     case 'insert_category':
         include('insert_category.php');
         break;
-    case 'insert_ctc':
+    case 'insert_ctc'://create link between categories and channels
         include('insert_ctc.php');
         break;
-    case 'insert_youtube_channel_curl':
+    case 'insert_youtube_channel_curl'://grab and insert channel data from youtube 
         include('youtube_channel_curl.php');
         break;
     case 'update_video_list':
@@ -67,7 +67,7 @@ switch($_POST['action']){
     case 'update_channels':
         include('update_channels.php');
         break;
-    case 'insert_videos_curl':
+    case 'insert_videos_curl'://grab and insert videos from youtube
         include('youtube_videos_curl.php');
         break;
     default:
