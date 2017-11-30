@@ -38,7 +38,7 @@ function changeCategory(category, isChangingCategory = false){
                 method:'post',
                 dataType:'JSON',
                 data:{
-                    category_name:category,
+                    category_name:categoryBeingChanged,
                     action:'delete_category'
                 },
                 success:function(data){

@@ -377,7 +377,7 @@ function clickHandler() {
         $(e.target).closest('.existingCategorySelect').find('select option:selected').prop('selected', false);
         $(e.target).closest('.existingCategorySelect').find('select option:disabled').prop('selected', true);
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
-            toastMsg('Channel Added', 2000);
+            // toastMsg('Channel Added', 2000);
         });
     });
     //Search Button
