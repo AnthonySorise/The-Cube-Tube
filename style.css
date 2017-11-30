@@ -872,9 +872,14 @@ div.thRow {
 	white-space: nowrap;
 }
 
-#channelSearchModalBody li, #channelSearchModalBody li small{
+#channelSearchModalBody li{
 	color:white;
 }
+
+small.col-xs-5{
+	color:white;
+}
+
 
 #channelSearchModalBody li:hover, #channelSearchModalBody li small:hover{
 	background-color: rgba(180, 189, 193, 1.0);
