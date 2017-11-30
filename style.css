@@ -844,7 +844,7 @@ div.thRow {
 	color: white;
 }
 
-#channelSearchModalBody li:hover {
+#channelSearchModalBody li .chName:hover, #channelSearchModalBody li small:hover {
 	background-color: rgba(180, 189, 193, 1.0);
 	color:#020e13;
 }
