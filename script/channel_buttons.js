@@ -25,7 +25,14 @@ function changeCategory(category, isChangingCategory = false){
     //if changing channel from one category to another
     if(isChangingCategory){
         //if it's the last channel in that category, delete category before inserting
-        if(clientCategories[category].length===1){
+        var categoryBeingChanged = null;
+        for(var cat in clientCategories){
+            if(clientCategories[cat].indexOf(channelIdOfCategorySet)!== -1){
+                categoryBeingChanged = cat;
+            }
+        }
+        console.log("CATEGORY BEING CHANGED, ", categoryBeingChanged)
+        if(clientCategories[categoryBeingChanged].length===1){
             $.ajax({
                 url:'./script/api_calls_to_db/access_database/access.php',
                 method:'post',
