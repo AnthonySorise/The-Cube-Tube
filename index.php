@@ -288,10 +288,7 @@ consider carousel for the video list area:
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
 					
 					<!-- Indicators -->
-					<!-- <ol class="carousel-indicators hidden-xs hidden-sm"></ol> -->
 					<ol class="carousel-indicators">
-						<!-- <li data-target="#text-carousel" data-slide-to="0" class="active"></li>
-						<li data-target="#text-carousel" data-slide-to="1"></li> -->
 						<li id="returnCarouselStart" class="glyphicon glyphicon-fast-backward" onclick=returnToPageOne()></li>
 						<li><i class="fa fa-arrow-left" aria-hidden="true" id="leftArrowIcon"></i></li>
 						<li id="currentSlideNumberArea"></li>
@@ -302,6 +299,7 @@ consider carousel for the video list area:
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="carousel-inner">
+								<!-- first slide area -->
 								<div class="item active pageOne">
 									<div class="carousel-content">
 										<div class="row tdRow text-center ">
@@ -388,10 +386,8 @@ consider carousel for the video list area:
 														</button>
 													</div>
 													<div class="col-xs-5 col-sm-2 tdChannel text-center">
-
 													</div>
 													<div class="col-xs-2 hidden-xs tdUpDate text-center">
-
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-4">
@@ -409,16 +405,13 @@ consider carousel for the video list area:
 															<!-- <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i> -->
 															<!-- <span class="tdPlaylistBadgeSign"> -->
 																<i class="fa fa-plus-square fa-lg"></i>
-															<!-- </span> -->
 															<span class="tdPlaylistNum">
 															</span>
 														</button>
 													</div>
 													<div class="col-xs-5 col-sm-2 tdChannel text-center">
-
 													</div>
 													<div class="col-xs-2 hidden-xs tdUpDate text-center">
-
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-5">
@@ -550,10 +543,8 @@ consider carousel for the video list area:
 														</button>
 													</div>
 													<div class="col-xs-5 col-sm-2 tdChannel text-center">
-
 													</div>
 													<div class="col-xs-2 hidden-xs tdUpDate text-center">
-
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-10">
@@ -577,10 +568,8 @@ consider carousel for the video list area:
 														</button>
 													</div>
 													<div class="col-xs-5 col-sm-2 tdChannel text-center">
-
 													</div>
 													<div class="col-xs-2 hidden-xs tdUpDate text-center">
-
 													</div>
 												</div>
 											</div>
@@ -606,10 +595,8 @@ consider carousel for the video list area:
 														</button>
 													</div>
 													<div class="col-xs-5 col-sm-2 tdChannel text-center">
-
 													</div>
 													<div class="col-xs-2 hidden-xs tdUpDate text-center">
-
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-12">
@@ -633,10 +620,8 @@ consider carousel for the video list area:
 														</button>
 													</div>
 													<div class="col-xs-5 col-sm-2 tdChannel text-center">
-
 													</div>
 													<div class="col-xs-2 hidden-xs tdUpDate text-center">
-
 													</div>
 												</div>
 												<div class="col-xs-12 tdList" id="tdList-13">
