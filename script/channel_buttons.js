@@ -102,7 +102,7 @@ function changeCategory(category, isChangingCategory = false){
                     if (data.success) {
                         console.log('insert success', data);
 
-                        // removeUnusedCategories();
+                        removeUnusedCategories();
 
                         if(!clientCategories.hasOwnProperty(category)){
                             clientCategories[category] = [];
@@ -141,7 +141,7 @@ function changeCategory(category, isChangingCategory = false){
                                 }
                             }
                         }
-                        // removeUnusedCategories();
+                        removeUnusedCategories();
                         if(!clientCategories.hasOwnProperty(category)){
                             clientCategories[category] = [];
                         }
