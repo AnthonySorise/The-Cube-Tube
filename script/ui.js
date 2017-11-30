@@ -623,7 +623,9 @@ function carouselLeftArrow(){
 }
 
 function carouselRightArrow(){
-    if(videoObjectsToLoad.length < 20) {
+    if($('#tdList-20').attr('videoID') === '') {
+        return;
+    } else if ($('#tdList-40').attr('videoID') === '' && currentSlideNumber % 2 === 0) {
         return;
     }
     $(".carousel").carousel('next');
