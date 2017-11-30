@@ -18,7 +18,9 @@ function handleChangeCategory(){
         }
         $('.userCategoryExists').show();
     }
-    $("#categoryEditModal").modal("show")
+    $("#categoryEditModal").modal("show").on('shown.bs.modal',()=>{
+        $('.categoryEditBody .channelCategoryInput').focus();
+    });
 }
 
 function changeCategory(category, isChangingCategory = false){
@@ -247,7 +249,9 @@ function addChannelModal(userLink) {
         $('.userCategoryExists').show();
     }
 
-    $('#userLinkModal').modal('show');
+    $('#userLinkModal').modal('show').on('shown.bs.modal',()=>{
+        $('.userLinkBody .channelCategoryInput').focus();
+    });
 }
 
 
