@@ -43,7 +43,6 @@ consider carousel for the video list area:
     <!-- <script type="text/javascript" src="script/tour.js"></script> -->
     <script type="text/javascript" src="script/utilities.js"></script>
 	<script src="//cdn.jsdelivr.net/velocity/1.5/velocity.min.js"></script>
-	<script src="z_prototypes/sampleDatabaseObjects/sampleDatabaseObjects.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
 	<title>CubeTube 0.1</title>
@@ -279,8 +278,8 @@ consider carousel for the video list area:
 										<h3 class="text-center visible-xs">Welcome to TheCubeTube!</h3>
 										<h3 class="hidden-xs">Start by searching for your favorite YouTube channel</h3>
 										<h5 class="visible-xs">Start by searching for your favorite YouTube channel</h5>
-										<h3 class="hidden-xs">Add channels by clicking the 'Subscribe' button, or simply browse content with 'Browse'</h3>
-										<p class="visible-xs">Add channels by clicking the 'Subscribe' button, or simply browse content with 'Browse'</p>
+										<h3 class="hidden-xs">Anonymously track channels by clicking the 'Subscribe' button, or simply browse content with 'Browse'</h3>
+										<p class="visible-xs">Anonymously track channels by clicking the 'Subscribe' button, or simply browse content with 'Browse'</p>
 										<!--<img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png">-->
 									</div>
 								</div>

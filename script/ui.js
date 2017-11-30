@@ -228,19 +228,13 @@ function clickHandler() {
                     last_channel_pull:clientSelectedChannelObjects[i].last_channel_pull
                 },
                 success: function (data) {
-                    console.log("UPDATED", data)
                     numUpdated++;
                     if(numUpdated === clientSelectedChannelObjects.length){
-                        console.log("UPDATED DONE");
                         returnToPageOne();
                         loadSelectedChannels();
                     }
-                    if (data.success) {
-                        console.log('Channel Updated', data);
-                    }
                 },
                 errors: function (data) {
-                    console.log('insert error', data);
                 }
             })
         }
@@ -275,19 +269,13 @@ function clickHandler() {
                     last_channel_pull:clientSubscribedChannelObjects[i].last_channel_pull
                 },
                 success: function (data) {
-                    console.log("UPDATED", data)
                     numUpdated++;
                     if(numUpdated === clientSubscribedChannelObjects.length){
-                        console.log("UPDATED DONE");
                         returnToPageOne();
                         loadSelectedChannels();
                     }
-                    if (data.success) {
-                        console.log('Channel Updated', data);
-                    }
                 },
                 errors: function (data) {
-                    console.log('insert error', data);
                 }
             })
         }
@@ -335,8 +323,6 @@ function clickHandler() {
                     isUncategorized = false;
                 }
             }
-            console.log("IS UNCATEGORIZED IS ", isUncategorized)
-
             if(isUncategorized){
                 changeCategory(categoryStr);
             }
@@ -364,8 +350,6 @@ function clickHandler() {
                     isUncategorized = false;
                 }
             }
-            console.log("IS UNCATEGORIZED IS ", isUncategorized)
-
             if(isUncategorized){
                 changeCategory(categoryStr);
             }
@@ -387,7 +371,6 @@ function clickHandler() {
     });
 
     function channelSearchWorked() {
-        console.log("CHANNEL SEARCH WORKED")
         for (var i = 0; i < 10; i++) {
             renderChannelSearchStats(i)
         }
@@ -407,17 +390,11 @@ function clickHandler() {
         }
         $(".navbar-collapse").collapse('hide');
         searchChannelsByName(inputStr).then(channelSearchWorked, channelSearchFailed);
-        // $(".contentPlaceholder").hide();
-        console.log("LIST PLACEHOLDER SHOULD GO DOWN", $('.contentPlaceholderWrapper').css('display')!=='none')
         if($('.contentPlaceholderWrapper').css('display')!=='none'){
-            console.log("LIST PLACEHOLDER IS GOING DOWN", $('.contentPlaceholderWrapper').css('display')!=='none')
             $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                 $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
             });
-            return;
         }
-        
-
     });
     //Browse Button
     $('.browseChannelButton').on("click tap", handleBrowseButton);
@@ -502,92 +479,18 @@ function clickHandler() {
       });
     
 
-
-
-
-    //Theater mode
-    // $('.lightBoxMode').on('click', checkHomePageVideoStatus);
-    // $('.theatreModalClose').on('click', checkTheatreModeStatus);
+    //Theater mode buttons
     $('.fastForwardButton').on('click tap', fastForwardVideo);
     $('.rewindButton').on('click tap', rewindVideo);
     $('.playButton').on('click tap', playYtVideo);
     $('.lastVideoButton').on('click tap',playPrevYTVideo);
-    $('.nextVideoButton').on('click tap', playNextYTVideo); 
-    // $('body').on('click', closeTheatreOnClick);
-    // $(document).on('keyup', function (event) {
-    //     if (event.keyCode === 27 && $('body').hasClass('modal-open')) {
-    //         console.log('Esc was pressed');
-    //         checkTheatreModeStatus();
-    //     }
-    // });
-
-    // Lets user click outside of theatre modal to close and save the state of video
-    // function closeTheatreOnClick(event) {
-    //     event.stopPropagation();
-    //     if($('body').hasClass('modal-open')) {
-    //         //Have to check if modal footer is being clicked to stop from closing modal
-    //         if(event.target.classList[0] == "fa" || event.target.classList == "") {
-    //             return;
-    //         }
-    //         $('.modal-content').modal('hide');
-    //         checkTheatreModeStatus();
-    //     }
-    // }
-    //
-    // function checkHomePageVideoStatus(event) {
-    //     event.stopPropagation()
-    //     player.pauseVideo();
-    //     if (player.getPlayerState() === 2) {
-    //         checkIfPlayerIsMuted();
-    //         player.pauseVideo();
-    //         player2.seekTo(player.getCurrentTime());
-    //         player2.pauseVideo();
-    //         $('.pauseButton').removeClass().addClass(play);
-    //         $('#lightBoxModal').modal('show');
-    //     } else if (player.getPlayerState() === 1) {
-    //         checkIfPlayerIsMuted();
-    //         player.pauseVideo();
-    //         player2.seekTo(player.getCurrentTime());
-    //         $('.playButton').removeClass().addClass(pause);
-    //         player2.playVideo();
-    //         $('#lightBoxModal').modal('show');
-    //     } else if (player.getPlayerState() === 5) {
-    //         $('#lightBoxModal').modal('show');
-    //     }
-    // }
-    //
-    // function checkTheatreModeStatus() {
-    //     if (player2.getPlayerState() === 2) {
-    //         checkIfPlayer2IsMuted();
-    //         player2.pauseVideo();
-    //         player.seekTo(player2.getCurrentTime());
-    //         player.pauseVideo();
-    //         $('#lightBoxModal').modal('hide');
-    //     } else if (player2.getPlayerState() === 1) {
-    //         checkIfPlayer2IsMuted();
-    //         player2.pauseVideo();
-    //         player.seekTo(player2.getCurrentTime());
-    //         $('#lightBoxModal').modal('hide');
-    //         player.playVideo();
-    //     } else if (player2.getPlayerState() === 5) {
-    //         $('#lightBoxModal').modal('hide');
-    //     }
-    // }
-
+    $('.nextVideoButton').on('click tap', playNextYTVideo);
 
     function fastForwardVideo() {
         var fastForward = player.getCurrentTime();
         var add15Seconds = fastForward + 15;
-        // var player2State = player.getPlayerState();
-        // if (player2State === 2) {
-        //     player.seekTo(add15Seconds);
-        //     player.pauseVideo();
-        //     return;
-        // } else {
             player.seekTo(add15Seconds);
-        // }
     }
-
 
     function playYtVideo() {
         player.playVideo();
@@ -603,18 +506,10 @@ function clickHandler() {
         }
     }
 
-
     function rewindVideo() {
         var fastForward = player.getCurrentTime();
         var minus15Seconds = fastForward - 15;
-        // var player2State = player.getPlayerState();
-        // if (player2State === 2) {
-        //     player.seekTo(minus15Seconds);
-        //     player.pauseVideo();
-        //     return;
-        // } else {
-            player.seekTo(minus15Seconds);
-        // }
+        player.seekTo(minus15Seconds);
     }
 }
 

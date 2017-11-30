@@ -42,21 +42,14 @@ function changeCategory(category, isChangingCategory = false){
                     action:'delete_category'
                 },
                 success:function(data){
-                    if(data.success){
-                        console.log('deleted success', data);
-                    }else{
-                        console.log(data);
-                    }
                     insertCategory();
                 },
                 errors:function(data){
-                    console.log(data['errors']);
                 }
             })
         }
         //if it's not the last channel in the category, delete ctc before inserting
         else{
-            console.log("CHANGE CATEGORY - delete_ctc")
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
@@ -66,15 +59,9 @@ function changeCategory(category, isChangingCategory = false){
                     youtube_channel_id:channelIdOfCategorySet
                 },
                 success: function (data) {
-                    if (data.success){
-                        console.log('delete success', data);
-                    }else{
-                        console.log(data);
-                    }
                     insertCategory();
                 },
                 errors: function (data) {
-                    console.log('read error', data);
                 }
             });
         }
@@ -109,7 +96,6 @@ function changeCategory(category, isChangingCategory = false){
                     }
                 },
                 errors: function (data) {
-                    console.log('insert error', data);
                 }
             })
         }
@@ -191,7 +177,7 @@ function handleAddButton() {
 
 function addChannelModal(userLink) {
     if (userLink) {
-        alert("Save the following link and use it to access your account!");
+        alert("This your unique link - "+userLink+" - use it to access your subscribed channels!");
         let uLink = 'www.thecubetube.com/?user='+userLink;
         const userAddress = $('<span>',{
             'class': 'linkGhost',
@@ -209,7 +195,7 @@ function addChannelModal(userLink) {
         const linkHeaderHiddenXs = $('<h3>').text("Save this link!").addClass("hidden-xs");
         const linkHeaderVisibleXs = $('<h5>').text("Save this link!").addClass("visible-xs");
         const linkDiv = $('<div>',{
-            text: 'Use it to get access to your subscribed channels.'
+            text: 'Use this link to access your subscribed channels.'
         }).css("font-weight", "700");
         let button = $('<button>').addClass("btn btn-info btn-lg btn-block").text("CopyLink  ");
         let linkIcon = $('<i>').addClass('fa fa-clipboard fa-lg text-danger');
