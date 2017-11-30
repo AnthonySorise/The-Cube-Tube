@@ -113,7 +113,7 @@ consider carousel for the video list area:
 					<!--form for searching channels-->
 					<div class="form-group">
 						<div class="input-group">
-							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch">
+							<input type="text" class="form-control channelSearchInput" placeholder="search channels" name="channelSearch" autofocus>
 							<span type="button" class="input-group-addon channelSearchButton channelToolTip" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" title="Search for channels to add">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</span>
@@ -1684,7 +1684,7 @@ consider carousel for the video list area:
 							<form class="form-group form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory" autofocus>
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>
 										</span>
@@ -1735,7 +1735,7 @@ consider carousel for the video list area:
 							<form class="form-inline col-xs-12 col-sm-8 col-sm-offset-2 channelCategoryForm">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory" autofocus>
+										<input type="text" class="form-control channelCategoryInput" placeholder="enter channel category" name="channelCategory">
 										<span type="button" class="input-group-addon channelCategoryButton">
 											<span class="glyphicon glyphicon-ok"></span>
 										</span>
