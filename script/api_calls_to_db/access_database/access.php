@@ -14,9 +14,11 @@ if(!empty($_SESSION['user_link'])){
     include('read_user.php');
 }
 function output_and_exit($output){
+    $output['datetime'][] = date('Y-m-s H:i:s');
+    $output['defined_vars'][] = get_defined_vars();
     $json_output = json_encode($output);
+    error_log("{$json_output} \n",3,"../../../../../logs/error.log" );
     print($json_output);
-    date('Y-m-s H:i:s');
     exit();
 }
 switch($_POST['action']){

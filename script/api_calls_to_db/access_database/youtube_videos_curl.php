@@ -38,14 +38,17 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
     if ($decoded_json === NULL ) {
         $error_occurred = true;
     }
-    if ($error_occurred ){
+    if ($error_occurred){
         $body = 'Error occurred in ' . __FILE__ . "\n\n" .
             'curl_errno: ' . curl_errno($ch) . "\n" .
             'curl_error: ' . curl_error($ch) . "\n" .
             'strlen($json): ' . strlen($json) . "\n" .
             'var_export(curl_getinfo($ch), true): ' . var_export(curl_getinfo($ch), true) . "\n\n" .
             '$json: ' . $json . "\n";
-        echo $body;
+        $error = json_encode($body);
+        $output['errors'][] = $error;
+        $output['messages'] = 'curl failed at youtube_channel_curl';
+        output_and_exit($output);
     } else {
         $video_array = json_decode($json, true);
         if(empty($video_array['items'])){

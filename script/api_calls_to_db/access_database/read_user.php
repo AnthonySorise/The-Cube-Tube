@@ -25,5 +25,4 @@ if(!empty($result)){
 }else{
     $output['errors'][] = 'INVALID QUERY READ USER ID IN ACCESS ';
 }
-
 ?>

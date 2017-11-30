@@ -29,7 +29,9 @@ if ($error_occurred ){
                  'var_export(curl_getinfo($ch), true): ' . var_export(curl_getinfo($ch), true) . "\n\n" .
                  '$json: ' . $json . "\n";
       $error = json_encode($body);
-      print($error);
+      $output['errors'][] = $error;
+      $output['messages'] = 'curl failed at youtube_channel_curl';
+      output_and_exit($output);
 } else {
       $channel_data = json_decode($json, true)['items'][0]['snippet'];
       $thumbnail = $channel_data['thumbnails']['medium']['url'];
