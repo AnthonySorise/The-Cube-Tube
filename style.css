@@ -836,7 +836,6 @@ div.thRow {
 	margin: 0;
 	display: inline-block;
 	line-height: 2.4;
-	color: rgb(207, 216, 220);
 }
 
 .chName,
@@ -844,12 +843,15 @@ div.thRow {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	color: white;
 }
 
-#channelSearchModalBody li .chName:hover, #channelSearchModalBody li small:hover {
+#channelSearchModalBody li{
+	color:white;
+}
+
+#channelSearchModalBody li:hover{
 	background-color: rgba(180, 189, 193, 1.0);
-	color:#020e13;
+	color:#020e13 !important;
 }
 
 #channelSearchModalBody li h4 small {
