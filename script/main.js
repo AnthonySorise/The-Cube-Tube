@@ -45,6 +45,11 @@ $(document).ready(function () {
 
         $('#text-carousel').on('slide.bs.carousel', function (ev) {
             console.log(ev)
+            //Checks if there is not enough videos to fill up to a second page to not turn page
+            if(videoObjectsToLoad.length < 20) {
+                ev.preventDefault();
+                return;
+            }
             if (ev.direction == 'left') {
                 currentSlideNumber++
                 loadNextPage();
@@ -123,7 +128,7 @@ function initiateUser() {
                 $('body').append(uLinkForCopy);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                     $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
-                    toastMsg('Welcome Back', 3000);
+                    toastMsg('Welcome Back', 2000);
                 });
                 numSubscribedChannels = data.data.length;
                 for (var i = 0; i < data.data.length; i++) {
