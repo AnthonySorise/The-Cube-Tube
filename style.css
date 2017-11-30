@@ -12,6 +12,11 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	background-color: #020e13;
 }
+
+.popover{
+	max-width: 400px;
+}
+
 @keyframes typing {
 	from {
 		width: 0
