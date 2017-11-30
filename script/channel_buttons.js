@@ -86,6 +86,7 @@ function changeCategory(category, isChangingCategory = false){
 
     function insertCategory(){
         //if category already exists, insert ctc
+        removeUnusedCategories();
         if(clientCategories.hasOwnProperty(category.toLowerCase())){
             $.ajax({
                 url:'./script/api_calls_to_db/access_database/access.php',
@@ -101,7 +102,7 @@ function changeCategory(category, isChangingCategory = false){
                     if (data.success) {
                         console.log('insert success', data);
 
-                        removeUnusedCategories();
+                        // removeUnusedCategories();
 
                         if(!clientCategories.hasOwnProperty(category)){
                             clientCategories[category] = [];
@@ -140,7 +141,7 @@ function changeCategory(category, isChangingCategory = false){
                                 }
                             }
                         }
-                        removeUnusedCategories();
+                        // removeUnusedCategories();
                         if(!clientCategories.hasOwnProperty(category)){
                             clientCategories[category] = [];
                         }

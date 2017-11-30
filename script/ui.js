@@ -347,7 +347,7 @@ function clickHandler() {
 
         $(e.target).find('input').val('');
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
-            toastMsg('Channel Added', 2000);
+            // toastMsg('Channel Added', 2000);
         });
     });
     $('.existingCategoryButton').on('click tap', (e)=>{
