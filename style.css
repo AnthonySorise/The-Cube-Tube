@@ -16,7 +16,9 @@ body {
 .popover{
 	max-width: 450px;
 }
-
+.popover-title{
+	max-width: 350px;
+}
 @keyframes typing {
 	from {
 		width: 0
