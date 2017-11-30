@@ -191,7 +191,7 @@ consider carousel for the video list area:
 								</label>
 							</div>
 						</div>
-						<div class="mediaControls hidden-xs"></div>
+						<div class="mediaControls hidden-sm hidden-xs"></div>
 <!--						<form class="navbar-right nav-pills form-inline">-->
 <!--							<!--form for searching channels-->
 <!--							<div class="form-group">-->

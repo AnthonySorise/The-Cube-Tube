@@ -902,7 +902,7 @@ div.thRow {
 .modalControls {
 	font-size: 2em;
 	cursor: pointer;
-	margin: 7px;
+	margin: 7px 25px;
 }
 .userLinkBody, .categoryEditBody{
 	background-color: #020e13;

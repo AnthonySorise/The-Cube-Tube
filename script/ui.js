@@ -623,7 +623,7 @@ function carouselLeftArrow(){
 }
 
 function carouselRightArrow(){
-    if(videoObjectsToLoad.length < 40) {
+    if(videoObjectsToLoad.length < 20) {
         return;
     }
     $(".carousel").carousel('next');
