@@ -22,8 +22,12 @@ if(empty($_POST['last_channel_pull'])){
     $output['errors'][] = 'last channel pull missing at update video list';
     output_and_exit($output);
 }
-$youtube_channel_id = $_POST['youtube_channel_id'];
-$last_channel_pull = $_POST['last_channel_pull'];
+//tm87  ^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$
+if(!(preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$/', $last_channel_pull))){
+    $output['errors'][] = 'INVALID DATE HI Collin!!!';
+    output_and_exit($output);
+}
+
 $current_time = date('Y-m-d H:i:s');
 $current_time_for_comparison = strtotime($current_time);
 $last_pull_time = strtotime($last_channel_pull);
