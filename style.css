@@ -554,7 +554,7 @@ div.thRow {
 	height: 100%;
 }
 .tdInfo a{
-	height: 100%;
+	/* height: 100%; */
 	background: none;
 	border: none;
 
