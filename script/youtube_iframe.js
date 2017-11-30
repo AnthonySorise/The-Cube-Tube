@@ -1,7 +1,8 @@
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);//what is this?
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
-    console.log("onYouTubeIframeAPIReady CALLED", player);
     player = new YT.Player('mainVideo', {
         videoId: vidId || 'rSBWaxEo-2k',
         playerVars: {
@@ -11,7 +12,6 @@ function onYouTubeIframeAPIReady(vidId) {
             'onStateChange': onPlayerStateChange
         }
     });
-    // onYouTubeIframeAPIReady2();
 }
 
 function onPlayerStateChange(event) {
