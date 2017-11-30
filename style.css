@@ -872,6 +872,9 @@ div.thRow {
 	color:white;
 }
 
+.chSub{
+	line-height: 0.8;
+}
 
 #channelSearchModalBody li:hover{
 	background-color: rgba(180, 189, 193, 1.0);
