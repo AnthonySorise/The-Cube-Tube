@@ -844,6 +844,7 @@ consider carousel for the video list area:
 										</div>
 									</div>
 								</div>
+								<!-- start of carousel page two -->
 								<div class="item pageTwo">
 									<div class="carousel-content">
 										<div class="row tdRow text-center">
@@ -1411,7 +1412,7 @@ consider carousel for the video list area:
 							</div>
 						</div>
 					</div>
-					<!-- Controls -->
+					<!-- Bottom Carousel Controls -->
 					<a class="left carousel-control leftControl" href="#text-carousel" data-slide="prev">
 						<span class="glyphicon glyphicon-chevron-left"></span>
 					</a>
