@@ -2,7 +2,6 @@ var clientCategories = {};
 var channelIdOfCategorySet = "";
 
 function handleChangeCategory(){
-    console.log("HANDLE CHANGE CATEGORY CALLED")
     channelIdOfCategorySet = $(this).parent().attr("channelId");
 
     //update categoryEditModal
@@ -33,7 +32,6 @@ function changeCategory(category, isChangingCategory = false){
                 categoryBeingChanged = cat;
             }
         }
-        console.log("CATEGORY BEING CHANGED, ", categoryBeingChanged)
         if(clientCategories[categoryBeingChanged].length===1){
             $.ajax({
                 url:'./script/api_calls_to_db/access_database/access.php',
@@ -100,10 +98,7 @@ function changeCategory(category, isChangingCategory = false){
                     category_name:category
                 },
                 success: function (data) {
-                    console.log("CHANGE CATEGORY - insert_ctc - category already exists")
                     if (data.success) {
-                        console.log('insert success', data);
-
                         removeUnusedCategories();
 
                         if(!clientCategories.hasOwnProperty(category)){
@@ -111,8 +106,6 @@ function changeCategory(category, isChangingCategory = false){
                         }
                         clientCategories[category].push(channelIdOfCategorySet);
                         renderChannelSelectionDropdown();
-                    }else{
-                        console.log(data);
                     }
                 },
                 errors: function (data) {
@@ -132,10 +125,7 @@ function changeCategory(category, isChangingCategory = false){
                     category_name:category
                 },
                 success: function (data) {
-                    console.log("CHANGE CATEGORY - insert_category - category doesn't exist")
                     if (data.success) {
-                        console.log('insert success', data);
-
                         for(var key in clientCategories){
                             for(var i = 0; i < clientCategories[key].length; i++){
                                 if(clientCategories[key][i] === channelIdOfCategorySet){
@@ -150,21 +140,16 @@ function changeCategory(category, isChangingCategory = false){
                         clientCategories[category].push(channelIdOfCategorySet);
                         renderChannelSelectionDropdown();
 
-                    }else{
-                        console.log(data);
                     }
                 },
                 errors: function (data) {
-                    console.log('insert error', data);
                 }
             })
         }
     }
 }
 
-
 function removeUnusedCategories(){
-    console.log("REMOVE UNUSED CATEGORIES")
     for(var key in clientCategories){
         for(var i = 0; i < clientCategories[key].length; i++){
             if(clientCategories[key][i] === channelIdOfCategorySet){
@@ -276,7 +261,6 @@ function handleRemoveButton() {
     $('.dropdownSettingsPopover').popover('hide');
     let channelId = $(this).parent().attr("channelId");
     channelIdOfCategorySet = channelId;
-    console.log("REMOVING " + channelId);
 
     var categoryBeingChanged = null;
     for(var cat in clientCategories){
@@ -285,7 +269,7 @@ function handleRemoveButton() {
         }
     }
     //if this is the last channel of a category, delete the category
-    if(clientCategories[categoryBeingChanged].length === 1){
+    if(categoryBeingChanged !== null && [categoryBeingChanged].length === 1){
         access_database.delete_categories(categoryBeingChanged)
     }
     //otherwise, just delete the category link
