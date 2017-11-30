@@ -538,6 +538,10 @@ div.thRow {
 	z-index: 1;
 }
 
+.videoHeader {
+	display: none;
+}
+
 
 /*.tdChannel, .tdUpDate{*/
 	/*justify-content: center;*/
