@@ -357,8 +357,8 @@ function updateVideoInfoPopover(videoID){
             videoStatsDiv.css("height", '35vh')
             let videoURL = 'https://i.ytimg.com/vi/' + videoID + '/mqdefault.jpg';
             const videoThumbnail = $('<img>').attr('src', videoURL).css({
-                width: '120px',
-                height: '70px',
+                width: '180px',
+                height: '105px',
             });
             videoThumbnail.css("position", "relative")
                 .css("left", "50%")
@@ -425,8 +425,8 @@ function updateChannelInfoPopover(channelID){
             let channelInfoDiv = $("<div></div>").css("width", "400px");
 
             const channelThumbnail = $('<img>').attr('src', data.items[0].snippet.thumbnails.medium.url).css({
-                width: '70px',
-                height: '70px',
+                width: '105px',
+                height: '105px',
             });
             channelThumbnail.css("position", "relative")
                 .css("left", "50%")
