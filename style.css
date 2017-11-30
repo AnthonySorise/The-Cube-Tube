@@ -823,11 +823,6 @@ div.thRow {
 	padding: 0 7px;
 }
 
-#channelSearchModalBody li:hover {
-	background-color: rgba(180, 189, 193, 1.0);
-	color:#020e13;
-}
-
 #channelSearchModalBody li img {
 	width: 44px;
 	height: 44px;
@@ -847,6 +842,11 @@ div.thRow {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	color: white;
+}
+
+#channelSearchModalBody li:hover {
+	background-color: rgba(180, 189, 193, 1.0);
+	color:#020e13;
 }
 
 #channelSearchModalBody li h4 small {
