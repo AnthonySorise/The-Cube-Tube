@@ -203,6 +203,7 @@ function clickHandler() {
     });
     $('.channelDropDown').on('click tap', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
+        dropOpened = false;
         // returnToPageOne();
         compileSelectedChannelsFromDropdown();
         clearVideoList();
@@ -346,7 +347,7 @@ function clickHandler() {
 
         $(e.target).find('input').val('');
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
-            toastMsg('Channel Added', 2000);
+            // toastMsg('Channel Added', 2000);
         });
     });
     $('.existingCategoryButton').on('click tap', (e)=>{
@@ -376,7 +377,7 @@ function clickHandler() {
         $(e.target).closest('.existingCategorySelect').find('select option:selected').prop('selected', false);
         $(e.target).closest('.existingCategorySelect').find('select option:disabled').prop('selected', true);
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
-            toastMsg('Channel Added', 2000);
+            // toastMsg('Channel Added', 2000);
         });
     });
     //Search Button
@@ -623,7 +624,9 @@ function carouselLeftArrow(){
 }
 
 function carouselRightArrow(){
-    if(videoObjectsToLoad.length < 20) {
+    if($('#tdList-20').attr('videoID') === '') {
+        return;
+    } else if ($('#tdList-40').attr('videoID') === '' && currentSlideNumber % 2 === 0) {
         return;
     }
     $(".carousel").carousel('next');
