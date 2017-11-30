@@ -1079,6 +1079,7 @@ input:checked + .vert:before {
 .fa-long-arrow-down{
 	position: relative;
 	font-size: 30px;
+	color: #FF8E2F;	
 	top: 6px;
     right: 5px;
 	color: oran;
