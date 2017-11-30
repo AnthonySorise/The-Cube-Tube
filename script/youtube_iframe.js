@@ -3,7 +3,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);//what is this?
 function onYouTubeIframeAPIReady(vidId) {
     console.log("onYouTubeIframeAPIReady CALLED", player);
     player = new YT.Player('mainVideo', {
-        videoId: vidId || 'lrzIR8seNXs',
+        videoId: vidId || 'rSBWaxEo-2k',
         playerVars: {
             'rel': 0
         },
