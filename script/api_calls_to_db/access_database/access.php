@@ -11,11 +11,12 @@ if(empty($_POST['action'])){
     output_and_exit($output);
 }
 if(!empty($_SESSION['user_link'])){
-    $user_link = $_SESSION['user_link'];
+    include('read_user.php');
 }
 function output_and_exit($output){
     $json_output = json_encode($output);
     print($json_output);
+    date('Y-m-s H:i:s');
     exit();
 }
 switch($_POST['action']){
@@ -25,11 +26,11 @@ switch($_POST['action']){
     case 'delete_category':
         include('delete_category.php');
         break;
-    case 'delete_ctu':
+    case 'delete_ctu'://ctu is category to user
         include('delete_ctu.php');
         break;
-    case 'delete_cuc':
-        include('delete_cuc.php');
+    case 'delete_ctc'://ctc is category to channel
+        include('delete_ctc.php');
         break;
     case 'insert_ctu':
         include('insert_ctu.php');
@@ -43,7 +44,7 @@ switch($_POST['action']){
     case 'read_channels_by_youtube_id':
         include('read_channels_by_youtube_id.php');
         break;
-    case 'read_video':
+    case 'read_video'://incomplete
         include('read_video.php');
         break;
     case 'read_videos_by_channel_array':
@@ -52,8 +53,8 @@ switch($_POST['action']){
     case 'insert_category':
         include('insert_category.php');
         break;
-    case 'insert_cuc':
-        include('insert_cuc.php');
+    case 'insert_ctc':
+        include('insert_ctc.php');
         break;
     case 'insert_youtube_channel_curl':
         include('youtube_channel_curl.php');

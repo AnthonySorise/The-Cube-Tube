@@ -1,7 +1,7 @@
 <?php
-if(empty($LOCAL_ACCESS)){
-    die('direct access not allowed');
-}
+ if(empty($LOCAL_ACCESS)){
+     die('direct access not allowed');
+ }
 require_once('youtube_api_key.php');
 $query = 
     "SELECT 
@@ -39,7 +39,6 @@ foreach($channel_array as $youtube_channel_id){
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $json = curl_exec($ch);
     $channel_data = json_decode($json, true)['items'][0]['snippet'];
-    print_r($channel_data);
     $thumbnail = $channel_data['thumbnails']['medium']['url'];
     $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
     $thumbnail = str_replace('/photo.jpg','',$thumbnail);
@@ -49,21 +48,12 @@ foreach($channel_array as $youtube_channel_id){
     if($conn->affected_rows>0){
         $output['update_success'] += 1;
         $output['success'] = true;
-    }else{
-        $output['errors'][] = "update fail at {$youtube_channel_id}";
     }
     if($output['update_success']>0){
         $output['success'] = true;
+    }else{
+        $output['messages'][] = 'nothing to update';
     }
+    output_and_exit($output);
 }
-//TM87
-// if(!preg_match('/[a-zA-Z0-9]{6,20}/', $channel_title)){
-//     $output['errors'][] = 'INVALID YOUTUBE CHANNEL TITLE';
-//     output_and_exit($output);
-// }
-//tm87
-// if(!preg_match('/[a-zA-Z0-9\-\_]{24}/', $channel_id)){
-//     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
-//     output_and_exit($output);
-// }
 ?>

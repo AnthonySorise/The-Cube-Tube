@@ -2,6 +2,11 @@
 if(empty($LOCAL_ACCESS)){
     die('insert ctu, direct access not allowed');
 }
+if(empty($_POST['youtube_channel_id'])){
+    $output['errors'][] ='MISSING YOUTUBE CHANNEL ID';
+    output_and_exit($output);
+}
+$youtube_channel_id = $_POST['youtube_channel_id'];
 //makes user link if session and get is empty
 if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     function generateRandomString($conn){
@@ -24,10 +29,11 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         }
     }
     $_SESSION['user_link'] = generateRandomString($conn);
-    include('./insert_user.php');
+    include('insert_user.php');
     //creates random string for user and inserts into database as well as show to front end
     $output['user_link'] = $_SESSION['user_link'];
 }
+<<<<<<< HEAD
 $youtube_channel_id = $_POST['youtube_channel_id'];
 if(empty($youtube_channel_id)){
     $output['errors'][] ='MISSING YOUTUBE CHANNEL ID';
@@ -39,19 +45,19 @@ if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $channel_id))){
     output_and_exit($output);
 }
 //check if the ctu already exist, exit if it does, else insert link
+=======
+include('read_channel_id.php');
+//check for duplicate link
+>>>>>>> ef934c8bc56e698a4dc2e4e8f40abed6358afb5c
 $sqli = 
     "SELECT
-        ctu.ctu_id
+        ctu_id
     FROM
-        channels_to_users AS ctu
-    JOIN
-        users AS u ON u.user_id = ctu.user_id
-    JOIN
-        channels AS c ON c.channel_id = ctu.channel_id
+        channels_to_users 
     WHERE
-        u.user_link = ? AND c.youtube_channel_id = ?";
+        user_id = ? AND channel_id = ?";
 $stmt = $conn->prepare($sqli);
-$stmt->bind_param('ss',$user_link,$youtube_channel_id);
+$stmt->bind_param('ii',$user_id,$channel_id);
 $stmt->execute();
 $results = $stmt->get_result();
 if($results->num_rows>0){
@@ -60,15 +66,12 @@ if($results->num_rows>0){
 }else{
     $sqli = 
         "INSERT INTO 
-            channels_to_users (user_id , channel_id)
-        SELECT 
-            u.user_id, c.channel_id
-        FROM 
-            users AS u, channels AS c
-        WHERE 
-            u.user_link = ? AND c.youtube_channel_id = ?";
+            channels_to_users 
+        SET
+            user_id = ?,
+            channel_id =?";
     $stmt = $conn->prepare($sqli);
-    $stmt->bind_param('ss',$user_link,$youtube_channel_id);
+    $stmt->bind_param('ii',$user_id,$channel_id);
     $stmt->execute();
     if($conn->affected_rows>0){
         $output['success'] = true;

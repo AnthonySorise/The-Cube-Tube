@@ -13,7 +13,8 @@ var currentVolumeLevel = null;
 const playFaClass = "fa fa-play modalControls playButton";
 const pauseFaClass = "fa fa-pause modalControls pauseButton";
 const faSpinCircle = 'fa-circle-o-notch fa-fw fa-spin';
-const faPauseIcon = 'fa-pause-circle-o fa-lg';
+const faPauseIcon = 'fa-pause-circle-o fa-fw';
+var reversePlayDirection = false;
 var player;
 // var player2;
 var currentlySelectedVideoID = null;
@@ -23,7 +24,7 @@ var currentlySelectedVideoID = null;
 $(document).ready(function () {
     function initApp(){
         
-        pausePlaywithSpacebar()
+        pausePlayWithSpacebar();
         $("#text-carousel, .videoHeader, .listDropWrap, .listUpWrap").hide();
         // $(".videoHeader").hide();
         // $('.listDropWrap').hide();
@@ -44,6 +45,11 @@ $(document).ready(function () {
 
         $('#text-carousel').on('slide.bs.carousel', function (ev) {
             console.log(ev)
+            //Checks if there is not enough videos to fill up to a second page to not turn page
+            if(videoObjectsToLoad.length < 20) {
+                ev.preventDefault();
+                return;
+            }
             if (ev.direction == 'left') {
                 currentSlideNumber++
                 loadNextPage();
@@ -122,7 +128,7 @@ function initiateUser() {
                 $('body').append(uLinkForCopy);
                 $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                     $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
-                    toastMsg('Welcome back', 3000);
+                    toastMsg('Welcome Back', 2000);
                 });
                 numSubscribedChannels = data.data.length;
                 for (var i = 0; i < data.data.length; i++) {

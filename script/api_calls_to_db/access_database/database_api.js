@@ -42,13 +42,14 @@
             }
         })
     }
-    this.delete_ctu = function(youtube_channel_id){//delete by specifying ctu id
+    this.delete_ctu = function(youtube_channel_id,category_name){//delete by specifying ctu id
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
                 youtube_channel_id: youtube_channel_id,
+                category_name: category_name,
                 action:'delete_ctu'
             },
             success:function(data){
@@ -69,7 +70,7 @@
             method: 'POST',
             dataType: 'JSON',
             data: {
-                action: 'delete_cuc',
+                action: 'delete_ctc',
                 youtube_channel_id:youtube_channel_id
             },
             success: function (data) {
@@ -145,13 +146,14 @@
             }
         })
     }
-    this.read_video = function(video_title){
+    this.read_video = function(video_title,youtube_channel_array){
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
                 video_title:video_title,
+                youtube_channel_array:youtube_channel_array,
                 action:'read_video'
             },
             success:function(data){
@@ -259,7 +261,7 @@
             method:'post',
             dataType:'JSON',
             data:{
-                action:'insert_cuc',
+                action:'insert_ctc',
                 youtube_channel_id:youtube_channel_id,
                 category_name:category_name
             },
@@ -284,26 +286,6 @@
                 action:'update_video_list',
                 youtube_channel_id:youtube_channel_id,
                 last_channel_pull:last_channel_pull
-            },
-            success: function (data) {
-                if (data.success) {
-                    console.log('insert success', data);
-                }else{
-                    console.log(data);
-                }
-            },
-            errors: function (data) {
-                console.log('insert error', data);
-            }
-        })
-     }
-     this.update_channels = function(){//get last channel pull from read channels by youtube id
-        $.ajax({
-            url:'./script/api_calls_to_db/access_database/access.php',
-            method:'post',
-            dataType:'JSON',
-            data:{
-                action:'update_channels',
             },
             success: function (data) {
                 if (data.success) {

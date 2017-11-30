@@ -49,6 +49,10 @@ function channelDropClickHandle(){
 }
 
 $(window).on('click tap',(e)=>{
+    // Cleared form because when clicking on autocomplete text the form would clear
+    // but get readded on this function 
+    $('.channelSearchInput').val('');
+    $('#channelModalSearchBar').val('');
 	if(dropOpened){
 		if( !($.contains($('.channelDropDown.open'),e.target)) && !($('#channelCategoryUl').find(e.target).length) &&($(e.target).attr('id')!=='channelCategoryUl')) {
 			 $('mainNav-option').removeClass('in')
@@ -319,20 +323,60 @@ function clickHandler() {
         e.preventDefault();
         let categoryStr = '';
         categoryStr = $(e.target).find('input').val().toLowerCase();
-        changeCategory(categoryStr);
+
+        if($(e.target).closest('.modal').attr('id') === "userLinkModal"){
+            changeCategory(categoryStr);
+        }
+        else{
+            var isUncategorized = true;
+            for(var cat in clientCategories){
+                if(clientCategories[cat].indexOf(channelIdOfCategorySet) !== -1){
+                    isUncategorized = false;
+                }
+            }
+            console.log("IS UNCATEGORIZED IS ", isUncategorized)
+
+            if(isUncategorized){
+                changeCategory(categoryStr);
+            }
+            else{
+                changeCategory(categoryStr, true);
+            }
+        }
+
         $(e.target).find('input').val('');
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
-            toastMsg('channel added', 1100);
+            toastMsg('Channel Added', 2000);
         });
     });
     $('.existingCategoryButton').on('click tap', (e)=>{
         let categoryStr = '';
         categoryStr = $(e.target).closest('.existingCategorySelect').find('select option:selected').val();
-        changeCategory(categoryStr);
+
+        if($(e.target).closest('.modal').attr('id') === "userLinkModal"){
+            changeCategory(categoryStr);
+        }
+        else{
+            var isUncategorized = true;
+            for(var cat in clientCategories){
+                if(clientCategories[cat].indexOf(channelIdOfCategorySet) !== -1){
+                    isUncategorized = false;
+                }
+            }
+            console.log("IS UNCATEGORIZED IS ", isUncategorized)
+
+            if(isUncategorized){
+                changeCategory(categoryStr);
+            }
+            else{
+                changeCategory(categoryStr, true);
+            }
+        }
+
         $(e.target).closest('.existingCategorySelect').find('select option:selected').prop('selected', false);
         $(e.target).closest('.existingCategorySelect').find('select option:disabled').prop('selected', true);
         $(e.target).closest('.modal').modal('hide').on('hidden.bs.modal',()=>{
-            toastMsg('channel added', 1100);
+            toastMsg('Channel Added', 2000);
         });
     });
     //Search Button
@@ -340,6 +384,17 @@ function clickHandler() {
         e.preventDefault();
         $('.channelSearchForm').submit();
     });
+
+    function channelSearchWorked() {
+        console.log("CHANNEL SEARCH WORKED")
+        for (var i = 0; i < 10; i++) {
+            renderChannelSearchStats(i)
+        }
+    }
+
+    function channelSearchFailed(message) {
+        console.log('console.log("CHANNEL SEARCH FAILED")', message);
+    }
 
     $(".channelSearchForm").submit(function (event) {
         event.preventDefault();
@@ -350,9 +405,11 @@ function clickHandler() {
             inputStr = $(event.target).find('input').val();
         }
         $(".navbar-collapse").collapse('hide');
-        searchChannelsByName(inputStr).then(worked, failed);
+        searchChannelsByName(inputStr).then(channelSearchWorked, channelSearchFailed);
         // $(".contentPlaceholder").hide();
+        console.log("LIST PLACEHOLDER SHOULD GO DOWN", $('.contentPlaceholderWrapper').css('display')!=='none')
         if($('.contentPlaceholderWrapper').css('display')!=='none'){
+            console.log("LIST PLACEHOLDER IS GOING DOWN", $('.contentPlaceholderWrapper').css('display')!=='none')
             $('.contentPlaceholderWrapper').fadeOut(1000, function () {
                 $('#text-carousel, .videoHeader, .listDropWrap').slideDown(1100);
             });
@@ -369,12 +426,20 @@ function clickHandler() {
 
     $(".tdPlaylistButton").on("click tap", handleAddToPlaylist);
 
+    $('.ui-autocomplete').on('click tap','.ui-menu-item-wrapper', function (event){
+        event.stopPropagation();
+        let autocompleteValue = $(event.target).text();
+        $('.channelSearchInput').val(autocompleteValue);
+        $('.channelSearchButton').click()
+        // searchChannelsByName(autocompleteValue).then(channelSearchWorked, channelSearchFailed);
+    });
+
     //Table List Rows that are unselected
     $(".tdTitle, .tdChannel, .tdUpDate").on("click tap", function () {
-
-        $('.tdTitle i.fa').remove();
+        
         if (!$(this).parent().hasClass('selectedTd')) {
             $(".tdTitle, .tdChannel").unbind("mouseup");
+            $('.tdTitle i.fa').remove();
             //Table List Row Title that is selected
             $(".tdTitle").mouseup(function () {
                 if ($(this).parent().hasClass('selectedTd')) {
@@ -421,6 +486,20 @@ function clickHandler() {
             updateChannelInfoPopover(channelID);
         }
     });
+
+    // carousel slides
+    $('#rightArrowIcon').on('click tap',carouselRightArrow);
+    $('#leftArrowIcon').on('click tap',carouselLeftArrow);
+    // direction of play - arrow icon
+    $("#playOrderArrow").on('click', function(){
+        reversePlayDirection = !reversePlayDirection;
+        if(reversePlayDirection === false){
+          $("i").removeClass('up')
+        }else{
+          $("i").addClass('up')
+        }
+      });
+    
 
 
 
@@ -536,6 +615,18 @@ function clickHandler() {
             player.seekTo(minus15Seconds);
         // }
     }
+}
+
+// functions to toggle carousel slides
+function carouselLeftArrow(){
+    $(".carousel").carousel('prev');
+}
+
+function carouselRightArrow(){
+    if(videoObjectsToLoad.length < 20) {
+        return;
+    }
+    $(".carousel").carousel('next');
 }
 
 

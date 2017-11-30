@@ -16,23 +16,7 @@ if(!empty($_POST['last_channel_pull'])){
 }
 //grab channel id if not given
 if(empty($channel_id)){
-    $sqli = 
-        "SELECT 
-            channel_id
-        FROM 
-            channels 
-        WHERE 
-            youtube_channel_id = ?";
-    $stmt = $conn->prepare($sqli);
-    $stmt->bind_param('s', $youtube_channel_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    if ($result->num_rows>0) {
-        $row = $result->fetch_assoc();
-        $channel_id = $row['channel_id'];
-    } else {
-        $output['messages'] = "can't read channel";
-    }
+    include('read_channel_id.php');
 }
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
     if(!empty($last_channel_pull)){
@@ -43,7 +27,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
     }else{
         $page_query="&pageToken={$page_token}";
     }
-    $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=50");
+    $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=40");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $json = curl_exec($ch);
     $error_occurred = false;
@@ -78,7 +62,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $bind_str = '';
         //break the data to insert into database
         foreach($entries as $key => $value){
-            if(!empty($value['id']['videoId'])){
+            if(!empty($value['id']['videoId'])&&!empty($value['snippet']['title'])&&!empty($value['snippet']['description'])&&!empty($value['snippet']['publishedAt'])){
                 $query .= " (?,?,?,?,?,?),";
                 $bind_str .= "sissss";
                 $data[] = $value['snippet']['title'];
@@ -94,12 +78,14 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }
         $query = rtrim($query,", ");
         $stmt = $conn->prepare($query);
-        $stmt->bind_param($bind_str, ...array_merge($data));
+        $stmt->bind_param($bind_str, ...($data));
         $stmt->execute();
         if($conn->affected_rows>0){
             $output['success']=true;
             $output['messages'][] = 'insert video success';
-            $output['page_token']=$next_page_token;
+            if(!empty($next_page_token)){
+                $output['page_token']=$next_page_token;
+            }  
         }else{
             $output['errors'][] = 'unable to insert video';
         }

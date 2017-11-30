@@ -18,7 +18,7 @@ $result = $stmt->get_result();
 if(!empty($result)){
     if($result->num_rows>0){
         $row = $result->fetch_assoc();
-        define('USER_ID',$row['user_id']);
+        $user_id = $row['user_id'];
     }else{
         $output['nothing_to_read'] = true;
     }

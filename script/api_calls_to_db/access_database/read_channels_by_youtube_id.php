@@ -3,10 +3,11 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-$youtube_channel_id = $_POST['youtube_channel_id'];
-if(empty($youtube_channel_id)){
-    $output['errors'][] = 'MISSING ID';
+if(empty($_POST['youtube_channel_id'])){
+    $output['errors'][] = 'missing youtube channel id';
+    output_and_exit($output);
 }
+$youtube_channel_id = $_POST['youtube_channel_id'];
 //tm87
 if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
@@ -35,5 +36,4 @@ if($result->num_rows>0){
     $output['errors'][] = 'no channel to read';
     $output['nothing_to_read'] = true;
 }
-
 ?>
