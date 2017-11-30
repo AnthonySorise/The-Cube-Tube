@@ -855,14 +855,14 @@ div.thRow {
 	padding: 0;
 }
 
-#channelSearchModalBody li h4, #channelSearchModalBody li h5{
+#channelSearchModalBody li h4, #channelSearchModalBody li span{
 	margin: 0;
 	display: inline-block;
 	line-height: 2.4;
 }
 
 .chName,
-#channelSearchModalBody li h4 h5 {
+#channelSearchModalBody li h4, #channelSearchModalBody li span {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
