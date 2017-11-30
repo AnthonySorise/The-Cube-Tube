@@ -91,7 +91,7 @@ function renderVideoList(videoArray) {
                 'data-original-title': videoArray[i].video_title
             });
             $(row).popover({
-                trigger: "hover vmouseover",
+                trigger: "hover",
                 html: true,
                 content: videoDataImg,
                 placement: 'auto',
