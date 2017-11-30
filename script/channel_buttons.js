@@ -87,7 +87,7 @@ function changeCategory(category, isChangingCategory = false){
     function insertCategory(){
         //if category already exists, insert ctc
         removeUnusedCategories();
-        if(clientCategories.hasOwnProperty(category.toLowerCase())){
+        if(clientCategories.hasOwnProperty(category)){
             $.ajax({
                 url:'./script/api_calls_to_db/access_database/access.php',
                 method:'post',
