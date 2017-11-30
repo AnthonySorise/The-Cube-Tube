@@ -37,7 +37,7 @@ function renderChannelSelectionDropdown() {
             let unCatLi = $('<li>', {
                 'class': 'row dropdownCatLi dropdownCatLi' + "_"+cat
             });
-            const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true).css("color", "orange");
+            const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true).css("color", "#FF8E2F");
 
             unCatLi.text("uncategorized").prepend(icon);
             $('#dropdownChannelUl').append(unCatLi);
@@ -46,7 +46,7 @@ function renderChannelSelectionDropdown() {
             let catLi = $('<li>', {
                 'class': 'row dropdownCatLi dropdownCatLi' + "_"+cat
             });
-            const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true).css("color", "orange");
+            const icon = $("<i>").addClass("fa fa-cubes").attr("aria-hidden", true).css("color", "#FF8E2F");
 
             catLi.text(categories[cat]).prepend(icon);
             $('#dropdownChannelUl').append(catLi);

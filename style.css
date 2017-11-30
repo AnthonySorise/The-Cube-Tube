@@ -14,7 +14,7 @@ body {
 }
 
 .popover{
-	max-width: 400px;
+	max-width: 450px;
 }
 
 @keyframes typing {
@@ -307,14 +307,16 @@ body {
 	user-select: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
+	line-height: 3.7;
 }
 #channelInfo .popover{
-	width: 250px;
+	max-width: 400px;
 }
 .autoPlayArea{
 	user-select: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
+	height: 50px;
 }
 .ui-widget-content {
 	/*color: #fff !important;*/
@@ -538,6 +540,10 @@ div.thRow {
 	z-index: 1;
 }
 
+.videoHeader {
+	display: none;
+}
+
 
 /*.tdChannel, .tdUpDate{*/
 	/*justify-content: center;*/
@@ -587,10 +593,19 @@ div.thRow {
 	padding: 0 5px;
 	font-size: 10px;
 	border: none;
-	color: rgba(0, 0, 0, 0.5);
+	color: grey;
+	background-color: black;
 }
 .tdPlaylistButton:hover{
-	color: rgba(0, 0, 0, 1);
+	color: #FF8E2F;
+}
+
+.fa-check-square-o{
+	color: #FF8E2F;
+}
+
+.tdPlaylistNum{
+	color:white;
 }
 
 .tdTitle, .tdChannel, .tdUpDate {
@@ -630,9 +645,7 @@ div.thRow {
 .fa-info-circle{ 
 	vertical-align: 0%;
 }
-.fa-check-square-o{
-	color: orange;
-}
+
 
 
 .selectedTd.tdList:nth-child(even):hover div {
@@ -743,6 +756,8 @@ div.thRow {
 	}
 } */
 .contentPlaceholder{
+	color:darkblue;
+	font-weight:900;
 	margin-top: 30px;
 	text-shadow:
 		-0.5px -0.5px 0 #fff,
@@ -856,8 +871,8 @@ div.thRow {
 }
 
 #channelSearchModalBody li img {
-	width: 44px;
-	height: 44px;
+	width: 40px;
+	height: 40px;
 	padding: 0;
 }
 
@@ -906,7 +921,7 @@ div.thRow {
 }
 
 #channelSearchModalBody li button {
-	margin: 5px 2px;
+	margin: 5px 1px;
 	float: right;
 }
 
@@ -990,8 +1005,8 @@ div.thRow {
 #autoplayText {
 	color: white;
 	position: relative;
-	top: 2px;
-	margin: 5px;
+	top: 0px;
+	margin: 5px 2px;
 	/* margin: 5px; */
 }
 
@@ -1000,7 +1015,7 @@ div.thRow {
 	display: inline-block;
 	width: 30px;
 	height: 20px;
-	margin: 10px;
+	margin: 14px 5px;
 	top: 2px;
   }
   
@@ -1097,25 +1112,29 @@ input:checked + .vert:before {
 	position: relative;
 	font-size: 30px;
 	color: #FF8E2F;	
-	top: 6px;
+	top: 7px;
     right: 5px;
 	color: oran;
 	transform: rotate(0deg);
 	transition: transform 1s linear;
 	cursor: pointer;
+	opacity: 0.7;
   }
   
 .fa-long-arrow-down.up{
 	font-size: 30px;
 	color: #FF8E2F;
-	top: 6px;
+	top: 7px;
     right: 5px;
 	transform: rotate(180deg);
 	transition: transform 1s linear;
 	cursor: pointer;
+	opacity: 0.7;
   }
 
-
+.fa-long-arrow-down.up:hover, .fa-long-arrow-down:hover{
+	opacity: 1;
+}
 
 
 /* Custom CSS for BootStrap Tour */
