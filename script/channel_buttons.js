@@ -249,7 +249,9 @@ function addChannelModal(userLink) {
         $('.userCategoryExists').show();
     }
 
-    $('#userLinkModal').modal('show');
+    $('#userLinkModal').modal('show').on('shown.bs.modal',()=>{
+        $('.userLinkBody .channelCategoryInput').focus();
+    });
 }
 
 
