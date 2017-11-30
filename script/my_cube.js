@@ -12,7 +12,6 @@ function renderChannelSelectionDropdown() {
         }
     });
 
-
     var clientSubsClone = deepCopy(clientSubscribedChannelObjects);
     var categories = [];
     for (var cat in clientCategories){

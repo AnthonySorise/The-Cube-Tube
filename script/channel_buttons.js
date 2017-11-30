@@ -2,7 +2,6 @@ var clientCategories = {};
 var channelIdOfCategorySet = "";
 
 function handleChangeCategory(){
-    console.log("HANDLE CHANGE CATEGORY CALLED")
     channelIdOfCategorySet = $(this).parent().attr("channelId");
 
     //update categoryEditModal
@@ -33,7 +32,6 @@ function changeCategory(category, isChangingCategory = false){
                 categoryBeingChanged = cat;
             }
         }
-        console.log("CATEGORY BEING CHANGED, ", categoryBeingChanged)
         if(clientCategories[categoryBeingChanged].length===1){
             $.ajax({
                 url:'./script/api_calls_to_db/access_database/access.php',
@@ -44,21 +42,14 @@ function changeCategory(category, isChangingCategory = false){
                     action:'delete_category'
                 },
                 success:function(data){
-                    if(data.success){
-                        console.log('deleted success', data);
-                    }else{
-                        console.log(data);
-                    }
                     insertCategory();
                 },
                 errors:function(data){
-                    console.log(data['errors']);
                 }
             })
         }
         //if it's not the last channel in the category, delete ctc before inserting
         else{
-            console.log("CHANGE CATEGORY - delete_ctc")
             $.ajax({
                 url: './script/api_calls_to_db/access_database/access.php',
                 method: 'POST',
@@ -68,15 +59,9 @@ function changeCategory(category, isChangingCategory = false){
                     youtube_channel_id:channelIdOfCategorySet
                 },
                 success: function (data) {
-                    if (data.success){
-                        console.log('delete success', data);
-                    }else{
-                        console.log(data);
-                    }
                     insertCategory();
                 },
                 errors: function (data) {
-                    console.log('read error', data);
                 }
             });
         }
@@ -100,10 +85,7 @@ function changeCategory(category, isChangingCategory = false){
                     category_name:category
                 },
                 success: function (data) {
-                    console.log("CHANGE CATEGORY - insert_ctc - category already exists")
                     if (data.success) {
-                        console.log('insert success', data);
-
                         removeUnusedCategories();
 
                         if(!clientCategories.hasOwnProperty(category)){
@@ -111,12 +93,9 @@ function changeCategory(category, isChangingCategory = false){
                         }
                         clientCategories[category].push(channelIdOfCategorySet);
                         renderChannelSelectionDropdown();
-                    }else{
-                        console.log(data);
                     }
                 },
                 errors: function (data) {
-                    console.log('insert error', data);
                 }
             })
         }
@@ -132,10 +111,7 @@ function changeCategory(category, isChangingCategory = false){
                     category_name:category
                 },
                 success: function (data) {
-                    console.log("CHANGE CATEGORY - insert_category - category doesn't exist")
                     if (data.success) {
-                        console.log('insert success', data);
-
                         for(var key in clientCategories){
                             for(var i = 0; i < clientCategories[key].length; i++){
                                 if(clientCategories[key][i] === channelIdOfCategorySet){
@@ -150,21 +126,16 @@ function changeCategory(category, isChangingCategory = false){
                         clientCategories[category].push(channelIdOfCategorySet);
                         renderChannelSelectionDropdown();
 
-                    }else{
-                        console.log(data);
                     }
                 },
                 errors: function (data) {
-                    console.log('insert error', data);
                 }
             })
         }
     }
 }
 
-
 function removeUnusedCategories(){
-    console.log("REMOVE UNUSED CATEGORIES")
     for(var key in clientCategories){
         for(var i = 0; i < clientCategories[key].length; i++){
             if(clientCategories[key][i] === channelIdOfCategorySet){
@@ -206,7 +177,7 @@ function handleAddButton() {
 
 function addChannelModal(userLink) {
     if (userLink) {
-        alert("Save the following link and use it to access your account!");
+        alert("This is your unique link - \nwww.thecubetube.com/?user="+userLink+" \nUse it to access your subscribed channels!");
         let uLink = 'www.thecubetube.com/?user='+userLink;
         const userAddress = $('<span>',{
             'class': 'linkGhost',
@@ -224,7 +195,7 @@ function addChannelModal(userLink) {
         const linkHeaderHiddenXs = $('<h3>').text("Save this link!").addClass("hidden-xs");
         const linkHeaderVisibleXs = $('<h5>').text("Save this link!").addClass("visible-xs");
         const linkDiv = $('<div>',{
-            text: 'Use it to get access to your subscribed channels.'
+            text: 'Use this link to access your subscribed channels.'
         }).css("font-weight", "700");
         let button = $('<button>').addClass("btn btn-info btn-lg btn-block").text("CopyLink  ");
         let linkIcon = $('<i>').addClass('fa fa-clipboard fa-lg text-danger');
@@ -276,7 +247,6 @@ function handleRemoveButton() {
     $('.dropdownSettingsPopover').popover('hide');
     let channelId = $(this).parent().attr("channelId");
     channelIdOfCategorySet = channelId;
-    console.log("REMOVING " + channelId);
 
     var categoryBeingChanged = null;
     for(var cat in clientCategories){
@@ -285,8 +255,9 @@ function handleRemoveButton() {
         }
     }
     //if this is the last channel of a category, delete the category
-    if(clientCategories[categoryBeingChanged].length === 1){
+    if(categoryBeingChanged !== null && [categoryBeingChanged].length === 1){
         access_database.delete_categories(categoryBeingChanged)
+        access_database.delete_ctu(channelId)
     }
     //otherwise, just delete the category link
     else{
