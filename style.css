@@ -821,7 +821,8 @@ div.thRow {
 }
 
 #channelSearchModalBody li:hover {
-	background-color: #1c2a48;
+	background-color: rgba(180, 189, 193, 1.0);
+	color:#020e13;
 }
 
 #channelSearchModalBody li img {
