@@ -271,6 +271,7 @@ function handleRemoveButton() {
     //if this is the last channel of a category, delete the category
     if(categoryBeingChanged !== null && [categoryBeingChanged].length === 1){
         access_database.delete_categories(categoryBeingChanged)
+        access_database.delete_ctu(channelId)
     }
     //otherwise, just delete the category link
     else{
