@@ -177,7 +177,7 @@ function handleAddButton() {
 
 function addChannelModal(userLink) {
     if (userLink) {
-        alert("This your unique link - "+userLink+" - use it to access your subscribed channels!");
+        alert("This is your unique link - www.thecubetube.com/?user="+userLink+" - use it to access your subscribed channels!");
         let uLink = 'www.thecubetube.com/?user='+userLink;
         const userAddress = $('<span>',{
             'class': 'linkGhost',
