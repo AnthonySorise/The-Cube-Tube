@@ -68,9 +68,9 @@ $(document).ready(function () {
             $('.lightBoxMode').css('left', iframeRight + 'px');
         }, 500);
 
-        setTimeout(() => {
+        // setTimeout(() => {
             initiateUser();
-        }, 2000)
+        // }, 2000)
     }
 
     var iFrameLoadTries = 0;
