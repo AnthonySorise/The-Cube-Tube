@@ -197,35 +197,35 @@ $(window).resize(function () {
 
 function rendertheatreControls() {
     var lastVideoElement = $('<i>', {
-        class: "fa fa-fast-backward modalControls lastVideoButton",
+        class: "fa fa-fast-backward fa-3x modalControls lastVideoButton",
         ["data-toggle"]: "tooltip",
         ["data-placement"]: "left",
         ["data-container"]: "body",
         title: "Previous Video"
     });
     var rewindElement = $('<i>', {
-        class: "fa fa-undo modalControls rewindButton",
+        class: "fa fa-undo fa-3x modalControls rewindButton",
         ["data-toggle"]: "tooltip",
         ["data-placement"]: "top",
         ["data-container"]: "body",
         title: "Rewind 15s"
     });
     var playElement = $('<i>', {
-        class: "fa fa-play modalControls playButton",
+        class: "fa fa-play fa-3x modalControls playButton",
         ["data-toggle"]: "tooltip",
         ["data-placement"]: "top",
         ["data-container"]: "body",
         title: "Play"
     });
     var fastForwardElement = $('<i>', {
-        class: "fa fa-repeat modalControls fastForwardButton",
+        class: "fa fa-repeat fa-3x modalControls fastForwardButton",
         ["data-toggle"]: "tooltip",
         ["data-placement"]: "top",
         ["data-container"]: "body",
         title: "Fast Forward 15s"
     });
     var nextVideoElement = $('<i>', {
-        class: "fa fa-fast-forward modalControls nextVideoButton",
+        class: "fa fa-fast-forward fa-3x modalControls nextVideoButton",
         ["data-toggle"]: "tooltip",
         ["data-placement"]: "right",
         ["data-container"]: "body",
