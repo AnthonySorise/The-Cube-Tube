@@ -288,6 +288,9 @@ body {
 .infoButtons{
 	user-select: none;
 }
+#channelInfo .popover{
+	width: 250px;
+}
 .autoPlayArea{
 	user-select: none;
 }
