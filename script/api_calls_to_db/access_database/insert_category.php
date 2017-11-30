@@ -6,6 +6,7 @@ if(empty($LOCAL_ACCESS)){
 $category_name = $_POST['category_name']; 
 if(empty($category_name)){
     $output['errors'][] = 'MISSING NAME OF CATEGORY';
+    output_and_exit($output);
 }
 //check for duplicate
 $query =  

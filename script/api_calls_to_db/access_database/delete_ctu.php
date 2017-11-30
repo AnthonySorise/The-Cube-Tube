@@ -6,6 +6,11 @@ if(empty($LOCAL_ACCESS)){
 if(empty($_POST['youtube_channel_id'])){
     $output['errors'] = 'MISSING YOUTUBE CHANNEL ID';
 }
+//tm87
+if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
+    $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
+    output_and_exit($output);
+}
 $youtube_channel_id = $_POST['youtube_channel_id'];
 $sqli = 
     "DELETE
