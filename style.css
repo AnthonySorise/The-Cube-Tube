@@ -756,15 +756,18 @@ div.thRow {
 	}
 } */
 .contentPlaceholder{
-	color:darkblue;
+	color:white;
+	background-color: rgba(2,14,19,0.5);
 	font-weight:900;
-	margin-top: 30px;
 	text-shadow:
 		-0.5px -0.5px 0 #fff,
 		0.5px 0.5px 0 #fff;
 	user-select: none;	
 	-webkit-user-select: none;
 	-moz-user-select: none;
+}
+.contentPlaceholder h1, .contentPlaceholder h3:nth-of-type(1) {
+	margin-top: 30px;
 }
 .contentPlaceholder>image{
 	margin: 0 auto; 
