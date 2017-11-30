@@ -20,8 +20,8 @@ $query =
         categories_to_channels ctc
     JOIN
         channels c ON ctc.channel_id = c.channel_id
-    JOIN 
-        categories AS ct ON ctc.category_id = ct.category_id
+    JOIN
+        categories ct ON ctc.category_id = ct.category_id
     WHERE
         c.youtube_channel_id = ? AND ct.user_id = ?";
 if(!($stmt = $conn->prepare($query))){
