@@ -503,12 +503,12 @@ div.thRow {
 }
 .tdList {
 	font-size: 13px;
-	margin-top: 1.75px;
-	margin-bottom: 1.75px;
-	/*height: 3.2vh;*/
-	height: 2.1vh;
-	/*line-height: 3.2vh;*/
-	line-height: 2.1vh;
+	/*margin-top: 1.75px;*/
+	/*margin-bottom: 1.75px;*/
+	/*height: 2.1vh;*/
+	height: 2.5vh;
+	/*line-height: 2.1vh;*/
+	line-height: 2.5vh;
 	z-index: 1;
 }
 
@@ -584,10 +584,6 @@ div.thRow {
 	background-color: #4d5659;
 	display: inline;
 }
-.tdList:nth-child(odd){
-	margin: 0;
-}
-
 /*.tdList:nth-child(even):hover div {
 	background-color: rgba(180, 189, 193, 1.0);
 	display: inline;
