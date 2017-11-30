@@ -587,10 +587,19 @@ div.thRow {
 	padding: 0 5px;
 	font-size: 10px;
 	border: none;
-	color: rgba(0, 0, 0, 0.5);
+	color: grey;
+	background-color: black;
 }
 .tdPlaylistButton:hover{
-	color: rgba(0, 0, 0, 1);
+	color: #FF8E2F;
+}
+
+.fa-check-square-o{
+	color: #FF8E2F;
+}
+
+.tdPlaylistNum{
+	color:white;
 }
 
 .tdTitle, .tdChannel, .tdUpDate {
@@ -630,9 +639,7 @@ div.thRow {
 .fa-info-circle{ 
 	vertical-align: 0%;
 }
-.fa-check-square-o{
-	color: orange;
-}
+
 
 
 .selectedTd.tdList:nth-child(even):hover div {
