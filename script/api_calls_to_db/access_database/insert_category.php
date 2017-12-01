@@ -15,7 +15,7 @@ $query =
     FROM
         categories
     WHERE
-        user_id = ? AND category_name LIKE ?";
+        user_id = ? AND category_name = ?";
 if(!($stmt = $conn->prepare($query))){
     $output['errors'][] = 'query failed';
     output_and_exit($output);
