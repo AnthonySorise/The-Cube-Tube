@@ -12,7 +12,7 @@ if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
     output_and_exit($output);
 }
-$sqli = 
+$query = 
     "SELECT
         channel_title,
         description,
@@ -23,7 +23,10 @@ $sqli =
         channels
     WHERE
         youtube_channel_id = ?";
-$stmt=$conn->prepare($sqli);
+if(!$stmt=$conn->prepare($query)){
+    $output['errors'][] = 'sql failed';
+    output_and_exit($output);
+};
 $stmt->bind_param('s', $youtube_channel_id);
 $stmt->execute();
 $result = $stmt->get_result();
