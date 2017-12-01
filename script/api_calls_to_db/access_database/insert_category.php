@@ -27,6 +27,7 @@ if($results->num_rows>0){
     $row = $result->fetch_assoc();
     $category_id = $row['category_id'];
     include('insert_ctc.php');
+    output_and_exit($output);
 }
 //insert category if no duplicate is found
 $sqli = 
