@@ -261,7 +261,7 @@ function handleRemoveButton() {
             method:'post',
             dataType:'JSON',
             data:{
-                category_name:category_name,
+                category_name:categoryBeingChanged,
                 action:'delete_category'
             },
             success:function(data){
