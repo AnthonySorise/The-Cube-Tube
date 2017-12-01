@@ -256,8 +256,26 @@ function handleRemoveButton() {
     }
     //if this is the last channel of a category, delete the category
     if(categoryBeingChanged !== null && clientCategories[categoryBeingChanged].length === 1){
-        access_database.delete_categories(categoryBeingChanged)
-        access_database.delete_ctu(channelId)
+        $.ajax({
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                category_name:category_name,
+                action:'delete_category'
+            },
+            success:function(data){
+                if(data.success){
+                    console.log('deleted success', data);
+                }else{
+                    console.log(data);
+                }
+                access_database.delete_ctu(channelId)
+            },
+            errors:function(data){
+                console.log(data['errors']);
+            }
+        })
     }
     //otherwise, just delete the category link
     else{
@@ -267,12 +285,16 @@ function handleRemoveButton() {
     for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
         if (clientSubscribedChannelObjects[i].youtube_channel_id === channelId) {
             clientSubscribedChannelObjects.splice(i, 1)
+            i--
         }
         if (clientSubscribedChannelIds[i] === channelId) {
             clientSubscribedChannelIds.splice(i, 1)
         }
+    }
+    for (var i = 0; i < clientSelectedChannelObjects.length; i++){
         if (clientSelectedChannelObjects[i].youtube_channel_id === channelId) {
             clientSelectedChannelObjects.splice(i, 1)
+            i--
         }
         if (clientSelectedChannelIds[i] === channelId) {
             clientSelectedChannelIds.splice(i, 1)
