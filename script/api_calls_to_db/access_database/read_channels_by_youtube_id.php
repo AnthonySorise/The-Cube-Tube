@@ -1,5 +1,4 @@
  <?php
- //grab a single channel using youtube channel id
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
@@ -8,10 +7,11 @@ if(empty($_POST['youtube_channel_id'])){
     output_and_exit($output);
 }
 $youtube_channel_id = $_POST['youtube_channel_id'];
-// if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
-//     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
-//     output_and_exit($output);
-// }
+if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
+    $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
+    output_and_exit($output);
+}
+ //grab a single channel using youtube channel id
 $query = 
     "SELECT
         channel_title,
