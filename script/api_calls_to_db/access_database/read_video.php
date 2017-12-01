@@ -1,4 +1,5 @@
 <?php
+//read video using keywords and related channels
 if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }

@@ -1,5 +1,5 @@
 <?php
-//called from access.php
+//called from access.php, removes categories to channels link
 if(empty($LOCAL_ACCESS)){
     die('delete ctu, direct access not allowed');
 }

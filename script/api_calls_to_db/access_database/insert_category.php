@@ -1,5 +1,5 @@
 <?php
-//called by access, insert to categories table then insert into cuc link
+//called by access, insert to categories table then insert into ctc link
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }

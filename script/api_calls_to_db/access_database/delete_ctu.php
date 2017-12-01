@@ -1,5 +1,5 @@
 <?php
-//runs from access.php will delete a single ctu and all related cucs
+//runs from access.php will delete a single channel to user link and all related channels to categories
 if(empty($LOCAL_ACCESS)){
     die('delete ctu, direct access not allowed');
 }

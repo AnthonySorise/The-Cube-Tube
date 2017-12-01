@@ -2,6 +2,7 @@
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
+//called from youtube channel curl and update video list
 require('youtube_api_key.php');
 if(!empty($_POST['page_token'])){
     $next_page_token = $_POST['page_token'];

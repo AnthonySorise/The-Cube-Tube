@@ -1,4 +1,5 @@
 <?php
+//create channel to user link, and make a user query string for first time users, called from access
 if(empty($LOCAL_ACCESS)){
     die('insert ctu, direct access not allowed');
 }
