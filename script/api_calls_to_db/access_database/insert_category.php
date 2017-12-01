@@ -24,9 +24,10 @@ $stmt->bind_param('is',$user_id,$category_name);
 $stmt->execute();
 $results = $stmt->get_result();
 if($results->num_rows>0){
-    $row = $result->fetch_assoc();
-    $category_id = $row['category_id'];
-    include('insert_ctc.php');
+    // $row = $result->fetch_assoc();
+    // $category_id = $row['category_id'];
+    // include('insert_ctc.php');
+    $output['errors'][] ='duplicate found';
     output_and_exit($output);
 }
 //insert category if no duplicate is found
