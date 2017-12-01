@@ -15,12 +15,12 @@ if(!empty($_SESSION['user_link'])){
 }
 function output_and_exit($output){
     $json_output = json_encode($output);
-    if(!empty($output['errors'])){
-        $output['datetime'][] = date('Y-m-s H:i:s');
-        $output['defined_vars'][] = get_defined_vars();
-        $errors = json_encode($output);
-        error_log("{$json_output} \n",3,"../../../../../logs/error.log" );
-    };
+    // if(!empty($output['errors'])){
+    //     $output['datetime'][] = date('Y-m-s H:i:s');
+    //     $output['defined_vars'][] = get_defined_vars();
+    //     $errors = json_encode($output);
+    //     error_log("{$json_output} \n",3,"../../../../../logs/error.log" );
+    // };
     print($json_output);
     exit();
 }
