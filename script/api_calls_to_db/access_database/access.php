@@ -18,7 +18,7 @@ function output_and_exit($output){
     if(!empty($output['errors'])){
         $output['datetime'][] = date('Y-m-s H:i:s');
         $output['defined_vars'][] = get_defined_vars();
-        $errors = $json_encode($output);
+        $errors = json_encode($output);
         error_log("{$json_output} \n",3,"../../../../../logs/error.log" );
     };
     print($json_output);
