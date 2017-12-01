@@ -26,25 +26,7 @@ $results = $stmt->get_result();
 if($results->num_rows>0){
     $row = $result->fetch_assoc();
     $category_id = $row['category_id'];
-    $sqli = 
-    "INSERT INTO
-        categories_to_channels
-    SET 
-        channel_id = ?,
-        category_id =?";
-    if(!($stmt = $conn->prepare($sqli))){
-        $output['errors'][]= 'invalid query';
-        output_and_exit($output);
-    };
-    $stmt->bind_param('ii',$channel_id,$category_id);
-    $stmt->execute();
-    if($conn->affected_rows>0){
-        $output['messages'][] = 'insert ctc success';
-        $output['success'] = true;
-    }else{
-        $output['errors'][] = "could not insert ctc";
-        output_and_exit($output);
-    }
+    include('insert_ctc.php');
 }
 //insert category if no duplicate is found
 $sqli = 
