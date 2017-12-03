@@ -53,11 +53,10 @@ if ($error_occurred ){
             youtube_channel_id = ?,
             description = ?,
             thumbnail_file_name = ?,
-            date_created = ?,
             last_channel_pull = ?";
       $stmt = $conn->prepare($sqli);
-      $stmt->bind_param('ssssss',$channel_title,$youtube_channel_id,
-      $description,$thumbnail,$date,$date);
+      $stmt->bind_param('sssss',$channel_title,$youtube_channel_id,
+      $description,$thumbnail,$date);
       $stmt->execute();
       if($conn->affected_rows>0){
           $output['messages'][] = "insert channel success";
