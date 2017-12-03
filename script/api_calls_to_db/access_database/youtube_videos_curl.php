@@ -62,14 +62,14 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }
         $entries = $video_array['items'];
         $last_updated = date('Y-m-d H:i:s');
-        $query = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at, last_updated) VALUES";
+        $query = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at) VALUES";
         $data = [];
         $bind_str = '';
         //break the data to insert into database
         foreach($entries as $key => $value){
             if(!empty($value['id']['videoId'])&&!empty($value['snippet']['title'])&&!empty($value['snippet']['description'])&&!empty($value['snippet']['publishedAt'])){
-                $query .= " (?,?,?,?,?,?),";
-                $bind_str .= "sissss";
+                $query .= " (?,?,?,?,?),";
+                $bind_str .= "sisss";
                 $data[] = $value['snippet']['title'];
                 $data[] = $channel_id;
                 $data[] = $value['id']['videoId'];
@@ -78,7 +78,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 $published_at = str_replace('T',' ',$published_at);
                 $published_at = str_replace('.000Z','',$published_at);
                 $data[] = $published_at;
-                $data[] = $last_updated;
             }
         }
         $query = rtrim($query,", ");
