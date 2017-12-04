@@ -3,7 +3,7 @@ if(empty($LOCAL_ACCESS)){
     die('insert cuc, direct access not allowed');
 }
 //called from access php or insert category
-//insert cuc into existing category when called directly
+//insert ctc into existing category when called directly
 if(empty($_POST['youtube_channel_id'])){
     $output['errors'][] = 'missing youtube channel id at insert cuc';
     output_and_exit($output);
@@ -13,6 +13,10 @@ if(empty($_POST['category_name'])){
     output_and_exit($output);
 }
 $youtube_channel_id = $_POST['youtube_channel_id'];
+if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
+    $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
+    output_and_exit($output);
+}
 $category_name = $_POST['category_name']; 
 //grab channel id
 include('read_channel_id.php');

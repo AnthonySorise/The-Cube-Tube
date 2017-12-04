@@ -15,8 +15,13 @@ if(!empty($_SESSION['user_link'])){
 }
 function output_and_exit($output){
     $json_output = json_encode($output);
+    // if(!empty($output['errors'])){
+    //     $output['datetime'][] = date('Y-m-s H:i:s');
+    //     $output['defined_vars'][] = get_defined_vars();
+    //     $errors = json_encode($output);
+    //     error_log("{$json_output} \n",3,"../../../../../logs/error.log" );
+    // };
     print($json_output);
-    date('Y-m-s H:i:s');
     exit();
 }
 switch($_POST['action']){
@@ -53,10 +58,10 @@ switch($_POST['action']){
     case 'insert_category':
         include('insert_category.php');
         break;
-    case 'insert_ctc':
+    case 'insert_ctc'://create link between categories and channels
         include('insert_ctc.php');
         break;
-    case 'insert_youtube_channel_curl':
+    case 'insert_youtube_channel_curl'://grab and insert channel data from youtube 
         include('youtube_channel_curl.php');
         break;
     case 'update_video_list':
@@ -65,7 +70,7 @@ switch($_POST['action']){
     case 'update_channels':
         include('update_channels.php');
         break;
-    case 'insert_videos_curl':
+    case 'insert_videos_curl'://grab and insert videos from youtube
         include('youtube_videos_curl.php');
         break;
     default:

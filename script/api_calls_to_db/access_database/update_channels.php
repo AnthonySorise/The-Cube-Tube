@@ -1,4 +1,5 @@
 <?php
+//used in a cronjob to update channel data
  if(empty($LOCAL_ACCESS)){
      die('direct access not allowed');
  }
