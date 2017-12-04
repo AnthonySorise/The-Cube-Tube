@@ -282,22 +282,29 @@ function handleRemoveButton() {
         access_database.delete_ctu(channelId);//redundant?
     }
 
+    for (var i = 0; i < clientSelectedChannelObjects.length; i++) {
+        if (clientSelectedChannelObjects[i].youtube_channel_id === channelId) {
+            clientSelectedChannelObjects.splice(i, 1)
+            i--
+        }
+    }
     for (var i = 0; i < clientSubscribedChannelObjects.length; i++) {
         if (clientSubscribedChannelObjects[i].youtube_channel_id === channelId) {
             clientSubscribedChannelObjects.splice(i, 1)
             i--
         }
-        if (clientSubscribedChannelIds[i] === channelId) {
-            clientSubscribedChannelIds.splice(i, 1)
-        }
     }
-    for (var i = 0; i < clientSelectedChannelObjects.length; i++){
-        if (clientSelectedChannelObjects[i].youtube_channel_id === channelId) {
-            clientSelectedChannelObjects.splice(i, 1)
-            i--
-        }
+
+    for (var i = 0; i < clientSelectedChannelIds.length; i++) {
         if (clientSelectedChannelIds[i] === channelId) {
             clientSelectedChannelIds.splice(i, 1)
+            i--
+        }
+    }
+    for (var i = 0; i < clientSubscribedChannelIds.length; i++){
+        if (clientSubscribedChannelIds[i] === channelId) {
+            clientSubscribedChannelIds.splice(i, 1)
+            i--
         }
     }
     removeUnusedCategories();
