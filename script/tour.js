@@ -1,3 +1,10 @@
+/***************************************************************************************************
+ * All JS functions below are for a walk-through tour for first time users - to be implemented at later date
+ * 
+ *****************************************************************************************************/
+
+
+
 // Instance the tour
 var tour = new Tour({
     storage: false,
