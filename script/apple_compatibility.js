@@ -4,7 +4,7 @@
  * returns: boolean: true/false
  */
 function checkIfAppleDevice() {
-    if (navigator.userAgent.match(/(iPhone|iPod|iPad)/) != null) {
+    if (navigator.userAgent.match(/(iPhone|Safari|iPod|iPad)/) != null) {
         return true;
     } else {
         return false;
