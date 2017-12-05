@@ -141,7 +141,10 @@ function videoListDown(){
     //     }
     // });
 }
-
+/***************************************************************************************************
+ * videoListUp - controls theatre mode effect and animations
+ * @params none
+ */
 function videoListUp(){
     $('.listUpWrap').hide();
     $('.listDropWrap').slideDown();
@@ -412,7 +415,10 @@ function clickHandler() {
         // searchChannelsByName(autocompleteValue).then(channelSearchWorked, channelSearchFailed);
     });
 
-    //Table List Rows that are unselected
+/***************************************************************************************************
+ * click handlers for table rows that are untouched
+ * @params none
+ */
     $(".tdTitle, .tdChannel, .tdUpDate").on("click tap", function () {
         
         if (!$(this).parent().hasClass('selectedTd')) {
@@ -465,10 +471,17 @@ function clickHandler() {
         }
     });
 
-    // carousel slides
+ /***************************************************************************************************
+ * click handlers for bottom carousel slides
+ * @params none
+ */
     $('#rightArrowIcon').on('click tap',carouselRightArrow);
     $('#leftArrowIcon').on('click tap',carouselLeftArrow);
-    // direction of play - arrow icon
+
+ /***************************************************************************************************
+ * click handler for 'watch order' function and arrow icon
+ * @params none
+ */
     $("#playOrderArrow").on('click', function(){
         reversePlayDirection = !reversePlayDirection;
         if(reversePlayDirection === false){
@@ -479,19 +492,29 @@ function clickHandler() {
       });
     
 
-    //Theater mode buttons
+/***************************************************************************************************
+ * click handlers for theatre controls
+ * @params none
+ */
     $('.fastForwardButton').on('click tap', fastForwardVideo);
     $('.rewindButton').on('click tap', rewindVideo);
     $('.playButton').on('click tap', playYtVideo);
     $('.lastVideoButton').on('click tap',playPrevYTVideo);
     $('.nextVideoButton').on('click tap', playNextYTVideo);
 
+/***************************************************************************************************
+ * fastForwardVideo - moves video forward in time 15s
+ * @params none
+ */
     function fastForwardVideo() {
         var fastForward = player.getCurrentTime();
         var add15Seconds = fastForward + 15;
             player.seekTo(add15Seconds);
     }
-
+/***************************************************************************************************
+ * playTYVideo - pause and play functionality with tooltip and icon changes
+ * @params none
+ */
     function playYtVideo() {
         player.playVideo();
         if (this.classList.value === playFaClass) {
@@ -505,7 +528,10 @@ function clickHandler() {
             player.pauseVideo()
         }
     }
-
+/***************************************************************************************************
+ * rewindVideo - moves video back in time 15s
+ * @params none
+ */
     function rewindVideo() {
         var fastForward = player.getCurrentTime();
         var minus15Seconds = fastForward - 15;
@@ -513,11 +539,17 @@ function clickHandler() {
     }
 }
 
-// functions to toggle carousel slides
+/***************************************************************************************************
+ * carouselLeftArrow - carousel controls on bottom
+ * @params none
+ */
 function carouselLeftArrow(){
     $(".carousel").carousel('prev');
 }
-
+/***************************************************************************************************
+ * carouselRightArrow - carousel controls on bottom
+ * @params none
+ */
 function carouselRightArrow(){
     if($('#tdList-20').attr('videoID') === '') {
         return;
@@ -527,7 +559,10 @@ function carouselRightArrow(){
     $(".carousel").carousel('next');
 }
 
-
+/***************************************************************************************************
+ * tooltipFunctions - set timeouts for tool tips after hover
+ * @params none
+ */
 function tooltipFunctions() {
     $('[data-toggle="tooltip"]').tooltip(); //needed for tooltip
     $('[data-toggle="popover"]').popover();
