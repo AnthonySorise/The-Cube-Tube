@@ -93,7 +93,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }else{
             $output['errors'][] = 'unable to insert video';
         }
-        //let client know that first 50 has been inserted so they can search
+        //let client know that first 45 has been inserted so they can search
         if($page_token === 'first'){
             output_and_exit($output);
         }

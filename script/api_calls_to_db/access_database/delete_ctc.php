@@ -1,5 +1,5 @@
 <?php
-//called from access.php, removes categories to channels link
+//called from access.php, removes link between a category and related channel
 if(empty($LOCAL_ACCESS)){
     die('delete ctu, direct access not allowed');
 }
@@ -12,11 +12,6 @@ if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
     output_and_exit($output);
 }
-// if(empty($_POST['category_name'])){//add if we can connect channels to multiple categories
-//     $output['errors'] = 'missing category name at delete ctc';
-//     output_and_exit($output);
-// }
-// $category_name = $_POST['category_name'];
 $query = 
     "DELETE
         ctc

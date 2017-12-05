@@ -8,7 +8,7 @@ if(empty($_POST['category_name'])){
     output_and_exit($output);
 }
 if(empty($_POST['new_name'])){
-    $output['errors'][] = 'missing category name';
+    $output['errors'][] = 'missing new name';
     output_and_exit($output);
 }
 $category_name = $_POST['category_name'];

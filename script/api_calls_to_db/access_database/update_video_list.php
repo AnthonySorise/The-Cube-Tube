@@ -48,5 +48,4 @@ if($conn->affected_rows>0){
 }else{
     $output['errors'][]='UNABLE TO UPDATE';
 }
-
 ?>

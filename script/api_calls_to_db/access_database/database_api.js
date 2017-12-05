@@ -1,3 +1,4 @@
+ //this is a reference file for the front-end developers, also used for testing
  function Database(){
     this.change_category_name = function(category_name,new_name){
         $.ajax({
@@ -42,7 +43,7 @@
             }
         })
     }
-    this.delete_ctu = function(youtube_channel_id,category_name){//delete by specifying ctu id
+    this.delete_ctc = function(youtube_channel_id,category_name){//delele link between category and channel
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
@@ -50,7 +51,7 @@
             data:{
                 youtube_channel_id: youtube_channel_id,
                 category_name: category_name,
-                action:'delete_ctu'
+                action:'delete_ctc'
             },
             success:function(data){
                 if(data.success){
@@ -64,13 +65,13 @@
             }
         })
     }
-    this.delete_ctc = function(youtube_channel_id){
+    this.delete_ctu = function(youtube_channel_id){//delete link between channel and user
         $.ajax({
             url: './script/api_calls_to_db/access_database/access.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
-                action: 'delete_ctc',
+                action: 'delete_ctu',
                 youtube_channel_id:youtube_channel_id
             },
             success: function (data) {
@@ -105,7 +106,7 @@
             }
         })
     }
-     this.read_channels_by_user_id = function(){//itll read channel based on user, just pass in user id
+     this.read_channels_by_user_id = function(){//it'll read channels based on user
          $.ajax({
              url: './script/api_calls_to_db/access_database/access.php',
              method: 'POST',
@@ -125,7 +126,7 @@
              }
          })
      }
-    this.read_channels_by_youtube_id = function(youtube_channel_id){//read data from any table i.e "channels", "users", "videos","channels_to_users", search = "*" for all or more specifically channel_titles
+    this.read_channels_by_youtube_id = function(youtube_channel_id){
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
@@ -146,7 +147,7 @@
             }
         })
     }
-    this.read_video = function(video_title,youtube_channel_array){
+    this.read_video = function(video_title,youtube_channel_array){//not implemented by front end
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
@@ -299,8 +300,7 @@
             }
         })
      }
-     //read user based on user link get user id, read ctu(user_id) read channels, read videos
-     this.insert_ctu = function(youtube_channel_id){
+     this.insert_ctu = function(youtube_channel_id){//create link between user and channel
          $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',

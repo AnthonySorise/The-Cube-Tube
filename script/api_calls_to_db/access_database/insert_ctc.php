@@ -1,15 +1,16 @@
 <?php
 if(empty($LOCAL_ACCESS)){
-    die('insert cuc, direct access not allowed');
+    die('insert ctc, direct access not allowed');
 }
 //called from access php or insert category
+//when called from insert category, inserts ctc into newly created category
 //insert ctc into existing category when called directly
 if(empty($_POST['youtube_channel_id'])){
-    $output['errors'][] = 'missing youtube channel id at insert cuc';
+    $output['errors'][] = 'missing youtube channel id at insert ctc';
     output_and_exit($output);
 }
 if(empty($_POST['category_name'])){
-    $output['errors'][] = 'missing category name at insert cuc';
+    $output['errors'][] = 'missing category name at insert ctc';
     output_and_exit($output);
 }
 $youtube_channel_id = $_POST['youtube_channel_id'];
@@ -43,7 +44,7 @@ if($result->num_rows>0){
     $output['messages'][] = 'duplicate found!';
     output_and_exit($output);
 }
-//insert if no dubs are found
+//insert if no dups are found
 $sqli = 
     "INSERT INTO
         categories_to_channels

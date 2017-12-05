@@ -1,7 +1,7 @@
 <?php
 //read all channels for a user, called from access 
 if(empty($LOCAL_ACCESS)){
-    die('direct access allowed');
+    die('no direct access allowed');
 }
 if(empty($_SESSION['user_link'])){
     $output['messages'] = 'no user';
