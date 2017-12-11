@@ -1,13 +1,21 @@
-// check if device is apple mobile device (used to convert date object)
+/***************************************************************************************************
+ * checkIfAppleDevice - checks if user is currently using an apple mobile device
+ * @params none
+ * returns: boolean: true/false
+ */
 function checkIfAppleDevice() {
-    if (navigator.userAgent.match(/(iPhone|iPod|iPad)/) != null) {
+    if (navigator.userAgent.match(/(iPhone|Safari|iPod|iPad)/) != null) {
         return true;
     } else {
         return false;
     }
 }
 
-//converts date object for apple mobile devices
+/***************************************************************************************************
+ * checkIfAppleDevice - if checkIfAppleDevice returns true, adjust date for mobiile apple device
+ * @params dateFromAPI
+ * returns: iosDate object
+ */
 function convertDateForApple(dateFromAPI) {
     if (checkIfAppleDevice()) {
         // let date = "2017-11-03 09:34:14" //testing only - sample data

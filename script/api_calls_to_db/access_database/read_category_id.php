@@ -1,4 +1,5 @@
 <?php
+//get category id to be used for other queries
 if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }

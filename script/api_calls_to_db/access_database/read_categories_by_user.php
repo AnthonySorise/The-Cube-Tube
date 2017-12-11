@@ -1,4 +1,5 @@
 <?php
+//read all channels for a user, called from access 
 if(empty($LOCAL_ACCESS)){
     die('direct access allowed');
 }

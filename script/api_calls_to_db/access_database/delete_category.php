@@ -8,7 +8,7 @@ if(empty($_POST['category_name'])){
     output_and_exit($output); 
 }
 $category_name = $_POST['category_name'];
-$sqli = 
+$query = 
     "DELETE
         ct,
         ctc
@@ -18,7 +18,7 @@ $sqli =
         categories_to_channels AS ctc ON ctc.category_id = ct.category_id
     WHERE
         ct.category_name = ? AND ct.user_id = ?";
-if(!($stmt = $conn->prepare($sqli))){
+if(!($stmt = $conn->prepare($query))){
     $output['errors'][] = 'delete category statement failed';
     output_and_exit($output);
 }

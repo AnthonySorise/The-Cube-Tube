@@ -2,12 +2,13 @@
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
+//called from youtube channel curl and update video list
 require('youtube_api_key.php');
 if(!empty($_POST['page_token'])){
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
 }
-if(!empty($_POST['last_channel_pull'])){
+if(!empty($_POST['last_channel_pull'])){//change datetime to youtube standard format
     $last_channel_pull = $_POST['last_channel_pull'];
     $last_channel_pull = str_replace(' ','T', $last_channel_pull);
     $last_channel_pull .= '.000Z';
@@ -18,6 +19,7 @@ if(!empty($_POST['last_channel_pull'])){
 if(empty($channel_id)){
     include('read_channel_id.php');
 }
+//this funciton is recursively called until there are no more page tokens from youtube. 
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
     if(!empty($last_channel_pull)){
         $last_channel_pull = "&publishedAfter={$last_channel_pull}";
@@ -27,7 +29,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
     }else{
         $page_query="&pageToken={$page_token}";
     }
-    $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=40");
+    $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=45");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $json = curl_exec($ch);
     $error_occurred = false;
@@ -38,14 +40,17 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
     if ($decoded_json === NULL ) {
         $error_occurred = true;
     }
-    if ($error_occurred ){
+    if ($error_occurred){
         $body = 'Error occurred in ' . __FILE__ . "\n\n" .
             'curl_errno: ' . curl_errno($ch) . "\n" .
             'curl_error: ' . curl_error($ch) . "\n" .
             'strlen($json): ' . strlen($json) . "\n" .
             'var_export(curl_getinfo($ch), true): ' . var_export(curl_getinfo($ch), true) . "\n\n" .
             '$json: ' . $json . "\n";
-        echo $body;
+        $error = json_encode($body);
+        $output['errors'][] = $error;
+        $output['messages'] = 'curl failed at youtube_channel_curl';
+        output_and_exit($output);
     } else {
         $video_array = json_decode($json, true);
         if(empty($video_array['items'])){
@@ -57,14 +62,14 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }
         $entries = $video_array['items'];
         $last_updated = date('Y-m-d H:i:s');
-        $query = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at, last_updated) VALUES";
+        $query = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at) VALUES";
         $data = [];
         $bind_str = '';
         //break the data to insert into database
         foreach($entries as $key => $value){
             if(!empty($value['id']['videoId'])&&!empty($value['snippet']['title'])&&!empty($value['snippet']['description'])&&!empty($value['snippet']['publishedAt'])){
-                $query .= " (?,?,?,?,?,?),";
-                $bind_str .= "sissss";
+                $query .= " (?,?,?,?,?),";
+                $bind_str .= "sisss";
                 $data[] = $value['snippet']['title'];
                 $data[] = $channel_id;
                 $data[] = $value['id']['videoId'];
@@ -73,7 +78,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 $published_at = str_replace('T',' ',$published_at);
                 $published_at = str_replace('.000Z','',$published_at);
                 $data[] = $published_at;
-                $data[] = $last_updated;
             }
         }
         $query = rtrim($query,", ");

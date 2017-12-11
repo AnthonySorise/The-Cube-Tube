@@ -1,5 +1,5 @@
 <?php
-//get user id, currently not in use
+//get user id for use in other queries, included in access
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed, read user");
 }
@@ -25,5 +25,4 @@ if(!empty($result)){
 }else{
     $output['errors'][] = 'INVALID QUERY READ USER ID IN ACCESS ';
 }
-
 ?>
