@@ -195,6 +195,14 @@ function videoListUp(){
 
 //Click handler to console log search results
 function clickHandler() {
+    $('#userLinkModal .modal-content .modal-header .close').on('click' ()=>{
+        if($('.linkCopyArea').css('display')=='block'){
+            $('#userLinkModal').on('hidden.bs.modal',()=>{
+                //link removing function here
+                console.log('modal link reomving check');
+            });
+        }
+    });
     $('.listUpButton').on('click tap', ()=>{
         videoListUp();
     });
