@@ -17,10 +17,10 @@ var currentlySelectedVideoID = null;
 $(document).ready(function () {
     function initApp(){
         
-        pausePlayWithSpacebar();
+        pausePlayWithSpacebar(); // instantiates keyboard control of video
         $("#text-carousel, .videoHeader, .listDropWrap, .listUpWrap").hide();
 
-        rendertheatreControls();
+        rendertheatreControls(); // show theatre controls on page load
         displayCurrentPageNumber();
         /**
          function for preventing page refresh with search button;
