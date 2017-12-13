@@ -61,6 +61,9 @@ switch($_POST['action']){
     case 'insert_ctc'://create link between categories and channels
         include('insert_ctc.php');
         break;
+    case 'insert_videos_curl'://grab and insert videos from youtube
+        include('youtube_videos_curl.php');
+        break;
     case 'insert_youtube_channel_curl'://grab and insert channel data from youtube 
         include('youtube_channel_curl.php');
         break;
@@ -70,11 +73,11 @@ switch($_POST['action']){
     case 'update_channels':
         include('update_channels.php');
         break;
-    case 'remove_query':
+    case 'remove_user_query':
         include('remove_query.php');
         break;
-    case 'insert_videos_curl'://grab and insert videos from youtube
-        include('youtube_videos_curl.php');
+    case 'show_user_query':
+        include('show_user_query.php');
         break;
     default:
         $output['errors'][] = 'invalid action';

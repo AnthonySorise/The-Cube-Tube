@@ -300,16 +300,31 @@
             }
         })
      }
-     this.remove_query = function(){
+     this.remove_user_query = function(){
         $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',
             method:'post',
             dataType:'JSON',
             data:{
-                action:'remove_query'
+                action:'remove_user_query'
             },
             success: function (data) {
                 console.log('query removed');
+            },
+            errors: function (data) {
+            }
+         })
+     }
+     this.show_user_query = function(){
+        $.ajax({
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                action:'show_user_query'
+            },
+            success: function (data) {
+                console.log('query shown');
             },
             errors: function (data) {
             }

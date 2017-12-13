@@ -198,7 +198,7 @@ function clickHandler() {
     $('#userLinkModal .modal-content .modal-header .close').on('click', ()=>{
         if($('.linkCopyArea').css('display')=='block'){
             $('#userLinkModal').on('hidden.bs.modal',()=>{
-                access_database.remove_query();
+                access_database.remove_user_query();
                 console.log('modal link reomving check');
             });
         }

@@ -22,6 +22,7 @@ if(isset($_GET['user'])){//checks if the link is valid
     if($results->num_rows>0){//if link is valid set it to session global
         $_SESSION['user_link'] = $_GET['user'];
         header('Location: /');
+        exit();
     }else{//else return to main page
         header('Location: /');
         exit();
