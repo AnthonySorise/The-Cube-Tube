@@ -37,7 +37,7 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     include('insert_user.php');
     //creates random string for user and inserts into database as well as show to front end
     $output['user_link'] = $_SESSION['user_link'];
-    header("Location:/?user={$_SESSION['user_link']}");
+    $new_user = true;
 }
 //grab channel id
 include('read_channel_id.php');

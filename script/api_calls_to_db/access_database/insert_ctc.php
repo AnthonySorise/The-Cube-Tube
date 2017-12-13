@@ -60,6 +60,8 @@ $stmt->execute();
 if($conn->affected_rows>0){
     $output['messages'][] = 'insert ctc success';
     $output['success'] = true;
+    header("Location:/?user={$_SESSION['user_link']}");
+    output_and_exit($output);
 }else{
     $output['errors'][] = "could not insert ctc";
     output_and_exit($output);
