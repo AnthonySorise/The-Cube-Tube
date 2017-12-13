@@ -70,6 +70,9 @@ switch($_POST['action']){
     case 'update_channels':
         include('update_channels.php');
         break;
+    case 'remove_query':
+        include('remove_query.php');
+        break;
     case 'insert_videos_curl'://grab and insert videos from youtube
         include('youtube_videos_curl.php');
         break;

@@ -300,6 +300,21 @@
             }
         })
      }
+     this.remove_query = function(){
+        $.ajax({
+            url:'./script/api_calls_to_db/access_database/access.php',
+            method:'post',
+            dataType:'JSON',
+            data:{
+                action:'remove_query'
+            },
+            success: function (data) {
+                console.log('query removed');
+            },
+            errors: function (data) {
+            }
+         })
+     }
      this.insert_ctu = function(youtube_channel_id){//create link between user and channel
          $.ajax({
             url:'./script/api_calls_to_db/access_database/access.php',

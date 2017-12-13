@@ -195,10 +195,10 @@ function videoListUp(){
 
 //Click handler to console log search results
 function clickHandler() {
-    $('#userLinkModal .modal-content .modal-header .close').on('click' ()=>{
+    $('#userLinkModal .modal-content .modal-header .close').on('click', ()=>{
         if($('.linkCopyArea').css('display')=='block'){
             $('#userLinkModal').on('hidden.bs.modal',()=>{
-                //link removing function here
+                access_database.remove_query();
                 console.log('modal link reomving check');
             });
         }
