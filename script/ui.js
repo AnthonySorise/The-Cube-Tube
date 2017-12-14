@@ -204,6 +204,11 @@ function clickHandler() {
     $('#myLinkButton').on('click tap',()=>{
         clipBoard('linkGhost');
     });
+    $('#userLinkModal').on('hidden.bs.modal',()=>{
+        if($('.linkCopyArea').css('display')==='block'){
+            history.pushState({},'','/');
+        }
+    });
     $('.channelDropDown').on('click tap', '.dropdownChannelLiLoad', () => {
         browsingMode = false;
         dropOpened = false;
@@ -378,11 +383,9 @@ function clickHandler() {
             renderChannelSearchStats(i)
         }
     }
-
     function channelSearchFailed(message) {
         console.log('console.log("CHANNEL SEARCH FAILED")', message);
     }
-
     $(".channelSearchForm").submit(function (event) {
         event.preventDefault();
         let inputStr = '';
