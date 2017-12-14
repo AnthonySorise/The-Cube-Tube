@@ -204,7 +204,7 @@ function clickHandler() {
     $('#myLinkButton').on('click tap',()=>{
         clipBoard('linkGhost');
     });
-    $('#userLinkModal .userLinkHeader .close').on('click',()=>{
+    $('#userLinkModal').on('hidden.bs.modal',()=>{
         if($('.linkCopyArea').css('display')==='block'){
             history.pushState({},'','/');
         }
