@@ -45,7 +45,7 @@ consider carousel for the video list area:
 	<script src="//cdn.jsdelivr.net/velocity/1.5/velocity.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
-	<title>CubeTube 0.1</title>
+	<title>CubeTube</title>
 </head>
 
 <body>
