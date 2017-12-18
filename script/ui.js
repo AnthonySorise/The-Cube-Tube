@@ -216,7 +216,7 @@ function clickHandler() {
         compileSelectedChannelsFromDropdown();
         clearVideoList();
 
-        if (window.innerWidth < 500) {
+        if (window.innerWidth < 767) {
             closeChannelDrop();
         } else {
             $('mainNav-option').removeClass('in')
@@ -256,7 +256,7 @@ function clickHandler() {
         renderChannelSelectionDropdown();
         clearVideoList();
 
-        if (window.innerWidth < 500) {
+        if (window.innerWidth < 767) {
             closeChannelDrop();
         } else {
             $('mainNav-option').removeClass('in')
