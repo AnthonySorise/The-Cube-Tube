@@ -414,7 +414,7 @@ function clickHandler() {
         event.stopPropagation();
         let autocompleteValue = $(event.target).text();
         $('.channelSearchInput').val(autocompleteValue);
-        $('.channelSearchButton').click()
+        $('.channelSearchButton').click();
         // searchChannelsByName(autocompleteValue).then(channelSearchWorked, channelSearchFailed);
     });
 
