@@ -178,7 +178,7 @@ function handleAddButton() {
 function addChannelModal(userLink) {
     if (userLink) {
         history.pushState({},'',`/?user=${userLink}`);
-        alert("This is your unique link - \nwww.thecubetube.com/?user="+userLink+" \nBookmark this now\nUse it to access your subscribed channels!");
+        // alert("This is your unique link - \nwww.thecubetube.com/?user="+userLink+" \nBookmark this now\nUse it to access your subscribed channels!");
         let uLink = 'www.thecubetube.com/?user='+userLink;
         const userAddress = $('<span>',{
             'class': 'linkGhost',

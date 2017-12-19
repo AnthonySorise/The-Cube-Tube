@@ -141,17 +141,16 @@ consider carousel for the video list area:
 			<nav class="navbar navbar-inverse" id="midNav">
 				<!-- <div class="container-fluid" id=""> -->
 					<!--navbar content main div-->
-					<div class="navbar-header">
-						<!--nav header div; includes hamburger menu and navbrand-->
+					<!-- <div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#midNav-option" data-parent="#accordion"
 						 aria-expanded="true">
 							<span class="hamburger-box">
 								<span class="glyphicon glyphicon-menu-hamburger"></span>
 							</span>
 						</button>
-					</div>
+					</div> -->
 					<!--end of nav header div-->
-					<div class="collapse navbar-collapse text-center" id="midNav-option">
+					<div class="text-center" id="midNav-option">
 						<!--div for nav options-->
 						<div class="listUpWrap hidden-xs">
 							<button class="btn listUpButton" data-toggle="tooltip" data-placement="bottom" data-container="body" data-trigger="hover" title="show video list">

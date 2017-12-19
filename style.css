@@ -171,10 +171,10 @@ body {
 	height:1.7em;
 	border-radius: 0 0 100% 100%;
 }
-.listDropButton:hover{
+.listDropButton:hover, .listUpButton:hover{
 	color: rgba(255,255,255,1);
 }
-.listDropButton:focus{
+.listDropButton:focus, .listUpButton:focus{
 	outline:none;
 }
 .midNavButtonWrap{
@@ -928,6 +928,14 @@ div.thRow {
 	opacity: 1;
 	color: white;
 }
+@keyframes linkAlert{
+	from, to{color: white;}
+	50%{color: red;}
+}
+.linkCopyArea h3, .linkCopyArea h5{
+	animation:
+		linkAlert 0.85s infinite;
+}
 .channelCategoryInput{
 	border-radius:0;
 	border:none;
@@ -1080,9 +1088,9 @@ input:checked + .vert:before {
 	color: #FF8E2F;	
 	top: 7px;
     right: 5px;
-	color: oran;
+	color: orange;
 	transform: rotate(0deg);
-	transition: transform 1s linear;
+	transition: transform 0.5s linear;
 	cursor: pointer;
 	opacity: 0.7;
   }
@@ -1093,7 +1101,7 @@ input:checked + .vert:before {
 	top: 7px;
     right: 5px;
 	transform: rotate(180deg);
-	transition: transform 1s linear;
+	transition: transform 0.5s linear;
 	cursor: pointer;
 	opacity: 0.7;
   }
@@ -1309,6 +1317,7 @@ safer appraoch than to resizing browser to see change
 	}
 	#midNav-option{
 		background-color: rgb(40,40,40);
+		text-align: start;
 	}
 	.midNavButtonWrap{
 		position: relative;
@@ -1316,8 +1325,10 @@ safer appraoch than to resizing browser to see change
 		margin: 0;
 	}
 	.autoPlayArea{
-		margin-left: -15px;
+		/*margin-left: -15px;*/
+		margin-left: 7%;
 		left: 0;
+		display: inline-block;
 	}
 	.midNavChannels{
 		float: none;
