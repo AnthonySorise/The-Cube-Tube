@@ -171,10 +171,10 @@ body {
 	height:1.7em;
 	border-radius: 0 0 100% 100%;
 }
-.listDropButton:hover{
+.listDropButton:hover, .listUpButton:hover{
 	color: rgba(255,255,255,1);
 }
-.listDropButton:focus{
+.listDropButton:focus, .listUpButton:focus{
 	outline:none;
 }
 .midNavButtonWrap{
@@ -1309,6 +1309,7 @@ safer appraoch than to resizing browser to see change
 	}
 	#midNav-option{
 		background-color: rgb(40,40,40);
+		text-align: start;
 	}
 	.midNavButtonWrap{
 		position: relative;
@@ -1316,8 +1317,10 @@ safer appraoch than to resizing browser to see change
 		margin: 0;
 	}
 	.autoPlayArea{
-		margin-left: -15px;
+		/*margin-left: -15px;*/
+		margin-left: 7%;
 		left: 0;
+		display: inline-block;
 	}
 	.midNavChannels{
 		float: none;
