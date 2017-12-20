@@ -1323,15 +1323,24 @@ safer appraoch than to resizing browser to see change
 		position: relative;
 		/*margin-left: -15px;*/
 		margin: 0;
+		display: inline-block;
+		font-size: 10px;
 	}
 	.autoPlayArea{
 		/*margin-left: -15px;*/
-		margin-left: 7%;
+		/*margin-left: 7%;*/
+		margin-left: 15px;
 		left: 0;
 		display: inline-block;
 	}
 	.midNavChannels{
 		float: none;
+		display: inline-block;
+		/*margin-left: -15px;*/
+		margin-left: 10px;
+	}
+	.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
+		font-size: 11px;
 	}
 	#midNav-option form{
 		width: 95%;
