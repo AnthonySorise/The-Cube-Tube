@@ -1412,8 +1412,13 @@ safer appraoch than to resizing browser to see change
 
 
 	.carousel-indicators {
-		top: 546px;
+		/*top: 546px;*/
+		top: 275px;
 	}
 }
 
-
+@media only screen and (max-width: 420px){
+	.carousel-indicators{
+		top: 484px;
+	}
+}
