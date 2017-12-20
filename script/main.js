@@ -85,6 +85,17 @@ $(document).ready(function () {
         }
     }
     waitForIframe();
+
+    const mainContentHeight = window.innerHeight - $('#mainNav').height();
+    $('.main-content').css('height', mainContentHeight);
+    const listContentHeight = window.innerHeight - ($('#mainNav').height()+$('.videoRowWrapper').height());
+    $('#listContentWrap').css('height', listContentHeight);
+});
+$(window).resize(()=>{
+    const mainContentHeight = window.innerHeight - $('#mainNav').height();
+    $('.main-content').css('height', mainContentHeight);
+    const listContentHeight = window.innerHeight - ($('#mainNav').height()+$('.videoRowWrapper').height());
+    $('#listContentWrap').css('height', listContentHeight);
 });
 
 function initiateUser() {

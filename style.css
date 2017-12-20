@@ -444,7 +444,7 @@ body>.container-fluid {
 * list is generated below the middle navbar 			  	*
 *************************************************************/
 #listContentWrap{
-	height: 40%;
+	/*height: 40%;*/
 }
 .videoListRowWrapper {
 	/*height: 47%;*/
@@ -715,7 +715,8 @@ div.thRow {
 	background-image: url("assets/images/orange-cube.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: 100% auto;
+	/*background-size: 100% auto;*/
+	background-size: cover;
 }
 	
 .contentPlaceholder{
@@ -1239,7 +1240,8 @@ safer appraoch than to resizing browser to see change
 		width: 75vw;
 	}
 	#channelSearchModalBody {
-		height: 80vh;
+		/*height: 80vh;*/
+		height: auto;
 	}
 }
 @media only screen and (max-width: 991px) {
