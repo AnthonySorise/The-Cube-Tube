@@ -9,7 +9,7 @@ font-family: 'Arvo', serif;
 html,
 body {
 	overflow-x: hidden;
-	overflow-y: hidden;
+	/*overflow-y: hidden;*/
 	font-family: 'Montserrat', sans-serif;
 	background-color: #020e13;
 }
@@ -1275,7 +1275,7 @@ safer appraoch than to resizing browser to see change
 }
 @media only screen and (max-width : 767px){
 	body{
-		overflow-y: visible;
+		/*overflow-y: visible;*/
 	}
 	#mainVideo {
 		margin: 0.25% 0;

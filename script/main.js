@@ -86,20 +86,20 @@ $(document).ready(function () {
     }
     waitForIframe();
 
-    const mainContentHeight = window.innerHeight - $('#mainNav').height();
-    $('.main-content').css('height', mainContentHeight);
-    const listContentHeight = window.innerHeight - ($('#mainNav').height()+$('.videoRowWrapper').height());
-    $('#listContentWrap').css('height', listContentHeight);
+    // const mainContentHeight = window.innerHeight - $('#mainNav').height();
+    // $('.main-content').css('height', mainContentHeight);
+    // const listContentHeight = window.innerHeight - ($('#mainNav').height()+$('.videoRowWrapper').height());
+    // $('#listContentWrap').css('height', listContentHeight);
 });
-$(window).resize(()=>{
-    if(window.innerHeight > 600){
-        const mainContentHeight = window.innerHeight - $('#mainNav').height();
-        $('.main-content').css('height', mainContentHeight-5);
-        const listContentHeight = window.innerHeight - ($('#mainNav').height()+$('.videoRowWrapper').height());
-        $('#listContentWrap').css('height', listContentHeight-5);
-    }
+// $(window).resize(()=>{
+//     if(window.innerHeight > 600){
+//         const mainContentHeight = window.innerHeight - $('#mainNav').height();
+//         $('.main-content').css('height', mainContentHeight-5);
+//         const listContentHeight = window.innerHeight - ($('#mainNav').height()+$('.videoRowWrapper').height());
+//         $('#listContentWrap').css('height', listContentHeight-5);
+//     }
     
-});
+// });
 
 function initiateUser() {
     var numSubscribedChannels = 0;
