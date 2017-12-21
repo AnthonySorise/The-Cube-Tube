@@ -446,7 +446,7 @@ body>.container-fluid {
 * list is generated below the middle navbar 			  	*
 *************************************************************/
 #listContentWrap{
-	/*height: 40%;*/
+	height: 40%;
 }
 .videoListRowWrapper {
 	/*height: 47%;*/
