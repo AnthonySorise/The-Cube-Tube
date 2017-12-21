@@ -1352,7 +1352,7 @@ safer appraoch than to resizing browser to see change
 		/*font-size: 11px;*/
 		font-size: 9.5px;
 	}
-	.fa-long-arrow-down, .fa-long-arrow-up{
+	.fa-long-arrow-down.up, .fa-long-arrow-down{
 		top: 15px;
 	}
 	#midNav-option form{
