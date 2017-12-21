@@ -23,8 +23,8 @@ consider carousel for the video list area:
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css" />
 	<!-- <link rel="stylesheet" type="text/css" href="library/jquery-ui-1.12.1/jquery-ui.min.css"> -->
 	<script type="text/javascript" src="library/jquery-3.2.1.min.js"></script>
-	<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> -->
-	<link rel="stylesheet" type="text/css" href="library/jquery-ui-1.12.1/jquery-ui.min.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+	<!-- <link rel="stylesheet" type="text/css" href="library/jquery-ui-1.12.1/jquery-ui.min.css"> -->
 	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
 	<script type="text/javascript" src="library/bootstrap/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
