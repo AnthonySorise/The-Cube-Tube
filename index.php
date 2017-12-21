@@ -18,15 +18,15 @@ consider carousel for the video list area:
 		gtag('config', 'UA-109199068-1');
 	</script>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Audiowide|Arvo" rel="stylesheet">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	 crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-	 crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="library/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="library/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css" /> -->
+	<link rel="stylesheet" type="text/css" href="library/jquery-ui-1.12.1/jquery-ui.min.css">
+	<script type="text/javascript" src="library/jquery-3.2.1.min.js"></script>
+	<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> -->
+	<link rel="stylesheet" type="text/css" href="library/jquery-ui-1.12.1/jquery-ui.min.css">
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+	<script type="text/javascript" src="library/bootstrap/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script type="text/javascript" src="script/api_calls_to_db/access_database/database_api.js"></script>
     <script type="text/javascript" src="script/main.js"></script>
@@ -42,7 +42,8 @@ consider carousel for the video list area:
     <script type="text/javascript" src="script/my_cube.js"></script>
     <!-- <script type="text/javascript" src="script/tour.js"></script> -->
     <script type="text/javascript" src="script/utilities.js"></script>
-	<script src="//cdn.jsdelivr.net/velocity/1.5/velocity.min.js"></script>
+	<!-- <script src="//cdn.jsdelivr.net/velocity/1.5/velocity.min.js"></script> -->
+	<script type="text/javascript" src="library/velocity.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
 	<title>CubeTube</title>
