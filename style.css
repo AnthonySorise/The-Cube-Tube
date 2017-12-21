@@ -1346,6 +1346,7 @@ safer appraoch than to resizing browser to see change
 		float: right;
 		display: inline-block;
 		/*margin-left: 15px;*/
+		margin: 0;
 		margin-right: 10px;
 	}
 	.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
