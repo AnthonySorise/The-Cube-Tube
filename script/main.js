@@ -92,10 +92,13 @@ $(document).ready(function () {
     $('#listContentWrap').css('height', listContentHeight);
 });
 $(window).resize(()=>{
-    const mainContentHeight = window.innerHeight - $('#mainNav').height();
-    $('.main-content').css('height', mainContentHeight-5);
-    const listContentHeight = window.innerHeight - ($('#mainNav').height()+$('.videoRowWrapper').height());
-    $('#listContentWrap').css('height', listContentHeight-5);
+    if(window.innerHeight > 600){
+        const mainContentHeight = window.innerHeight - $('#mainNav').height();
+        $('.main-content').css('height', mainContentHeight-5);
+        const listContentHeight = window.innerHeight - ($('#mainNav').height()+$('.videoRowWrapper').height());
+        $('#listContentWrap').css('height', listContentHeight-5);
+    }
+    
 });
 
 function initiateUser() {
