@@ -93,9 +93,9 @@ $(document).ready(function () {
 });
 $(window).resize(()=>{
     const mainContentHeight = window.innerHeight - $('#mainNav').height();
-    $('.main-content').css('height', mainContentHeight);
+    $('.main-content').css('height', mainContentHeight-5);
     const listContentHeight = window.innerHeight - ($('#mainNav').height()+$('.videoRowWrapper').height());
-    $('#listContentWrap').css('height', listContentHeight);
+    $('#listContentWrap').css('height', listContentHeight-5);
 });
 
 function initiateUser() {
