@@ -1317,6 +1317,9 @@ safer appraoch than to resizing browser to see change
 	#dropdownChannelUl{
 		max-height: 85vh;
 	}
+	#midNav{
+		height: auto;
+	}
 	#midNav-option{
 		background-color: rgb(40,40,40);
 		text-align: start;
@@ -1333,19 +1336,24 @@ safer appraoch than to resizing browser to see change
 	.autoPlayArea{
 		/*margin-left: -15px;*/
 		/*margin-left: 7%;*/
+		margin: 0;
 		margin-left: 15px;
 		left: 0;
 		display: inline-block;
 	}
 	.midNavChannels{
-		float: none;
+		/*float: none;*/
+		float: right;
 		display: inline-block;
-		/*margin-left: -15px;*/
-		margin-left: 15px;
+		/*margin-left: 15px;*/
+		margin-right: 10px;
 	}
 	.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
 		/*font-size: 11px;*/
 		font-size: 9.5px;
+	}
+	.fa-long-arrow-down, .fa-long-arrow-up{
+		top: 15px;
 	}
 	#midNav-option form{
 		width: 95%;
