@@ -241,10 +241,10 @@ consider carousel for the video list area:
 				<!--videoListRow for listing channel videos-->
 				<div class="row thRow videoHeader">
 					<div class="col-sm-12 col-md-6 thLabel text-center">
-						<div class="col-xs-7 col-md-6 thTitle">
+						<div class="col-xs-7 col-sm-8 col-md-6 thTitle">
 							<strong>Title</strong>
 						</div>
-						<div class="col-xs-2 hidden-xs"></div>
+						<div class="col-xs-2 hidden-xs hidden-sm"></div>
 
 						<div class="col-xs-5 col-sm-2 thChannel">
 							<strong>Channel</strong>
