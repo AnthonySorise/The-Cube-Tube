@@ -9,6 +9,7 @@ font-family: 'Arvo', serif;
 html,
 body {
 	overflow-x: hidden;
+	/*overflow-y: hidden;*/
 	font-family: 'Montserrat', sans-serif;
 	background-color: #020e13;
 }
@@ -351,6 +352,7 @@ body>.container-fluid {
 }
 .main-content {
 	height: 94vh;
+	min-height: 550px;
 }
 
 /********************************************************************
@@ -715,7 +717,8 @@ div.thRow {
 	background-image: url("assets/images/orange-cube.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: 100% auto;
+	/*background-size: 100% auto;*/
+	background-size: cover;
 }
 	
 .contentPlaceholder{
@@ -1239,7 +1242,8 @@ safer appraoch than to resizing browser to see change
 		width: 75vw;
 	}
 	#channelSearchModalBody {
-		height: 80vh;
+		/*height: 80vh;*/
+		height: auto;
 	}
 }
 @media only screen and (max-width: 991px) {
@@ -1270,6 +1274,9 @@ safer appraoch than to resizing browser to see change
 	}
 }
 @media only screen and (max-width : 767px){
+	body{
+		/*overflow-y: visible;*/
+	}
 	#mainVideo {
 		margin: 0.25% 0;
 		height: 39vh;
@@ -1277,7 +1284,6 @@ safer appraoch than to resizing browser to see change
 		max-width:100vw;
 		justify-self: center;
 	}
-
 	.navbar-header{
 		width: auto;
 		user-select: none;
@@ -1315,6 +1321,9 @@ safer appraoch than to resizing browser to see change
 	#dropdownChannelUl{
 		max-height: 85vh;
 	}
+	#midNav{
+		height: auto;
+	}
 	#midNav-option{
 		background-color: rgb(40,40,40);
 		text-align: start;
@@ -1323,15 +1332,33 @@ safer appraoch than to resizing browser to see change
 		position: relative;
 		/*margin-left: -15px;*/
 		margin: 0;
+		display: inline-block;
+		/*font-size: 11px;*/
+		font-size: 9.5px;
+		top: 5px;
 	}
 	.autoPlayArea{
 		/*margin-left: -15px;*/
-		margin-left: 7%;
+		/*margin-left: 7%;*/
+		margin: 0;
+		margin-left: 15px;
 		left: 0;
 		display: inline-block;
 	}
 	.midNavChannels{
-		float: none;
+		/*float: none;*/
+		float: right;
+		display: inline-block;
+		/*margin-left: 15px;*/
+		margin: 0;
+		margin-right: 10px;
+	}
+	.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
+		/*font-size: 11px;*/
+		font-size: 9.5px;
+	}
+	.fa-long-arrow-down.up, .fa-long-arrow-down{
+		top: 15px;
 	}
 	#midNav-option form{
 		width: 95%;
@@ -1400,8 +1427,13 @@ safer appraoch than to resizing browser to see change
 
 
 	.carousel-indicators {
-		top: 546px;
+		/*top: 546px;*/
+		top: 275px;
 	}
 }
 
-
+@media only screen and (max-width: 420px){
+	.carousel-indicators{
+		top: 484px;
+	}
+}
