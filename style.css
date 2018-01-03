@@ -475,6 +475,8 @@ body>.container-fluid {
 .carousel-indicators {
 	/* background-color: white; */
 	/* padding-right: 13px; */
+	position: relative;
+	bottom: 0px;
 }
 li#returnCarouselStart{
 	position: relative;
