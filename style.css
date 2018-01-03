@@ -1386,6 +1386,9 @@ safer appraoch than to resizing browser to see change
 		/*height: 45%;*/
 		height: 83%;
 	}
+	#text-carousel{
+		max-height:258px;
+	}
 	.tdList{
 		height: 3.7vh;
 		line-height: 3.7vh;
@@ -1435,12 +1438,12 @@ safer appraoch than to resizing browser to see change
 
 	.carousel-indicators {
 		/*top: 546px;*/
-		top: 275px;
+		/*top: 275px;*/
 	}
 }
 
 @media only screen and (max-width: 420px){
 	.carousel-indicators{
-		top: 484px;
+		/*top: 484px;*/
 	}
 }
