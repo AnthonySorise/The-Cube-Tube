@@ -352,7 +352,7 @@ body>.container-fluid {
 }
 .main-content {
 	height: 94vh;
-	min-height: 550px;
+	/*min-height: 550px;*/
 }
 
 /********************************************************************
@@ -1267,6 +1267,9 @@ safer appraoch than to resizing browser to see change
 	}
 }
 @media only screen and (min-width: 768px){
+	.main-content{
+		min-height: 610px;
+	}
 	#mainNav-option{
 		width: auto !important;
 	}
