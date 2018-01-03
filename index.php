@@ -285,13 +285,7 @@ consider carousel for the video list area:
 				<!--end of table header div row-->
 				<div id="text-carousel" class="carousel slide" data-ride="carousel" data-interval="0">
 					
-					<!-- Indicators -->
-					<ol class="carousel-indicators">
-						<li id="returnCarouselStart" class="glyphicon glyphicon-fast-backward" onclick=returnToPageOne()></li>
-						<li><i class="fa fa-arrow-left" aria-hidden="true" id="leftArrowIcon"></i></li>
-						<li id="currentSlideNumberArea"></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true" id="rightArrowIcon"></i></li>
-					</ol>
+					
 
 					<!-- Wrapper for slides -->
 					<div class="row">
@@ -1417,6 +1411,14 @@ consider carousel for the video list area:
 					<a class="right carousel-control" href="#text-carousel" data-slide='next'>
 						<span class="glyphicon glyphicon-chevron-right"></span>
 					</a>
+					
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li id="returnCarouselStart" class="glyphicon glyphicon-fast-backward" onclick=returnToPageOne()></li>
+						<li><i class="fa fa-arrow-left" aria-hidden="true" id="leftArrowIcon"></i></li>
+						<li id="currentSlideNumberArea"></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true" id="rightArrowIcon"></i></li>
+					</ol>
 				</div>
 				<!--end of listRow div-->
 			</div>

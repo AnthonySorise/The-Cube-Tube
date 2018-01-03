@@ -1259,9 +1259,9 @@ safer appraoch than to resizing browser to see change
 	}
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px){
-	.carousel-indicators{
+	/*.carousel-indicators{
 		bottom: -230px;
-	}
+	}*/
 }
 @media only screen and (min-width: 768px){
 	.main-content{
