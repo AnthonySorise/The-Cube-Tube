@@ -543,12 +543,9 @@ div.thRow {
 }
 .tdList {
 	font-size: 13px;
-	/*margin-top: 1.75px;*/
-	/*margin-bottom: 1.75px;*/
-	/*height: 2.1vh;*/
 	height: 2.5vh;
-	/*line-height: 2.1vh;*/
 	line-height: 2.5vh;
+	min-height: 18.5px;
 	z-index: 1;
 }
 
