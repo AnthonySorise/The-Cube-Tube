@@ -134,7 +134,8 @@ body {
 	background-color: black;
 	/*background-color: rgb(63,114,155);*/
 	border: none;
-	height: 3.5%;
+	/*height: 3.5%;*/
+	height: 50px;
 	margin: 0;
 }
 #midNav-option{
@@ -451,6 +452,7 @@ body>.container-fluid {
 .videoListRowWrapper {
 	/*height: 47%;*/
 	/*height: 84.6%;*/
+	height: calc(100% - 50px);
 	padding: 0;
 	user-select: none;
 	-webkit-user-select: none;
