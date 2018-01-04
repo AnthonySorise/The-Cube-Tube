@@ -693,7 +693,9 @@ div.thRow {
     text-decoration: underline;
 	color:#FF8E2F !important;
 }
-
+#text-carousel > .row{
+	min-height:26vh;
+}
 .row {
 	margin: 0;
 }
