@@ -510,6 +510,7 @@ li#returnCarouselStart{
 #text-carousel {
 	overflow: auto;
 	/*height: 95%;*/
+	height: calc(100% - 20px);
 	background-color:#343e42;
 	display: none;
 }
@@ -1356,7 +1357,7 @@ safer appraoch than to resizing browser to see change
 		/*margin-left: -15px;*/
 		/*margin-left: 7%;*/
 		margin: 0;
-		margin-left: 15px;
+		margin-left: 10px;
 		left: 0;
 		display: inline-block;
 	}
