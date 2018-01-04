@@ -1288,6 +1288,10 @@ safer appraoch than to resizing browser to see change
 	body{
 		/*overflow-y: visible;*/
 	}
+	#mainNav{
+		height: 50px;
+		border: none;
+	}
 	#mainVideo {
 		margin: 0.25% 0;
 		height: 39vh;
@@ -1332,9 +1336,9 @@ safer appraoch than to resizing browser to see change
 	#dropdownChannelUl{
 		max-height: 85vh;
 	}
-	#midNav{
+	/*#midNav{
 		height: auto;
-	}
+	}*/
 	#midNav-option{
 		background-color: rgb(40,40,40);
 		text-align: start;
@@ -1376,8 +1380,9 @@ safer appraoch than to resizing browser to see change
 		margin: 0 2.5%;
 	}
 	.main-content{
-		height: 90.6vh;
-		/*height: 92vh;*/
+		/*height: 90.6vh;*/
+		height: calc(100vh - 50px);
+		min-height: 450px;
 	}
 	.videoRowWrapper{
 		/*height: 47%;*/
@@ -1390,11 +1395,12 @@ safer appraoch than to resizing browser to see change
 		height: 55%;
 	}
 	.videoListRowWrapper{
-		/*height: 45%;*/
-		height: 83%;
+		/*height: 83%;*/
+		height: calc(100% - 50px);
 	}
 	#text-carousel{
-		max-height:258px;
+		/*max-height:258px;*/
+		max-height: calc(100% - 20px);
 	}
 	.tdList{
 		height: 3.7vh;
