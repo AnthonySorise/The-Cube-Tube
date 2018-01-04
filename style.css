@@ -1393,7 +1393,7 @@ safer appraoch than to resizing browser to see change
 		min-height: 1px;
 	}
 	#listContentWrap{
-		/*height: 55%;*/
+		min-height: 55%;
 		height: auto;
 	}
 	.videoListRowWrapper{
