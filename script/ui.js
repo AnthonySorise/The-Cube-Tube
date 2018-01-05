@@ -66,6 +66,14 @@ $(window).on('click tap',(e)=>{
 
 $(document).ready(function(){
 	channelDropClickHandle();
+    if(window.innerHeight<767 && $('.contentPlaceholderWrapper').css('display')!=='none'){
+        $('.contentPlaceholderWrapper').css('height', $('#listContentWrap').height()-50);
+    }
+});
+$(window).resize(()=>{
+    if(window.innerHeight<767 && $('.contentPlaceholderWrapper').css('display')!=='none'){
+        $('.contentPlaceholderWrapper').css('height', $('#listContentWrap').height()-50);
+    }
 });
 
 function toastMsg(msgString, time) {
