@@ -1357,9 +1357,12 @@ safer appraoch than to resizing browser to see change
 		/*margin-left: -15px;*/
 		/*margin-left: 7%;*/
 		margin: 0;
-		margin-left: 10px;
+		margin-left: 8px;
 		left: 0;
 		display: inline-block;
+	}
+	.switch{
+		margin: 14px 0;
 	}
 	.midNavChannels{
 		/*float: none;*/
@@ -1368,10 +1371,14 @@ safer appraoch than to resizing browser to see change
 		/*margin-left: 15px;*/
 		margin: 0;
 		margin-right: 10px;
+		margin-top: 6.5px;
 	}
 	.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
 		/*font-size: 11px;*/
 		font-size: 9.5px;
+	}
+	.midNavBrowsing p, .midNavWatching p, .midNavPlaylist p, .midNavPlaylistText p{
+		font-size: 8.5px;
 	}
 	.fa-long-arrow-down.up, .fa-long-arrow-down{
 		top: 15px;
