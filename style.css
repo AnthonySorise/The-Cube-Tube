@@ -210,6 +210,10 @@ body {
 	font-size:14px;
 	font-weight: 700
 }
+.midNavBrowsing p, .midNavWatching p, .midNavPlaylistText p{
+	/*font-size: 8.5px;*/
+	display: inline-block;
+}
 .watchingLabel, .browsingLabel{
 	font-size: 100%;
 	/*padding: 9px 2.5px;*/
