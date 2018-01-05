@@ -1351,7 +1351,7 @@ safer appraoch than to resizing browser to see change
 		display: inline-block;
 		/*font-size: 11px;*/
 		font-size: 9.5px;
-		top: 5px;
+		/*top: 5px;*/
 	}
 	.autoPlayArea{
 		/*margin-left: -15px;*/
@@ -1370,7 +1370,7 @@ safer appraoch than to resizing browser to see change
 		display: inline-block;
 		/*margin-left: 15px;*/
 		margin: 0;
-		margin-right: 10px;
+		margin-right: 5px;
 		margin-top: 6.5px;
 	}
 	.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
@@ -1378,7 +1378,8 @@ safer appraoch than to resizing browser to see change
 		font-size: 9.5px;
 	}
 	.midNavBrowsing p, .midNavWatching p, .midNavPlaylist p, .midNavPlaylistText p{
-		font-size: 8.5px;
+		/*font-size: 8.5px;*/
+		display: none;
 	}
 	.fa-long-arrow-down.up, .fa-long-arrow-down{
 		top: 15px;
