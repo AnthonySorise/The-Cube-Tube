@@ -1373,9 +1373,7 @@ safer appraoch than to resizing browser to see change
 		float: right;
 		display: inline-block;
 		/*margin-left: 15px;*/
-		margin: 0;
-		margin-right: 5px;
-		margin-top: 6.5px;
+		margin: 9.5px 5px 9.5px 0;
 	}
 	.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
 		/*font-size: 11px;*/
