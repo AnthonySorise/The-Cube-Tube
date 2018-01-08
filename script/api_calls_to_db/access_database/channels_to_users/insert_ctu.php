@@ -1,5 +1,6 @@
 <?php
 //create channel to user link, and make a user query string for first time users, called from access
+//user creation is started when a new user adds a channel to their subscriptions
 if(empty($LOCAL_ACCESS)){
     die('insert ctu, direct access not allowed');
 }

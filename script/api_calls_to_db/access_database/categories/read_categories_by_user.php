@@ -1,5 +1,5 @@
 <?php
-//read all channels for a user, called from access 
+//read all channels for a user nased on the user session link, called from access 
 if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }

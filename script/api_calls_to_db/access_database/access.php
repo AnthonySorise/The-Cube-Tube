@@ -37,19 +37,19 @@ switch($_POST['action']){
         include('./categories/delete_category.php');
         break;
     case 'delete_ctu'://delete link from channel to users
-        include('./channel_to_user/delete_ctu.php');
+        include('./channels_to_users/delete_ctu.php');
         break;
     case 'delete_ctc'://delete category to channel link
         include('./categories_to_channels/delete_ctc.php');
         break;
     case 'insert_ctu'://create channel to user link
-        include('./channel_to_user/.insert_ctu.php');
+        include('./channels_to_users/.insert_ctu.php');
         break;
     case 'read_categories_by_user':
         include('./categories/read_categories_by_user.php');
         break;
     case 'read_channels_by_user_id':
-        include('./channel_to_user/read_channels_by_user_id.php');
+        include('./channels_to_users/read_channels_by_user_id.php');
         break;
     case 'read_channels_by_youtube_id':
         include('./channels/read_channels_by_youtube_id.php');

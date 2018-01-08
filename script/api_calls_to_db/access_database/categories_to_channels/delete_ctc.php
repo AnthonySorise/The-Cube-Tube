@@ -7,6 +7,7 @@ if(empty($_POST['youtube_channel_id'])){
     $output['errors'] = 'missing youtube channel id at delete ctc';
     output_and_exit($output);
 }
+//validate the youtube channel id
 $youtube_channel_id = $_POST['youtube_channel_id'];
 if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';

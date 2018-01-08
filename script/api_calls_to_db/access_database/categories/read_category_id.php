@@ -1,5 +1,6 @@
 <?php
 //get category id to be used for other queries
+//category id is based on category name and user id
 if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }
