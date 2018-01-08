@@ -411,6 +411,62 @@ function updateChannelInfoPopover(channelID){
             descriptionContainer.css("overflow-y", "auto")
             const description = $('<p>' + data.items[0].snippet.description + '</p>');
             descriptionContainer.append(description);
+            channelInfoDiv.append(channelThumbnail, subscriberCoun
+            const descriptionTitle = $('<p><strong>Description: </strong></p>');
+
+            const descriptionContainer = $('<div></div>');
+            descriptionContainer.css("max-height", "150px").css("overflow-y", "auto")
+
+            const description = $('<p>' + data.items[0].snippet.description + '</p>');
+            descriptionContainer.append(description);
+            videoStatsDiv.append(videoThumbnail, views, likesTitle, likesBar, descriptionTitle, descriptionContainer);
+            $("#videoStats").popover('destroy');
+            setTimeout(function () {
+                $("#videoStats").popover({
+                    html: true,
+                    content: videoStatsDiv,
+                    placement: 'top',
+                    container: 'body'
+                });
+            }, 350);
+            $("#videoStats").attr({
+                'data-original-title': data.items[0].snippet.title
+            });
+        },
+        error: function (data) {
+        }
+    });
+}
+
+function updateChannelInfoPopover(channelID){
+    $.ajax({
+        url: 'https://www.googleapis.com/youtube/v3/channels',
+        dataType: 'json',
+        method: 'get',
+        data: {
+            key: "AIzaSyAOr3VvEDRdI5u9KGTrsJ7usMsG5FWcl6s",
+            id: channelID,
+            part: 'snippet, statistics'
+        },
+        success: function (data) {
+            let channelInfoDiv = $("<div></div>").css("width", "385").css("max-height", "450px");;
+            const channelThumbnail = $('<img>').attr('src', data.items[0].snippet.thumbnails.medium.url).css({
+                width: '105px',
+                height: '105px',
+            });
+            channelThumbnail.css("position", "relative")
+                .css("left", "50%")
+                .css("transform", "translateX(-50%)")
+                .css("margin-bottom", '15px');
+
+            var subscriberCount = $('<p><strong>Subscribers: </strong>' + parseInt(data.items[0].statistics.subscriberCount).toLocaleString("en-us") + '</p>');
+            const descriptionTitle = $('<p><strong>Description: </strong></p>');
+            const descriptionContainer = $('<div></div>');
+            descriptionContainer.css("max-height", "150px");
+
+            descriptionContainer.css("overflow-y", "auto")
+            const description = $('<p>' + data.items[0].snippet.description + '</p>');
+            descriptionContainer.append(description);
             channelInfoDiv.append(channelThumbnail, subscriberCount, descriptionTitle, descriptionContainer);
 
             $("#channelInfo").popover('destroy');
