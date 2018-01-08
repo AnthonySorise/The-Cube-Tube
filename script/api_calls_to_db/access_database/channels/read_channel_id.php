@@ -1,5 +1,5 @@
 <?php
-//grab channel id to be used for other queries
+//grab channel id to be used for other queries, included in other files
 if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }

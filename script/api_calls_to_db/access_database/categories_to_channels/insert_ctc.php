@@ -44,7 +44,7 @@ if($result->num_rows>0){
     $output['messages'][] = 'duplicate found!';
     output_and_exit($output);
 }
-//insert if no dups are found
+//insert into categories to channels if no duplicates are found
 $sqli = 
     "INSERT INTO
         categories_to_channels

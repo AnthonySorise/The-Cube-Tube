@@ -1,4 +1,5 @@
  <?php
+ //called from access.php, will check if channel exist in database if so provide information
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
