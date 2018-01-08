@@ -26,52 +26,52 @@ function output_and_exit($output){
 }
 switch($_POST['action']){
     case 'change_category_name':
-        include('change_category_name.php');
+        include('./categories/change_category_name.php');
         break;
     case 'delete_category':
-        include('delete_category.php');
+        include('./categories/delete_category.php');
         break;
     case 'delete_ctu'://ctu is category to user
-        include('delete_ctu.php');
+        include('./channel_to_user/delete_ctu.php');
         break;
     case 'delete_ctc'://ctc is category to channel
-        include('delete_ctc.php');
+        include('./categories_to_channels/delete_ctc.php');
         break;
     case 'insert_ctu':
-        include('insert_ctu.php');
+        include('./channel_to_user/.insert_ctu.php');
         break;
     case 'read_categories_by_user':
-        include('read_categories_by_user.php');
+        include('./categories/read_categories_by_user.php');
         break;
     case 'read_channels_by_user_id':
-        include('read_channels_by_user_id.php');
+        include('./channel_to_user/read_channels_by_user_id.php');
         break;
     case 'read_channels_by_youtube_id':
-        include('read_channels_by_youtube_id.php');
+        include('./channels/read_channels_by_youtube_id.php');
         break;
     case 'read_video'://not implemented on front end
-        include('read_video.php');
+        include('./videos/read_video.php');
         break;
     case 'read_videos_by_channel_array':
-        include('read_videos_by_channel_array.php');
+        include('./videos/read_videos_by_channel_array.php');
         break;
     case 'insert_category':
-        include('insert_category.php');
+        include('./categories/insert_category.php');
         break;
     case 'insert_ctc'://create link between categories and channels
-        include('insert_ctc.php');
+        include('./categories_to_channels/insert_ctc.php');
         break;
     case 'insert_youtube_channel_curl'://grab and insert channel data from youtube 
-        include('youtube_channel_curl.php');
+        include('./channels/youtube_channel_curl.php');
         break;
     case 'update_video_list':
-        include('update_video_list.php');
+        include('./videos/update_video_list.php');
         break;
     case 'update_channels':
-        include('update_channels.php');
+        include('./channels/update_channels.php');
         break;
     case 'insert_videos_curl'://grab and insert videos from youtube
-        include('youtube_videos_curl.php');
+        include('./videos/youtube_videos_curl.php');
         break;
     default:
         $output['errors'][] = 'invalid action';

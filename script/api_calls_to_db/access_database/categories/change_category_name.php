@@ -3,6 +3,7 @@
 if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }
+//exit if any required data is missing
 if(empty($_POST['category_name'])){
     $output['errors'][] = 'missing category name';
     output_and_exit($output);
@@ -11,8 +12,9 @@ if(empty($_POST['new_name'])){
     $output['errors'][] = 'missing new name';
     output_and_exit($output);
 }
-$category_name = $_POST['category_name'];
-$new_name = $_POST['new_name'];
+//turns both client inputs into
+$category_name = filter_var($_POST['category_name'], FILTER_SANITIZE_STRING);
+$new_name = filter_var($_POST['new_name'], FILTER_SANITIZE_STRING);
 $query = 
     "UPDATE
         categories 
