@@ -12,7 +12,7 @@ if(empty($_POST['new_name'])){
     $output['errors'][] = 'missing new name';
     output_and_exit($output);
 }
-//turns both client inputs into
+//sanitize post data into strings
 $category_name = filter_var($_POST['category_name'], FILTER_SANITIZE_STRING);
 $new_name = filter_var($_POST['new_name'], FILTER_SANITIZE_STRING);
 $query = 

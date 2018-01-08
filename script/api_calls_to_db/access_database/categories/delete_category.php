@@ -7,7 +7,8 @@ if(empty($_POST['category_name'])){
     $output['errors'][] = 'missing category name';
     output_and_exit($output); 
 }
-$category_name = $_POST['category_name'];
+//sanitize post data into string
+$category_name = filter_var($_POST['category_name'], FILTER_SANITIZE_STRING);
 $query = 
     "DELETE
         ct,

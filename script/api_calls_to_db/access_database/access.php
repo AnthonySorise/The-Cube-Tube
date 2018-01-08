@@ -1,18 +1,22 @@
 <?php
 session_start();
+//local access is a flag to check that all other files run through this access file
 $LOCAL_ACCESS = true;
+//connection to database
 require_once('mysql_connect.php');
 $output = [
     'success' => false,
     'errors' => [],
 ];
+//exit if action is missing
 if(empty($_POST['action'])){
     $output['errors'][] = 'No action specified';
     output_and_exit($output);
 }
 if(!empty($_SESSION['user_link'])){
-    include('read_user.php');
+    include('read_user.php');//grab user id if avaiable
 }
+//this function exits the file and sends an output in json. Will also create an error log on server
 function output_and_exit($output){
     $json_output = json_encode($output);
     if(!empty($output['errors'])){
@@ -24,6 +28,7 @@ function output_and_exit($output){
     print($json_output);
     exit();
 }
+//files run depending on the action given in post data
 switch($_POST['action']){
     case 'change_category_name':
         include('./categories/change_category_name.php');
@@ -31,13 +36,13 @@ switch($_POST['action']){
     case 'delete_category':
         include('./categories/delete_category.php');
         break;
-    case 'delete_ctu'://ctu is category to user
+    case 'delete_ctu'://delete link from channel to users
         include('./channel_to_user/delete_ctu.php');
         break;
-    case 'delete_ctc'://ctc is category to channel
+    case 'delete_ctc'://delete category to channel link
         include('./categories_to_channels/delete_ctc.php');
         break;
-    case 'insert_ctu':
+    case 'insert_ctu'://create channel to user link
         include('./channel_to_user/.insert_ctu.php');
         break;
     case 'read_categories_by_user':
@@ -67,7 +72,7 @@ switch($_POST['action']){
     case 'update_video_list':
         include('./videos/update_video_list.php');
         break;
-    case 'update_channels':
+    case 'update_channels'://running on a cronjob to update channel info
         include('./channels/update_channels.php');
         break;
     case 'insert_videos_curl'://grab and insert videos from youtube
