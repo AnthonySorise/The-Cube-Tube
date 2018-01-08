@@ -14,7 +14,7 @@ if(empty($_POST['action'])){
     output_and_exit($output);
 }
 if(!empty($_SESSION['user_link'])){
-    include('read_user.php');//grab user id if avaiable
+    include('./users/read_user.php');//grab user id if avaiable
 }
 //this function exits the file and sends an output in json. Will also create an error log on server
 function output_and_exit($output){
