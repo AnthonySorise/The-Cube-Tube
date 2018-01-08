@@ -1,12 +1,9 @@
 <?php
+//called from access.php, grabs all related channels for the user
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
-if(empty($_SESSION['user_link'])){
-    $output['user'] = false;
-    output_and_exit($output);
-}
-//grab all channels for a given user
+//grab all channels information for the user
 $stmt = $conn->prepare(
     "SELECT
         c.channel_title,
@@ -18,8 +15,6 @@ $stmt = $conn->prepare(
         channels AS c
     JOIN
         channels_to_users AS ctu ON c.channel_id = ctu.channel_id
-    JOIN
-        users AS u ON u.user_id = ctu.user_id
     WHERE
         u.user_id = ?
     ORDER BY

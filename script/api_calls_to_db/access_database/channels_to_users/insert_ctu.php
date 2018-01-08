@@ -15,6 +15,8 @@ if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
 }
 //makes user link if session and get is empty
 if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
+    //generate a random 12 character string for the user
+    //will be called recursively if user link already exist in datebase
     function generateRandomString($conn){
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -35,13 +37,14 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
         }
     }
     $_SESSION['user_link'] = generateRandomString($conn);
-    include('insert_user.php');
+    //insert user link into the users table
+    include('../users/insert_user.php');
     //creates random string for user and inserts into database as well as show to front end
     $output['user_link'] = $_SESSION['user_link'];
 }
 //grab channel id
 include('read_channel_id.php');
-//check for duplicate link
+//check for duplicate link, exit if found
 $sqli = 
     "SELECT
         ctu_id
@@ -57,6 +60,7 @@ if($results->num_rows>0){
     $output['errors'][] = "DUPLICATE CTU";
     output_and_exit($output);
 }else{
+    //id no duplicate is found create the link in channels to users table
     $sqli = 
         "INSERT INTO 
             channels_to_users 
