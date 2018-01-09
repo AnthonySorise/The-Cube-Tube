@@ -45,7 +45,7 @@ $stmt->execute();
 if($conn->affected_rows>0){
     $output['messages'][] = 'insert category success';
     $category_id = $conn->insert_id;
-    include('../categories_to_channels/insert_ctc.php');
+    include('./categories_to_channels/insert_ctc.php');
 }else{
     $output['errors'][] = 'failed to add category';
 }

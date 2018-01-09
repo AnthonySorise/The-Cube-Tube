@@ -15,7 +15,7 @@ if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
     output_and_exit($output);
 }
 //require youtube api key for curl call
-require_once('../youtube_api_key.php');
+require_once('./youtube_api_key.php');
 //make a curl call to youtube with youtube channel id
 $ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -70,7 +70,7 @@ if ($error_occurred ){
       if($conn->affected_rows>0){
           $output['messages'][] = "insert channel success";
           $channel_id = $conn->insert_id;
-          include("youtube_videos_curl.php");
+          include("./videos/youtube_videos_curl.php");
         }else{
             $output['errors'][]='UNABLE TO INSERT';
         }

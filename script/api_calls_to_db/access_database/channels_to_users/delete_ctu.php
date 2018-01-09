@@ -14,7 +14,7 @@ if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
     output_and_exit($output);
 }
 //grab channel id based on youtube's string id
-include('../channels/read_channel_id.php');
+include('./channels/read_channel_id.php');
 //delete link from channels to users table
 $sqli = 
     "DELETE
