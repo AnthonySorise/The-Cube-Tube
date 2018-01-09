@@ -3,7 +3,7 @@
 if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }
-//exit if any required data is missing
+//check for missing data, exit and output error if anthing is missing
 if(empty($_POST['category_name'])){
     $output['errors'][] = 'missing category name';
     output_and_exit($output);
@@ -15,6 +15,7 @@ if(empty($_POST['new_name'])){
 //sanitize post data into strings
 $category_name = filter_var($_POST['category_name'], FILTER_SANITIZE_STRING);
 $new_name = filter_var($_POST['new_name'], FILTER_SANITIZE_STRING);
+//prepared statement to update channel name
 $query = 
     "UPDATE
         categories 
@@ -28,6 +29,7 @@ if(!($stmt = $conn->prepare($query))){
 }
 $stmt->bind_param('ssi',$new_name,$category_name,$user_id);
 $stmt->execute();
+//output message for success or fail
 if($conn->affected_rows>0){
     $output['messages'][] = 'change name success';
     $output['success'] = true; 

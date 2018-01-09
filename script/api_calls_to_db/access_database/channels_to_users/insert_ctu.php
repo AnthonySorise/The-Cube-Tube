@@ -4,6 +4,7 @@
 if(empty($LOCAL_ACCESS)){
     die('insert ctu, direct access not allowed');
 }
+//check for missing data, exit and output error if anthing is missing
 if(empty($_POST['youtube_channel_id'])){
     $output['errors'][] ='MISSING YOUTUBE CHANNEL ID';
     output_and_exit($output);
@@ -60,7 +61,7 @@ if($results->num_rows>0){
     $output['errors'][] = "DUPLICATE CTU";
     output_and_exit($output);
 }else{
-    //id no duplicate is found create the link in channels to users table
+    //if no duplicate is found create the link in channels to users table
     $sqli = 
         "INSERT INTO 
             channels_to_users 

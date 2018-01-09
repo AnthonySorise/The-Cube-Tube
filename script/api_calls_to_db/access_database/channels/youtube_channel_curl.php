@@ -3,21 +3,25 @@
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
-
+//check for missing data, exit and output error if anthing is missing
 if(empty($_POST['youtube_channel_id'])){
     $output['errors'][] = "MISSING CHANNEL ID at youtube channel curl";
     output_and_exit($output);
 }
 $youtube_channel_id = $_POST['youtube_channel_id'];
+//validate the id
 if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
     output_and_exit($output);
 }
-require_once('youtube_api_key.php');
+//require youtube api key for curl call
+require_once('../youtube_api_key.php');
+//make a curl call to youtube with youtube channel id
 $ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $json = curl_exec($ch);
 $error_occurred = false;
+//check if error occured in curl call
 if ($json === false || curl_errno($ch)) {
       $error_occurred = true;
 }else{
@@ -38,10 +42,13 @@ if ($error_occurred ){
       $output['messages'] = 'curl failed at youtube_channel_curl';
       output_and_exit($output);
 } else {
+      //covert data from youtube to a format that the database will recieve and store
       $channel_data = json_decode($json, true)['items'][0]['snippet'];
+      //remove parts of thumbnail string that are universal to save space in database
       $thumbnail = $channel_data['thumbnails']['medium']['url'];
       $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
       $thumbnail = str_replace('/photo.jpg','',$thumbnail);
+      //grab channel title and description from the channel data object
       $channel_title = $channel_data['title'];
       $description = $channel_data['description'];
       $date = date('Y-m-d H:i:s');

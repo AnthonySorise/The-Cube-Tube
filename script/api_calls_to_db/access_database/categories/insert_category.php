@@ -3,6 +3,7 @@
 if(empty($LOCAL_ACCESS)){
     die('direction access not allowed');
 }
+//check for missing data, exit and output error if anthing is missing
 if(empty($_POST['category_name'])){
     $output['errors'][] = 'MISSING NAME OF CATEGORY';
     output_and_exit($output);

@@ -3,6 +3,7 @@
 if(empty($LOCAL_ACCESS)){
     die('delete ctu, direct access not allowed');
 }
+//check for missing data, exit and output error if anthing is missing
 if(empty($_POST['youtube_channel_id'])){
     $output['errors'] = 'MISSING YOUTUBE CHANNEL ID';
 }

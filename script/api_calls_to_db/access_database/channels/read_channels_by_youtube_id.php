@@ -3,6 +3,7 @@
 if(empty($LOCAL_ACCESS)){
     die('direct access not allowed');
 }
+//check for missing data, exit and output error if anthing is missing
 if(empty($_POST['youtube_channel_id'])){
     $output['errors'][] = 'missing youtube channel id';
     output_and_exit($output);
