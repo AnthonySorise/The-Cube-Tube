@@ -16,7 +16,7 @@ $youtube_array = $_POST['youtube_channel_array'];
 $video_title = $_POST['video_title'];
 //use a like sql query search
 $like = "%{$video_title}%";
-//complete query based on length of channel array
+//complete query statement based on length of channel array
 $question_marks = implode(' OR ', array_fill(0, count($youtube_array), 'c.youtube_channel_id = ?'));
 $param_types = implode('', array_fill(0, count($youtube_array), 's'));
 $query = 
@@ -39,6 +39,7 @@ if(!$stmt = $conn->prepare($query)){
 $stmt->bind_param("s{$param_types}",...array_merge([$like],$youtube_array));
 $stmt->execute();
 $results = $stmt->get_result();
+//output data if there were results
 if($results->num_rows>0){
     while($row = $results->fetch_assoc()){
         $output['data'][] = $row;

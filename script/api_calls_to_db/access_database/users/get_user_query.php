@@ -8,6 +8,7 @@ if(isset($_GET['user'])){//checks if the link is valid
         header('Location: /');
         exit();
     }
+    //prepared statement to search if user is in database
     $sqli = 
         "SELECT
             user_id
