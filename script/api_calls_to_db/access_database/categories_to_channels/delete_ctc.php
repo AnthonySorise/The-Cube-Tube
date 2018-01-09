@@ -32,6 +32,7 @@ if(!($stmt = $conn->prepare($query))){
 }
 $stmt->bind_param('si',$youtube_channel_id,$user_id);
 $stmt->execute();
+//output success or fail messsage
 if($conn->affected_rows>0){
     $output['messages'][] = 'deleted ctcs';
     $output['success'] = true;

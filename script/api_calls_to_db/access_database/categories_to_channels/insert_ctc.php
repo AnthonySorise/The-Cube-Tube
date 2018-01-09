@@ -57,6 +57,7 @@ if(!($stmt = $conn->prepare($sqli))){
 };
 $stmt->bind_param('ii',$channel_id,$category_id);
 $stmt->execute();
+//output success or fail message
 if($conn->affected_rows>0){
     $output['messages'][] = 'insert ctc success';
     $output['success'] = true;

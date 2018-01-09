@@ -52,6 +52,7 @@ if ($error_occurred ){
       $channel_title = $channel_data['title'];
       $description = $channel_data['description'];
       $date = date('Y-m-d H:i:s');
+      //prepared statement to put channel data into database
       $sqli = 
         "INSERT INTO
             channels
@@ -65,6 +66,7 @@ if ($error_occurred ){
       $stmt->bind_param('sssss',$channel_title,$youtube_channel_id,
       $description,$thumbnail,$date);
       $stmt->execute();
+      //output success or fail message
       if($conn->affected_rows>0){
           $output['messages'][] = "insert channel success";
           $channel_id = $conn->insert_id;

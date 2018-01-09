@@ -16,6 +16,7 @@ $stmt->execute();
 $results = $stmt->get_result();
 if($results->num_rows>0){
     $output['messages'][] = 'channels found';
+    //put all data into the channel array
     while($row = $results->fetch_assoc()){
         $channel_array[] = $row['youtube_channel_id'];
     }
@@ -50,10 +51,12 @@ foreach($channel_array as $youtube_channel_id){
     $channel_title = $channel_data['title'];
     $description = $channel_data['description'];
     $stmt->execute();
+    //count how many channels were updated
     if($conn->affected_rows>0){
         $output['update_success'] += 1;
         $output['success'] = true;
     }
+    //output success or fail message
     if($output['update_success']>0){
         $output['success'] = true;
     }else{
