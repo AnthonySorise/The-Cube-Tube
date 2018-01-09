@@ -62,7 +62,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         }
         $entries = $video_array['items'];
         $last_updated = date('Y-m-d H:i:s');
-        $query  = "INSERT INTO " ;
+        $query  = "INSERT INTO ";
         $query .= "videos (video_title, channel_id, youtube_video_id, description, published_at) ";
         $query .= "VALUES";
         $data = [];
