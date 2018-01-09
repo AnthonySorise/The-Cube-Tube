@@ -20,10 +20,10 @@ if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
 }
 $category_name = $_POST['category_name']; 
 //grab channel id
-include('../channels/read_channel_id.php');
+include('./channels/read_channel_id.php');
 //grab category id
 if(empty($category_id)){
-    include('../categories/read_category_id.php');
+    include('./categories/read_category_id.php');
 }
 //check for duplicates, will exit if found
 $query = 

@@ -44,7 +44,7 @@ if(!isset($_SESSION['user_link']) and !isset($_GET['user'])){
     $output['user_link'] = $_SESSION['user_link'];
 }
 //grab channel id
-include('read_channel_id.php');
+include('./channels/read_channel_id.php');
 //check for duplicate link, exit if found
 $sqli = 
     "SELECT

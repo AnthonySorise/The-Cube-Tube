@@ -4,7 +4,7 @@ if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
 //require youtube api key for curl call
-require_once("../youtube_api_key.php");
+require_once("./youtube_api_key.php");
 //check for missing data
 //exit and output error message if anything is missing
 if(empty($_POST['youtube_channel_id'])){

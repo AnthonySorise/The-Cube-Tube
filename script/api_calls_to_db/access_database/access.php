@@ -43,7 +43,7 @@ switch($_POST['action']){
         include('categories_to_channels/delete_ctc.php');
         break;
     case 'insert_ctu'://create channel to user link
-        include('channels_to_users/.insert_ctu.php');
+        include('channels_to_users/insert_ctu.php');
         break;
     case 'read_categories_by_user':
         include('categories/read_categories_by_user.php');

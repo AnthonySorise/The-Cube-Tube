@@ -16,7 +16,7 @@ $stmt = $conn->prepare(
     JOIN
         channels_to_users AS ctu ON c.channel_id = ctu.channel_id
     WHERE
-        u.user_id = ?
+        ctu.user_id = ?
     ORDER BY
         c.channel_title");
 $stmt->bind_param('i',$user_id);

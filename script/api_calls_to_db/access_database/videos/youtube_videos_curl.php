@@ -4,7 +4,7 @@ if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
 //require youtube api key for curl call
-require('../youtube_api_key.php');
+require('./youtube_api_key.php');
 //check for missing data, set variables if data exist
 if(!empty($_POST['page_token'])){
     $next_page_token = $_POST['page_token'];
@@ -21,7 +21,7 @@ if(!empty($_POST['last_channel_pull'])){//change datetime to youtube standard fo
 }
 //grab channel id if not given
 if(empty($channel_id)){
-    include('read_channel_id.php');
+    include('./channels/read_channel_id.php');
 }
 //this funciton is recursively called until there are no more page tokens from youtube. 
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
