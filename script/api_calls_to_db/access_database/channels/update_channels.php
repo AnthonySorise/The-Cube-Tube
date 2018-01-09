@@ -4,7 +4,7 @@
      die('direct access not allowed');
 }
 //need api key to make curl call
-require_once('../youtube_api_key.php');
+require_once('./youtube_api_key.php');
 //grab all youtube channel ids from database
 $query = 
     "SELECT 
