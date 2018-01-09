@@ -210,6 +210,10 @@ body {
 	font-size:14px;
 	font-weight: 700
 }
+.midNavBrowsing p, .midNavWatching p, .midNavPlaylistText p{
+	/*font-size: 8.5px;*/
+	display: inline-block;
+}
 .watchingLabel, .browsingLabel{
 	font-size: 100%;
 	/*padding: 9px 2.5px;*/
@@ -1351,27 +1355,33 @@ safer appraoch than to resizing browser to see change
 		display: inline-block;
 		/*font-size: 11px;*/
 		font-size: 9.5px;
-		top: 5px;
+		/*top: 5px;*/
 	}
 	.autoPlayArea{
 		/*margin-left: -15px;*/
 		/*margin-left: 7%;*/
 		margin: 0;
-		margin-left: 10px;
+		margin-left: 8px;
 		left: 0;
 		display: inline-block;
+	}
+	.switch{
+		margin: 14px 0;
 	}
 	.midNavChannels{
 		/*float: none;*/
 		float: right;
 		display: inline-block;
 		/*margin-left: 15px;*/
-		margin: 0;
-		margin-right: 10px;
+		margin: 8.5px 5px 8.5px 0;
 	}
 	.midNavBrowsing, .midNavWatching, .midNavPlaylist, .midNavPlaylistText{
 		/*font-size: 11px;*/
 		font-size: 9.5px;
+	}
+	.midNavBrowsing p, .midNavWatching p, .midNavPlaylist p, .midNavPlaylistText p{
+		/*font-size: 8.5px;*/
+		display: none;
 	}
 	.fa-long-arrow-down.up, .fa-long-arrow-down{
 		top: 15px;
