@@ -69,11 +69,15 @@ $(document).ready(function(){
     if(window.innerWidth<767 && $('.contentPlaceholderWrapper').css('display')!=='none'){
         $('.contentPlaceholderWrapper').css('height', $('#listContentWrap').height()-50);
     }
+    const iframeWid = ($('#mainVideo').height()*16)/9;
+    $('#mainVideo').css('width',iframeWid);
 });
 $(window).resize(()=>{
     if(window.innerWidth<767 && $('.contentPlaceholderWrapper').css('display')!=='none'){
         $('.contentPlaceholderWrapper').css('height', $('#listContentWrap').height()-50);
     }
+    const iframeWid = ($('#mainVideo').height()*16)/9;
+    $('#mainVideo').css('width',iframeWid);
 });
 
 function toastMsg(msgString, time) {
