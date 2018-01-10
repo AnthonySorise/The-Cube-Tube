@@ -31,10 +31,10 @@ YouTube provides a wonderful platform where people can show and voice themselves
 
 ## Developers
 #### Front End
-    - Anthony Sorise
-    - Brian Kim
-    - Matt Barnett
-    - Chris Kim
-    - Ian Manly
+  - Anthony Sorise
+  - Brian Kim
+  - Matt Barnett
+  - Chris Kim
+  - Ian Manly
 #### Back End
-    - collin Wong
+  - collin Wong
