@@ -2,8 +2,10 @@
 //used in a cronjob to update channel data
  if(empty($LOCAL_ACCESS)){
      die('direct access not allowed');
- }
-require_once('youtube_api_key.php');
+}
+//need api key to make curl call
+require_once('./youtube_api_key.php');
+//grab all youtube channel ids from database
 $query = 
     "SELECT 
         youtube_channel_id 
@@ -14,12 +16,14 @@ $stmt->execute();
 $results = $stmt->get_result();
 if($results->num_rows>0){
     $output['messages'][] = 'channels found';
+    //put all data into the channel array
     while($row = $results->fetch_assoc()){
         $channel_array[] = $row['youtube_channel_id'];
     }
 }else{
     $output['messages'][] = 'no channels to read';
 }
+//update channels with updated information from youtube
 $query = 
     "UPDATE 
         channels 
@@ -35,6 +39,7 @@ if(!($stmt = $conn->prepare($query))){
     output_and_exit($output);
 }
 $stmt->bind_param('ssss',$thumbnail,$channel_title,$description,$youtube_channel_id);
+//loop through each channel in database and make a curl call to get information
 foreach($channel_array as $youtube_channel_id){
     $ch = curl_init("https://www.googleapis.com/youtube/v3/channels?id={$youtube_channel_id}&part=snippet&key={$DEVELOPER_KEY}");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -46,10 +51,12 @@ foreach($channel_array as $youtube_channel_id){
     $channel_title = $channel_data['title'];
     $description = $channel_data['description'];
     $stmt->execute();
+    //count how many channels were updated
     if($conn->affected_rows>0){
         $output['update_success'] += 1;
         $output['success'] = true;
     }
+    //output success or fail message
     if($output['update_success']>0){
         $output['success'] = true;
     }else{

@@ -3,8 +3,8 @@ if(empty($LOCAL_ACCESS)){
     die('insert ctc, direct access not allowed');
 }
 //called from access php or insert category
-//when called from insert category, inserts ctc into newly created category
-//insert ctc into existing category when called directly
+//when called from insert category, inserts category to channel table into newly created category
+//insert a category to channel link into existing category when called directly
 if(empty($_POST['youtube_channel_id'])){
     $output['errors'][] = 'missing youtube channel id at insert ctc';
     output_and_exit($output);
@@ -20,12 +20,12 @@ if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
 }
 $category_name = $_POST['category_name']; 
 //grab channel id
-include('read_channel_id.php');
+include('./channels/read_channel_id.php');
 //grab category id
 if(empty($category_id)){
-    include('read_category_id.php');
+    include('./categories/read_category_id.php');
 }
-//check for duplicates
+//check for duplicates, will exit if found
 $query = 
     "SELECT
         ctc_id
@@ -44,7 +44,7 @@ if($result->num_rows>0){
     $output['messages'][] = 'duplicate found!';
     output_and_exit($output);
 }
-//insert if no dups are found
+//insert into categories to channels if no duplicates are found
 $sqli = 
     "INSERT INTO
         categories_to_channels
@@ -57,6 +57,7 @@ if(!($stmt = $conn->prepare($sqli))){
 };
 $stmt->bind_param('ii',$channel_id,$category_id);
 $stmt->execute();
+//output success or fail message
 if($conn->affected_rows>0){
     $output['messages'][] = 'insert ctc success';
     $output['success'] = true;

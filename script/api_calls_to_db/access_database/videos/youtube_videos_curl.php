@@ -1,13 +1,17 @@
 <?php
+//called from youtube channel curl and update video list
 if(empty($LOCAL_ACCESS)){
     die("no direct access allowed");
 }
-//called from youtube channel curl and update video list
-require('youtube_api_key.php');
+//require youtube api key for curl call
+require('./youtube_api_key.php');
+//check for missing data, set variables if data exist
 if(!empty($_POST['page_token'])){
     $next_page_token = $_POST['page_token'];
     $youtube_channel_id = $_POST['youtube_channel_id'];
 }
+//covert last channel pull time, if given
+//to format the youtube api can read
 if(!empty($_POST['last_channel_pull'])){//change datetime to youtube standard format
     $last_channel_pull = $_POST['last_channel_pull'];
     $last_channel_pull = str_replace(' ','T', $last_channel_pull);
@@ -17,22 +21,28 @@ if(!empty($_POST['last_channel_pull'])){//change datetime to youtube standard fo
 }
 //grab channel id if not given
 if(empty($channel_id)){
-    include('read_channel_id.php');
+    include('./channels/read_channel_id.php');
 }
 //this funciton is recursively called until there are no more page tokens from youtube. 
 function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KEY,$conn,$last_channel_pull,$output){
+    //add date to curl if a data was given
     if(!empty($last_channel_pull)){
         $last_channel_pull = "&publishedAfter={$last_channel_pull}";
     }
+    //fill curl string with an empty string if no page token was given
+    //else include the page token
     if($page_token==='first'){
         $page_query='';
     }else{
         $page_query="&pageToken={$page_token}";
     }
+    //make curl call to youtube to grab videos based on channel
+    //and any addition information
     $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=45");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $json = curl_exec($ch);
     $error_occurred = false;
+    //check for error on curl call, output error message if needed
     if ($json === false || curl_errno($ch)) {
         $error_occurred = true;
     }
@@ -52,41 +62,60 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         $output['messages'] = 'curl failed at youtube_channel_curl';
         output_and_exit($output);
     } else {
+        //decode data from youtube and convert into format
+        //to be inserted into the database
         $video_array = json_decode($json, true);
+        //exit and output message if nothing was found
         if(empty($video_array['items'])){
             $output['messages'][] = 'no new videos';
             output_and_exit($output);
         }
+        //grab a page token if it exist
         if(!empty($video_array['nextPageToken'])){
             $next_page_token = $video_array['nextPageToken'];
         }
         $entries = $video_array['items'];
         $last_updated = date('Y-m-d H:i:s');
-        $query = "INSERT INTO videos (video_title, channel_id, youtube_video_id, description, published_at) VALUES";
+        //complete query based on length of videos array
+        $query = 
+            "INSERT INTO 
+                videos 
+                    (video_title, 
+                    channel_id, 
+                    youtube_video_id, 
+                    description, 
+                    published_at) 
+            VALUES";
         $data = [];
         $bind_str = '';
         //break the data to insert into database
         foreach($entries as $key => $value){
             if(!empty($value['id']['videoId'])&&!empty($value['snippet']['title'])&&!empty($value['snippet']['description'])&&!empty($value['snippet']['publishedAt'])){
+                //build out query and parameters based on length od data
                 $query .= " (?,?,?,?,?),";
                 $bind_str .= "sisss";
-                $data[] = $value['snippet']['title'];
+                //grab relavent data from youtube and put it into an array
+                $data[] = $value['snippet']['title'];//video title
                 $data[] = $channel_id;
-                $data[] = $value['id']['videoId'];
-                $data[] = $value['snippet']['description'];
+                $data[] = $value['id']['videoId'];//youtube video id
+                $data[] = $value['snippet']['description'];//description
+                //break datetime given from youtube to datetime that can be entered into database
                 $published_at = $value['snippet']['publishedAt'];
                 $published_at = str_replace('T',' ',$published_at);
                 $published_at = str_replace('.000Z','',$published_at);
                 $data[] = $published_at;
             }
         }
+        //remove last comma
         $query = rtrim($query,", ");
         $stmt = $conn->prepare($query);
         $stmt->bind_param($bind_str, ...($data));
         $stmt->execute();
+        //output success or fail message
         if($conn->affected_rows>0){
             $output['success']=true;
             $output['messages'][] = 'insert video success';
+            //set output page token if it exist
             if(!empty($next_page_token)){
                 $output['page_token']=$next_page_token;
             }  

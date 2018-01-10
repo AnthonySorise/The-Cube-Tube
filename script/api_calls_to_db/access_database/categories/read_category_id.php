@@ -1,8 +1,10 @@
 <?php
 //get category id to be used for other queries
+//category id is based on category name and user id
 if(empty($LOCAL_ACCESS)){
     die('no direct access allowed');
 }
+//prepared statement to grab category id
 $query = 
     "SELECT
         category_id
@@ -16,6 +18,7 @@ if(!$stmt->bind_param('is',$user_id,$category_name)){
 }
 $stmt->execute();
 $result = $stmt->get_result();
+//set category id to a variable to future use or exit if nothing was found
 if($result->num_rows>0){
     $row = $result->fetch_assoc();
     $category_id = $row['category_id'];

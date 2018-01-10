@@ -6,6 +6,7 @@ if(empty($LOCAL_ACCESS)){
 $user_link = $_SESSION['user_link'];
 $date = date('Y-m-d H:i:s');
 $ip_address_at_sign_up = get_client_ip();
+//grab user ip address
 function get_client_ip() {
     $ipaddress = '';
     if (isset($_SERVER['HTTP_CLIENT_IP']))
@@ -24,6 +25,7 @@ function get_client_ip() {
         $ipaddress = 'UNKNOWN';
     return $ipaddress;
 }
+//prepared statement to insert user info
 $sqli = 
     "INSERT INTO
         users
@@ -34,6 +36,7 @@ $sqli =
 $stmt = $conn->prepare($sqli);
 $stmt->bind_param('sss',$user_link,$date,$ip_address_at_sign_up);
 $stmt->execute();
+//if successful set user id to variable for use in insert ctu, exit if not
 if($conn->affected_rows>0){
     $output['insert_user_success'] = true;
     $user_id = mysqli_insert_id($conn);

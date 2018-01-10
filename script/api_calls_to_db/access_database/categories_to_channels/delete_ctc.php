@@ -3,15 +3,18 @@
 if(empty($LOCAL_ACCESS)){
     die('delete ctu, direct access not allowed');
 }
+//check for missing data, exit and output error if anthing is missing
 if(empty($_POST['youtube_channel_id'])){
     $output['errors'] = 'missing youtube channel id at delete ctc';
     output_and_exit($output);
 }
+//validate the youtube channel id
 $youtube_channel_id = $_POST['youtube_channel_id'];
 if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
     $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
     output_and_exit($output);
 }
+//delete categories to channels entry based on youtube channel and user id
 $query = 
     "DELETE
         ctc
@@ -29,6 +32,7 @@ if(!($stmt = $conn->prepare($query))){
 }
 $stmt->bind_param('si',$youtube_channel_id,$user_id);
 $stmt->execute();
+//output success or fail messsage
 if($conn->affected_rows>0){
     $output['messages'][] = 'deleted ctcs';
     $output['success'] = true;
