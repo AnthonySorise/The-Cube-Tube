@@ -4,5 +4,7 @@
   </a>
   TheCubeTube
 </h1>
----
+
+----
+
 ...TheCubeTube is a content management application aimed to provide an optimal viewing experience for YouTube users.
