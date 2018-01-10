@@ -38,10 +38,10 @@ YouTube provides a wonderful platform where people can show and voice themselves
 
 ## Developers
 #### Front End
-  - Anthony Sorise
-  - Brian Kim
-  - Matt Barnett
-  - Chris Kim
-  - Ian Manly
+  - [Anthony Sorise] (https://www.linkedin.com/in/anthony-sorise-6a184b10/ "Anthony's LinkedIn")
+  - [Brian Kim] (https://www.linkedin.com/in/briandhkimucla/ "Brian's LinkedIn")
+  - [Matt Barnett] (https://www.linkedin.com/in/codemattb/ "Matt's LinkedIn")
+  - [Chris Kim] (https://www.linkedin.com/in/ckim618/ "Chris' LinkedIn")
+  - [Ian Manly] (https://www.linkedin.com/in/audrian-manly-5a8230153/ "Ian's LinkedIn")
 #### Back End
-  - collin Wong
+  - [collin Wong] (https://www.linkedin.com/in/collin-wong-dev/ "Wong's LinkedIn")
