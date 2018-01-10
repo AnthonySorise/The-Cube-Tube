@@ -8,7 +8,7 @@
 ## About TheCubeTube
 TheCubeTube is a content management application aimed to provide an optimal viewing experience for YouTube users.
 
-TheCubeTube provides a way for the viewer to keep track of his or her channel subscription anonymously. Using a uniquely generated link, the viwer can keep track of YouTube channel content without using an account requiring an ID and a passowrd. The channel subscription can also be organized using custom categories created by the user. 
+The application provides a way for the viewer to keep track of his or her channel subscription anonymously. Using a uniquely generated link, the viwer can keep track of YouTube channel content without using an account requiring an ID and a passowrd. The channel subscription can also be organized using custom categories created by the user. 
 
 ----
 ## Purpose
