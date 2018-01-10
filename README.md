@@ -26,6 +26,13 @@ YouTube provides a wonderful platform where people can show and voice themselves
 ### Upcoming Features
 - video search within selected channels
 - option to email personal link to provided email address
+- last page option for video list
+- unselect all for MyCube list
+- 'log off' (session end) 
+- option to view upload time for videos
+- more comprehensive key options for search box
+- generayl imporvement with UI
+- playlist queued videos display
 
 ----
 
