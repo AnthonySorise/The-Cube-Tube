@@ -31,7 +31,7 @@ YouTube provides a wonderful platform where people can show and voice themselves
 - 'log off' (session end) 
 - option to view upload time for videos
 - more comprehensive key options for search box
-- generayl imporvement with UI
+- general imporvement with UI
 - playlist queued videos display
 
 ----
