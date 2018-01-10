@@ -44,7 +44,7 @@ consider carousel for the video list area:
 	<script type="text/javascript" src="library/velocity.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
 	<link rel="icon" type='image/png' href="assets/images/ctube_logo.png" sizes="32x32">
-	<title>CubeTube</title>
+	<title>TheCubeTube</title>
 </head>
 
 <body>
@@ -203,7 +203,7 @@ consider carousel for the video list area:
 <!--						end of form for channel search-->
                         <div class="navbar-nav nav-pills midNavChannels">
 							<span class="midNavBrowsing">
-								<p style="display:inline-block">
+								<p>
 									Browsing:
 								</p>
 							</span>
@@ -214,7 +214,7 @@ consider carousel for the video list area:
 								<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
 							</span>
                             <span class="midNavWatching">
-								<p style="display:inline-block">
+								<p>
                                     Watching:
                                 </p>
 							</span>
@@ -223,7 +223,7 @@ consider carousel for the video list area:
 								Subscribed Channels
 							</span>
                             <span class="midNavPlaylistText">
-								<p style="display:inline-block; margin-left: 5px">
+								<p style="margin-left: 5px">
                                     Watching:
                                 </p>
 							</span>
