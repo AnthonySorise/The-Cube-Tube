@@ -20,7 +20,7 @@ YouTube provides a wonderful platform where people can show and voice themselves
 - __Anonymous__ subscription tracking
 - Channel subscription __categorization__
 - Theater Mode
-- Easy __video queue__ creation for on-the-fly playlists
+- Easy __video queue__ for on-the-fly playlist creation
 - Video controls unavailable on YouTube
 
 ### Upcoming Features
