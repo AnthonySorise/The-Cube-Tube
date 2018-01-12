@@ -44,4 +44,4 @@ YouTube provides a wonderful platform where people can show and voice themselves
   - [Chris Kim](https://www.linkedin.com/in/ckim618/ "Chris' LinkedIn")
   - [Ian Manly](https://www.linkedin.com/in/audrian-manly-5a8230153/ "Ian's LinkedIn")
 #### Back End
-  - [collin Wong](https://www.linkedin.com/in/collin-wong-dev/ "Wong's LinkedIn")
+  - [Collin Wong](https://www.linkedin.com/in/collin-wong-dev/ "Wong's LinkedIn")
