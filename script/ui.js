@@ -33,18 +33,10 @@ function channelDropClickHandle(){
 	$('.closeChannelDropXs').on('click tap', (event)=>{
 		event.stopPropagation();
 		closeChannelDrop();
-		// $('#mainNav-option').slideDown(1000,()=>{
-		// 	$('#mainNav-option').removeClass('in').attr('aria-expanded','false');
-		// 	$('.channelDropDown').removeClass('open');
-		// });
 	});
 	$('#channelCategoryHamburger').on('click tap', (event)=>{
 		event.stopPropagation();
 		showChannelDrop();
-		// $('#mainNav-option').slideDown(1000,()=>{
-		// 	$('#mainNav-option').addClass('in').attr('aria-expanded','true');
-		// 	$('.channelDropDown').addClass('open');
-		// });
 	});
 }
 
@@ -121,37 +113,6 @@ function videoListDown(){
         'width': '152vh',
         'height': '85vh'
     }, 600);
-    // $('.listDropWrap').hide();
-    // let timeInt = 0;
-    // $('.tdList').each((idx,item)=>{
-    //     if($(item).attr('videoid')!==''){
-    //         setTimeout(()=>{
-    //             $(item).toggle('puff');
-    //         }, timeInt);
-    //         timeInt+=20;
-    //     }
-    //     if(idx==39){    //39 instead of 40 because of 0 index
-    //         setTimeout(()=>{
-    //             $('#text-carousel').slideUp(850);
-    //             $('.thRow').fadeOut(590);
-    //             $('.videoListRowWrapper').fadeOut(590);
-    //             $('.videoRowWrapper').velocity({
-    //                 // 'height': '93.8%'
-    //                 'height':'94.2%'
-    //             }, 600);
-    //             $('#listContentWrap').velocity({
-    //                 'height': '5.5%'
-    //             }, 600, ()=>{
-    //                 $('.listUpWrap').fadeIn();
-    //                 // $('.tdList').hide();
-    //             });
-    //             $('#mainVideo').velocity({
-    //                 'width': '152vh',
-    //                 'height': '85vh'
-    //             }, 600);
-    //         },850);
-    //     }
-    // });
 }
 /***************************************************************************************************
  * videoListUp - controls theatre mode effect and animations
@@ -175,34 +136,6 @@ function videoListUp(){
         'width': '98vh',
         'height': '55vh'
     }, 600);
-    // $('.listUpWrap').hide();
-    // $('.listDropWrap').slideDown();
-    // $('.videoRowWrapper').velocity({
-    //     'height': '60%'
-    // }, 600);
-    // $('#listContentWrap').velocity({
-    //     'height': '40%'
-    // }, 600);
-    // $('.videoListRowWrapper').fadeIn(500, ()=>{
-    //     $('#text-carousel').slideDown(800);
-    //     $('.thRow').fadeIn(700);
-    //     $('.listDropWrap').slideDown(700);
-    // });
-    // $('#mainVideo').velocity({
-    //     'width': '98vh',
-    //     'height': '55vh'
-    // }, 600);
-    // let timeInt = 500;
-    // $('.tdList').each((idx,item)=>{
-    //     if($(item).attr('videoid')!==''){
-    //         setTimeout(()=>{
-    //             $(item).toggle('scale');
-    //         }, timeInt);
-    //         timeInt +=50;
-    //     }else{
-    //         return;
-    //     }
-    // });
 }
 
 //Click handler to console log search results
