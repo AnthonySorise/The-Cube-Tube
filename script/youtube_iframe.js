@@ -4,7 +4,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-        videoId: vidId || 'rSBWaxEo-2k',
+        videoId: vidId || 'zEquj3sj_Pk',
         playerVars: {
             'rel': 0,
             'playsinline':1
