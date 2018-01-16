@@ -83,8 +83,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
             $next_page_token = $video_array['nextPageToken'];
         }
         $entries = $video_array['items'];
-        print_r($entries);
-        output_and_exit();
         $last_updated = date('Y-m-d H:i:s');
         //complete query based on length of videos array
         $query = 
@@ -116,6 +114,8 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 if(validateDate($published_at)){
                     $data[] = $published_at;
                 };
+                print_r($data);
+                output_and_exit();
             }
         }
         //remove last comma
