@@ -103,12 +103,14 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 $query .= " (?,?,?,?,?),";
                 $bind_str .= "sisss";
                 //grab relavent data from youtube and put it into an array
-                // $data[] = filter_var($value['snippet']['title'], FILTER_SANITIZE_STRING);//youtube video title
-                // $data[] = filter_var($value['snippet']['title'], FILTER_SANITIZE_STRING);
-                $data[] = $value['snippet']['title'];
+                $data[] = html_entity_decode(filter_var($value['snippet']['title'], FILTER_SANITIZE_STRING));//youtube video title
                 $data[] = $channel_id;
-                $data[] = filter_var($value['id']['videoId'], FILTER_SANITIZE_STRING);//youtube video id
-                $data[] = filter_var($value['snippet']['description'], FILTER_SANITIZE_STRING);//description
+                $data[] = $value['id']['videoId'];//youtube video id  pregmatch this
+                if(!(preg_match('/^[a-zA-Z0-9\-\_]{11,15}$/', $youtube_channel_id))){
+                    $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
+                    output_and_exit($output);
+                }
+                $data[] = html_entity_decode(filter_var($value['snippet']['description'], FILTER_SANITIZE_STRING));//description
                 //break datetime given from youtube to datetime that can be entered into database
                 $published_at = $value['snippet']['publishedAt'];
                 $published_at = str_replace('T',' ',$published_at);

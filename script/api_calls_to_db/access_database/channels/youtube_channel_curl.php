@@ -45,7 +45,9 @@ if ($error_occurred ){
       //covert data from youtube to a format that the database will recieve and store
       $channel_data = json_decode($json, true)['items'][0]['snippet'];
       //remove parts of thumbnail string that are universal to save space in database
-      $thumbnail = filter_var($channel_data['thumbnails']['medium']['url'],FILTER_SANITIZE_STRING);
+      if(filter_var($channel_data['thumbnails']['medium']['url'],FILTER_VALIDATE_URL)){//validate by path 
+        $thumbnail = $channel_data['thumbnails']['medium']['url'];
+      }
       $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
       $thumbnail = str_replace('/photo.jpg','',$thumbnail);
       //grab channel title and description from the channel data object
