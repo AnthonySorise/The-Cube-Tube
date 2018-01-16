@@ -7,8 +7,12 @@ if(empty($LOCAL_ACCESS)){
 require('./youtube_api_key.php');
 //check for missing data, set variables if data exist
 if(!empty($_POST['page_token'])){
-    $next_page_token = $_POST['page_token'];
+    $next_page_token = filter_var($_POST['page_token'], FILTER_SANITIZE_STRING);
     $youtube_channel_id = $_POST['youtube_channel_id'];
+    if(!(preg_match('/^[a-zA-Z0-9\-\_]{24}$/', $youtube_channel_id))){
+        $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
+        output_and_exit($output);
+    }
 }
 //covert last channel pull time, if given
 //to format the youtube api can read
@@ -95,10 +99,10 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 $query .= " (?,?,?,?,?),";
                 $bind_str .= "sisss";
                 //grab relavent data from youtube and put it into an array
-                $data[] = $value['snippet']['title'];//video title
+                $data[] = filter_var($value['snippet']['title'], FILTER_SANITIZE_STRING);//youtube video title
                 $data[] = $channel_id;
-                $data[] = $value['id']['videoId'];//youtube video id
-                $data[] = $value['snippet']['description'];//description
+                $data[] = filter_var($value['id']['videoId'], FILTER_SANITIZE_STRING);//youtube video id
+                $data[] = filter_var($value['snippet']['description'], FILTER_SANITIZE_STRING);//description
                 //break datetime given from youtube to datetime that can be entered into database
                 $published_at = $value['snippet']['publishedAt'];
                 $published_at = str_replace('T',' ',$published_at);

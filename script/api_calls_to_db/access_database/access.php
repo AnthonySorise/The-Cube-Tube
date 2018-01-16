@@ -17,16 +17,22 @@ if(!empty($_SESSION['user_link'])){
     include('./users/read_user.php');//grab user id if avaiable
 }
 //this function exits the file and sends an output in json. Will also create an error log on server
-function output_and_exit($output){
+function output_and_exit($output)
+{
     $json_output = json_encode($output);
-    // if(!empty($output['errors'])){
-    //     $output['datetime'][] = date('Y-m-s H:i:s');
-    //     $output['defined_vars'][] = get_defined_vars();
-    //     $errors = json_encode($output);
-    //     error_log("{$json_output} \n",3,"../../../../logs/error.log");
-    // };
+    if(!empty($output['errors'])){
+        $output['datetime'][] = date('Y-m-s H:i:s');
+        $output['defined_vars'][] = get_defined_vars();
+        $errors = json_encode($output);
+        error_log("{$json_output} \n",3,"../../../../logs/error.log");
+    };
     print($json_output);
     exit();
+}
+function validateDate($date, $format = 'Y-m-d H:i:s')
+{
+    $d = DateTime::createFromFormat($format, $date);
+    return $d && $d->format($format) == $date;
 }
 //files run depending on the action given in post data
 switch($_POST['action']){
