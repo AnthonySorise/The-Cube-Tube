@@ -50,7 +50,7 @@ if ($error_occurred ){
       $thumbnail = str_replace('/photo.jpg','',$thumbnail);
       //grab channel title and description from the channel data object
       $channel_title = filtar_var($channel_data['title'],FILTER_SANITIZE_STRING);
-      $description = filtar_Var($channel_data['description'],FILTER_SANITIZE_STRING);
+      $description = filtar_var($channel_data['description'],FILTER_SANITIZE_STRING);
       $date = date('Y-m-d H:i:s');
       //prepared statement to put channel data into database
       $sqli = 
