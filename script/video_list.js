@@ -47,8 +47,6 @@ function renderVideoList(videoArray) {
             const d = new Date(dateString);
             dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
         }
-        // const d = new Date(dateString);
-        // dateString = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear().toString().substring(2);
 
         $(row).show();
 
@@ -72,7 +70,6 @@ function renderVideoList(videoArray) {
                 width: '240px',
                 height: '135px',
             });
-            // var videoDataImg = "<img src="+videoURL+" />";
             $(videoData).attr({
                 'data-content': videoArray[i].description,
                 'data-original-title': videoArray[i].video_title
@@ -263,21 +260,6 @@ function resetPlaylistTd() {
 
 function updateMidNavText(){
     if(playlistVideoObjectArray.length){
-        // for(var i = 0; i < playlistVideoObjectArray.length; i++){
-        //     if (currentlySelectedVideoID === playlistVideoObjectArray[i].youtube_video_id){
-        //         $('.midNavWatching').hide();
-        //         $('.midNavBrowsing').hide();
-        //         $(".midNavAddBtn").hide();
-        //         $(".midNavPlaylist").show();
-        //         return
-        //     }
-        //     else{
-        //         $('.midNavWatching').hide();
-        //         $('.midNavBrowsing').hide();
-        //         $(".midNavAddBtn").hide();
-        //         $(".midNavPlaylist").show();
-        //     }
-        // }
         $(".midNavPlaylistText").show();
         $(".midNavPlaylist").show();
     }

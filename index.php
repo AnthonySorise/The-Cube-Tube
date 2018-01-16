@@ -1,5 +1,5 @@
 <?php  
-require_once('./script/api_calls_to_db/access_database/get_user_query.php');
+require_once('./script/api_calls_to_db/access_database/users/get_user_query.php');
 ?>
 <!--
 consider carousel for the video list area:
@@ -203,7 +203,7 @@ consider carousel for the video list area:
 <!--						end of form for channel search-->
                         <div class="navbar-nav nav-pills midNavChannels">
 							<span class="midNavBrowsing">
-								<p style="display:inline-block">
+								<p>
 									Browsing:
 								</p>
 							</span>
@@ -214,7 +214,7 @@ consider carousel for the video list area:
 								<button class="btn btn-success addChannelButton midNavAddBtn">Subscribe</button>
 							</span>
                             <span class="midNavWatching">
-								<p style="display:inline-block">
+								<p>
                                     Watching:
                                 </p>
 							</span>
@@ -223,7 +223,7 @@ consider carousel for the video list area:
 								Subscribed Channels
 							</span>
                             <span class="midNavPlaylistText">
-								<p style="display:inline-block; margin-left: 5px">
+								<p style="margin-left: 5px">
                                     Watching:
                                 </p>
 							</span>
