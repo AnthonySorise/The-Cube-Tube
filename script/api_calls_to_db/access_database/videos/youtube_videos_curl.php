@@ -93,49 +93,60 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                     youtube_video_id, 
                     description, 
                     published_at) 
-            VALUES";
-        $data = [];
-        $bind_str = '';
+            VALUES
+                (?,?,?,?,?)";
+        // $data = [];
+        // $bind_str = '';
+        $bind_str = "sisss";
+        $output['videos_inserted'] = 0;
         //break the data to insert into database
         foreach($entries as $key => $value){
             if(!empty($value['id']['videoId'])&&!empty($value['snippet']['title'])&&!empty($value['snippet']['description'])&&!empty($value['snippet']['publishedAt'])){
-                //build out query and parameters based on length od data
-                $query .= " (?,?,?,?,?),";
-                $bind_str .= "sisss";
+                $data = [];
+                //build out query and parameters based on length of data
+                // $query .= " (?,?,?,?,?),";
+                // $bind_str .= "sisss";
                 //grab relavent data from youtube and put it into an array
                 $data[] = html_entity_decode(filter_var($value['snippet']['title'], FILTER_SANITIZE_STRING));//youtube video title
                 $data[] = $channel_id;
-                $data[] = $value['id']['videoId'];//youtube video id  pregmatch this
-                if(!(preg_match('/^[a-zA-Z0-9\-\_]{11,15}$/', $youtube_channel_id))){
-                    $output['errors'][] = 'INVALID YOUTUBE CHANNEL ID';
-                    output_and_exit($output);
+                if(preg_match('/^[a-zA-Z0-9\-\_]{11,15}$/', $value['id']['videoId'])){//regex video id
+                    $data[] = $value['id']['videoId'];
                 }
                 $data[] = html_entity_decode(filter_var($value['snippet']['description'], FILTER_SANITIZE_STRING));//description
                 //break datetime given from youtube to datetime that can be entered into database
                 $published_at = $value['snippet']['publishedAt'];
                 $published_at = str_replace('T',' ',$published_at);
                 $published_at = str_replace('.000Z','',$published_at);
-                if(validateDate($published_at)){
-                    $data[] = $published_at;
+                if(validateDate($youtube_date)){
+                     $data[] = $published_at;
                 };
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param($bind_str, ...($data));
+                $stmt->execute();
+                if($conn->affected_rows>0){
+                    $output['videos_inserted'] +=1;
+                    //set output page token if it exist
+                }else{
+                    $output['errors'][] = 'unable to insert video';
+                }
             }
         }
         //remove last comma
-        $query = rtrim($query,", ");
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param($bind_str, ...($data));
-        $stmt->execute();
+        // $query = rtrim($query,", ");
+        // $stmt = $conn->prepare($query);
+        // $stmt->bind_param($bind_str, ...($data));
+        // $stmt->execute();
         //output success or fail message
-        if($conn->affected_rows>0){
-            $output['success']=true;
-            $output['messages'][] = 'insert video success';
-            //set output page token if it exist
-            if(!empty($next_page_token)){
-                $output['page_token']=$next_page_token;
-            }  
-        }else{
-            $output['errors'][] = 'unable to insert video';
-        }
+        // if($conn->affected_rows>0){
+        //     $output['success']=true;
+        //     $output['messages'][] = 'insert video success';
+        //     //set output page token if it exist
+        //     if(!empty($next_page_token)){
+        //         $output['page_token']=$next_page_token;
+        //     }  
+        // }else{
+        //     $output['errors'][] = 'unable to insert video';
+        // }
         //let client know that first 45 has been inserted so they can search
         if($page_token === 'first'){
             output_and_exit($output);
