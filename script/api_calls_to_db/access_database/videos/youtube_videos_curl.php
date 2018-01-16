@@ -116,8 +116,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 };
             }
         }
-        print_r($data);
-        output_and_exit();
         //remove last comma
         $query = rtrim($query,", ");
         $stmt = $conn->prepare($query);
