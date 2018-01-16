@@ -45,11 +45,15 @@ foreach($channel_array as $youtube_channel_id){
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $json = curl_exec($ch);
     $channel_data = json_decode($json, true)['items'][0]['snippet'];
-    $thumbnail = $channel_data['thumbnails']['medium']['url'];
+    if(filter_var($channel_data['thumbnails']['medium']['url'],FILTER_VALIDATE_URL)){//validate by path 
+        $thumbnail = $channel_data['thumbnails']['medium']['url'];
+    }else{
+        $output['errors'][] = 'invalid thumbnail';
+    }
     $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
     $thumbnail = str_replace('/photo.jpg','',$thumbnail);
-    $channel_title = $channel_data['title'];
-    $description = $channel_data['description'];
+    $channel_title = html_entity_decode(filter_var($channel_data['title'],FILTER_SANITIZE_STRING));
+    $description = html_entity_decode(filter_var($channel_data['description'],FILTER_SANITIZE_STRING));
     $stmt->execute();
     //count how many channels were updated
     if($conn->affected_rows>0){
