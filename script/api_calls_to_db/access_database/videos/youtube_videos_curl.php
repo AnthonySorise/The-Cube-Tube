@@ -118,7 +118,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 $published_at = $value['snippet']['publishedAt'];
                 $published_at = str_replace('T',' ',$published_at);
                 $published_at = str_replace('.000Z','',$published_at);
-                if(validateDate($youtube_date)){
+                if(validateDate($published_at)){
                      $data[] = $published_at;
                 };
                 $stmt = $conn->prepare($query);
