@@ -45,12 +45,12 @@ if ($error_occurred ){
       //covert data from youtube to a format that the database will recieve and store
       $channel_data = json_decode($json, true)['items'][0]['snippet'];
       //remove parts of thumbnail string that are universal to save space in database
-      $thumbnail = filtar_var($channel_data['thumbnails']['medium']['url'],FILTER_SANITIZE_STRING);
+      $thumbnail = filter_var($channel_data['thumbnails']['medium']['url'],FILTER_SANITIZE_STRING);
       $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
       $thumbnail = str_replace('/photo.jpg','',$thumbnail);
       //grab channel title and description from the channel data object
-      $channel_title = filtar_var($channel_data['title'],FILTER_SANITIZE_STRING);
-      $description = filtar_var($channel_data['description'],FILTER_SANITIZE_STRING);
+      $channel_title = filter_var($channel_data['title'],FILTER_SANITIZE_STRING);
+      $description = filter_var($channel_data['description'],FILTER_SANITIZE_STRING);
       $date = date('Y-m-d H:i:s');
       //prepared statement to put channel data into database
       $sqli = 
