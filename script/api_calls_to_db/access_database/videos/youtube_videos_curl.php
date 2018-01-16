@@ -106,15 +106,15 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 $data[] = filter_var($value['snippet']['title'], FILTER_SANITIZE_STRING);//youtube video title
                 $data[] = $channel_id;
                 $data[] = filter_var($value['id']['videoId'], FILTER_SANITIZE_STRING);//youtube video id
-                $data[] = filter_var($value['snippet']['description'], FILTER_SANITIZE_STRING);//description
+                // $data[] = filter_var($value['snippet']['description'], FILTER_SANITIZE_STRING);//description
+                $data[] = $value['snippet']['description'];
                 //break datetime given from youtube to datetime that can be entered into database
                 $published_at = $value['snippet']['publishedAt'];
                 $published_at = str_replace('T',' ',$published_at);
                 $published_at = str_replace('.000Z','',$published_at);
-                // if(validateDate($published_at)){
-                //     $data[] = $published_at;
-                // };
-                $data[] = $published_at;
+                if(validateDate($published_at)){
+                    $data[] = $published_at;
+                };
             }
         }
         //remove last comma
