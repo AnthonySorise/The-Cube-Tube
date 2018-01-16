@@ -81,6 +81,7 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         //grab a page token if it exist
         if(!empty($video_array['nextPageToken'])){
             $next_page_token = $video_array['nextPageToken'];
+            $output['page_token']=$next_page_token;
         }
         $entries = $video_array['items'];
         $last_updated = date('Y-m-d H:i:s');
@@ -130,6 +131,9 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                     $output['errors'][] = 'unable to insert video';
                 }
             }
+        }
+        if($output['videos_inserted']>1){
+            $output['success'] = true;
         }
         //remove last comma
         // $query = rtrim($query,", ");
