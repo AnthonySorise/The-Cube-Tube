@@ -2,16 +2,8 @@
 function searchChannelsByName(inputStr) {
     $(".addChannelButton").removeClass("disabled").text("Subscribe");
     let string = inputStr;
-    // if($('.channelSearchInput:odd').val()!==""){
-    //     string = $('.channelSearchInput:odd').val();
-    // }else if($('.channelSearchInput:even').val()!==""){
-    //     string = $('.channelSearchInput:even').val();
-    // }else{
-    //     string='';
-    // }
     $('.channelSearchInput').val('');
     $('#channelModalSearchBar').val('');
-    // var string = $('.channelSearchInput').val();
     var promise = {
         then: function (resolve, reject) {
             this.resolve = resolve;

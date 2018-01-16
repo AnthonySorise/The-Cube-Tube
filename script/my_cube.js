@@ -57,11 +57,10 @@ function renderChannelSelectionDropdown() {
                 let channelLi = $('<li>', {
                     'class': 'dropdownChannelLi row'
                 });
-                //let channelSettings = $("<div style='display: inline-block'><a class='btn hidden-xs' role='button' data-trigger='focus' data-container='body' data-toggle='popover'><i class='fa fa-cog fa-lg'></i></a></div>")
+                
                 const cog = $('<i>', {
                     class: 'fa fa-cog'
                 });
-                // var settingsContent = $('<div channelId='+clientSubsClone[i].youtube_channel_id+'>');
                 var settingsContent = $('<div>', {
                     'channelId': clientSubsClone[i].youtube_channel_id
                 });
@@ -116,7 +115,6 @@ function renderChannelSelectionDropdown() {
                     'line-height': '200%'
                 }).text(clientSubsClone[i].channel_title);
                 channelLiMain.prepend(channelCheckbox);
-                // let channelText = $('<span style="display: inline-block" style="margin-left: 5px">').text(clientSubsClone[i].channel_title);
 
                 channelLi.append(channelLiMain, channelSettingsSpan);
                 $('#channelCategoryUl').append(channelLi);
@@ -134,8 +132,6 @@ function renderChannelSelectionDropdown() {
 
         ((categoryCh)=>{
             $(".dropdownCatLi" + "_"+cat).on("click tap", function(){
-
-                // $(".dropdownChannelCheckBox").attr("checked", false)
                 $('.dropdownChannelCheckBox').each((idx, val)=>{
                     $(val).prop('checked',false);
                 })

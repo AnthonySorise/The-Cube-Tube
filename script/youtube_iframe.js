@@ -4,7 +4,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
-        videoId: vidId || 'rSBWaxEo-2k',
+        videoId: vidId || 'zEquj3sj_Pk',
         playerVars: {
             'rel': 0,
             'playsinline':1
@@ -169,26 +169,6 @@ function pausePlayWithSpacebar(){
 
 
 
-// function checkIfPlayerIsMuted() {
-//     if (player.isMuted()) {
-//         player2.mute();
-//     } else {
-//         player2.unMute();
-//         currentVolumeLevel = player.getVolume();
-//         player2.setVolume(currentVolumeLevel);
-//     }
-// }
-//
-// function checkIfPlayer2IsMuted() {
-//     if (player2.isMuted()) {
-//         player.mute();
-//     } else {
-//         player.unMute();
-//         currentVolumeLevel = player2.getVolume();
-//         player.setVolume(currentVolumeLevel);
-//     }
-// }
-
 /*******needed for iframe player*******/
 let iframeRight = 0;
 $(window).resize(function () {
@@ -240,7 +220,6 @@ function rendertheatreControls() {
         text: "close",
         type: "button"
     });
-    // $('#lightBoxModalFooter').append(rewindElement, playElement, fastForwardElement, closeButton);
     $('.mediaControls').append(lastVideoElement, rewindElement, playElement, fastForwardElement, nextVideoElement);
     
 }
