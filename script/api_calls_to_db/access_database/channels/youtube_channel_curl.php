@@ -51,8 +51,8 @@ if ($error_occurred ){
       $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
       $thumbnail = str_replace('/photo.jpg','',$thumbnail);
       //grab channel title and description from the channel data object
-      $channel_title = filter_var($channel_data['title'],FILTER_SANITIZE_STRING);
-      $description = filter_var($channel_data['description'],FILTER_SANITIZE_STRING);
+      $channel_title = html_entity_decode(filter_var($channel_data['title'],FILTER_SANITIZE_STRING));
+      $description = html_entity_decode(filter_var($channel_data['description'],FILTER_SANITIZE_STRING));
       $date = date('Y-m-d H:i:s');
       //prepared statement to put channel data into database
       $sqli = 
