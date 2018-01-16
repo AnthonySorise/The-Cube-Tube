@@ -18,6 +18,10 @@ if(!empty($_POST['page_token'])){
 //to format the youtube api can read
 if(!empty($_POST['last_channel_pull'])){//change datetime to youtube standard format
     $last_channel_pull = $_POST['last_channel_pull'];
+    if(!validateDate($last_channel_pull)){
+        $output['errors'][] = "invalid date at youtube video curl";
+        output_and_exit();
+    };
     $last_channel_pull = str_replace(' ','T', $last_channel_pull);
     $last_channel_pull .= '.000Z';
 }else{
@@ -107,7 +111,9 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                 $published_at = $value['snippet']['publishedAt'];
                 $published_at = str_replace('T',' ',$published_at);
                 $published_at = str_replace('.000Z','',$published_at);
-                $data[] = $published_at;
+                if(validateDate($published_at)){
+                    $data[] = $published_at;
+                };
             }
         }
         //remove last comma
