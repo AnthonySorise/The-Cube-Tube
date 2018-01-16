@@ -96,17 +96,12 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
                     published_at) 
             VALUES
                 (?,?,?,?,?)";
-        // $data = [];
-        // $bind_str = '';
         $bind_str = "sisss";
         $output['videos_inserted'] = 0;
         //break the data to insert into database
         foreach($entries as $key => $value){
             if(!empty($value['id']['videoId'])&&!empty($value['snippet']['title'])&&!empty($value['snippet']['description'])&&!empty($value['snippet']['publishedAt'])){
                 $data = [];
-                //build out query and parameters based on length of data
-                // $query .= " (?,?,?,?,?),";
-                // $bind_str .= "sisss";
                 //grab relavent data from youtube and put it into an array
                 $data[] = html_entity_decode(filter_var($value['snippet']['title'], FILTER_SANITIZE_STRING));//youtube video title
                 $data[] = $channel_id;
@@ -135,22 +130,6 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
         if($output['videos_inserted']>1){
             $output['success'] = true;
         }
-        //remove last comma
-        // $query = rtrim($query,", ");
-        // $stmt = $conn->prepare($query);
-        // $stmt->bind_param($bind_str, ...($data));
-        // $stmt->execute();
-        //output success or fail message
-        // if($conn->affected_rows>0){
-        //     $output['success']=true;
-        //     $output['messages'][] = 'insert video success';
-        //     //set output page token if it exist
-        //     if(!empty($next_page_token)){
-        //         $output['page_token']=$next_page_token;
-        //     }  
-        // }else{
-        //     $output['errors'][] = 'unable to insert video';
-        // }
         //let client know that first 45 has been inserted so they can search
         if($page_token === 'first'){
             output_and_exit($output);

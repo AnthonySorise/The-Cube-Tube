@@ -46,8 +46,10 @@ if ($error_occurred ){
       $channel_data = json_decode($json, true)['items'][0]['snippet'];
       //remove parts of thumbnail string that are universal to save space in database
       if(filter_var($channel_data['thumbnails']['medium']['url'],FILTER_VALIDATE_URL)){//validate by path 
-        $thumbnail = $channel_data['thumbnails']['medium']['url'];
-      }
+            $thumbnail = $channel_data['thumbnails']['medium']['url'];
+        }else{
+            $output['errors'][] = 'invalid thumbnail';
+        }
       $thumbnail = str_replace('https://yt3.ggpht.com/','',$thumbnail);
       $thumbnail = str_replace('/photo.jpg','',$thumbnail);
       //grab channel title and description from the channel data object
