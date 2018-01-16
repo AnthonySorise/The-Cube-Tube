@@ -6,7 +6,8 @@ function onYouTubeIframeAPIReady(vidId) {
     player = new YT.Player('mainVideo', {
         videoId: vidId || 'rSBWaxEo-2k',
         playerVars: {
-            'rel': 0
+            'rel': 0,
+            'playsinline':1
         },
         events: {
             'onStateChange': onPlayerStateChange
