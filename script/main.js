@@ -73,7 +73,9 @@ $(document).ready(function () {
         else if(player && player.B){
             iframeRight = $('#mainVideo').position().left + $('#mainVideo').width();
             $('.lightBoxMode').css('left', iframeRight + 'px');
-            console.log("initApp() - player.b = " + player.b);
+            console.log("player = " + player);
+            console.log("player.b = " + player.b);
+            console.log("initApp()");
             initApp();
         }
 
