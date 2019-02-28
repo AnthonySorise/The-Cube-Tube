@@ -4,6 +4,8 @@ session_start();
 $LOCAL_ACCESS = true;
 //connection to database
 require_once('mysql_connect.php');
+error_log(print_r($_POST['action'],true),0);
+//error_log(print_r($_POST,true),0);
 $output = [
     'success' => false,
     'errors' => [],

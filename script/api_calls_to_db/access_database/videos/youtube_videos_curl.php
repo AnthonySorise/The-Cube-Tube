@@ -46,7 +46,12 @@ function insert_videos($youtube_channel_id,$channel_id,$page_token,$DEVELOPER_KE
     }
     //make curl call to youtube to grab videos based on channel
     //and any addition information
-    $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=45");
+    try{
+        $ch = curl_init("https://www.googleapis.com/youtube/v3/search?key={$DEVELOPER_KEY}{$page_query}{$last_channel_pull}&channelId={$youtube_channel_id}&part=snippet&order=date&maxResults=45");
+    }catch(e){
+        error_log(e,0)
+    }
+   
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $json = curl_exec($ch);
     $error_occurred = false;
